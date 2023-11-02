@@ -15,6 +15,9 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
+      "@angular-love/blog/articles/data-access": [
+        "libs/blog/articles/data-access/src/index.ts"
+      ],
       "@angular-love/blog/home/feature": [
         "libs/blog/home/feature/src/index.ts"
       ],
