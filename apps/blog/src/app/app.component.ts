@@ -1,10 +1,10 @@
 import { Component } from '@angular/core';
-import { RouterModule } from '@angular/router';
 import { NxWelcomeComponent } from './nx-welcome.component';
+import { LayoutComponent } from "@angular-love/blog/layouts/ui";
 
 @Component({
   standalone: true,
-  imports: [NxWelcomeComponent, RouterModule],
+  imports: [NxWelcomeComponent, LayoutComponent],
   selector: 'angular-love-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
