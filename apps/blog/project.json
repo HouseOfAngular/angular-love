@@ -10,7 +10,7 @@
       "executor": "@angular-devkit/build-angular:browser",
       "outputs": ["{options.outputPath}"],
       "options": {
-        "outputPath": "dist/apps/blog",
+        "outputPath": "dist/apps/blog/browser",
         "index": "apps/blog/src/index.html",
         "main": "apps/blog/src/main.ts",
         "polyfills": ["zone.js"],
@@ -84,6 +84,59 @@
           "codeCoverage": true
         }
       }
+    },
+    "server": {
+      "dependsOn": ["build"],
+      "executor": "@angular-devkit/build-angular:server",
+      "options": {
+        "outputPath": "dist/apps/blog/server",
+        "main": "apps/blog/server.ts",
+        "tsConfig": "apps/blog/tsconfig.server.json"
+      },
+      "configurations": {
+        "production": {
+          "outputHashing": "media"
+        },
+        "development": {
+          "buildOptimizer": false,
+          "optimization": false,
+          "sourceMap": true,
+          "extractLicenses": false,
+          "vendorChunk": true
+        }
+      },
+      "defaultConfiguration": "production"
+    },
+    "serve-ssr": {
+      "executor": "@nguniversal/builders:ssr-dev-server",
+      "configurations": {
+        "development": {
+          "browserTarget": "blog:build:development",
+          "serverTarget": "blog:server:development"
+        },
+        "production": {
+          "browserTarget": "blog:build:production",
+          "serverTarget": "blog:server:production"
+        }
+      },
+      "defaultConfiguration": "development"
+    },
+    "prerender": {
+      "executor": "@nguniversal/builders:prerender",
+      "options": {
+        "routes": ["/"]
+      },
+      "configurations": {
+        "development": {
+          "browserTarget": "blog:build:development",
+          "serverTarget": "blog:server:development"
+        },
+        "production": {
+          "browserTarget": "blog:build:production",
+          "serverTarget": "blog:server:production"
+        }
+      },
+      "defaultConfiguration": "production"
     }
   }
 }

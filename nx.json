@@ -21,6 +21,9 @@
     },
     "e2e": {
       "cache": true
+    },
+    "server": {
+      "cache": true
     }
   },
   "namedInputs": {
