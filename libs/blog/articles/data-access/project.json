@@ -1,7 +1,7 @@
 {
-  "name": "home-data-access",
-  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
-  "sourceRoot": "libs/home/data-access/src",
+  "name": "blog-articles-data-access",
+  "$schema": "../../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/blog/articles/data-access/src",
   "prefix": "angular-love",
   "tags": [],
   "projectType": "library",
@@ -10,7 +10,7 @@
       "executor": "@nx/jest:jest",
       "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
       "options": {
-        "jestConfig": "libs/home/data-access/jest.config.ts",
+        "jestConfig": "libs/blog/articles/data-access/jest.config.ts",
         "passWithNoTests": true
       },
       "configurations": {
@@ -25,8 +25,8 @@
       "outputs": ["{options.outputFile}"],
       "options": {
         "lintFilePatterns": [
-          "libs/home/data-access/**/*.ts",
-          "libs/home/data-access/**/*.html"
+          "libs/blog/articles/data-access/**/*.ts",
+          "libs/blog/articles/data-access/**/*.html"
         ]
       }
     }

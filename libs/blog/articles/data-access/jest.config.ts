@@ -1,9 +1,9 @@
 /* eslint-disable */
 export default {
-  displayName: 'home-data-access',
-  preset: '../../../jest.preset.js',
+  displayName: 'blog-articles-data-access',
+  preset: '../../../../jest.preset.js',
   setupFilesAfterEnv: ['<rootDir>/src/test-setup.ts'],
-  coverageDirectory: '../../../coverage/libs/home/data-access',
+  coverageDirectory: '../../../../coverage/libs/blog/articles/data-access',
   transform: {
     '^.+\\.(ts|mjs|js|html)$': [
       'jest-preset-angular',
