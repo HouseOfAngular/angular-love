@@ -22,7 +22,8 @@
         "libs/blog/home/feature/src/index.ts"
       ],
       "@angular-love/blog/home/ui": ["libs/blog/home/ui/src/index.ts"],
-      "@angular-love/blog/layouts/ui": ["libs/blog/layouts/ui/src/index.ts"]
+      "@angular-love/blog/layouts/ui": ["libs/blog/layouts/ui/src/index.ts"],
+      "@angular-love/storybook": ["libs/shared/storybook/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]
