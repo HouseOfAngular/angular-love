@@ -5,7 +5,7 @@ export const appRoutes: Route[] = [
     path: '',
     pathMatch: 'full',
     loadComponent: async () =>
-      (await import(/* webpackChunkName: 'home' */ '@angular-love/blog/home/feature'))
+      (await import('@angular-love/blog/home/feature'))
         .HomePageComponent,
   },
 ];
