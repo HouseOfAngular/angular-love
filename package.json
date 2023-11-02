@@ -2,7 +2,9 @@
   "name": "@angular-love/source",
   "version": "0.0.0",
   "license": "MIT",
-  "scripts": {},
+  "scripts": {
+    "start": "npx nx run blog:serve"
+  },
   "private": true,
   "dependencies": {
     "@angular/animations": "~16.2.0",
