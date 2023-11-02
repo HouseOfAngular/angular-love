@@ -22,6 +22,9 @@
         "port": 4400,
         "configDir": "libs/shared/storybook/.storybook",
         "browserTarget": "storybook:build-storybook",
+        "styles": [
+          "libs/shared/storybook/.storybook/main.scss"
+        ],
         "compodoc": false
       },
       "configurations": {
@@ -37,6 +40,9 @@
         "outputDir": "dist/storybook/storybook",
         "configDir": "libs/shared/storybook/.storybook",
         "browserTarget": "storybook:build-storybook",
+        "styles": [
+          "libs/shared/storybook/.storybook/main.scss"
+        ],
         "compodoc": false
       },
       "configurations": {
