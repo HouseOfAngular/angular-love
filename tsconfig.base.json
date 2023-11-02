@@ -14,7 +14,12 @@
     "skipLibCheck": true,
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
-    "paths": {}
+    "paths": {
+      "@angular-love/blog/home/feature": [
+        "libs/blog/home/feature/src/index.ts"
+      ],
+      "@angular-love/blog/home/ui": ["libs/blog/home/ui/src/index.ts"]
+    }
   },
   "exclude": ["node_modules", "tmp"]
 }
