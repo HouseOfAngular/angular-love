@@ -1,0 +1,28 @@
+:host.al-button {
+  text-decoration: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+
+  &:disabled {
+    cursor: initial;
+  }
+
+  &--primary {
+    background: #EF4444;
+    color: #FFFFFF;
+  }
+
+  &--secondary {
+    background: linear-gradient(90deg, #FDD548 0.2%, #F8CE3A 99.75%);
+    color: #FFFFFF;
+  }
+
+  &--outline {
+    border: 1px solid #EF4444;
+    margin: -1px;
+    color: #EF4444;
+    background: #FFFFFF;
+  }
+}
