@@ -1,0 +1,15 @@
+<angular-love-card [imageSrc]="imageSrc">
+  <div angularLoveCardHeader>{{ title }}</div>
+  <div angularLoveCardContent>
+    {{ content }}
+  </div>
+  <div angularLoveCardFooter>
+    <div class="flex items-center justify-between mt-4">
+      <div class="flex items-center gap-2">
+        <angular-love-avatar [imageSrc]="authorImageSrc" />
+        <span>{{ author }}</span>
+      </div>
+      <span>{{ date }}</span>
+    </div>
+  </div>
+</angular-love-card>
