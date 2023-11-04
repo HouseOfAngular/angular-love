@@ -8,15 +8,25 @@
   "targets": {
     "build": {
       "executor": "@angular-devkit/build-angular:browser-esbuild",
-      "outputs": ["{options.outputPath}"],
+      "outputs": [
+        "{options.outputPath}"
+      ],
       "options": {
         "outputPath": "dist/apps/blog/browser",
         "index": "apps/blog/src/index.html",
         "main": "apps/blog/src/main.ts",
-        "polyfills": ["zone.js"],
+        "polyfills": [
+          "zone.js"
+        ],
         "tsConfig": "apps/blog/tsconfig.app.json",
-        "assets": ["apps/blog/src/favicon.ico", "apps/blog/src/assets"],
-        "styles": ["apps/blog/src/styles.scss"],
+        "assets": [
+          "apps/blog/src/favicon.ico",
+          "apps/blog/src/assets"
+        ],
+        "styles": [
+          "apps/blog/src/styles.scss",
+          "libs/shared/assets/src/lib/styles/main.scss"
+        ],
         "scripts": []
       },
       "configurations": {
@@ -66,14 +76,21 @@
     },
     "lint": {
       "executor": "@nx/eslint:lint",
-      "outputs": ["{options.outputFile}"],
+      "outputs": [
+        "{options.outputFile}"
+      ],
       "options": {
-        "lintFilePatterns": ["apps/blog/**/*.ts", "apps/blog/**/*.html"]
+        "lintFilePatterns": [
+          "apps/blog/**/*.ts",
+          "apps/blog/**/*.html"
+        ]
       }
     },
     "test": {
       "executor": "@nx/jest:jest",
-      "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
+      "outputs": [
+        "{workspaceRoot}/coverage/{projectRoot}"
+      ],
       "options": {
         "jestConfig": "apps/blog/jest.config.ts",
         "passWithNoTests": true
@@ -86,7 +103,9 @@
       }
     },
     "server": {
-      "dependsOn": ["build"],
+      "dependsOn": [
+        "build"
+      ],
       "executor": "@angular-devkit/build-angular:server",
       "options": {
         "outputPath": "dist/apps/blog/server",
@@ -124,7 +143,9 @@
     "prerender": {
       "executor": "@nguniversal/builders:prerender",
       "options": {
-        "routes": ["/"]
+        "routes": [
+          "/"
+        ]
       },
       "configurations": {
         "development": {

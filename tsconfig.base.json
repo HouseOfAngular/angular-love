@@ -26,6 +26,7 @@
       "@angular-love/blog/shared/ui/button": [
         "libs/blog/shared/ui/button/src/index.ts"
       ],
+      "@angular-love/shared/assets": ["libs/shared/assets/src/index.ts"],
       "@angular-love/storybook": ["libs/shared/storybook/src/index.ts"]
     }
   },

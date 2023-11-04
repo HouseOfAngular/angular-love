@@ -1,8 +1,8 @@
-import type { Meta, StoryObj } from '@storybook/angular';
-import { ButtonComponent } from './button.component';
+import type {Meta, StoryObj} from '@storybook/angular';
 import {moduleMetadata} from '@storybook/angular';
+import {ButtonComponent} from './button.component';
 import {NgIconComponent, provideIcons} from '@ng-icons/core';
-import { heroUsers } from "@ng-icons/heroicons/outline";
+import {heroUsers} from "@ng-icons/heroicons/outline";
 
 const meta: Meta<ButtonComponent> = {
   component: ButtonComponent,
@@ -11,7 +11,7 @@ const meta: Meta<ButtonComponent> = {
     moduleMetadata({
       imports: [NgIconComponent],
       providers: [
-        provideIcons({ heroUsers })
+        provideIcons({heroUsers})
       ]
     }),
   ],
@@ -34,16 +34,6 @@ const template = `
 export const primary: Story = {
   args: {
     variant: 'Primary',
-  },
-  render: (args: ButtonComponent) => ({
-    props: args,
-    template,
-  }),
-};
-
-export const secondary: Story = {
-  args: {
-    variant: 'Secondary',
   },
   render: (args: ButtonComponent) => ({
     props: args,

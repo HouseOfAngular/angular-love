@@ -1,0 +1,31 @@
+{
+  "name": "shared-assets",
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/shared/assets/src",
+  "projectType": "library",
+  "targets": {
+    "build": {
+      "executor": "@nx/esbuild:esbuild",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/libs/shared/assets",
+        "main": "libs/shared/assets/src/index.ts",
+        "tsConfig": "libs/shared/assets/tsconfig.lib.json",
+        "assets": ["libs/shared/assets/*.md"],
+        "generatePackageJson": true,
+        "format": ["cjs"]
+      }
+    },
+    "lint": {
+      "executor": "@nx/eslint:lint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": [
+          "libs/shared/assets/**/*.ts",
+          "libs/shared/assets/package.json"
+        ]
+      }
+    }
+  },
+  "tags": []
+}

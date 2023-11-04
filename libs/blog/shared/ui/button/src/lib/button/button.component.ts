@@ -1,12 +1,10 @@
 import {Component, HostBinding, Input} from '@angular/core';
-import { CommonModule } from '@angular/common';
 
 
-export type AlButtonVariant = 'Primary' | 'Secondary' |  'Outline';
+export type AlButtonVariant = 'Primary' | 'Outline';
 
 const hostClassMap: Record<AlButtonVariant, string> = {
   Primary: 'al-button al-button--primary rounded-lg px-8 py-2',
-  Secondary: 'al-button al-button--secondary rounded-lg px-8 py-2',
   Outline: 'al-button al-button--outline rounded-lg px-8 py-2',
 }
 
