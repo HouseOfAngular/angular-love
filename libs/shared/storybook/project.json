@@ -23,7 +23,8 @@
         "configDir": "libs/shared/storybook/.storybook",
         "browserTarget": "storybook:build-storybook",
         "styles": [
-          "libs/shared/storybook/.storybook/main.scss"
+          "libs/shared/storybook/.storybook/main.scss",
+          "libs/shared/assets/src/lib/styles/main.scss"
         ],
         "compodoc": false
       },
@@ -41,7 +42,8 @@
         "configDir": "libs/shared/storybook/.storybook",
         "browserTarget": "storybook:build-storybook",
         "styles": [
-          "libs/shared/storybook/.storybook/main.scss"
+          "libs/shared/storybook/.storybook/main.scss",
+          "libs/shared/assets/src/lib/styles/main.scss"
         ],
         "compodoc": false
       },
