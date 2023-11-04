@@ -1,90 +1,116 @@
-.text-xs {
-  margin: 0;
-  padding: 0;
+@mixin text-xs() {
   font-size: 0.75rem;
   line-height: 1rem;
 }
 
-.text-sm {
-  margin: 0;
-  padding: 0;
+.text-xs {
+  @include text-xs();
+}
+
+@mixin text-sm() {
   font-size: 0.875rem;
   line-height: 1.25rem;
 }
 
-.text-base {
-  margin: 0;
-  padding: 0;
+.text-sm {
+  @include text-sm();
+}
+
+@mixin text-base() {
   font-size: 1rem;
   line-height: 1.5rem;
 }
 
-.text-lg {
-  margin: 0;
-  padding: 0;
+.text-base {
+  @include text-base();
+}
+
+@mixin text-lg() {
   font-size: 1.125rem;
   line-height: 1.75rem;
 }
 
-.text-xl {
-  margin: 0;
-  padding: 0;
+.text-lg {
+  @include text-lg();
+}
+
+@mixin text-xl() {
   font-size: 1.25rem;
   line-height: 1.75rem;
 }
 
-.text-2xl {
-  margin: 0;
-  padding: 0;
+.text-xl {
+  @include text-xl();
+}
+
+@mixin text-2xl() {
   font-size: 1.5rem;
   line-height: 2rem;
 }
 
-.text-3xl {
-  margin: 0;
-  padding: 0;
+.text-2xl {
+  @include text-2xl();
+}
+
+@mixin text-3xl() {
   font-size: 1.875rem;
   line-height: 2.25rem;
 }
 
-.text-4xl {
-  margin: 0;
-  padding: 0;
+.text-3xl {
+  @include text-3xl();
+}
+
+@mixin text-4xl() {
   font-size: 2.25rem;
   line-height: 2.5rem;
 }
 
-.text-5xl {
-  margin: 0;
-  padding: 0;
+.text-4xl {
+  @include text-4xl();
+}
+
+@mixin text-5xl() {
   font-size: 3rem;
   line-height: 3rem;
 }
 
-.text-6xl {
-  margin: 0;
-  padding: 0;
+.text-5xl {
+  @include text-5xl();
+}
+
+@mixin text-6xl() {
   font-size: 3.75rem;
   line-height: 3.75rem;
 }
 
-.text-7xl {
-  margin: 0;
-  padding: 0;
+.text-6xl {
+  @include text-6xl();
+}
+
+@mixin text-7xl() {
   font-size: 4.5rem;
   line-height: 4.5rem;
 }
 
-.text-8xl {
-  margin: 0;
-  padding: 0;
+.text-7xl {
+  @include text-7xl();
+}
+
+@mixin text-8xl() {
   font-size: 6rem;
   line-height: 6rem;
 }
 
-.text-9xl {
-  margin: 0;
-  padding: 0;
+.text-8xl {
+  @include text-8xl();
+}
+
+@mixin text-9xl() {
   font-size: 8rem;
   line-height: 8rem;
+}
+
+.text-9xl {
+  @include text-9xl();
 }
