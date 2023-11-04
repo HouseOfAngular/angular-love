@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
-import { LayoutComponent } from "@angular-love/blog/layouts/ui";
-import { NgIconComponent, provideIcons } from "@ng-icons/core";
-import { heroUsers } from "@ng-icons/heroicons/outline";
+import { LayoutComponent } from '@angular-love/blog/layouts/ui';
+import { NgIconComponent, provideIcons } from '@ng-icons/core';
+import { heroUsers } from '@ng-icons/heroicons/outline';
 
 @Component({
   standalone: true,
@@ -10,6 +10,5 @@ import { heroUsers } from "@ng-icons/heroicons/outline";
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
   providers: [provideIcons({ heroUsers })],
-
 })
 export class AppComponent {}

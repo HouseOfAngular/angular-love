@@ -4,7 +4,9 @@
   "license": "MIT",
   "scripts": {
     "start": "npx nx run blog:serve",
-    "start:storybook": "nx storybook storybook"
+    "start:storybook": "nx storybook storybook",
+    "format:check": " prettier --config ./.prettierrc --check . ",
+    "format:fix": " prettier --config ./.prettierrc --write . "
   },
   "private": true,
   "dependencies": {
