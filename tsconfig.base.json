@@ -18,13 +18,22 @@
       "@angular-love/blog/articles/data-access": [
         "libs/blog/articles/data-access/src/index.ts"
       ],
+      "@angular-love/blog/articles/feature-list": [
+        "libs/blog/articles/feature-list/src/index.ts"
+      ],
       "@angular-love/blog/home/feature": [
         "libs/blog/home/feature/src/index.ts"
       ],
       "@angular-love/blog/home/ui": ["libs/blog/home/ui/src/index.ts"],
       "@angular-love/blog/layouts/ui": ["libs/blog/layouts/ui/src/index.ts"],
+      "@angular-love/blog/shared/ui/avatar": [
+        "libs/blog/shared/ui/avatar/src/index.ts"
+      ],
       "@angular-love/blog/shared/ui/button": [
         "libs/blog/shared/ui/button/src/index.ts"
+      ],
+      "@angular-love/blog/shared/ui/card": [
+        "libs/blog/shared/ui/card/src/index.ts"
       ],
       "@angular-love/shared/assets": ["libs/shared/assets/src/index.ts"],
       "@angular-love/storybook": ["libs/shared/storybook/src/index.ts"]

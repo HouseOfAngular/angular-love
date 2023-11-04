@@ -1,0 +1,14 @@
+<div
+  class="rounded-full overflow-hidden flex items-center justify-center w-[30px] h-[30px] bg-gray-200"
+>
+  <img
+    *ngIf="imageSrc; else noImage"
+    [ngSrc]="imageSrc"
+    width="30"
+    height="30"
+    alt="Avatar"
+  />
+  <ng-template #noImage>
+    <ng-icon name="heroUsers"></ng-icon>
+  </ng-template>
+</div>

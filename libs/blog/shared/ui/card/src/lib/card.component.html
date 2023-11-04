@@ -1,0 +1,12 @@
+<div class="bg-white rounded-lg shadow-sm overflow-hidden">
+  <div *ngIf="imageSrc">
+    <div class="h-44 relative">
+      <img [ngSrc]="imageSrc" fill priority alt="Card Image" />
+    </div>
+  </div>
+  <div class="p-4">
+    <ng-content select="[angularLoveCardHeader]"></ng-content>
+    <ng-content select="[angularLoveCardContent]"></ng-content>
+    <ng-content select="[angularLoveCardFooter]"></ng-content>
+  </div>
+</div>
