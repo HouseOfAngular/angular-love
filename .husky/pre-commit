@@ -1,0 +1,6 @@
+#!/usr/bin/env sh
+. "$(dirname -- "$0")/_/husky.sh"
+
+  npm run hooks:debugger-checker && \
+    npm run lint-staged && \
+    npm run format:fix
