@@ -11,11 +11,12 @@ import {
   tablerBrandTwitter,
   tablerBrandYoutube,
 } from '@ng-icons/tabler-icons';
+import { SocialMediaIconsComponent } from '@angular-love/blog/shared/ui/social-media-icons';
 
 @Component({
   selector: 'angular-love-footer',
   standalone: true,
-  imports: [NgIconComponent],
+  imports: [NgIconComponent, SocialMediaIconsComponent],
   templateUrl: './footer.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
   providers: [

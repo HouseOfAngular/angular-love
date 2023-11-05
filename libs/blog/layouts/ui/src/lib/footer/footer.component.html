@@ -1,5 +1,5 @@
-<footer class="w-full flex flex-col justify-center items-center">
-  <div class="decoration-0 flex justify-center items-center mb-4 flex-wrap">
+<footer class="w-full flex flex-col justify-center items-center py-4 gap-2">
+  <div class="decoration-0 flex justify-center items-center flex-wrap">
     <ng-container>
       <ng-icon class="mr-1" name="heroBookOpen"></ng-icon>
       <a class="mr-2" href="/">Blog</a> |
@@ -23,10 +23,6 @@
       >
     </ng-container>
   </div>
-  <div class="flex justify-center items-center mb-3">
-    <a href="/"><ng-icon class="mr-2" name="tablerBrandTwitter"></ng-icon></a>
-    <a href="/"><ng-icon class="mr-2" name="tablerBrandFacebook"></ng-icon></a>
-    <a href="/"><ng-icon class="mr-2" name="tablerBrandYoutube"></ng-icon></a>
-  </div>
+  <angular-love-social-media-icons />
   <span>Copyright © {{ currentYear }}</span>
 </footer>

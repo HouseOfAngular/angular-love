@@ -1,11 +1,22 @@
-<header>
-  <div class="flex items-center gap-2">
-    <img
-      ngSrc="assets/angular-love-logo.png"
-      width="30"
-      height="30"
-      class="inline-block"
-    />
-    <span class="text-lg text-red-600">Angular.love</span>
+<header
+  class="sticky top-0 z-50 bg-white border-b-2 border-red-600 backdrop-blur bg-opacity-80"
+>
+  <div
+    class="flex justify-between items-center max-w-screen-xl w-full mx-auto py-4 px-2 xl:px-0"
+  >
+    <div class="flex items-center gap-2">
+      <img
+        ngSrc="assets/angular-love-logo.png"
+        width="30"
+        height="30"
+        class="inline-block"
+      />
+      <span class="text-lg font-bold text-red-600">Angular.love</span>
+    </div>
+
+    <div class="flex">
+      <ng-icon class="mr-6" name="heroMagnifyingGlass" />
+      <angular-love-social-media-icons />
+    </div>
   </div>
 </header>
