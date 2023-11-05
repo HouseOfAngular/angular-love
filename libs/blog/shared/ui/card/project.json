@@ -2,7 +2,7 @@
   "name": "blog-shared-ui-card",
   "$schema": "../../../../../node_modules/nx/schemas/project-schema.json",
   "sourceRoot": "libs/blog/shared/ui/card/src",
-  "prefix": "angular-love",
+  "prefix": "al",
   "tags": [],
   "projectType": "library",
   "targets": {

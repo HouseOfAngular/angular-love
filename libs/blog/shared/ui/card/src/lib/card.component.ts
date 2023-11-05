@@ -9,7 +9,7 @@ import { NgIf, NgOptimizedImage } from '@angular/common';
 
 @Directive({
   standalone: true,
-  selector: '[angularLoveCardHeader]',
+  selector: '[alCardHeader]',
 })
 export class CardHeaderDirective {
   @HostBinding('class')
@@ -18,7 +18,7 @@ export class CardHeaderDirective {
 
 @Directive({
   standalone: true,
-  selector: '[angularLoveCardContent]',
+  selector: '[alCardContent]',
 })
 export class CardContentDirective {
   @HostBinding('class')
@@ -27,7 +27,7 @@ export class CardContentDirective {
 
 @Directive({
   standalone: true,
-  selector: '[angularLoveCardFooter]',
+  selector: '[alCardFooter]',
 })
 export class CardFooterDirective {
   @HostBinding('class')
@@ -36,7 +36,7 @@ export class CardFooterDirective {
 
 @Directive({
   standalone: true,
-  selector: '[angularLoveCardHoverHighlight]',
+  selector: '[alCardHoverHighlight]',
 })
 export class CardHoverHighlightDirective {
   @HostBinding('class')
@@ -46,7 +46,7 @@ export class CardHoverHighlightDirective {
 
 @Component({
   standalone: true,
-  selector: 'angular-love-card',
+  selector: 'al-card',
   templateUrl: './card.component.html',
   styleUrls: ['./card.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,

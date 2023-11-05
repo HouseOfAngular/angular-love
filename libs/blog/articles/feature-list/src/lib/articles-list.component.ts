@@ -5,7 +5,7 @@ import { ArticlesService } from '@angular-love/blog/articles/data-access';
 
 @Component({
   standalone: true,
-  selector: 'angular-love-articles-list',
+  selector: 'al-articles-list',
   templateUrl: './articles-list.component.html',
   styleUrls: ['./articles-list.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,

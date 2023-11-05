@@ -2,7 +2,7 @@
   "name": "blog-shared-ui-social-media-icons",
   "$schema": "../../../../../node_modules/nx/schemas/project-schema.json",
   "sourceRoot": "libs/blog/shared/ui/social-media-icons/src",
-  "prefix": "angular-love",
+  "prefix": "al",
   "tags": [],
   "projectType": "library",
   "targets": {

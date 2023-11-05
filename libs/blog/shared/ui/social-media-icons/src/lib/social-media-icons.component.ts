@@ -8,7 +8,7 @@ import {
 
 @Component({
   standalone: true,
-  selector: 'angular-love-social-media-icons',
+  selector: 'al-social-media-icons',
   templateUrl: './social-media-icons.component.html',
   styleUrls: ['./social-media-icons.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,

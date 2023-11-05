@@ -5,7 +5,7 @@ import { heroUsers } from '@ng-icons/heroicons/outline';
 
 @Component({
   standalone: true,
-  selector: 'angular-love-avatar',
+  selector: 'al-avatar',
   templateUrl: './avatar.component.html',
   styleUrls: ['./avatar.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,

@@ -2,7 +2,7 @@
   "name": "blog-home-ui",
   "$schema": "../../../../node_modules/nx/schemas/project-schema.json",
   "sourceRoot": "libs/blog/home/ui/src",
-  "prefix": "angular-love",
+  "prefix": "al",
   "tags": [],
   "projectType": "library",
   "targets": {

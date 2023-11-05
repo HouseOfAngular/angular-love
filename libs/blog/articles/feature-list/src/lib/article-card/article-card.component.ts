@@ -20,7 +20,7 @@ interface UiArticleCard {
 
 @Component({
   standalone: true,
-  selector: 'angular-love-article-card',
+  selector: 'al-article-card',
   templateUrl: './article-card.component.html',
   styleUrls: ['./article-card.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,

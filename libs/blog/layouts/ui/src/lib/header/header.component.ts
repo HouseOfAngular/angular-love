@@ -6,7 +6,7 @@ import { heroMagnifyingGlass } from '@ng-icons/heroicons/outline';
 
 @Component({
   standalone: true,
-  selector: 'angular-love-header',
+  selector: 'al-header',
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,

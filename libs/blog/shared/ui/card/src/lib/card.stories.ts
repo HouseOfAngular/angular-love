@@ -34,11 +34,11 @@ const content =
 export const regular: Story = {
   render: () => ({
     template: wrapper(`
-      <angular-love-card>
+      <al-card>
         <div angularLoveCardHeader>Header</div>
         <div angularLoveCardContent>${content}</div>
         <div angularLoveCardFooter>Footer</div>
-      </angular-love-card>
+      </al-card>
     `),
   }),
 };
@@ -51,11 +51,11 @@ export const withImage: Story = {
   render: (args: CardComponent) => ({
     props: args,
     template: wrapper(`
-      <angular-love-card [imageSrc]="imageSrc">
+      <al-card [imageSrc]="imageSrc">
         <div angularLoveCardHeader>Lorem Ipsum</div>
         <div angularLoveCardContent>${content}</div>
         <div angularLoveCardFooter>Footer</div>
-      </angular-love-card>
+      </al-card>
     `),
   }),
 };
@@ -68,11 +68,11 @@ export const highlighted: Story = {
   render: (args: CardComponent) => ({
     props: args,
     template: wrapper(`
-      <angular-love-card angularLoveCardHoverHighlight>
+      <al-card angularLoveCardHoverHighlight>
         <div angularLoveCardHeader>Lorem Ipsum</div>
         <div angularLoveCardContent>${content}</div>
         <div angularLoveCardFooter>Footer</div>
-      </angular-love-card>
+      </al-card>
     `),
   }),
 };

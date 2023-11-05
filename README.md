@@ -1,5 +1,13 @@
 # AngularLove
 
+## Nx
+
+Generating libraries:
+
+```
+npx nx g @nx/angular:library path
+```
+
 ## Storybook
 
 To run Storybook locally use the following command:
