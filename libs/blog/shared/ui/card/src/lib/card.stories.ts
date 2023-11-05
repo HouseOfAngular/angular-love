@@ -5,6 +5,7 @@ import {
   CardContentDirective,
   CardFooterDirective,
   CardHeaderDirective,
+  CardHoverHighlightDirective,
 } from './card.component';
 
 const meta: Meta<CardComponent> = {
@@ -12,7 +13,12 @@ const meta: Meta<CardComponent> = {
   title: 'Shared UI / Cards',
   decorators: [
     moduleMetadata({
-      imports: [CardFooterDirective, CardContentDirective, CardHeaderDirective],
+      imports: [
+        CardFooterDirective,
+        CardContentDirective,
+        CardHeaderDirective,
+        CardHoverHighlightDirective,
+      ],
     }),
   ],
 };
@@ -46,6 +52,23 @@ export const withImage: Story = {
     props: args,
     template: wrapper(`
       <angular-love-card [imageSrc]="imageSrc">
+        <div angularLoveCardHeader>Lorem Ipsum</div>
+        <div angularLoveCardContent>${content}</div>
+        <div angularLoveCardFooter>Footer</div>
+      </angular-love-card>
+    `),
+  }),
+};
+
+export const highlighted: Story = {
+  args: {
+    imageSrc:
+      'https://www.angular.love/wp-content/uploads/2023/10/Effortless-Angular-Deployment-with-Vercel-1.jpeg',
+  },
+  render: (args: CardComponent) => ({
+    props: args,
+    template: wrapper(`
+      <angular-love-card angularLoveCardHoverHighlight>
         <div angularLoveCardHeader>Lorem Ipsum</div>
         <div angularLoveCardContent>${content}</div>
         <div angularLoveCardFooter>Footer</div>

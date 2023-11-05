@@ -4,6 +4,7 @@ import {
   CardContentDirective,
   CardFooterDirective,
   CardHeaderDirective,
+  CardHoverHighlightDirective,
 } from '@angular-love/blog/shared/ui/card';
 import { AvatarComponent } from '@angular-love/blog/shared/ui/avatar';
 import { NgOptimizedImage } from '@angular/common';
@@ -21,6 +22,7 @@ import { NgOptimizedImage } from '@angular/common';
     CardHeaderDirective,
     CardContentDirective,
     CardFooterDirective,
+    CardHoverHighlightDirective,
   ],
 })
 export class ArticleCardComponent {
