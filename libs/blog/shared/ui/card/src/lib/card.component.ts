@@ -4,7 +4,6 @@ import {
   Directive,
   HostBinding,
   Input,
-  ViewEncapsulation,
 } from '@angular/core';
 import { NgIf, NgOptimizedImage } from '@angular/common';
 
@@ -35,6 +34,16 @@ export class CardFooterDirective {
   hostClasses = 'mt-4 text-sm';
 }
 
+@Directive({
+  standalone: true,
+  selector: '[angularLoveCardHoverHighlight]',
+})
+export class CardHoverHighlightDirective {
+  @HostBinding('class')
+  hostClasses =
+    'hover:bg-red-50 outline outline-1 outline-transparent hover:outline-red-400 transition';
+}
+
 @Component({
   standalone: true,
   selector: 'angular-love-card',
@@ -42,8 +51,10 @@ export class CardFooterDirective {
   styleUrls: ['./card.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [NgIf, NgOptimizedImage],
-  encapsulation: ViewEncapsulation.None,
 })
 export class CardComponent {
   @Input() imageSrc?: string;
+
+  @HostBinding('class')
+  hostClasses = 'block bg-white rounded-lg shadow-sm overflow-hidden';
 }

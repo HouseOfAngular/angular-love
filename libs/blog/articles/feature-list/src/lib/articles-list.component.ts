@@ -11,5 +11,5 @@ import { ArticleCardComponent } from './article-card/article-card.component';
   imports: [NgFor, ArticleCardComponent],
 })
 export class ArticlesListComponent {
-  articles = Array.from({ length: 5 });
+  articles = Array.from({ length: 10 });
 }
