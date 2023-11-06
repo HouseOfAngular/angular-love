@@ -24,6 +24,12 @@
       },
       "configurations": {
         "production": {
+          "fileReplacements": [
+            {
+              "replace": "apps/blog/src/environments/environment.ts",
+              "with": "apps/blog/src/environments/environment.prod.ts"
+            }
+          ],
           "budgets": [
             {
               "type": "initial",
@@ -39,6 +45,12 @@
           "outputHashing": "all"
         },
         "development": {
+          "fileReplacements": [
+            {
+              "replace": "apps/blog/src/environments/environment.ts",
+              "with": "apps/blog/src/environments/environment.dev.ts"
+            }
+          ],
           "buildOptimizer": false,
           "optimization": false,
           "vendorChunk": true,
@@ -98,9 +110,21 @@
       },
       "configurations": {
         "production": {
+          "fileReplacements": [
+            {
+              "replace": "apps/blog/src/environments/environment.ts",
+              "with": "apps/blog/src/environments/environment.prod.ts"
+            }
+          ],
           "outputHashing": "media"
         },
         "development": {
+          "fileReplacements": [
+            {
+              "replace": "apps/blog/src/environments/environment.ts",
+              "with": "apps/blog/src/environments/environment.dev.ts"
+            }
+          ],
           "buildOptimizer": false,
           "optimization": false,
           "sourceMap": true,

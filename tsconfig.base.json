@@ -39,6 +39,7 @@
         "libs/blog/shared/ui/social-media-icons/src/index.ts"
       ],
       "@angular-love/shared/assets": ["libs/shared/assets/src/index.ts"],
+      "@angular-love/shared/config": ["libs/shared/config/src/index.ts"],
       "@angular-love/storybook": ["libs/shared/storybook/src/index.ts"]
     }
   },
