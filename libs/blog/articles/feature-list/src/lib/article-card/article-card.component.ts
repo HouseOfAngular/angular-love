@@ -7,7 +7,16 @@ import {
   CardHoverHighlightDirective,
 } from '@angular-love/blog/shared/ui/card';
 import { AvatarComponent } from '@angular-love/blog/shared/ui/avatar';
-import { NgOptimizedImage } from '@angular/common';
+import { DatePipe, NgOptimizedImage } from '@angular/common';
+
+interface UiArticleCard {
+  title: string;
+  authorName: string;
+  excerpt: string;
+  authorImageUrl: string;
+  featuredImageUrl: string;
+  publishDate: string;
+}
 
 @Component({
   standalone: true,
@@ -23,13 +32,9 @@ import { NgOptimizedImage } from '@angular/common';
     CardContentDirective,
     CardFooterDirective,
     CardHoverHighlightDirective,
+    DatePipe,
   ],
 })
 export class ArticleCardComponent {
-  @Input({ required: true }) title!: string;
-  @Input({ required: true }) content!: string;
-  @Input({ required: true }) imageSrc!: string;
-  @Input({ required: true }) author!: string;
-  @Input({ required: true }) authorImageSrc!: string;
-  @Input({ required: true }) date!: string;
+  @Input({ required: true }) articleCard!: UiArticleCard;
 }

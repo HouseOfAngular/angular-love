@@ -40,3 +40,4 @@ Thumbs.db
 
 .nx/cache
 .angular
+/**/environments/dev-overrides.ts

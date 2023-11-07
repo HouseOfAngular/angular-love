@@ -1,19 +1,22 @@
 import { inject, Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import {
+  GetPostsGQL,
+  LanguageCodeFilterEnum,
+} from '@angular-love/wp/graphql/data-access';
+import { map, Observable } from 'rxjs';
 import { Article } from './article';
+import { articlesMapper } from './article.mapper';
 
 @Injectable()
 export class ArticlesService {
-  private readonly _http = inject(HttpClient);
+  private readonly _getPosts = inject(GetPostsGQL);
 
   getArticlesList(limit: number): Observable<Article[]> {
-    const params = new URLSearchParams();
-    params.append('_fields[]', 'slug');
-    params.append('_fields[]', 'title');
-    params.append('per_page', limit.toString());
-    return this._http.get<Article[]>(
-      `https://angular.love/wp-json/wp/v2/posts?${params.toString()}`
-    );
+    return this._getPosts
+      .watch({
+        languages: LanguageCodeFilterEnum.En,
+        first: limit,
+      })
+      .valueChanges.pipe(map((resp) => articlesMapper(resp.data)));
   }
 }

@@ -1,0 +1,15 @@
+overwrite: true
+schema: 'libs/wp/graphql/data-access/src/lib/schema.json'
+generates:
+  libs/wp/graphql/data-access/src/lib/generated/generated.ts:
+    documents: 'libs/wp/graphql/data-access/src/lib/graphql/**/*.graphql'
+    plugins:
+      - 'typescript'
+      - 'typescript-operations'
+      - 'typescript-apollo-angular'
+config:
+  skipTypename: true
+  serviceProvidedInRoot: false
+  addExplicitOverride: true
+  onlyOperationTypes: true
+  avoidOptionals: true
