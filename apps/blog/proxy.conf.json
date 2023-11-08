@@ -1,0 +1,10 @@
+{
+  "/graphql": {
+    "target": "https://testing.angular.love/graphql",
+    "secure": false,
+    "pathRewrite": {
+      "^/graphql": ""
+    },
+    "changeOrigin": true
+  }
+}

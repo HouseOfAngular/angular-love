@@ -68,6 +68,9 @@
           "browserTarget": "blog:build:development"
         }
       },
+      "options": {
+        "proxyConfig": "apps/blog/proxy.conf.json"
+      },
       "defaultConfiguration": "development"
     },
     "extract-i18n": {
