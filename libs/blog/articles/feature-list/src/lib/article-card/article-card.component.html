@@ -1,15 +1,18 @@
-<angular-love-card [imageSrc]="imageSrc" angularLoveCardHoverHighlight>
-  <div angularLoveCardHeader>{{ title }}</div>
+<angular-love-card
+  [imageSrc]="articleCard.featuredImageUrl"
+  angularLoveCardHoverHighlight
+>
+  <div angularLoveCardHeader>{{ articleCard.title }}</div>
   <div angularLoveCardContent>
-    {{ content }}
+    {{ articleCard.excerpt }}
   </div>
   <div angularLoveCardFooter>
     <div class="flex items-center justify-between mt-4">
       <div class="flex items-center gap-2">
-        <angular-love-avatar [imageSrc]="authorImageSrc" />
-        <span>{{ author }}</span>
+        <angular-love-avatar [imageSrc]="articleCard.authorImageUrl" />
+        <span>{{ articleCard.authorName }}</span>
       </div>
-      <span>{{ date }}</span>
+      <span>{{ articleCard.publishDate | date : 'mediumDate' }}</span>
     </div>
   </div>
 </angular-love-card>

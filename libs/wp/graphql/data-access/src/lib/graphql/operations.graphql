@@ -1,0 +1,23 @@
+query GetPosts($first: Int, $languages: LanguageCodeFilterEnum) {
+  posts(first: $first, where: { language: $languages }) {
+    nodes {
+      slug
+      title
+      excerpt
+      date
+      featuredImage {
+        node {
+          sourceUrl
+        }
+      }
+      author {
+        node {
+          name
+          avatar {
+            url
+          }
+        }
+      }
+    }
+  }
+}

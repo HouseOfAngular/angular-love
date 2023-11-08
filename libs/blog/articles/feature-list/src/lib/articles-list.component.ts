@@ -1,6 +1,7 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { NgFor } from '@angular/common';
+import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
+import { AsyncPipe, NgFor, NgIf } from '@angular/common';
 import { ArticleCardComponent } from './article-card/article-card.component';
+import { ArticlesService } from '@angular-love/blog/articles/data-access';
 
 @Component({
   standalone: true,
@@ -8,8 +9,9 @@ import { ArticleCardComponent } from './article-card/article-card.component';
   templateUrl: './articles-list.component.html',
   styleUrls: ['./articles-list.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [NgFor, ArticleCardComponent],
+  imports: [NgFor, ArticleCardComponent, AsyncPipe, NgIf],
+  providers: [ArticlesService],
 })
 export class ArticlesListComponent {
-  articles = Array.from({ length: 10 });
+  readonly articlesList$ = inject(ArticlesService).getArticlesList(10);
 }

@@ -19,9 +19,9 @@ export const CONFIG_OPTIONS = new InjectionToken<ConfigOptions>(
 export class ConfigService {
   private readonly _options = inject(CONFIG_OPTIONS);
 
-  get(key: string) {
+  get<T>(key: string): T {
     // TODO: handle missing keys
-    return this._options[key];
+    return this._options[key] as T;
   }
 }
 

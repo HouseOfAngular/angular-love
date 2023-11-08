@@ -1,6 +1,9 @@
 export interface Article {
   slug: string;
-  title: {
-    rendered: string;
-  };
+  title: string;
+  authorName: string;
+  excerpt: string;
+  authorImageUrl: string;
+  featuredImageUrl: string;
+  publishDate: string;
 }
