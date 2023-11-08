@@ -62,10 +62,10 @@
       "executor": "@angular-devkit/build-angular:dev-server",
       "configurations": {
         "production": {
-          "browserTarget": "blog:build:production"
+          "buildTarget": "blog:build:production"
         },
         "development": {
-          "browserTarget": "blog:build:development"
+          "buildTarget": "blog:build:development"
         }
       },
       "options": {
@@ -76,7 +76,7 @@
     "extract-i18n": {
       "executor": "@angular-devkit/build-angular:extract-i18n",
       "options": {
-        "browserTarget": "blog:build"
+        "buildTarget": "blog:build"
       }
     },
     "lint": {
@@ -90,14 +90,7 @@
       "executor": "@nx/jest:jest",
       "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
       "options": {
-        "jestConfig": "apps/blog/jest.config.ts",
-        "passWithNoTests": true
-      },
-      "configurations": {
-        "ci": {
-          "ci": true,
-          "codeCoverage": true
-        }
+        "jestConfig": "apps/blog/jest.config.ts"
       }
     },
     "server": {
@@ -129,7 +122,7 @@
       "defaultConfiguration": "production"
     },
     "serve-ssr": {
-      "executor": "@nguniversal/builders:ssr-dev-server",
+      "executor": "@angular-devkit/build-angular:ssr-dev-server",
       "configurations": {
         "development": {
           "browserTarget": "blog:build:development",
@@ -143,7 +136,7 @@
       "defaultConfiguration": "development"
     },
     "prerender": {
-      "executor": "@nguniversal/builders:prerender",
+      "executor": "@angular-devkit/build-angular:prerender",
       "options": {
         "routes": ["/"]
       },
