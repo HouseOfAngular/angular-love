@@ -21,3 +21,20 @@ query GetPosts($first: Int, $languages: LanguageCodeFilterEnum) {
     }
   }
 }
+
+query GetPostBySlug($slug: String) {
+  postBy(slug: $slug) {
+    title
+    content
+    date
+    author {
+      node {
+        name
+        description
+        avatar {
+          url
+        }
+      }
+    }
+  }
+}

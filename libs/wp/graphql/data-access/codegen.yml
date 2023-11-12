@@ -6,10 +6,9 @@ generates:
     plugins:
       - 'typescript'
       - 'typescript-operations'
-      - 'typescript-apollo-angular'
+      - 'typescript-document-nodes'
 config:
   skipTypename: true
-  serviceProvidedInRoot: false
   addExplicitOverride: true
   onlyOperationTypes: true
   avoidOptionals: true

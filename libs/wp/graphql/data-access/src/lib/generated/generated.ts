@@ -1,6 +1,4 @@
-import { gql } from 'apollo-angular';
-import { Injectable } from '@angular/core';
-import * as Apollo from 'apollo-angular';
+import gql from 'graphql-tag';
 export type Maybe<T> = T | null;
 export type InputMaybe<T> = Maybe<T>;
 export type Exact<T extends { [key: string]: unknown }> = {
@@ -3443,7 +3441,26 @@ export type GetPostsQuery = {
   } | null;
 };
 
-export const GetPostsDocument = gql`
+export type GetPostBySlugQueryVariables = Exact<{
+  slug: InputMaybe<Scalars['String']['input']>;
+}>;
+
+export type GetPostBySlugQuery = {
+  postBy: {
+    title: string | null;
+    content: string | null;
+    date: string | null;
+    author: {
+      node: {
+        name: string | null;
+        description: string | null;
+        avatar: { url: string | null } | null;
+      };
+    } | null;
+  } | null;
+};
+
+export const GetPosts = gql`
   query GetPosts($first: Int, $languages: LanguageCodeFilterEnum) {
     posts(first: $first, where: { language: $languages }) {
       nodes {
@@ -3468,17 +3485,21 @@ export const GetPostsDocument = gql`
     }
   }
 `;
-
-@Injectable({
-  providedIn: 'root',
-})
-export class GetPostsGQL extends Apollo.Query<
-  GetPostsQuery,
-  GetPostsQueryVariables
-> {
-  override document = GetPostsDocument;
-
-  constructor(apollo: Apollo.Apollo) {
-    super(apollo);
+export const GetPostBySlug = gql`
+  query GetPostBySlug($slug: String) {
+    postBy(slug: $slug) {
+      title
+      content
+      date
+      author {
+        node {
+          name
+          description
+          avatar {
+            url
+          }
+        }
+      }
+    }
   }
-}
+`;
