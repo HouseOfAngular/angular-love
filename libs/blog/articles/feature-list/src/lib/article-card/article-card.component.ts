@@ -9,7 +9,7 @@ import {
 import { AvatarComponent } from '@angular-love/blog/shared/ui/avatar';
 import { DatePipe, NgOptimizedImage } from '@angular/common';
 
-interface UiArticleCard {
+export interface UiArticleCard {
   title: string;
   excerpt: string;
   featuredImageUrl: string;

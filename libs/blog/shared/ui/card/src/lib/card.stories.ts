@@ -7,6 +7,8 @@ import {
   CardHeaderDirective,
   CardHoverHighlightDirective,
 } from './card.component';
+import { CardSkeletonComponent } from './card-skeleton.component';
+import { NgxSkeletonLoaderModule } from 'ngx-skeleton-loader';
 
 const meta: Meta<CardComponent> = {
   component: CardComponent,
@@ -18,6 +20,8 @@ const meta: Meta<CardComponent> = {
         CardContentDirective,
         CardHeaderDirective,
         CardHoverHighlightDirective,
+        CardSkeletonComponent,
+        NgxSkeletonLoaderModule,
       ],
     }),
   ],
@@ -27,7 +31,26 @@ export default meta;
 type Story = StoryObj<CardComponent>;
 
 const wrapper = (template: string) =>
-  `<div style="width: 300px">${template}</div>`;
+  `
+  <div style="display: grid; grid-template-columns: 300px 300px; gap: 16px;">
+     <div>
+          ${template}
+    </div>
+    <div>
+      <angular-love-card-skeleton [withImage]="true">
+            <div angularLoveCardHeader>
+                <ngx-skeleton-loader [theme]="{ 'margin-bottom': '12px' }"></ngx-skeleton-loader>
+            </div>
+            <div angularLoveCardContent>
+                <ngx-skeleton-loader [theme]="{ width: '100%', 'margin-bottom': '0' }" [count]="3"></ngx-skeleton-loader>
+            </div>
+            <div angularLoveCardFooter>
+              <ngx-skeleton-loader  [theme]="{ width: '100%', 'margin-bottom': '0' }"></ngx-skeleton-loader>
+            </div>
+      </angular-love-card-skeleton>
+     </div>
+  </div>
+`;
 const content =
   'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua';
 
