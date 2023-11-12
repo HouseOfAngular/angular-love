@@ -1,4 +1,4 @@
-<div *ngIf="imageSrc">
+@if (imageSrc) {
   <div class="aspect-video relative">
     <img
       [ngSrc]="imageSrc"
@@ -8,7 +8,7 @@
       class="object-cover object-top w-full h-full"
     />
   </div>
-</div>
+}
 <div class="p-4">
   <ng-content select="[angularLoveCardHeader]"></ng-content>
   <ng-content select="[angularLoveCardContent]"></ng-content>

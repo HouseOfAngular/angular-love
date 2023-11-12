@@ -5,7 +5,7 @@ import {
   HostBinding,
   Input,
 } from '@angular/core';
-import { NgIf, NgOptimizedImage } from '@angular/common';
+import { NgOptimizedImage } from '@angular/common';
 
 @Directive({
   standalone: true,
@@ -50,7 +50,7 @@ export class CardHoverHighlightDirective {
   templateUrl: './card.component.html',
   styleUrls: ['./card.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [NgIf, NgOptimizedImage],
+  imports: [NgOptimizedImage],
 })
 export class CardComponent {
   @Input() imageSrc?: string;
