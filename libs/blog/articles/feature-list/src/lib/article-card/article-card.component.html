@@ -9,8 +9,8 @@
   <div angularLoveCardFooter>
     <div class="flex items-center justify-between mt-4">
       <div class="flex items-center gap-2">
-        <angular-love-avatar [imageSrc]="articleCard.authorImageUrl" />
-        <span>{{ articleCard.authorName }}</span>
+        <angular-love-avatar [imageSrc]="articleCard.author.avatarUrl" />
+        <span>{{ articleCard.author.name }}</span>
       </div>
       <span>{{ articleCard.publishDate | date : 'mediumDate' }}</span>
     </div>

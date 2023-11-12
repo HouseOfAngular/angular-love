@@ -11,11 +11,13 @@ import { DatePipe, NgOptimizedImage } from '@angular/common';
 
 interface UiArticleCard {
   title: string;
-  authorName: string;
   excerpt: string;
-  authorImageUrl: string;
   featuredImageUrl: string;
   publishDate: string;
+  author: {
+    name: string;
+    avatarUrl: string;
+  };
 }
 
 @Component({
