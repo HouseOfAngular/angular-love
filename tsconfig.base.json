@@ -26,9 +26,6 @@
       ],
       "@angular-love/blog/home/ui": ["libs/blog/home/ui/src/index.ts"],
       "@angular-love/blog/layouts/ui": ["libs/blog/layouts/ui/src/index.ts"],
-      "@angular-love/blog/shared/data-access/graphql": [
-        "libs/blog/shared/data-access/graphql/src/index.ts"
-      ],
       "@angular-love/blog/shared/ui/avatar": [
         "libs/blog/shared/ui/avatar/src/index.ts"
       ],

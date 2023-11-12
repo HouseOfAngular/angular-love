@@ -13,5 +13,5 @@ import { ArticlesService } from '@angular-love/blog/articles/data-access';
   providers: [ArticlesService],
 })
 export class ArticlesListComponent {
-  readonly articlesList$ = inject(ArticlesService).getArticlesList(10);
+  readonly articlesList$ = inject(ArticlesService).getArticlesList();
 }

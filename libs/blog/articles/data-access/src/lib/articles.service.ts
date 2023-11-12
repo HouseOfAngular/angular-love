@@ -1,22 +1,15 @@
 import { inject, Injectable } from '@angular/core';
-import {
-  GetPostsGQL,
-  LanguageCodeFilterEnum,
-} from '@angular-love/wp/graphql/data-access';
-import { map, Observable } from 'rxjs';
+import { Observable } from 'rxjs';
 import { Article } from './article';
-import { articlesMapper } from './article.mapper';
+import { ConfigService } from '@angular-love/shared/config';
+import { HttpClient } from '@angular/common/http';
 
 @Injectable()
 export class ArticlesService {
-  private readonly _getPosts = inject(GetPostsGQL);
+  private readonly _apiBaseUrl = inject(ConfigService).get('apiBaseUrl');
+  private readonly _http = inject(HttpClient);
 
-  getArticlesList(limit: number): Observable<Article[]> {
-    return this._getPosts
-      .watch({
-        languages: LanguageCodeFilterEnum.En,
-        first: limit,
-      })
-      .valueChanges.pipe(map((resp) => articlesMapper(resp.data)));
+  getArticlesList(): Observable<Article[]> {
+    return this._http.get<Article[]>(`${this._apiBaseUrl}/articles`);
   }
 }

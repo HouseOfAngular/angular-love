@@ -6,7 +6,6 @@ import {
 import { appRoutes } from './app.routes';
 import { provideHttpClient, withFetch } from '@angular/common/http';
 import { environment } from '../environments/environment';
-import { provideApollo } from '@angular-love/blog/shared/data-access/graphql';
 import { provideClientHydration } from '@angular/platform-browser';
 
 export const appConfig: ApplicationConfig = {
@@ -15,6 +14,5 @@ export const appConfig: ApplicationConfig = {
     provideHttpClient(withFetch()),
     provideClientHydration(),
     environment.providers,
-    provideApollo(),
   ],
 };

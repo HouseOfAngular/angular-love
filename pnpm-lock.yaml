@@ -50,9 +50,6 @@ dependencies:
   '@nx/angular':
     specifier: 17.1.1
     version: 17.1.1(@angular-devkit/build-angular@17.0.0)(@angular-devkit/core@17.0.0)(@angular-devkit/schematics@17.0.0)(@schematics/angular@17.0.0)(@swc-node/register@1.6.7)(@swc/core@1.3.85)(@types/node@18.7.1)(esbuild@0.19.5)(eslint@8.46.0)(nx@17.1.1)(rxjs@7.8.1)(ts-node@10.9.1)(typescript@5.2.2)
-  apollo-angular:
-    specifier: ^5.0.2
-    version: 5.0.2(@angular/core@17.0.1)(@apollo/client@3.8.7)(graphql@16.8.1)(rxjs@7.8.1)
   cheerio:
     specifier: 1.0.0-rc.12
     version: 1.0.0-rc.12
@@ -10507,25 +10504,6 @@ packages:
     dependencies:
       normalize-path: 3.0.0
       picomatch: 2.3.1
-
-  /apollo-angular@5.0.2(@angular/core@17.0.1)(@apollo/client@3.8.7)(graphql@16.8.1)(rxjs@7.8.1):
-    resolution:
-      {
-        integrity: sha512-U+ApPHhmdDirO95kovNJKt0Zd8kthOWALWY1t22zCI4LrT7tLZDDs0LJAzFXcvILN3FDkXWOE9R6Sa29jNOCIQ==,
-      }
-    engines: { node: '>=16' }
-    peerDependencies:
-      '@angular/core': ^14.0.0 || ^15.0.0 || ^16.0.0
-      '@apollo/client': ^3.0.0
-      graphql: ^15.0.0 || ^16.0.0
-      rxjs: ^6.0.0 || ^7.0.0
-    dependencies:
-      '@angular/core': 17.0.1(rxjs@7.8.1)(zone.js@0.14.2)
-      '@apollo/client': 3.8.7(graphql@16.8.1)(react-dom@18.2.0)(react@18.2.0)
-      graphql: 16.8.1
-      rxjs: 7.8.1
-      tslib: 2.6.2
-    dev: false
 
   /app-root-dir@1.0.2:
     resolution:

@@ -29,7 +29,6 @@
     "@ng-icons/heroicons": "^25.6.0",
     "@ng-icons/tabler-icons": "^25.6.0",
     "@nx/angular": "17.1.1",
-    "apollo-angular": "^5.0.2",
     "cheerio": "1.0.0-rc.12",
     "express": "^4.18.2",
     "graphql": "^16.8.1",
