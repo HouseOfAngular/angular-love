@@ -1,0 +1,8 @@
+name = "blog-bff"
+account_id = ""
+route = ""
+workers_dev = true
+compatibility_date = "2023-11-12"
+
+[build]
+command = "nx run blog-bff:build"
