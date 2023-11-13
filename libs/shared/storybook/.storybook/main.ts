@@ -7,6 +7,7 @@ const config: StorybookConfig = {
     name: '@storybook/angular',
     options: {},
   },
+  staticDirs: [{ from: '../../assets/src/lib', to: '/assets' }],
 };
 
 export default config;

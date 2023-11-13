@@ -8,6 +8,7 @@ const hostClassMap: Record<AlButtonVariant, string> = {
 };
 
 @Component({
+  // eslint-disable-next-line @angular-eslint/component-selector
   selector: 'button[al-button],a[al-button]',
   standalone: true,
   imports: [],

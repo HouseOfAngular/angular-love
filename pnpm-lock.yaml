@@ -68,6 +68,9 @@ dependencies:
   lint-staged:
     specifier: ^15.0.2
     version: 15.0.2
+  ngx-skeleton-loader:
+    specifier: ^8.1.0
+    version: 8.1.0(@angular/common@17.0.1)(@angular/core@17.0.1)
   react:
     specifier: ^18.2.0
     version: 18.2.0
@@ -17817,6 +17820,20 @@ packages:
       esbuild: 0.19.5
     transitivePeerDependencies:
       - supports-color
+
+  /ngx-skeleton-loader@8.1.0(@angular/common@17.0.1)(@angular/core@17.0.1):
+    resolution:
+      {
+        integrity: sha512-Ap/QSjadv/Kl0Vj7BiIWLG0JZZlo0eCJhdIVJ3Ryz7R0c4BR2Eq3O01du3ftf0SDbwt5vt7342NyqhLNrQ08RA==,
+      }
+    peerDependencies:
+      '@angular/common': '>=16.0.0'
+      '@angular/core': '>=16.0.0'
+    dependencies:
+      '@angular/common': 17.0.1(@angular/core@17.0.1)(rxjs@7.8.1)
+      '@angular/core': 17.0.1(rxjs@7.8.1)(zone.js@0.14.2)
+      tslib: 2.6.2
+    dev: false
 
   /nice-napi@1.0.2:
     resolution:
