@@ -16,11 +16,13 @@ const meta: Meta<ArticleCardComponent> = {
 const articleCard: UiArticleCard = {
   title: 'Angular Storybook',
   publishDate: new Date('2021-01-01').toISOString(),
-  authorImageUrl: '/assets/storybook/author-image.jpg',
-  authorName: 'Mateusz Dobrowolski',
   excerpt:
     'Consider User Interface (UI) as an independent standalone layer made of small and reusable blocks -> first class citizens of every Angular app. Such an approach is called Component …',
   featuredImageUrl: '/assets/storybook/article-featured-image.png',
+  author: {
+    name: 'Mateusz Dobrowolski',
+    avatarUrl: '/assets/storybook/author-image.jpg',
+  },
 };
 
 export default meta;
