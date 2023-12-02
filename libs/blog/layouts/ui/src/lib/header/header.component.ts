@@ -1,8 +1,7 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { NgOptimizedImage } from '@angular/common';
 import { SocialMediaIconsComponent } from '@angular-love/blog/shared/ui/social-media-icons';
-import { NgIconComponent, provideIcons } from '@ng-icons/core';
-import { heroMagnifyingGlass } from '@ng-icons/heroicons/outline';
+import { SearchBarComponent } from '@angular-love/blog/search/ui';
 
 @Component({
   standalone: true,
@@ -10,7 +9,6 @@ import { heroMagnifyingGlass } from '@ng-icons/heroicons/outline';
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [NgOptimizedImage, NgIconComponent, SocialMediaIconsComponent],
-  providers: [provideIcons({ heroMagnifyingGlass })],
+  imports: [NgOptimizedImage, SocialMediaIconsComponent, SearchBarComponent],
 })
 export class HeaderComponent {}
