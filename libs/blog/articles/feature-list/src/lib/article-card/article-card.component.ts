@@ -5,6 +5,7 @@ import {
   CardFooterDirective,
   CardHeaderDirective,
   CardHoverHighlightDirective,
+  CardLinkableDirective,
 } from '@angular-love/blog/shared/ui/card';
 import { AvatarComponent } from '@angular-love/blog/shared/ui/avatar';
 import { DatePipe, NgOptimizedImage } from '@angular/common';
@@ -12,6 +13,7 @@ import { DatePipe, NgOptimizedImage } from '@angular/common';
 export interface UiArticleCard {
   title: string;
   excerpt: string;
+  slug: string;
   featuredImageUrl: string;
   publishDate: string;
   author: {
@@ -35,6 +37,7 @@ export interface UiArticleCard {
     CardFooterDirective,
     CardHoverHighlightDirective,
     DatePipe,
+    CardLinkableDirective,
   ],
 })
 export class ArticleCardComponent {

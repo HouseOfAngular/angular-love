@@ -1,15 +1,21 @@
 import { inject, Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Article } from './article';
+import { ArticlePreview } from './article';
 import { ConfigService } from '@angular-love/shared/config';
 import { HttpClient } from '@angular/common/http';
 
-@Injectable()
+@Injectable({ providedIn: 'root' })
 export class ArticlesService {
   private readonly _apiBaseUrl = inject(ConfigService).get('apiBaseUrl');
   private readonly _http = inject(HttpClient);
 
-  getArticlesList(): Observable<Article[]> {
-    return this._http.get<Article[]>(`${this._apiBaseUrl}/articles`);
+  getArticlesList(): Observable<ArticlePreview[]> {
+    return this._http.get<ArticlePreview[]>(`${this._apiBaseUrl}/articles`);
+  }
+
+  getArticleBySlug(slug: string): Observable<ArticlePreview> {
+    return this._http.get<ArticlePreview>(
+      `${this._apiBaseUrl}/articles/${slug}`
+    );
   }
 }

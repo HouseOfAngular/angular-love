@@ -6,6 +6,7 @@ import {
   Input,
 } from '@angular/core';
 import { NgOptimizedImage } from '@angular/common';
+import { RouterLink } from '@angular/router';
 
 @Directive({
   standalone: true,
@@ -42,6 +43,21 @@ export class CardHoverHighlightDirective {
   @HostBinding('class')
   hostClasses =
     'hover:bg-red-50 outline outline-1 outline-transparent hover:outline-red-400 transition';
+}
+
+@Directive({
+  standalone: true,
+  selector: '[angularLoveCardLinkable]',
+  hostDirectives: [
+    {
+      directive: RouterLink,
+      inputs: ['routerLink'],
+    },
+  ],
+})
+export class CardLinkableDirective {
+  @HostBinding('class')
+  hostClasses = 'hover:cursor-pointer';
 }
 
 @Component({

@@ -18,8 +18,14 @@
       "@angular-love/blog/articles/data-access": [
         "libs/blog/articles/data-access/src/index.ts"
       ],
+      "@angular-love/blog/articles/feature-article": [
+        "libs/blog/articles/feature-article/src/index.ts"
+      ],
       "@angular-love/blog/articles/feature-list": [
         "libs/blog/articles/feature-list/src/index.ts"
+      ],
+      "@angular-love/blog/authors/ui-card": [
+        "libs/blog/authors/ui-card/src/index.ts"
       ],
       "@angular-love/blog/home/feature": [
         "libs/blog/home/feature/src/index.ts"

@@ -1,0 +1,18 @@
+<ng-container *ngIf="article">
+  <section class="py-8">
+    <h1 class="text-4xl justify-center flex">{{ article.title }}</h1>
+    <span class="justify-center flex">{{
+      article.publishDate | date : 'longDate'
+    }}</span>
+  </section>
+
+  <div class="grid grid-cols-3 gap-10">
+    <section class="col-span-2">
+      <al-article-content [content]="article.content" />
+    </section>
+
+    <aside class="col-span-1">
+      <al-author-card [author]="article.author" />
+    </aside>
+  </div>
+</ng-container>

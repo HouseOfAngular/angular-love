@@ -1,6 +1,8 @@
 <angular-love-card
   [imageSrc]="articleCard.featuredImageUrl"
   angularLoveCardHoverHighlight
+  angularLoveCardLinkable
+  [routerLink]="['/', articleCard.slug]"
 >
   <div angularLoveCardHeader>{{ articleCard.title }}</div>
   <div angularLoveCardContent>
