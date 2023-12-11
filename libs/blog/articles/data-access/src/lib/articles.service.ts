@@ -18,4 +18,10 @@ export class ArticlesService {
       `${this._apiBaseUrl}/articles/${slug}`
     );
   }
+
+  searchArticles(query: string): Observable<ArticlePreview[]> {
+    return this._http.get<ArticlePreview[]>(
+      `${this._apiBaseUrl}/articles/search?q=${query}`
+    );
+  }
 }

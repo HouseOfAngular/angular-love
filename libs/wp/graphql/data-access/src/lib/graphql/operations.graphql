@@ -38,3 +38,31 @@ query GetPostBySlug($slug: String) {
     }
   }
 }
+
+query SearchPosts(
+  $first: Int
+  $query: String
+  $languages: LanguageCodeFilterEnum
+) {
+  posts(first: $first, where: { search: $query, language: $languages }) {
+    nodes {
+      slug
+      title
+      excerpt
+      date
+      featuredImage {
+        node {
+          sourceUrl
+        }
+      }
+      author {
+        node {
+          name
+          avatar {
+            url
+          }
+        }
+      }
+    }
+  }
+}

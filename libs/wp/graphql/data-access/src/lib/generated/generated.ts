@@ -3460,6 +3460,27 @@ export type GetPostBySlugQuery = {
   } | null;
 };
 
+export type SearchPostsQueryVariables = Exact<{
+  first: InputMaybe<Scalars['Int']['input']>;
+  query: InputMaybe<Scalars['String']['input']>;
+  languages: InputMaybe<LanguageCodeFilterEnum>;
+}>;
+
+export type SearchPostsQuery = {
+  posts: {
+    nodes: Array<{
+      slug: string | null;
+      title: string | null;
+      excerpt: string | null;
+      date: string | null;
+      featuredImage: { node: { sourceUrl: string | null } } | null;
+      author: {
+        node: { name: string | null; avatar: { url: string | null } | null };
+      } | null;
+    }>;
+  } | null;
+};
+
 export const GetPosts = gql`
   query GetPosts($first: Int, $languages: LanguageCodeFilterEnum) {
     posts(first: $first, where: { language: $languages }) {
@@ -3497,6 +3518,35 @@ export const GetPostBySlug = gql`
           description
           avatar {
             url
+          }
+        }
+      }
+    }
+  }
+`;
+export const SearchPosts = gql`
+  query SearchPosts(
+    $first: Int
+    $query: String
+    $languages: LanguageCodeFilterEnum
+  ) {
+    posts(first: $first, where: { search: $query, language: $languages }) {
+      nodes {
+        slug
+        title
+        excerpt
+        date
+        featuredImage {
+          node {
+            sourceUrl
+          }
+        }
+        author {
+          node {
+            name
+            avatar {
+              url
+            }
           }
         }
       }
