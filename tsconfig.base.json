@@ -47,6 +47,7 @@
       "@angular-love/shared/assets": ["libs/shared/assets/src/index.ts"],
       "@angular-love/shared/config": ["libs/shared/config/src/index.ts"],
       "@angular-love/storybook": ["libs/shared/storybook/src/index.ts"],
+      "@angular-love/utils": ["libs/utils/src/index.ts"],
       "@angular-love/wp/graphql/data-access": [
         "libs/wp/graphql/data-access/src/index.ts"
       ]

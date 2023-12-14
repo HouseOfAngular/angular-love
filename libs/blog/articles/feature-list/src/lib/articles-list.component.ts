@@ -1,15 +1,29 @@
 import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
-import { AsyncPipe } from '@angular/common';
+import { AsyncPipe, JsonPipe } from '@angular/common';
 import { ArticleCardComponent } from './article-card/article-card.component';
-import { ArticlesService } from '@angular-love/blog/articles/data-access';
+import { ArticleListService } from '@angular-love/blog/articles/data-access';
+import { ArticleCardSkeletonComponent } from './article-card/article-card-skeleton.component';
+import { RepeatDirective } from '@angular-love/utils';
 
 @Component({
   standalone: true,
   selector: 'angular-love-articles-list',
   templateUrl: './articles-list.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [ArticleCardComponent, AsyncPipe],
+  imports: [
+    ArticleCardComponent,
+    ArticleCardSkeletonComponent,
+    RepeatDirective,
+    AsyncPipe,
+    JsonPipe,
+  ],
 })
 export class ArticlesListComponent {
-  readonly articlesList$ = inject(ArticlesService).getArticlesList();
+  private readonly articleListService = inject(ArticleListService);
+  readonly articlesList$ = this.articleListService.articlesListData$;
+  readonly articlesListLoading$ = this.articleListService.articlesListLoading$;
+
+  constructor() {
+    this.articleListService.fetchArticles();
+  }
 }
