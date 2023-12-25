@@ -9,10 +9,6 @@ export class ArticlesService {
   private readonly _apiBaseUrl = inject(ConfigService).get('apiBaseUrl');
   private readonly _http = inject(HttpClient);
 
-  getArticlesList(): Observable<ArticlePreview[]> {
-    return this._http.get<ArticlePreview[]>(`${this._apiBaseUrl}/articles`);
-  }
-
   getArticleBySlug(slug: string): Observable<ArticlePreview> {
     return this._http.get<ArticlePreview>(
       `${this._apiBaseUrl}/articles/${slug}`

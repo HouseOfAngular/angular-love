@@ -23,6 +23,7 @@ const articleCard: UiArticleCard = {
     name: 'Mateusz Dobrowolski',
     avatarUrl: '/assets/storybook/author-image.jpg',
   },
+  slug: 'angular-storybook',
 };
 
 export default meta;
