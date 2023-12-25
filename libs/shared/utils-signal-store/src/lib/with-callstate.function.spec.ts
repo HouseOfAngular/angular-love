@@ -4,7 +4,7 @@ import { signalStore, withMethods } from '@ngrx/signals';
 describe('withCallState', () => {
   const FruitListSignalStore = signalStore(
     { providedIn: 'root' },
-    withCallState<unknown>('fetch fruit list'),
+    withCallState('fetch fruit list'),
     withMethods(() => {
       return {
         foo: () => {},

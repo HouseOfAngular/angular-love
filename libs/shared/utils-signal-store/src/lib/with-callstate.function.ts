@@ -1,22 +1,30 @@
 import { signalStoreFeature, withComputed, withState } from '@ngrx/signals';
 import { CallState, LoadingState } from './callstate.type';
 import { computed, Signal } from '@angular/core';
-import { capitalize, CapitalizeWords, Join, uncapitalize } from './helpers';
+import { capitalize, CapitalizeWords } from './helpers/capitalize.function';
+import { uncapitalize } from './helpers/uncapitalize.function';
+import { Join } from './helpers/join.type';
 
-type CallStateName<T extends string> = Uncapitalize<Join<CapitalizeWords<T>>>;
+type CapitalizedCallStateName<T extends string> = Join<CapitalizeWords<T>>;
 
-type CapitalizedCallStateName<T extends string> = Capitalize<CallStateName<T>>;
+type CallStateName<T extends string> = Uncapitalize<
+  CapitalizedCallStateName<T>
+>;
 
 function toCallStateName<T extends string>(callStateName: T): CallStateName<T> {
-  return callStateName
-    .trim()
-    .split(' ')
-    .map((word, i) => (i === 0 ? uncapitalize(word) : capitalize(word)))
-    .join('') as CallStateName<T>;
+  const separator = ' ';
+  const [firstWord, ...restWords] = callStateName.trim().split(separator);
+  return [
+    uncapitalize(firstWord),
+    ...restWords.map((word) => capitalize(word)),
+  ].join(separator) as CallStateName<T>;
 }
 
-type CallStateStoreState<T extends string, Error = unknown> = Record<
-  `${CallStateName<T>}CallState`,
+type CallStateNameWithPostfix<T extends string> =
+  `${CallStateName<T>}CallState`;
+
+type CallStateStoreState<T extends string, Error> = Record<
+  CallStateNameWithPostfix<T>,
   CallState<Error>
 >;
 
@@ -26,7 +34,7 @@ type isLoadedKey<T extends string> = `is${CapitalizedCallStateName<T>}Loaded`;
 type isErrorKey<T extends string> = `is${CapitalizedCallStateName<T>}Error`;
 type errorKey<T extends string> = `${CallStateName<T>}Error`;
 
-type CallStateComputed<T extends string, Error = unknown> = Record<
+type CallStateComputed<T extends string, Error> = Record<
   isInitKey<T>,
   Signal<boolean>
 > &
@@ -35,23 +43,22 @@ type CallStateComputed<T extends string, Error = unknown> = Record<
   Record<isErrorKey<T>, Signal<boolean>> &
   Record<errorKey<T>, Signal<Error | null>>;
 
-export function withCallState<Error = unknown, T extends string = string>(
-  callStateName: T
-) {
-  const fixedCallStateName: CallStateName<T> =
-    toCallStateName<T>(callStateName);
-  const capitalizedCallStateName = capitalize(fixedCallStateName);
-  const callStateKey =
-    `${fixedCallStateName}CallState` as `${CallStateName<T>}CallState`;
+export function withCallState<T extends string, E = unknown>(name: T) {
+  const callStateName: CallStateName<T> = toCallStateName<T>(name);
+  const capitalizedCallStateName = capitalize(callStateName);
+  const callStateNameWithPostfix =
+    `${callStateName}CallState` as CallStateNameWithPostfix<T>;
 
-  const initState: CallStateStoreState<T, Error> = {
-    [callStateKey]: LoadingState.INIT,
-  } as CallStateStoreState<T, Error>;
+  const initState: CallStateStoreState<T, E> = {
+    [callStateNameWithPostfix]: LoadingState.INIT,
+  } as CallStateStoreState<T, E>;
 
   return signalStoreFeature(
-    withState<CallStateStoreState<T, Error>>(initState),
+    withState(initState),
     withComputed((state) => {
-      const callState = (state as never)[callStateKey] as () => CallState;
+      const callState = (state as never)[
+        callStateNameWithPostfix
+      ] as () => CallState<E>;
       const isInitComputedKey =
         `is${capitalizedCallStateName}Init` as isInitKey<T>;
       const isLoadingComputedKey =
@@ -60,7 +67,8 @@ export function withCallState<Error = unknown, T extends string = string>(
         `is${capitalizedCallStateName}Loaded` as isLoadedKey<T>;
       const isErrorComputedKey =
         `is${capitalizedCallStateName}Error` as isErrorKey<T>;
-      const errorComputedKey = `${fixedCallStateName}Error` as errorKey<T>;
+      const errorComputedKey =
+        `${callStateNameWithPostfix}Error` as errorKey<T>;
 
       return {
         [isInitComputedKey]: computed(() => callState() === LoadingState.INIT),
@@ -77,10 +85,10 @@ export function withCallState<Error = unknown, T extends string = string>(
         [errorComputedKey]: computed(() => {
           const state = callState();
           return typeof state === 'object' && 'error' in state
-            ? (state.error as Error)
+            ? (state.error as E)
             : null;
         }),
-      } as CallStateComputed<T, Error>;
+      } as CallStateComputed<T, E>;
     })
   );
 }
