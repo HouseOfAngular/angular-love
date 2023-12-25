@@ -1,8 +1,8 @@
 import { inject, Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { ArticlePreview } from './article';
 import { ConfigService } from '@angular-love/shared/config';
 import { HttpClient } from '@angular/common/http';
+import { ArticlePreview } from './article';
 
 @Injectable({ providedIn: 'root' })
 export class ArticlesService {
@@ -12,6 +12,14 @@ export class ArticlesService {
   getArticleBySlug(slug: string): Observable<ArticlePreview> {
     return this._http.get<ArticlePreview>(
       `${this._apiBaseUrl}/articles/${slug}`
+    );
+  }
+
+  getArticleList(_data: {
+    query: string | null;
+  }): Observable<ArticlePreview[]> {
+    return this._http.get<ArticlePreview[]>(
+      `${this._apiBaseUrl}/articles?query=${_data.query}`
     );
   }
 }

@@ -1,9 +1,9 @@
-import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
-import { AsyncPipe, JsonPipe } from '@angular/common';
-import { ArticleCardComponent } from './article-card/article-card.component';
-import { ArticleListService } from '@angular-love/blog/articles/data-access';
-import { ArticleCardSkeletonComponent } from './article-card/article-card-skeleton.component';
+import { ArticleListSignalStore } from '@angular-love/blog/articles/data-access';
 import { RepeatDirective } from '@angular-love/utils';
+import { AsyncPipe, JsonPipe } from '@angular/common';
+import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
+import { ArticleCardSkeletonComponent } from './article-card/article-card-skeleton.component';
+import { ArticleCardComponent } from './article-card/article-card.component';
 
 @Component({
   standalone: true,
@@ -19,11 +19,9 @@ import { RepeatDirective } from '@angular-love/utils';
   ],
 })
 export class ArticlesListComponent {
-  private readonly articleListService = inject(ArticleListService);
-  readonly articlesList$ = this.articleListService.articlesListData$;
-  readonly articlesListLoading$ = this.articleListService.articlesListLoading$;
+  private readonly articleListSignalStore = inject(ArticleListSignalStore);
 
   constructor() {
-    this.articleListService.fetchArticles();
+    this.articleListSignalStore.fetchArticleList({ query: null });
   }
 }
