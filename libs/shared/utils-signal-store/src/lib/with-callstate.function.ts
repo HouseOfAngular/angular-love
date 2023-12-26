@@ -17,7 +17,7 @@ function toCallStateName<T extends string>(callStateName: T): CallStateName<T> {
   return [
     uncapitalize(firstWord),
     ...restWords.map((word) => capitalize(word)),
-  ].join(separator) as CallStateName<T>;
+  ].join('') as CallStateName<T>;
 }
 
 type CallStateNameWithPostfix<T extends string> =
@@ -43,22 +43,38 @@ type CallStateComputed<T extends string, Error> = Record<
   Record<isErrorKey<T>, Signal<boolean>> &
   Record<errorKey<T>, Signal<Error | null>>;
 
-export function withCallState<T extends string, E = unknown>(name: T) {
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+type WithError<E> = <E>() => void;
+
+export function withError<E>(): WithError<E> {
+  return () => {};
+}
+
+type CallStateDefaultErrorType = unknown;
+
+export function withCallState<
+  T extends string,
+  ErrorType = CallStateDefaultErrorType
+>(
+  name: T,
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  withError?: WithError<ErrorType>
+) {
   const callStateName: CallStateName<T> = toCallStateName<T>(name);
   const capitalizedCallStateName = capitalize(callStateName);
   const callStateNameWithPostfix =
     `${callStateName}CallState` as CallStateNameWithPostfix<T>;
 
-  const initState: CallStateStoreState<T, E> = {
+  const initState: CallStateStoreState<T, ErrorType> = {
     [callStateNameWithPostfix]: LoadingState.INIT,
-  } as CallStateStoreState<T, E>;
+  } as CallStateStoreState<T, ErrorType>;
 
   return signalStoreFeature(
     withState(initState),
     withComputed((state) => {
-      const callState = (state as never)[
-        callStateNameWithPostfix
-      ] as () => CallState<E>;
+      const callState = (state as never)[callStateNameWithPostfix] as Signal<
+        CallState<ErrorType>
+      >;
       const isInitComputedKey =
         `is${capitalizedCallStateName}Init` as isInitKey<T>;
       const isLoadingComputedKey =
@@ -85,10 +101,10 @@ export function withCallState<T extends string, E = unknown>(name: T) {
         [errorComputedKey]: computed(() => {
           const state = callState();
           return typeof state === 'object' && 'error' in state
-            ? (state.error as E)
+            ? (state.error as ErrorType)
             : null;
         }),
-      } as CallStateComputed<T, E>;
+      } as CallStateComputed<T, ErrorType>;
     })
   );
 }

@@ -5,20 +5,18 @@ import {
 } from '@angular-love/shared/utils-signal-store';
 import { inject } from '@angular/core';
 import { firstValueFrom } from 'rxjs';
-import { ArticlePreview } from '../infrastructure/article';
 import { ArticlesService } from '../infrastructure/articles.service';
-
-type ArticleListState = {
-  articles: ArticlePreview[] | null;
-  query: string | null;
-};
+import { ArticlePreview } from '../contract/article';
 
 export const ArticleListSignalStore = signalStore(
   { providedIn: 'root' },
   // state
-  withState<ArticleListState>({ articles: null, query: null }),
+  withState<{
+    articles: ArticlePreview[] | null;
+    query: string | null;
+  }>({ articles: null, query: null }),
   // call states
-  withCallState<unknown>('fetch article list'),
+  withCallState('fetch article list'),
   // methods
   withMethods(({ ...store }) => {
     const articlesService = inject(ArticlesService);
@@ -46,6 +44,3 @@ export const ArticleListSignalStore = signalStore(
     };
   })
 );
-
-const articleListSignalStore = new ArticleListSignalStore();
-articleListSignalStore.isFetchArticleListInit();

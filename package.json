@@ -4,8 +4,8 @@
   "license": "MIT",
   "scripts": {
     "start": "npx nx run blog:serve",
-    "start:ssr": "npx nx run blog:serve-ssr",
     "start:storybook": "nx storybook storybook",
+    "start:bff": "nx run blog-bff:serve",
     "format:check": " prettier --config ./.prettierrc --check . ",
     "format:fix": " prettier --config ./.prettierrc --write . ",
     "prepare": "husky install",

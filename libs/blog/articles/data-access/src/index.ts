@@ -1,8 +1,6 @@
 // state
 export * from './lib/state/article-list.signal-store';
+export * from './lib/state/article-details.signal-store';
 
-// infrastructure
-export * from './lib/infrastructure/articles.service';
-
-export * from './lib/infrastructure/article';
-export * from './lib/resolvers';
+// contract
+export * from './lib/contract/article';
