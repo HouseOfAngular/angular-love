@@ -6,7 +6,7 @@ import {
 } from '@angular-love/blog/shared/ui/card';
 import { SocialMediaIconsComponent } from '@angular-love/blog/shared/ui/social-media-icons';
 
-interface UiAuthorCard {
+export interface UiAuthorCard {
   name: string;
   description: string;
   avatarUrl: string;
