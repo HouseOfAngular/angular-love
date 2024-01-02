@@ -32,8 +32,7 @@ export class BlogArticlesFeatureItemComponent {
   private readonly articleDetailsSignalStore = inject(
     ArticleDetailsSignalStore
   );
-  private readonly activatedRoute = inject(ActivatedRoute);
-  private readonly slug = this.activatedRoute.snapshot.paramMap.get('slug')!;
+  private readonly slug = inject(ActivatedRoute).snapshot.paramMap.get('slug')!;
 
   readonly isFetchArticleDetailsLoading: Signal<boolean> =
     this.articleDetailsSignalStore.isFetchArticleDetailsLoading;
