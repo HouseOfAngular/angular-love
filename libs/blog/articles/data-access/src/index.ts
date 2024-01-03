@@ -1,6 +1,6 @@
-export * from './lib/article';
-export * from './lib/resolvers';
+// state
+export * from './lib/state/article-list.store';
+export * from './lib/state/article-details.store';
 
-// services
-export * from './lib/article-list.service';
-export * from './lib/articles.service';
+// contract
+export * from './lib/contract/article';

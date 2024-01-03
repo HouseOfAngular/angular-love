@@ -13,6 +13,14 @@ touch ./apps/blog-bff/.dev.vars
 
 Check `apps/blog-bff/.dev.vars.example` to follow the schema.
 
+## Code Scaffolding
+
+To generate new angular library, use the following command:
+
+```
+nx g @nx/angular:library your-custom-name --directory=shared
+```
+
 ## Storybook
 
 To run Storybook locally use the following command:

@@ -1,15 +1,21 @@
-import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
-import { AsyncPipe, JsonPipe } from '@angular/common';
-import { ArticleCardComponent } from './article-card/article-card.component';
-import { ArticleListService } from '@angular-love/blog/articles/data-access';
-import { ArticleCardSkeletonComponent } from './article-card/article-card-skeleton.component';
+import {
+  ArticleListStore,
+  ArticlePreview,
+} from '@angular-love/blog/articles/data-access';
 import { RepeatDirective } from '@angular-love/utils';
+import { AsyncPipe, JsonPipe } from '@angular/common';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  inject,
+  Signal,
+} from '@angular/core';
+import { ArticleCardSkeletonComponent } from './article-card/article-card-skeleton.component';
+import { ArticleCardComponent } from './article-card/article-card.component';
 
 @Component({
-  standalone: true,
   selector: 'angular-love-articles-list',
   templateUrl: './articles-list.component.html',
-  changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [
     ArticleCardComponent,
     ArticleCardSkeletonComponent,
@@ -17,13 +23,19 @@ import { RepeatDirective } from '@angular-love/utils';
     AsyncPipe,
     JsonPipe,
   ],
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone: true,
 })
 export class ArticlesListComponent {
-  private readonly articleListService = inject(ArticleListService);
-  readonly articlesList$ = this.articleListService.articlesListData$;
-  readonly articlesListLoading$ = this.articleListService.articlesListLoading$;
+  private readonly articleListStore = inject(ArticleListStore);
+
+  readonly isFetchArticleListLoading: Signal<boolean> =
+    this.articleListStore.isFetchArticleListLoading;
+
+  readonly articleList: Signal<ArticlePreview[] | null> =
+    this.articleListStore.articles;
 
   constructor() {
-    this.articleListService.fetchArticles();
+    this.articleListStore.fetchArticleList({ query: null });
   }
 }
