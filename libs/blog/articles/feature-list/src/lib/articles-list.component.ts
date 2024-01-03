@@ -1,5 +1,5 @@
 import {
-  ArticleListSignalStore,
+  ArticleListStore,
   ArticlePreview,
 } from '@angular-love/blog/articles/data-access';
 import { RepeatDirective } from '@angular-love/utils';
@@ -27,15 +27,15 @@ import { ArticleCardComponent } from './article-card/article-card.component';
   standalone: true,
 })
 export class ArticlesListComponent {
-  private readonly articleListSignalStore = inject(ArticleListSignalStore);
+  private readonly articleListStore = inject(ArticleListStore);
 
   readonly isFetchArticleListLoading: Signal<boolean> =
-    this.articleListSignalStore.isFetchArticleListLoading;
+    this.articleListStore.isFetchArticleListLoading;
 
   readonly articleList: Signal<ArticlePreview[] | null> =
-    this.articleListSignalStore.articles;
+    this.articleListStore.articles;
 
   constructor() {
-    this.articleListSignalStore.fetchArticleList({ query: null });
+    this.articleListStore.fetchArticleList({ query: null });
   }
 }

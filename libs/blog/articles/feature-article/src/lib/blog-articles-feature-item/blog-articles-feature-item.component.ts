@@ -10,7 +10,7 @@ import { AuthorCardComponent } from '@angular-love/blog/authors/ui-card';
 import { ArticleContentComponent } from './article-content/article-content.component';
 import {
   Article,
-  ArticleDetailsSignalStore,
+  ArticleDetailsStore,
 } from '@angular-love/blog/articles/data-access';
 import { ActivatedRoute } from '@angular/router';
 
@@ -29,17 +29,15 @@ import { ActivatedRoute } from '@angular/router';
   standalone: true,
 })
 export class BlogArticlesFeatureItemComponent {
-  private readonly articleDetailsSignalStore = inject(
-    ArticleDetailsSignalStore
-  );
+  private readonly articleDetailsStore = inject(ArticleDetailsStore);
   private readonly slug = inject(ActivatedRoute).snapshot.paramMap.get('slug')!;
 
   readonly isFetchArticleDetailsLoading: Signal<boolean> =
-    this.articleDetailsSignalStore.isFetchArticleDetailsLoading;
+    this.articleDetailsStore.isFetchArticleDetailsLoading;
   readonly articleDetails: Signal<Article | null> =
-    this.articleDetailsSignalStore.articleDetails;
+    this.articleDetailsStore.articleDetails;
 
   constructor() {
-    this.articleDetailsSignalStore.fetchArticleDetails({ slug: this.slug });
+    this.articleDetailsStore.fetchArticleDetails({ slug: this.slug });
   }
 }

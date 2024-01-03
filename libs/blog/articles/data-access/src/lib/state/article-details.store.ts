@@ -8,7 +8,7 @@ import { firstValueFrom } from 'rxjs';
 import { ArticlesService } from '../infrastructure/articles.service';
 import { Article } from '../contract/article';
 
-export const ArticleDetailsSignalStore = signalStore(
+export const ArticleDetailsStore = signalStore(
   { providedIn: 'root' },
   // state
   withState<{
