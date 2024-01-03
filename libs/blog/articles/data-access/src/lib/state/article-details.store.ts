@@ -8,13 +8,20 @@ import { firstValueFrom } from 'rxjs';
 import { ArticlesService } from '../infrastructure/articles.service';
 import { Article } from '../contract/article';
 
+type ArticleDetailsState = {
+  articleDetails: Article | null;
+  slug: string | null;
+};
+
+const initialState: ArticleDetailsState = {
+  articleDetails: null,
+  slug: null,
+};
+
 export const ArticleDetailsStore = signalStore(
   { providedIn: 'root' },
   // state
-  withState<{
-    articleDetails: Article | null;
-    slug: string | null;
-  }>({ articleDetails: null, slug: null }),
+  withState(initialState),
   // call states
   withCallState('fetch article details'),
   // methods
