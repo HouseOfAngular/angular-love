@@ -1,4 +1,9 @@
-import { Component, inject, Signal } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  inject,
+  Signal,
+} from '@angular/core';
 import {
   Article,
   ArticleDetailsStore,
@@ -12,6 +17,7 @@ import { ArticleDetailsSkeletonComponent } from '../article-details/article-deta
   standalone: true,
   imports: [ArticleDetailsSkeletonComponent, ArticleDetailsComponent],
   templateUrl: './article-details-container.component.html',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ArticleDetailsContainerComponent {
   private readonly articleDetailsStore = inject(ArticleDetailsStore);
