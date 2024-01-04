@@ -13,6 +13,7 @@ import {
   ArticleDetailsStore,
 } from '@angular-love/blog/articles/data-access';
 import { ActivatedRoute } from '@angular/router';
+import { BlogArticlesFeatureItemSkeletonComponent } from './blog-articles-feature-item-skeleton.component';
 
 @Component({
   selector: 'al-blog-articles-feature-item',
@@ -22,6 +23,7 @@ import { ActivatedRoute } from '@angular/router';
     SocialMediaIconsComponent,
     AuthorCardComponent,
     ArticleContentComponent,
+    BlogArticlesFeatureItemSkeletonComponent,
   ],
   templateUrl: './blog-articles-feature-item.component.html',
   styleUrl: './blog-articles-feature-item.component.scss',

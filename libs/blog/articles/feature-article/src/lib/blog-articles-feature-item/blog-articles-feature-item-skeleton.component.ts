@@ -14,7 +14,7 @@ import { ArticleContentComponent } from './article-content/article-content-skele
     ArticleContentComponent,
   ],
   template: `
-    <section class="py-8">
+    <section class="block w-full py-8">
       <h1 class="text-4xl justify-center flex">
         <!-- title -->
         <ngx-skeleton-loader
