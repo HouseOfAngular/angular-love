@@ -8,9 +8,7 @@
   "targets": {
     "lint": {
       "executor": "@nx/eslint:lint",
-      "outputs": [
-        "{options.outputFile}"
-      ],
+      "outputs": ["{options.outputFile}"],
       "options": {
         "lintFilePatterns": [
           "libs/shared/storybook/**/*.ts",
@@ -29,9 +27,7 @@
           "libs/shared/assets/src/lib/styles/main.scss"
         ],
         "stylePreprocessorOptions": {
-          "includePaths": [
-            "libs/shared/assets/src/lib/styles"
-          ]
+          "includePaths": ["libs/shared/assets/src/lib/styles"]
         },
         "compodoc": false
       },
@@ -43,9 +39,7 @@
     },
     "build-storybook": {
       "executor": "@storybook/angular:build-storybook",
-      "outputs": [
-        "{options.outputDir}"
-      ],
+      "outputs": ["{options.outputDir}"],
       "options": {
         "outputDir": "dist/storybook/storybook",
         "configDir": "libs/shared/storybook/.storybook",
@@ -55,9 +49,7 @@
           "libs/shared/assets/src/lib/styles/main.scss"
         ],
         "stylePreprocessorOptions": {
-          "includePaths": [
-            "libs/shared/assets/src/lib/styles"
-          ]
+          "includePaths": ["libs/shared/assets/src/lib/styles"]
         },
         "compodoc": false
       },
