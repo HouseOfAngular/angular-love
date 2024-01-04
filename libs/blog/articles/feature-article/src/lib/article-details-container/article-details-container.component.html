@@ -1,0 +1,7 @@
+@if (isFetchArticleDetailsLoading()) {
+<al-article-details-skeleton></al-article-details-skeleton>
+} @else if (articleDetails()) {
+<al-article-details [articleDetails]="articleDetails()"></al-article-details>
+} @else if (isFetchArticleDetailsError()) {
+<!-- @TODO - error handling -->
+Something went wrong... }

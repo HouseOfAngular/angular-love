@@ -9,7 +9,7 @@ import { NgxSkeletonLoaderModule } from 'ngx-skeleton-loader';
 
 @Component({
   standalone: true,
-  selector: 'angular-love-card-skeleton',
+  selector: 'al-card-skeleton',
   template: `
     <div *ngIf="withImage">
       <div class="aspect-video">
@@ -23,9 +23,9 @@ import { NgxSkeletonLoaderModule } from 'ngx-skeleton-loader';
       </div>
     </div>
     <div class="p-4">
-      <ng-content select="[angularLoveCardHeader]"></ng-content>
-      <ng-content select="[angularLoveCardContent]"></ng-content>
-      <ng-content select="[angularLoveCardFooter]"></ng-content>
+      <ng-content select="[alCardHeader]"></ng-content>
+      <ng-content select="[alCardContent]"></ng-content>
+      <ng-content select="[alCardFooter]"></ng-content>
     </div>
   `,
   styleUrls: ['./card.component.scss'],

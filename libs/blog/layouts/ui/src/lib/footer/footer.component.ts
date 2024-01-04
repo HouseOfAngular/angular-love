@@ -14,7 +14,7 @@ import {
 import { SocialMediaIconsComponent } from '@angular-love/blog/shared/ui/social-media-icons';
 
 @Component({
-  selector: 'angular-love-footer',
+  selector: 'al-footer',
   standalone: true,
   imports: [NgIconComponent, SocialMediaIconsComponent],
   templateUrl: './footer.component.html',

@@ -4,7 +4,7 @@ import { FooterComponent } from '../footer/footer.component';
 import { HeaderComponent } from '../header/header.component';
 
 @Component({
-  selector: 'angular-love-layout',
+  selector: 'al-layout',
   standalone: true,
   imports: [RouterModule, FooterComponent, HeaderComponent],
   templateUrl: './layout.component.html',

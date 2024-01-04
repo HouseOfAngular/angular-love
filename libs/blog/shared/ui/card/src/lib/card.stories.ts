@@ -37,17 +37,17 @@ const wrapper = (template: string) =>
           ${template}
     </div>
     <div>
-      <angular-love-card-skeleton [withImage]="true">
-            <div angularLoveCardHeader>
+      <al-card-skeleton [withImage]="true">
+            <div alCardHeader>
                 <ngx-skeleton-loader [theme]="{ 'margin-bottom': '12px' }"></ngx-skeleton-loader>
             </div>
-            <div angularLoveCardContent>
+            <div alCardContent>
                 <ngx-skeleton-loader [theme]="{ width: '100%', 'margin-bottom': '0' }" [count]="3"></ngx-skeleton-loader>
             </div>
-            <div angularLoveCardFooter>
+            <div alCardFooter>
               <ngx-skeleton-loader  [theme]="{ width: '100%', 'margin-bottom': '0' }"></ngx-skeleton-loader>
             </div>
-      </angular-love-card-skeleton>
+      </al-card-skeleton>
      </div>
   </div>
 `;
@@ -57,11 +57,11 @@ const content =
 export const regular: Story = {
   render: () => ({
     template: wrapper(`
-      <angular-love-card>
-        <div angularLoveCardHeader>Header</div>
-        <div angularLoveCardContent>${content}</div>
-        <div angularLoveCardFooter>Footer</div>
-      </angular-love-card>
+      <al-card>
+        <div alCardHeader>Header</div>
+        <div alCardContent>${content}</div>
+        <div alCardFooter>Footer</div>
+      </al-card>
     `),
   }),
 };
@@ -74,11 +74,11 @@ export const withImage: Story = {
   render: (args: CardComponent) => ({
     props: args,
     template: wrapper(`
-      <angular-love-card [imageSrc]="imageSrc">
-        <div angularLoveCardHeader>Lorem Ipsum</div>
-        <div angularLoveCardContent>${content}</div>
-        <div angularLoveCardFooter>Footer</div>
-      </angular-love-card>
+      <al-card [imageSrc]="imageSrc">
+        <div alCardHeader>Lorem Ipsum</div>
+        <div alCardContent>${content}</div>
+        <div alCardFooter>Footer</div>
+      </al-card>
     `),
   }),
 };
@@ -91,11 +91,11 @@ export const highlighted: Story = {
   render: (args: CardComponent) => ({
     props: args,
     template: wrapper(`
-      <angular-love-card angularLoveCardHoverHighlight>
-        <div angularLoveCardHeader>Lorem Ipsum</div>
-        <div angularLoveCardContent>${content}</div>
-        <div angularLoveCardFooter>Footer</div>
-      </angular-love-card>
+      <al-card alCardHoverHighlight>
+        <div alCardHeader>Lorem Ipsum</div>
+        <div alCardContent>${content}</div>
+        <div alCardFooter>Footer</div>
+      </al-card>
     `),
   }),
 };

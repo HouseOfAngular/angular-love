@@ -10,7 +10,7 @@ import { RouterLink } from '@angular/router';
 
 @Directive({
   standalone: true,
-  selector: '[angularLoveCardHeader]',
+  selector: '[alCardHeader]',
 })
 export class CardHeaderDirective {
   @HostBinding('class')
@@ -19,7 +19,7 @@ export class CardHeaderDirective {
 
 @Directive({
   standalone: true,
-  selector: '[angularLoveCardContent]',
+  selector: '[alCardContent]',
 })
 export class CardContentDirective {
   @HostBinding('class')
@@ -28,7 +28,7 @@ export class CardContentDirective {
 
 @Directive({
   standalone: true,
-  selector: '[angularLoveCardFooter]',
+  selector: '[alCardFooter]',
 })
 export class CardFooterDirective {
   @HostBinding('class')
@@ -37,7 +37,7 @@ export class CardFooterDirective {
 
 @Directive({
   standalone: true,
-  selector: '[angularLoveCardHoverHighlight]',
+  selector: '[alCardHoverHighlight]',
 })
 export class CardHoverHighlightDirective {
   @HostBinding('class')
@@ -47,7 +47,7 @@ export class CardHoverHighlightDirective {
 
 @Directive({
   standalone: true,
-  selector: '[angularLoveCardLinkable]',
+  selector: '[alCardLinkable]',
   hostDirectives: [
     {
       directive: RouterLink,
@@ -62,7 +62,7 @@ export class CardLinkableDirective {
 
 @Component({
   standalone: true,
-  selector: 'angular-love-card',
+  selector: 'al-card',
   templateUrl: './card.component.html',
   styleUrls: ['./card.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,

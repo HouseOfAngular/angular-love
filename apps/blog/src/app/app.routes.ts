@@ -12,6 +12,6 @@ export const appRoutes: Route[] = [
     pathMatch: 'full',
     loadComponent: async () =>
       (await import('@angular-love/blog/articles/feature-article'))
-        .BlogArticlesFeatureItemComponent,
+        .ArticleDetailsContainerComponent,
   },
 ];

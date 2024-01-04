@@ -30,9 +30,9 @@ export default meta;
 type Story = StoryObj<ArticleCardComponent>;
 const template = `
   <div style="display: flex; gap: 16px; padding: 16px; align-items: flex-start" >
-    <angular-love-article-card style="width: 300px;" [articleCard]="articleCard"></angular-love-article-card>
+    <al-article-card style="width: 300px;" [articleCard]="articleCard"></al-article-card>
     <!-- TODO skeleton -->
-    <angular-love-article-card-skeleton style="width: 300px;"></angular-love-article-card-skeleton>
+    <al-article-card-skeleton style="width: 300px;"></al-article-card-skeleton>
 </div>
 `;
 
