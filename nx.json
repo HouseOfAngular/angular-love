@@ -67,10 +67,12 @@
     },
     "@nx/angular:library": {
       "linter": "eslint",
-      "unitTestRunner": "jest"
+      "unitTestRunner": "jest",
+      "prefix": "al"
     },
     "@nx/angular:component": {
-      "style": "scss"
+      "style": "scss",
+      "prefix": "al"
     }
   },
   "workspaceLayout": {
