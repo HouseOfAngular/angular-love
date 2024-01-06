@@ -1,20 +1,20 @@
-<angular-love-card
+<al-card
   [imageSrc]="articleCard.featuredImageUrl"
-  angularLoveCardHoverHighlight
-  angularLoveCardLinkable
+  alCardHoverHighlight
+  alCardLinkable
   [routerLink]="['/', articleCard.slug]"
 >
-  <div angularLoveCardHeader>{{ articleCard.title }}</div>
-  <div angularLoveCardContent>
+  <div alCardHeader>{{ articleCard.title }}</div>
+  <div alCardContent>
     {{ articleCard.excerpt }}
   </div>
-  <div angularLoveCardFooter>
+  <div alCardFooter>
     <div class="flex items-center justify-between mt-4">
       <div class="flex items-center gap-2">
-        <angular-love-avatar [imageSrc]="articleCard.author.avatarUrl" />
+        <al-avatar [imageSrc]="articleCard.author.avatarUrl" />
         <span>{{ articleCard.author.name }}</span>
       </div>
       <span>{{ articleCard.publishDate | date : 'mediumDate' }}</span>
     </div>
   </div>
-</angular-love-card>
+</al-card>

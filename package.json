@@ -8,6 +8,7 @@
     "start:bff": "nx run blog-bff:serve",
     "format:check": " prettier --config ./.prettierrc --check . ",
     "format:fix": " prettier --config ./.prettierrc --write . ",
+    "lint:check": "nx run-many --all --target=lint --parallel",
     "prepare": "husky install",
     "hooks:debugger-checker": "node hooks/debugger-checker.js",
     "lint-staged": "lint-staged"

@@ -20,11 +20,8 @@ const initialState: ArticleDetailsState = {
 
 export const ArticleDetailsStore = signalStore(
   { providedIn: 'root' },
-  // state
   withState(initialState),
-  // call states
   withCallState('fetch article details'),
-  // methods
   withMethods(({ ...store }) => {
     const articlesService = inject(ArticlesService);
     return {

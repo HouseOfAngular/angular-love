@@ -1,1 +1,1 @@
-export * from './lib/blog-articles-feature-item/blog-articles-feature-item.component';
+export * from './lib/article-details-container/article-details-container.component';

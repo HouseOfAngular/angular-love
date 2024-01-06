@@ -4,31 +4,22 @@ import {
   inject,
   Signal,
 } from '@angular/core';
-import { DatePipe, NgIf } from '@angular/common';
-import { SocialMediaIconsComponent } from '@angular-love/blog/shared/ui/social-media-icons';
-import { AuthorCardComponent } from '@angular-love/blog/authors/ui-card';
-import { ArticleContentComponent } from './article-content/article-content.component';
 import {
   Article,
   ArticleDetailsStore,
 } from '@angular-love/blog/articles/data-access';
 import { ActivatedRoute } from '@angular/router';
+import { ArticleDetailsComponent } from '../article-details/article-details.component';
+import { ArticleDetailsSkeletonComponent } from '../article-details/article-details-skeleton.component';
 
 @Component({
-  selector: 'al-blog-articles-feature-item',
-  imports: [
-    NgIf,
-    DatePipe,
-    SocialMediaIconsComponent,
-    AuthorCardComponent,
-    ArticleContentComponent,
-  ],
-  templateUrl: './blog-articles-feature-item.component.html',
-  styleUrl: './blog-articles-feature-item.component.scss',
-  changeDetection: ChangeDetectionStrategy.OnPush,
+  selector: 'al-article-details-container',
   standalone: true,
+  imports: [ArticleDetailsSkeletonComponent, ArticleDetailsComponent],
+  templateUrl: './article-details-container.component.html',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class BlogArticlesFeatureItemComponent {
+export class ArticleDetailsContainerComponent {
   private readonly articleDetailsStore = inject(ArticleDetailsStore);
   private readonly slug = inject(ActivatedRoute).snapshot.paramMap.get('slug')!;
 
@@ -36,6 +27,8 @@ export class BlogArticlesFeatureItemComponent {
     this.articleDetailsStore.isFetchArticleDetailsLoading;
   readonly articleDetails: Signal<Article | null> =
     this.articleDetailsStore.articleDetails;
+  readonly isFetchArticleDetailsError =
+    this.articleDetailsStore.isFetchArticleDetailsError;
 
   constructor() {
     this.articleDetailsStore.fetchArticleDetails({ slug: this.slug });

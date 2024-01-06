@@ -1,13 +1,13 @@
 import type { Meta, StoryObj } from '@storybook/angular';
-import { BlogArticlesFeatureItemComponent } from './blog-articles-feature-item.component';
 import { Article } from '@angular-love/blog/articles/data-access';
+import { ArticleDetailsComponent } from './article-details.component';
 
-const meta: Meta<BlogArticlesFeatureItemComponent> = {
-  component: BlogArticlesFeatureItemComponent,
+const meta: Meta<ArticleDetailsComponent> = {
+  component: ArticleDetailsComponent,
   title: 'Articles / details',
 };
 
-const article: Article = {
+const articleDetails: Article = {
   title: 'Why Angular signals won’t replace RxJs',
   author: {
     name: 'John Smith',
@@ -20,10 +20,10 @@ const article: Article = {
 };
 
 export default meta;
-type Story = StoryObj<BlogArticlesFeatureItemComponent>;
+type Story = StoryObj<ArticleDetailsComponent>;
 
 export const primary: Story = {
   args: {
-    article,
+    articleDetails,
   },
 };

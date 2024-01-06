@@ -14,8 +14,8 @@ import { SocialMediaIconsComponent } from '@angular-love/blog/shared/ui/social-m
     SocialMediaIconsComponent,
   ],
   template: `
-    <angular-love-card-skeleton [withImage]="false">
-      <div angularLoveCardContent>
+    <al-card-skeleton [withImage]="false">
+      <div alCardContent>
         <div class="flex gap-6 items-center">
           <!-- avatar -->
           <ngx-skeleton-loader
@@ -41,7 +41,7 @@ import { SocialMediaIconsComponent } from '@angular-love/blog/shared/ui/social-m
           [count]="2"
         ></ngx-skeleton-loader>
       </div>
-    </angular-love-card-skeleton>
+    </al-card-skeleton>
   `,
 })
 export class AuthorCardSkeletonComponent {}

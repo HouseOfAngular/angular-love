@@ -14,8 +14,8 @@ import { ArticleCardSkeletonComponent } from './article-card/article-card-skelet
 import { ArticleCardComponent } from './article-card/article-card.component';
 
 @Component({
-  selector: 'angular-love-articles-list',
-  templateUrl: './articles-list.component.html',
+  selector: 'al-articles-list',
+  templateUrl: './articles-list-container.component.html',
   imports: [
     ArticleCardComponent,
     ArticleCardSkeletonComponent,
@@ -26,7 +26,7 @@ import { ArticleCardComponent } from './article-card/article-card.component';
   changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: true,
 })
-export class ArticlesListComponent {
+export class ArticlesListContainerComponent {
   private readonly articleListStore = inject(ArticleListStore);
 
   readonly isFetchArticleListLoading: Signal<boolean> =
@@ -34,6 +34,8 @@ export class ArticlesListComponent {
 
   readonly articleList: Signal<ArticlePreview[] | null> =
     this.articleListStore.articles;
+  readonly isFetchArticleListError =
+    this.articleListStore.isFetchArticleListError;
 
   constructor() {
     this.articleListStore.fetchArticleList({ query: null });

@@ -3,7 +3,7 @@ import { LayoutComponent } from '@angular-love/blog/layouts/ui';
 
 @Component({
   standalone: true,
-  selector: 'angular-love-root',
+  selector: 'al-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,

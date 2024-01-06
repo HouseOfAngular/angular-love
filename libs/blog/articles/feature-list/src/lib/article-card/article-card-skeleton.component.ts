@@ -6,21 +6,21 @@ import { DatePipe } from '@angular/common';
 
 @Component({
   standalone: true,
-  selector: 'angular-love-article-card-skeleton',
+  selector: 'al-article-card-skeleton',
   template: `
-    <angular-love-card-skeleton>
-      <div angularLoveCardHeader>
+    <al-card-skeleton>
+      <div alCardHeader>
         <ngx-skeleton-loader
           [theme]="{ 'margin-bottom': '12px' }"
         ></ngx-skeleton-loader>
       </div>
-      <div angularLoveCardContent>
+      <div alCardContent>
         <ngx-skeleton-loader
           [theme]="{ width: '100%', 'margin-bottom': '0', height: '15px' }"
           [count]="5"
         ></ngx-skeleton-loader>
       </div>
-      <div angularLoveCardFooter>
+      <div alCardFooter>
         <div class="flex items-center justify-between mt-4">
           <div class="flex items-center gap-2">
             <ngx-skeleton-loader
@@ -40,7 +40,7 @@ import { DatePipe } from '@angular/common';
           ></ngx-skeleton-loader>
         </div>
       </div>
-    </angular-love-card-skeleton>
+    </al-card-skeleton>
   `,
   styleUrls: ['./article-card.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,

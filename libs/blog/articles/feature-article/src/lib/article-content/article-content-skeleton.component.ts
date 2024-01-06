@@ -10,9 +10,9 @@ import { RepeatDirective } from '@angular-love/utils';
   selector: 'al-article-content-skeleton',
   standalone: true,
   template: `
-    <angular-love-card>
-      <article angularLoveCardContent>
-        <div *angularLoveRepeat="5" class="mt-8">
+    <al-card>
+      <article alCardContent>
+        <div *alRepeat="5" class="mt-8">
           <ngx-skeleton-loader
             [theme]="{ width: '100%', 'margin-bottom': '4px', height: '15px' }"
             [count]="15"
@@ -29,7 +29,7 @@ import { RepeatDirective } from '@angular-love/utils';
           ></ngx-skeleton-loader>
         </div>
       </article>
-    </angular-love-card>
+    </al-card>
   `,
   imports: [
     CardComponent,
@@ -38,4 +38,4 @@ import { RepeatDirective } from '@angular-love/utils';
     RepeatDirective,
   ],
 })
-export class ArticleContentComponent {}
+export class ArticleContentSkeletonComponent {}

@@ -1,9 +1,9 @@
 import {
   ChangeDetectionStrategy,
   Component,
+  computed,
   Input,
   signal,
-  computed,
 } from '@angular/core';
 import { NgOptimizedImage, NgStyle } from '@angular/common';
 import { NgIconComponent, provideIcons } from '@ng-icons/core';
@@ -13,7 +13,7 @@ type AvatarSize = 'sm' | 'md' | 'lg';
 
 @Component({
   standalone: true,
-  selector: 'angular-love-avatar',
+  selector: 'al-avatar',
   templateUrl: './avatar.component.html',
   styleUrls: ['./avatar.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -22,6 +22,7 @@ type AvatarSize = 'sm' | 'md' | 'lg';
 })
 export class AvatarComponent {
   @Input() imageSrc?: string;
+
   @Input()
   set size(val: AvatarSize) {
     this._size.set(val);

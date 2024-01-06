@@ -14,9 +14,9 @@ export const icons: Story = {
   render: () => ({
     template: `
       <div>
-        <angular-love-social-media-icons />
-        <angular-love-social-media-icons size="18" />
-        <angular-love-social-media-icons size="20" />
+        <al-social-media-icons />
+        <al-social-media-icons size="18" />
+        <al-social-media-icons size="20" />
       </div>
     `,
   }),

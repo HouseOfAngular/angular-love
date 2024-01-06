@@ -2,7 +2,7 @@
   "name": "blog",
   "$schema": "../../node_modules/nx/schemas/project-schema.json",
   "projectType": "application",
-  "prefix": "angular-love",
+  "prefix": "al",
   "sourceRoot": "apps/blog/src",
   "tags": [],
   "targets": {

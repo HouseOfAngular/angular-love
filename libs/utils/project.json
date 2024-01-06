@@ -2,7 +2,7 @@
   "name": "utils",
   "$schema": "../../node_modules/nx/schemas/project-schema.json",
   "sourceRoot": "libs/utils/src",
-  "prefix": "angular-love",
+  "prefix": "al",
   "tags": [],
   "projectType": "library",
   "targets": {

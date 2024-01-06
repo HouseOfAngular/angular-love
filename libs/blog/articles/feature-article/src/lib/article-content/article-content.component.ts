@@ -1,4 +1,9 @@
-import { Component, Input, ViewEncapsulation } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  Input,
+  ViewEncapsulation,
+} from '@angular/core';
 import {
   CardComponent,
   CardContentDirective,
@@ -11,6 +16,7 @@ import {
   styleUrl: './article-content.component.scss',
   imports: [CardComponent, CardContentDirective],
   encapsulation: ViewEncapsulation.None,
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ArticleContentComponent {
   @Input() content?: string;

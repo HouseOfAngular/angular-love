@@ -1,20 +1,20 @@
-import { Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { CardSkeletonComponent } from '@angular-love/blog/shared/ui/card';
 import { NgxSkeletonLoaderModule } from 'ngx-skeleton-loader';
 import { AuthorCardSkeletonComponent } from '@angular-love/blog/authors/ui-card';
-import { ArticleContentComponent } from './article-content/article-content-skeleton.component';
+import { ArticleContentSkeletonComponent } from '../article-content/article-content-skeleton.component';
 
 @Component({
-  selector: 'al-blog-articles-feature-item-skeleton',
+  selector: 'al-article-details-skeleton',
   standalone: true,
   imports: [
     CardSkeletonComponent,
     NgxSkeletonLoaderModule,
     AuthorCardSkeletonComponent,
-    ArticleContentComponent,
+    ArticleContentSkeletonComponent,
   ],
   template: `
-    <section class="py-8">
+    <section class="block w-full py-8">
       <h1 class="text-4xl justify-center flex">
         <!-- title -->
         <ngx-skeleton-loader
@@ -43,5 +43,6 @@ import { ArticleContentComponent } from './article-content/article-content-skele
       </aside>
     </div>
   `,
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class BlogArticlesFeatureItemSkeletonComponent {}
+export class ArticleDetailsSkeletonComponent {}

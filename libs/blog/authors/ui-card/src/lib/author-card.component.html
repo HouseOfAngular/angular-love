@@ -1,15 +1,15 @@
-<angular-love-card>
-  <div angularLoveCardContent>
+<al-card>
+  <div alCardContent>
     <div class="flex gap-6 items-center">
-      <angular-love-avatar [imageSrc]="author.avatarUrl" size="lg" />
+      <al-avatar [imageSrc]="author.avatarUrl" size="lg" />
       <div>
         <span class="font-bold text-lg">{{ author.name }}</span>
         <!-- FAKE ICONS -->
         <!-- WILL BE REPLACED WITH AUTHOR'S ACTUAL SOCIAL LINKS-->
-        <angular-love-social-media-icons class="flex justify-start" />
+        <al-social-media-icons class="flex justify-start" />
       </div>
     </div>
 
     <div class="text-sm mt-4">{{ author.description }}</div>
   </div>
-</angular-love-card>
+</al-card>

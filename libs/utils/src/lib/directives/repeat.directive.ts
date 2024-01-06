@@ -1,13 +1,11 @@
 import { Directive, Input, TemplateRef, ViewContainerRef } from '@angular/core';
 
-const selector = 'angularLoveRepeat' as const;
-
 @Directive({
-  selector: '[angularLoveRepeat]',
+  selector: `[alRepeat]`,
   standalone: true,
 })
 export class RepeatDirective<T> {
-  @Input(selector) set amount(value: number) {
+  @Input('alRepeat') set amount(value: number) {
     this.viewContainerRef.clear();
     for (let i = 0; i < value; i++) {
       this.viewContainerRef.createEmbeddedView(this.templateRef);
