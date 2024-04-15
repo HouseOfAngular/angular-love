@@ -1,9 +1,9 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { NgOptimizedImage } from '@angular/common';
 import { SocialMediaIconsComponent } from '@angular-love/blog/shared/ui/social-media-icons';
+import { NgOptimizedImage } from '@angular/common';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { RouterLink } from '@angular/router';
 import { NgIconComponent, provideIcons } from '@ng-icons/core';
 import { heroMagnifyingGlass } from '@ng-icons/heroicons/outline';
-import { RouterLink } from '@angular/router';
 
 @Component({
   standalone: true,
@@ -19,4 +19,8 @@ import { RouterLink } from '@angular/router';
   ],
   providers: [provideIcons({ heroMagnifyingGlass })],
 })
-export class HeaderComponent {}
+export class HeaderComponent {
+  openSearch(): void {
+    alert('To be done');
+  }
+}
