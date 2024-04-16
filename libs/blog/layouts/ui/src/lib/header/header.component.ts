@@ -1,4 +1,5 @@
 import { SocialMediaIconsComponent } from '@angular-love/blog/shared/ui/social-media-icons';
+import { NavigationComponent } from '@angular-love/navigation';
 import { NgOptimizedImage } from '@angular/common';
 import { ChangeDetectionStrategy, Component, input } from '@angular/core';
 import { RouterLink, RouterLinkActive } from '@angular/router';
@@ -17,6 +18,7 @@ import { heroMagnifyingGlass } from '@ng-icons/heroicons/outline';
     SocialMediaIconsComponent,
     RouterLinkActive,
     RouterLink,
+    NavigationComponent,
   ],
   providers: [provideIcons({ heroMagnifyingGlass })],
 })
