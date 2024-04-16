@@ -3,18 +3,12 @@
   "$schema": "../../../node_modules/nx/schemas/project-schema.json",
   "sourceRoot": "libs/shared/storybook/src",
   "prefix": "al",
-  "tags": [],
   "projectType": "library",
+  "tags": [],
   "targets": {
     "lint": {
       "executor": "@nx/eslint:lint",
-      "outputs": ["{options.outputFile}"],
-      "options": {
-        "lintFilePatterns": [
-          "libs/shared/storybook/**/*.ts",
-          "libs/shared/storybook/**/*.html"
-        ]
-      }
+      "outputs": ["{options.outputFile}"]
     },
     "storybook": {
       "executor": "@storybook/angular:start-storybook",

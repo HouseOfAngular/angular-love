@@ -3,6 +3,7 @@
   "$schema": "../../node_modules/nx/schemas/project-schema.json",
   "sourceRoot": "apps/blog-bff/src",
   "projectType": "application",
+  "tags": [],
   "targets": {
     "build": {
       "executor": "@k11r/nx-cloudflare-wrangler:build-worker",
@@ -17,10 +18,7 @@
     },
     "lint": {
       "executor": "@nx/eslint:lint",
-      "outputs": ["{options.outputFile}"],
-      "options": {
-        "lintFilePatterns": ["apps/blog-bff/**/*.ts"]
-      }
+      "outputs": ["{options.outputFile}"]
     },
     "test": {
       "executor": "@nx/jest:jest",
@@ -29,6 +27,5 @@
         "jestConfig": "apps/blog-bff/jest.config.ts"
       }
     }
-  },
-  "tags": []
+  }
 }
