@@ -6,18 +6,6 @@
       "dependsOn": ["^build"],
       "inputs": ["production", "^production"]
     },
-    "lint": {
-      "cache": true,
-      "inputs": [
-        "default",
-        "{workspaceRoot}/.eslintrc.json",
-        "{workspaceRoot}/.eslintignore",
-        "{workspaceRoot}/eslint.config.js"
-      ]
-    },
-    "server": {
-      "cache": true
-    },
     "build-storybook": {
       "cache": true,
       "inputs": [
@@ -39,6 +27,15 @@
           "codeCoverage": true
         }
       }
+    },
+    "@nx/eslint:lint": {
+      "cache": true,
+      "inputs": [
+        "default",
+        "{workspaceRoot}/.eslintrc.json",
+        "{workspaceRoot}/.eslintignore",
+        "{workspaceRoot}/eslint.config.js"
+      ]
     }
   },
   "namedInputs": {
@@ -84,5 +81,6 @@
         "cacheableOperations": ["build-storybook"]
       }
     }
-  }
+  },
+  "useInferencePlugins": false
 }

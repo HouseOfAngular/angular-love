@@ -3,8 +3,8 @@
   "$schema": "../../../../node_modules/nx/schemas/project-schema.json",
   "sourceRoot": "libs/wp/graphql/data-access/src",
   "prefix": "wp-al",
-  "tags": [],
   "projectType": "library",
+  "tags": [],
   "targets": {
     "test": {
       "executor": "@nx/jest:jest",
@@ -15,13 +15,7 @@
     },
     "lint": {
       "executor": "@nx/eslint:lint",
-      "outputs": ["{options.outputFile}"],
-      "options": {
-        "lintFilePatterns": [
-          "libs/wp/graphql/data-access/**/*.ts",
-          "libs/wp/graphql/data-access/**/*.html"
-        ]
-      }
+      "outputs": ["{options.outputFile}"]
     },
     "generate": {
       "executor": "nx:run-commands",
