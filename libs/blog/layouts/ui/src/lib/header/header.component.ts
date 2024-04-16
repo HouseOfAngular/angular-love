@@ -1,7 +1,7 @@
 import { SocialMediaIconsComponent } from '@angular-love/blog/shared/ui/social-media-icons';
 import { NgOptimizedImage } from '@angular/common';
 import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { RouterLink } from '@angular/router';
+import { RouterLink, RouterLinkActive } from '@angular/router';
 import { NgIconComponent, provideIcons } from '@ng-icons/core';
 import { heroMagnifyingGlass } from '@ng-icons/heroicons/outline';
 
@@ -15,6 +15,7 @@ import { heroMagnifyingGlass } from '@ng-icons/heroicons/outline';
     NgOptimizedImage,
     NgIconComponent,
     SocialMediaIconsComponent,
+    RouterLinkActive,
     RouterLink,
   ],
   providers: [provideIcons({ heroMagnifyingGlass })],

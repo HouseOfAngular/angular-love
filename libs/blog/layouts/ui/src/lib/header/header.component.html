@@ -1,5 +1,5 @@
 <header
-  class="sticky top-0 z-50 bg-al-gray-header border-b border-al-gray-border shadow-xl"
+  class="sticky top-0 z-50 bg-al-gray-header border-b border-al-gray-border shadow-xl h-20"
 >
   <div
     class="flex justify-between items-center max-w-screen-xl w-full mx-auto py-4 px-2 xl:px-0"
@@ -16,9 +16,24 @@
 
     <div class="flex flex-row items-center">
       <nav>
-        <a href="#" class="text-white p-6 font-medium">About us</a>
-        <a href="#" class="text-white p-6 font-medium">Angular Meetups</a>
-        <a href="#" class="text-white p-6 font-medium">Become an author</a>
+        <a
+          href="#"
+          class="text-white p-6 font-medium"
+          [routerLinkActive]="'text-al-pink'"
+          >About us</a
+        >
+        <a
+          href="#"
+          class="text-white p-6 font-medium"
+          [routerLinkActive]="'text-al-pink'"
+          >Angular Meetups</a
+        >
+        <a
+          href="#"
+          class="text-white p-6 font-medium"
+          [routerLinkActive]="'text-al-pink'"
+          >Become an author</a
+        >
       </nav>
       <div>
         <button
