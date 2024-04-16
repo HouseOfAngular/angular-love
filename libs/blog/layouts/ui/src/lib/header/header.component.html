@@ -37,12 +37,14 @@
       </nav>
       <div>
         <button
-          class="bg-transparent border rounded border-al-gray-border py-2 px-4 text-al-gray-text mr-2"
+          class="bg-transparent border rounded border-al-gray-border py-2 px-4 mr-2 font-medium"
+          [class]="language() === 'ENG' ? 'text-white' : 'text-al-gray-text'"
         >
           ENG
         </button>
         <button
-          class="bg-transparent border rounded border-al-gray-border py-2 px-4 text-al-gray-text mr-6"
+          class="bg-transparent border rounded border-al-gray-border py-2 px-4 mr-2 font-medium"
+          [class]="language() === 'PL' ? 'text-white' : 'text-al-gray-text'"
         >
           PL
         </button>

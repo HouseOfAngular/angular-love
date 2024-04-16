@@ -1,6 +1,6 @@
 import { SocialMediaIconsComponent } from '@angular-love/blog/shared/ui/social-media-icons';
 import { NgOptimizedImage } from '@angular/common';
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component, input } from '@angular/core';
 import { RouterLink, RouterLinkActive } from '@angular/router';
 import { NgIconComponent, provideIcons } from '@ng-icons/core';
 import { heroMagnifyingGlass } from '@ng-icons/heroicons/outline';
@@ -21,6 +21,8 @@ import { heroMagnifyingGlass } from '@ng-icons/heroicons/outline';
   providers: [provideIcons({ heroMagnifyingGlass })],
 })
 export class HeaderComponent {
+  language = input.required<'PL' | 'ENG'>();
+
   openSearch(): void {
     alert('To be done');
   }
