@@ -8,6 +8,12 @@ import {
 import { NgOptimizedImage } from '@angular/common';
 import { RouterLink } from '@angular/router';
 
+export type Layout =
+  | 'NORMAL'
+  | 'ARTICLE-SMALL'
+  | 'ARTICLE'
+  | 'ARTICLE-BIG'
+  | '';
 @Directive({
   standalone: true,
   selector: '[alCardHeader]',
@@ -70,6 +76,7 @@ export class CardLinkableDirective {
 })
 export class CardComponent {
   @Input() imageSrc?: string;
+  @Input() layout: Layout = 'NORMAL';
 
   @HostBinding('class')
   hostClasses = 'block bg-white rounded-lg shadow-sm overflow-hidden';

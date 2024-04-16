@@ -49,6 +49,9 @@
       "@angular-love/shared/utils-signal-store": [
         "libs/shared/utils-signal-store/src/index.ts"
       ],
+      "@angular-love/small-article-card": [
+        "libs/blog/articles/feature-small-article-card/src/index.ts"
+      ],
       "@angular-love/storybook": ["libs/shared/storybook/src/index.ts"],
       "@angular-love/utils": ["libs/utils/src/index.ts"],
       "@angular-love/wp/graphql/data-access": [
