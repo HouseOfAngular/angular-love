@@ -25,6 +25,8 @@ import { heroMagnifyingGlass } from '@ng-icons/heroicons/outline';
 export class HeaderComponent {
   language = input.required<'PL' | 'ENG'>();
 
+  logoSize = '40';
+
   openSearch(): void {
     alert('To be done');
   }
