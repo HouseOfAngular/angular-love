@@ -1,6 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { SmallArticleCardComponent } from './small-article-card.component';
 
+// --TO-DO--USE-SPECTATOR-WHEN-AVAILABLE
 describe('SmallArticleCardComponent', () => {
   let component: SmallArticleCardComponent;
   let fixture: ComponentFixture<SmallArticleCardComponent>;

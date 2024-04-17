@@ -52,6 +52,9 @@
       "@angular-love/small-article-card": [
         "libs/blog/articles/feature-small-article-card/src/index.ts"
       ],
+      "@angular-love/small-article-card-data-model": [
+        "libs/blog/shared/utils/small-article-card-data-model/src/index.ts"
+      ],
       "@angular-love/storybook": ["libs/shared/storybook/src/index.ts"],
       "@angular-love/utils": ["libs/utils/src/index.ts"],
       "@angular-love/wp/graphql/data-access": [

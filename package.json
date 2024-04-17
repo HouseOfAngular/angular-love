@@ -26,6 +26,7 @@
     "@angular/router": "17.3.4",
     "@angular/ssr": "17.3.4",
     "@apollo/client": "^3.8.7",
+    "@ng-icons/bootstrap-icons": "^27.3.1",
     "@ng-icons/core": "^25.6.0",
     "@ng-icons/heroicons": "^25.6.0",
     "@ng-icons/tabler-icons": "^25.6.0",
@@ -43,6 +44,7 @@
     "react-dom": "^18.2.0",
     "rxjs": "~7.8.1",
     "sanitize-html": "^2.11.0",
+    "stylelint": "^16.3.1",
     "tslib": "^2.6.1",
     "zone.js": "0.14.4"
   },

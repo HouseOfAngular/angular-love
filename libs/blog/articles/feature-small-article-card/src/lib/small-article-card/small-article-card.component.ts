@@ -1,11 +1,43 @@
-import { Component } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { Component, input } from '@angular/core';
+import { CommonModule, NgOptimizedImage } from '@angular/common';
+import {
+  CardComponent,
+  CardContentDirective,
+  CardFooterDirective,
+  CardHeaderDirective,
+  CardHoverHighlightDirective,
+  CardLinkableDirective,
+} from '@angular-love/blog/shared/ui/card';
+import { AvatarComponent } from '@angular-love/blog/shared/ui/avatar';
+import { NgIcon, provideIcons } from '@ng-icons/core';
+import { bootstrapClock } from '@ng-icons/bootstrap-icons';
+import { SmallArticleCardDataModel } from '@angular-love/small-article-card-data-model';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'al-small-article-card',
   standalone: true,
-  imports: [CommonModule],
+  imports: [
+    CommonModule,
+    CardComponent,
+    AvatarComponent,
+    CardContentDirective,
+    CardFooterDirective,
+    CardHeaderDirective,
+    CardHoverHighlightDirective,
+    CardLinkableDirective,
+    NgIcon,
+    NgOptimizedImage,
+    RouterLink,
+  ],
   templateUrl: './small-article-card.component.html',
   styleUrl: './small-article-card.component.scss',
+  providers: [
+    provideIcons({
+      bootstrapClock,
+    }),
+  ],
 })
-export class SmallArticleCardComponent {}
+export class SmallArticleCardComponent {
+  smallArticleCardData = input.required<SmallArticleCardDataModel>();
+}
