@@ -16,8 +16,8 @@ export type NavItem = {
 })
 export class NavigationComponent {
   public readonly navItems: NavItem[] = [
-    { title: 'About us', link: '#' },
-    { title: 'Angular Meetups', link: '#' },
-    { title: 'Become an author', link: '#' },
+    { title: 'About us', link: '' },
+    { title: 'Angular Meetups', link: '' },
+    { title: 'Become an author', link: '' },
   ];
 }
