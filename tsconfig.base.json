@@ -44,6 +44,12 @@
       "@angular-love/blog/shared/ui/social-media-icons": [
         "libs/blog/shared/ui/social-media-icons/src/index.ts"
       ],
+      "@angular-love/feature-partners-container": [
+        "libs/blog/partners/feature-partners-container/src/index.ts"
+      ],
+      "@angular-love/feature-partners-list": [
+        "libs/blog/partners/feature-partners-list/src/index.ts"
+      ],
       "@angular-love/shared/assets": ["libs/shared/assets/src/index.ts"],
       "@angular-love/shared/config": ["libs/shared/config/src/index.ts"],
       "@angular-love/shared/utils-signal-store": [
