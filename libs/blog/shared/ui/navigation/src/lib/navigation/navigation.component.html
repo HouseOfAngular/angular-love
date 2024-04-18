@@ -1,20 +1,10 @@
 <nav>
+  @for(item of navItems; track $index) {
   <a
-    href="#"
+    routerLink="{{ item.link }}"
     class="text-white p-6 font-medium"
     [routerLinkActive]="'text-al-pink'"
-    >About us</a
+    >{{ item.title }}</a
   >
-  <a
-    href="#"
-    class="text-white p-6 font-medium"
-    [routerLinkActive]="'text-al-pink'"
-    >Angular Meetups</a
-  >
-  <a
-    href="#"
-    class="text-white p-6 font-medium"
-    [routerLinkActive]="'text-al-pink'"
-    >Become an author</a
-  >
+  }
 </nav>
