@@ -1,5 +1,5 @@
 <header
-  class="sticky top-0 z-50 bg-white border-b-2 border-red-600 backdrop-blur bg-opacity-80"
+  class="sticky top-0 z-50 bg-al-gray-header border-b border-al-gray-border shadow-xl h-20"
 >
   <div
     class="flex justify-between items-center max-w-screen-xl w-full mx-auto py-4 px-2 xl:px-0"
@@ -7,16 +7,35 @@
     <a class="flex items-center gap-2" [routerLink]="'/'">
       <img
         ngSrc="assets/angular-love-logo.png"
-        width="30"
-        height="30"
+        width="{{ logoSize }}"
+        height="{{ logoSize }}"
         class="inline-block"
       />
-      <span class="text-lg font-bold text-red-600">Angular.love</span>
+      <span class="text-lg text-al-pink font-bold px-4">angular.love</span>
     </a>
 
-    <div class="flex">
-      <ng-icon class="mr-6" name="heroMagnifyingGlass" />
-      <al-social-media-icons />
+    <div class="flex flex-row items-center">
+      <al-navigation />
+      <div>
+        <button
+          class="bg-transparent border rounded border-al-gray-border py-2 px-4 mr-2 font-medium"
+          [class]="language() === 'ENG' ? 'text-white' : 'text-al-gray-text'"
+        >
+          ENG
+        </button>
+        <button
+          class="bg-transparent border rounded border-al-gray-border py-2 px-4 mr-2 font-medium"
+          [class]="language() === 'PL' ? 'text-white' : 'text-al-gray-text'"
+        >
+          PL
+        </button>
+      </div>
+      <button
+        class="bg-transparent flex items-center p-1"
+        (click)="openSearch()"
+      >
+        <ng-icon size="24px" class="text-al-pink" name="heroMagnifyingGlass" />
+      </button>
     </div>
   </div>
 </header>

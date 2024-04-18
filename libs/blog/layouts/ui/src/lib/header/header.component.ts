@@ -1,9 +1,10 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { NgOptimizedImage } from '@angular/common';
 import { SocialMediaIconsComponent } from '@angular-love/blog/shared/ui/social-media-icons';
+import { NavigationComponent } from '@angular-love/navigation';
+import { NgOptimizedImage } from '@angular/common';
+import { ChangeDetectionStrategy, Component, input } from '@angular/core';
+import { RouterLink, RouterLinkActive } from '@angular/router';
 import { NgIconComponent, provideIcons } from '@ng-icons/core';
 import { heroMagnifyingGlass } from '@ng-icons/heroicons/outline';
-import { RouterLink } from '@angular/router';
 
 @Component({
   standalone: true,
@@ -15,8 +16,19 @@ import { RouterLink } from '@angular/router';
     NgOptimizedImage,
     NgIconComponent,
     SocialMediaIconsComponent,
+    RouterLinkActive,
     RouterLink,
+    NavigationComponent,
   ],
   providers: [provideIcons({ heroMagnifyingGlass })],
 })
-export class HeaderComponent {}
+export class HeaderComponent {
+  language = input.required<'PL' | 'ENG'>();
+
+  logoSize = '40';
+
+  openSearch(): void {
+    // TODO: JIRA issue https://valueadd.atlassian.net/browse/KAP-1
+    alert('To be done');
+  }
+}
