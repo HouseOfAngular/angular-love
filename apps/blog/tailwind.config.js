@@ -17,6 +17,7 @@ module.exports = {
           text: '#6a798b',
           background: '#14151b',
         },
+        'al-blue': '#066aff',
       },
       backgroundImage: {
         'al-gradient':

@@ -1,4 +1,5 @@
 <al-gradient-card>
+  @if(formState() === 'INITIAL'){
   <div class="flex flex-col">
     <h2 class="font-bold text-4xl">Sign up for our newsletter.</h2>
     <p class="py-4">
@@ -10,8 +11,10 @@
         pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
         class="p-6 bg-al-gray-background text-al-gray-text border border-al-gray-border rounded-l-md border-r-0 flex-grow text-sm h-[60px] focus:outline-none"
         placeholder="Your E-mail"
+        #emailInput
       />
       <button
+        (click)="mockEventDispatch()"
         class="bg-al-pink border rounded-r-md border-al-gray-border p-5 h-[60px] w-[60px]"
       >
         <ng-icon name="tablerSend" color="white" size="22"></ng-icon>
@@ -22,6 +25,7 @@
         type="checkbox"
         id="newsletter-checkbox"
         class="newsletter-checkbox hidden peer"
+        #newsletterCheckbox
       />
       <label
         for="newsletter-checkbox"
@@ -41,4 +45,7 @@
       </label>
     </div>
   </div>
+  } @else {
+  <al-newsletter-success (returnClicked)="onSuccessReturnClicked()" />
+  }
 </al-gradient-card>
