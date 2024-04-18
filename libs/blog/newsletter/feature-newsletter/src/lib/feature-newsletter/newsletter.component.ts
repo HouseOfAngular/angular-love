@@ -1,3 +1,7 @@
+import {
+  CardComponent,
+  GradientCardDirective,
+} from '@angular-love/blog/shared/ui/card';
 import { GradientCardComponent } from '@angular-love/gradient-card';
 import {
   ChangeDetectionStrategy,
@@ -15,7 +19,13 @@ export type NewsletterFormState = 'INITIAL' | 'SUCCESS';
 @Component({
   selector: 'al-newsletter',
   standalone: true,
-  imports: [GradientCardComponent, NgIconComponent, NewsletterSuccessComponent],
+  imports: [
+    GradientCardComponent,
+    NgIconComponent,
+    NewsletterSuccessComponent,
+    GradientCardDirective,
+    CardComponent,
+  ],
   templateUrl: './newsletter.component.html',
   styleUrl: './newsletter.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,

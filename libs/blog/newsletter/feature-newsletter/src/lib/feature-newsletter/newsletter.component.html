@@ -1,51 +1,53 @@
-<al-gradient-card>
-  @if (formState() === 'INITIAL') {
-    <div class="flex flex-col">
-      <h2 class="font-bold text-4xl">Sign up for our newsletter.</h2>
-      <p class="py-4">
-        Join a group of people who want to grow and stay up to date!
-      </p>
-      <div class="w-full flex flex-row my-2">
-        <input
-          type="email"
-          pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
-          class="p-6 bg-al-gray-background text-al-gray-text border border-al-gray-border rounded-l-md border-r-0 flex-grow text-sm h-[60px] focus:outline-none"
-          placeholder="Your E-mail"
-          #emailInput
-        />
-        <button
-          (click)="mockEventDispatch()"
-          class="bg-al-pink border rounded-r-md border-al-gray-border p-5 h-[60px] w-[60px]"
-        >
-          <ng-icon name="tablerSend" color="white" size="22"></ng-icon>
-        </button>
-      </div>
-      <div class="mt-2">
-        <input
-          type="checkbox"
-          id="newsletter-checkbox"
-          class="newsletter-checkbox hidden peer"
-          #newsletterCheckbox
-        />
-        <label
-          for="newsletter-checkbox"
-          class="flex flex-row text-al-gray-text peer-checked:[&>div>div]:block"
-        >
-          <div
-            class="w-[14px] h-[14px] aspect-square border rounded border-al-gray-text mr-2 mt-1 flex justify-center items-center"
+<al-card alGradientCard>
+  <div alCardContent>
+    @if (formState() === 'INITIAL') {
+      <div class="flex flex-col">
+        <h2 class="font-bold text-4xl">Sign up for our newsletter.</h2>
+        <p class="py-4">
+          Join a group of people who want to grow and stay up to date!
+        </p>
+        <div class="w-full flex flex-row my-2">
+          <input
+            type="email"
+            pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
+            class="p-6 bg-al-gray-background text-al-gray-text border border-al-gray-border rounded-l-md border-r-0 flex-grow text-sm h-[60px] focus:outline-none"
+            placeholder="Your E-mail"
+            #emailInput
+          />
+          <button
+            (click)="mockEventDispatch()"
+            class="bg-al-pink border rounded-r-md border-al-gray-border p-5 h-[60px] w-[60px]"
+          >
+            <ng-icon name="tablerSend" color="white" size="22"></ng-icon>
+          </button>
+        </div>
+        <div class="mt-2">
+          <input
+            type="checkbox"
+            id="newsletter-checkbox"
+            class="newsletter-checkbox hidden peer"
+            #newsletterCheckbox
+          />
+          <label
+            for="newsletter-checkbox"
+            class="flex flex-row text-al-gray-text peer-checked:[&>div>div]:block"
           >
             <div
-              class="bg-al-pink h-[6px] w-[6px] rounded-sm hidden group-[:has(:checked)]:block"
-            ></div>
-          </div>
-          <span class="before:content-['*'] before:text-al-pink">
-            I consent to Angular.love processing my email address for the
-            purpose of sending the newsletter.
-          </span>
-        </label>
+              class="w-[14px] h-[14px] aspect-square border rounded border-al-gray-text mr-2 mt-1 flex justify-center items-center"
+            >
+              <div
+                class="bg-al-pink h-[6px] w-[6px] rounded-sm hidden group-[:has(:checked)]:block"
+              ></div>
+            </div>
+            <span class="before:content-['*'] before:text-al-pink">
+              I consent to Angular.love processing my email address for the
+              purpose of sending the newsletter.
+            </span>
+          </label>
+        </div>
       </div>
-    </div>
-  } @else {
-    <al-newsletter-success (returnClicked)="onSuccessReturnClicked()" />
-  }
-</al-gradient-card>
+    } @else {
+      <al-newsletter-success (returnClicked)="onSuccessReturnClicked()" />
+    }
+  </div>
+</al-card>

@@ -1,11 +1,11 @@
+import { NgOptimizedImage } from '@angular/common';
 import {
   ChangeDetectionStrategy,
   Component,
   Directive,
   HostBinding,
-  Input,
+  input,
 } from '@angular/core';
-import { NgOptimizedImage } from '@angular/common';
 import { RouterLink } from '@angular/router';
 
 @Directive({
@@ -60,6 +60,15 @@ export class CardLinkableDirective {
   hostClasses = 'hover:cursor-pointer';
 }
 
+@Directive({
+  selector: 'al-card[alGradientCard]',
+  standalone: true,
+})
+export class GradientCardDirective {
+  @HostBinding('class')
+  hostClasses = '[&>*]:bg-al-pink';
+}
+
 @Component({
   standalone: true,
   selector: 'al-card',
@@ -69,7 +78,7 @@ export class CardLinkableDirective {
   imports: [NgOptimizedImage],
 })
 export class CardComponent {
-  @Input() imageSrc?: string;
+  imageSrc = input<string>();
 
   @HostBinding('class')
   hostClasses = 'block bg-white rounded-lg shadow-sm overflow-hidden';

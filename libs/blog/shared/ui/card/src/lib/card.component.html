@@ -1,13 +1,13 @@
-@if (imageSrc) {
-<div class="aspect-video relative">
-  <img
-    [ngSrc]="imageSrc"
-    width="321"
-    height="188"
-    alt="Card Image"
-    class="object-cover object-top w-full h-full"
-  />
-</div>
+@if (imageSrc()) {
+  <div class="aspect-video relative">
+    <img
+      [ngSrc]="imageSrc()!"
+      width="321"
+      height="188"
+      alt="Card Image"
+      class="object-cover object-top w-full h-full"
+    />
+  </div>
 }
 <div class="p-6">
   <ng-content select="[alCardHeader]"></ng-content>
