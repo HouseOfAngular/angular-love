@@ -25,7 +25,10 @@ import { heroMagnifyingGlass } from '@ng-icons/heroicons/outline';
 export class HeaderComponent {
   language = input.required<'PL' | 'ENG'>();
 
+  logoSize = '40';
+
   openSearch(): void {
+    // TODO: JIRA issue https://valueadd.atlassian.net/browse/KAP-1
     alert('To be done');
   }
 }
