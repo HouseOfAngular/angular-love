@@ -47,6 +47,9 @@
       "@angular-love/gradient-card": [
         "libs/blog/shared/ui/gradient-card/src/index.ts"
       ],
+      "@angular-love/navigation": [
+        "libs/blog/shared/ui/navigation/src/index.ts"
+      ],
       "@angular-love/newsletter": [
         "libs/blog/newsletter/feature-newsletter/src/index.ts"
       ],
