@@ -4,7 +4,7 @@ export default {
   preset: '../../../../../jest.preset.js',
   setupFilesAfterEnv: ['<rootDir>/src/test-setup.ts'],
   coverageDirectory:
-    '../../../../../coverage/libs/blog/shared/utils/small-article-card-data-model',
+    '../../../../../coverage/libs/blog/articles/types/small-article-card-data-model',
   transform: {
     '^.+\\.(ts|mjs|js|html)$': [
       'jest-preset-angular',

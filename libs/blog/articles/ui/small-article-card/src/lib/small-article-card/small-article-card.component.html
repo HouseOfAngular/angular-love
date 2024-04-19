@@ -1,31 +1,26 @@
 <div
-  class="w-[408px] h-[232px] border-solid border-2 border-al-black-border bg-contain bg-no-repeat example"
-  style="background-image: url({{ smallArticleCardData().featuredImageUrl }})"
+  class="w-[408px] h-[232px] border-solid border-2 border-al-black-border bg-contain bg-no-repeat shadows-dark"
+  style="background-image: url({{ article().featuredImageUrl }})"
   [routerLink]="['/', smallArticleCardData().slug]"
 >
   <div class="flex items-center justify-between px-6 pt-6">
     <div class="flex items-center gap-2">
-      <al-avatar
-        size="mds"
-        [imageSrc]="smallArticleCardData().author.avatarUrl"
-      />
+      <al-avatar size="mds" [imageSrc]="article().author.avatarUrl" />
       <span class="font-medium text-sm/[14px] text-white">{{
-        smallArticleCardData().author.name
+        article().author.name
       }}</span>
     </div>
     <div class="flex items-center gap-2">
       <ng-icon class="text-white text-sm" name="bootstrapClock"></ng-icon>
-      <p class="text-white text-sm/[14px]">
-        {{ smallArticleCardData().readingTime }}min
-      </p>
+      <p class="text-white text-sm/[14px]">{{ article().readingTime }}min</p>
     </div>
   </div>
   <div class="px-6 pt-8">
     <p class="font-bold text-2xl text-white">
-      {{ smallArticleCardData().title }}
+      {{ article().title }}
     </p>
     <p class="text-white text-base pt-2">
-      {{ smallArticleCardData().excerpt }}
+      {{ article().excerpt }}
     </p>
   </div>
 </div>

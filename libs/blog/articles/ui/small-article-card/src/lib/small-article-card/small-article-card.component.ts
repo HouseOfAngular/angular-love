@@ -1,5 +1,5 @@
-import { Component, input } from '@angular/core';
-import { CommonModule, NgOptimizedImage } from '@angular/common';
+import { ChangeDetectionStrategy, Component, input } from '@angular/core';
+import { NgOptimizedImage } from '@angular/common';
 import {
   CardComponent,
   CardContentDirective,
@@ -11,14 +11,14 @@ import {
 import { AvatarComponent } from '@angular-love/blog/shared/ui/avatar';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { bootstrapClock } from '@ng-icons/bootstrap-icons';
-import { SmallArticleCardDataModel } from '@angular-love/small-article-card-data-model';
 import { RouterLink } from '@angular/router';
+import { SmallArticleCardDataModel } from '@angular-love/small-article-card-data-model';
 
 @Component({
   selector: 'al-small-article-card',
+  changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: true,
   imports: [
-    CommonModule,
     CardComponent,
     AvatarComponent,
     CardContentDirective,
@@ -39,5 +39,5 @@ import { RouterLink } from '@angular/router';
   ],
 })
 export class SmallArticleCardComponent {
-  smallArticleCardData = input.required<SmallArticleCardDataModel>();
+  article = input.required<SmallArticleCardDataModel>();
 }

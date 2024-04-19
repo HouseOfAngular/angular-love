@@ -9,6 +9,9 @@ module.exports = {
   ],
   theme: {
     extend: {
+      shadows: {
+        dark: 'inset -100px -200px 100px 100px #14151bd9;',
+      },
       'al-black': {
         border: '#2E2F3B',
       },

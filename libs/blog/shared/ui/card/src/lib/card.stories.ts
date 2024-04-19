@@ -12,7 +12,7 @@ import { NgxSkeletonLoaderModule } from 'ngx-skeleton-loader';
 
 const meta: Meta<CardComponent> = {
   component: CardComponent,
-  title: 'Shared UI / Cards',
+  title: 'Shared ui / Cards',
   decorators: [
     moduleMetadata({
       imports: [

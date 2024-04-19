@@ -3,7 +3,7 @@ import { SocialMediaIconsComponent } from './social-media-icons.component';
 
 const meta: Meta<SocialMediaIconsComponent> = {
   component: SocialMediaIconsComponent,
-  title: 'Shared UI / Social Media Icons',
+  title: 'Shared ui / Social Media Icons',
 };
 
 export default meta;

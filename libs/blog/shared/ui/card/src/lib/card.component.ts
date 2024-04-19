@@ -8,12 +8,8 @@ import {
 import { NgOptimizedImage } from '@angular/common';
 import { RouterLink } from '@angular/router';
 
-export type Layout =
-  | 'NORMAL'
-  | 'ARTICLE-SMALL'
-  | 'ARTICLE'
-  | 'ARTICLE-BIG'
-  | '';
+export type Layout = 'NORMAL' | 'ARTICLE-SMALL' | 'ARTICLE' | 'ARTICLE-BIG';
+
 @Directive({
   standalone: true,
   selector: '[alCardHeader]',

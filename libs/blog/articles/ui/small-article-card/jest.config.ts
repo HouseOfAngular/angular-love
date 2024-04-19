@@ -1,10 +1,10 @@
 /* eslint-disable */
 export default {
   displayName: 'small-article-card',
-  preset: '../../../../jest.preset.js',
+  preset: '../../../../../jest.preset.js',
   setupFilesAfterEnv: ['<rootDir>/src/test-setup.ts'],
   coverageDirectory:
-    '../../../../coverage/libs/blog/articles/feature-small-article-card',
+    '../../../../../coverage/libs/blog/articles/ui/small-article-card',
   transform: {
     '^.+\\.(ts|mjs|js|html)$': [
       'jest-preset-angular',
