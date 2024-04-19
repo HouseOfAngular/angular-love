@@ -88,7 +88,7 @@ export class CardComponent {
   @HostBinding('class')
   hostClasses = 'block rounded-lg shadow-sm overflow-hidden';
 
-  @HostBinding('class.bg-white') get hasGradientDirective() {
+  @HostBinding('class.bg-white') get hasWhiteBackground() {
     return !this.ref.nativeElement.hasAttribute('alGradientCard');
   }
 }
