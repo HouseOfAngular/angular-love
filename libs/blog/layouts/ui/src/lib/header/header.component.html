@@ -7,8 +7,8 @@
     <a class="flex items-center gap-2" [routerLink]="'/'">
       <img
         ngSrc="assets/angular-love-logo.png"
-        width="{{ logoSize }}"
-        height="{{ logoSize }}"
+        [width]="logoSize"
+        [height]="logoSize"
         class="inline-block"
       />
       <span class="text-lg text-al-pink font-bold px-4">angular.love</span>
