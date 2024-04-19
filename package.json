@@ -102,6 +102,7 @@
     "postcss-preset-env": "~7.5.0",
     "postcss-url": "~10.1.3",
     "prettier": "^2.8.8",
+    "stylelint": "^16.3.1",
     "tailwindcss": "^3.3.6",
     "ts-jest": "^29.1.0",
     "ts-node": "10.9.1",

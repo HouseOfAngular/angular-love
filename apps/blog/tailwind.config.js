@@ -13,6 +13,12 @@ module.exports = {
         'al-black': {
           border: '#2E2F3B',
         },
+        'al-gray': {
+          header: '#16171d',
+          border: '#2e2f3b',
+          text: '#6a798b',
+        },
+        'al-pink': '#e70464',
       },
       boxShadow: {
         'al-dark': 'inset -100px -200px 100px 100px #14151bd9',
