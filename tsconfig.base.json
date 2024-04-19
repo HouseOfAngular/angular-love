@@ -44,9 +44,6 @@
       "@angular-love/blog/shared/ui/social-media-icons": [
         "libs/blog/shared/ui/social-media-icons/src/index.ts"
       ],
-      "@angular-love/gradient-card": [
-        "libs/blog/shared/ui/gradient-card/src/index.ts"
-      ],
       "@angular-love/navigation": [
         "libs/blog/shared/ui/navigation/src/index.ts"
       ],

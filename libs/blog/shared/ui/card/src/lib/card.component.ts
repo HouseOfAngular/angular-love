@@ -3,7 +3,9 @@ import {
   ChangeDetectionStrategy,
   Component,
   Directive,
+  ElementRef,
   HostBinding,
+  inject,
   input,
 } from '@angular/core';
 import { RouterLink } from '@angular/router';
@@ -61,12 +63,14 @@ export class CardLinkableDirective {
 }
 
 @Directive({
-  selector: 'al-card[alGradientCard]',
   standalone: true,
+  selector: 'al-card[alGradientCard]',
 })
 export class GradientCardDirective {
   @HostBinding('class')
-  hostClasses = '[&>*]:bg-al-pink';
+  get hostClasses() {
+    return 'border-al-gray-border bg-al-gradient bg-al-gray-background text-white';
+  }
 }
 
 @Component({
@@ -79,7 +83,12 @@ export class GradientCardDirective {
 })
 export class CardComponent {
   imageSrc = input<string>();
+  ref: ElementRef<HTMLElement> = inject(ElementRef);
 
   @HostBinding('class')
-  hostClasses = 'block bg-white rounded-lg shadow-sm overflow-hidden';
+  hostClasses = 'block rounded-lg shadow-sm overflow-hidden';
+
+  @HostBinding('class.bg-white') get hasGradientDirective() {
+    return !this.ref.nativeElement.hasAttribute('alGradientCard');
+  }
 }

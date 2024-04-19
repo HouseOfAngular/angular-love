@@ -2,7 +2,6 @@ import {
   CardComponent,
   GradientCardDirective,
 } from '@angular-love/blog/shared/ui/card';
-import { GradientCardComponent } from '@angular-love/gradient-card';
 import {
   ChangeDetectionStrategy,
   Component,
@@ -20,7 +19,6 @@ export type NewsletterFormState = 'INITIAL' | 'SUCCESS';
   selector: 'al-newsletter',
   standalone: true,
   imports: [
-    GradientCardComponent,
     NgIconComponent,
     NewsletterSuccessComponent,
     GradientCardDirective,
