@@ -10,6 +10,12 @@ module.exports = {
   theme: {
     extend: {
       colors: {
+        'al-pink': '#e70464',
+        'al-gray': {
+          header: '#16171d',
+          border: '#2e2f3b',
+          text: '#6a798b',
+        },
         'al-black': {
           partners: '#16171d',
         },
