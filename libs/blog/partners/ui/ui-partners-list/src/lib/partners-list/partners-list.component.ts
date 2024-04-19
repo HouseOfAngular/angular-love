@@ -1,19 +1,19 @@
-import { Component } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 
-export type partnerData = {
+export type PartnerData = {
   URL: string;
   alt: string;
 };
+
 @Component({
-  selector: 'al-feature-partners-list',
+  selector: 'al-partners-list',
   standalone: true,
-  imports: [CommonModule],
-  templateUrl: './feature-partners-list.component.html',
-  styleUrls: ['./feature-partners-list.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  templateUrl: './partners-list.component.html',
+  styleUrl: './partners-list.component.scss',
 })
-export class FeaturePartnersListComponent {
-  protected readonly partnersList: partnerData[] = [
+export class PartnersListComponent {
+  protected readonly partnersList: PartnerData[] = [
     {
       URL: 'assets/frontend-united.png',
       alt: 'frontend united',

@@ -1,10 +1,10 @@
 /* eslint-disable */
 export default {
-  displayName: 'feature-partners-list',
-  preset: '../../../../jest.preset.js',
+  displayName: 'partners-list',
+  preset: '../../../../../jest.preset.js',
   setupFilesAfterEnv: ['<rootDir>/src/test-setup.ts'],
   coverageDirectory:
-    '../../../../coverage/libs/blog/partners/feature-partners-list',
+    '../../../../../coverage/libs/blog/partners/ui/ui-partners-list',
   transform: {
     '^.+\\.(ts|mjs|js|html)$': [
       'jest-preset-angular',

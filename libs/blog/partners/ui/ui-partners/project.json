@@ -1,7 +1,7 @@
 {
-  "name": "feature-partners-container",
-  "$schema": "../../../../node_modules/nx/schemas/project-schema.json",
-  "sourceRoot": "libs/blog/partners/feature-partners-container/src",
+  "name": "partners",
+  "$schema": "../../../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/blog/partners/ui/ui-partners/src",
   "prefix": "al",
   "projectType": "library",
   "tags": [],
@@ -10,7 +10,7 @@
       "executor": "@nx/jest:jest",
       "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
       "options": {
-        "jestConfig": "libs/blog/partners/feature-partners-container/jest.config.ts"
+        "jestConfig": "libs/blog/partners/ui/ui-partners/jest.config.ts"
       }
     },
     "lint": {
