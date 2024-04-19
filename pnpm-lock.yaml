@@ -16262,6 +16262,7 @@ snapshots:
   debug@3.2.7:
     dependencies:
       ms: 2.1.3
+    dev: false
 
   debug@4.3.4:
     dependencies:
