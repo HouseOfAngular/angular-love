@@ -1,4 +1,4 @@
-@if (layout === 'NORMAL') { @if (imageSrc) {
+@if (imageSrc) {
 <div class="aspect-video relative">
   <img
     [ngSrc]="imageSrc"
@@ -7,6 +7,7 @@
     alt="Card Image"
     class="object-cover object-top w-full h-full"
   />
+  <
 </div>
 }
 <div class="p-6">
@@ -14,12 +15,3 @@
   <ng-content select="[alCardContent]"></ng-content>
   <ng-content select="[alCardFooter]"></ng-content>
 </div>
-} @else if (layout === 'ARTICLE-SMALL') { @if (imageSrc) {
-<div
-  class="flex h-[232px] w-[408px]"
-  style="background-image: url({{ imageSrc }})"
->
-  <p>text</p>
-</div>
-
-} }

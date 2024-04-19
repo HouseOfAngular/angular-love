@@ -1,11 +1,11 @@
 <div
-  class="w-[408px] h-[232px] border-solid border-2 border-al-black-border bg-contain bg-no-repeat shadows-dark"
+  class="w-[408px] h-[232px] border-solid border-2 border-al-black-border bg-contain bg-no-repeat shadow-al-dark"
   style="background-image: url({{ article().featuredImageUrl }})"
-  [routerLink]="['/', smallArticleCardData().slug]"
+  [routerLink]="['/', article().slug]"
 >
   <div class="flex items-center justify-between px-6 pt-6">
     <div class="flex items-center gap-2">
-      <al-avatar size="mds" [imageSrc]="article().author.avatarUrl" />
+      <al-avatar size="sm" [imageSrc]="article().author.avatarUrl" />
       <span class="font-medium text-sm/[14px] text-white">{{
         article().author.name
       }}</span>
