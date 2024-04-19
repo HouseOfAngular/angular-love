@@ -7,6 +7,12 @@ import {
   tablerBrandYoutube,
 } from '@ng-icons/tabler-icons';
 
+export type IconConfig = {
+  href: string;
+  name: string;
+  color: string;
+};
+
 @Component({
   standalone: true,
   selector: 'al-social-media-icons',
@@ -25,4 +31,11 @@ import {
 })
 export class SocialMediaIconsComponent {
   size = input('24');
+
+  readonly icons: IconConfig[] = [
+    { href: '/', color: 'white', name: 'tablerBrandFacebook' },
+    { href: '/', color: 'white', name: 'tablerBrandTwitter' },
+    { href: '/', color: 'white', name: 'tablerBrandLinkedin' },
+    { href: '/', color: 'white', name: 'tablerBrandYoutube' },
+  ];
 }
