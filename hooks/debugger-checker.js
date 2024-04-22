@@ -63,8 +63,8 @@ function checkForDebuggerStatements() {
   if (errors.length > 0) {
     errors.forEach((error) =>
       console.error(
-        `Error: ${error.file}:${error.line} contains a 'debugger' statement`
-      )
+        `Error: ${error.file}:${error.line} contains a 'debugger' statement`,
+      ),
     );
     process.exit(1);
   }

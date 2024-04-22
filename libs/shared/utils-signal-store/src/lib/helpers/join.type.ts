@@ -3,7 +3,7 @@
 
 export type Join<
   Str extends string,
-  Separator extends string = ' '
+  Separator extends string = ' ',
 > = Str extends `${infer First}${Separator}${infer Rest}`
   ? Join<`${First}${Rest}`, Separator>
   : Str;
