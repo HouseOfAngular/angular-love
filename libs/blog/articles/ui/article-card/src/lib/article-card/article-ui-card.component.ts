@@ -19,22 +19,6 @@ export type ArticleData = {
   };
 };
 
-const modelData: ArticleData = {
-  title: 'Why Angular signals won’t replace RxJs',
-  excerpt:
-    'The micro frontend architecture is a well-known development approach',
-  readingTime: 4,
-  author: {
-    name: 'Adam Kasilski',
-    avatarUrl:
-      'https://testing.angular.love/wp-content/uploads/2023/01/Jakub-Pawlak-150x150.jpg',
-  },
-  featuredImageUrl:
-    'https://testing.angular.love/wp-content/uploads/2023/08/Templatki-do-artykulow.png',
-  publishDate: '2023-08-17T11:34:39.000Z',
-  slug: 'controlling-angular-animations-programmatically',
-};
-
 @Directive({
   standalone: true,
   selector: '[alCardLayoutDirective]',
@@ -144,6 +128,6 @@ export class AlCardExcerptLayoutDirective {
   ],
 })
 export class ArticleUiCardComponent {
-  layout = input<Layout>('HORIZONTAL');
-  article = input<ArticleData>(modelData);
+  layout = input.required<Layout>();
+  article = input.required<ArticleData>();
 }

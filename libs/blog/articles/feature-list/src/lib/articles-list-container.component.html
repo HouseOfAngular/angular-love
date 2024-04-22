@@ -5,14 +5,11 @@
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
       @if (isFetchArticleListLoading()) {
       <al-article-card-skeleton *alRepeat="8" />
-      } @else if (articleList()) {
-      <!--        @for (article of articleList(); track article.slug) {-->
-      <!--      <al-article-card [articleCard]="article" />-->
-      <!--      } -->
-      <al-ui-article-card layout="VERTICAL"></al-ui-article-card>
-      } @else if (isFetchArticleListError()) {
+      } @else if (articleList()) { @for (article of articleList(); track
+      article.slug) {
+      <al-article-card [articleCard]="article" />
+      } } @else if (isFetchArticleListError()) {
       <!-- @TODO - error handling -->
-      <al-ui-article-card layout="VERTICAL"></al-ui-article-card>
       }
     </div>
   </div>

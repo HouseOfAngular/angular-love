@@ -1,12 +1,12 @@
 <al-card
   [imageSrc]="articleCard.featuredImageUrl"
+  [routerLink]="['/', articleCard.slug]"
   alCardHoverHighlight
   alCardLinkable
-  [routerLink]="['/', articleCard.slug]"
 >
   <div alCardHeader>{{ articleCard.title }}</div>
   <div alCardContent>
-    {{ articleCard.slug }}
+    {{ articleCard.excerpt }}
   </div>
   <div alCardFooter>
     <div class="flex items-center justify-between mt-4">
