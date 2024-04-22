@@ -1,1 +1,35 @@
-x
+<div class="flex gap-4">
+  <button
+    (click)="setPreviousPage()"
+    [disabled]="store.disabledPrevious()"
+    al-button
+    class="mr-auto"
+    variant="Ghost"
+  >
+    <ng-icon class="mr-2" name="heroChevronLeft"></ng-icon>
+    Previous
+  </button>
+  @for (page of store.pages(); track page.index) {
+
+  <button
+    al-button
+    [variant]="page.isActive ? 'Primary' : 'Outline'"
+    (click)="setPage(page.index)"
+    [class.bg-pink-400]="page.isActive"
+    class="!py-3 !px-1 min-w-10 flex justify-center leading-none"
+  >
+    {{ page.label }}
+  </button>
+  }
+
+  <button
+    (click)="setNextPage()"
+    [disabled]="store.disabledNext()"
+    al-button
+    class="ml-auto"
+    variant="Ghost"
+  >
+    Next
+    <ng-icon class="ml-2" name="heroChevronRight"></ng-icon>
+  </button>
+</div>
