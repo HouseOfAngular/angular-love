@@ -1,0 +1,47 @@
+<div
+  alCardLayoutDirective
+  class="rounded-lg hover:border hover:border-solid hover:border-red-600"
+>
+  <img [src]="article().featuredImageUrl" />
+  <div class="bg-slate-600">
+    @if(layout() === 'VERTICAL') {
+    <div class="flex items-center justify-between px-6 pt-6">
+      <div class="flex items-center gap-2">
+        <al-avatar size="sm" [imageSrc]="article().author.avatarUrl" />
+        <span class="font-medium text-sm/[14px] text-white">{{
+          article().author.name
+        }}</span>
+      </div>
+      <div class="flex items-center gap-2">
+        <ng-icon class="text-white text-sm" name="bootstrapClock"></ng-icon>
+        <p class="text-white text-sm/[14px]">{{ article().readingTime }}min</p>
+      </div>
+    </div>
+    <div class="flex items-center justify-between px-6 pt-6">
+      <span>{{ article().publishDate | date : 'mediumDate' }}</span>
+    </div>
+    } @else {
+    <div class="flex items-center justify-between px-6 pt-6">
+      <div class="flex items-center gap-2">
+        <al-avatar size="sm" [imageSrc]="article().author.avatarUrl" />
+        <span class="font-medium text-sm/[14px] text-white">{{
+          article().author.name
+        }}</span>
+      </div>
+      <div class="flex items-center gap-2">
+        <span>{{ article().publishDate | date : 'mediumDate' }}</span>
+        <ng-icon class="text-white text-sm" name="bootstrapClock"></ng-icon>
+        <p class="text-white text-sm/[14px]">{{ article().readingTime }}min</p>
+      </div>
+    </div>
+    }
+    <div alCardContentLayoutDirective class="px-6 pt-8">
+      <p class="font-bold text-2xl text-white">
+        {{ article().title }}
+      </p>
+      <p class="text-white text-base pt-2">
+        {{ article().excerpt }}
+      </p>
+    </div>
+  </div>
+</div>
