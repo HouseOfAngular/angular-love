@@ -2,13 +2,13 @@ import {
   CardComponent,
   GradientCardDirective,
 } from '@angular-love/blog/shared/ui/card';
+import { ChangeDetectionStrategy, Component, signal } from '@angular/core';
 import {
-  ChangeDetectionStrategy,
-  Component,
-  ElementRef,
-  signal,
-  viewChild,
-} from '@angular/core';
+  FormControl,
+  FormGroup,
+  ReactiveFormsModule,
+  Validators,
+} from '@angular/forms';
 import { NgIconComponent, provideIcons } from '@ng-icons/core';
 import { tablerSend } from '@ng-icons/tabler-icons';
 import { NewsletterSuccessComponent } from './newsletter-success/newsletter-success.component';
@@ -23,6 +23,7 @@ export type NewsletterFormState = 'INITIAL' | 'SUCCESS';
     NewsletterSuccessComponent,
     GradientCardDirective,
     CardComponent,
+    ReactiveFormsModule,
   ],
   templateUrl: './newsletter.component.html',
   styleUrl: './newsletter.component.scss',
@@ -30,21 +31,27 @@ export type NewsletterFormState = 'INITIAL' | 'SUCCESS';
   providers: [provideIcons({ tablerSend })],
 })
 export class NewsletterComponent {
-  formState = signal<NewsletterFormState>('INITIAL');
-  newsletterCheckboxRef =
-    viewChild<ElementRef<HTMLInputElement>>('newsletterCheckbox');
-  emailInputRef = viewChild<ElementRef<HTMLInputElement>>('emailInput');
+  componentState = signal<NewsletterFormState>('INITIAL');
+
+  form = new FormGroup({
+    email: new FormControl<string>('', {
+      validators: [Validators.required, Validators.email],
+    }),
+    checkbox: new FormControl<boolean>(false, {
+      validators: [Validators.required],
+    }),
+  });
 
   onSuccessReturnClicked(): void {
-    this.formState.set('INITIAL');
+    this.componentState.set('INITIAL');
   }
 
   mockEventDispatch(): void {
-    const el = this.emailInputRef()?.nativeElement;
-    const isValid = el?.checkValidity() && el?.value !== '';
-    if (!isValid) {
+    // TODO: dispatch actual event
+    if (!this.form.valid) {
+      alert('form invalid');
       return;
     }
-    this.formState.set('SUCCESS');
+    this.componentState.set('SUCCESS');
   }
 }
