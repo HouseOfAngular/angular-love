@@ -12,6 +12,7 @@ import {
 } from '@angular/core';
 import { ArticleCardSkeletonComponent } from './article-card/article-card-skeleton.component';
 import { ArticleCardComponent } from './article-card/article-card.component';
+import { ArticleUiCardComponent } from '@angular-love/article-card';
 
 @Component({
   selector: 'al-articles-list',
@@ -22,6 +23,8 @@ import { ArticleCardComponent } from './article-card/article-card.component';
     RepeatDirective,
     AsyncPipe,
     JsonPipe,
+    ArticleCardComponent,
+    ArticleUiCardComponent,
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: true,

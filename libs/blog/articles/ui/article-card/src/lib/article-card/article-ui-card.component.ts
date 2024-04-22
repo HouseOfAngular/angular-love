@@ -1,7 +1,15 @@
-import { Component, Directive, ElementRef, Input, input } from '@angular/core';
+import {
+  Component,
+  Directive,
+  ElementRef,
+  Host,
+  Input,
+  input,
+  ViewContainerRef,
+} from '@angular/core';
 import { AvatarComponent } from '@angular-love/blog/shared/ui/avatar';
 import { NgIcon } from '@ng-icons/core';
-import { DatePipe } from '@angular/common';
+import { DatePipe, NgOptimizedImage } from '@angular/common';
 
 export type Layout = 'HORIZONTAL' | 'VERTICAL';
 
@@ -39,9 +47,8 @@ const modelData: ArticleData = {
   selector: '[alCardLayoutDirective]',
 })
 export class AlCardLayoutDirective {
-  @Input() layout!: Layout;
-  constructor(private el: ElementRef) {
-    if (this.layout.valueOf() === 'VERTICAL') {
+  constructor(private el: ElementRef, @Host() parent: ArticleUiCardComponent) {
+    if (parent.layout() === 'VERTICAL') {
       this.el.nativeElement.classList.add(
         'flex',
         'flex-col',
@@ -64,24 +71,48 @@ export class AlCardLayoutDirective {
   selector: '[alCardContentLayoutDirective]',
 })
 export class AlCardContentLayoutDirective {
-  @Input() layout!: Layout;
-  constructor(private el: ElementRef) {
-    if (this.layout.valueOf() === 'VERTICAL') {
-      this.el.nativeElement.classList.add('px-8 pt-6');
+  constructor(private el: ElementRef, @Host() parent: ArticleUiCardComponent) {
+    if (parent.layout() === 'VERTICAL') {
+      this.el.nativeElement.classList.add('w-[408px]', 'h-[230px]');
     } else {
-      this.el.nativeElement.classList.add('px-6 pb-5');
+      this.el.nativeElement.classList.add('w-[880px]', 'h-[220px]');
     }
   }
 }
 
+// @Directive({
+//   standalone: true,
+//   selector: '[alCardContentLayoutDirective]',
+// })
+// export class AlCardContentLayoutDirective {
+//   @Input() layout!: Layout;
+//   constructor(private el: ElementRef) {
+//     console.log(el)
+//     if (this.layout.valueOf() === 'VERTICAL') {
+//       this.el.nativeElement.classList.add('px-8 pt-6');
+//     } else {
+//       this.el.nativeElement.classList.add('px-6 pb-5');
+//     }
+//   }
+// }
+
 @Component({
-  selector: 'al-article-card',
+  selector: 'al-ui-article-card',
   standalone: true,
-  imports: [GenericCardComponent, AvatarComponent, NgIcon, DatePipe],
-  templateUrl: './article-card.component.html',
-  styleUrl: './article-card.component.scss',
+  imports: [
+    AvatarComponent,
+    NgIcon,
+    DatePipe,
+    AlCardLayoutDirective,
+    NgOptimizedImage,
+    AlCardContentLayoutDirective,
+    // AlCardContentLayoutDirective,
+  ],
+  templateUrl: './article-ui-card.component.html',
+  styleUrl: './article-ui-card.component.scss',
 })
-export class ArticleCardComponent {
+export class ArticleUiCardComponent {
   layout = input<Layout>('VERTICAL');
+  // @Input() layout: Layout = 'VERTICAL'
   article = input<ArticleData>(modelData);
 }

@@ -24,7 +24,7 @@ export interface UiArticleCard {
 
 @Component({
   standalone: true,
-  selector: 'al-article-card',
+  selector: 'al-article-carde',
   templateUrl: './article-card.component.html',
   styleUrls: ['./article-card.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
