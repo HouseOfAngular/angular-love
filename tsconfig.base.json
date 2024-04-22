@@ -41,6 +41,9 @@
       "@angular-love/blog/shared/ui/card": [
         "libs/blog/shared/ui/card/src/index.ts"
       ],
+      "@angular-love/blog/shared/ui/pagination": [
+        "libs/blog/shared/ui/pagination/src/index.ts"
+      ],
       "@angular-love/blog/shared/ui/social-media-icons": [
         "libs/blog/shared/ui/social-media-icons/src/index.ts"
       ],
