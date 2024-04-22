@@ -12,10 +12,10 @@ module.exports = {
       colors: {
         'al-pink': '#e70464',
         'al-gray': {
-          header: '#16171d',
-          border: '#2e2f3b',
-          text: '#6a798b',
-          background: '#14151b',
+          100: '#6A798B',
+          200: '#2E2F3B',
+          300: '#16171D',
+          400: '#14151B',
         },
         'al-blue': '#066aff',
       },
