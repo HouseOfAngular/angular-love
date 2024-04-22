@@ -1,4 +1,11 @@
-import { Component, Directive, ElementRef, Host, input } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  Directive,
+  ElementRef,
+  Host,
+  input,
+} from '@angular/core';
 import { AvatarComponent } from '@angular-love/blog/shared/ui/avatar';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { DatePipe, NgOptimizedImage } from '@angular/common';
@@ -107,6 +114,7 @@ export class AlCardExcerptLayoutDirective {
 
 @Component({
   selector: 'al-ui-article-card',
+  changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: true,
   imports: [
     AvatarComponent,
