@@ -1,9 +1,9 @@
+import { Signal, computed } from '@angular/core';
 import { signalStoreFeature, withComputed, withState } from '@ngrx/signals';
 import { CallState, LoadingState } from './callstate.type';
-import { computed, Signal } from '@angular/core';
-import { capitalize, CapitalizeWords } from './helpers/capitalize.function';
-import { uncapitalize } from './helpers/uncapitalize.function';
+import { CapitalizeWords, capitalize } from './helpers/capitalize.function';
 import { Join } from './helpers/join.type';
+import { uncapitalize } from './helpers/uncapitalize.function';
 
 type CapitalizedCallStateName<T extends string> = Join<CapitalizeWords<T>>;
 
@@ -47,7 +47,9 @@ type CallStateComputed<T extends string, Error> = Record<
 type WithError<E> = <E>() => void;
 
 export function withError<E>(): WithError<E> {
-  return () => {};
+  return () => {
+    return;
+  };
 }
 
 type CallStateDefaultErrorType = unknown;
