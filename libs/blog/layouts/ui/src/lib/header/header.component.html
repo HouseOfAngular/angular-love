@@ -1,5 +1,5 @@
 <header
-  class="sticky top-0 z-50 bg-al-gray-300 border-b border-al-gray-200 shadow-xl h-20"
+  class="sticky top-0 z-50 bg-al-gray-400 border-b border-al-gray-200 shadow-xl h-20"
 >
   <div
     class="flex justify-between items-center max-w-screen-xl w-full mx-auto py-4 px-2 xl:px-0"
@@ -7,8 +7,8 @@
     <a class="flex items-center gap-2" [routerLink]="'/'">
       <img
         ngSrc="assets/angular-love-logo.png"
-        width="{{ logoSize }}"
-        height="{{ logoSize }}"
+        [width]="logoSize"
+        [height]="logoSize"
         class="inline-block"
       />
       <span class="text-lg text-al-pink font-bold px-4">angular.love</span>

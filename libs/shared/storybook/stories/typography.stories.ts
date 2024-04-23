@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/angular';
 
 const meta: Meta<undefined> = {
-  title: 'Shared UI / Typography',
+  title: 'Shared ui / Typography',
 };
 
 export default meta;

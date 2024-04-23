@@ -6,7 +6,7 @@ import { heroUsers } from '@ng-icons/heroicons/outline';
 
 const meta: Meta<ButtonComponent> = {
   component: ButtonComponent,
-  title: 'Shared UI / Buttons',
+  title: 'Shared ui / Buttons',
   decorators: [
     moduleMetadata({
       imports: [NgIconComponent],

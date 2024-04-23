@@ -1,35 +1,20 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { NgIconComponent, provideIcons } from '@ng-icons/core';
-import {
-  heroBookmark,
-  heroBookOpen,
-  heroNewspaper,
-  heroRocketLaunch,
-} from '@ng-icons/heroicons/outline';
-import {
-  tablerBrandFacebook,
-  tablerBrandTwitter,
-  tablerBrandYoutube,
-} from '@ng-icons/tabler-icons';
 import { SocialMediaIconsComponent } from '@angular-love/blog/shared/ui/social-media-icons';
+import { NavigationComponent } from '@angular-love/navigation';
+import { NgOptimizedImage } from '@angular/common';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { NgIconComponent } from '@ng-icons/core';
 
 @Component({
   selector: 'al-footer',
   standalone: true,
-  imports: [NgIconComponent, SocialMediaIconsComponent],
+  imports: [
+    NgIconComponent,
+    SocialMediaIconsComponent,
+    NavigationComponent,
+    NgOptimizedImage,
+  ],
   templateUrl: './footer.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
-  providers: [
-    provideIcons({
-      heroBookOpen,
-      heroBookmark,
-      heroRocketLaunch,
-      heroNewspaper,
-      tablerBrandTwitter,
-      tablerBrandFacebook,
-      tablerBrandYoutube,
-    }),
-  ],
 })
 export class FooterComponent {
   currentYear = new Date().getFullYear();
