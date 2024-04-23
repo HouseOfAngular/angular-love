@@ -1,6 +1,7 @@
 import {
   ChangeDetectionStrategy,
   Component,
+  Directive,
   inject,
   input,
   output,
@@ -9,6 +10,7 @@ import { ButtonComponent } from '@angular-love/blog/shared/ui/button';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { heroChevronLeft, heroChevronRight } from '@ng-icons/heroicons/outline';
 import { paginationStore } from './pagination.store';
+import { ActivatedRoute, Router } from '@angular/router';
 
 export type PageChangeEvent = {
   skip: number;
@@ -63,6 +65,27 @@ export class PaginationComponent {
     this.pageChange.emit({
       skip: this.store.skip(),
       take: this.store.pageSize(),
+    });
+  }
+}
+
+@Directive({
+  selector: 'al-pagination[alQueryPagination]',
+  standalone: true,
+})
+export class QueryPaginationDirective {
+  private readonly router = inject(Router);
+
+  private readonly route = inject(ActivatedRoute);
+
+  readonly pagination = inject(PaginationComponent);
+
+  constructor() {
+    this.pagination.pageChange.subscribe(({ skip, take }) => {
+      this.router.navigate([], {
+        relativeTo: this.route,
+        queryParams: { skip, take },
+      });
     });
   }
 }
