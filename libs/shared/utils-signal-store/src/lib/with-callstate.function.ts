@@ -1,9 +1,9 @@
+import { Signal, computed } from '@angular/core';
 import { signalStoreFeature, withComputed, withState } from '@ngrx/signals';
 import { CallState, LoadingState } from './callstate.type';
-import { computed, Signal } from '@angular/core';
-import { capitalize, CapitalizeWords } from './helpers/capitalize.function';
-import { uncapitalize } from './helpers/uncapitalize.function';
+import { CapitalizeWords, capitalize } from './helpers/capitalize.function';
 import { Join } from './helpers/join.type';
+import { uncapitalize } from './helpers/uncapitalize.function';
 
 type CapitalizedCallStateName<T extends string> = Join<CapitalizeWords<T>>;
 
@@ -47,18 +47,20 @@ type CallStateComputed<T extends string, Error> = Record<
 type WithError<E> = <E>() => void;
 
 export function withError<E>(): WithError<E> {
-  return () => {};
+  return () => {
+    return;
+  };
 }
 
 type CallStateDefaultErrorType = unknown;
 
 export function withCallState<
   T extends string,
-  ErrorType = CallStateDefaultErrorType
+  ErrorType = CallStateDefaultErrorType,
 >(
   name: T,
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  withError?: WithError<ErrorType>
+  withError?: WithError<ErrorType>,
 ) {
   const callStateName: CallStateName<T> = toCallStateName<T>(name);
   const capitalizedCallStateName = capitalize(callStateName);
@@ -89,10 +91,10 @@ export function withCallState<
       return {
         [isInitComputedKey]: computed(() => callState() === LoadingState.INIT),
         [isLoadingComputedKey]: computed(
-          () => callState() === LoadingState.LOADING
+          () => callState() === LoadingState.LOADING,
         ),
         [isLoadedComputedKey]: computed(
-          () => callState() === LoadingState.LOADED
+          () => callState() === LoadingState.LOADED,
         ),
         [isErrorComputedKey]: computed(() => {
           const state = callState();
@@ -105,6 +107,6 @@ export function withCallState<
             : null;
         }),
       } as CallStateComputed<T, ErrorType>;
-    })
+    }),
   );
 }
