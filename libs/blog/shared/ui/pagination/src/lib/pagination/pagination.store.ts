@@ -1,4 +1,10 @@
-import { patchState, signalStore, withComputed, withMethods, withState } from '@ngrx/signals';
+import {
+  patchState,
+  signalStore,
+  withComputed,
+  withMethods,
+  withState,
+} from '@ngrx/signals';
 import { rxMethod } from '@ngrx/signals/rxjs-interop';
 import { tap } from 'rxjs';
 import { computed } from '@angular/core';
@@ -20,7 +26,7 @@ const initialState: PaginationState = {
   skip: 0,
   pageSize: 0,
   total: 0,
-  edge: 3
+  edge: 3,
 };
 
 export const paginationStore = signalStore(
@@ -36,27 +42,30 @@ export const paginationStore = signalStore(
     setNextPage: () =>
       patchState(store, { skip: store.skip() + store.pageSize() }),
     setPreviousPage: () =>
-      patchState(store, { skip: store.skip() - store.pageSize() })
+      patchState(store, { skip: store.skip() - store.pageSize() }),
   })),
   withComputed(({ skip, total, pageSize, edge }) => ({
     disabledPrevious: computed(() => skip() === 0),
-    disabledNext: computed(
-      () => skip() + pageSize() >= total()
-    ),
+    disabledNext: computed(() => skip() + pageSize() >= total()),
     pages: computed((): Page[] => {
       const last = Math.ceil(total() / pageSize());
       const current = Math.ceil(skip() / pageSize()) + 1;
 
       return constructPagesArray({ current, last, edge: edge() });
-    })
+    }),
   }))
 );
 
-function constructPagesArray(params: { current: number, last: number, edge: number }): Page[] {
+function constructPagesArray(params: {
+  current: number;
+  last: number;
+  edge: number;
+}): Page[] {
   const pageNumbers = Array.from({ length: params.last }, (_, i) => i + 1);
 
   return pageNumbers.reduce((acc, i) => {
-    const isWithinEdgeRange = i > params.current - params.edge && i < params.current + params.edge;
+    const isWithinEdgeRange =
+      i > params.current - params.edge && i < params.current + params.edge;
     const isFirstOrLastPage = i === 1 || i === pageNumbers.length;
     const isCurrentPage = i === params.current;
 
@@ -64,13 +73,13 @@ function constructPagesArray(params: { current: number, last: number, edge: numb
       acc.push({
         index: i,
         isActive: isCurrentPage,
-        label: `${i}`
+        label: `${i}`,
       });
     } else if (acc[acc.length - 1]?.label !== '...') {
       acc.push({
         index: i,
         isActive: false,
-        label: '...'
+        label: '...',
       });
     }
     return acc;

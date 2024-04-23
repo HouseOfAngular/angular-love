@@ -2,38 +2,35 @@
   <ul class="flex gap-4 w-full">
     <li class="mr-auto">
       <button
-        (click)="setPreviousPage()"
-        [disabled]="store.disabledPrevious()"
         al-button
         variant="Ghost"
+        [disabled]="store.disabledPrevious()"
+        (click)="setPreviousPage()"
       >
-        <ng-icon class="mr-2" name="heroChevronLeft"></ng-icon>
+        <ng-icon class="mr-2" name="heroChevronLeft" />
         Previous
       </button>
     </li>
 
     @for (page of store.pages(); track page.index) {
-      <li>
-        <button
-          al-button
-          [variant]="page.isActive ? 'Primary' : 'Outline'"
-          (click)="setPage(page.index)"
-          [class.bg-pink-400]="page.isActive"
-          class="!py-3 !px-1 min-w-10 flex justify-center leading-none"
-        >
-          {{ page.label }}
-        </button>
-      </li>
-    }
-    
-    <li
-      class="ml-auto"
-    >
+    <li>
       <button
-        (click)="setNextPage()"
-        [disabled]="store.disabledNext()"
+        al-button
+        class="!py-3 !px-1 min-w-10 flex justify-center leading-none"
+        [variant]="page.isActive ? 'Primary' : 'Outline'"
+        (click)="setPage(page.index)"
+      >
+        {{ page.label }}
+      </button>
+    </li>
+    }
+
+    <li class="ml-auto">
+      <button
         al-button
         variant="Ghost"
+        [disabled]="store.disabledNext()"
+        (click)="setNextPage()"
       >
         Next
         <ng-icon class="ml-2" name="heroChevronRight" />

@@ -3,7 +3,7 @@ import { PaginationComponent } from './pagination.component';
 
 const meta: Meta<PaginationComponent> = {
   component: PaginationComponent,
-  title: 'PaginationComponent',
+  title: 'Shared UI / Pagination',
 };
 
 export default meta;
