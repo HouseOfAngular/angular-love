@@ -4,7 +4,7 @@ import { SmallArticleCardDataModel } from '@angular-love/small-article-card-data
 
 const meta: Meta<SmallArticleCardComponent> = {
   component: SmallArticleCardComponent,
-  title: 'Articles / SmallArticleCardComponent',
+  title: 'Articles / BackgroundArticleCardComponent',
 };
 
 const article: SmallArticleCardDataModel = {

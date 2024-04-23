@@ -1,0 +1,13 @@
+@switch (cardType) { @case (cardType.type === 'CARD') {
+//TO-DO-APPEND-NORMAL-CARD// } @case (cardType.type === 'BACKGROUND_CARD') {
+<al-background-article-card
+  [article]="data"
+  [layout]="cardType.layout"
+></al-background-article-card>
+} @default {
+<al-background-article-card
+  [article]="data"
+  [layout]="cardType.layout"
+></al-background-article-card>
+
+} }
