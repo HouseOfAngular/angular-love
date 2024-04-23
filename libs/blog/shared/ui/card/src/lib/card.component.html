@@ -1,13 +1,12 @@
-@if (imageSrc) {
+@if (imageSrc()) {
   <div class="aspect-video relative">
     <img
-      [ngSrc]="imageSrc"
+      [ngSrc]="imageSrc()!"
       width="321"
       height="188"
       alt="Card Image"
       class="object-cover object-top w-full h-full"
     />
-    <
   </div>
 }
 <div class="p-6">

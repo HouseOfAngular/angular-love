@@ -1,11 +1,13 @@
+import { NgOptimizedImage } from '@angular/common';
 import {
   ChangeDetectionStrategy,
   Component,
   Directive,
+  ElementRef,
   HostBinding,
-  Input,
+  inject,
+  input,
 } from '@angular/core';
-import { NgOptimizedImage } from '@angular/common';
 import { RouterLink } from '@angular/router';
 
 @Directive({
@@ -60,6 +62,17 @@ export class CardLinkableDirective {
   hostClasses = 'hover:cursor-pointer';
 }
 
+@Directive({
+  standalone: true,
+  selector: 'al-card[alGradientCard]',
+})
+export class GradientCardDirective {
+  @HostBinding('class')
+  get hostClasses() {
+    return 'border-al-gray-200 bg-al-gradient bg-al-gray-500 text-white';
+  }
+}
+
 @Component({
   standalone: true,
   selector: 'al-card',
@@ -69,8 +82,13 @@ export class CardLinkableDirective {
   imports: [NgOptimizedImage],
 })
 export class CardComponent {
-  @Input() imageSrc?: string;
+  imageSrc = input<string>();
+  ref: ElementRef<HTMLElement> = inject(ElementRef);
 
   @HostBinding('class')
-  hostClasses = 'block bg-white rounded-lg shadow-sm overflow-hidden';
+  hostClasses = 'block rounded-lg shadow-sm overflow-hidden';
+
+  @HostBinding('class.bg-white') get hasWhiteBackground() {
+    return !this.ref.nativeElement.hasAttribute('alGradientCard');
+  }
 }
