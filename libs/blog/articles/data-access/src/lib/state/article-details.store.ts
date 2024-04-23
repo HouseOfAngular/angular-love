@@ -33,7 +33,7 @@ export const ArticleDetailsStore = signalStore(
         });
         try {
           const articleDetails = await firstValueFrom(
-            articlesService.getArticleBySlug(data.slug),
+            articlesService.getArticleBySlug(data.slug)
           );
           patchState(store, {
             articleDetails,
@@ -48,5 +48,5 @@ export const ArticleDetailsStore = signalStore(
         }
       },
     };
-  }),
+  })
 );

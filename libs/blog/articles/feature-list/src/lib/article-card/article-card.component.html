@@ -1,8 +1,8 @@
 <al-card
   [imageSrc]="articleCard.featuredImageUrl"
+  [routerLink]="['/', articleCard.slug]"
   alCardHoverHighlight
   alCardLinkable
-  [routerLink]="['/', articleCard.slug]"
 >
   <div alCardHeader>{{ articleCard.title }}</div>
   <div alCardContent>
@@ -14,7 +14,7 @@
         <al-avatar [imageSrc]="articleCard.author.avatarUrl" />
         <span>{{ articleCard.author.name }}</span>
       </div>
-      <span>{{ articleCard.publishDate | date: 'mediumDate' }}</span>
+      <span>{{ articleCard.publishDate | date : 'mediumDate' }}</span>
     </div>
   </div>
 </al-card>

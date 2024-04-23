@@ -1,10 +1,10 @@
 <nav>
   @for (item of navItems; track $index) {
-    <a
-      routerLink="{{ item.link }}"
-      class="text-white p-6 font-medium"
-      [routerLinkActive]="'text-al-pink'"
-      >{{ item.title }}</a
-    >
+  <a
+    routerLink="{{ item.link }}"
+    class="text-white p-6 font-medium"
+    [routerLinkActive]="'text-al-pink'"
+    >{{ item.title }}</a
+  >
   }
 </nav>

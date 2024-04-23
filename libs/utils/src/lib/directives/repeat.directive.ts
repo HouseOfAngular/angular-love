@@ -14,6 +14,6 @@ export class RepeatDirective<T> {
 
   constructor(
     private readonly templateRef: TemplateRef<T>,
-    private readonly viewContainerRef: ViewContainerRef,
+    private readonly viewContainerRef: ViewContainerRef
   ) {}
 }

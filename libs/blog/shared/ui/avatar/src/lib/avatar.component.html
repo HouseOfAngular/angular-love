@@ -6,13 +6,13 @@
   }"
 >
   @if (imageSrc) {
-    <img
-      [ngSrc]="imageSrc"
-      [width]="sideLength()"
-      [height]="sideLength()"
-      alt="Avatar"
-    />
+  <img
+    [ngSrc]="imageSrc"
+    [width]="sideLength()"
+    [height]="sideLength()"
+    alt="Avatar"
+  />
   } @else {
-    <ng-icon name="heroUsers"></ng-icon>
+  <ng-icon name="heroUsers"></ng-icon>
   }
 </div>

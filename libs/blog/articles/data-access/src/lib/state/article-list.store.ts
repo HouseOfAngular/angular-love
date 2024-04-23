@@ -33,7 +33,7 @@ export const ArticleListStore = signalStore(
         });
         try {
           const articles = await firstValueFrom(
-            articlesService.getArticleList({ query: data.query }),
+            articlesService.getArticleList({ query: data.query })
           );
           patchState(store, {
             articles,
@@ -46,5 +46,5 @@ export const ArticleListStore = signalStore(
         }
       },
     };
-  }),
+  })
 );

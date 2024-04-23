@@ -13,7 +13,7 @@ describe('withCallState', () => {
             return;
           },
         };
-      }),
+      })
     );
 
     const fruitListSignalStore = new FruitListSignalStore();
@@ -54,7 +54,7 @@ describe('withCallState', () => {
             return;
           },
         };
-      }),
+      })
     );
 
     const fruitListSignalStore = new FruitListSignalStore();
