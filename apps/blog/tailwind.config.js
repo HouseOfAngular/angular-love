@@ -17,6 +17,7 @@ module.exports = {
           header: '#16171d',
           border: '#2e2f3b',
           text: '#6a798b',
+          footer: '#23242e',
         },
         'al-pink': '#e70464',
       },

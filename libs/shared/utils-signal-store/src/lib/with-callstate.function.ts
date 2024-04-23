@@ -56,11 +56,11 @@ type CallStateDefaultErrorType = unknown;
 
 export function withCallState<
   T extends string,
-  ErrorType = CallStateDefaultErrorType
+  ErrorType = CallStateDefaultErrorType,
 >(
   name: T,
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  withError?: WithError<ErrorType>
+  withError?: WithError<ErrorType>,
 ) {
   const callStateName: CallStateName<T> = toCallStateName<T>(name);
   const capitalizedCallStateName = capitalize(callStateName);
@@ -91,10 +91,10 @@ export function withCallState<
       return {
         [isInitComputedKey]: computed(() => callState() === LoadingState.INIT),
         [isLoadingComputedKey]: computed(
-          () => callState() === LoadingState.LOADING
+          () => callState() === LoadingState.LOADING,
         ),
         [isLoadedComputedKey]: computed(
-          () => callState() === LoadingState.LOADED
+          () => callState() === LoadingState.LOADED,
         ),
         [isErrorComputedKey]: computed(() => {
           const state = callState();
@@ -107,6 +107,6 @@ export function withCallState<
             : null;
         }),
       } as CallStateComputed<T, ErrorType>;
-    })
+    }),
   );
 }
