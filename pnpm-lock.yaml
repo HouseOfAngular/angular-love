@@ -41,6 +41,9 @@ importers:
       '@apollo/client':
         specifier: ^3.8.7
         version: 3.9.11(@types/react@18.2.79)(graphql-ws@5.16.0(graphql@16.8.1))(graphql@16.8.1)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
+      '@ng-icons/bootstrap-icons':
+        specifier: ^27.3.1
+        version: 27.3.1
       '@ng-icons/core':
         specifier: ^25.6.0
         version: 25.6.1
@@ -92,6 +95,9 @@ importers:
       sanitize-html:
         specifier: ^2.11.0
         version: 2.13.0
+      stylelint:
+        specifier: ^16.3.1
+        version: 16.3.1(typescript@5.4.5)
       tslib:
         specifier: ^2.6.1
         version: 2.6.2
@@ -255,9 +261,6 @@ importers:
       prettier:
         specifier: ^3.2.5
         version: 3.2.5
-      stylelint:
-        specifier: ^16.3.1
-        version: 16.3.1(typescript@5.4.5)
       tailwindcss:
         specifier: ^3.3.6
         version: 3.4.3(ts-node@10.9.1(@swc/core@1.3.107(@swc/helpers@0.5.10))(@types/node@18.19.31)(typescript@5.4.5))
@@ -2495,6 +2498,9 @@ packages:
 
   '@ndelangen/get-tarball@3.0.9':
     resolution: {integrity: sha512-9JKTEik4vq+yGosHYhZ1tiH/3WpUS0Nh0kej4Agndhox8pAdWhEx5knFVRcb/ya9knCRCs1rPxNrSXTDdfVqpA==}
+
+  '@ng-icons/bootstrap-icons@27.3.1':
+    resolution: {integrity: sha512-MQ3audlRlDR8zIZU/CfNjyegLoBtN5SHaEqmz96XE5hjZPMoZ4Icg0HSxRNR+LgZ58ji3gwKsSi/3aSpPoiKVg==}
 
   '@ng-icons/core@25.6.1':
     resolution: {integrity: sha512-o6vCttlzXvDZRYiOKOULr7fsX8gY/DwwxzBSrBQzwa/at+pC0xRoe6uczJ9Ato+y1EDWP/PlrEMAQfvokBA6tQ==}
@@ -12622,6 +12628,10 @@ snapshots:
       pump: 3.0.0
       tar-fs: 2.1.1
 
+  '@ng-icons/bootstrap-icons@27.3.1':
+    dependencies:
+      tslib: 2.6.2
+
   '@ng-icons/core@25.6.1':
     dependencies:
       tslib: 2.6.2
@@ -16262,7 +16272,6 @@ snapshots:
   debug@3.2.7:
     dependencies:
       ms: 2.1.3
-    dev: false
 
   debug@4.3.4:
     dependencies:
