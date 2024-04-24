@@ -9,7 +9,7 @@ import { NgOptimizedImage, NgStyle } from '@angular/common';
 import { NgIconComponent, provideIcons } from '@ng-icons/core';
 import { heroUsers } from '@ng-icons/heroicons/outline';
 
-type AvatarSize = 'sm' | 'md' | 'lg';
+type AvatarSize = 'sm' | 'md';
 
 @Component({
   standalone: true,
@@ -33,13 +33,11 @@ export class AvatarComponent {
   sideLength = computed(() => {
     switch (this._size()) {
       case 'sm':
-        return '30';
+        return '32';
       case 'md':
-        return '45';
-      case 'lg':
-        return '60';
+        return '96';
       default:
-        return '30';
+        return '32';
     }
   });
 }

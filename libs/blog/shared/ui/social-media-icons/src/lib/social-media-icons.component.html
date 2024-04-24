@@ -1,11 +1,7 @@
 <div class="flex justify-center items-center">
-  <a class="flex" href="/"
-    ><ng-icon class="mr-2" name="tablerBrandTwitter" [size]="size"
-  /></a>
-  <a class="flex" href="/"
-    ><ng-icon class="mr-2" name="tablerBrandFacebook" [size]="size"
-  /></a>
-  <a class="flex" href="/"
-    ><ng-icon name="tablerBrandYoutube" [size]="size"
-  /></a>
+  @for (icon of icons; track $index) {
+    <a class="flex mr-2" [href]="icon.href" target="_blank"
+      ><ng-icon [color]="icon.color" [name]="icon.name" [size]="size()"
+    /></a>
+  }
 </div>
