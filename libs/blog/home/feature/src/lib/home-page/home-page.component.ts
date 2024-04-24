@@ -2,7 +2,7 @@ import { ArticlesListContainerComponent } from '@angular-love/blog/articles/feat
 import { CardComponent } from '@angular-love/blog/shared/ui/card';
 import { NewsletterComponent } from '@angular-love/newsletter';
 import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { PartnersComponent } from '@angular-love/partners';
+import { PartnersComponent } from '@angular-love/blog/partners/ui/partners ';
 
 @Component({
   selector: 'al-home-page',
