@@ -34,7 +34,7 @@ export const paginationStore = signalStore(
   withMethods((store) => ({
     setSkip: rxMethod<number>(tap((skip) => patchState(store, { skip }))),
     setPageSize: rxMethod<number>(
-      tap((pageSize) => patchState(store, { pageSize }))
+      tap((pageSize) => patchState(store, { pageSize })),
     ),
     setTotal: rxMethod<number>(tap((total) => patchState(store, { total }))),
     setPage: (page: number) =>
@@ -53,7 +53,7 @@ export const paginationStore = signalStore(
 
       return constructPagesArray({ current, last, edge: edge() });
     }),
-  }))
+  })),
 );
 
 function constructPagesArray(params: {

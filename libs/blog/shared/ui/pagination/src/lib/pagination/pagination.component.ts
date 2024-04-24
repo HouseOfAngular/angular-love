@@ -11,6 +11,10 @@ import { NgIcon, provideIcons } from '@ng-icons/core';
 import { heroChevronLeft, heroChevronRight } from '@ng-icons/heroicons/outline';
 import { paginationStore } from './pagination.store';
 import { ActivatedRoute, Router } from '@angular/router';
+import {
+  outputToObservable,
+  takeUntilDestroyed,
+} from '@angular/core/rxjs-interop';
 
 export type PageChangeEvent = {
   skip: number;
@@ -74,18 +78,20 @@ export class PaginationComponent {
   standalone: true,
 })
 export class QueryPaginationDirective {
+  readonly pagination = inject(PaginationComponent);
+
   private readonly router = inject(Router);
 
   private readonly route = inject(ActivatedRoute);
 
-  readonly pagination = inject(PaginationComponent);
-
   constructor() {
-    this.pagination.pageChange.subscribe(({ skip, take }) => {
-      this.router.navigate([], {
-        relativeTo: this.route,
-        queryParams: { skip, take },
+    outputToObservable(this.pagination.pageChange)
+      .pipe(takeUntilDestroyed())
+      .subscribe(({ skip, take }) => {
+        this.router.navigate([], {
+          relativeTo: this.route,
+          queryParams: { skip, take },
+        });
       });
-    });
   }
 }
