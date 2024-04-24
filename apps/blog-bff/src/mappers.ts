@@ -58,7 +58,7 @@ export const toArticle = (query: { data: GetPostBySlugQuery }): Article => {
     // Detect the language and apply syntax highlighting
     const highlightedCode = hljs.highlightAuto(
       code,
-      DEFAULT_LANGUAGE_SUBSET
+      DEFAULT_LANGUAGE_SUBSET,
     ).value;
 
     // Replace the content of the <code> block with the highlighted code

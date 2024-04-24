@@ -63,7 +63,7 @@ export const backgroundSecondary: Story = {
   render: (args: UiArticleCardComponent) => ({
     props: args,
     template: `
-     <div class="my_class h-[500px] bg-blue-500" style="display: flex; gap: 16px; padding: 16px; align-items: flex-start" >
+     <div class="h-[500px] " style="display: flex; gap: 16px; padding: 16px; align-items: flex-start" >
       <al-ui-article-card [article]="article" [cardType]="cardType">
         <al-background-article-card [article]="article" [layout]="cardType.layout"></al-background-article-card>
       </al-ui-article-card>
