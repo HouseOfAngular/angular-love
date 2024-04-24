@@ -24,6 +24,9 @@
       "@angular-love/blog/articles/feature-list": [
         "libs/blog/articles/feature-list/src/index.ts"
       ],
+      "@angular-love/blog/authors/ui/author-info": [
+        "libs/blog/authors/ui/author-info/src/index.ts"
+      ],
       "@angular-love/blog/authors/ui-card": [
         "libs/blog/authors/ui-card/src/index.ts"
       ],
