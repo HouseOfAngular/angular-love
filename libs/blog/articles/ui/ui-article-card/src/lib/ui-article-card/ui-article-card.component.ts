@@ -28,5 +28,5 @@ export type CardType = {
 })
 export class UiArticleCardComponent {
   @Input() cardType!: CardType;
-  @Input() data!: UiArticleCardDataModel;
+  @Input() article!: UiArticleCardDataModel;
 }

@@ -4,13 +4,13 @@
   }
   @case (cardType.type === 'BACKGROUND_CARD') {
     <al-background-article-card
-      [article]="data"
+      [article]="article"
       [layout]="cardType.layout"
     ></al-background-article-card>
   }
   @default {
     <al-background-article-card
-      [article]="data"
+      [article]="article"
       [layout]="cardType.layout"
     ></al-background-article-card>
   }

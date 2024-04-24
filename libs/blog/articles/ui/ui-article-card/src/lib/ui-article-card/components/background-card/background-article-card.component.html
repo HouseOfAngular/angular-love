@@ -1,11 +1,16 @@
 <div
   [routerLink]="['/', article().slug]"
   alBackgroundCardDirective
-  class="w-[408px] h-[232px] border-solid border-2 border-al-black-border bg-cover bg-no-repeat bg-[url({{
+  [layout]="layout()"
+  class=" border-solid border-2 border-al-black-border bg-no-repeat bg-[url({{
     article().featuredImageUrl
   }})]"
 >
-  <div class="flex items-center justify-between alBackgroundCardInfoDirective">
+  <div
+    class="flex items-center justify-between"
+    alBackgroundCardInfoDirective
+    [layout]="layout()"
+  >
     <div class="flex items-center gap-2">
       <al-avatar [imageSrc]="article().author.avatarUrl" size="sm" />
       <span class="font-medium text-sm/[14px] text-white">{{
@@ -15,16 +20,16 @@
 
     <div class="flex items-center gap-2">
       @if (layout() === 'SECONDARY') {
-      <span class="font-medium text-sm/[14px] text-white">{{
-        article().publishDate
-      }}</span>
+        <span class="font-medium text-sm/[14px] text-white">{{
+          article().publishDate | date: 'mediumDate'
+        }}</span>
       }
       <ng-icon class="text-white text-sm" name="bootstrapClock"></ng-icon>
       <p class="text-white text-sm/[14px]">{{ article().readingTime }}min</p>
     </div>
   </div>
 
-  <div alBackgroundCardContentDirective>
+  <div alBackgroundCardContentDirective [layout]="layout()">
     <p class="font-bold text-2xl text-white">
       {{ article().title }}
     </p>

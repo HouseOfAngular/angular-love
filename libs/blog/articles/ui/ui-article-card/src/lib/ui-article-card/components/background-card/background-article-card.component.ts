@@ -3,10 +3,11 @@ import {
   Component,
   Directive,
   ElementRef,
-  Host,
+  inject,
   input,
+  OnInit,
 } from '@angular/core';
-import { NgOptimizedImage } from '@angular/common';
+import { DatePipe, NgOptimizedImage } from '@angular/common';
 import { AvatarComponent } from '@angular-love/blog/shared/ui/avatar';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { bootstrapClock } from '@ng-icons/bootstrap-icons';
@@ -31,16 +32,20 @@ export type Layout = 'PRIMARY' | 'SECONDARY';
   standalone: true,
   selector: '[alBackgroundCardDirective]',
 })
-export class AlBackgroundCardDirective {
-  constructor(
-    private el: ElementRef,
-    @Host() parent: BackgroundArticleCardComponent,
-  ) {
-    parent.layout() === 'PRIMARY'
+export class AlBackgroundCardDirective implements OnInit {
+  private el = inject(ElementRef);
+  layout = input.required<Layout>();
+
+  ngOnInit(): void {
+    this.layout() === 'PRIMARY'
       ? this.el.nativeElement.classList.add(
           'shadow-[inset_-100px_-200px_100px_100px_rgba(20,21,27,.85)]',
+          'bg-cover',
         )
-      : '';
+      : this.el.nativeElement.classList.add(
+          'bg-center',
+          'hover:bg-al-gradient-middle-bottom',
+        );
   }
 }
 
@@ -48,14 +53,14 @@ export class AlBackgroundCardDirective {
   standalone: true,
   selector: '[alBackgroundCardInfoDirective]',
 })
-export class AlBackgroundCardInfoDirective {
-  constructor(
-    private el: ElementRef,
-    @Host() parent: BackgroundArticleCardComponent,
-  ) {
-    parent.layout() === 'PRIMARY'
-      ? this.el.nativeElement.classList.add('px-6 pt-6')
-      : this.el.nativeElement.classList.add('px-8 pt-8');
+export class AlBackgroundCardInfoDirective implements OnInit {
+  private el = inject(ElementRef);
+  layout = input.required<Layout>();
+
+  ngOnInit(): void {
+    this.layout() === 'PRIMARY'
+      ? this.el.nativeElement.classList.add('px-6', 'pt-6')
+      : this.el.nativeElement.classList.add('px-8', 'pt-8');
   }
 }
 
@@ -63,14 +68,14 @@ export class AlBackgroundCardInfoDirective {
   standalone: true,
   selector: '[alBackgroundCardContentDirective]',
 })
-export class AlBackgroundCardContentDirective {
-  constructor(
-    private el: ElementRef,
-    @Host() parent: BackgroundArticleCardComponent,
-  ) {
-    parent.layout() === 'PRIMARY'
-      ? this.el.nativeElement.classList.add('px-6 pt-8')
-      : this.el.nativeElement.classList.add('pt-11 px-8');
+export class AlBackgroundCardContentDirective implements OnInit {
+  private el = inject(ElementRef);
+  layout = input.required<Layout>();
+
+  ngOnInit(): void {
+    this.layout() === 'PRIMARY'
+      ? this.el.nativeElement.classList.add('px-6', 'pt-8', 'pb-6')
+      : this.el.nativeElement.classList.add('pt-11', 'px-8', 'pb-8');
   }
 }
 
@@ -86,6 +91,7 @@ export class AlBackgroundCardContentDirective {
     AlBackgroundCardDirective,
     AlBackgroundCardInfoDirective,
     AlBackgroundCardContentDirective,
+    DatePipe,
   ],
   templateUrl: './background-article-card.component.html',
   providers: [
