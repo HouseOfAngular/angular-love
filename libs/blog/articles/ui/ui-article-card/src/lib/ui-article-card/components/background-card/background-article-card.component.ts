@@ -7,7 +7,6 @@ import {
   input,
 } from '@angular/core';
 import { NgOptimizedImage } from '@angular/common';
-import { CardComponent } from '@angular-love/blog/shared/ui/card';
 import { AvatarComponent } from '@angular-love/blog/shared/ui/avatar';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { bootstrapClock } from '@ng-icons/bootstrap-icons';
@@ -35,11 +34,11 @@ export type Layout = 'PRIMARY' | 'SECONDARY';
 export class AlBackgroundCardDirective {
   constructor(
     private el: ElementRef,
-    @Host() parent: BackgroundArticleCardComponent
+    @Host() parent: BackgroundArticleCardComponent,
   ) {
     parent.layout() === 'PRIMARY'
       ? this.el.nativeElement.classList.add(
-          'shadow-[inset_-100px_-200px_100px_100px_rgba(20,21,27,.85)]'
+          'shadow-[inset_-100px_-200px_100px_100px_rgba(20,21,27,.85)]',
         )
       : '';
   }
@@ -52,7 +51,7 @@ export class AlBackgroundCardDirective {
 export class AlBackgroundCardInfoDirective {
   constructor(
     private el: ElementRef,
-    @Host() parent: BackgroundArticleCardComponent
+    @Host() parent: BackgroundArticleCardComponent,
   ) {
     parent.layout() === 'PRIMARY'
       ? this.el.nativeElement.classList.add('px-6 pt-6')
@@ -67,7 +66,7 @@ export class AlBackgroundCardInfoDirective {
 export class AlBackgroundCardContentDirective {
   constructor(
     private el: ElementRef,
-    @Host() parent: BackgroundArticleCardComponent
+    @Host() parent: BackgroundArticleCardComponent,
   ) {
     parent.layout() === 'PRIMARY'
       ? this.el.nativeElement.classList.add('px-6 pt-8')
@@ -80,7 +79,6 @@ export class AlBackgroundCardContentDirective {
   changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: true,
   imports: [
-    CardComponent,
     AvatarComponent,
     NgIcon,
     NgOptimizedImage,
@@ -90,7 +88,6 @@ export class AlBackgroundCardContentDirective {
     AlBackgroundCardContentDirective,
   ],
   templateUrl: './background-article-card.component.html',
-  styleUrl: './small-article-card.component.scss',
   providers: [
     provideIcons({
       bootstrapClock,
