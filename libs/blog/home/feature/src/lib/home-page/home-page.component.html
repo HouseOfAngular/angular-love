@@ -1,2 +1,8 @@
 <al-newsletter />
 <al-articles-list />
+
+@defer (when isSearchOpen()) {
+  @if (isSearchOpen()) {
+    <al-feature-search />
+  }
+}

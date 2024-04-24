@@ -31,7 +31,16 @@
         "libs/blog/home/feature/src/index.ts"
       ],
       "@angular-love/blog/home/ui": ["libs/blog/home/ui/src/index.ts"],
+      "@angular-love/blog/layouts/feature-header": [
+        "libs/blog/layouts/feature-header/src/index.ts"
+      ],
       "@angular-love/blog/layouts/ui": ["libs/blog/layouts/ui/src/index.ts"],
+      "@angular-love/blog/search/data-access": [
+        "libs/blog/search/data-access/src/index.ts"
+      ],
+      "@angular-love/blog/search/feature-search": [
+        "libs/blog/search/feature-search/src/index.ts"
+      ],
       "@angular-love/blog/shared/ui/avatar": [
         "libs/blog/shared/ui/avatar/src/index.ts"
       ],
@@ -61,7 +70,6 @@
       "@angular-love/small-article-card-data-model": [
         "libs/blog/articles/types/small-article-card-data-model/src/index.ts"
       ],
-      "@angular-love/storybook": ["libs/shared/storybook/src/index.ts"],
       "@angular-love/utils": ["libs/utils/src/index.ts"],
       "@angular-love/wp/graphql/data-access": [
         "libs/wp/graphql/data-access/src/index.ts"

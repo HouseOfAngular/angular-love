@@ -26,9 +26,4 @@ export class HeaderComponent {
   language = input.required<'PL' | 'ENG'>();
 
   readonly logoSize = '40';
-
-  openSearch(): void {
-    // TODO: JIRA issue https://valueadd.atlassian.net/browse/KAP-1
-    alert('To be done');
-  }
 }

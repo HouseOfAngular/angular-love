@@ -30,9 +30,15 @@
           PL
         </button>
       </div>
+      <!-- TODO: Remove the router link hack after header and/or layour are refactorised to smart components -->
       <button
         class="bg-transparent flex items-center p-1"
-        (click)="openSearch()"
+        [routerLink]="['./']"
+        [queryParams]="{
+          isSearchOpen: true
+        }"
+        [queryParamsHandling]="'merge'"
+        [skipLocationChange]="true"
       >
         <ng-icon size="24px" class="text-al-pink" name="heroMagnifyingGlass" />
       </button>
