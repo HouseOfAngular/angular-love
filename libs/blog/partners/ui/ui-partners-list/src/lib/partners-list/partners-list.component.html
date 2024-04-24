@@ -1,11 +1,9 @@
-<section class="w-[1224px] h-[100px] flex justify-between bg-transparent mb-8">
+<section class="h-[100px] flex justify-between mb-8 ml-1">
   @for (partner of partnersList; track partner.URL) {
-  <div class="w-[200px] h-[100px]">
-    <div
-      class="bg-white w-full h-full flex items-center justify-center rounded-lg"
-    >
-      <img class="logo" src="{{ partner.URL }}" alt="{{ partner.alt }}" />
+    <div class="w-[200px] h-[100px] bg-white mx-7 rounded-lg">
+      <div class="w-full h-full flex items-center justify-center">
+        <img class="logo" [src]="partner.URL" [alt]="partner.alt" />
+      </div>
     </div>
-  </div>
   }
 </section>
