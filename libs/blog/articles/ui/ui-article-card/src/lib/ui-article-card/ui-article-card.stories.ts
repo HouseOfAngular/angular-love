@@ -15,6 +15,7 @@ const article = {
   slug: 'angular-storybook',
   publishDate: new Date('2021-05-01').toISOString(),
 };
+
 const layoutBackgroundPrimary: CardType = {
   type: 'BACKGROUND_CARD',
   layout: 'PRIMARY',
@@ -63,7 +64,7 @@ export const backgroundSecondary: Story = {
   render: (args: UiArticleCardComponent) => ({
     props: args,
     template: `
-     <div class="h-[500px] " style="display: flex; gap: 16px; padding: 16px; align-items: flex-start" >
+     <div class="h-[430px]">
       <al-ui-article-card [article]="article" [cardType]="cardType">
         <al-background-article-card [article]="article" [layout]="cardType.layout"></al-background-article-card>
       </al-ui-article-card>

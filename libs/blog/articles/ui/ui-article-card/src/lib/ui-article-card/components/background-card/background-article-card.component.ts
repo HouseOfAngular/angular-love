@@ -75,7 +75,7 @@ export class AlBackgroundCardContentDirective implements OnInit {
   ngOnInit(): void {
     this.layout() === 'PRIMARY'
       ? this.el.nativeElement.classList.add('px-6', 'pt-8', 'pb-6')
-      : this.el.nativeElement.classList.add('pt-11', 'px-8', 'pb-8');
+      : this.el.nativeElement.classList.add('pt-44', 'px-8', 'pb-8');
   }
 }
 
