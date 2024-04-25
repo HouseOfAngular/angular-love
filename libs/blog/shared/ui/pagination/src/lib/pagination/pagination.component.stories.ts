@@ -14,5 +14,5 @@ export const Primary: Story = {
     total: 100,
     skip: 0,
     pageSize: 10,
-  } as any, //TODO: Remove any when storybook is migrated to v8 (signal input support)
+  },
 };
