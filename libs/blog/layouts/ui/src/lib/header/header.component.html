@@ -6,10 +6,10 @@
   >
     <a class="flex items-center gap-2" [routerLink]="'/'">
       <img
-        ngSrc="assets/angular-love-logo.png"
+        class="inline-block"
         [width]="logoSize"
         [height]="logoSize"
-        class="inline-block"
+        ngSrc="assets/angular-love-logo.png"
       />
       <span class="text-al-pink px-4 text-lg font-bold">angular.love</span>
     </a>
@@ -34,7 +34,7 @@
         class="flex items-center bg-transparent p-1"
         (click)="openSearch()"
       >
-        <ng-icon size="24px" class="text-al-pink" name="heroMagnifyingGlass" />
+        <ng-icon name="heroMagnifyingGlass" class="text-al-pink" size="24px" />
       </button>
     </div>
   </div>

@@ -7,10 +7,10 @@
 >
   @if (imageSrc) {
     <img
+      alt="Avatar"
       [ngSrc]="imageSrc"
       [width]="sideLength()"
       [height]="sideLength()"
-      alt="Avatar"
     />
   } @else {
     <ng-icon name="heroUsers"></ng-icon>

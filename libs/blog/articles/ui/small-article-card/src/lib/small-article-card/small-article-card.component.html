@@ -1,8 +1,8 @@
 <div
-  [routerLink]="['/', article().slug]"
   class="w-[408px] h-[232px] border-solid border-2 border-al-gray-300 bg-cover bg-no-repeat shadow-[inset_-100px_-200px_100px_100px_rgba(20,21,27,.85)] bg-[url({{
     article().featuredImageUrl
   }})]"
+  [routerLink]="['/', article().slug]"
 >
   <div class="flex items-center justify-between px-6 pt-6">
     <div class="flex items-center gap-2">
@@ -12,7 +12,7 @@
       </span>
     </div>
     <div class="flex items-center gap-2">
-      <ng-icon class="text-sm text-white" name="bootstrapClock"></ng-icon>
+      <ng-icon name="bootstrapClock" class="text-sm text-white"></ng-icon>
       <p class="text-sm/[14px] text-white">{{ article().readingTime }}min</p>
     </div>
   </div>
