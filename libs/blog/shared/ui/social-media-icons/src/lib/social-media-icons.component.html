@@ -1,6 +1,6 @@
-<div class="flex justify-center items-center">
+<div class="flex items-center justify-center">
   @for (icon of icons; track $index) {
-    <a class="flex mr-2" [href]="icon.href" target="_blank"
+    <a class="mr-2 flex" [href]="icon.href" target="_blank"
       ><ng-icon [color]="icon.color" [name]="icon.name" [size]="size()"
     /></a>
   }

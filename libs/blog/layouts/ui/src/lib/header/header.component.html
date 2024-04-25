@@ -1,8 +1,8 @@
 <header
-  class="sticky top-0 z-50 bg-al-gray-400 border-b border-al-gray-200 shadow-xl h-20"
+  class="bg-al-gray-400 border-al-gray-200 sticky top-0 z-50 h-20 border-b shadow-xl"
 >
   <div
-    class="flex justify-between items-center max-w-screen-xl w-full mx-auto py-4 px-2 xl:px-0"
+    class="mx-auto flex w-full max-w-screen-xl items-center justify-between px-2 py-4 xl:px-0"
   >
     <a class="flex items-center gap-2" [routerLink]="'/'">
       <img
@@ -11,27 +11,27 @@
         [height]="logoSize"
         class="inline-block"
       />
-      <span class="text-lg text-al-pink font-bold px-4">angular.love</span>
+      <span class="text-al-pink px-4 text-lg font-bold">angular.love</span>
     </a>
 
     <div class="flex flex-row items-center">
       <al-navigation />
       <div>
         <button
-          class="bg-transparent border rounded border-al-gray-200 py-2 px-4 mr-2 font-medium"
+          class="border-al-gray-200 mr-2 rounded border bg-transparent px-4 py-2 font-medium"
           [class]="language() === 'ENG' ? 'text-white' : 'text-al-gray-100'"
         >
           ENG
         </button>
         <button
-          class="bg-transparent border rounded border-al-gray-200 py-2 px-4 mr-2 font-medium"
+          class="border-al-gray-200 mr-2 rounded border bg-transparent px-4 py-2 font-medium"
           [class]="language() === 'PL' ? 'text-white' : 'text-al-gray-100'"
         >
           PL
         </button>
       </div>
       <button
-        class="bg-transparent flex items-center p-1"
+        class="flex items-center bg-transparent p-1"
         (click)="openSearch()"
       >
         <ng-icon size="24px" class="text-al-pink" name="heroMagnifyingGlass" />

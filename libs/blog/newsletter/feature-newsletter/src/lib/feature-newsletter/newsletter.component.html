@@ -3,20 +3,20 @@
     @if (componentState() === 'INITIAL') {
       <form [formGroup]="form">
         <div class="flex flex-col">
-          <h2 class="font-bold text-4xl">Sign up for our newsletter.</h2>
+          <h2 class="text-4xl font-bold">Sign up for our newsletter.</h2>
           <p class="py-4">
             Join a group of people who want to grow and stay up to date!
           </p>
-          <div class="w-full flex flex-row my-2">
+          <div class="my-2 flex w-full flex-row">
             <input
               type="email"
-              class="p-6 bg-al-gray-500 text-al-gray-100 border border-al-gray-200 rounded-l-md border-r-0 flex-grow text-sm h-[60px] focus:outline-none"
+              class="bg-al-gray-500 text-al-gray-100 border-al-gray-200 h-[60px] flex-grow rounded-l-md border border-r-0 p-6 text-sm focus:outline-none"
               placeholder="Your E-mail"
               formControlName="email"
             />
             <button
               (click)="mockEventDispatch()"
-              class="bg-al-pink border rounded-r-md border-al-gray-200 p-5 h-[60px] w-[60px]"
+              class="bg-al-pink border-al-gray-200 h-[60px] w-[60px] rounded-r-md border p-5"
             >
               <ng-icon name="tablerSend" color="white" size="22"></ng-icon>
             </button>
@@ -25,19 +25,19 @@
             <input
               type="checkbox"
               id="newsletter-checkbox"
-              class="newsletter-checkbox hidden peer"
+              class="newsletter-checkbox peer hidden"
               formControlName="checkbox"
             />
             <label
               for="newsletter-checkbox"
-              class="flex flex-row text-al-gray-100 peer-checked:[&>div>div]:block"
+              class="text-al-gray-100 flex flex-row peer-checked:[&>div>div]:block"
             >
               <div
-                class="w-[14px] h-[14px] aspect-square border rounded border-al-gray-100 mr-2 mt-1 flex justify-center items-center"
+                class="border-al-gray-100 mr-2 mt-1 flex aspect-square h-[14px] w-[14px] items-center justify-center rounded border"
               >
-                <div class="bg-al-pink h-[6px] w-[6px] rounded-sm hidden"></div>
+                <div class="bg-al-pink hidden h-[6px] w-[6px] rounded-sm"></div>
               </div>
-              <span class="before:content-['*'] before:text-al-pink">
+              <span class="before:text-al-pink before:content-['*']">
                 I consent to Angular.love processing my email address for the
                 purpose of sending the newsletter.
               </span>

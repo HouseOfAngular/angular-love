@@ -16,7 +16,7 @@ import { SocialMediaIconsComponent } from '@angular-love/blog/shared/ui/social-m
   template: `
     <al-card-skeleton [withImage]="false">
       <div alCardContent>
-        <div class="flex gap-6 items-center">
+        <div class="flex items-center gap-6">
           <!-- avatar -->
           <ngx-skeleton-loader
             [appearance]="'circle'"

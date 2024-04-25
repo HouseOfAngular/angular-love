@@ -15,14 +15,14 @@ import { ArticleContentSkeletonComponent } from '../article-content/article-cont
   ],
   template: `
     <section class="block w-full py-8">
-      <h1 class="text-4xl justify-center flex">
+      <h1 class="flex justify-center text-4xl">
         <!-- title -->
         <ngx-skeleton-loader
           [theme]="{ width: '600px', 'margin-bottom': '0', height: '40px' }"
           [count]="1"
         ></ngx-skeleton-loader>
       </h1>
-      <span class="justify-center flex">
+      <span class="flex justify-center">
         <!-- date -->
         <ngx-skeleton-loader
           [theme]="{ width: '200px', 'margin-bottom': '0', height: '15px' }"
