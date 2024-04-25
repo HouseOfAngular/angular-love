@@ -28,10 +28,9 @@ const template = `
 
 export const primary: Story = {
   args: {
-    /* eslint-disable  @typescript-eslint/no-explicit-any */
-    article: article as any, //TO-DO-REMOVE-WHEN-STORYBOOK-UPDATED//
+    article: article,
   },
-  render: (args: SmallArticleCardComponent) => ({
+  render: (args) => ({
     props: args,
     template,
   }),

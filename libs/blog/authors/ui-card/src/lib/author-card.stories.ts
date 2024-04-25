@@ -34,7 +34,7 @@ export const primary: Story = {
   args: {
     author,
   },
-  render: (args: AuthorCardComponent) => ({
+  render: (args) => ({
     props: args,
     template,
   }),

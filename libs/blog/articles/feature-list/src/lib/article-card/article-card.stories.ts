@@ -40,7 +40,7 @@ export const primary: Story = {
   args: {
     articleCard,
   },
-  render: (args: ArticleCardComponent) => ({
+  render: (args) => ({
     props: args,
     template,
   }),
