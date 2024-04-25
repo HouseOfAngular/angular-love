@@ -32,6 +32,12 @@
       ],
       "@angular-love/blog/home/ui": ["libs/blog/home/ui/src/index.ts"],
       "@angular-love/blog/layouts/ui": ["libs/blog/layouts/ui/src/index.ts"],
+      "@angular-love/blog/partners/ui/partners ": [
+        "libs/blog/partners/ui/ui-partners/src/index.ts"
+      ],
+      "@angular-love/blog/partners/ui/partners-list": [
+        "libs/blog/partners/ui/ui-partners-list/src/index.ts"
+      ],
       "@angular-love/blog/shared/ui/avatar": [
         "libs/blog/shared/ui/avatar/src/index.ts"
       ],
@@ -40,6 +46,9 @@
       ],
       "@angular-love/blog/shared/ui/card": [
         "libs/blog/shared/ui/card/src/index.ts"
+      ],
+      "@angular-love/blog/shared/ui/pagination": [
+        "libs/blog/shared/ui/pagination/src/index.ts"
       ],
       "@angular-love/blog/shared/ui/social-media-icons": [
         "libs/blog/shared/ui/social-media-icons/src/index.ts"

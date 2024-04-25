@@ -32,7 +32,7 @@ export const primary: Story = {
   args: {
     variant: 'Primary',
   },
-  render: (args: ButtonComponent) => ({
+  render: (args) => ({
     props: args,
     template,
   }),
@@ -42,7 +42,7 @@ export const outline: Story = {
   args: {
     variant: 'Outline',
   },
-  render: (args: ButtonComponent) => ({
+  render: (args) => ({
     props: args,
     template,
   }),

@@ -44,7 +44,7 @@ export const backgroundPrimary: Story = {
     article: article,
     cardType: layoutBackgroundPrimary,
   },
-  render: (args: UiArticleCardComponent) => ({
+  render: (args) => ({
     props: args,
     template: `
       <div class="w-[408px] h-[232px]">
@@ -61,7 +61,7 @@ export const backgroundSecondary: Story = {
     article: article,
     cardType: layoutBackgroundSecondary,
   },
-  render: (args: UiArticleCardComponent) => ({
+  render: (args) => ({
     props: args,
     template: `
      <div class="h-[430px]">
