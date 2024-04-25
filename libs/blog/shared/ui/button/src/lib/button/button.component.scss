@@ -20,4 +20,9 @@
     color: var(--color-primary);
     background: #ffffff;
   }
+
+  &--ghost {
+    background: transparent;
+    color: var(--color-primary);
+  }
 }
