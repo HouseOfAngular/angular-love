@@ -32,9 +32,9 @@ type Story = StoryObj<AuthorInfoComponent>;
 
 export const primary: Story = {
   args: {
-    author: author as any, //TODO: fix when storybook supports signal inputs
+    author: author,
   },
-  render: (args: AuthorInfoComponent) => ({
+  render: (args) => ({
     props: args,
     template: `
        <div class="flex gap-4 flex-col">
@@ -46,7 +46,7 @@ export const primary: Story = {
 
 export const skeleton: Story = {
   args: {},
-  render: (args: AuthorInfoSkeletonComponent) => ({
+  render: (args) => ({
     props: args,
     template: `
     <al-author-info-skeleton/>
@@ -64,7 +64,7 @@ export const withToLongData: Story = {
       description: longText.repeat(10),
       position: longText,
       avatarUrl: '/assets/storybook/author-image.jpg',
-    } as any, //TODO: fix when storybook supports signal inputs
+    },
   },
 };
 
@@ -75,6 +75,6 @@ export const withEmptyData: Story = {
       description: '',
       position: '',
       avatarUrl: '',
-    } as any, //TODO: fix when storybook supports signal inputs
+    },
   },
 };
