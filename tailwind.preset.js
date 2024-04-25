@@ -2,9 +2,6 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        'al-black': {
-          border: '#2E2F3B',
-        },
         'al-gray': {
           100: '#6A798B',
           200: '#2E2F3B',

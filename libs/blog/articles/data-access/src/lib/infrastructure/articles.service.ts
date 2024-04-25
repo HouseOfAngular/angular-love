@@ -17,7 +17,7 @@ export class ArticlesService {
     query: string | null;
   }): Observable<ArticlePreview[]> {
     return this._http.get<ArticlePreview[]>(
-      `${this._apiBaseUrl}/articles?query=${_data.query}`
+      `${this._apiBaseUrl}/articles?query=${_data.query}`,
     );
   }
 }
