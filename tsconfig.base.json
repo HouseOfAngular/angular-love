@@ -27,6 +27,12 @@
       "@angular-love/blog/authors/ui-card": [
         "libs/blog/authors/ui-card/src/index.ts"
       ],
+      "@angular-love/blog/authors/types/author-info-data-model": [
+        "libs/blog/authors/types/author-info-data-model/src/index.ts"
+      ],
+      "@angular-love/blog/authors/ui/author-info": [
+        "libs/blog/authors/ui/author-info/src/index.ts"
+      ],
       "@angular-love/blog/home/feature": [
         "libs/blog/home/feature/src/index.ts"
       ],

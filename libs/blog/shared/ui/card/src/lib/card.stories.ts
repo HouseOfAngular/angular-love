@@ -69,7 +69,7 @@ export const regular: Story = {
 export const withImage: Story = {
   args: {
     imageSrc:
-      'https://www.angular.love/wp-content/uploads/2023/10/Effortless-Angular-Deployment-with-Vercel-1.jpeg',
+      'https://www.angular.love/wp-content/uploads/2023/10/Effortless-Angular-Deployment-with-Vercel-1.jpeg' as any,
   },
   render: (args) => ({
     props: args,
@@ -86,7 +86,7 @@ export const withImage: Story = {
 export const highlighted: Story = {
   args: {
     imageSrc:
-      'https://www.angular.love/wp-content/uploads/2023/10/Effortless-Angular-Deployment-with-Vercel-1.jpeg',
+      'https://www.angular.love/wp-content/uploads/2023/10/Effortless-Angular-Deployment-with-Vercel-1.jpeg' as any,
   },
   render: (args) => ({
     props: args,
