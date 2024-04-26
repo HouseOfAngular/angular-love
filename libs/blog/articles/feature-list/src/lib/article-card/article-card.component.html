@@ -1,15 +1,15 @@
 <al-card
-  [imageSrc]="articleCard.featuredImageUrl"
-  [routerLink]="['/', articleCard.slug]"
   alCardHoverHighlight
   alCardLinkable
+  [imageSrc]="articleCard.featuredImageUrl"
+  [routerLink]="['/', articleCard.slug]"
 >
   <div alCardHeader>{{ articleCard.title }}</div>
   <div alCardContent>
     {{ articleCard.excerpt }}
   </div>
   <div alCardFooter>
-    <div class="flex items-center justify-between mt-4">
+    <div class="mt-4 flex items-center justify-between">
       <div class="flex items-center gap-2">
         <al-avatar [imageSrc]="articleCard.author.avatarUrl" />
         <span>{{ articleCard.author.name }}</span>
