@@ -1,8 +1,11 @@
 <section class="h-[100px] flex justify-between mb-8 ml-1">
-  @for (partner of partnersList; track partner.URL) {
-    <div class="w-[200px] h-[100px] bg-white mx-7 rounded-lg">
+  @for (partner of partnersList; track partner.asset_URL) {
+    <div
+      (click)="visitPage(partner.link_URL)"
+      class="w-[200px] h-[100px] bg-white mx-7 rounded-lg"
+    >
       <div class="w-full h-full flex items-center justify-center">
-        <img class="logo" [src]="partner.URL" [alt]="partner.alt" />
+        <img class="logo" [src]="partner.asset_URL" [alt]="partner.alt" />
       </div>
     </div>
   }
