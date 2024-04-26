@@ -1,5 +1,5 @@
-import { withCallState, withError } from './with-callstate.function';
 import { signalStore, withMethods, withState } from '@ngrx/signals';
+import { withCallState, withError } from './with-callstate.function';
 
 describe('withCallState', () => {
   describe('with default error type', () => {
@@ -9,9 +9,11 @@ describe('withCallState', () => {
       withCallState('fetch fruit list'),
       withMethods(() => {
         return {
-          foo: () => {},
+          foo: () => {
+            return;
+          },
         };
-      })
+      }),
     );
 
     const fruitListSignalStore = new FruitListSignalStore();
@@ -48,9 +50,11 @@ describe('withCallState', () => {
       withCallState('fetch fruit list', withError<string>()),
       withMethods(() => {
         return {
-          foo: () => {},
+          foo: () => {
+            return;
+          },
         };
-      })
+      }),
     );
 
     const fruitListSignalStore = new FruitListSignalStore();

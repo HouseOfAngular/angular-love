@@ -15,7 +15,7 @@ export type NavItem = {
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class NavigationComponent {
-  public readonly navItems: NavItem[] = [
+  readonly navItems: NavItem[] = [
     { title: 'About us', link: '' },
     { title: 'Angular Meetups', link: '' },
     { title: 'Become an author', link: '' },

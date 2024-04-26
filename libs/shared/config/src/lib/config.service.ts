@@ -12,7 +12,7 @@ export const CONFIG_OPTIONS = new InjectionToken<ConfigOptions>(
   'ConfigOptions',
   {
     factory: () => ({}),
-  }
+  },
 );
 
 @Injectable()
@@ -26,7 +26,7 @@ export class ConfigService {
 }
 
 export function provideConfig(
-  configOptions: ConfigOptions = {}
+  configOptions: ConfigOptions = {},
 ): EnvironmentProviders {
   return makeEnvironmentProviders([
     {

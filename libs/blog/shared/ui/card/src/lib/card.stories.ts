@@ -12,7 +12,7 @@ import { NgxSkeletonLoaderModule } from 'ngx-skeleton-loader';
 
 const meta: Meta<CardComponent> = {
   component: CardComponent,
-  title: 'Shared UI / Cards',
+  title: 'Shared ui / Cards',
   decorators: [
     moduleMetadata({
       imports: [
@@ -69,9 +69,9 @@ export const regular: Story = {
 export const withImage: Story = {
   args: {
     imageSrc:
-      'https://www.angular.love/wp-content/uploads/2023/10/Effortless-Angular-Deployment-with-Vercel-1.jpeg',
+      'https://www.angular.love/wp-content/uploads/2023/10/Effortless-Angular-Deployment-with-Vercel-1.jpeg' as any,
   },
-  render: (args: CardComponent) => ({
+  render: (args) => ({
     props: args,
     template: wrapper(`
       <al-card [imageSrc]="imageSrc">
@@ -86,9 +86,9 @@ export const withImage: Story = {
 export const highlighted: Story = {
   args: {
     imageSrc:
-      'https://www.angular.love/wp-content/uploads/2023/10/Effortless-Angular-Deployment-with-Vercel-1.jpeg',
+      'https://www.angular.love/wp-content/uploads/2023/10/Effortless-Angular-Deployment-with-Vercel-1.jpeg' as any,
   },
-  render: (args: CardComponent) => ({
+  render: (args) => ({
     props: args,
     template: wrapper(`
       <al-card alCardHoverHighlight>

@@ -17,7 +17,7 @@ const articleCard: UiArticleCard = {
   title: 'Angular Storybook',
   publishDate: new Date('2021-01-01').toISOString(),
   excerpt:
-    'Consider User Interface (UI) as an independent standalone layer made of small and reusable blocks -> first class citizens of every Angular app. Such an approach is called Component …',
+    'Consider User Interface (ui) as an independent standalone layer made of small and reusable blocks -> first class citizens of every Angular app. Such an approach is called Component …',
   featuredImageUrl: '/assets/storybook/article-featured-image.png',
   author: {
     name: 'Mateusz Dobrowolski',
@@ -40,7 +40,7 @@ export const primary: Story = {
   args: {
     articleCard,
   },
-  render: (args: ArticleCardComponent) => ({
+  render: (args) => ({
     props: args,
     template,
   }),

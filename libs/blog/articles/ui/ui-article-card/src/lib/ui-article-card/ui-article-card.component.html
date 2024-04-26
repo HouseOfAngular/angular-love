@@ -1,0 +1,17 @@
+@switch (cardType()) {
+  @case ('regular' || 'horizontal') {
+    <!--@todo add card-->
+  }
+  @case ('hero') {
+    <al-background-article-card
+      [article]="article()"
+      [layout]="'hero'"
+    ></al-background-article-card>
+  }
+  @case ('compact') {
+    <al-background-article-card
+      [article]="article()"
+      [layout]="'compact'"
+    ></al-background-article-card>
+  }
+}

@@ -65,7 +65,9 @@
     "@nx/angular:library": {
       "linter": "eslint",
       "unitTestRunner": "jest",
-      "prefix": "al"
+      "prefix": "al",
+      "style": "scss",
+      "changeDetection": "OnPush"
     },
     "@nx/angular:component": {
       "style": "scss",

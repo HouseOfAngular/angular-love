@@ -1,18 +1,18 @@
 <div
-  class="rounded-full overflow-hidden flex items-center justify-center bg-gray-200"
+  class="rounded-full overflow-hidden flex items-center justify-center bg-gray-200 border border-white"
   [ngStyle]="{
-  'height': sideLength() + 'px',
-  'width': sideLength() + 'px',
+    height: sideLength() + 'px',
+    width: sideLength() + 'px'
   }"
 >
   @if (imageSrc) {
-  <img
-    [ngSrc]="imageSrc"
-    [width]="sideLength()"
-    [height]="sideLength()"
-    alt="Avatar"
-  />
+    <img
+      [ngSrc]="imageSrc"
+      [width]="sideLength()"
+      [height]="sideLength()"
+      alt="Avatar"
+    />
   } @else {
-  <ng-icon name="heroUsers"></ng-icon>
+    <ng-icon name="heroUsers"></ng-icon>
   }
 </div>

@@ -1,8 +1,13 @@
-name = "blog-bff"
+main = "src/main.ts"
 account_id = ""
 route = ""
 workers_dev = true
 compatibility_date = "2023-11-12"
 
-[build]
-command = "nx run blog-bff:build"
+[env.prod]
+name = "blog-bff"
+vars = { IS_PROD = "true" }
+
+[env.dev]
+name = "blog-bff-dev"
+vars = { IS_PROD = "false" }

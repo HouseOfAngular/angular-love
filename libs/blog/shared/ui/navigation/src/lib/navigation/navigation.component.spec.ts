@@ -1,3 +1,4 @@
+// TODO integrate spectator here
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { NavigationComponent } from './navigation.component';
 
