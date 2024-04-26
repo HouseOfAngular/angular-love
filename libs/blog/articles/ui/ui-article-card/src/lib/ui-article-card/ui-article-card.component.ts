@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, input } from '@angular/core';
 import { BackgroundArticleCardComponent } from './components/background-card/background-article-card.component';
 
 export type UiArticleCardDataModel = {
@@ -14,10 +14,8 @@ export type UiArticleCardDataModel = {
   publishDate: string;
 };
 
-export type CardType = {
-  type: 'BACKGROUND_CARD' | 'CARD';
-  layout: 'PRIMARY' | 'SECONDARY';
-};
+export type CardType = 'regular' | 'horizontal' | 'compact' | 'hero';
+
 @Component({
   selector: 'al-ui-article-card',
   standalone: true,
@@ -27,6 +25,6 @@ export type CardType = {
   imports: [BackgroundArticleCardComponent],
 })
 export class UiArticleCardComponent {
-  @Input() cardType!: CardType;
-  @Input() article!: UiArticleCardDataModel;
+  cardType = input.required<CardType>();
+  article = input.required<UiArticleCardDataModel>();
 }

@@ -13,6 +13,8 @@ import { NgIcon, provideIcons } from '@ng-icons/core';
 import { bootstrapClock } from '@ng-icons/bootstrap-icons';
 import { RouterLink } from '@angular/router';
 
+export type Layout = 'compact' | 'hero';
+
 export type UiArticleCardDataModel = {
   title: string;
   excerpt: string;
@@ -26,8 +28,6 @@ export type UiArticleCardDataModel = {
   publishDate: string;
 };
 
-export type Layout = 'PRIMARY' | 'SECONDARY';
-
 @Directive({
   standalone: true,
   selector: '[alBackgroundCardDirective]',
@@ -37,7 +37,7 @@ export class AlBackgroundCardDirective implements OnInit {
   layout = input.required<Layout>();
 
   ngOnInit(): void {
-    this.layout() === 'PRIMARY'
+    this.layout() === 'compact'
       ? this.el.nativeElement.classList.add(
           'shadow-[inset_-100px_-200px_100px_100px_rgba(20,21,27,.85)]',
           'bg-cover',
@@ -58,7 +58,7 @@ export class AlBackgroundCardInfoDirective implements OnInit {
   layout = input.required<Layout>();
 
   ngOnInit(): void {
-    this.layout() === 'PRIMARY'
+    this.layout() === 'compact'
       ? this.el.nativeElement.classList.add('px-6', 'pt-6')
       : this.el.nativeElement.classList.add('px-8', 'pt-8');
   }
@@ -73,7 +73,7 @@ export class AlBackgroundCardContentDirective implements OnInit {
   layout = input.required<Layout>();
 
   ngOnInit(): void {
-    this.layout() === 'PRIMARY'
+    this.layout() === 'compact'
       ? this.el.nativeElement.classList.add('px-6', 'pt-8', 'pb-6')
       : this.el.nativeElement.classList.add('pt-44', 'px-8', 'pb-8');
   }

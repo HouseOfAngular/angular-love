@@ -1,17 +1,17 @@
-@switch (cardType) {
-  @case (cardType.type === 'CARD') {
-    //TO-DO-APPEND-NORMAL-CARD//
+@switch (cardType()) {
+  @case ('regular' || 'horizontal') {
+    <!--@todo add card-->
   }
-  @case (cardType.type === 'BACKGROUND_CARD') {
+  @case ('hero') {
     <al-background-article-card
-      [article]="article"
-      [layout]="cardType.layout"
+      [article]="article()"
+      [layout]="'hero'"
     ></al-background-article-card>
   }
-  @default {
+  @case ('compact') {
     <al-background-article-card
-      [article]="article"
-      [layout]="cardType.layout"
+      [article]="article()"
+      [layout]="'compact'"
     ></al-background-article-card>
   }
 }

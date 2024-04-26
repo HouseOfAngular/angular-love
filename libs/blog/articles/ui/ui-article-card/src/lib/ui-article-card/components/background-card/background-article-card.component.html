@@ -1,15 +1,14 @@
 <div
-  [routerLink]="['/', article().slug]"
-  alBackgroundCardDirective
   [layout]="layout()"
-  class=" border-solid border-2 border-al-black-border bg-no-repeat bg-[url({{
-    article().featuredImageUrl
-  }})]"
+  [routerLink]="['/', article().slug]"
+  [style.background-image]="'url(' + article().featuredImageUrl + ')'"
+  alBackgroundCardDirective
+  class="border-solid border-2 border-al-black-border bg-no-repeat"
 >
   <div
-    class="flex items-center justify-between"
-    alBackgroundCardInfoDirective
     [layout]="layout()"
+    alBackgroundCardInfoDirective
+    class="flex items-center justify-between"
   >
     <div class="flex items-center gap-2">
       <al-avatar [imageSrc]="article().author.avatarUrl" size="sm" />
@@ -19,7 +18,7 @@
     </div>
 
     <div class="flex items-center gap-2">
-      @if (layout() === 'SECONDARY') {
+      @if (layout() === 'hero') {
         <span class="font-medium text-sm/[14px] text-white">{{
           article().publishDate | date: 'mediumDate'
         }}</span>
@@ -29,7 +28,7 @@
     </div>
   </div>
 
-  <div alBackgroundCardContentDirective [layout]="layout()">
+  <div [layout]="layout()" alBackgroundCardContentDirective>
     <p class="font-bold text-2xl text-white">
       {{ article().title }}
     </p>

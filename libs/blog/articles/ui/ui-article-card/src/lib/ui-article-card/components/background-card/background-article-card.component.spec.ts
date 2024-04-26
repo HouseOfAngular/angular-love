@@ -1,7 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { BackgroundArticleCardComponent } from './background-article-card.component';
 
-//TO-DO-REPLACE-WITH-SPECTATOR//
+// @todo replace with spectator
 describe('BackgroundArticleCardComponent', () => {
   let component: BackgroundArticleCardComponent;
   let fixture: ComponentFixture<BackgroundArticleCardComponent>;

@@ -16,14 +16,8 @@ const article = {
   publishDate: new Date('2021-05-01').toISOString(),
 };
 
-const layoutBackgroundPrimary: CardType = {
-  type: 'BACKGROUND_CARD',
-  layout: 'PRIMARY',
-};
-const layoutBackgroundSecondary: CardType = {
-  type: 'BACKGROUND_CARD',
-  layout: 'SECONDARY',
-};
+const layoutCompact: CardType = 'compact';
+const layoutHero: CardType = 'hero';
 
 const meta: Meta<UiArticleCardComponent> = {
   component: UiArticleCardComponent,
@@ -42,7 +36,7 @@ type Story = StoryObj<UiArticleCardComponent>;
 export const backgroundPrimary: Story = {
   args: {
     article: article,
-    cardType: layoutBackgroundPrimary,
+    cardType: layoutCompact,
   },
   render: (args) => ({
     props: args,
@@ -59,7 +53,7 @@ export const backgroundPrimary: Story = {
 export const backgroundSecondary: Story = {
   args: {
     article: article,
-    cardType: layoutBackgroundSecondary,
+    cardType: layoutHero,
   },
   render: (args) => ({
     props: args,
