@@ -6,6 +6,7 @@ export const blogShellRoutes: Route[] = [
     path: '',
     component: LayoutComponent,
     children: [
+      //todo: handle wildcard route
       {
         path: '',
         pathMatch: 'full',
