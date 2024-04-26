@@ -71,7 +71,7 @@ export const withImage: Story = {
     imageSrc:
       'https://www.angular.love/wp-content/uploads/2023/10/Effortless-Angular-Deployment-with-Vercel-1.jpeg',
   },
-  render: (args: CardComponent) => ({
+  render: (args) => ({
     props: args,
     template: wrapper(`
       <al-card [imageSrc]="imageSrc">
@@ -88,7 +88,7 @@ export const highlighted: Story = {
     imageSrc:
       'https://www.angular.love/wp-content/uploads/2023/10/Effortless-Angular-Deployment-with-Vercel-1.jpeg',
   },
-  render: (args: CardComponent) => ({
+  render: (args) => ({
     props: args,
     template: wrapper(`
       <al-card alCardHoverHighlight>

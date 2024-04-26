@@ -19,9 +19,9 @@ export default meta;
 type Story = StoryObj<ButtonComponent>;
 const template = `
     <div style="display: flex; gap: 16px; padding: 16px;">
-        <button al-button [variant]="variant">label</button>
-        <a href="#" al-button [variant]="variant">other</a>
-        <button al-button [variant]="variant">
+        <button al-button [variant]="variant" [size]="size">label</button>
+        <a href="#" al-button [variant]="variant" [size]="size">other</a>
+        <button al-button [variant]="variant" [size]="size">
             <ng-icon name="heroUsers"></ng-icon>
             <span>click me</span>
         </button>
@@ -31,8 +31,9 @@ const template = `
 export const primary: Story = {
   args: {
     variant: 'Primary',
+    size: 'medium',
   },
-  render: (args: ButtonComponent) => ({
+  render: (args) => ({
     props: args,
     template,
   }),
@@ -41,8 +42,42 @@ export const primary: Story = {
 export const outline: Story = {
   args: {
     variant: 'Outline',
+    size: 'medium',
   },
-  render: (args: ButtonComponent) => ({
+  render: (args) => ({
+    props: args,
+    template,
+  }),
+};
+
+export const ghost: Story = {
+  args: {
+    variant: 'Ghost',
+    size: 'medium',
+  },
+  render: (args) => ({
+    props: args,
+    template,
+  }),
+};
+
+export const small: Story = {
+  args: {
+    variant: 'Outline',
+    size: 'small',
+  },
+  render: (args) => ({
+    props: args,
+    template,
+  }),
+};
+
+export const large: Story = {
+  args: {
+    variant: 'Outline',
+    size: 'large',
+  },
+  render: (args) => ({
     props: args,
     template,
   }),

@@ -32,7 +32,7 @@ app.use(
     wait: false,
     cacheName: 'al-bff',
     cacheControl: 'max-age=3600',
-  })
+  }),
 );
 
 app.use('*', async (c, next) => {

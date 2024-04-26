@@ -1,11 +1,37 @@
-import { Component, HostBinding, Input } from '@angular/core';
+import { Component, computed, input } from '@angular/core';
 
-export type AlButtonVariant = 'Primary' | 'Outline';
+import { ClassValue, clsx } from 'clsx';
+import { twMerge } from 'tailwind-merge';
+import { cva } from 'class-variance-authority';
 
-const hostClassMap: Record<AlButtonVariant, string> = {
-  Primary: 'al-button al-button--primary rounded-lg px-8 py-2',
-  Outline: 'al-button al-button--outline rounded-lg px-8 py-2',
-};
+export function cn(...inputs: ClassValue[]) {
+  return twMerge(clsx(inputs));
+}
+
+export type AlButtonVariant = 'Primary' | 'Outline' | 'Ghost';
+export type AlButtonSize = 'small' | 'medium' | 'large';
+
+const buttonVariants = cva(
+  `rounded-lg flex cursor-pointer items-center gap-2 no-underline disabled:cursor-[initial]`,
+  {
+    variants: {
+      variant: <Record<AlButtonVariant, string>>{
+        Primary: 'bg-al-primary text-white',
+        Outline: 'border border-al-primary bg-white text-al-primary',
+        Ghost: 'bg-transparent',
+      },
+      size: <Record<AlButtonSize, string>>{
+        small: 'py-2 px-4 text-xs',
+        medium: 'py-2 px-8 ',
+        large: 'text-xl py-3 px-10',
+      },
+    },
+    defaultVariants: {
+      size: 'medium',
+      variant: 'Primary',
+    },
+  },
+);
 
 @Component({
   // eslint-disable-next-line @angular-eslint/component-selector
@@ -14,12 +40,21 @@ const hostClassMap: Record<AlButtonVariant, string> = {
   imports: [],
   templateUrl: './button.component.html',
   styleUrls: ['./button.component.scss'],
+  // TODO: Uncomment once https://github.com/angular-eslint/angular-eslint/pull/1772 is resolved
+  // eslint-disable-next-line @angular-eslint/no-host-metadata-property
+  host: {
+    '[class]': 'class()',
+  },
 })
 export class ButtonComponent {
-  @Input() set variant(val: AlButtonVariant) {
-    this.hostClasses = hostClassMap[val];
-  }
+  variant = input<AlButtonVariant>();
 
-  @HostBinding('class')
-  hostClasses = '';
+  size = input<AlButtonSize>();
+
+  class = computed(() => {
+    return buttonVariants({
+      variant: this.variant(),
+      size: this.size(),
+    });
+  });
 }
