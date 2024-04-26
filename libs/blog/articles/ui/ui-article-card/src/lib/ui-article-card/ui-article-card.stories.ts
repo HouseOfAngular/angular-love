@@ -33,7 +33,7 @@ const meta: Meta<UiArticleCardComponent> = {
 export default meta;
 type Story = StoryObj<UiArticleCardComponent>;
 
-export const backgroundPrimary: Story = {
+export const compact: Story = {
   args: {
     article: article,
     cardType: layoutCompact,
@@ -50,7 +50,7 @@ export const backgroundPrimary: Story = {
   }),
 };
 
-export const backgroundSecondary: Story = {
+export const hero: Story = {
   args: {
     article: article,
     cardType: layoutHero,
