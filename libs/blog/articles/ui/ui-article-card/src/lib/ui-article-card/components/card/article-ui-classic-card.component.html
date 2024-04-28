@@ -11,7 +11,7 @@
       'w-[408px] h-[230px] rounded-b-lg': layout() === 'regular',
       'w-[880px] h-[220px] rounded-r-lg': layout() === 'horizontal'
     }"
-    class="bg-al-gray-medium"
+    class="bg-al-gray-300"
   >
     @if (layout() === 'VERTICAL') {
       <div class="flex items-center justify-between px-4 pt-4">
@@ -52,8 +52,6 @@
         </div>
       </div>
     }
-
-    px-4', 'pt-3', 'pb-4'
     <div
       [ngClass]="{
         'px-4 pt-3 pb-4': layout() === 'regular',

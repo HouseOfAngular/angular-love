@@ -20,19 +20,19 @@ export type ArticleData = {
 };
 
 @Component({
-  selector: 'al-ui-article-card',
+  selector: 'al-ui-article-classic-card',
   changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: true,
   imports: [AvatarComponent, NgIcon, DatePipe, NgOptimizedImage, NgClass],
-  templateUrl: './article-ui-card.component.html',
-  styleUrl: './article-ui-card.component.scss',
+  templateUrl: './article-ui-classic-card.component.html',
+  styleUrl: './article-ui-classic-card.component.scss',
   providers: [
     provideIcons({
       bootstrapClock,
     }),
   ],
 })
-export class ArticleUiCardComponent {
+export class ArticleUiClassicCardComponent {
   layout = input.required<Layout>();
   article = input.required<ArticleData>();
 }
