@@ -1,17 +1,17 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { ArticleUiCardComponent } from './article-ui-classic-card.component';
+import { ArticleUiClassicCardComponent } from './article-ui-classic-card.component';
 
 // @todo replace with spectator
-describe('ArticleUiCardComponent', () => {
-  let component: ArticleUiCardComponent;
-  let fixture: ComponentFixture<ArticleUiCardComponent>;
+describe('ArticleUiClassicCardComponent', () => {
+  let component: ArticleUiClassicCardComponent;
+  let fixture: ComponentFixture<ArticleUiClassicCardComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [ArticleUiCardComponent],
+      imports: [ArticleUiClassicCardComponent],
     }).compileComponents();
 
-    fixture = TestBed.createComponent(ArticleUiCardComponent);
+    fixture = TestBed.createComponent(ArticleUiClassicCardComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

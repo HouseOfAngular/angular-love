@@ -80,7 +80,7 @@ export const horizontal: Story = {
   render: (args) => ({
     props: args,
     template: `
-     <div class="h-[430px]">
+     <div style="width: 100%; height: 230px;">
       <al-ui-article-card [article]="article" [cardType]="cardType">
         <al-ui-article-classic-card [article]="article" [layout]="cardType.layout"></al-ui-article-classic-card>
       </al-ui-article-card>
@@ -96,7 +96,7 @@ export const regular: Story = {
   render: (args) => ({
     props: args,
     template: `
-     <div class="h-[430px]">
+     <div style="width: 460px; height: 600px;">
       <al-ui-article-card [article]="article" [cardType]="cardType">
         <al-ui-article-classic-card [article]="article" [layout]="cardType.layout"></al-ui-article-classic-card>
       </al-ui-article-card>

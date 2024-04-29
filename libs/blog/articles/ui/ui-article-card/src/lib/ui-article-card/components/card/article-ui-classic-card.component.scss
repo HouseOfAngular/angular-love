@@ -1,9 +1,17 @@
-.background-vertical {
-  height: 220px;
-  width: auto;
-}
-
-.background-horizontal {
-  width: 408px;
-  height: auto;
+.card {
+  background-color: aqua;
+  height: 100%;
+  &__content {
+    height: 50%;
+  }
+  &__image {
+    &--regular {
+      width: auto;
+      height: 50%;
+    }
+    &--horizontal {
+      width: 33%;
+      height: auto;
+    }
+  }
 }

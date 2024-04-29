@@ -1,7 +1,9 @@
 @switch (cardType()) {
   @case ('regular') {
-    <al-ui-article-classic-card [article]="article()" [layout]="'regular'">
-    </al-ui-article-classic-card>
+    <section class="h-full">
+      <al-ui-article-classic-card [article]="article()" [layout]="'regular'">
+      </al-ui-article-classic-card>
+    </section>
   }
   @case ('horizontal') {
     <al-ui-article-classic-card [article]="article()" layout="horizontal">
