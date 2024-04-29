@@ -6,7 +6,7 @@ import {
 import { inject } from '@angular/core';
 import { firstValueFrom } from 'rxjs';
 import { ArticlesService } from '../infrastructure/articles.service';
-import { Article } from '../contract/article';
+import { Article } from '@angular-love/contracts/articles';
 
 type ArticleDetailsState = {
   articleDetails: Article | null;

@@ -15,6 +15,7 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
+      "@angular-love/api": ["libs/blog-bff/articles/src/index.ts"],
       "@angular-love/blog/articles/data-access": [
         "libs/blog/articles/data-access/src/index.ts"
       ],
@@ -62,6 +63,9 @@
       "@angular-love/blog/shell/feature": [
         "libs/blog/shell/feature/src/index.ts"
       ],
+      "@angular-love/contracts/articles": [
+        "libs/blog-contracts/articles/src/index.ts"
+      ],
       "@angular-love/navigation": [
         "libs/blog/shared/ui/navigation/src/index.ts"
       ],
@@ -80,6 +84,7 @@
         "libs/blog/articles/types/small-article-card-data-model/src/index.ts"
       ],
       "@angular-love/storybook": ["libs/shared/storybook/src/index.ts"],
+      "@angular-love/util-wp": ["libs/blog-bff/shared/util-wp/src/index.ts"],
       "@angular-love/utils": ["libs/utils/src/index.ts"],
       "@angular-love/wp/graphql/data-access": [
         "libs/wp/graphql/data-access/src/index.ts"
