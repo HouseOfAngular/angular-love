@@ -1,49 +1,56 @@
 <div
   [ngClass]="{
-    'shadow-[inset_-100px_-200px_100px_100px_rgba(20,21,27,.85)] bg-cover':
-      layout() === 'compact',
-    'bg-center hover:bg-al-gradient-middle-bottom': layout() === 'hero'
+    'bg-cover': layout() === 'compact',
+    'bg-center hover:shadow-al-pink': layout() === 'hero'
   }"
-  [routerLink]="['/', article().slug]"
   [style.background-image]="'url(' + article().featuredImageUrl + ')'"
-  class="border-solid border-2 border-al-black-border bg-no-repeat"
+  class="bg-no-repeat rounded-lg"
 >
   <div
     [ngClass]="{
-      'px-6 pt-6': layout() === 'compact',
-      'px-8 pt-8': layout() === 'hero'
+      'shadow-[inset_-100px_-200px_100px_100px_rgba(20,21,27,.85)]':
+        layout() === 'compact',
+      'bg-al-gradient-black hover:bg-al-gradient-red-bottom rounded-lg':
+        layout() === 'hero'
     }"
-    class="flex items-center justify-between"
+    [routerLink]="['/', article().slug]"
   >
-    <div class="flex items-center gap-2">
-      <al-avatar [imageSrc]="article().author.avatarUrl" size="sm" />
-      <span class="font-medium text-sm/[14px] text-white">{{
-        article().author.name
-      }}</span>
-    </div>
-
-    <div class="flex items-center gap-2">
-      @if (layout() === 'hero') {
+    <div
+      [ngClass]="{
+        'px-6 pt-6': layout() === 'compact',
+        'px-8 pt-8': layout() === 'hero'
+      }"
+      class="flex items-center justify-between"
+    >
+      <div class="flex items-center gap-2">
+        <al-avatar [imageSrc]="article().author.avatarUrl" size="sm" />
         <span class="font-medium text-sm/[14px] text-white">{{
-          article().publishDate | date: 'mediumDate'
+          article().author.name
         }}</span>
-      }
-      <ng-icon class="text-white text-sm" name="bootstrapClock"></ng-icon>
-      <p class="text-white text-sm/[14px]">{{ article().readingTime }}min</p>
-    </div>
-  </div>
+      </div>
 
-  <div
-    [ngClass]="{
-      'px-6 pt-8 pb-6': layout() === 'compact',
-      'pt-44 px-8 pb-8': layout() === 'hero'
-    }"
-  >
-    <p class="font-bold text-2xl text-white">
-      {{ article().title }}
-    </p>
-    <p class="text-white text-base pt-2">
-      {{ article().excerpt }}
-    </p>
+      <div class="flex items-center gap-2">
+        @if (layout() === 'hero') {
+          <span class="font-medium text-sm/[14px] text-white">{{
+            article().publishDate | date: 'mediumDate'
+          }}</span>
+        }
+        <p class="text-white text-sm/[14px]">{{ article().readingTime }}min</p>
+        <ng-icon class="text-white text-sm" name="bootstrapClock"></ng-icon><
+      </div>
+    </div>
+    <div
+      [ngClass]="{
+        'px-6 pt-8 pb-6': layout() === 'compact',
+        'pt-44 px-8 pb-8 ': layout() === 'hero'
+      }"
+    >
+      <p class="font-bold text-2xl text-white">
+        {{ article().title }}
+      </p>
+      <p class="text-white text-base pt-2">
+        {{ article().excerpt }}
+      </p>
+    </div>
   </div>
 </div>

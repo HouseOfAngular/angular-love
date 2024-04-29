@@ -15,6 +15,7 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
+      "@angular-love/article-card-data-model": ["libs/blog/types/src/index.ts"],
       "@angular-love/blog/articles/data-access": [
         "libs/blog/articles/data-access/src/index.ts"
       ],

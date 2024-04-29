@@ -1,18 +1,6 @@
 import { ChangeDetectionStrategy, Component, input } from '@angular/core';
 import { BackgroundArticleCardComponent } from './components/background-card/background-article-card.component';
-
-export type UiArticleCardDataModel = {
-  title: string;
-  excerpt: string;
-  slug: string;
-  featuredImageUrl: string;
-  readingTime: number;
-  author: {
-    name: string;
-    avatarUrl: string;
-  };
-  publishDate: string;
-};
+import { ArticleCardDataModel } from '@angular-love/article-card-data-model';
 
 export type CardType = 'regular' | 'horizontal' | 'compact' | 'hero';
 
@@ -26,5 +14,5 @@ export type CardType = 'regular' | 'horizontal' | 'compact' | 'hero';
 })
 export class UiArticleCardComponent {
   cardType = input.required<CardType>();
-  article = input.required<UiArticleCardDataModel>();
+  article = input.required<ArticleCardDataModel>();
 }
