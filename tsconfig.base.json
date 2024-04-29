@@ -15,6 +15,8 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
+      "@angular-love/api": ["libs/blog-bff/articles/src/index.ts"],
+      "@angular-love/article-card-data-model": ["libs/blog/types/src/index.ts"],
       "@angular-love/blog/articles/data-access": [
         "libs/blog/articles/data-access/src/index.ts"
       ],
@@ -47,6 +49,9 @@
       "@angular-love/blog/shared/ui/avatar": [
         "libs/blog/shared/ui/avatar/src/index.ts"
       ],
+      "@angular-love/blog/shared/ui/breadcrumb": [
+        "libs/blog/shared/ui/breadcrumb/src/index.ts"
+      ],
       "@angular-love/blog/shared/ui/button": [
         "libs/blog/shared/ui/button/src/index.ts"
       ],
@@ -58,6 +63,12 @@
       ],
       "@angular-love/blog/shared/ui/social-media-icons": [
         "libs/blog/shared/ui/social-media-icons/src/index.ts"
+      ],
+      "@angular-love/blog/shell/feature": [
+        "libs/blog/shell/feature/src/index.ts"
+      ],
+      "@angular-love/contracts/articles": [
+        "libs/blog-contracts/articles/src/index.ts"
       ],
       "@angular-love/navigation": [
         "libs/blog/shared/ui/navigation/src/index.ts"
@@ -74,6 +85,7 @@
       "@angular-love/ui-article-card": [
         "libs/blog/articles/ui/ui-article-card/src/index.ts"
       ],
+      "@angular-love/util-wp": ["libs/blog-bff/shared/util-wp/src/index.ts"],
       "@angular-love/utils": ["libs/utils/src/index.ts"],
       "@angular-love/wp/graphql/data-access": [
         "libs/wp/graphql/data-access/src/index.ts"

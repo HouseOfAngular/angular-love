@@ -4,15 +4,15 @@ import {
   withComponentInputBinding,
   withEnabledBlockingInitialNavigation,
 } from '@angular/router';
-import { appRoutes } from './app.routes';
 import { provideHttpClient, withFetch } from '@angular/common/http';
 import { environment } from '../environments/environment';
 import { provideClientHydration } from '@angular/platform-browser';
+import { blogShellRoutes } from '@angular-love/blog/shell/feature';
 
 export const appConfig: ApplicationConfig = {
   providers: [
     provideRouter(
-      appRoutes,
+      blogShellRoutes,
       withEnabledBlockingInitialNavigation(),
       withComponentInputBinding(),
     ),

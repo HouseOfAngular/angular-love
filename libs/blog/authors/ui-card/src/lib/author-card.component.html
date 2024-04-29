@@ -1,15 +1,15 @@
 <al-card>
   <div alCardContent>
-    <div class="flex gap-6 items-center">
+    <div class="flex items-center gap-6">
       <al-avatar [imageSrc]="author.avatarUrl" size="md" />
       <div>
-        <span class="font-bold text-lg">{{ author.name }}</span>
+        <span class="text-lg font-bold">{{ author.name }}</span>
         <!-- FAKE ICONS -->
         <!-- WILL BE REPLACED WITH AUTHOR'S ACTUAL SOCIAL LINKS-->
         <al-social-media-icons class="flex justify-start" />
       </div>
     </div>
 
-    <div class="text-sm mt-4">{{ author.description }}</div>
+    <div class="mt-4 text-sm">{{ author.description }}</div>
   </div>
 </al-card>

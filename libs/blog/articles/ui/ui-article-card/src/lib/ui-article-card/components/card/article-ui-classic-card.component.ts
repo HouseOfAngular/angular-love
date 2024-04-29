@@ -3,21 +3,9 @@ import { AvatarComponent } from '@angular-love/blog/shared/ui/avatar';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { DatePipe, NgClass, NgOptimizedImage, NgStyle } from '@angular/common';
 import { bootstrapClock } from '@ng-icons/bootstrap-icons';
+import { ArticleCardDataModel } from '@angular-love/article-card-data-model';
 
 export type Layout = 'regular' | 'horizontal';
-
-export type ArticleData = {
-  title: string;
-  excerpt: string;
-  slug: string;
-  publishDate: string;
-  featuredImageUrl: string;
-  readingTime: number;
-  author: {
-    name: string;
-    avatarUrl: string;
-  };
-};
 
 @Component({
   selector: 'al-ui-article-classic-card',
@@ -41,5 +29,5 @@ export type ArticleData = {
 })
 export class ArticleUiClassicCardComponent {
   layout = input.required<Layout>();
-  article = input.required<ArticleData>();
+  article = input.required<ArticleCardDataModel>();
 }

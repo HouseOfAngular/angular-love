@@ -4,21 +4,9 @@ import { AvatarComponent } from '@angular-love/blog/shared/ui/avatar';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { bootstrapClock } from '@ng-icons/bootstrap-icons';
 import { RouterLink } from '@angular/router';
+import { ArticleCardDataModel } from '@angular-love/article-card-data-model';
 
 export type Layout = 'compact' | 'hero';
-
-export type UiArticleCardDataModel = {
-  title: string;
-  excerpt: string;
-  slug: string;
-  featuredImageUrl: string;
-  readingTime: number;
-  author: {
-    name: string;
-    avatarUrl: string;
-  };
-  publishDate: string;
-};
 
 @Component({
   selector: 'al-background-article-card',
@@ -33,6 +21,7 @@ export type UiArticleCardDataModel = {
     NgClass,
   ],
   templateUrl: './background-article-card.component.html',
+  //@todo replace bootstrap clock
   providers: [
     provideIcons({
       bootstrapClock,
@@ -41,5 +30,5 @@ export type UiArticleCardDataModel = {
 })
 export class BackgroundArticleCardComponent {
   layout = input.required<Layout>();
-  article = input.required<UiArticleCardDataModel>();
+  article = input.required<ArticleCardDataModel>();
 }

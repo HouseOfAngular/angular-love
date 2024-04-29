@@ -1,7 +1,7 @@
-<section class="h-[100px] flex justify-between mb-8 ml-1">
+<section class="mb-8 ml-1 flex h-[100px] justify-between">
   @for (partner of partnersList; track partner.URL) {
-    <div class="w-[200px] h-[100px] bg-white mx-7 rounded-lg">
-      <div class="w-full h-full flex items-center justify-center">
+    <div class="mx-7 h-[100px] w-[200px] rounded-lg bg-white">
+      <div class="flex h-full w-full items-center justify-center">
         <img class="logo" [src]="partner.URL" [alt]="partner.alt" />
       </div>
     </div>
