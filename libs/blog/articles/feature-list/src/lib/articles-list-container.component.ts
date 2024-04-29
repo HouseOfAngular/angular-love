@@ -1,7 +1,4 @@
-import {
-  ArticleListStore,
-  ArticlePreview,
-} from '@angular-love/blog/articles/data-access';
+import { ArticleListStore } from '@angular-love/blog/articles/data-access';
 import { RepeatDirective } from '@angular-love/utils';
 import { AsyncPipe, JsonPipe } from '@angular/common';
 import {
@@ -12,6 +9,7 @@ import {
 } from '@angular/core';
 import { ArticleCardSkeletonComponent } from './article-card/article-card-skeleton.component';
 import { ArticleCardComponent } from './article-card/article-card.component';
+import { ArticlePreview } from '@angular-love/contracts/articles';
 
 @Component({
   selector: 'al-articles-list',

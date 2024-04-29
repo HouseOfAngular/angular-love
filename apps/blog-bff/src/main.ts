@@ -12,6 +12,8 @@ import {
   LanguageCodeFilterEnum,
 } from '@angular-love/wp/graphql/data-access';
 import { toArticle, toArticlePreviewList } from './mappers';
+import { articles } from '@angular-love/api';
+import { HTTPException } from 'hono/http-exception';
 
 type Bindings = {
   GRAPHQL_URI: string;
@@ -52,6 +54,9 @@ app.use('*', async (c, next) => {
   await next();
 });
 
+/**
+ * @deprecated
+ */
 app.get('/articles', async (c) => {
   const result = await c.var.apolloClient.query({
     query: GetPosts,
@@ -64,6 +69,9 @@ app.get('/articles', async (c) => {
   return c.json(toArticlePreviewList(result));
 });
 
+/**
+ * @deprecated
+ */
 app.get('/articles/:slug', async (c) => {
   const slug = c.req.param('slug');
 
@@ -75,6 +83,15 @@ app.get('/articles/:slug', async (c) => {
   });
 
   return c.json(toArticle(result));
+});
+
+app.route('/v2/articles', articles);
+
+app.onError((err, c) => {
+  if (err instanceof HTTPException) {
+    return err.getResponse();
+  }
+  return c.text('Internal Server Error', 500);
 });
 
 export default app;

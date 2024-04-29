@@ -3,7 +3,7 @@ import { DatePipe, NgIf } from '@angular/common';
 import { AuthorCardComponent } from '@angular-love/blog/authors/ui-card';
 import { SocialMediaIconsComponent } from '@angular-love/blog/shared/ui/social-media-icons';
 import { ArticleContentComponent } from '../article-content/article-content.component';
-import { Article } from '@angular-love/blog/articles/data-access';
+import { Article } from '@angular-love/contracts/articles';
 
 @Component({
   selector: 'al-article-details',

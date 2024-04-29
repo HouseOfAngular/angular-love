@@ -3,11 +3,11 @@
     <li class="mr-auto">
       <button
         al-button
-        variant="Ghost"
         [disabled]="store.disabledPrevious()"
         (click)="setPreviousPage()"
+        variant="Ghost"
       >
-        <ng-icon class="mr-2" name="heroChevronLeft" />
+        <ng-icon name="heroChevronLeft" class="mr-2" />
         Previous
       </button>
     </li>
@@ -28,12 +28,12 @@
     <li class="ml-auto">
       <button
         al-button
-        variant="Ghost"
         [disabled]="store.disabledNext()"
         (click)="setNextPage()"
+        variant="Ghost"
       >
         Next
-        <ng-icon class="ml-2" name="heroChevronRight" />
+        <ng-icon name="heroChevronRight" class="ml-2" />
       </button>
     </li>
   </ul>
