@@ -8,9 +8,8 @@
 >
   <div
     [ngClass]="{
-      'shadow-[inset_-100px_-200px_100px_100px_rgba(20,21,27,.85)]':
-        layout() === 'compact',
-      'bg-al-gradient-black  hover:bg-al-black-red rounded-lg':
+      'bg-al-gray-600': layout() === 'compact',
+      'bg-al-gradient-black hover:bg-al-black-red rounded-lg':
         layout() === 'hero'
     }"
     [routerLink]="['/', article().slug]"
@@ -36,7 +35,8 @@
           }}</span>
         }
         <p class="text-white text-sm/[14px]">{{ article().readingTime }}min</p>
-        <ng-icon class="text-white text-sm" name="bootstrapClock"></ng-icon><
+        <ng-icon class="text-white text-sm" name="bootstrapClock"></ng-icon>
+        <
       </div>
     </div>
     <div
