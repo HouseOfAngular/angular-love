@@ -16,10 +16,10 @@ module.exports = {
       backgroundImage: {
         'al-gradient-red':
           'radial-gradient(58.54% 100% at 0% 100%, rgba(231, 4, 100, 0.2) 0%, rgba(20, 21, 27, 0.2) 100%)',
-        'al-gradient-red-bottom':
-          'radial-gradient(74.37% 74.37% at 50% 124.47%, rgba(231, 4, 100, 0.6) 0%, rgba(35, 36, 46, 0) 100%)',
         'al-gradient-black':
           'linear-gradient(180deg, #000000 0%, rgba(0, 0, 0, 0) 100%)',
+        'al-black-red':
+          'linear-gradient(180deg, #000000 0%, rgba(0, 0, 0, 0) 100%), radial-gradient(74.37% 74.37% at 50% 124.47%, rgba(231, 4, 100, 0.6) 0%, rgba(35, 36, 46, 0) 100%);',
       },
       boxShadow: {
         'al-dark': 'inset -100px -200px 100px 100px #14151bd9',
