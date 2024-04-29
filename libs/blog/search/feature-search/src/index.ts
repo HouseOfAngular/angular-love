@@ -1,1 +1,1 @@
-export * from './lib/blog-search-feature-search/blog-search-feature-search.component';
+export * from './lib/feature-search/feature-search.component';

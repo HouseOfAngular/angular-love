@@ -32,7 +32,7 @@ export class HomePageComponent {
   isSearchOpen = toSignal<boolean>(
     this.route.queryParamMap.pipe(
       map((map) => {
-        return map.get('isSearchOpen') === 'true' || true;
+        return map.get('isSearchOpen') === 'true' || false;
       }),
     ),
   );
