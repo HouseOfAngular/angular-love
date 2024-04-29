@@ -1,7 +1,6 @@
 import { Hit } from '@algolia/client-search';
 import {
   ArticleSearchResultDto,
-  SearchService,
   SearchStore,
 } from '@angular-love/blog/search/data-access';
 import {
@@ -29,11 +28,7 @@ import { debounceTime } from 'rxjs';
   templateUrl: './feature-search.component.html',
   styleUrl: './feature-search.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
-  providers: [
-    SearchService,
-    provideIcons({ heroMagnifyingGlass }),
-    SearchStore,
-  ],
+  providers: [provideIcons({ heroMagnifyingGlass })],
 })
 export class FeatureSearchComponent implements OnInit, OnDestroy {
   private readonly _searchStore = inject(SearchStore);
@@ -62,6 +57,13 @@ export class FeatureSearchComponent implements OnInit, OnDestroy {
   @HostListener('keydown', ['$event']) onKeyDown(e: KeyboardEvent): void {
     if (e.key === 'Escape') {
       this.closeSearch();
+    }
+    if (e.key === 'Enter') {
+      this.router.navigate(['search'], {
+        queryParams: {
+          q: this.searchForm.value,
+        },
+      });
     }
   }
 

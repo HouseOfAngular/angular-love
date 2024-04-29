@@ -1,3 +1,7 @@
+import {
+  SearchService,
+  SearchStore,
+} from '@angular-love/blog/search/data-access';
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { FooterComponent } from '../footer/footer.component';
@@ -10,5 +14,6 @@ import { HeaderComponent } from '../header/header.component';
   templateUrl: './layout.component.html',
   styleUrls: ['./layout.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
+  providers: [SearchService, SearchStore],
 })
 export class LayoutComponent {}

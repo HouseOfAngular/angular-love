@@ -62,6 +62,9 @@
       "@angular-love/blog/shared/ui/social-media-icons": [
         "libs/blog/shared/ui/social-media-icons/src/index.ts"
       ],
+      "@angular-love/feature-search-results-page": [
+        "libs/blog/search/feature-search-results-page/src/index.ts"
+      ],
       "@angular-love/navigation": [
         "libs/blog/shared/ui/navigation/src/index.ts"
       ],

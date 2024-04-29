@@ -3,9 +3,14 @@ import { Route } from '@angular/router';
 export const appRoutes: Route[] = [
   {
     path: '',
-    pathMatch: 'full',
     loadComponent: async () =>
       (await import('@angular-love/blog/home/feature')).HomePageComponent,
+  },
+  {
+    path: 'search',
+    loadComponent: async () =>
+      (await import('@angular-love/feature-search-results-page'))
+        .FeatureSearchResultsPageComponent,
   },
   {
     path: ':slug',
