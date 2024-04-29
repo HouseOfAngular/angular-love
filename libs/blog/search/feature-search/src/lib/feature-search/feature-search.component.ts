@@ -8,6 +8,7 @@ import {
   ChangeDetectionStrategy,
   Component,
   ElementRef,
+  HostListener,
   OnDestroy,
   OnInit,
   computed,
@@ -16,7 +17,7 @@ import {
 } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
-import { RouterLink } from '@angular/router';
+import { Router } from '@angular/router';
 import { NgIconComponent, provideIcons } from '@ng-icons/core';
 import { heroMagnifyingGlass } from '@ng-icons/heroicons/outline';
 import { debounceTime } from 'rxjs';
@@ -24,7 +25,7 @@ import { debounceTime } from 'rxjs';
 @Component({
   selector: 'al-feature-search',
   standalone: true,
-  imports: [ReactiveFormsModule, NgIconComponent, RouterLink],
+  imports: [ReactiveFormsModule, NgIconComponent],
   templateUrl: './feature-search.component.html',
   styleUrl: './feature-search.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -34,11 +35,13 @@ import { debounceTime } from 'rxjs';
     SearchStore,
   ],
 })
-export class BlogSearchFeatureSearchComponent implements OnInit, OnDestroy {
+export class FeatureSearchComponent implements OnInit, OnDestroy {
   private readonly _searchStore = inject(SearchStore);
 
   private readonly searchInput =
     viewChild.required<ElementRef<HTMLInputElement>>('searchInput');
+
+  private readonly router = inject(Router);
 
   searchForm = new FormControl('');
 
@@ -49,6 +52,18 @@ export class BlogSearchFeatureSearchComponent implements OnInit, OnDestroy {
   hits = computed<Hit<ArticleSearchResultDto>[]>(() => {
     return this._searchStore.results().hits;
   });
+
+  @HostListener('click', ['$event.target']) onClick(target: HTMLElement): void {
+    if (target.classList.contains('al-overlay')) {
+      this.closeSearch();
+    }
+  }
+
+  @HostListener('keydown', ['$event']) onKeyDown(e: KeyboardEvent): void {
+    if (e.key === 'Escape') {
+      this.closeSearch();
+    }
+  }
 
   constructor() {
     this.searchForm.valueChanges
@@ -65,5 +80,15 @@ export class BlogSearchFeatureSearchComponent implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {
     document.body.style.overflow = 'auto';
+  }
+
+  private closeSearch(): void {
+    this.router.navigate(['./'], {
+      queryParams: {
+        isSearchOpen: false,
+      },
+      queryParamsHandling: 'merge',
+      skipLocationChange: true,
+    });
   }
 }

@@ -1,6 +1,6 @@
 import { ArticlesListContainerComponent } from '@angular-love/blog/articles/feature-list';
 import { PartnersComponent } from '@angular-love/blog/partners/ui/partners';
-import { BlogSearchFeatureSearchComponent } from '@angular-love/blog/search/feature-search';
+import { FeatureSearchComponent } from '@angular-love/blog/search/feature-search';
 import { CardComponent } from '@angular-love/blog/shared/ui/card';
 import { NewsletterComponent } from '@angular-love/newsletter';
 import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
@@ -15,7 +15,7 @@ import { map } from 'rxjs';
   imports: [
     ArticlesListContainerComponent,
     NewsletterComponent,
-    BlogSearchFeatureSearchComponent,
+    FeatureSearchComponent,
     ReactiveFormsModule,
     CardComponent,
     ArticlesListContainerComponent,

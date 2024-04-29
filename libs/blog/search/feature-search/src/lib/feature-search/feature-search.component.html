@@ -1,14 +1,8 @@
 <div
-  class="bg-black bg-opacity-65 fixed w-full h-full top-0 left-0 z-30"
-  [routerLink]="['./']"
-  [queryParams]="{
-    isSearchOpen: false
-  }"
-  [queryParamsHandling]="'merge'"
-  [skipLocationChange]="true"
+  class="al-overlay fixed z-40 h-screen w-screen bg-black bg-opacity-60 top-0 left-0"
 >
   <div
-    class="bg-al-gray-300 w-full fixed m-auto top-[84px] rounded-tl-lg rounded-tr-lg z-31 pointer-events-none"
+    class="bg-al-gray-300 w-full relative m-auto top-[84px] rounded-tl-lg rounded-tr-lg z-50"
   >
     <div class="w-full p-4 border-b-al-gray-200 border-b">
       <div
@@ -35,7 +29,6 @@
         @for (hit of hits(); track $index) {
           <li
             class="p-6 flex flex-row justify-between border-b border-b-al-gray-200 last:border-none"
-            [routerLink]="[]"
           >
             <!-- LEFT SIDE -->
             <div class="flex flex-col items-start">
