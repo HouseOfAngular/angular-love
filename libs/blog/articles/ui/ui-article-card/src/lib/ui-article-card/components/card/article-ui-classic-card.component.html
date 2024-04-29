@@ -1,59 +1,59 @@
 <div
+  class="rounded-lg shadow-none hover:shadow-[0_0_0_1px_rgba(231,4,100,1)]"
   [ngClass]="{
-    'flex flex-col card': layout() === 'regular',
-    'flex flex-row w-full h-full': layout() === 'horizontal'
+    'card flex flex-col': layout() === 'regular',
+    'flex h-full w-full flex-row': layout() === 'horizontal'
   }"
-  class="shadow-none hover:shadow-[0_0_0_1px_rgba(231,4,100,1)] rounded-lg"
 >
   <img
     [ngClass]="{
-      'rounded-l-lg bg-contain card__image--horizontal':
+      'card__image--horizontal rounded-l-lg bg-contain':
         layout() === 'horizontal',
-      'rounded-t-lg card__image--regular': layout() === 'regular'
+      'card__image--regular rounded-t-lg': layout() === 'regular'
     }"
     [src]="article().featuredImageUrl"
   />
   <div
+    class="bg-al-gray-300"
     [ngClass]="{
-      'rounded-b-lg relative card__content': layout() === 'regular',
+      'card__content relative rounded-b-lg': layout() === 'regular',
       'w-full rounded-r-lg': layout() === 'horizontal'
     }"
-    class="bg-al-gray-300"
   >
     @if (layout() === 'regular') {
-      <div class="flex items-center justify-between px-4 pt-4 relative">
+      <div class="relative flex items-center justify-between px-4 pt-4">
         <div class="flex items-center gap-2">
-          <al-avatar size="sm" [imageSrc]="article().author.avatarUrl" />
-          <span class="font-medium text-sm/[14px] text-white">{{
-            article().author.name
-          }}</span>
+          <al-avatar [imageSrc]="article().author.avatarUrl" size="sm" />
+          <span class="text-sm/[14px] font-medium text-white">
+            {{ article().author.name }}
+          </span>
         </div>
         <div class="flex items-center gap-2">
-          <ng-icon class="text-white text-sm" name="bootstrapClock"></ng-icon>
-          <p class="text-white text-sm/[14px]">
+          <ng-icon name="bootstrapClock" class="text-sm text-white"></ng-icon>
+          <p class="text-sm/[14px] text-white">
             {{ article().readingTime }}min
           </p>
         </div>
       </div>
-      <div class="flex self-start pt-4 items-center justify-between px-4">
-        <span class="text-white font-medium text-sm/[14px]">{{
-          article().publishDate | date: 'mediumDate'
-        }}</span>
+      <div class="flex items-center justify-between self-start px-4 pt-4">
+        <span class="text-sm/[14px] font-medium text-white">
+          {{ article().publishDate | date: 'mediumDate' }}
+        </span>
       </div>
     } @else {
       <div class="flex items-center justify-between px-6 pt-4">
         <div class="flex items-center gap-2">
-          <al-avatar size="sm" [imageSrc]="article().author.avatarUrl" />
-          <span class="font-medium text-sm/[14px] text-white">{{
-            article().author.name
-          }}</span>
+          <al-avatar [imageSrc]="article().author.avatarUrl" size="sm" />
+          <span class="text-sm/[14px] font-medium text-white">
+            {{ article().author.name }}
+          </span>
         </div>
         <div class="flex items-center gap-2">
-          <span class="text-white text-sm/[14px]">{{
-            article().publishDate | date: 'mediumDate'
-          }}</span>
-          <ng-icon class="text-white text-sm" name="bootstrapClock"></ng-icon>
-          <p class="text-white text-sm/[14px]">
+          <span class="text-sm/[14px] text-white">
+            {{ article().publishDate | date: 'mediumDate' }}
+          </span>
+          <ng-icon name="bootstrapClock" class="text-sm text-white"></ng-icon>
+          <p class="text-sm/[14px] text-white">
             {{ article().readingTime }}min
           </p>
         </div>
@@ -61,18 +61,18 @@
     }
     <div
       [ngClass]="{
-        'px-4 pt-3 pb-4': layout() === 'regular',
+        'px-4 pb-4 pt-3': layout() === 'regular',
         'px-6 pt-8': layout() === 'horizontal'
       }"
     >
-      <p class="font-bold text-2xl text-white">
+      <p class="text-2xl font-bold text-white">
         {{ article().title }}
       </p>
       <p
+        class="text-base text-white"
         [ngClass]="{
           'pt-5': layout() === 'horizontal'
         }"
-        class="text-white text-base"
       >
         {{ article().excerpt }}
       </p>
