@@ -1,5 +1,5 @@
+import { Article } from '@angular-love/contracts/articles';
 import type { Meta, StoryObj } from '@storybook/angular';
-import { Article } from '@angular-love/blog/articles/data-access';
 import { ArticleDetailsComponent } from './article-details.component';
 
 const meta: Meta<ArticleDetailsComponent> = {
@@ -8,7 +8,7 @@ const meta: Meta<ArticleDetailsComponent> = {
 };
 
 const articleDetails: Article = {
-  title: 'Why Angular signals won’t replace RxJs',
+  title: "Why Angular signals won't replace RxJs",
   author: {
     name: 'John Smith',
     description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
