@@ -7,8 +7,8 @@ module.exports = {
           200: '#2E2F3B',
           300: '#23242E',
           400: '#16171D',
-          500: '#14151B',
-          600: '#14151bd9',
+          500: '#14151bd9',
+          600: '#14151B',
         },
         'al-blue': '#066aff',
         'al-pink': '#e70464',
@@ -23,7 +23,6 @@ module.exports = {
           'linear-gradient(180deg, #000000 0%, rgba(0, 0, 0, 0) 100%), radial-gradient(74.37% 74.37% at 50% 124.47%, rgba(231, 4, 100, 0.6) 0%, rgba(35, 36, 46, 0) 100%);',
       },
       boxShadow: {
-        'al-dark': 'inset -100px -200px 100px 100px #14151bd9',
         'al-pink': '0 0 0 1px #e70464',
       },
     },

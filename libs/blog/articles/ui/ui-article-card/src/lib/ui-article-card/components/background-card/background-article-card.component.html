@@ -8,7 +8,7 @@
 >
   <div
     [ngClass]="{
-      'bg-al-gray-600': layout() === 'compact',
+      'bg-al-gray-500': layout() === 'compact',
       'bg-al-gradient-black hover:bg-al-black-red rounded-lg':
         layout() === 'hero'
     }"
@@ -36,7 +36,6 @@
         }
         <p class="text-white text-sm/[14px]">{{ article().readingTime }}min</p>
         <ng-icon class="text-white text-sm" name="bootstrapClock"></ng-icon>
-        <
       </div>
     </div>
     <div
