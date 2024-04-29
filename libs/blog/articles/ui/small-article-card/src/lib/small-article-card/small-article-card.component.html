@@ -1,26 +1,26 @@
 <div
-  [routerLink]="['/', article().slug]"
   class="w-[408px] h-[232px] border-solid border-2 border-al-gray-300 bg-cover bg-no-repeat shadow-[inset_-100px_-200px_100px_100px_rgba(20,21,27,.85)] bg-[url({{
     article().featuredImageUrl
   }})]"
+  [routerLink]="['/', article().slug]"
 >
   <div class="flex items-center justify-between px-6 pt-6">
     <div class="flex items-center gap-2">
       <al-avatar [imageSrc]="article().author.avatarUrl" size="sm" />
-      <span class="font-medium text-sm/[14px] text-white">{{
-        article().author.name
-      }}</span>
+      <span class="text-sm/[14px] font-medium text-white">
+        {{ article().author.name }}
+      </span>
     </div>
     <div class="flex items-center gap-2">
-      <ng-icon class="text-white text-sm" name="bootstrapClock"></ng-icon>
-      <p class="text-white text-sm/[14px]">{{ article().readingTime }}min</p>
+      <ng-icon name="bootstrapClock" class="text-sm text-white"></ng-icon>
+      <p class="text-sm/[14px] text-white">{{ article().readingTime }}min</p>
     </div>
   </div>
   <div class="px-6 pt-8">
-    <p class="font-bold text-2xl text-white">
+    <p class="text-2xl font-bold text-white">
       {{ article().title }}
     </p>
-    <p class="text-white text-base pt-2">
+    <p class="pt-2 text-base text-white">
       {{ article().excerpt }}
     </p>
   </div>

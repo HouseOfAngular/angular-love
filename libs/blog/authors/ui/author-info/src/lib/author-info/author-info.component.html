@@ -1,0 +1,14 @@
+<al-author-info-template>
+  <ng-container author-info-card>
+    <al-avatar [imageSrc]="author().avatarUrl" size="md" />
+    <span class="line-clamp-2 font-bold leading-none">{{ author().name }}</span>
+    <span class="line-clamp-2 text-sm/none">{{ author().position }}</span>
+  </ng-container>
+
+  <ng-container author-info-description>
+    <div
+      class="mt-4 line-clamp-[20] text-sm"
+      [innerText]="author().description"
+    ></div>
+  </ng-container>
+</al-author-info-template>

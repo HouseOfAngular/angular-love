@@ -14,7 +14,7 @@ import { NgxSkeletonLoaderModule } from 'ngx-skeleton-loader';
     <div *ngIf="withImage">
       <div class="aspect-video">
         <ngx-skeleton-loader
-          class="w-full h-full"
+          class="h-full w-full"
           [theme]="{
             'margin-bottom': '0',
             height: '100%'

@@ -1,5 +1,5 @@
 <div
-  class="rounded-full overflow-hidden flex items-center justify-center bg-gray-200"
+  class="flex items-center justify-center overflow-hidden rounded-full border border-white bg-gray-200"
   [ngStyle]="{
     height: sideLength() + 'px',
     width: sideLength() + 'px'
@@ -7,10 +7,10 @@
 >
   @if (imageSrc) {
     <img
+      alt="Avatar"
       [ngSrc]="imageSrc"
       [width]="sideLength()"
       [height]="sideLength()"
-      alt="Avatar"
     />
   } @else {
     <ng-icon name="heroUsers"></ng-icon>

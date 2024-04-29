@@ -21,7 +21,7 @@ import { DatePipe } from '@angular/common';
         ></ngx-skeleton-loader>
       </div>
       <div alCardFooter>
-        <div class="flex items-center justify-between mt-4">
+        <div class="mt-4 flex items-center justify-between">
           <div class="flex items-center gap-2">
             <ngx-skeleton-loader
               [appearance]="'circle'"

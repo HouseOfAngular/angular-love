@@ -2,6 +2,7 @@ import { NgOptimizedImage } from '@angular/common';
 import {
   ChangeDetectionStrategy,
   Component,
+  computed,
   Directive,
   ElementRef,
   HostBinding,
@@ -69,7 +70,7 @@ export class CardLinkableDirective {
 export class GradientCardDirective {
   @HostBinding('class')
   get hostClasses() {
-    return 'border-al-gray-200 bg-al-gradient bg-al-gray-500 text-white';
+    return 'border border-al-gray-200 !bg-al-gradient bg-al-gray-500 text-white';
   }
 }
 
@@ -83,6 +84,7 @@ export class GradientCardDirective {
 })
 export class CardComponent {
   imageSrc = input<string>();
+
   ref: ElementRef<HTMLElement> = inject(ElementRef);
 
   @HostBinding('class')
