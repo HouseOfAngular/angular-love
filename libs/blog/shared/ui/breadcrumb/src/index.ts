@@ -1,1 +1,1 @@
-export * from './lib/blog-shared-ui-breadcrumb/blog-shared-ui-breadcrumb.component';
+export * from './lib/breadcrumb/breadcrumb.component';
