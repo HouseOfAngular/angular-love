@@ -3,13 +3,18 @@ import type { StatusCode } from 'hono/utils/http-status';
 
 type FetchConfig = Partial<Pick<RequestInit, 'method' | 'headers' | 'body'>>;
 
+export type WPRespone<T> = {
+  data: T;
+  headers: Headers;
+};
+
 export class WPRestClient {
   constructor(
     protected readonly baseUrl: string,
     protected readonly fetchConfig: FetchConfig,
   ) {}
 
-  get<T>(url: string, params: Record<string, string>): Promise<T> {
+  get<T>(url: string, params: Record<string, string>): Promise<WPRespone<T>> {
     const searchParams = new URLSearchParams(params);
     return this.request(`${url}?${searchParams.toString()}`, { method: 'GET' });
   }
@@ -17,7 +22,7 @@ export class WPRestClient {
   private async request<T>(
     url: string,
     { body, headers, method }: FetchConfig = {},
-  ): Promise<T> {
+  ): Promise<WPRespone<T>> {
     const request = await fetch(`${this.baseUrl}/wp-json/wp/v2/${url}`, {
       ...this.fetchConfig,
       method: method ?? 'GET',
@@ -35,6 +40,9 @@ export class WPRestClient {
       );
     }
 
-    return request.json<T>();
+    return {
+      data: await request.json(),
+      headers: request.headers,
+    };
   }
 }

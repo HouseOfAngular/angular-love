@@ -35,6 +35,10 @@
       "@angular-love/blog/authors/ui/author-info": [
         "libs/blog/authors/ui/author-info/src/index.ts"
       ],
+      "@angular-love/blog/bff/authors": ["libs/blog-bff/authors/src/index.ts"],
+      "@angular-love/blog/contracts/authors": [
+        "libs/blog-contracts/authors/src/index.ts"
+      ],
       "@angular-love/blog/home/feature": [
         "libs/blog/home/feature/src/index.ts"
       ],

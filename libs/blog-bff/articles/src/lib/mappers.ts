@@ -17,6 +17,7 @@ export const toArticlePreviewList = (data: WPPostDto[]): ArticlePreview[] => {
       featuredImageUrl: node.featured_image_url || '',
       publishDate: new Date(node.date || '').toISOString(),
       author: {
+        slug: node.author_details.slug || '',
         name: node.author_details.name || '',
         avatarUrl: node.author_details.avatar_url || '',
       },
@@ -63,6 +64,7 @@ export const toArticle = (dto?: WPPostDetailsDto): Article => {
     title: dto?.title.rendered || '',
     publishDate: dto?.date || '',
     author: {
+      slug: dto?.author_details.slug || '',
       name: dto?.author_details.name || '',
       description: dto?.author_details.description || '',
       avatarUrl: dto?.author_details?.avatar_url || '',
