@@ -33,7 +33,6 @@ export class PartnersListComponent {
   ];
 
   protected visitPage(url: string) {
-    if (url.length < 1) return;
     window.open(url, '_blank');
   }
 }
