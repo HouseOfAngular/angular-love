@@ -1,6 +1,6 @@
-import { Article } from '@angular-love/contracts/articles';
 import type { Meta, StoryObj } from '@storybook/angular';
 import { ArticleDetailsComponent } from './article-details.component';
+import { Article } from '@angular-love/contracts/articles';
 
 const meta: Meta<ArticleDetailsComponent> = {
   component: ArticleDetailsComponent,
