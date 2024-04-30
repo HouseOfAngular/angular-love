@@ -10,7 +10,7 @@ app.get('/:slug', wpClientMw, async (c) => {
 
   const result = await c.var.wpClient.get<WPAuthorDto[]>('users', {
     slug: slug,
-    _fields: 'slug,name,description,avatar_urls',
+    _fields: 'id,type,slug,name,description,avatar_urls',
   });
 
   return c.json(toAuthor(result.data[0]));
