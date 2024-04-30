@@ -1,10 +1,9 @@
 /* eslint-disable */
 export default {
-  displayName: 'small-article-card-data-model',
-  preset: '../../../../../jest.preset.js',
+  displayName: 'article-card-data-model',
+  preset: '../../../jest.preset.js',
   setupFilesAfterEnv: ['<rootDir>/src/test-setup.ts'],
-  coverageDirectory:
-    '../../../../../coverage/libs/blog/articles/types/small-article-card-data-model',
+  coverageDirectory: '../../../coverage/libs/blog/types',
   transform: {
     '^.+\\.(ts|mjs|js|html)$': [
       'jest-preset-angular',
