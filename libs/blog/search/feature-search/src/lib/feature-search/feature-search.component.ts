@@ -58,6 +58,7 @@ export class FeatureSearchComponent implements OnInit, OnDestroy {
     if (e.key === 'Escape') {
       this.closeSearch();
     }
+
     if (e.key === 'Enter') {
       this.router.navigate(['search'], {
         queryParams: {
@@ -77,6 +78,7 @@ export class FeatureSearchComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.searchInput().nativeElement.focus();
+    this._searchStore.updateQuery('');
     document.body.style.overflow = 'hidden';
   }
 

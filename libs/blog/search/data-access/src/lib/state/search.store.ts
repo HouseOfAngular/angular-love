@@ -34,7 +34,6 @@ const initialState: State = {
 };
 
 export const SearchStore = signalStore(
-  { providedIn: 'root' },
   withState(initialState),
   withMethods((store, searchService = inject(SearchService)) => ({
     updateQuery(query: string) {

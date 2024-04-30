@@ -1,1 +1,9 @@
-<p>feature-search-results-page works!</p>
+<p class="text-5xl">
+  Search:
+  <span class="text-al-pink">{{ results().query }}</span>
+  ({{ results().nbHits }})
+</p>
+
+@for (hit of results().hits; track $index) {
+  {{ hit.post_author.display_name }}
+}
