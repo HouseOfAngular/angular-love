@@ -1,6 +1,7 @@
 import { inject } from '@angular/core';
 import { patchState, signalStore, withMethods, withState } from '@ngrx/signals';
-import { firstValueFrom } from 'rxjs';
+import { rxMethod } from '@ngrx/signals/rxjs-interop';
+import { pipe, switchMap, tap } from 'rxjs';
 
 import { ArticlePreview } from '@angular-love/contracts/articles';
 import {
@@ -8,16 +9,19 @@ import {
   withCallState,
 } from '@angular-love/shared/utils-signal-store';
 
+import { ArticlesQuery } from '../dto/articles.query';
 import { ArticlesService } from '../infrastructure/articles.service';
 
 type ArticleListState = {
   articles: ArticlePreview[] | null;
-  query: string | null;
+  query: ArticlesQuery;
+  total: number;
 };
 
 const initialState: ArticleListState = {
   articles: null,
   query: null,
+  total: 0,
 };
 
 export const ArticleListStore = signalStore(
@@ -27,26 +31,35 @@ export const ArticleListStore = signalStore(
   withMethods(({ ...store }) => {
     const articlesService = inject(ArticlesService);
     return {
-      fetchArticleList: async (data: { query: string | null }) => {
-        patchState(store, {
-          query: data.query,
-          fetchArticleListCallState: LoadingState.LOADING,
-          articles: null,
-        });
-        try {
-          const articles = await firstValueFrom(
-            articlesService.getArticleList({ query: data.query }),
-          );
-          patchState(store, {
-            articles,
-            fetchArticleListCallState: LoadingState.LOADED,
-          });
-        } catch (error) {
-          patchState(store, {
-            fetchArticleListCallState: { error },
-          });
-        }
-      },
+      fetchArticleList: rxMethod<ArticlesQuery>(
+        pipe(
+          tap((query) =>
+            patchState(store, {
+              query: query,
+              fetchArticleListCallState: LoadingState.LOADING,
+              articles: null,
+            }),
+          ),
+
+          switchMap((query) =>
+            articlesService.getArticleList({ ...query }).pipe(
+              tap({
+                next: ({ data, total }) => {
+                  patchState(store, {
+                    articles: data,
+                    fetchArticleListCallState: LoadingState.LOADED,
+                    total,
+                  });
+                },
+                error: (error) =>
+                  patchState(store, {
+                    fetchArticleListCallState: { error },
+                  }),
+              }),
+            ),
+          ),
+        ),
+      ),
     };
   }),
 );
