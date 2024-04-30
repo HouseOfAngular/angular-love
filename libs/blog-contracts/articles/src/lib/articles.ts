@@ -1,3 +1,7 @@
+export const articleCategories = ['news', 'guides'] as const;
+
+export type ArticleCategory = (typeof articleCategories)[number];
+
 export interface ArticlePreview {
   slug: string;
   title: string;

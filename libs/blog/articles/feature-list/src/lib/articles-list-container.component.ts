@@ -39,6 +39,6 @@ export class ArticlesListContainerComponent {
     this.articleListStore.isFetchArticleListError;
 
   constructor() {
-    this.articleListStore.fetchArticleList({ query: null });
+    this.articleListStore.fetchArticleList(null);
   }
 }

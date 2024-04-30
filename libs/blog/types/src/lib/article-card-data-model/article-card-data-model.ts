@@ -3,7 +3,7 @@ export type ArticleCardDataModel = {
   excerpt: string;
   slug: string;
   featuredImageUrl: string;
-  readingTime: number;
+  readingTime: string;
   author: {
     name: string;
     avatarUrl: string;
