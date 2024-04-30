@@ -1,17 +1,20 @@
 .card {
-  background-color: aqua;
   height: 100%;
+
   &__content {
     height: 50%;
   }
+
   &__image {
     &--regular {
-      width: auto;
-      height: 50%;
+      width: 100%;
+      object-fit: cover;
+      object-position: center;
+      max-height: 50%;
     }
+
     &--horizontal {
-      width: 33%;
-      height: auto;
+      object-fit: cover;
     }
   }
 }
