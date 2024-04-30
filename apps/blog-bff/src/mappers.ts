@@ -5,10 +5,7 @@ import {
   GetPostBySlugQuery,
   GetPostsQuery,
 } from '@angular-love/wp/graphql/data-access';
-import {
-  Article,
-  ArticlePreview,
-} from '@angular-love/blog/articles/data-access';
+import { Article, ArticlePreview } from '@angular-love/contracts/articles';
 
 const DEFAULT_LANGUAGE_SUBSET = ['typescript', 'html', 'css', 'scss', 'json'];
 
@@ -25,6 +22,7 @@ export const toArticlePreviewList = (query: {
       featuredImageUrl: node.featuredImage?.node.sourceUrl || '',
       publishDate: new Date(node.date || '').toISOString(),
       author: {
+        slug: '',
         name: node.author?.node?.name || '',
         avatarUrl: node.author?.node?.avatar?.url || '',
       },
@@ -72,6 +70,7 @@ export const toArticle = (query: { data: GetPostBySlugQuery }): Article => {
     title: query.data.postBy?.title || '',
     publishDate: query.data.postBy?.date || '',
     author: {
+      slug: '',
       name: query.data.postBy?.author?.node.name || '',
       description: query.data.postBy?.author?.node.description || '',
       avatarUrl: query.data.postBy?.author?.node?.avatar?.url || '',

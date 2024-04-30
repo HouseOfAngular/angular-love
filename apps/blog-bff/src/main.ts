@@ -14,6 +14,7 @@ import {
 import { toArticle, toArticlePreviewList } from './mappers';
 import { articles } from '@angular-love/api';
 import { HTTPException } from 'hono/http-exception';
+import { authors } from '@angular-love/blog/bff/authors';
 
 type Bindings = {
   GRAPHQL_URI: string;
@@ -86,6 +87,7 @@ app.get('/articles/:slug', async (c) => {
 });
 
 app.route('/v2/articles', articles);
+app.route('/v2/authors', authors);
 
 app.onError((err, c) => {
   if (err instanceof HTTPException) {
