@@ -94,10 +94,7 @@
         "libs/blog/articles/ui/ui-article-card/src/index.ts"
       ],
       "@angular-love/util-wp": ["libs/blog-bff/shared/util-wp/src/index.ts"],
-      "@angular-love/utils": ["libs/utils/src/index.ts"],
-      "@angular-love/wp/graphql/data-access": [
-        "libs/wp/graphql/data-access/src/index.ts"
-      ]
+      "@angular-love/utils": ["libs/utils/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]
