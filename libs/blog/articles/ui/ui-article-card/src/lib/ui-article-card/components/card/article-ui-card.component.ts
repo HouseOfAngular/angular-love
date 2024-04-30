@@ -8,7 +8,7 @@ import { ArticleCardDataModel } from '@angular-love/article-card-data-model';
 export type Layout = 'regular' | 'horizontal';
 
 @Component({
-  selector: 'al-ui-article-classic-card',
+  selector: 'al-article-ui-card',
   changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: true,
   imports: [
@@ -19,15 +19,15 @@ export type Layout = 'regular' | 'horizontal';
     NgClass,
     NgStyle,
   ],
-  templateUrl: './article-ui-classic-card.component.html',
-  styleUrl: './article-ui-classic-card.component.scss',
+  templateUrl: './article-ui-card.component.html',
+  styleUrl: './article-ui-card.component.scss',
   providers: [
     provideIcons({
       bootstrapClock,
     }),
   ],
 })
-export class ArticleUiClassicCardComponent {
+export class ArticleUiCardComponent {
   layout = input.required<Layout>();
   article = input.required<ArticleCardDataModel>();
 }

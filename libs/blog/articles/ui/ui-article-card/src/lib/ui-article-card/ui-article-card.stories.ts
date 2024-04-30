@@ -1,7 +1,7 @@
 import { Meta, moduleMetadata, StoryObj } from '@storybook/angular';
 import { CardType, UiArticleCardComponent } from './ui-article-card.component';
-import { BackgroundArticleCardComponent } from './components/background-card/background-article-card.component';
-import { ArticleUiClassicCardComponent } from './components/card/article-ui-classic-card.component';
+import { ArticleUiBackgroundCardComponent } from './components/background-card/article-ui-background-card.component';
+import { ArticleUiCardComponent } from './components/card/article-ui-card.component';
 
 const article = {
   title: 'Angular Storybook',
@@ -25,13 +25,13 @@ const layoutHorizontal: CardType = 'horizontal';
 const meta: Meta<UiArticleCardComponent> = {
   component: UiArticleCardComponent,
   subcomponents: {
-    BackgroundArticleCardComponent,
-    ArticleUiClassicCardComponent,
+    ArticleUiBackgroundCardComponent: ArticleUiBackgroundCardComponent,
+    ArticleUiCardComponent: ArticleUiCardComponent,
   },
   title: 'Articles / UiArticleCardComponent',
   decorators: [
     moduleMetadata({
-      imports: [BackgroundArticleCardComponent, ArticleUiClassicCardComponent],
+      imports: [ArticleUiBackgroundCardComponent, ArticleUiCardComponent],
     }),
   ],
 };
@@ -49,7 +49,7 @@ export const compact: Story = {
     template: `
       <div class="w-[408px] h-[232px]">
         <al-ui-article-card [article]="article" [cardType]="cardType">
-          <al-background-article-card [article]="article" [layout]="cardType.layout"></al-background-article-card>
+          <al-article-ui-background-card [article]="article" [layout]="cardType.layout"></al-article-ui-background-card>
         </al-ui-article-card>
       </div>
     `,
@@ -66,7 +66,7 @@ export const hero: Story = {
     template: `
      <div class="h-[430px]">
       <al-ui-article-card [article]="article" [cardType]="cardType">
-        <al-background-article-card [article]="article" [layout]="cardType.layout"></al-background-article-card>
+        <al-article-ui-background-card [article]="article" [layout]="cardType.layout"></al-article-ui-background-card>
       </al-ui-article-card>
      </div>`,
   }),
@@ -82,7 +82,7 @@ export const horizontal: Story = {
     template: `
      <div style="width: 100%; height: 230px;">
       <al-ui-article-card [article]="article" [cardType]="cardType">
-        <al-ui-article-classic-card [article]="article" [layout]="cardType.layout"></al-ui-article-classic-card>
+        <al-article-ui-card [article]="article" [layout]="cardType.layout"></al-article-ui-card>
       </al-ui-article-card>
      </div>`,
   }),
@@ -98,7 +98,7 @@ export const regular: Story = {
     template: `
      <div style="width: 460px; height: 600px;">
       <al-ui-article-card [article]="article" [cardType]="cardType">
-        <al-ui-article-classic-card [article]="article" [layout]="cardType.layout"></al-ui-article-classic-card>
+        <al-article-ui-card [article]="article" [layout]="cardType.layout"></al-article-ui-card>
       </al-ui-article-card>
      </div>`,
   }),

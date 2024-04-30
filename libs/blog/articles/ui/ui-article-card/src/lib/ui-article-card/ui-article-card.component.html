@@ -1,28 +1,28 @@
 @switch (cardType()) {
   @case ('regular') {
     <section class="h-full">
-      <al-ui-article-classic-card
+      <al-article-ui-card
         [article]="article()"
         [layout]="'regular'"
-      ></al-ui-article-classic-card>
+      ></al-article-ui-card>
     </section>
   }
   @case ('horizontal') {
-    <al-ui-article-classic-card
+    <al-article-ui-card
       [article]="article()"
-      layout="horizontal"
-    ></al-ui-article-classic-card>
+      [layout]="'horizontal'"
+    ></al-article-ui-card>
   }
   @case ('hero') {
-    <al-background-article-card
+    <al-article-ui-background-card
       [article]="article()"
       [layout]="'hero'"
-    ></al-background-article-card>
+    ></al-article-ui-background-card>
   }
   @case ('compact') {
-    <al-background-article-card
+    <al-article-ui-background-card
       [article]="article()"
       [layout]="'compact'"
-    ></al-background-article-card>
+    ></al-article-ui-background-card>
   }
 }
