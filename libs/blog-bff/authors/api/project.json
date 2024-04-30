@@ -1,7 +1,7 @@
 {
-  "name": "blog-bff-authors",
-  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
-  "sourceRoot": "libs/blog-bff/authors/src",
+  "name": "api-authors",
+  "$schema": "../../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/blog-bff/authors/api/src",
   "prefix": "al",
   "projectType": "library",
   "tags": [],
@@ -10,7 +10,7 @@
       "executor": "@nx/jest:jest",
       "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
       "options": {
-        "jestConfig": "libs/blog-bff/authors/jest.config.ts"
+        "jestConfig": "libs/blog-bff/authors/api/jest.config.ts"
       }
     },
     "lint": {

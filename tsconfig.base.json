@@ -15,8 +15,13 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "@angular-love/api": ["libs/blog-bff/articles/src/index.ts"],
       "@angular-love/article-card-data-model": ["libs/blog/types/src/index.ts"],
+      "@angular-love/blog-bff/articles/api": [
+        "libs/blog-bff/articles/api/src/index.ts"
+      ],
+      "@angular-love/blog-bff/authors/api": [
+        "libs/blog-bff/authors/api/src/index.ts"
+      ],
       "@angular-love/blog/articles/data-access": [
         "libs/blog/articles/data-access/src/index.ts"
       ],
@@ -35,7 +40,6 @@
       "@angular-love/blog/authors/ui/author-info": [
         "libs/blog/authors/ui/author-info/src/index.ts"
       ],
-      "@angular-love/blog/bff/authors": ["libs/blog-bff/authors/src/index.ts"],
       "@angular-love/blog/contracts/authors": [
         "libs/blog-contracts/authors/src/index.ts"
       ],

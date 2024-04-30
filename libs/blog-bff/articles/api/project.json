@@ -1,23 +1,23 @@
 {
-  "name": "api",
-  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
-  "sourceRoot": "libs/blog-bff/articles/src",
+  "name": "api-articles",
+  "$schema": "../../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/blog-bff/articles/api/src",
   "projectType": "library",
+  "tags": [],
   "targets": {
     "lint": {
       "executor": "@nx/eslint:lint",
       "outputs": ["{options.outputFile}"],
       "options": {
-        "lintFilePatterns": ["libs/blog-bff/articles/**/*.ts"]
+        "lintFilePatterns": ["libs/blog-bff/articles/api/**/*.ts"]
       }
     },
     "test": {
       "executor": "@nx/jest:jest",
       "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
       "options": {
-        "jestConfig": "libs/blog-bff/articles/jest.config.ts"
+        "jestConfig": "libs/blog-bff/articles/api/jest.config.ts"
       }
     }
-  },
-  "tags": []
+  }
 }

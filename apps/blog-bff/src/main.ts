@@ -12,9 +12,9 @@ import {
   LanguageCodeFilterEnum,
 } from '@angular-love/wp/graphql/data-access';
 import { toArticle, toArticlePreviewList } from './mappers';
-import { articles } from '@angular-love/api';
+import { articles } from '@angular-love/blog-bff/articles/api';
 import { HTTPException } from 'hono/http-exception';
-import { authors } from '@angular-love/blog/bff/authors';
+import { authors } from '@angular-love/blog-bff/authors/api';
 
 type Bindings = {
   GRAPHQL_URI: string;

@@ -1,9 +1,9 @@
 /* eslint-disable */
 export default {
-  displayName: 'blog-bff-authors',
-  preset: '../../../jest.preset.js',
+  displayName: 'api-authors',
+  preset: '../../../../jest.preset.js',
   setupFilesAfterEnv: ['<rootDir>/src/test-setup.ts'],
-  coverageDirectory: '../../../coverage/libs/blog-bff/authors',
+  coverageDirectory: '../../../../coverage/libs/blog-bff/authors/api',
   transform: {
     '^.+\\.(ts|mjs|js|html)$': [
       'jest-preset-angular',
