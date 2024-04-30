@@ -1,4 +1,4 @@
-export type SmallArticleCardDataModel = {
+export type ArticleCardDataModel = {
   title: string;
   excerpt: string;
   slug: string;
@@ -8,4 +8,5 @@ export type SmallArticleCardDataModel = {
     name: string;
     avatarUrl: string;
   };
+  publishDate: string;
 };
