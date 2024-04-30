@@ -4,6 +4,17 @@
   ({{ results().nbHits }})
 </p>
 
-@for (hit of results().hits; track $index) {
-  {{ hit.post_author.display_name }}
-}
+<ul class="grid sm:grid-cols-1 md:grid-cols-2 md:gap-6 lg:grid-cols-1">
+  @for (article of mappedResults(); track $index) {
+    <!-- DESKTOP -->
+    <li class="my-3 hidden h-[200px] lg:block">
+      <al-ui-article-card [cardType]="'horizontal'" [article]="article" />
+    </li>
+
+    <!-- TABLET AND MOBILE -->
+    <li class="block lg:hidden">
+      <al-ui-article-card [cardType]="'regular'" [article]="article" />
+    </li>
+  }
+</ul>
+<al-newsletter />

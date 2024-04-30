@@ -15,4 +15,8 @@ export type ArticleSearchResultDto = {
   post_type: 'page';
   post_type_label: 'Pages';
   record_index: 0;
+  _highlightResult: {
+    content: { value: string };
+    post_title: { value: string };
+  };
 };

@@ -15,6 +15,7 @@ export const blogShellRoutes: Route[] = [
       },
       {
         path: 'search',
+        pathMatch: 'full',
         loadComponent: async () =>
           (await import('@angular-love/feature-search-results-page'))
             .FeatureSearchResultsPageComponent,
