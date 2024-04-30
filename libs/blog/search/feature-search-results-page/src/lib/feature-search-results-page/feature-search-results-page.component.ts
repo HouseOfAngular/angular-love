@@ -4,6 +4,11 @@ import {
   ArticleSearchResultDto,
   SearchStore,
 } from '@angular-love/blog/search/data-access';
+import { BreadcrumbComponent } from '@angular-love/blog/shared/ui/breadcrumb';
+import {
+  CardComponent,
+  GradientCardDirective,
+} from '@angular-love/blog/shared/ui/card';
 import { NewsletterComponent } from '@angular-love/newsletter';
 import { UiArticleCardComponent } from '@angular-love/ui-article-card';
 import {
@@ -22,7 +27,13 @@ import { mapToCardModel } from './search-dto-to-card-model.mapper';
   templateUrl: './feature-search-results-page.component.html',
   styleUrl: './feature-search-results-page.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [UiArticleCardComponent, NewsletterComponent],
+  imports: [
+    UiArticleCardComponent,
+    NewsletterComponent,
+    BreadcrumbComponent,
+    CardComponent,
+    GradientCardDirective,
+  ],
 })
 export class FeatureSearchResultsPageComponent implements OnInit {
   private readonly _searchStore = inject(SearchStore);

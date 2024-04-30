@@ -1,13 +1,16 @@
-<p class="text-5xl">
+<al-breadcrumb [pageName]="'search: ' + results().query" />
+<p class="mb-6 mt-8 text-5xl">
   Search:
   <span class="text-al-pink">{{ results().query }}</span>
   ({{ results().nbHits }})
 </p>
 
-<ul class="grid sm:grid-cols-1 md:grid-cols-2 md:gap-6 lg:grid-cols-1">
+<ul
+  class="grid gap-4 sm:grid-cols-1 md:grid-cols-2 md:gap-6 lg:grid-cols-1 lg:gap-0"
+>
   @for (article of mappedResults(); track $index) {
     <!-- DESKTOP -->
-    <li class="my-3 hidden h-[200px] lg:block">
+    <li class="my-3 hidden h-[220px] lg:block">
       <al-ui-article-card [cardType]="'horizontal'" [article]="article" />
     </li>
 
@@ -17,4 +20,6 @@
     </li>
   }
 </ul>
-<al-newsletter />
+<al-card alGradientCard class="hidden lg:block">
+  <al-newsletter alCardContent />
+</al-card>
