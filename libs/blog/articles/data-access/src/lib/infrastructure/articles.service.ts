@@ -2,7 +2,7 @@ import { inject, Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { ConfigService } from '@angular-love/shared/config';
 import { HttpClient } from '@angular/common/http';
-import { Article, ArticlePreview } from '../contract/article';
+import { Article, ArticlePreview } from '@angular-love/contracts/articles';
 
 @Injectable({ providedIn: 'root' })
 export class ArticlesService {

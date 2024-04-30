@@ -33,16 +33,20 @@
     "@ngrx/signals": "^17.0.1",
     "@nx/angular": "18.2.4",
     "cheerio": "1.0.0-rc.12",
+    "class-variance-authority": "^0.7.0",
+    "clsx": "^2.1.1",
     "express": "^4.18.2",
     "graphql": "^16.8.1",
     "graphql-tag": "^2.12.6",
     "highlight.js": "^11.9.0",
-    "hono": "^3.9.2",
+    "hono": "^4.2.7",
     "lint-staged": "^15.0.2",
     "ngx-skeleton-loader": "^8.1.0",
+    "prettier-plugin-organize-attributes": "^1.0.0",
     "rxjs": "~7.8.1",
     "sanitize-html": "^2.11.0",
     "stylelint": "^16.3.1",
+    "tailwind-merge": "^2.3.0",
     "tslib": "^2.6.1",
     "zone.js": "0.14.4"
   },
@@ -100,12 +104,13 @@
     "postcss-preset-env": "~7.5.0",
     "postcss-url": "~10.1.3",
     "prettier": "^3.2.5",
+    "prettier-plugin-tailwindcss": "^0.5.14",
     "storybook": "^8.1.0-alpha.7",
     "stylelint": "^16.3.1",
     "tailwindcss": "^3.3.6",
     "ts-jest": "^29.1.0",
     "ts-node": "10.9.1",
     "typescript": "5.4.5",
-    "wrangler": "^3.15.0"
+    "wrangler": "^3.52.0"
   }
 }
