@@ -1,7 +1,11 @@
-<section class="mb-8 flex h-[100px] w-full justify-between">
+<section
+  class="mb-8 grid grid-cols-2 gap-2 px-8 md:grid-cols-3 md:gap-6 lg:grid-cols-5 lg:gap-10"
+>
+  <!--  @todo-delte-this-placeholder-->
+  <div class="hidden lg:block"></div>
   @for (partner of partnersList; track partner.asset_URL) {
     <div
-      class="mx-8 h-[100px] w-[200px] rounded-lg bg-white hover:cursor-pointer"
+      class="aspect-[2/1] rounded-lg bg-white hover:cursor-pointer"
       (click)="visitPage(partner.link_URL)"
     >
       <div class="flex h-full w-full items-center justify-center">

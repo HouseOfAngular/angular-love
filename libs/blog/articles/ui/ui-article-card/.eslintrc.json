@@ -15,6 +15,7 @@
             "type": "attribute",
             "prefix": "al",
             "style": "camelCase"
+            //@todo-: remove when angular 18 fix
           }
         ],
         "@angular-eslint/component-selector": [
