@@ -6,6 +6,7 @@ import {
   provideRouter,
   withComponentInputBinding,
   withEnabledBlockingInitialNavigation,
+  withViewTransitions,
 } from '@angular/router';
 import { environment } from '../environments/environment';
 
@@ -15,6 +16,7 @@ export const appConfig: ApplicationConfig = {
       blogShellRoutes,
       withEnabledBlockingInitialNavigation(),
       withComponentInputBinding(),
+      withViewTransitions(),
     ),
     provideHttpClient(withFetch()),
     provideClientHydration(),

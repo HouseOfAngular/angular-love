@@ -9,7 +9,7 @@ import { ArticleCardDataModel } from '@angular-love/article-card-data-model';
 export type Layout = 'compact' | 'hero';
 
 @Component({
-  selector: 'al-background-article-card',
+  selector: 'al-article-ui-background-card',
   changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: true,
   imports: [
@@ -20,7 +20,7 @@ export type Layout = 'compact' | 'hero';
     DatePipe,
     NgClass,
   ],
-  templateUrl: './background-article-card.component.html',
+  templateUrl: './article-ui-background-card.component.html',
   //@todo replace bootstrap clock
   providers: [
     provideIcons({
@@ -28,7 +28,7 @@ export type Layout = 'compact' | 'hero';
     }),
   ],
 })
-export class BackgroundArticleCardComponent {
+export class ArticleUiBackgroundCardComponent {
   layout = input.required<Layout>();
   article = input.required<ArticleCardDataModel>();
 }

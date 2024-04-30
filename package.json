@@ -34,6 +34,7 @@
     "@ngrx/signals": "^17.0.1",
     "@nx/angular": "18.2.4",
     "algoliasearch": "^4.23.3",
+    "@tailwindcss/container-queries": "^0.1.1",
     "cheerio": "1.0.0-rc.12",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.1",

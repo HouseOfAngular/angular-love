@@ -15,5 +15,8 @@ import { HeaderComponent } from '../header/header.component';
   styleUrls: ['./layout.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
   providers: [SearchService, SearchStore],
+  host: {
+    class: 'min-h-screen grid grid-rows-[auto_1fr_auto]',
+  },
 })
 export class LayoutComponent {}
