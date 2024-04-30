@@ -1,0 +1,17 @@
+.card {
+  background-color: aqua;
+  height: 100%;
+  &__content {
+    height: 50%;
+  }
+  &__image {
+    &--regular {
+      width: auto;
+      height: 50%;
+    }
+    &--horizontal {
+      width: 33%;
+      height: auto;
+    }
+  }
+}

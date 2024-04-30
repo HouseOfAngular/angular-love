@@ -20,6 +20,7 @@ import { ArticlePreview } from '@angular-love/contracts/articles';
     RepeatDirective,
     AsyncPipe,
     JsonPipe,
+    ArticleCardComponent,
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: true,
