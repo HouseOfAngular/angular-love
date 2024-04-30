@@ -1,6 +1,5 @@
 import { ArticleCardDataModel } from '@angular-love/article-card-data-model';
 import { ChangeDetectionStrategy, Component, input } from '@angular/core';
-import { toObservable } from '@angular/core/rxjs-interop';
 import { ArticleUiBackgroundCardComponent } from './components/background-card/article-ui-background-card.component';
 import { ArticleUiCardComponent } from './components/card/article-ui-card.component';
 
@@ -17,8 +16,4 @@ export type CardType = 'regular' | 'horizontal' | 'compact' | 'hero';
 export class UiArticleCardComponent {
   cardType = input.required<CardType>();
   article = input.required<ArticleCardDataModel>();
-
-  constructor() {
-    toObservable(this.article).subscribe(console.log);
-  }
 }
