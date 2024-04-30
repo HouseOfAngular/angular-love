@@ -1,7 +1,7 @@
 <section class="mb-8 flex h-[100px] w-full justify-between">
   @for (partner of partnersList; track partner.asset_URL) {
     <div
-      class="mx-8 h-[100px] w-[200px] rounded-lg bg-white"
+      class="mx-8 h-[100px] w-[200px] rounded-lg bg-white hover:cursor-pointer"
       (click)="visitPage(partner.link_URL)"
     >
       <div class="flex h-full w-full items-center justify-center">
