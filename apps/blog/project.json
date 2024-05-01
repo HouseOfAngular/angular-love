@@ -7,7 +7,7 @@
   "tags": [],
   "targets": {
     "build": {
-      "executor": "@angular-devkit/build-angular:application",
+      "executor": "@nx/angular:application",
       "outputs": ["{options.outputPath}"],
       "options": {
         "outputPath": "dist/apps/blog",
@@ -27,7 +27,8 @@
         "stylePreprocessorOptions": {
           "includePaths": ["libs/shared/assets/src/lib/styles"]
         },
-        "scripts": []
+        "scripts": [],
+        "plugins": ["apps/blog/plugins/env-var-plugin.js"]
       },
       "configurations": {
         "production": {
@@ -61,7 +62,7 @@
       "defaultConfiguration": "production"
     },
     "serve": {
-      "executor": "@angular-devkit/build-angular:dev-server",
+      "executor": "@nx/angular:dev-server",
       "configurations": {
         "production": {
           "buildTarget": "blog:build:production"
