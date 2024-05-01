@@ -1,12 +1,11 @@
 import { provideConfig } from '@angular-love/shared/config';
+
 import { AppEnvironment } from './app-environment';
-import { devOverrides } from './dev-overrides';
 
 export const environment: AppEnvironment = {
   providers: [
     provideConfig({
-      apiBaseUrl: 'https://bff.ngdom.in',
+      apiBaseUrl: process.env.AL_API_URL,
     }),
-    ...devOverrides.providers,
   ],
 };
