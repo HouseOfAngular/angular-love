@@ -1,4 +1,5 @@
 import { Route } from '@angular/router';
+
 import { LayoutComponent } from '@angular-love/blog/layouts/ui';
 
 export const blogShellRoutes: Route[] = [

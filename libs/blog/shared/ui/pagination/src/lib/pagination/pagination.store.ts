@@ -1,3 +1,4 @@
+import { computed } from '@angular/core';
 import {
   patchState,
   signalStore,
@@ -7,7 +8,6 @@ import {
 } from '@ngrx/signals';
 import { rxMethod } from '@ngrx/signals/rxjs-interop';
 import { tap } from 'rxjs';
-import { computed } from '@angular/core';
 
 export type Page = {
   index: number;

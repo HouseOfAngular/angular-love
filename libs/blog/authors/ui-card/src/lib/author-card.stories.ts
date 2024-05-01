@@ -1,7 +1,8 @@
 import type { Meta, StoryObj } from '@storybook/angular';
 import { moduleMetadata } from '@storybook/angular';
-import { AuthorCardComponent, UiAuthorCard } from './author-card.component';
+
 import { AuthorCardSkeletonComponent } from './author-card-skeleton.component';
+import { AuthorCardComponent, UiAuthorCard } from './author-card.component';
 
 const meta: Meta<AuthorCardComponent> = {
   component: AuthorCardComponent,

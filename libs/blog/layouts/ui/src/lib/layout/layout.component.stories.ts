@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/angular';
+
 import { LayoutComponent } from './layout.component';
 
 const meta: Meta<LayoutComponent> = {

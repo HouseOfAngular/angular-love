@@ -1,7 +1,9 @@
-import { Article, ArticlePreview } from '@angular-love/contracts/articles';
 import * as cheerio from 'cheerio';
-import sanitizeHtml from 'sanitize-html';
 import hljs from 'highlight.js';
+import sanitizeHtml from 'sanitize-html';
+
+import { Article, ArticlePreview } from '@angular-love/contracts/articles';
+
 import { WPPostDetailsDto, WPPostDto } from './dtos';
 
 const DEFAULT_LANGUAGE_SUBSET = ['typescript', 'html', 'css', 'scss', 'json'];

@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/angular';
+
 import { SocialMediaIconsComponent } from './social-media-icons.component';
 
 const meta: Meta<SocialMediaIconsComponent> = {

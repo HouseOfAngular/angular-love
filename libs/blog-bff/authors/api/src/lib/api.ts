@@ -1,7 +1,9 @@
 import { Hono } from 'hono';
+
 import { wpClientMw } from '@angular-love/util-wp';
-import { toAuthor } from './mappers';
+
 import { WPAuthorDto } from './dtos';
+import { toAuthor } from './mappers';
 
 const app = new Hono();
 

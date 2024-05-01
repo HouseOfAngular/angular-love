@@ -4,11 +4,13 @@ import {
   inject,
   Signal,
 } from '@angular/core';
-import { ArticleDetailsStore } from '@angular-love/blog/articles/data-access';
 import { ActivatedRoute } from '@angular/router';
-import { ArticleDetailsComponent } from '../article-details/article-details.component';
-import { ArticleDetailsSkeletonComponent } from '../article-details/article-details-skeleton.component';
+
+import { ArticleDetailsStore } from '@angular-love/blog/articles/data-access';
 import { Article } from '@angular-love/contracts/articles';
+
+import { ArticleDetailsSkeletonComponent } from '../article-details/article-details-skeleton.component';
+import { ArticleDetailsComponent } from '../article-details/article-details.component';
 
 @Component({
   selector: 'al-article-details-container',

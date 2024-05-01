@@ -1,5 +1,8 @@
 import type { Meta, StoryObj } from '@storybook/angular';
 import { moduleMetadata } from '@storybook/angular';
+import { NgxSkeletonLoaderModule } from 'ngx-skeleton-loader';
+
+import { CardSkeletonComponent } from './card-skeleton.component';
 import {
   CardComponent,
   CardContentDirective,
@@ -7,8 +10,6 @@ import {
   CardHeaderDirective,
   CardHoverHighlightDirective,
 } from './card.component';
-import { CardSkeletonComponent } from './card-skeleton.component';
-import { NgxSkeletonLoaderModule } from 'ngx-skeleton-loader';
 
 const meta: Meta<CardComponent> = {
   component: CardComponent,

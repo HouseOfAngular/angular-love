@@ -1,5 +1,6 @@
-import { WPAuthorDto } from './dtos';
 import { Author } from '@angular-love/blog/contracts/authors';
+
+import { WPAuthorDto } from './dtos';
 
 export const toAuthor = (dto: WPAuthorDto): Author => {
   return {

@@ -4,9 +4,11 @@ import {
   moduleMetadata,
   StoryObj,
 } from '@storybook/angular';
-import { AuthorInfoComponent } from './author-info.component';
-import { AuthorInfoSkeletonComponent } from './author-info-skeleton.component';
+
 import { UiAuthorInfo } from '@angular-love/blog/authors/types/author-info-data-model';
+
+import { AuthorInfoSkeletonComponent } from './author-info-skeleton.component';
+import { AuthorInfoComponent } from './author-info.component';
 
 const meta: Meta<AuthorInfoComponent> = {
   component: AuthorInfoComponent,

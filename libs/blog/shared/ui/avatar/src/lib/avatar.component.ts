@@ -1,3 +1,4 @@
+import { NgOptimizedImage, NgStyle } from '@angular/common';
 import {
   ChangeDetectionStrategy,
   Component,
@@ -5,7 +6,6 @@ import {
   Input,
   signal,
 } from '@angular/core';
-import { NgOptimizedImage, NgStyle } from '@angular/common';
 import { NgIconComponent, provideIcons } from '@ng-icons/core';
 import { heroUsers } from '@ng-icons/heroicons/outline';
 

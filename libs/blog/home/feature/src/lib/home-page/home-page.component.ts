@@ -1,8 +1,9 @@
+import { ChangeDetectionStrategy, Component } from '@angular/core';
+
 import { ArticlesListContainerComponent } from '@angular-love/blog/articles/feature-list';
+import { PartnersComponent } from '@angular-love/blog/partners/ui/partners ';
 import { CardComponent } from '@angular-love/blog/shared/ui/card';
 import { NewsletterComponent } from '@angular-love/newsletter';
-import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { PartnersComponent } from '@angular-love/blog/partners/ui/partners ';
 
 @Component({
   selector: 'al-home-page',

@@ -1,7 +1,8 @@
-import type { Meta, StoryObj } from '@storybook/angular';
-import { FooterComponent } from './footer.component';
-import { moduleMetadata } from '@storybook/angular';
 import { NgIconComponent } from '@ng-icons/core';
+import type { Meta, StoryObj } from '@storybook/angular';
+import { moduleMetadata } from '@storybook/angular';
+
+import { FooterComponent } from './footer.component';
 
 const meta: Meta<FooterComponent> = {
   component: FooterComponent,
