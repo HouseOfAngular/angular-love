@@ -8,20 +8,21 @@ import { WPPostDetailsDto, WPPostDto } from './dtos';
 
 const DEFAULT_LANGUAGE_SUBSET = ['typescript', 'html', 'css', 'scss', 'json'];
 
-export const toArticlePreviewList = (data: WPPostDto[]): ArticlePreview[] => {
-  return (data || []).map((node) => {
-    const summary = cheerio.load(node.excerpt.render || '');
+export const toArticlePreviewList = (dtos: WPPostDto[]): ArticlePreview[] => {
+  return (dtos || []).map((dto) => {
+    const summary = cheerio.load(dto.excerpt.render || '');
 
     return {
-      slug: node.slug || '',
-      title: node.title.rendered || '',
+      slug: dto.slug || '',
+      title: dto.title.rendered || '',
       excerpt: summary.text(),
-      featuredImageUrl: node.featured_image_url || '',
-      publishDate: new Date(node.date || '').toISOString(),
+      featuredImageUrl: dto.featured_image_url || '',
+      publishDate: new Date(dto.date || '').toISOString(),
+      readingTime: dto.acf.reading_time.toString() || '5',
       author: {
-        slug: node.author_details.slug || '',
-        name: node.author_details.name || '',
-        avatarUrl: node.author_details.avatar_url || '',
+        slug: dto.author_details.slug || '',
+        name: dto.author_details.name || '',
+        avatarUrl: dto.author_details.avatar_url || '',
       },
     };
   });
@@ -65,6 +66,7 @@ export const toArticle = (dto?: WPPostDetailsDto): Article => {
   return {
     title: dto?.title.rendered || '',
     publishDate: dto?.date || '',
+    readingTime: dto.acf.reading_time.toString() || '5',
     author: {
       slug: dto?.author_details.slug || '',
       name: dto?.author_details.name || '',
