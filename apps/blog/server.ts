@@ -2,6 +2,7 @@ import { dirname, join, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { APP_BASE_HREF } from '@angular/common';
 import { CommonEngine } from '@angular/ssr';
+import compressionModule from 'compression';
 import express from 'express';
 
 import bootstrap from './src/main.server';
@@ -14,6 +15,8 @@ export function app(): express.Express {
   const indexHtml = join(serverDistFolder, 'index.server.html');
 
   const commonEngine = new CommonEngine();
+
+  server.use(compressionModule());
 
   server.set('view engine', 'html');
   server.set('views', browserDistFolder);
