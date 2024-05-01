@@ -1,4 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+
 import { UiArticleCardComponent } from './ui-article-card.component';
 
 // @todo replace with spectator

@@ -1,8 +1,9 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { CardSkeletonComponent } from '@angular-love/blog/shared/ui/card';
-import { NgxSkeletonLoaderModule } from 'ngx-skeleton-loader';
-import { AvatarComponent } from '@angular-love/blog/shared/ui/avatar';
 import { DatePipe } from '@angular/common';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { NgxSkeletonLoaderModule } from 'ngx-skeleton-loader';
+
+import { AvatarComponent } from '@angular-love/blog/shared/ui/avatar';
+import { CardSkeletonComponent } from '@angular-love/blog/shared/ui/card';
 
 @Component({
   standalone: true,

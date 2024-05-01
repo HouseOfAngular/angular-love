@@ -1,4 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+
 import { AuthorCardComponent } from './author-card.component';
 
 describe('BlogAuthorsUiCardComponent', () => {

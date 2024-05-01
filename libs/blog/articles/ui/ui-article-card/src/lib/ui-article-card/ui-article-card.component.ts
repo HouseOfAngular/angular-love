@@ -1,6 +1,8 @@
 import { ChangeDetectionStrategy, Component, input } from '@angular/core';
-import { ArticleUiBackgroundCardComponent } from './components/background-card/article-ui-background-card.component';
+
 import { ArticleCardDataModel } from '@angular-love/article-card-data-model';
+
+import { ArticleUiBackgroundCardComponent } from './components/background-card/article-ui-background-card.component';
 import { ArticleUiCardComponent } from './components/card/article-ui-card.component';
 
 export type CardType = 'regular' | 'horizontal' | 'compact' | 'hero';

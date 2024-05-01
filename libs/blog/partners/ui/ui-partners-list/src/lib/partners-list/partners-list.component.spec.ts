@@ -1,4 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+
 import { PartnersListComponent } from './partners-list.component';
 
 //TO-DO-REPLACE-WITH-SPECTATOR//

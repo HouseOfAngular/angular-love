@@ -1,12 +1,14 @@
+import { inject } from '@angular/core';
 import { patchState, signalStore, withMethods, withState } from '@ngrx/signals';
+import { firstValueFrom } from 'rxjs';
+
+import { ArticlePreview } from '@angular-love/contracts/articles';
 import {
   LoadingState,
   withCallState,
 } from '@angular-love/shared/utils-signal-store';
-import { inject } from '@angular/core';
-import { firstValueFrom } from 'rxjs';
+
 import { ArticlesService } from '../infrastructure/articles.service';
-import { ArticlePreview } from '@angular-love/contracts/articles';
 
 type ArticleListState = {
   articles: ArticlePreview[] | null;

@@ -1,4 +1,5 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
+
 import { PartnersListComponent } from '@angular-love/blog/partners/ui/partners-list';
 
 @Component({

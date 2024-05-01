@@ -6,15 +6,17 @@ import {
   input,
   output,
 } from '@angular/core';
-import { ButtonComponent } from '@angular-love/blog/shared/ui/button';
-import { NgIcon, provideIcons } from '@ng-icons/core';
-import { heroChevronLeft, heroChevronRight } from '@ng-icons/heroicons/outline';
-import { paginationStore } from './pagination.store';
-import { ActivatedRoute, Router } from '@angular/router';
 import {
   outputToObservable,
   takeUntilDestroyed,
 } from '@angular/core/rxjs-interop';
+import { ActivatedRoute, Router } from '@angular/router';
+import { NgIcon, provideIcons } from '@ng-icons/core';
+import { heroChevronLeft, heroChevronRight } from '@ng-icons/heroicons/outline';
+
+import { ButtonComponent } from '@angular-love/blog/shared/ui/button';
+
+import { paginationStore } from './pagination.store';
 
 export type PageChangeEvent = {
   skip: number;

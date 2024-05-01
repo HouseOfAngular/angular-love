@@ -1,9 +1,10 @@
-import { ChangeDetectionStrategy, Component, input } from '@angular/core';
-import { AvatarComponent } from '@angular-love/blog/shared/ui/avatar';
-import { NgIcon, provideIcons } from '@ng-icons/core';
 import { DatePipe, NgClass, NgOptimizedImage, NgStyle } from '@angular/common';
+import { ChangeDetectionStrategy, Component, input } from '@angular/core';
 import { bootstrapClock } from '@ng-icons/bootstrap-icons';
+import { NgIcon, provideIcons } from '@ng-icons/core';
+
 import { ArticleCardDataModel } from '@angular-love/article-card-data-model';
+import { AvatarComponent } from '@angular-love/blog/shared/ui/avatar';
 
 export type Layout = 'regular' | 'horizontal';
 

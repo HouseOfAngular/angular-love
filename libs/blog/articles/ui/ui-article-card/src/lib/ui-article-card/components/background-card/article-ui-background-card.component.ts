@@ -1,10 +1,11 @@
-import { ChangeDetectionStrategy, Component, input } from '@angular/core';
 import { DatePipe, NgClass, NgOptimizedImage } from '@angular/common';
-import { AvatarComponent } from '@angular-love/blog/shared/ui/avatar';
-import { NgIcon, provideIcons } from '@ng-icons/core';
-import { bootstrapClock } from '@ng-icons/bootstrap-icons';
+import { ChangeDetectionStrategy, Component, input } from '@angular/core';
 import { RouterLink } from '@angular/router';
+import { bootstrapClock } from '@ng-icons/bootstrap-icons';
+import { NgIcon, provideIcons } from '@ng-icons/core';
+
 import { ArticleCardDataModel } from '@angular-love/article-card-data-model';
+import { AvatarComponent } from '@angular-love/blog/shared/ui/avatar';
 
 export type Layout = 'compact' | 'hero';
 

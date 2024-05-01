@@ -1,4 +1,5 @@
 import { createMiddleware } from 'hono/factory';
+
 import { WPRestClient } from './wp-client';
 
 export const wpClientMw = createMiddleware<{
