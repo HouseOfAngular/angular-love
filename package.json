@@ -59,6 +59,8 @@
     "@angular/compiler-cli": "17.3.4",
     "@angular/language-service": "17.3.4",
     "@cloudflare/workers-types": "^4.20231025.0",
+    "@commitlint/cli": "^19.3.0",
+    "@commitlint/config-conventional": "^19.2.2",
     "@k11r/nx-cloudflare-wrangler": "^2.7.1",
     "@nx/esbuild": "18.2.4",
     "@nx/eslint": "18.2.4",
