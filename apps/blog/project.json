@@ -22,7 +22,8 @@
         "assets": ["apps/blog/src/favicon.ico", "apps/blog/src/assets"],
         "styles": [
           "apps/blog/src/styles.scss",
-          "libs/shared/assets/src/lib/styles/main.scss"
+          "libs/shared/assets/src/lib/styles/main.scss",
+          "highlight.js/styles/github-dark.min.css"
         ],
         "stylePreprocessorOptions": {
           "includePaths": ["libs/shared/assets/src/lib/styles"]
