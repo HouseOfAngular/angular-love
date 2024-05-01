@@ -4,6 +4,7 @@ export interface ArticlePreview {
   excerpt: string;
   featuredImageUrl: string;
   publishDate: string;
+  readingTime: string;
   author: {
     slug: string;
     name: string;
@@ -15,6 +16,7 @@ export interface Article {
   title: string;
   content: string;
   publishDate: string;
+  readingTime: string;
   author: {
     slug: string;
     name: string;

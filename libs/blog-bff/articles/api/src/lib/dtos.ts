@@ -14,7 +14,7 @@ export interface WPPostDto {
     avatar_url: string;
   };
   acf: {
-    reading_time: string;
+    reading_time: string | number;
   };
 }
 
@@ -34,6 +34,6 @@ export interface WPPostDetailsDto {
     description: string;
   };
   acf: {
-    reading_time: string;
+    reading_time: string | number;
   };
 }
