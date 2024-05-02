@@ -53,6 +53,7 @@ export const paginationStore = signalStore(
 
       return constructPagesArray({ current, last, edge: edge() });
     }),
+    page: computed(() => Math.floor(skip() / pageSize()) + 1),
   })),
 );
 

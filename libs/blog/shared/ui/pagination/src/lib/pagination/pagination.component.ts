@@ -1,16 +1,10 @@
 import {
   ChangeDetectionStrategy,
   Component,
-  Directive,
   inject,
   input,
   output,
 } from '@angular/core';
-import {
-  outputToObservable,
-  takeUntilDestroyed,
-} from '@angular/core/rxjs-interop';
-import { ActivatedRoute, Router } from '@angular/router';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { heroChevronLeft, heroChevronRight } from '@ng-icons/heroicons/outline';
 
@@ -52,6 +46,10 @@ export class PaginationComponent {
     this.store.setTotal(this.total);
   }
 
+  getCurrentPage() {
+    return this.store.page();
+  }
+
   setNextPage() {
     this.store.setNextPage();
     this.emitPageChange();
@@ -72,28 +70,5 @@ export class PaginationComponent {
       skip: this.store.skip(),
       take: this.store.pageSize(),
     });
-  }
-}
-
-@Directive({
-  selector: 'al-pagination[alQueryPagination]',
-  standalone: true,
-})
-export class QueryPaginationDirective {
-  readonly pagination = inject(PaginationComponent);
-
-  private readonly router = inject(Router);
-
-  private readonly route = inject(ActivatedRoute);
-
-  constructor() {
-    outputToObservable(this.pagination.pageChange)
-      .pipe(takeUntilDestroyed())
-      .subscribe(({ skip, take }) => {
-        this.router.navigate([], {
-          relativeTo: this.route,
-          queryParams: { skip, take },
-        });
-      });
   }
 }
