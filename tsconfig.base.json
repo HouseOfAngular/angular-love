@@ -40,6 +40,9 @@
       "@angular-love/blog/authors/data-access": [
         "libs/blog/authors/data-access/src/index.ts"
       ],
+      "@angular-love/blog/authors/feature-author": [
+        "libs/blog/authors/feature-author/src/index.ts"
+      ],
       "@angular-love/blog/authors/types/author-info-data-model": [
         "libs/blog/authors/types/author-info-data-model/src/index.ts"
       ],
