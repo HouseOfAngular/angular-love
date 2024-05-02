@@ -7,15 +7,17 @@ export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
 }
 
-export type AlButtonVariant = 'Primary' | 'Outline' | 'Ghost';
+//@todo rename to lower cases
+export type AlButtonVariant = 'Primary' | 'Outline' | 'Ghost' | 'secondary';
 export type AlButtonSize = 'small' | 'medium' | 'large';
 
 const buttonVariants = cva(
-  `rounded-lg flex cursor-pointer items-center gap-2 no-underline disabled:cursor-[initial]`,
+  `rounded-lg flex cursor-pointer items-center gap-2 no-underline disabled:cursor-[initial] disabled:opacity-50`,
   {
     variants: {
       variant: <Record<AlButtonVariant, string>>{
         Primary: 'bg-al-primary text-white',
+        secondary: 'bg-al-gray-600 text-white border border-al-gray-200',
         Outline: 'border border-al-primary bg-white text-al-primary',
         Ghost: 'bg-transparent',
       },
