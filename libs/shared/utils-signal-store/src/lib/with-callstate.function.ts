@@ -1,7 +1,8 @@
-import { Signal, computed } from '@angular/core';
+import { computed, Signal } from '@angular/core';
 import { signalStoreFeature, withComputed, withState } from '@ngrx/signals';
+
 import { CallState, LoadingState } from './callstate.type';
-import { CapitalizeWords, capitalize } from './helpers/capitalize.function';
+import { capitalize, CapitalizeWords } from './helpers/capitalize.function';
 import { Join } from './helpers/join.type';
 import { uncapitalize } from './helpers/uncapitalize.function';
 

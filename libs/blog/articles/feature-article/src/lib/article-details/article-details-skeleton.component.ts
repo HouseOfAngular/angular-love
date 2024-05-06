@@ -1,7 +1,9 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { CardSkeletonComponent } from '@angular-love/blog/shared/ui/card';
 import { NgxSkeletonLoaderModule } from 'ngx-skeleton-loader';
+
 import { AuthorCardSkeletonComponent } from '@angular-love/blog/authors/ui-card';
+import { CardSkeletonComponent } from '@angular-love/blog/shared/ui/card';
+
 import { ArticleContentSkeletonComponent } from '../article-content/article-content-skeleton.component';
 
 @Component({

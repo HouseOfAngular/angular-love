@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { NgxSkeletonLoaderModule } from 'ngx-skeleton-loader';
+
 import { AuthorInfoTemplateComponent } from './author-info-template.component';
 
 @Component({

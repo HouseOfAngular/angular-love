@@ -1,9 +1,10 @@
 import { Component } from '@angular/core';
+import { NgxSkeletonLoaderModule } from 'ngx-skeleton-loader';
+
 import {
   CardComponent,
   CardContentDirective,
 } from '@angular-love/blog/shared/ui/card';
-import { NgxSkeletonLoaderModule } from 'ngx-skeleton-loader';
 import { RepeatDirective } from '@angular-love/utils';
 
 @Component({

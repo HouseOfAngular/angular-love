@@ -15,8 +15,13 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "@angular-love/api": ["libs/blog-bff/articles/src/index.ts"],
       "@angular-love/article-card-data-model": ["libs/blog/types/src/index.ts"],
+      "@angular-love/blog-bff/articles/api": [
+        "libs/blog-bff/articles/api/src/index.ts"
+      ],
+      "@angular-love/blog-bff/authors/api": [
+        "libs/blog-bff/authors/api/src/index.ts"
+      ],
       "@angular-love/blog/articles/data-access": [
         "libs/blog/articles/data-access/src/index.ts"
       ],
@@ -26,6 +31,12 @@
       "@angular-love/blog/articles/feature-list": [
         "libs/blog/articles/feature-list/src/index.ts"
       ],
+      "@angular-love/blog/articles/feature/news": [
+        "libs/blog/articles/feature-news/src/index.ts"
+      ],
+      "@angular-love/blog/articles/feature/shell": [
+        "libs/blog/articles/feature-shell/src/index.ts"
+      ],
       "@angular-love/blog/authors/types/author-info-data-model": [
         "libs/blog/authors/types/author-info-data-model/src/index.ts"
       ],
@@ -34,6 +45,9 @@
       ],
       "@angular-love/blog/authors/ui/author-info": [
         "libs/blog/authors/ui/author-info/src/index.ts"
+      ],
+      "@angular-love/blog/contracts/authors": [
+        "libs/blog-contracts/authors/src/index.ts"
       ],
       "@angular-love/blog/home/feature": [
         "libs/blog/home/feature/src/index.ts"
@@ -98,10 +112,7 @@
         "libs/blog/articles/ui/ui-article-card/src/index.ts"
       ],
       "@angular-love/util-wp": ["libs/blog-bff/shared/util-wp/src/index.ts"],
-      "@angular-love/utils": ["libs/utils/src/index.ts"],
-      "@angular-love/wp/graphql/data-access": [
-        "libs/wp/graphql/data-access/src/index.ts"
-      ]
+      "@angular-love/utils": ["libs/utils/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]

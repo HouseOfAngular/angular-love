@@ -40,8 +40,8 @@ Thumbs.db
 
 .nx/cache
 .angular
-/**/environments/dev-overrides.ts
 .wrangler
 
-# bff secrets
+# secrets
 .dev.vars
+.env.*

@@ -1,7 +1,3 @@
-import {
-  CardComponent,
-  GradientCardDirective,
-} from '@angular-love/blog/shared/ui/card';
 import { ChangeDetectionStrategy, Component, signal } from '@angular/core';
 import {
   FormControl,
@@ -11,6 +7,12 @@ import {
 } from '@angular/forms';
 import { NgIconComponent, provideIcons } from '@ng-icons/core';
 import { tablerSend } from '@ng-icons/tabler-icons';
+
+import {
+  CardComponent,
+  GradientCardDirective,
+} from '@angular-love/blog/shared/ui/card';
+
 import { NewsletterSuccessComponent } from './newsletter-success/newsletter-success.component';
 
 export type NewsletterFormState = 'INITIAL' | 'SUCCESS';

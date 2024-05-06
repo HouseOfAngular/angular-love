@@ -1,4 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+
 import { NewsletterSuccessComponent } from './newsletter-success.component';
 
 describe('NewsletterSuccessComponent', () => {
