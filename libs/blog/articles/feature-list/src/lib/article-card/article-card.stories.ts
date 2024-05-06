@@ -1,7 +1,8 @@
 import type { Meta, StoryObj } from '@storybook/angular';
 import { moduleMetadata } from '@storybook/angular';
-import { ArticleCardComponent, UiArticleCard } from './article-card.component';
+
 import { ArticleCardSkeletonComponent } from './article-card-skeleton.component';
+import { ArticleCardComponent, UiArticleCard } from './article-card.component';
 
 const meta: Meta<ArticleCardComponent> = {
   component: ArticleCardComponent,

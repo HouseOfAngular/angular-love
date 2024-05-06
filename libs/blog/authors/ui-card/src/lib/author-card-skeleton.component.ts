@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
-import { CardSkeletonComponent } from '@angular-love/blog/shared/ui/card';
 import { NgxSkeletonLoaderModule } from 'ngx-skeleton-loader';
+
 import { AvatarComponent } from '@angular-love/blog/shared/ui/avatar';
+import { CardSkeletonComponent } from '@angular-love/blog/shared/ui/card';
 import { SocialMediaIconsComponent } from '@angular-love/blog/shared/ui/social-media-icons';
 
 @Component({

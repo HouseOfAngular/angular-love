@@ -1,8 +1,9 @@
-import { SocialMediaIconsComponent } from '@angular-love/blog/shared/ui/social-media-icons';
-import { NavigationComponent } from '@angular-love/navigation';
 import { NgOptimizedImage } from '@angular/common';
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { NgIconComponent } from '@ng-icons/core';
+
+import { SocialMediaIconsComponent } from '@angular-love/blog/shared/ui/social-media-icons';
+import { NavigationComponent } from '@angular-love/navigation';
 
 @Component({
   selector: 'al-footer',

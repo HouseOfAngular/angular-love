@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/angular';
+
 import { ArticleDetailsSkeletonComponent } from './article-details-skeleton.component';
 
 const meta: Meta<ArticleDetailsSkeletonComponent> = {

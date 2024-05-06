@@ -1,10 +1,11 @@
-import { SocialMediaIconsComponent } from '@angular-love/blog/shared/ui/social-media-icons';
-import { NavigationComponent } from '@angular-love/navigation';
 import { NgOptimizedImage } from '@angular/common';
 import { ChangeDetectionStrategy, Component, input } from '@angular/core';
 import { RouterLink, RouterLinkActive } from '@angular/router';
 import { NgIconComponent, provideIcons } from '@ng-icons/core';
 import { heroMagnifyingGlass } from '@ng-icons/heroicons/outline';
+
+import { SocialMediaIconsComponent } from '@angular-love/blog/shared/ui/social-media-icons';
+import { NavigationComponent } from '@angular-love/navigation';
 
 @Component({
   standalone: true,

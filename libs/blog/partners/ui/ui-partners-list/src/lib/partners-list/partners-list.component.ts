@@ -1,3 +1,4 @@
+import { NgOptimizedImage } from '@angular/common';
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 
 export type PartnerData = {
@@ -12,6 +13,7 @@ export type PartnerData = {
   changeDetection: ChangeDetectionStrategy.OnPush,
   templateUrl: './partners-list.component.html',
   styleUrl: './partners-list.component.scss',
+  imports: [NgOptimizedImage],
 })
 export class PartnersListComponent {
   protected readonly partnersList: PartnerData[] = [

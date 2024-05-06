@@ -1,5 +1,3 @@
-import { ArticleListStore } from '@angular-love/blog/articles/data-access';
-import { RepeatDirective } from '@angular-love/utils';
 import { AsyncPipe, JsonPipe } from '@angular/common';
 import {
   ChangeDetectionStrategy,
@@ -7,9 +5,13 @@ import {
   inject,
   Signal,
 } from '@angular/core';
+
+import { ArticleListStore } from '@angular-love/blog/articles/data-access';
+import { ArticlePreview } from '@angular-love/contracts/articles';
+import { RepeatDirective } from '@angular-love/utils';
+
 import { ArticleCardSkeletonComponent } from './article-card/article-card-skeleton.component';
 import { ArticleCardComponent } from './article-card/article-card.component';
-import { ArticlePreview } from '@angular-love/contracts/articles';
 
 @Component({
   selector: 'al-articles-list',

@@ -1,4 +1,7 @@
+import { DatePipe, NgOptimizedImage } from '@angular/common';
 import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
+
+import { AvatarComponent } from '@angular-love/blog/shared/ui/avatar';
 import {
   CardComponent,
   CardContentDirective,
@@ -7,8 +10,6 @@ import {
   CardHoverHighlightDirective,
   CardLinkableDirective,
 } from '@angular-love/blog/shared/ui/card';
-import { AvatarComponent } from '@angular-love/blog/shared/ui/avatar';
-import { DatePipe, NgOptimizedImage } from '@angular/common';
 
 export interface UiArticleCard {
   title: string;

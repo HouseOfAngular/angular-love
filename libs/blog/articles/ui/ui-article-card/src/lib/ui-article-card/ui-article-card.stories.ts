@@ -1,7 +1,8 @@
 import { Meta, moduleMetadata, StoryObj } from '@storybook/angular';
-import { CardType, UiArticleCardComponent } from './ui-article-card.component';
+
 import { ArticleUiBackgroundCardComponent } from './components/background-card/article-ui-background-card.component';
 import { ArticleUiCardComponent } from './components/card/article-ui-card.component';
+import { CardType, UiArticleCardComponent } from './ui-article-card.component';
 
 const article = {
   title: 'Angular Storybook',

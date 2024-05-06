@@ -1,4 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+
 import { AuthorInfoComponent } from './author-info.component';
 
 describe('AuthorInfoComponent', () => {
