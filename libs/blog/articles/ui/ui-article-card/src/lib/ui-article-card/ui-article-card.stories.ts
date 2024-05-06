@@ -1,12 +1,15 @@
 import { Meta, moduleMetadata, StoryObj } from '@storybook/angular';
 
+import { ArticleCardDataModel } from '@angular-love/article-card-data-model';
+
 import { ArticleUiBackgroundCardComponent } from './components/background-card/article-ui-background-card.component';
 import { ArticleUiCardComponent } from './components/card/article-ui-card.component';
 import { CardType, UiArticleCardComponent } from './ui-article-card.component';
 
-const article = {
+const article: ArticleCardDataModel = {
   title: 'Angular Storybook',
-  readingTime: 3,
+  readingTime: '3',
+
   excerpt:
     'The micro frontend architecture is a well-known development approach.',
   featuredImageUrl: '/assets/storybook/article-featured-image.png',
