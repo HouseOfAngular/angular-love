@@ -31,8 +31,4 @@ export class PartnersListComponent {
       link_URL: 'https://warsaw.devfest.pl/',
     },
   ];
-
-  protected visitPage(url: string) {
-    window.open(url, '_blank');
-  }
 }
