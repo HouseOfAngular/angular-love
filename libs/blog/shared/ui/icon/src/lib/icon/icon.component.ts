@@ -16,7 +16,6 @@ export type Size = 16;
   standalone: true,
   imports: [CommonModule],
   templateUrl: './icon.component.html',
-  styleUrl: './icon.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class IconComponent {
