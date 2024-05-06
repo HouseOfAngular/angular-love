@@ -6,7 +6,7 @@
   @for (partner of partnersList; track partner.asset_URL) {
     <a
       class="block aspect-[2/1] rounded-lg bg-white hover:cursor-pointer"
-      href="{{ partner.link_URL }}"
+      [href]="partner.link_URL"
       target="_blank"
     >
       <div class="flex h-full w-full items-center justify-center">
