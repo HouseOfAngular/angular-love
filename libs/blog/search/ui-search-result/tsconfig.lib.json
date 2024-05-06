@@ -13,8 +13,5 @@
     "jest.config.ts",
     "src/**/*.test.ts"
   ],
-  "include": [
-    "src/**/*.ts",
-    "../data-access/src/lib/models/search-dto-to-card-model.mapper.ts"
-  ]
+  "include": ["src/**/*.ts"]
 }

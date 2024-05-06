@@ -1,11 +1,16 @@
 import { Route } from '@angular/router';
 
 import { LayoutComponent } from '@angular-love/blog/layouts/ui';
+import {
+  SearchService,
+  SearchStore,
+} from '@angular-love/blog/search/data-access';
 
 export const blogShellRoutes: Route[] = [
   {
     path: '',
     component: LayoutComponent,
+    providers: [SearchService, SearchStore],
     children: [
       //todo: handle wildcard route
       {

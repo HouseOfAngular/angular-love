@@ -1,30 +1,26 @@
-import { Hit } from '@algolia/client-search';
-import {
-  ArticleSearchResultDto,
-  SearchStore,
-} from '@angular-love/blog/search/data-access';
 import {
   ChangeDetectionStrategy,
   Component,
   ElementRef,
   HostListener,
+  inject,
   OnDestroy,
   OnInit,
-  computed,
-  inject,
   viewChild,
 } from '@angular/core';
-import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
-import { FormControl, ReactiveFormsModule } from '@angular/forms';
+import { FormControl, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { NgIconComponent, provideIcons } from '@ng-icons/core';
 import { heroMagnifyingGlass } from '@ng-icons/heroicons/outline';
-import { debounceTime } from 'rxjs';
+import { debounceTime, startWith } from 'rxjs';
+
+import { SearchStore } from '@angular-love/blog/search/data-access';
+import { SearchResultItemComponent } from '@angular-love/search-result-item';
 
 @Component({
   selector: 'al-feature-search',
   standalone: true,
-  imports: [ReactiveFormsModule, NgIconComponent],
+  imports: [ReactiveFormsModule, NgIconComponent, SearchResultItemComponent],
   templateUrl: './feature-search.component.html',
   styleUrl: './feature-search.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -33,20 +29,18 @@ import { debounceTime } from 'rxjs';
 export class FeatureSearchComponent implements OnInit, OnDestroy {
   private readonly _searchStore = inject(SearchStore);
 
-  private readonly searchInput =
+  private readonly _searchInput =
     viewChild.required<ElementRef<HTMLInputElement>>('searchInput');
 
-  private readonly router = inject(Router);
+  private readonly _router = inject(Router);
 
-  searchForm = new FormControl('');
-
-  resultsCount = computed<number>(() => {
-    return this._searchStore.results().nbHits || 0;
+  searchForm = new FormControl('', {
+    validators: [Validators.maxLength(50)],
   });
 
-  hits = computed<Hit<ArticleSearchResultDto>[]>(() => {
-    return this._searchStore.results().hits;
-  });
+  resultsCount = this._searchStore.resultsCount;
+
+  hits = this._searchStore.hits;
 
   @HostListener('click', ['$event.target']) onClick(target: HTMLElement): void {
     if (target.classList.contains('al-overlay')) {
@@ -60,7 +54,7 @@ export class FeatureSearchComponent implements OnInit, OnDestroy {
     }
 
     if (e.key === 'Enter') {
-      this.router.navigate(['search'], {
+      this._router.navigate(['search'], {
         queryParams: {
           q: this.searchForm.value,
         },
@@ -68,18 +62,15 @@ export class FeatureSearchComponent implements OnInit, OnDestroy {
     }
   }
 
-  constructor() {
-    this.searchForm.valueChanges
-      .pipe(debounceTime(300), takeUntilDestroyed())
-      .subscribe((v) => {
-        this._searchStore.updateQuery(v as string);
-      });
-  }
-
   ngOnInit(): void {
-    this.searchInput().nativeElement.focus();
-    this._searchStore.updateQuery('');
+    this._searchInput().nativeElement.focus();
     document.body.style.overflow = 'hidden';
+
+    const value$ = this.searchForm.valueChanges.pipe(
+      startWith(''),
+      debounceTime(300),
+    );
+    this._searchStore.updateQuery(value$);
   }
 
   ngOnDestroy(): void {
@@ -87,7 +78,7 @@ export class FeatureSearchComponent implements OnInit, OnDestroy {
   }
 
   private closeSearch(): void {
-    this.router.navigate(['./'], {
+    this._router.navigate(['./'], {
       queryParams: {
         isSearchOpen: false,
       },

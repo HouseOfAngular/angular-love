@@ -13,5 +13,8 @@
     "jest.config.ts",
     "src/**/*.test.ts"
   ],
-  "include": ["src/**/*.ts"]
+  "include": [
+    "src/**/*.ts",
+    "../../types/src/lib/article-card-data-model/article-card-data-model.ts"
+  ]
 }

@@ -67,14 +67,14 @@
     >
       <p
         class="text-2xl font-bold text-white"
-        [innerHTML]="article().title"
+        [innerHTML]="sanitizedArticle().title"
       ></p>
       <p
         class="text-base text-white"
         [ngClass]="{
           'pt-5': layout() === 'horizontal'
         }"
-        [innerHTML]="article().excerpt"
+        [innerHTML]="sanitizedArticle().excerpt"
       ></p>
     </div>
   </div>

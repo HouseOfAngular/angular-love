@@ -1,4 +1,4 @@
-import { SearchResponse } from '@algolia/client-search';
+import { Hit, SearchResponse } from '@algolia/client-search';
 import { inject } from '@angular/core';
 import { tapResponse } from '@ngrx/operators';
 import {
@@ -10,35 +10,42 @@ import {
 } from '@ngrx/signals';
 import { rxMethod } from '@ngrx/signals/rxjs-interop';
 import { distinctUntilChanged, from, pipe, switchMap, tap } from 'rxjs';
+
+import { ArticleCardDataModel } from '@angular-love/article-card-data-model';
+
 import { SearchService } from '../infrastructure/search.service';
-import { ArticleSearchResultDto } from '../models/search-result.model';
+import { mapToCardModel } from '../models/search-dto-to-card-model.mapper';
+import { AlgoliaArticleSearchResultDto } from '../models/search-result.model';
 
 type State = {
-  results: SearchResponse<ArticleSearchResultDto>;
+  result: SearchResponse<AlgoliaArticleSearchResultDto> | null;
   query: string;
+  searchResultPageItems: ArticleCardDataModel[];
+  resultsCount: number;
+  hits: Hit<AlgoliaArticleSearchResultDto>[];
 };
 
 const initialState: State = {
   query: '',
-  results: {
-    hits: [],
-    query: '',
-    exhaustiveNbHits: false,
-    hitsPerPage: 0,
-    nbHits: 0,
-    nbPages: 0,
-    page: 0,
-    params: '',
-    processingTimeMS: 0,
-  },
+  result: null,
+  searchResultPageItems: [],
+  resultsCount: 0,
+  hits: [],
 };
 
 export const SearchStore = signalStore(
   withState(initialState),
   withMethods((store, searchService = inject(SearchService)) => ({
-    updateQuery(query: string) {
-      patchState(store, { query });
-    },
+    updateQuery: rxMethod<string | null>(
+      pipe(
+        distinctUntilChanged(),
+        tap((query) => {
+          if (query !== null) {
+            patchState(store, { query });
+          }
+        }),
+      ),
+    ),
     loadByQuery: rxMethod<string>(
       pipe(
         distinctUntilChanged(),
@@ -46,8 +53,13 @@ export const SearchStore = signalStore(
         switchMap((query) =>
           from(searchService.searchArticles(query)).pipe(
             tapResponse({
-              next: (results: SearchResponse<ArticleSearchResultDto>) =>
-                patchState(store, { results }),
+              next: (result: SearchResponse<AlgoliaArticleSearchResultDto>) =>
+                patchState(store, {
+                  result: result,
+                  searchResultPageItems: result.hits.map(mapToCardModel),
+                  resultsCount: result.nbHits,
+                  hits: result.hits,
+                }),
               error: console.error,
             }),
           ),

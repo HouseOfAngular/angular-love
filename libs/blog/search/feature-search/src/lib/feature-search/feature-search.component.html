@@ -2,7 +2,7 @@
   class="al-overlay fixed left-0 top-0 z-40 h-screen w-screen bg-black bg-opacity-60"
 >
   <div
-    class="bg-al-gray-300 relative top-[84px] z-50 m-auto w-full rounded-tl-lg rounded-tr-lg"
+    class="bg-al-gray-300 relative top-[84px] z-50 m-auto w-full max-w-screen-xl rounded-tl-lg rounded-tr-lg"
   >
     <div class="border-b-al-gray-200 w-full border-b p-4">
       <div
@@ -25,28 +25,12 @@
     </div>
     <div class="p-4 text-white">
       <p>{{ resultsCount() }} results</p>
-      <ul>
-        @for (hit of hits(); track $index) {
+      <ul class="max-h-[50vh] overflow-auto">
+        @for (hit of hits(); track hit.post_slug) {
           <li
             class="border-b-al-gray-200 flex cursor-pointer flex-row justify-between border-b p-6 last:border-none"
           >
-            <!-- LEFT SIDE -->
-            <div class="flex flex-col items-start">
-              <p class="flex flex-row items-center">
-                <img
-                  class="h-8 w-8 rounded-full object-cover"
-                  src="assets/mock-avatar.png"
-                />
-                <span class="ml-3">{{ hit.post_author.display_name }}</span>
-              </p>
-              <p class="mt-6">{{ hit.post_title }}</p>
-            </div>
-
-            <!-- RIGHT SIDE -->
-            <div class="flex flex-row">
-              <p class="mr-6">{{ hit.post_date_formatted }}</p>
-              <p>5 min</p>
-            </div>
+            <al-search-result-item [hit]="hit" />
           </li>
         }
       </ul>

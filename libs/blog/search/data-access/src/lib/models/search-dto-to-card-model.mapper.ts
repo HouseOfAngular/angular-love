@@ -1,19 +1,20 @@
 import { ArticleCardDataModel } from '@angular-love/article-card-data-model';
-import { ArticleSearchResultDto } from '@angular-love/blog/search/data-access';
+
+import { AlgoliaArticleSearchResultDto } from './search-result.model';
 
 export const mapToCardModel = (
-  dto: ArticleSearchResultDto,
+  dto: AlgoliaArticleSearchResultDto,
 ): ArticleCardDataModel => {
   return {
     author: {
-      avatarUrl: 'assets/mock-avatar.png', //TODO: Replace with real dto data
+      avatarUrl: dto.post_author.user_avatar_url,
       name: dto.post_author.display_name,
     },
     excerpt: dto._highlightResult.content.value.slice(0, 150),
     featuredImageUrl: 'assets/mock-avatar.png', //TODO: Replace with real dto data
     publishDate: dto.post_date_formatted,
-    readingTime: 3, //TODO: Replace with real dto data
-    slug: 'slug', //TODO: Replace with real dto data
+    readingTime: dto.reading_time || 0,
+    slug: dto.post_slug,
     title: dto._highlightResult.post_title.value,
   };
 };

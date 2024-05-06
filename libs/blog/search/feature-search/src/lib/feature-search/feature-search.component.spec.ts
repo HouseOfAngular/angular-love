@@ -1,16 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { BlogSearchFeatureSearchComponent } from './blog-search-feature-search.component';
 
-describe('BlogSearchFeatureSearchComponent', () => {
-  let component: BlogSearchFeatureSearchComponent;
-  let fixture: ComponentFixture<BlogSearchFeatureSearchComponent>;
+import { FeatureSearchComponent } from './feature-search.component';
+
+// @todo replace with spectator
+describe('FeatureSearchComponent', () => {
+  let component: FeatureSearchComponent;
+  let fixture: ComponentFixture<FeatureSearchComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [BlogSearchFeatureSearchComponent],
+      imports: [FeatureSearchComponent],
     }).compileComponents();
 
-    fixture = TestBed.createComponent(BlogSearchFeatureSearchComponent);
+    fixture = TestBed.createComponent(FeatureSearchComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
