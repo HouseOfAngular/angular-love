@@ -1,5 +1,5 @@
 <nav aria-label="Pagination">
-  <ul class="flex w-full gap-4">
+  <ul class="flex w-full flex-wrap items-center gap-4">
     <li class="mr-auto">
       <button
         al-button
@@ -12,18 +12,22 @@
       </button>
     </li>
 
-    @for (page of store.pages(); track page.index) {
-      <li>
-        <button
-          al-button
-          class="flex min-w-10 justify-center !px-1 !py-3 leading-none"
-          [variant]="page.isActive ? 'Primary' : 'Outline'"
-          (click)="setPage(page.index)"
-        >
-          {{ page.label }}
-        </button>
-      </li>
-    }
+    <div
+      class="order-last flex basis-full justify-center gap-4 md:order-none md:contents"
+    >
+      @for (page of store.pages(); track page.index) {
+        <li>
+          <button
+            al-button
+            class="flex min-w-[40px] justify-center !px-1 !py-3 leading-none"
+            [variant]="page.isActive ? 'Primary' : 'secondary'"
+            (click)="setPage(page.index)"
+          >
+            {{ page.label }}
+          </button>
+        </li>
+      }
+    </div>
 
     <li class="ml-auto">
       <button
