@@ -10,7 +10,12 @@
       target="_blank"
     >
       <div class="flex h-full w-full items-center justify-center">
-        <img class="logo" [src]="partner.asset_URL" [alt]="partner.alt" />
+        <img
+          class="logo"
+          [src]="partner.asset_URL"
+          [alt]="partner.alt"
+          loading="lazy"
+        />
       </div>
     </a>
   }
