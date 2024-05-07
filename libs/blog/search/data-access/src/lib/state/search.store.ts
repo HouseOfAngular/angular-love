@@ -30,6 +30,7 @@ type State = {
     query: string;
     page: number;
   };
+  pageSize: number;
 };
 
 const initialState: State = {
@@ -41,6 +42,7 @@ const initialState: State = {
     query: '',
     page: 0,
   },
+  pageSize: 6,
 };
 
 export const SearchStore = signalStore(
@@ -65,7 +67,13 @@ export const SearchStore = signalStore(
       pipe(
         distinctUntilChanged(),
         switchMap((filter) =>
-          from(searchService.searchArticles(filter.query, filter.page)).pipe(
+          from(
+            searchService.searchArticles(
+              filter.query,
+              store.pageSize(),
+              filter.page,
+            ),
+          ).pipe(
             tapResponse({
               next: (result) => patchState(store, { result }),
               error: console.error,

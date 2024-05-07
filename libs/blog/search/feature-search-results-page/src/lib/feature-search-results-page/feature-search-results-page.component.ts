@@ -41,7 +41,7 @@ export class FeatureSearchResultsPageComponent implements OnInit {
 
   readonly result = this.searchStore.result;
   readonly mappedResults = this.searchStore.searchResultPageItems;
-  readonly pageSize = 10;
+  readonly pageSize = this.searchStore.pageSize();
   readonly pagination = signal({ skip: 0, take: this.pageSize });
 
   ngOnInit(): void {

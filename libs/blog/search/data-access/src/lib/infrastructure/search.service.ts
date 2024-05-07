@@ -30,11 +30,12 @@ export class SearchService {
 
   searchArticles(
     searchQuery: string,
+    pageSize: number,
     page: number,
   ): Promise<SearchResponse<AlgoliaArticleSearchResultDto>> {
     return this._index
       .search<AlgoliaArticleSearchResultDto>(searchQuery, {
-        hitsPerPage: 6,
+        hitsPerPage: pageSize,
         restrictSearchableAttributes: ['post_title'],
         page,
       })
