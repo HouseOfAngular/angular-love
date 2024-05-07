@@ -28,6 +28,9 @@
       "@angular-love/blog/articles/feature-article": [
         "libs/blog/articles/feature-article/src/index.ts"
       ],
+      "@angular-love/blog/articles/feature-guides": [
+        "libs/blog/articles/feature-guides/src/index.ts"
+      ],
       "@angular-love/blog/articles/feature-list": [
         "libs/blog/articles/feature-list/src/index.ts"
       ],

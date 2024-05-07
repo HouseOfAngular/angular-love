@@ -11,6 +11,12 @@ export const articleRoutes: Route[] = [
             .FeatureNewsComponent,
       },
       {
+        path: 'guides',
+        loadComponent: async () =>
+          (await import('@angular-love/blog/articles/feature-guides'))
+            .FeatureGuidesComponent,
+      },
+      {
         path: 'article/:slug',
         pathMatch: 'full',
         loadComponent: async () =>
