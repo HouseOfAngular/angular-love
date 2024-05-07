@@ -18,6 +18,19 @@
     </li>
   }
 </ul>
+@if (searchStore.resultsCount() > pageSize) {
+  <footer
+    class="bg-al-gray-300 border-al-gray-200 my-4 rounded-lg border px-6 py-5"
+  >
+    <al-pagination
+      alQueryPagination
+      [pageSize]="pagination().take"
+      [skip]="pagination().skip"
+      [total]="searchStore.resultsCount()"
+      (pageChange)="onPageChange($event)"
+    />
+  </footer>
+}
 <al-card alGradientCard class="hidden lg:block">
   <al-newsletter alCardContent />
 </al-card>

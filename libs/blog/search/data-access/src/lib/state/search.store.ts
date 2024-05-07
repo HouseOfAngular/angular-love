@@ -1,9 +1,10 @@
 import { Hit, SearchResponse } from '@algolia/client-search';
-import { inject } from '@angular/core';
+import { computed, inject } from '@angular/core';
 import { tapResponse } from '@ngrx/operators';
 import {
   patchState,
   signalStore,
+  withComputed,
   withHooks,
   withMethods,
   withState,
@@ -11,26 +12,35 @@ import {
 import { rxMethod } from '@ngrx/signals/rxjs-interop';
 import { distinctUntilChanged, from, pipe, switchMap, tap } from 'rxjs';
 
-import { ArticleCardDataModel } from '@angular-love/article-card-data-model';
-
 import { SearchService } from '../infrastructure/search.service';
 import { mapToCardModel } from '../models/search-dto-to-card-model.mapper';
 import { AlgoliaArticleSearchResultDto } from '../models/search-result.model';
 
+type Filter = {
+  query: string;
+  page: number;
+};
+
 type State = {
   result: SearchResponse<AlgoliaArticleSearchResultDto> | null;
   query: string;
-  searchResultPageItems: ArticleCardDataModel[];
-  resultsCount: number;
   hits: Hit<AlgoliaArticleSearchResultDto>[];
+  page: number;
+  filter: {
+    query: string;
+    page: number;
+  };
 };
 
 const initialState: State = {
   query: '',
   result: null,
-  searchResultPageItems: [],
-  resultsCount: 0,
   hits: [],
+  page: 0,
+  filter: {
+    query: '',
+    page: 0,
+  },
 };
 
 export const SearchStore = signalStore(
@@ -46,20 +56,18 @@ export const SearchStore = signalStore(
         }),
       ),
     ),
-    loadByQuery: rxMethod<string>(
+    updatePage: rxMethod<number>(
+      tap((page) => {
+        patchState(store, { page });
+      }),
+    ),
+    loadByFilter: rxMethod<Filter>(
       pipe(
         distinctUntilChanged(),
-        tap(() => patchState(store)),
-        switchMap((query) =>
-          from(searchService.searchArticles(query)).pipe(
+        switchMap((filter) =>
+          from(searchService.searchArticles(filter.query, filter.page)).pipe(
             tapResponse({
-              next: (result: SearchResponse<AlgoliaArticleSearchResultDto>) =>
-                patchState(store, {
-                  result: result,
-                  searchResultPageItems: result.hits.map(mapToCardModel),
-                  resultsCount: result.nbHits,
-                  hits: result.hits,
-                }),
+              next: (result) => patchState(store, { result }),
               error: console.error,
             }),
           ),
@@ -67,9 +75,22 @@ export const SearchStore = signalStore(
       ),
     ),
   })),
+  withComputed(({ result, query, page }) => ({
+    resultsCount: computed(() => result()?.nbHits || 0),
+    searchResultPageItems: computed(
+      () => result()?.hits.map(mapToCardModel) || [],
+    ),
+    hits: computed(() => result()?.hits || []),
+    queryParams: computed<Filter>(() => {
+      return {
+        query: query(),
+        page: page(),
+      };
+    }),
+  })),
   withHooks({
-    onInit({ loadByQuery, query }) {
-      loadByQuery(query);
+    onInit({ loadByFilter, queryParams }) {
+      loadByFilter(queryParams);
     },
   }),
 );

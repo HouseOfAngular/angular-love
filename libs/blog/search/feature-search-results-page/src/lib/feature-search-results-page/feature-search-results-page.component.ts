@@ -3,6 +3,7 @@ import {
   Component,
   inject,
   OnInit,
+  signal,
 } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
@@ -12,6 +13,10 @@ import {
   CardComponent,
   GradientCardDirective,
 } from '@angular-love/blog/shared/ui/card';
+import {
+  PageChangeEvent,
+  PaginationComponent,
+} from '@angular-love/blog/shared/ui/pagination';
 import { NewsletterComponent } from '@angular-love/newsletter';
 import { UiArticleCardComponent } from '@angular-love/ui-article-card';
 
@@ -27,17 +32,25 @@ import { UiArticleCardComponent } from '@angular-love/ui-article-card';
     BreadcrumbComponent,
     CardComponent,
     GradientCardDirective,
+    PaginationComponent,
   ],
 })
 export class FeatureSearchResultsPageComponent implements OnInit {
-  private readonly _searchStore = inject(SearchStore);
   private readonly _route = inject(ActivatedRoute);
+  readonly searchStore = inject(SearchStore);
 
-  result = this._searchStore.result;
-  mappedResults = this._searchStore.searchResultPageItems;
+  readonly result = this.searchStore.result;
+  readonly mappedResults = this.searchStore.searchResultPageItems;
+  readonly pageSize = 10;
+  readonly pagination = signal({ skip: 0, take: this.pageSize });
 
   ngOnInit(): void {
     const query = this._route.snapshot.queryParamMap.get('q');
-    this._searchStore.updateQuery(query || '');
+    this.searchStore.updateQuery(query || '');
+  }
+
+  onPageChange(e: PageChangeEvent): void {
+    const page = Math.floor(e.skip / e.take);
+    this.searchStore.updatePage(page);
   }
 }
