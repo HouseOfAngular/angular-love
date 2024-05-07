@@ -1,1 +1,1 @@
-export * from './lib/state/article-details.store';
+export * from './lib/state/author-details.store';
