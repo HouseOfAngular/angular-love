@@ -1,0 +1,40 @@
+<al-breadcrumb [pageName]="authorName()" />
+
+<h1 class="mb-8 h-10 text-4xl font-bold">{{ authorName() }}</h1>
+
+@if (
+  !authorDetailsStore.isFetchAuthorDetailsLoading() &&
+    authorDetailsStore.authorDetails();
+  as author
+) {
+  <al-author-info [author]="author" />
+} @else {
+  <al-author-info-skeleton />
+}
+
+<h2 class="mb-6 mt-10 text-2xl font-bold">Posted by {{ authorName() }}</h2>
+
+<div class="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+  @if (articleStore.isFetchArticleListLoading()) {
+    <!--    TODO: add article skleteon when ready-->
+    <!--    <al-article-card-skeleton *alRepeat="6" class="h-[438px]" />-->
+  } @else {
+    @for (article of articleStore.articles(); track article.slug) {
+      <al-ui-article-card [article]="article" cardType="regular" />
+    }
+  }
+</div>
+
+@if (articleStore.total() > pageSize) {
+  <footer
+    class="bg-al-gray-300 border-al-gray-200 mt-16 rounded-lg border px-6 py-5"
+  >
+    <al-pagination
+      alQueryPagination
+      [pageSize]="pagination().take"
+      [skip]="pagination().skip"
+      [total]="articleStore.total()"
+      (pageChange)="pagination.set($event)"
+    />
+  </footer>
+}

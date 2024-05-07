@@ -12,7 +12,7 @@ module.exports = {
         },
         'al-blue': '#066aff',
         'al-pink': '#e70464',
-        'al-primary': 'var(--color-primary)',
+        'al-primary': '#E70464',
       },
       backgroundImage: {
         'al-gradient-red':
