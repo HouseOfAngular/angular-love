@@ -42,7 +42,6 @@ type SanitizedArticleDataModel = {
   ],
 })
 export class ArticleUiCardComponent {
-  private readonly domSanitizer = inject(DomSanitizer);
   layout = input.required<Layout>();
   article = input.required<ArticleCardDataModel>();
 
@@ -52,6 +51,8 @@ export class ArticleUiCardComponent {
       title: this.sanitize(this.article().title),
     };
   });
+
+  private readonly domSanitizer = inject(DomSanitizer);
 
   private sanitize(val: string): string {
     return this.domSanitizer.sanitize(SecurityContext.HTML, val) || '';
