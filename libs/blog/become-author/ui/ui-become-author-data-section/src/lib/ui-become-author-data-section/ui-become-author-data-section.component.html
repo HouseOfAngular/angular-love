@@ -1,0 +1,17 @@
+<!--@todo-replace-track-by-data-title-when-API-is-ready-->
+@for (data of becomeAuthorData(); track data.title; let last = $last) {
+  <section>
+    <h6>{{ data.title }}</h6>
+    @if (data.description !== undefined) {
+      <p>{{ data.description }}</p>
+    }
+    @for (depiction of data.depictions; track $index) {
+      <al-ui-become-author-data-card
+        [index]="$index"
+        [info]="depiction"
+        [layout]="last ? 'PRIMARY' : 'SECONDARY'"
+        [showIndex]="!last"
+      ></al-ui-become-author-data-card>
+    }
+  </section>
+}

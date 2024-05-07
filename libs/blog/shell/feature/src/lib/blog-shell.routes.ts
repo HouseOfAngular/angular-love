@@ -15,6 +15,12 @@ export const blogShellRoutes: Route[] = [
           (await import('@angular-love/blog/home/feature')).HomePageComponent,
       },
       {
+        path: 'become-author',
+        loadComponent: async () =>
+          (await import('@angular-love/become-author-page-feature'))
+            .BecomeAuthorPageFeatureComponent,
+      },
+      {
         path: '',
         loadChildren: async () =>
           (await import('@angular-love/blog/articles/feature/shell'))

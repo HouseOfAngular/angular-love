@@ -1,0 +1,16 @@
+<div
+  class="border-al-gray-200 flex h-full w-full items-center border"
+  [ngClass]="{
+    'bg-al-gradient-red rounded-lg': layout() === 'PRIMARY'
+  }"
+>
+  @if (showIndex()) {
+    <div>
+      <p>{{ index() }}</p>
+    </div>
+  } @else {
+    <!--    @todo-append-al-icon-->
+    <span></span>
+  }
+  <p>{{ info() }}</p>
+</div>
