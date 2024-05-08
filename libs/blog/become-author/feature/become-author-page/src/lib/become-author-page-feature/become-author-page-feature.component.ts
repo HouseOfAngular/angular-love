@@ -10,9 +10,7 @@ export const dataMock: Array<BecomeAuthorData> = [
   {
     title: 'Why is it worth it?',
     description:
-      'Angular.love is one of the biggest and most popular polish blogs about Angular. We are expanding and rapidly growing, which can be proved by the fact that our blog has over 4000 unique visitors every month (from Poland and abroad) and more than 2100 followers on Facebook.\n' +
-      '\n' +
-      'Our mission is to inspire, educate, spread good practices and share knowledge among Developers. Every 2 months we also organize Angular Meetups in Warsaw, during which the speakers present different, angular-related topics and share their knowledge among others. Our content is free and available for everyone – we want to make the Angular Community grow! Ok, but what’s in it for you?',
+      'Angular.love is one of the biggest and most popular polish blogs about Angular. We are expanding and rapidly growing, which can be proved by the fact that our blog has over 4000 unique visitors every month (from Poland and abroad) and more than 2100 followers on Facebook.\n\nOur mission is to inspire, educate, spread good practices and share knowledge among Developers. Every 2 months we also organize Angular Meetups in Warsaw, during which the speakers present different, angular-related topics and share their knowledge among others. Our content is free and available for everyone – we want to make the Angular Community grow! Ok, but what’s in it for you?',
 
     depictions: [
       'Increase your visibility in social media and present yourself as an Angular Expert by writing articles.',
