@@ -1,16 +1,6 @@
-<div class="grid grid-cols-5 gap-2">
-  <div class="col-span-4">
-    <div class="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
-      @if (isFetchArticleListLoading()) {
-        <al-article-card-skeleton *alRepeat="8" />
-      } @else if (articleList()) {
-        @for (article of articleList(); track article.slug) {
-          <al-article-card [articleCard]="article" />
-        }
-      } @else if (isFetchArticleListError()) {
-        <!-- @TODO - error handling -->
-        Something went wrong...
-      }
-    </div>
-  </div>
+<div class="mt-10">
+  <al-category-section-container category="news" />
+</div>
+<div class="mb-10 mt-10">
+  <al-category-section-container category="guides" />
 </div>
