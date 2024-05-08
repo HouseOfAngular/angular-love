@@ -7,7 +7,7 @@ import {
 } from '@angular/core';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 
-import { IconType, returnIcon } from '../icons';
+import { getIcon, IconType } from '../icons';
 
 export type Size = 16;
 
@@ -21,11 +21,12 @@ export type Size = 16;
 export class IconComponent {
   size = input<Size>(16);
   name = input.required<IconType>();
+  color = input<string>('#fff');
 
   private _sanitizer = inject(DomSanitizer);
 
   protected get svgIcon(): SafeHtml {
-    const svgContent = computed(() => returnIcon(this.name()));
+    const svgContent = computed(() => getIcon(this.name()));
     return this._sanitizer.bypassSecurityTrustHtml(svgContent());
   }
 }
