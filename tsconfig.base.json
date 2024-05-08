@@ -28,6 +28,9 @@
       "@angular-love/blog/articles/feature-article": [
         "libs/blog/articles/feature-article/src/index.ts"
       ],
+      "@angular-love/blog/articles/feature-guides": [
+        "libs/blog/articles/feature-guides/src/index.ts"
+      ],
       "@angular-love/blog/articles/feature-list": [
         "libs/blog/articles/feature-list/src/index.ts"
       ],
@@ -36,6 +39,12 @@
       ],
       "@angular-love/blog/articles/feature/shell": [
         "libs/blog/articles/feature-shell/src/index.ts"
+      ],
+      "@angular-love/blog/authors/data-access": [
+        "libs/blog/authors/data-access/src/index.ts"
+      ],
+      "@angular-love/blog/authors/feature-author": [
+        "libs/blog/authors/feature-author/src/index.ts"
       ],
       "@angular-love/blog/authors/types/author-info-data-model": [
         "libs/blog/authors/types/author-info-data-model/src/index.ts"

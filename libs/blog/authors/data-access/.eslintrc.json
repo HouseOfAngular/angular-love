@@ -1,5 +1,5 @@
 {
-  "extends": ["../../../../../.eslintrc.json"],
+  "extends": ["../../../../.eslintrc.json"],
   "ignorePatterns": ["!**/*"],
   "overrides": [
     {
@@ -24,8 +24,7 @@
             "prefix": "al",
             "style": "kebab-case"
           }
-        ],
-        "@angular-eslint/no-host-metadata-property": "off" //TODO: remove when angular 18 fix
+        ]
       }
     },
     {

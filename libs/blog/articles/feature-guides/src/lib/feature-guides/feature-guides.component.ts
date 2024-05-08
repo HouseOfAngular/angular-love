@@ -15,22 +15,22 @@ import {
 import { UiArticleCardComponent } from '@angular-love/ui-article-card';
 
 @Component({
-  selector: 'al-feature-news',
+  selector: 'al-feature-guides',
   standalone: true,
   imports: [
     BreadcrumbComponent,
-    UiArticleCardComponent,
     PaginationComponent,
     QueryPaginationDirective,
+    UiArticleCardComponent,
   ],
-  templateUrl: './feature-news.component.html',
-  styleUrl: './feature-news.component.scss',
+  templateUrl: './feature-guides.component.html',
+  styleUrl: './feature-guides.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
   host: {
     class: 'flex flex-col  h-full w-full',
   },
 })
-export class FeatureNewsComponent {
+export class FeatureGuidesComponent {
   pagination = signal({ take: 12, skip: 0 });
 
   protected readonly articleStore = inject(ArticleListStore);
@@ -38,7 +38,7 @@ export class FeatureNewsComponent {
   constructor() {
     const query = computed(() => ({
       ...this.pagination(),
-      category: 'news' as const,
+      category: 'guides' as const,
     }));
 
     this.articleStore.fetchArticleList(query);

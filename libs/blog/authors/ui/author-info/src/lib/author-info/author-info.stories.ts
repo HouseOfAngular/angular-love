@@ -80,3 +80,33 @@ export const withEmptyData: Story = {
     },
   },
 };
+
+export const allResolutions: Story = {
+  args: {
+    author,
+  },
+  render: (args) => ({
+    props: args,
+    template: `
+      <div class="flex flex-col gap-4">
+  <div>
+    <p class="text-2xl">Desktop</p>
+    <al-author-info [author]="author" />
+     <al-author-info-skeleton/>
+</div>
+  <div class="max-w-[768px]">
+    <p class="text-2xl">Tablet</p>
+    <al-author-info [author]="author" />
+     <al-author-info-skeleton/>
+
+  </div>
+  <div class="max-w-[390px]">
+    <p class="text-2xl">Mobile</p>
+    <al-author-info [author]="author" />
+        <al-author-info-skeleton/>
+
+  </div>
+</div>
+`,
+  }),
+};
