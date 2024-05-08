@@ -1,7 +1,5 @@
-import { ChangeDetectionStrategy, Component, input } from '@angular/core';
-
 import { ArticleCardDataModel } from '@angular-love/article-card-data-model';
-
+import { ChangeDetectionStrategy, Component, input } from '@angular/core';
 import { ArticleUiBackgroundCardComponent } from './components/background-card/article-ui-background-card.component';
 import { ArticleUiCardComponent } from './components/card/article-ui-card.component';
 

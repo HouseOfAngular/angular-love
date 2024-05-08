@@ -62,12 +62,21 @@
         "libs/blog/home/feature/src/index.ts"
       ],
       "@angular-love/blog/home/ui": ["libs/blog/home/ui/src/index.ts"],
+      "@angular-love/blog/layouts/feature-header": [
+        "libs/blog/layouts/feature-header/src/index.ts"
+      ],
       "@angular-love/blog/layouts/ui": ["libs/blog/layouts/ui/src/index.ts"],
-      "@angular-love/blog/partners/ui/partners ": [
+      "@angular-love/blog/partners/ui/partners": [
         "libs/blog/partners/ui/ui-partners/src/index.ts"
       ],
       "@angular-love/blog/partners/ui/partners-list": [
         "libs/blog/partners/ui/ui-partners-list/src/index.ts"
+      ],
+      "@angular-love/blog/search/data-access": [
+        "libs/blog/search/data-access/src/index.ts"
+      ],
+      "@angular-love/blog/search/feature-search": [
+        "libs/blog/search/feature-search/src/index.ts"
       ],
       "@angular-love/blog/shared/ui/avatar": [
         "libs/blog/shared/ui/avatar/src/index.ts"
@@ -93,11 +102,17 @@
       "@angular-love/contracts/articles": [
         "libs/blog-contracts/articles/src/index.ts"
       ],
+      "@angular-love/feature-search-results-page": [
+        "libs/blog/search/feature-search-results-page/src/index.ts"
+      ],
       "@angular-love/navigation": [
         "libs/blog/shared/ui/navigation/src/index.ts"
       ],
       "@angular-love/newsletter": [
         "libs/blog/newsletter/feature-newsletter/src/index.ts"
+      ],
+      "@angular-love/search-result-item": [
+        "libs/blog/search/ui-search-result/src/index.ts"
       ],
       "@angular-love/shared/assets": ["libs/shared/assets/src/index.ts"],
       "@angular-love/shared/config": ["libs/shared/config/src/index.ts"],
