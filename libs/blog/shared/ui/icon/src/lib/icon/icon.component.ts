@@ -11,7 +11,6 @@ import { getIcon, IconType } from '../icons';
 
 export type Size = 16;
 
-const DEFAULT_COLOR = '#fff';
 const DEFAULT_SIZE: Size = 16;
 
 @Component({
@@ -23,7 +22,6 @@ const DEFAULT_SIZE: Size = 16;
 export class IconComponent {
   size = input<Size>(DEFAULT_SIZE);
   name = input.required<IconType>();
-  color = input<string>(DEFAULT_COLOR);
 
   private _sanitizer = inject(DomSanitizer);
 
