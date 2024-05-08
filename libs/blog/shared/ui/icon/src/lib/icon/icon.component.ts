@@ -11,8 +11,6 @@ import { getIcon, IconType } from '../icons';
 
 export type Size = 16;
 
-const DEFAULT_SIZE: Size = 16;
-
 @Component({
   selector: 'al-icon',
   standalone: true,
@@ -20,7 +18,6 @@ const DEFAULT_SIZE: Size = 16;
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class IconComponent {
-  size = input<Size>(DEFAULT_SIZE);
   name = input.required<IconType>();
 
   private _sanitizer = inject(DomSanitizer);
