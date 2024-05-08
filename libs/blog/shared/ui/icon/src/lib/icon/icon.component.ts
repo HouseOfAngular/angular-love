@@ -11,6 +11,8 @@ import { getIcon, IconType } from '../icons';
 
 export type Size = 16;
 
+const DEFAULT_COLOR = '#fff';
+
 @Component({
   selector: 'al-icon',
   standalone: true,
@@ -20,7 +22,7 @@ export type Size = 16;
 export class IconComponent {
   size = input<Size>(16);
   name = input.required<IconType>();
-  color = input<string>('#fff');
+  color = input<string>(DEFAULT_COLOR);
 
   private _sanitizer = inject(DomSanitizer);
 
