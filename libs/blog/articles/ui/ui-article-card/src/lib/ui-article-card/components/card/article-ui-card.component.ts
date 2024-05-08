@@ -1,4 +1,4 @@
-import { DatePipe, NgClass, NgOptimizedImage, NgStyle } from '@angular/common';
+import { DatePipe, NgClass, NgStyle } from '@angular/common';
 import {
   ChangeDetectionStrategy,
   Component,
@@ -8,11 +8,10 @@ import {
   SecurityContext,
 } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
-import { bootstrapClock } from '@ng-icons/bootstrap-icons';
-import { NgIcon, provideIcons } from '@ng-icons/core';
 
 import { ArticleCardDataModel } from '@angular-love/article-card-data-model';
 import { AvatarComponent } from '@angular-love/blog/shared/ui/avatar';
+import { IconComponent } from '@angular-love/icon';
 
 export type Layout = 'regular' | 'horizontal';
 
@@ -25,21 +24,9 @@ type SanitizedArticleDataModel = {
   selector: 'al-article-ui-card',
   changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: true,
-  imports: [
-    AvatarComponent,
-    NgIcon,
-    DatePipe,
-    NgOptimizedImage,
-    NgClass,
-    NgStyle,
-  ],
+  imports: [AvatarComponent, DatePipe, NgClass, NgStyle, IconComponent],
   templateUrl: './article-ui-card.component.html',
   styleUrl: './article-ui-card.component.scss',
-  providers: [
-    provideIcons({
-      bootstrapClock,
-    }),
-  ],
 })
 export class ArticleUiCardComponent {
   layout = input.required<Layout>();

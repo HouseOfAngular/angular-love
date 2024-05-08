@@ -1,14 +1,15 @@
+import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
+import { toSignal } from '@angular/core/rxjs-interop';
+import { ReactiveFormsModule } from '@angular/forms';
+import { ActivatedRoute } from '@angular/router';
+import { map } from 'rxjs';
+
 import { ArticlesListContainerComponent } from '@angular-love/blog/articles/feature-list';
 import { PartnersComponent } from '@angular-love/blog/partners/ui/partners';
 import { FeatureSearchComponent } from '@angular-love/blog/search/feature-search';
 import { CardComponent } from '@angular-love/blog/shared/ui/card';
 import { NewsletterComponent } from '@angular-love/newsletter';
 import { UiArticleCardComponent } from '@angular-love/ui-article-card';
-import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
-import { toSignal } from '@angular/core/rxjs-interop';
-import { ReactiveFormsModule } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
-import { map } from 'rxjs';
 
 @Component({
   selector: 'al-home-page',

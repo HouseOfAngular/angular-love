@@ -105,6 +105,7 @@
       "@angular-love/feature-search-results-page": [
         "libs/blog/search/feature-search-results-page/src/index.ts"
       ],
+      "@angular-love/icon": ["libs/blog/shared/ui/icon/src/index.ts"],
       "@angular-love/navigation": [
         "libs/blog/shared/ui/navigation/src/index.ts"
       ],
