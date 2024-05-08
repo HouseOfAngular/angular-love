@@ -1,0 +1,36 @@
+<al-breadcrumb [pageName]="'search: ' + result()?.query" />
+<p class="mb-6 mt-8 text-5xl">
+  Search:
+  <span class="text-al-pink">{{ result()?.query }}</span>
+  ({{ result()?.nbHits }})
+</p>
+
+<ul class="grid gap-4 md:grid-cols-2 md:gap-6 lg:grid-cols-1 lg:gap-0">
+  @for (article of mappedResults(); track article.slug) {
+    <!-- DESKTOP -->
+    <li class="my-3 hidden h-[220px] lg:block">
+      <al-ui-article-card [cardType]="'horizontal'" [article]="article" />
+    </li>
+
+    <!-- TABLET AND MOBILE -->
+    <li class="block lg:hidden">
+      <al-ui-article-card [cardType]="'regular'" [article]="article" />
+    </li>
+  }
+</ul>
+@if (searchStore.resultsCount() > pageSize) {
+  <footer
+    class="bg-al-gray-300 border-al-gray-200 my-4 rounded-lg border px-6 py-5"
+  >
+    <al-pagination
+      alQueryPagination
+      [pageSize]="pagination().take"
+      [skip]="pagination().skip"
+      [total]="searchStore.resultsCount()"
+      (pageChange)="onPageChange($event)"
+    />
+  </footer>
+}
+<al-card alGradientCard class="hidden lg:block">
+  <al-newsletter alCardContent />
+</al-card>

@@ -1,1 +1,26 @@
-<p>blog-articles-feature-news works!</p>
+<al-breadcrumb pageName="Angular News" />
+
+<h1 class="mb-8 text-4xl font-bold">Angular news</h1>
+
+<div class="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+  @if (articleStore.isFetchArticleListLoading()) {
+    <!--    TODO: add article skleteon when ready-->
+    <!--    <al-article-card-skeleton *alRepeat="6" class="h-[438px]" />-->
+  } @else {
+    @for (article of articleStore.articles(); track article.slug) {
+      <al-ui-article-card [article]="article" cardType="regular" />
+    }
+  }
+</div>
+
+<footer
+  class="bg-al-gray-300 border-al-gray-200 mt-16 rounded-lg border px-6 py-5"
+>
+  <al-pagination
+    alQueryPagination
+    [pageSize]="pagination().take"
+    [skip]="pagination().skip"
+    [total]="articleStore.total()"
+    (pageChange)="pagination.set($event)"
+  />
+</footer>

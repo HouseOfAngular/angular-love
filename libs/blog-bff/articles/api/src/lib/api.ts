@@ -8,6 +8,7 @@ import { wpClientMw } from '@angular-love/util-wp';
 
 import { WPPostDetailsDto, WPPostDto } from './dtos';
 import { toArticle, toArticlePreviewList } from './mappers';
+import { getPagination } from './utils';
 
 const app = new Hono();
 
@@ -20,26 +21,16 @@ const defaultQuery = {
 app.get('/', wpClientMw, async (c) => {
   const queryParams = c.req.query();
 
-  const take = queryParams.take || defaultQuery.take;
-  const skip = queryParams.skip || defaultQuery.skip;
-  const page = Math.floor(Number(skip) / Number(take)) + 1;
+  const { per_page, page } = getPagination(queryParams);
 
   const query: Record<string, string | number> = {
     lang: queryParams.lang || defaultQuery.lang,
-    per_page: take,
-    page: page,
+    per_page,
+    page,
   };
 
-  if (queryParams.authorSlug) {
-    const authorResult = await c.var.wpClient.get<{ id }[]>('users', {
-      slug: queryParams.authorSlug,
-      _fields: 'id,type',
-    });
-    const id = authorResult.data[0]?.id;
-    if (id) {
-      query.author = id;
-    }
-  }
+  queryParams.authorSlug && (query.author_slug = queryParams.authorSlug);
+  queryParams.category && (query.category_slug = queryParams.category);
 
   const result = await c.var.wpClient.get<WPPostDto[]>('posts', {
     ...query,
