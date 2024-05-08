@@ -12,6 +12,7 @@ import { getIcon, IconType } from '../icons';
 export type Size = 16;
 
 const DEFAULT_COLOR = '#fff';
+const DEFAULT_SIZE: Size = 16;
 
 @Component({
   selector: 'al-icon',
@@ -20,7 +21,7 @@ const DEFAULT_COLOR = '#fff';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class IconComponent {
-  size = input<Size>(16);
+  size = input<Size>(DEFAULT_SIZE);
   name = input.required<IconType>();
   color = input<string>(DEFAULT_COLOR);
 
