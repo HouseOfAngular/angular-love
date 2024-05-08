@@ -9,7 +9,6 @@ import { CardType, UiArticleCardComponent } from './ui-article-card.component';
 const article: ArticleCardDataModel = {
   title: 'Angular Storybook',
   readingTime: '3',
-
   excerpt:
     'The micro frontend architecture is a well-known development approach.',
   featuredImageUrl: '/assets/storybook/article-featured-image.png',
