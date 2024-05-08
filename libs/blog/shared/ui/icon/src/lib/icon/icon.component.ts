@@ -24,8 +24,8 @@ export class IconComponent {
 
   private _sanitizer = inject(DomSanitizer);
 
-  protected get svgIcon(): SafeHtml {
-    const svgContent = computed(() => getIcon(this.name()));
-    return this._sanitizer.bypassSecurityTrustHtml(svgContent());
-  }
+  protected svgIcon = computed<SafeHtml>(() => {
+    const icon = getIcon(this.name());
+    return this._sanitizer.bypassSecurityTrustHtml(icon);
+  });
 }
