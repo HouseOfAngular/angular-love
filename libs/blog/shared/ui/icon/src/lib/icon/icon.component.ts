@@ -16,7 +16,6 @@ export type Size = 16;
   standalone: true,
   templateUrl: './icon.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
-  styleUrls: ['icon.component.scss'],
 })
 export class IconComponent {
   size = input<Size>(16);
