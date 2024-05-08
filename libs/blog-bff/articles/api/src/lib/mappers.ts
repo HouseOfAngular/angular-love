@@ -11,10 +11,11 @@ const DEFAULT_LANGUAGE_SUBSET = ['typescript', 'html', 'css', 'scss', 'json'];
 export const toArticlePreviewList = (dtos: WPPostDto[]): ArticlePreview[] => {
   return (dtos || []).map((dto) => {
     const summary = cheerio.load(dto.excerpt.render || '');
+    const title = cheerio.load(dto.title.rendered || '');
 
     return {
       slug: dto.slug || '',
-      title: dto.title.rendered || '',
+      title: title.text(),
       excerpt: summary.text(),
       featuredImageUrl: dto.featured_image_url || '',
       publishDate: new Date(dto.date || '').toISOString(),
@@ -29,6 +30,7 @@ export const toArticlePreviewList = (dtos: WPPostDto[]): ArticlePreview[] => {
 };
 
 export const toArticle = (dto?: WPPostDetailsDto): Article => {
+  const title = cheerio.load(dto.title.rendered || '');
   const content = sanitizeHtml(dto?.content.rendered || '', {
     allowedClasses: {
       pre: ['lang:*'],
@@ -64,7 +66,7 @@ export const toArticle = (dto?: WPPostDetailsDto): Article => {
   const highlightedContent = $.html();
 
   return {
-    title: dto?.title.rendered || '',
+    title: title.text(),
     publishDate: dto?.date || '',
     readingTime: dto.acf.reading_time.toString() || '5',
     author: {
