@@ -43,7 +43,6 @@ import { CardSkeletonComponent } from '@angular-love/blog/shared/ui/card';
       </div>
     </al-card-skeleton>
   `,
-  styleUrls: ['./article-card.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [
     CardSkeletonComponent,

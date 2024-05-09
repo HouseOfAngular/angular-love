@@ -11,10 +11,13 @@ import { ArticleListStore } from '@angular-love/blog/articles/data-access';
 import { ButtonComponent } from '@angular-love/blog/shared/ui/button';
 import { ArticleCategory } from '@angular-love/contracts/articles';
 import { UiArticleCardComponent } from '@angular-love/ui-article-card';
+import { UiArticleListTitleComponent } from '@angular-love/ui-article-list-title';
 
 const displayNameDict: Record<ArticleCategory, string> = {
   news: 'Angular News',
   guides: 'Angular Guides',
+  recommended: 'Recommended Articles',
+  authors: 'Authors',
 };
 
 // TODO: Rethink if we need seperated lib for this smart component (usage only for feature-list)
@@ -25,7 +28,12 @@ const displayNameDict: Record<ArticleCategory, string> = {
   templateUrl: './category-section-container.component.html',
   styleUrls: ['./category-section-container.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [UiArticleCardComponent, ButtonComponent, RouterLink],
+  imports: [
+    UiArticleCardComponent,
+    ButtonComponent,
+    RouterLink,
+    UiArticleListTitleComponent,
+  ],
   providers: [ArticleListStore],
 })
 export class CategorySectionContainerComponent {

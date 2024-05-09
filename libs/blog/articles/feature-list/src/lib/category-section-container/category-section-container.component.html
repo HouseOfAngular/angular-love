@@ -1,12 +1,10 @@
-<header class="mb-8 flex items-center gap-6">
-  <span class="text-2xl font-bold">{{ displayName() }}</span>
-  <span class="bg-al-gray-200 hidden h-[1px] flex-1 md:block"></span>
-  <a class="ml-auto" [routerLink]="['./', category()]">
-    <button al-button class="!px-0" variant="link">
-      See all {{ displayName() }}
-    </button>
-  </a>
-</header>
+<al-ui-article-list-title
+  [title]="displayName()"
+  [link]="{
+    displayName: displayName(),
+    href: 'category()'
+  }"
+/>
 
 <div class="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
   @if (articleStore.isFetchArticleListLoading()) {

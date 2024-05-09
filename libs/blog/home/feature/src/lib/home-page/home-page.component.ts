@@ -8,6 +8,8 @@ import { ArticlesListContainerComponent } from '@angular-love/blog/articles/feat
 import { PartnersComponent } from '@angular-love/blog/partners/ui/partners';
 import { FeatureSearchComponent } from '@angular-love/blog/search/feature-search';
 import { CardComponent } from '@angular-love/blog/shared/ui/card';
+import { FeatureLatestArticlesComponent } from '@angular-love/feature-latest-articles';
+import { FeatureRecommendedArticlesComponent } from '@angular-love/feature-recommended-articles';
 import { NewsletterComponent } from '@angular-love/newsletter';
 import { UiArticleCardComponent } from '@angular-love/ui-article-card';
 
@@ -15,15 +17,16 @@ import { UiArticleCardComponent } from '@angular-love/ui-article-card';
   selector: 'al-home-page',
   standalone: true,
   imports: [
-    ArticlesListContainerComponent,
     NewsletterComponent,
     FeatureSearchComponent,
     ReactiveFormsModule,
     CardComponent,
-    ArticlesListContainerComponent,
     NewsletterComponent,
     PartnersComponent,
+    FeatureLatestArticlesComponent,
+    FeatureRecommendedArticlesComponent,
     UiArticleCardComponent,
+    ArticlesListContainerComponent,
   ],
   templateUrl: './home-page.component.html',
   styleUrls: ['./home-page.component.scss'],
