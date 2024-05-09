@@ -5,13 +5,12 @@ import {
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
-import { NgIconComponent, provideIcons } from '@ng-icons/core';
-import { tablerSend } from '@ng-icons/tabler-icons';
 
 import {
   CardComponent,
   GradientCardDirective,
 } from '@angular-love/blog/shared/ui/card';
+import { IconComponent } from '@angular-love/icon';
 
 import { NewsletterSuccessComponent } from './newsletter-success/newsletter-success.component';
 
@@ -21,16 +20,15 @@ export type NewsletterFormState = 'INITIAL' | 'SUCCESS';
   selector: 'al-newsletter',
   standalone: true,
   imports: [
-    NgIconComponent,
     NewsletterSuccessComponent,
     GradientCardDirective,
     CardComponent,
     ReactiveFormsModule,
+    IconComponent,
   ],
   templateUrl: './newsletter.component.html',
   styleUrl: './newsletter.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
-  providers: [provideIcons({ tablerSend })],
 })
 export class NewsletterComponent {
   componentState = signal<NewsletterFormState>('INITIAL');
