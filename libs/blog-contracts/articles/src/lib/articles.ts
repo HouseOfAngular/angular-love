@@ -1,4 +1,9 @@
-export const articleCategories = ['news', 'guides'] as const;
+export const articleCategories = [
+  'news',
+  'guides',
+  'recommended',
+  'authors',
+] as const;
 
 export type ArticleCategory = (typeof articleCategories)[number];
 

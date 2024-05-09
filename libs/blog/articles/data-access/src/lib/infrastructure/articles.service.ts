@@ -26,7 +26,7 @@ export class ArticlesService {
     return this._http.get<ArrayResponse<ArticlePreview>>(
       `${this._apiBaseUrl}/articles`,
       {
-        params: query ?? {},
+        params: query || {},
       },
     );
   }

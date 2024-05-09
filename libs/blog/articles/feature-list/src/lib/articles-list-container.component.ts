@@ -30,17 +30,17 @@ import { CategorySectionContainerComponent } from './category-section-container/
   standalone: true,
 })
 export class ArticlesListContainerComponent {
-  private readonly articleListStore = inject(ArticleListStore);
+  private readonly _articleListStore = inject(ArticleListStore);
 
   readonly isFetchArticleListLoading: Signal<boolean> =
-    this.articleListStore.isFetchArticleListLoading;
+    this._articleListStore.isFetchArticleListLoading;
 
   readonly articleList: Signal<ArticlePreview[] | null> =
-    this.articleListStore.articles;
+    this._articleListStore.articles;
   readonly isFetchArticleListError =
-    this.articleListStore.isFetchArticleListError;
+    this._articleListStore.isFetchArticleListError;
 
   constructor() {
-    this.articleListStore.fetchArticleList(null);
+    this._articleListStore.fetchArticleList(null);
   }
 }
