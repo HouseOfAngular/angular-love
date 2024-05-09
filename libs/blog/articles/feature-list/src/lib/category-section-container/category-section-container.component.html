@@ -1,0 +1,20 @@
+<header class="mb-8 flex items-center gap-6">
+  <span class="text-2xl font-bold">{{ displayName() }}</span>
+  <span class="bg-al-gray-200 hidden h-[1px] flex-1 md:block"></span>
+  <a class="ml-auto" [routerLink]="['./', category()]">
+    <button al-button class="!px-0" variant="link">
+      See all {{ displayName() }}
+    </button>
+  </a>
+</header>
+
+<div class="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+  @if (articleStore.isFetchArticleListLoading()) {
+    <!--    TODO: add article skleteon when ready-->
+    <!--    <al-article-card-skeleton *alRepeat="take()" class="h-[438px]" />-->
+  } @else {
+    @for (article of articleStore.articles(); track article.slug) {
+      <al-ui-article-card [article]="article" cardType="regular" />
+    }
+  }
+</div>

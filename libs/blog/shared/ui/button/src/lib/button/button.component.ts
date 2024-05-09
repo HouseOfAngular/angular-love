@@ -8,7 +8,12 @@ export function cn(...inputs: ClassValue[]) {
 }
 
 //@todo rename to lower cases
-export type AlButtonVariant = 'Primary' | 'Outline' | 'Ghost' | 'secondary';
+export type AlButtonVariant =
+  | 'Primary'
+  | 'Outline'
+  | 'Ghost'
+  | 'link'
+  | 'secondary';
 export type AlButtonSize = 'small' | 'medium' | 'large';
 
 const buttonVariants = cva(
@@ -20,6 +25,7 @@ const buttonVariants = cva(
         secondary: 'bg-al-gray-600 text-white border border-al-gray-200',
         Outline: 'border border-al-primary bg-white text-al-primary',
         Ghost: 'bg-transparent',
+        link: 'bg-transparent !underline',
       },
       size: <Record<AlButtonSize, string>>{
         small: 'py-2 px-4 text-xs',
