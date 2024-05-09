@@ -1,4 +1,3 @@
-import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component, signal } from '@angular/core';
 
 import {
@@ -33,7 +32,7 @@ export const dataMock: Array<BecomeAuthorData> = [
 @Component({
   selector: 'al-become-author-page-feature',
   standalone: true,
-  imports: [CommonModule, UiBecomeAuthorDataSectionComponent],
+  imports: [UiBecomeAuthorDataSectionComponent],
   templateUrl: './become-author-page-feature.component.html',
   styleUrl: './become-author-page-feature.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
