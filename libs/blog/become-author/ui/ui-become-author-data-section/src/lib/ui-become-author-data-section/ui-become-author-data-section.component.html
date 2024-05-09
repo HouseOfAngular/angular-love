@@ -8,7 +8,7 @@
     <p class="pb-2 text-[18px]/[24px] font-bold md:pb-4 md:text-2xl">
       {{ data.title }}
     </p>
-    @if (data.description !== undefined) {
+    @if (data.description) {
       <p
         class="pb-4 text-base text-white md:pb-6"
         [innerText]="data.description"
@@ -20,7 +20,7 @@
         [info]="depiction"
         [layout]="last ? 'SECONDARY' : 'PRIMARY'"
         [showIndex]="!last"
-      ></al-ui-become-author-data-card>
+      />
     }
   </section>
 }
