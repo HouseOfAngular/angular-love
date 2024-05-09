@@ -3,7 +3,7 @@ import { ChangeDetectionStrategy, Component, signal } from '@angular/core';
 import {
   BecomeAuthorData,
   UiBecomeAuthorDataSectionComponent,
-} from '@angular-love/ui-become-author-data-section';
+} from './components/ui-become-author-data-section/ui-become-author-data-section.component';
 
 export const dataMock: Array<BecomeAuthorData> = [
   {
