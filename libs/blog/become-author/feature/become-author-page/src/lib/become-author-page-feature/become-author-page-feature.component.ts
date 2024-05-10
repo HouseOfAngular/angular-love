@@ -1,5 +1,7 @@
 import { ChangeDetectionStrategy, Component, signal } from '@angular/core';
 
+import { BreadcrumbComponent } from '@angular-love/blog/shared/ui/breadcrumb';
+
 import {
   BecomeAuthorData,
   UiBecomeAuthorDataSectionComponent,
@@ -32,7 +34,7 @@ export const dataMock: Array<BecomeAuthorData> = [
 @Component({
   selector: 'al-become-author-page-feature',
   standalone: true,
-  imports: [UiBecomeAuthorDataSectionComponent],
+  imports: [UiBecomeAuthorDataSectionComponent, BreadcrumbComponent],
   templateUrl: './become-author-page-feature.component.html',
   styleUrl: './become-author-page-feature.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
