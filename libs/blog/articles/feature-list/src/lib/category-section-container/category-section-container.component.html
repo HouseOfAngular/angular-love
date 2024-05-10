@@ -1,0 +1,18 @@
+<al-ui-article-list-title
+  [title]="displayName()"
+  [link]="{
+    displayName: displayName(),
+    href: 'category()'
+  }"
+/>
+
+<div class="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+  @if (articleStore.isFetchArticleListLoading()) {
+    <!--    TODO: add article skleteon when ready-->
+    <!--    <al-article-card-skeleton *alRepeat="take()" class="h-[438px]" />-->
+  } @else {
+    @for (article of articleStore.articles(); track article.slug) {
+      <al-ui-article-card [article]="article" cardType="regular" />
+    }
+  }
+</div>

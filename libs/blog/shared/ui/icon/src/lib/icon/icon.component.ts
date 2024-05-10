@@ -7,7 +7,7 @@ import {
 } from '@angular/core';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 
-import { getIcon, IconType } from '../icons';
+import { getIcon, IconType } from '../icons/icons';
 
 export type Size = 16;
 

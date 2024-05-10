@@ -12,6 +12,7 @@ import { RepeatDirective } from '@angular-love/utils';
 
 import { ArticleCardSkeletonComponent } from './article-card/article-card-skeleton.component';
 import { ArticleCardComponent } from './article-card/article-card.component';
+import { CategorySectionContainerComponent } from './category-section-container/category-section-container.component';
 
 @Component({
   selector: 'al-articles-list',
@@ -23,22 +24,23 @@ import { ArticleCardComponent } from './article-card/article-card.component';
     AsyncPipe,
     JsonPipe,
     ArticleCardComponent,
+    CategorySectionContainerComponent,
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: true,
 })
 export class ArticlesListContainerComponent {
-  private readonly articleListStore = inject(ArticleListStore);
+  private readonly _articleListStore = inject(ArticleListStore);
 
   readonly isFetchArticleListLoading: Signal<boolean> =
-    this.articleListStore.isFetchArticleListLoading;
+    this._articleListStore.isFetchArticleListLoading;
 
   readonly articleList: Signal<ArticlePreview[] | null> =
-    this.articleListStore.articles;
+    this._articleListStore.articles;
   readonly isFetchArticleListError =
-    this.articleListStore.isFetchArticleListError;
+    this._articleListStore.isFetchArticleListError;
 
   constructor() {
-    this.articleListStore.fetchArticleList(null);
+    this._articleListStore.fetchArticleList(null);
   }
 }

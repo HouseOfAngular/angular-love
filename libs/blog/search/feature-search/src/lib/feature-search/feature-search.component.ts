@@ -10,21 +10,19 @@ import {
 } from '@angular/core';
 import { FormControl, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { NgIconComponent, provideIcons } from '@ng-icons/core';
-import { heroMagnifyingGlass } from '@ng-icons/heroicons/outline';
 import { debounceTime, startWith } from 'rxjs';
 
 import { SearchStore } from '@angular-love/blog/search/data-access';
+import { IconComponent } from '@angular-love/icon';
 import { SearchResultItemComponent } from '@angular-love/search-result-item';
 
 @Component({
   selector: 'al-feature-search',
   standalone: true,
-  imports: [ReactiveFormsModule, NgIconComponent, SearchResultItemComponent],
+  imports: [ReactiveFormsModule, SearchResultItemComponent, IconComponent],
   templateUrl: './feature-search.component.html',
   styleUrl: './feature-search.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
-  providers: [provideIcons({ heroMagnifyingGlass })],
 })
 export class FeatureSearchComponent implements OnInit, OnDestroy {
   private readonly _searchStore = inject(SearchStore);

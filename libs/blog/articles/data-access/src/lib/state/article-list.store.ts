@@ -1,7 +1,7 @@
 import { inject } from '@angular/core';
 import { patchState, signalStore, withMethods, withState } from '@ngrx/signals';
 import { rxMethod } from '@ngrx/signals/rxjs-interop';
-import { pipe, switchMap, tap } from 'rxjs';
+import { concatMap, pipe, tap } from 'rxjs';
 
 import { ArticlePreview } from '@angular-love/contracts/articles';
 import {
@@ -28,7 +28,7 @@ export const ArticleListStore = signalStore(
   { providedIn: 'root' },
   withState(initialState),
   withCallState('fetch article list'),
-  withMethods(({ ...store }) => {
+  withMethods((store) => {
     const articlesService = inject(ArticlesService);
     return {
       fetchArticleList: rxMethod<ArticlesQuery>(
@@ -37,11 +37,9 @@ export const ArticleListStore = signalStore(
             patchState(store, {
               query: query,
               fetchArticleListCallState: LoadingState.LOADING,
-              articles: null,
             }),
           ),
-
-          switchMap((query) =>
+          concatMap((query) =>
             articlesService.getArticleList({ ...query }).pipe(
               tap({
                 next: ({ data, total }) => {

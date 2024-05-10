@@ -1,0 +1,29 @@
+<al-ui-article-list-title
+  [title]="'Latest articles'"
+  [link]="{ displayName: 'See all the articles', href: 'news' }"
+/>
+<div
+  class="mt-3 grid grid-cols-1 gap-x-4 gap-y-4 md:grid-cols-2 md:gap-x-8 xl:grid-cols-3 xl:gap-y-8"
+>
+  @for (article of articles(); track i; let i = $index) {
+    @if (i === 0) {
+      <al-ui-article-card
+        class="md:col-span-2"
+        [article]="article"
+        cardType="hero"
+      />
+      <al-card alGradientCard class="hidden xl:block">
+        <al-newsletter alCardContent />
+      </al-card>
+    } @else {
+      <al-ui-article-card
+        [ngClass]="{ 'hidden xl:block': i === 3 }"
+        [article]="article"
+        cardType="regular"
+      />
+    }
+  }
+  <al-card alGradientCard class="block md:col-span-2 xl:hidden">
+    <al-newsletter alCardContent />
+  </al-card>
+</div>
