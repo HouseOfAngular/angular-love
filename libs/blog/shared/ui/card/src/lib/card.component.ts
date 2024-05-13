@@ -87,9 +87,6 @@ export class CardComponent {
   ref: ElementRef<HTMLElement> = inject(ElementRef);
 
   @HostBinding('class')
-  hostClasses = 'block rounded-lg shadow-sm overflow-hidden';
-
-  @HostBinding('class.bg-white') get hasWhiteBackground() {
-    return !this.ref.nativeElement.hasAttribute('alGradientCard');
-  }
+  hostClasses =
+    'block rounded-lg border border-al-gray-200 shadow-sm overflow-hidden';
 }

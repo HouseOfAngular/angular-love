@@ -10,7 +10,7 @@ const DEFAULT_LANGUAGE_SUBSET = ['typescript', 'html', 'css', 'scss', 'json'];
 
 export const toArticlePreviewList = (dtos: WPPostDto[]): ArticlePreview[] => {
   return (dtos || []).map((dto) => {
-    const summary = cheerio.load(dto.excerpt.render || '');
+    const summary = cheerio.load(dto.excerpt.rendered || '');
     const title = cheerio.load(dto.title.rendered || '');
 
     return {
