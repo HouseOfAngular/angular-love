@@ -1,29 +1,26 @@
-import { Component, Input } from '@angular/core';
+import { Component, input } from '@angular/core';
+import { RouterLink } from '@angular/router';
 
 import { AvatarComponent } from '@angular-love/blog/shared/ui/avatar';
 import {
   CardComponent,
-  CardContentDirective,
+  GradientCardDirective,
 } from '@angular-love/blog/shared/ui/card';
-import { SocialMediaIconsComponent } from '@angular-love/blog/shared/ui/social-media-icons';
 
 export interface UiAuthorCard {
   name: string;
   description: string;
   avatarUrl: string;
+  position: string;
+  slug: string;
 }
 
 @Component({
   selector: 'al-author-card',
   standalone: true,
-  imports: [
-    AvatarComponent,
-    CardComponent,
-    CardContentDirective,
-    SocialMediaIconsComponent,
-  ],
+  imports: [AvatarComponent, CardComponent, GradientCardDirective, RouterLink],
   templateUrl: './author-card.component.html',
 })
 export class AuthorCardComponent {
-  @Input({ required: true }) author!: UiAuthorCard;
+  author = input.required<UiAuthorCard>();
 }

@@ -1,14 +1,11 @@
 import { Hono } from 'hono';
 
-import {
-  ArrayResponse,
-  ArticlePreview,
-} from '@angular-love/contracts/articles';
-import { wpClientMw } from '@angular-love/util-wp';
+import { ArrayResponse } from '@angular-love/blog-contracts/shared';
+import { ArticlePreview } from '@angular-love/contracts/articles';
+import { getPagination, wpClientMw } from '@angular-love/util-wp';
 
 import { WPPostDetailsDto, WPPostDto } from './dtos';
 import { toArticle, toArticlePreviewList } from './mappers';
-import { getPagination } from './utils';
 
 const app = new Hono();
 

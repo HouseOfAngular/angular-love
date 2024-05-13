@@ -3,7 +3,7 @@ import { RouterLink, RouterLinkActive } from '@angular/router';
 
 export type NavItem = {
   title: string;
-  link: string;
+  link: string[];
 };
 
 @Component({
@@ -16,8 +16,8 @@ export type NavItem = {
 })
 export class NavigationComponent {
   readonly navItems: NavItem[] = [
-    { title: 'About us', link: '' },
-    { title: 'Angular Meetups', link: '' },
-    { title: 'Become an author', link: '' },
+    { title: 'About us', link: ['about-us'] },
+    { title: 'Angular Meetups', link: [''] },
+    { title: 'Become an author', link: [''] },
   ];
 }

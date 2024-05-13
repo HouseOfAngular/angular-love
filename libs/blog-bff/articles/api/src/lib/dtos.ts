@@ -6,7 +6,7 @@ export interface WPPostDto {
     rendered: string;
   };
   excerpt: {
-    render: string;
+    rendered: string;
   };
   author_details: {
     name: string;

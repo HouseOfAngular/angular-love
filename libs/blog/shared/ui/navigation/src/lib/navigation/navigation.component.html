@@ -3,7 +3,7 @@
     <a
       class="p-6 font-medium text-white"
       [routerLinkActive]="'text-al-pink'"
-      routerLink="{{ item.link }}"
+      [routerLink]="item.link"
     >
       {{ item.title }}
     </a>

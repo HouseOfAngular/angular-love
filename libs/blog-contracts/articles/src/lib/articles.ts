@@ -15,8 +15,8 @@ export interface ArticlePreview {
   publishDate: string;
   readingTime: string;
   author: {
-    slug: string;
     name: string;
+    slug: string;
     avatarUrl: string;
   };
 }
@@ -27,15 +27,10 @@ export interface Article {
   publishDate: string;
   readingTime: string;
   author: {
-    slug: string;
     name: string;
-    avatarUrl: string;
     description: string;
+    avatarUrl: string;
+    position: string;
+    slug: string;
   };
-}
-
-//TODO: move shared contract lib
-export interface ArrayResponse<T> {
-  data: T[];
-  total: number;
 }

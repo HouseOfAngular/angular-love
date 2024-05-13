@@ -1,15 +1,25 @@
-<al-card>
-  <div alCardContent>
-    <div class="flex items-center gap-6">
-      <al-avatar [imageSrc]="author.avatarUrl" size="md" />
-      <div>
-        <span class="text-lg font-bold">{{ author.name }}</span>
-        <!-- FAKE ICONS -->
-        <!-- WILL BE REPLACED WITH AUTHOR'S ACTUAL SOCIAL LINKS-->
-        <al-social-media-icons class="flex justify-start" />
+<al-card alGradientCard>
+  <div alCardContent class="grid grid-cols-1 gap-6 md:grid-cols-[250px_auto]">
+    <al-card alGradientCard class="h-fit">
+      <div alCardContent class="flex flex-col items-center">
+        <al-avatar [imageSrc]="author().avatarUrl" size="md" />
+        <span class="mt-4 whitespace-nowrap text-base font-medium">
+          {{ author().name }}
+        </span>
+        <span class="mt-4 text-sm font-normal">{{ author().position }}</span>
+        <a
+          class="text-al-blue mt-4 text-sm font-normal"
+          [routerLink]="['/', 'author', author().slug]"
+        >
+          Read the articles
+        </a>
+        <div class="mt-4 block text-base font-normal md:hidden">
+          {{ author().description }}
+        </div>
       </div>
+    </al-card>
+    <div class="hidden text-base font-normal md:block">
+      {{ author().description }}
     </div>
-
-    <div class="mt-4 text-sm">{{ author.description }}</div>
   </div>
 </al-card>
