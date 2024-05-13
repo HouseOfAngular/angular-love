@@ -17,6 +17,9 @@
         "ssr": {
           "entry": "apps/blog/server.ts"
         },
+        "prerender": {
+          "routesFile": "apps/blog/routes.txt"
+        },
         "polyfills": ["zone.js"],
         "tsConfig": "apps/blog/tsconfig.app.json",
         "assets": ["apps/blog/src/favicon.ico", "apps/blog/src/assets"],
@@ -89,6 +92,12 @@
       "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
       "options": {
         "jestConfig": "apps/blog/jest.config.ts"
+      }
+    },
+    "build-routes": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "node apps/blog/scripts/build-routes.mjs"
       }
     }
   }
