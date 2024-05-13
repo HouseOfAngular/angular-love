@@ -1,4 +1,4 @@
-export type AlgoliaArticleSearchResultDto = {
+export type AlgoliaSearchResult = {
   comment_count: number;
   content: string;
   images: string[];
@@ -13,7 +13,7 @@ export type AlgoliaArticleSearchResultDto = {
   post_date: number;
   post_date_formatted: string;
   post_slug: string;
-  post_title: 'Main';
+  post_title: string;
   post_type: 'page';
   post_type_label: 'Pages';
   reading_time: number | null;

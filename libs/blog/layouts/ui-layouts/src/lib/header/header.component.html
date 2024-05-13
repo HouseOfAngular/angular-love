@@ -30,18 +30,8 @@
           PL
         </button>
       </div>
-      <!-- TODO: Remove the router link hack after header and/or layout are refactorised to smart components -->
-      <button
-        class="flex items-center bg-transparent p-1"
-        [routerLink]="['./']"
-        [queryParams]="{
-          isSearchOpen: true
-        }"
-        [queryParamsHandling]="'merge'"
-        [skipLocationChange]="true"
-      >
-        <al-icon name="magnifierGlass" class="text-al-pink text-2xl" />
-      </button>
+
+      <ng-content />
     </div>
   </div>
 </header>

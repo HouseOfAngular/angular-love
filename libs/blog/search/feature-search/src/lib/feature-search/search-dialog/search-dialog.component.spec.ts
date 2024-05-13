@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { FeatureSearchComponent } from './feature-search.component';
+import { SearchDialogComponent } from './search-dialog.component';
 
 // @todo replace with spectator
 describe('FeatureSearchComponent', () => {
-  let component: FeatureSearchComponent;
-  let fixture: ComponentFixture<FeatureSearchComponent>;
+  let component: SearchDialogComponent;
+  let fixture: ComponentFixture<SearchDialogComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [FeatureSearchComponent],
+      imports: [SearchDialogComponent],
     }).compileComponents();
 
-    fixture = TestBed.createComponent(FeatureSearchComponent);
+    fixture = TestBed.createComponent(SearchDialogComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

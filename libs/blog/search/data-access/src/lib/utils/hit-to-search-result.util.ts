@@ -1,10 +1,8 @@
-import { ArticleCard } from '@angular-love/blog/shared/types';
+import { AlgoliaSearchResult, SearchResult } from '../models';
 
-import { AlgoliaArticleSearchResultDto } from './search-result.model';
-
-export const mapToCardModel = (
-  dto: AlgoliaArticleSearchResultDto,
-): ArticleCard => {
+export const mapHitToSearchResult = (
+  dto: AlgoliaSearchResult,
+): SearchResult => {
   return {
     author: {
       avatarUrl: dto.post_author.user_avatar_url,
@@ -16,5 +14,6 @@ export const mapToCardModel = (
     readingTime: `${dto.reading_time || 0}`,
     slug: dto.post_slug,
     title: dto._highlightResult.post_title.value,
+    rawTitle: dto.post_title,
   };
 };

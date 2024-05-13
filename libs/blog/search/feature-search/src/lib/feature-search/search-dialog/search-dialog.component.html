@@ -14,22 +14,28 @@
           class="h-full w-full border-none bg-transparent text-sm text-white outline-none"
           [formControl]="searchForm"
         />
-        <button class="flex flex-row items-center">
+        <button class="flex flex-row items-center" (click)="goToAllResults()">
           <al-icon name="magnifierGlass" class="text-al-pink text-2xl" />
         </button>
       </div>
     </div>
     <div class="p-4 text-white">
-      <p>{{ resultsCount() }} results</p>
-      <ul class="max-h-[50vh] overflow-auto">
-        @for (hit of hits(); track hit.post_slug) {
-          <li
-            class="border-b-al-gray-200 flex cursor-pointer flex-row justify-between border-b p-6 last:border-none"
-          >
-            <al-search-result-item [hit]="hit" />
-          </li>
-        }
-      </ul>
+      @if (!searchStore.total()) {
+        <div class="flex items-center justify-center p-4">
+          <p>No recent matches</p>
+        </div>
+      } @else {
+        <p>{{ searchStore.total() }} results</p>
+        <ul class="max-h-[50vh] overflow-auto">
+          @for (item of searchStore.items(); track item.slug) {
+            <li
+              class="border-b-al-gray-200 w-full cursor-pointer justify-between border-b p-6 last:border-none"
+            >
+              <al-search-result-item [item]="item" />
+            </li>
+          }
+        </ul>
+      }
     </div>
   </div>
 </div>

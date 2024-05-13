@@ -2,9 +2,16 @@ import { Directive, inject } from '@angular/core';
 import {
   outputToObservable,
   takeUntilDestroyed,
+  toObservable,
 } from '@angular/core/rxjs-interop';
 import { ActivatedRoute, Router } from '@angular/router';
-import { distinctUntilChanged, filter, map } from 'rxjs';
+import {
+  combineLatest,
+  distinctUntilChanged,
+  filter,
+  map,
+  switchMap,
+} from 'rxjs';
 
 import { PaginationComponent } from './pagination.component';
 
@@ -20,6 +27,12 @@ export class QueryPaginationDirective {
   private readonly router = inject(Router);
 
   private readonly route = inject(ActivatedRoute);
+
+  private readonly _inputsSettled$ = combineLatest([
+    toObservable(this.pagination.skip),
+    toObservable(this.pagination.pageSize),
+    toObservable(this.pagination.total),
+  ]);
 
   constructor() {
     outputToObservable(this.pagination.pageChange)
@@ -45,6 +58,7 @@ export class QueryPaginationDirective {
           return 1;
         }),
         filter((page) => this.pagination.getCurrentPage() !== page),
+        switchMap((page) => this._inputsSettled$.pipe(map(() => page))),
         distinctUntilChanged(),
       )
       .subscribe((page) => {

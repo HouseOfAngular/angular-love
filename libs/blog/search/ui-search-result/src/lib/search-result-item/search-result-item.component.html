@@ -1,17 +1,22 @@
-<!-- LEFT SIDE -->
-<div class="flex flex-col items-start">
-  <p class="flex flex-row items-center">
-    <img
-      class="h-8 w-8 rounded-full object-cover"
-      [src]="hit().post_author.user_avatar_url"
-    />
-    <span class="ml-3">{{ hit().post_author.display_name }}</span>
-  </p>
-  <p class="mt-6">{{ hit().post_title }}</p>
-</div>
+@if (item(); as item) {
+  <div class="flex w-full justify-between">
+    <div class="flex items-center gap-2">
+      <img
+        alt="Author Image"
+        class="h-8 w-8 rounded-full object-cover"
+        [ngSrc]="item.author.avatarUrl"
+        width="32"
+        height="32"
+      />
+      <span class="ml-3">{{ item.author.name }}</span>
+    </div>
 
-<!-- RIGHT SIDE -->
-<div class="flex flex-row">
-  <p class="mr-6">{{ hit().post_date_formatted }}</p>
-  <p>{{ hit().reading_time }} min</p>
-</div>
+    <div class="flex items-center gap-4">
+      <span class="mr-4">{{ item.publishDate }}</span>
+      <al-icon name="clock" />
+      <span>{{ item.readingTime }} min</span>
+    </div>
+  </div>
+
+  <p class="mt-6 text-lg">{{ item.rawTitle }}</p>
+}
