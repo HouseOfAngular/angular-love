@@ -2,6 +2,16 @@
 <p class="lg:pt-15 py-4 text-2xl font-bold md:pb-6 md:text-[40px]/[56px]">
   Become a part of angular.love!
 </p>
-@if (dataSource(); as dataSource) {
-  <al-ui-become-author-data-section [becomeAuthorData]="dataSource" />
-}
+<div
+  class="grid w-full grid-cols-1 gap-6 md:grid-cols-[250px_auto] lg:grid-cols-2"
+>
+  @if (dataSource(); as dataSource) {
+    <al-ui-become-author-data-section [becomeAuthorData]="dataSource" />
+  }
+  <al-card alGradientCard class="h-[434px] w-[408px]">
+    <al-ui-become-author-advertisement
+      alCardContent
+      language="PL"
+    ></al-ui-become-author-advertisement>
+  </al-card>
+</div>
