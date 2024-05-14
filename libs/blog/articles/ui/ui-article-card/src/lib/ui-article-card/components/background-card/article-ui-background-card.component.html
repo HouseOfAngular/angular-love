@@ -1,12 +1,13 @@
 <div
-  class="rounded-lg bg-no-repeat"
+  class="h-full rounded-lg bg-no-repeat"
   [ngClass]="{
     'bg-cover': layout() === 'compact',
-    'hover:shadow-al-pink bg-center': layout() === 'hero'
+    'hover:shadow-al-pink bg-contain bg-center': layout() === 'hero'
   }"
   [style.background-image]="'url(' + article().featuredImageUrl + ')'"
 >
   <div
+    class="h-full"
     [ngClass]="{
       'bg-al-gray-500': layout() === 'compact',
       'bg-al-gradient-black hover:bg-al-gradient-black-red rounded-lg':
@@ -34,8 +35,8 @@
             {{ article().publishDate | date: 'mediumDate' }}
           </span>
         }
-        <p class="text-sm/[14px] text-white">{{ article().readingTime }}min</p>
         <al-icon name="clock" />
+        <p class="text-sm/[14px] text-white">{{ article().readingTime }} min</p>
       </div>
     </div>
     <div
@@ -44,10 +45,10 @@
         'px-8 pb-8 pt-44': layout() === 'hero'
       }"
     >
-      <p class="text-2xl font-bold text-white">
+      <p class="line-clamp-2 text-2xl font-bold text-white">
         {{ article().title }}
       </p>
-      <p class="pt-2 text-base text-white">
+      <p class="line-clamp-2 pt-2 text-base text-white">
         {{ article().excerpt }}
       </p>
     </div>

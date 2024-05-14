@@ -10,7 +10,7 @@ const article: ArticleCardDataModel = {
   title: 'Angular Storybook',
   readingTime: '3',
   excerpt:
-    'The micro frontend architecture is a well-known development approach.',
+    'Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. ',
   featuredImageUrl: '/assets/storybook/article-featured-image.png',
   author: {
     name: 'Author Data',
