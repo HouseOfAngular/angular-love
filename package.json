@@ -11,7 +11,8 @@
     "lint:check": "nx run-many --all --target=lint --parallel",
     "prepare": "husky install",
     "hooks:debugger-checker": "node hooks/debugger-checker.js",
-    "lint-staged": "lint-staged"
+    "lint-staged": "lint-staged",
+    "prerender": "nx run blog:build-routes && nx run blog:build"
   },
   "private": true,
   "dependencies": {
