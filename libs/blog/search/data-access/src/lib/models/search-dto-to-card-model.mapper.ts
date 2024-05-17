@@ -1,10 +1,10 @@
-import { ArticleCardDataModel } from '@angular-love/article-card-data-model';
+import { ArticleCard } from '@angular-love/blog/shared/types';
 
 import { AlgoliaArticleSearchResultDto } from './search-result.model';
 
 export const mapToCardModel = (
   dto: AlgoliaArticleSearchResultDto,
-): ArticleCardDataModel => {
+): ArticleCard => {
   return {
     author: {
       avatarUrl: dto.post_author.user_avatar_url,

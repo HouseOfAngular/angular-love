@@ -13,7 +13,7 @@ import { Router } from '@angular/router';
 import { debounceTime, startWith } from 'rxjs';
 
 import { SearchStore } from '@angular-love/blog/search/data-access';
-import { IconComponent } from '@angular-love/icon';
+import { IconComponent } from '@angular-love/blog/shared/ui-icon';
 import { SearchResultItemComponent } from '@angular-love/search-result-item';
 
 @Component({

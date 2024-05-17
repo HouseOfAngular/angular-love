@@ -1,0 +1,21 @@
+{
+  "name": "blog-authors-ui-author-card",
+  "$schema": "../../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/blog/authors/ui-author-card/src",
+  "prefix": "al",
+  "projectType": "library",
+  "tags": ["type:ui"],
+  "targets": {
+    "test": {
+      "executor": "@nx/jest:jest",
+      "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
+      "options": {
+        "jestConfig": "libs/blog/authors/ui-author-card/jest.config.ts"
+      }
+    },
+    "lint": {
+      "executor": "@nx/eslint:lint",
+      "outputs": ["{options.outputFile}"]
+    }
+  }
+}

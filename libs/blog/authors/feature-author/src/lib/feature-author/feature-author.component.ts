@@ -8,21 +8,21 @@ import {
 } from '@angular/core';
 
 import { ArticleListStore } from '@angular-love/blog/articles/data-access';
+import { UiArticleCardComponent } from '@angular-love/blog/articles/ui-article-card';
 import { AuthorDetailsStore } from '@angular-love/blog/authors/data-access';
 import {
   AuthorInfoComponent,
   AuthorInfoSkeletonComponent,
-} from '@angular-love/blog/authors/ui/author-info';
-import { BreadcrumbComponent } from '@angular-love/blog/shared/ui/breadcrumb';
+} from '@angular-love/blog/authors/ui-author-info';
+import { BreadcrumbComponent } from '@angular-love/blog/shared/ui-breadcrumb';
 import {
   PaginationComponent,
   QueryPaginationDirective,
-} from '@angular-love/blog/shared/ui/pagination';
-import { UiArticleCardComponent } from '@angular-love/ui-article-card';
+} from '@angular-love/blog/shared/ui-pagination';
 import { RepeatDirective } from '@angular-love/utils';
 
 @Component({
-  selector: 'al-feature-author',
+  selector: 'al-author',
   standalone: true,
   imports: [
     AuthorInfoComponent,

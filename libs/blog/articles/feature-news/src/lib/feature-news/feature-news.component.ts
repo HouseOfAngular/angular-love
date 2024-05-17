@@ -7,15 +7,15 @@ import {
 } from '@angular/core';
 
 import { ArticleListStore } from '@angular-love/blog/articles/data-access';
-import { BreadcrumbComponent } from '@angular-love/blog/shared/ui/breadcrumb';
+import { UiArticleCardComponent } from '@angular-love/blog/articles/ui-article-card';
+import { BreadcrumbComponent } from '@angular-love/blog/shared/ui-breadcrumb';
 import {
   PaginationComponent,
   QueryPaginationDirective,
-} from '@angular-love/blog/shared/ui/pagination';
-import { UiArticleCardComponent } from '@angular-love/ui-article-card';
+} from '@angular-love/blog/shared/ui-pagination';
 
 @Component({
-  selector: 'al-feature-news',
+  selector: 'al-news',
   standalone: true,
   imports: [
     BreadcrumbComponent,

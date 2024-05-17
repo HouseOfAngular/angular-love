@@ -1,0 +1,12 @@
+<al-latest-articles />
+<al-recommended-articles class="mt-16 block xl:mt-20" />
+<!-- <al-newsletter /> -->
+<!--@todo-refactor-->
+<al-articles-list />
+<al-partners></al-partners>
+
+@defer (when isSearchOpen()) {
+  @if (isSearchOpen()) {
+    <al-feature-search />
+  }
+}

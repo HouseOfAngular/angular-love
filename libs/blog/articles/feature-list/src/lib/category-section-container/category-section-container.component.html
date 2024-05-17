@@ -1,4 +1,4 @@
-<al-ui-article-list-title
+<al-article-list-title
   [title]="displayName()"
   [link]="{
     displayName: displayName(),
@@ -12,7 +12,7 @@
     <!--    <al-article-card-skeleton *alRepeat="take()" class="h-[438px]" />-->
   } @else {
     @for (article of articleStore.articles(); track article.slug) {
-      <al-ui-article-card [article]="article" cardType="regular" />
+      <al-article-card [article]="article" cardType="regular" />
     }
   }
 </div>

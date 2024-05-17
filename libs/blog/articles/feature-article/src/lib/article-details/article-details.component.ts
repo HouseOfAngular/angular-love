@@ -1,8 +1,8 @@
 import { DatePipe, NgIf } from '@angular/common';
 import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 
-import { AuthorCardComponent } from '@angular-love/blog/authors/ui-card';
-import { SocialMediaIconsComponent } from '@angular-love/blog/shared/ui/social-media-icons';
+import { AuthorCardComponent } from '@angular-love/blog/authors/ui-author-card';
+import { SocialMediaIconsComponent } from '@angular-love/blog/shared/ui-social-media-icons';
 import { Article } from '@angular-love/contracts/articles';
 
 import { ArticleContentComponent } from '../article-content/article-content.component';

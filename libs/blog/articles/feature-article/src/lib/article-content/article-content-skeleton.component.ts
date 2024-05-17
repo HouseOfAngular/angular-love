@@ -4,7 +4,7 @@ import { NgxSkeletonLoaderModule } from 'ngx-skeleton-loader';
 import {
   CardComponent,
   CardContentDirective,
-} from '@angular-love/blog/shared/ui/card';
+} from '@angular-love/blog/shared/ui-card';
 import { RepeatDirective } from '@angular-love/utils';
 
 @Component({

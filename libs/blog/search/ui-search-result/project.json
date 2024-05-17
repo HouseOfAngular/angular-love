@@ -4,7 +4,7 @@
   "sourceRoot": "libs/blog/search/ui-search-result/src",
   "prefix": "al",
   "projectType": "library",
-  "tags": [],
+  "tags": ["type:ui"],
   "targets": {
     "test": {
       "executor": "@nx/jest:jest",
