@@ -105,6 +105,9 @@
       "@angular-love/blog/shared/ui-icon": [
         "libs/blog/shared/ui-icon/src/index.ts"
       ],
+      "@angular-love/blog/shared/ui-not-found": [
+        "libs/blog/shared/ui-not-found/src/index.ts"
+      ],
       "@angular-love/blog/shared/ui-pagination": [
         "libs/blog/shared/ui-pagination/src/index.ts"
       ],
