@@ -1,0 +1,14 @@
+@switch (cardType()) {
+  @case ('regular') {
+    <al-article-regular-card [article]="article()" [layout]="'regular'" />
+  }
+  @case ('horizontal') {
+    <al-article-regular-card [article]="article()" [layout]="'horizontal'" />
+  }
+  @case ('hero') {
+    <al-article-background-card [article]="article()" [layout]="'hero'" />
+  }
+  @case ('compact') {
+    <al-article-background-card [article]="article()" [layout]="'compact'" />
+  }
+}

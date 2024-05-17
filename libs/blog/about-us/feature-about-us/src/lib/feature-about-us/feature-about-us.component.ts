@@ -7,19 +7,19 @@ import {
 } from '@angular/core';
 
 import { AuthorListStore } from '@angular-love/blog/authors/data-access';
-import { AuthorCardComponent } from '@angular-love/blog/authors/ui-card';
-import { AuthorInfoComponent } from '@angular-love/blog/authors/ui/author-info';
-import { BreadcrumbComponent } from '@angular-love/blog/shared/ui/breadcrumb';
+import { AuthorCardComponent } from '@angular-love/blog/authors/ui-author-card';
+import { AuthorInfoComponent } from '@angular-love/blog/authors/ui-author-info';
+import { BreadcrumbComponent } from '@angular-love/blog/shared/ui-breadcrumb';
 import {
   CardComponent,
   GradientCardDirective,
-} from '@angular-love/blog/shared/ui/card';
-import { InfiniteScrollTriggerDirective } from '@angular-love/blog/shared/ui/pagination';
-import { SocialMediaIconsComponent } from '@angular-love/blog/shared/ui/social-media-icons';
+} from '@angular-love/blog/shared/ui-card';
+import { InfiniteScrollTriggerDirective } from '@angular-love/blog/shared/ui-pagination';
+import { SocialMediaIconsComponent } from '@angular-love/blog/shared/ui-social-media-icons';
 import { NewsletterComponent } from '@angular-love/newsletter';
 
 @Component({
-  selector: 'al-feature-about-us',
+  selector: 'al-about-us',
   standalone: true,
   imports: [
     CardComponent,

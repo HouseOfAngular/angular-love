@@ -7,18 +7,18 @@ import {
 } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
+import { UiArticleCardComponent } from '@angular-love/blog/articles/ui-article-card';
 import { SearchStore } from '@angular-love/blog/search/data-access';
-import { BreadcrumbComponent } from '@angular-love/blog/shared/ui/breadcrumb';
+import { BreadcrumbComponent } from '@angular-love/blog/shared/ui-breadcrumb';
 import {
   CardComponent,
   GradientCardDirective,
-} from '@angular-love/blog/shared/ui/card';
+} from '@angular-love/blog/shared/ui-card';
 import {
   PageChangeEvent,
   PaginationComponent,
-} from '@angular-love/blog/shared/ui/pagination';
+} from '@angular-love/blog/shared/ui-pagination';
 import { NewsletterComponent } from '@angular-love/newsletter';
-import { UiArticleCardComponent } from '@angular-love/ui-article-card';
 
 @Component({
   selector: 'al-feature-search-results-page',

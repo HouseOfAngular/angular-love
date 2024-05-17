@@ -8,7 +8,7 @@ import {
 import {
   CardComponent,
   CardContentDirective,
-} from '@angular-love/blog/shared/ui/card';
+} from '@angular-love/blog/shared/ui-card';
 
 @Component({
   selector: 'al-article-content',

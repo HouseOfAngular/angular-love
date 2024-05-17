@@ -17,6 +17,7 @@ const articleDetails: Article = {
     name: 'John Smith',
     description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
     avatarUrl: '/assets/storybook/author-image.jpg',
+    position: '',
   },
   publishDate: new Date('2021-01-01').toISOString(),
   content:

@@ -4,7 +4,7 @@
   "sourceRoot": "libs/blog/about-us/feature-about-us/src",
   "prefix": "al",
   "projectType": "library",
-  "tags": [],
+  "tags": ["type:feature"],
   "targets": {
     "test": {
       "executor": "@nx/jest:jest",

@@ -9,10 +9,10 @@ import {
 import {
   CardComponent,
   GradientCardDirective,
-} from '@angular-love/blog/shared/ui/card';
-import { IconComponent } from '@angular-love/icon';
+} from '@angular-love/blog/shared/ui-card';
+import { IconComponent } from '@angular-love/blog/shared/ui-icon';
 
-import { NewsletterSuccessComponent } from './newsletter-success/newsletter-success.component';
+import { NewsletterSuccessComponent } from '../newsletter-success/newsletter-success.component';
 
 export type NewsletterFormState = 'INITIAL' | 'SUCCESS';
 

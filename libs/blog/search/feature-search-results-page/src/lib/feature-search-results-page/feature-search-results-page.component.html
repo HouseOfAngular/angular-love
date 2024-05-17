@@ -9,12 +9,12 @@
   @for (article of mappedResults(); track article.slug) {
     <!-- DESKTOP -->
     <li class="my-3 hidden h-[220px] lg:block">
-      <al-ui-article-card [cardType]="'horizontal'" [article]="article" />
+      <al-article-card [cardType]="'horizontal'" [article]="article" />
     </li>
 
     <!-- TABLET AND MOBILE -->
     <li class="block lg:hidden">
-      <al-ui-article-card [cardType]="'regular'" [article]="article" />
+      <al-article-card [cardType]="'regular'" [article]="article" />
     </li>
   }
 </ul>

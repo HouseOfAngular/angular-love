@@ -1,0 +1,36 @@
+{
+  "name": "blog-shared-types",
+  "$schema": "../../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/blog/shared/types/src",
+  "prefix": "al",
+  "projectType": "library",
+  "tags": [],
+  "targets": {
+    "build": {
+      "executor": "@nx/angular:ng-packagr-lite",
+      "outputs": ["{workspaceRoot}/dist/{projectRoot}"],
+      "options": {
+        "project": "libs/blog/shared/types/ng-package.json"
+      },
+      "configurations": {
+        "production": {
+          "tsConfig": "libs/blog/shared/types/tsconfig.lib.prod.json"
+        },
+        "development": {
+          "tsConfig": "libs/blog/shared/types/tsconfig.lib.json"
+        }
+      },
+      "defaultConfiguration": "production"
+    },
+    "test": {
+      "executor": "@nx/jest:jest",
+      "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
+      "options": {
+        "jestConfig": "libs/blog/shared/types/jest.config.ts"
+      }
+    },
+    "lint": {
+      "executor": "@nx/eslint:lint"
+    }
+  }
+}

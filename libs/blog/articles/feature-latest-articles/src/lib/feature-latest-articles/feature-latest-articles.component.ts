@@ -7,16 +7,16 @@ import {
 } from '@angular/core';
 
 import { ArticleListStore } from '@angular-love/blog/articles/data-access';
+import { UiArticleCardComponent } from '@angular-love/blog/articles/ui-article-card';
+import { UiArticleListTitleComponent } from '@angular-love/blog/articles/ui-article-list-title';
 import {
   CardComponent,
   GradientCardDirective,
-} from '@angular-love/blog/shared/ui/card';
+} from '@angular-love/blog/shared/ui-card';
 import { NewsletterComponent } from '@angular-love/newsletter';
-import { UiArticleCardComponent } from '@angular-love/ui-article-card';
-import { UiArticleListTitleComponent } from '@angular-love/ui-article-list-title';
 
 @Component({
-  selector: 'al-feature-latest-articles',
+  selector: 'al-latest-articles',
   standalone: true,
   templateUrl: './feature-latest-articles.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,

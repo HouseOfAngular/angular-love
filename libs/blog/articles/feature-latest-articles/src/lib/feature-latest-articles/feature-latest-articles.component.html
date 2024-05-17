@@ -1,4 +1,4 @@
-<al-ui-article-list-title
+<al-article-list-title
   [title]="'Latest articles'"
   [link]="{ displayName: 'See all the articles', href: 'news' }"
 />
@@ -7,7 +7,7 @@
 >
   @for (article of articles(); track i; let i = $index) {
     @if (i === 0) {
-      <al-ui-article-card
+      <al-article-card
         class="md:col-span-2"
         [article]="article"
         cardType="hero"
@@ -16,7 +16,7 @@
         <al-newsletter alCardContent />
       </al-card>
     } @else {
-      <al-ui-article-card
+      <al-article-card
         [ngClass]="{ 'hidden xl:block': i === 3 }"
         [article]="article"
         cardType="regular"

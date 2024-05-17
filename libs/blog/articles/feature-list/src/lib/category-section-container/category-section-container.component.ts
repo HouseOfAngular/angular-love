@@ -8,10 +8,10 @@ import {
 import { RouterLink } from '@angular/router';
 
 import { ArticleListStore } from '@angular-love/blog/articles/data-access';
-import { ButtonComponent } from '@angular-love/blog/shared/ui/button';
+import { UiArticleCardComponent } from '@angular-love/blog/articles/ui-article-card';
+import { UiArticleListTitleComponent } from '@angular-love/blog/articles/ui-article-list-title';
+import { ButtonComponent } from '@angular-love/blog/shared/ui-button';
 import { ArticleCategory } from '@angular-love/contracts/articles';
-import { UiArticleCardComponent } from '@angular-love/ui-article-card';
-import { UiArticleListTitleComponent } from '@angular-love/ui-article-list-title';
 
 const displayNameDict: Record<ArticleCategory, string> = {
   news: 'Angular News',

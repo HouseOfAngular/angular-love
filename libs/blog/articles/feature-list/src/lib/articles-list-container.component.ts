@@ -10,20 +10,15 @@ import { ArticleListStore } from '@angular-love/blog/articles/data-access';
 import { ArticlePreview } from '@angular-love/contracts/articles';
 import { RepeatDirective } from '@angular-love/utils';
 
-import { ArticleCardSkeletonComponent } from './article-card/article-card-skeleton.component';
-import { ArticleCardComponent } from './article-card/article-card.component';
 import { CategorySectionContainerComponent } from './category-section-container/category-section-container.component';
 
 @Component({
   selector: 'al-articles-list',
   templateUrl: './articles-list-container.component.html',
   imports: [
-    ArticleCardComponent,
-    ArticleCardSkeletonComponent,
     RepeatDirective,
     AsyncPipe,
     JsonPipe,
-    ArticleCardComponent,
     CategorySectionContainerComponent,
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
