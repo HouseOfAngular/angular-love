@@ -4,7 +4,7 @@
   "sourceRoot": "libs/blog/search/feature-search-results-page/src",
   "prefix": "al",
   "projectType": "library",
-  "tags": ["type:feature"],
+  "tags": ["scope:client", "type:feature"],
   "targets": {
     "test": {
       "executor": "@nx/jest:jest",

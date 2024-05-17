@@ -4,7 +4,7 @@
   "sourceRoot": "libs/blog-contracts/authors/src",
   "prefix": "al",
   "projectType": "library",
-  "tags": [],
+  "tags": ["scope:shared", "type:contract"],
   "targets": {
     "test": {
       "executor": "@nx/jest:jest",

@@ -4,7 +4,7 @@
   "sourceRoot": "libs/blog/shared/types/src",
   "prefix": "al",
   "projectType": "library",
-  "tags": [],
+  "tags": ["scope:client", "type:types"],
   "targets": {
     "build": {
       "executor": "@nx/angular:ng-packagr-lite",

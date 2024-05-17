@@ -4,7 +4,7 @@
   "sourceRoot": "libs/blog/articles/ui-article-list-title/src",
   "prefix": "al",
   "projectType": "library",
-  "tags": ["type:ui"],
+  "tags": ["scope:client", "type:ui"],
   "targets": {
     "test": {
       "executor": "@nx/jest:jest",

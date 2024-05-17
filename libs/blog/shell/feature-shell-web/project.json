@@ -4,7 +4,7 @@
   "sourceRoot": "libs/blog/shell/feature-shell-web/src",
   "prefix": "al",
   "projectType": "library",
-  "tags": ["type:feature"],
+  "tags": ["scope:client", "type:feature"],
   "targets": {
     "test": {
       "executor": "@nx/jest:jest",

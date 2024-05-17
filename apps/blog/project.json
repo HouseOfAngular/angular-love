@@ -4,7 +4,7 @@
   "projectType": "application",
   "prefix": "al",
   "sourceRoot": "apps/blog/src",
-  "tags": [],
+  "tags": ["scope:client", "type:app"],
   "targets": {
     "build": {
       "executor": "@nx/angular:application",

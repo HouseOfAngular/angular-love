@@ -1,7 +1,14 @@
-import { Hit } from '@algolia/client-search';
 import { ChangeDetectionStrategy, Component, input } from '@angular/core';
 
-import { AlgoliaArticleSearchResultDto } from '@angular-love/blog/search/data-access';
+interface UiSearchResultItem {
+  post_author: {
+    user_avatar_url: string;
+    display_name: string;
+  };
+  post_title: 'Main';
+  post_date_formatted: string;
+  reading_time: number | null;
+}
 
 @Component({
   selector: 'al-search-result-item',
@@ -11,5 +18,5 @@ import { AlgoliaArticleSearchResultDto } from '@angular-love/blog/search/data-ac
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SearchResultItemComponent {
-  hit = input.required<Hit<AlgoliaArticleSearchResultDto>>();
+  hit = input.required<UiSearchResultItem>();
 }

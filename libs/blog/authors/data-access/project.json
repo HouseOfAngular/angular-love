@@ -4,7 +4,7 @@
   "sourceRoot": "libs/blog/authors/data-access/src",
   "prefix": "al",
   "projectType": "library",
-  "tags": [],
+  "tags": ["scope:client", "type:data-access"],
   "targets": {
     "test": {
       "executor": "@nx/jest:jest",

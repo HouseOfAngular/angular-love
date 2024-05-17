@@ -4,7 +4,7 @@
   "sourceRoot": "libs/blog-bff/authors/api/src",
   "prefix": "al",
   "projectType": "library",
-  "tags": [],
+  "tags": ["scope:bff", "type:api"],
   "targets": {
     "test": {
       "executor": "@nx/jest:jest",

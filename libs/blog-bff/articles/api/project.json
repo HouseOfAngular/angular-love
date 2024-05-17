@@ -3,7 +3,7 @@
   "$schema": "../../../../node_modules/nx/schemas/project-schema.json",
   "sourceRoot": "libs/blog-bff/articles/api/src",
   "projectType": "library",
-  "tags": [],
+  "tags": ["scope:bff", "type:api"],
   "targets": {
     "lint": {
       "executor": "@nx/eslint:lint",
