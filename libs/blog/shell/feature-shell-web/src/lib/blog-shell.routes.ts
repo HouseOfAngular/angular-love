@@ -46,6 +46,16 @@ export const blogShellRoutes: Route[] = [
           (await import('@angular-love/blog/articles/feature/shell'))
             .articleRoutes,
       },
+      {
+        path: 'not-found',
+        loadComponent: async () =>
+          (await import('@angular-love/blog/shared/ui-not-found'))
+            .NotFoundPageComponent,
+      },
+      {
+        path: '**',
+        redirectTo: 'not-found',
+      },
     ],
   },
 ];
