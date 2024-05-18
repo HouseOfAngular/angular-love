@@ -4,7 +4,7 @@
   "sourceRoot": "libs/blog/authors/ui-author-card/src",
   "prefix": "al",
   "projectType": "library",
-  "tags": ["type:ui"],
+  "tags": ["scope:client", "type:ui"],
   "targets": {
     "test": {
       "executor": "@nx/jest:jest",
