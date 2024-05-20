@@ -48,6 +48,9 @@
       "@angular-love/blog/articles/ui-article-list-title": [
         "libs/blog/articles/ui-article-list-title/src/index.ts"
       ],
+      "@angular-love/blog/articles/ui-table-of-contents": [
+        "libs/blog/articles/ui-table-of-contents/src/index.ts"
+      ],
       "@angular-love/blog/authors/data-access": [
         "libs/blog/authors/data-access/src/index.ts"
       ],
