@@ -1,24 +1,28 @@
 import {
   ChangeDetectionStrategy,
   Component,
-  Input,
+  computed,
+  inject,
+  input,
   ViewEncapsulation,
 } from '@angular/core';
-
-import {
-  CardComponent,
-  CardContentDirective,
-} from '@angular-love/blog/shared/ui-card';
+import { DomSanitizer } from '@angular/platform-browser';
 
 @Component({
   selector: 'al-article-content',
   standalone: true,
   templateUrl: './article-content.component.html',
   styleUrl: './article-content.component.scss',
-  imports: [CardComponent, CardContentDirective],
+  imports: [],
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ArticleContentComponent {
-  @Input() content?: string;
+  readonly content = input.required<string>();
+
+  private readonly _domSanitizer = inject(DomSanitizer);
+
+  readonly sanitizedContent = computed(() =>
+    this._domSanitizer.bypassSecurityTrustHtml(this.content()!),
+  );
 }

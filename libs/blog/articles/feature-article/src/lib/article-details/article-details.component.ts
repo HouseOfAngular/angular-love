@@ -1,11 +1,10 @@
 import { DatePipe, NgIf } from '@angular/common';
 import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 
+import { ArticleContentComponent } from '@angular-love/blog/articles/ui-article-content';
 import { AuthorCardComponent } from '@angular-love/blog/authors/ui-author-card';
 import { SocialMediaIconsComponent } from '@angular-love/blog/shared/ui-social-media-icons';
 import { Article } from '@angular-love/contracts/articles';
-
-import { ArticleContentComponent } from '../article-content/article-content.component';
 
 @Component({
   selector: 'al-article-details',
