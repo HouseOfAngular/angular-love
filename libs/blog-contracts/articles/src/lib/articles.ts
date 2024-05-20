@@ -7,6 +7,14 @@ export const articleCategories = [
 
 export type ArticleCategory = (typeof articleCategories)[number];
 
+export const anchorTypes = ['h2', 'h3'] as const;
+export type AnchorType = (typeof anchorTypes)[number];
+
+export type Anchor = {
+  title: string;
+  type: AnchorType;
+};
+
 export interface ArticlePreview {
   slug: string;
   title: string;
@@ -33,4 +41,5 @@ export interface Article {
     position: string;
     slug: string;
   };
+  anchors?: Anchor[];
 }
