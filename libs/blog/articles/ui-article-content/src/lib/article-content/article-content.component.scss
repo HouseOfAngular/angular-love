@@ -12,8 +12,8 @@ article {
   }
 
   h2 {
+    @apply text-2xl font-bold;
     @include heading-styles;
-    font-size: 1.5rem;
   }
 
   h3 {
@@ -27,6 +27,7 @@ article {
   }
 
   p {
+    @apply mb-6;
     line-height: 1.9;
   }
 
