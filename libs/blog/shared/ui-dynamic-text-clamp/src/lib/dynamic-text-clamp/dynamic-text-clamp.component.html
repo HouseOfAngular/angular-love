@@ -1,0 +1,24 @@
+<p
+  alIsClamped
+  #clamped="alIsClamped"
+  [ngClass]="{
+    absolute: readMore(),
+    invisible: readMore()
+  }"
+  [className]="textClasses()"
+  [innerHTML]="text()"
+></p>
+
+<p
+  [ngClass]="{
+    '!hidden': !readMore()
+  }"
+  [className]="textClasses() + ' !line-clamp-none'"
+  [innerHTML]="text()"
+></p>
+
+@if (clamped.clamped()) {
+  <button al-button (click)="toggleReadMore()" size="small" variant="link">
+    {{ readMore() ? 'Read Less' : 'Read More' }}
+  </button>
+}

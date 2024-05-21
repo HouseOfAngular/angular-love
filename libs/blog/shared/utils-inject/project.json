@@ -1,0 +1,20 @@
+{
+  "name": "blog-shared-utils-inject",
+  "$schema": "../../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/blog/shared/utils-inject/src",
+  "prefix": "al",
+  "projectType": "library",
+  "tags": ["scope:client", "type:util"],
+  "targets": {
+    "test": {
+      "executor": "@nx/jest:jest",
+      "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
+      "options": {
+        "jestConfig": "libs/blog/shared/utils-inject/jest.config.ts"
+      }
+    },
+    "lint": {
+      "executor": "@nx/eslint:lint"
+    }
+  }
+}

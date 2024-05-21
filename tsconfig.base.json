@@ -111,6 +111,9 @@
       "@angular-love/blog/shared/ui-card": [
         "libs/blog/shared/ui-card/src/index.ts"
       ],
+      "@angular-love/blog/shared/ui-dynamic-text-clamp": [
+        "libs/blog/shared/ui-dynamic-text-clamp/src/index.ts"
+      ],
       "@angular-love/blog/shared/ui-icon": [
         "libs/blog/shared/ui-icon/src/index.ts"
       ],
@@ -122,6 +125,9 @@
       ],
       "@angular-love/blog/shared/ui-social-media-icons": [
         "libs/blog/shared/ui-social-media-icons/src/index.ts"
+      ],
+      "@angular-love/blog/shared/utils-inject": [
+        "libs/blog/shared/utils-inject/src/index.ts"
       ],
       "@angular-love/blog/shell/feature": [
         "libs/blog/shell/feature-shell-web/src/index.ts"
