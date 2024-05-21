@@ -17,6 +17,7 @@ const displayNameDict: Record<ArticleCategory, string> = {
   news: 'Angular News',
   guides: 'Angular Guides',
   recommended: 'Recommended Articles',
+  latest: 'Latest Articles',
   authors: 'Authors',
 };
 
