@@ -10,7 +10,6 @@ import { PartnersComponent } from '@angular-love/blog/partners/ui-partners';
 import { FeatureSearchComponent } from '@angular-love/blog/search/feature-search';
 import { CardComponent } from '@angular-love/blog/shared/ui-card';
 import { FeatureLatestArticlesComponent } from '@angular-love/feature-latest-articles';
-import { FeatureRecommendedArticlesComponent } from '@angular-love/feature-recommended-articles';
 import { NewsletterComponent } from '@angular-love/newsletter';
 
 @Component({
@@ -24,7 +23,6 @@ import { NewsletterComponent } from '@angular-love/newsletter';
     NewsletterComponent,
     PartnersComponent,
     FeatureLatestArticlesComponent,
-    FeatureRecommendedArticlesComponent,
     UiArticleCardComponent,
     ArticlesListContainerComponent,
   ],

@@ -3,6 +3,7 @@ export const articleCategories = [
   'guides',
   'recommended',
   'authors',
+  'latest',
 ] as const;
 
 export type ArticleCategory = (typeof articleCategories)[number];
