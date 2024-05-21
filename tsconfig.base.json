@@ -126,9 +126,6 @@
       "@angular-love/feature-latest-articles": [
         "libs/blog/articles/feature-latest-articles/src/index.ts"
       ],
-      "@angular-love/feature-recommended-articles": [
-        "libs/blog/articles/feature-recommended-articles/src/index.ts"
-      ],
       "@angular-love/feature-search-results-page": [
         "libs/blog/search/feature-search-results-page/src/index.ts"
       ],

@@ -2,7 +2,13 @@ import * as cheerio from 'cheerio';
 import hljs from 'highlight.js';
 import sanitizeHtml from 'sanitize-html';
 
-import { Article, ArticlePreview } from '@angular-love/contracts/articles';
+import {
+  Anchor,
+  AnchorType,
+  anchorTypes,
+  Article,
+  ArticlePreview,
+} from '@angular-love/contracts/articles';
 
 import { WPPostDetailsDto, WPPostDto } from './dtos';
 
@@ -63,6 +69,24 @@ export const toArticle = (dto?: WPPostDetailsDto): Article => {
     $(element).children('code').html(highlightedCode);
   });
 
+  // add id to anchorTypes elements for anchor links
+  const anchors: Anchor[] = Array.from($(anchorTypes.join(', '))).reduce(
+    (anchors, element) => {
+      const title = $(element).text();
+
+      $(element).attr('id', title);
+
+      return [
+        ...anchors,
+        {
+          title,
+          type: $(element).prop('tagName').toLowerCase() as AnchorType,
+        },
+      ];
+    },
+    [] as Anchor[],
+  );
+
   const highlightedContent = $.html();
 
   return {
@@ -74,7 +98,9 @@ export const toArticle = (dto?: WPPostDetailsDto): Article => {
       name: dto?.author_details.name || '',
       description: dto?.author_details.description || '',
       avatarUrl: dto?.author_details?.avatar_url || '',
+      position: '',
     },
     content: highlightedContent,
+    anchors: anchors,
   };
 };
