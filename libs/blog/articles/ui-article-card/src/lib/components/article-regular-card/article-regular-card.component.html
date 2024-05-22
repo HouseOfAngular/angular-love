@@ -6,12 +6,15 @@
   }"
 >
   <img
+    alt="Post featured image"
     [ngClass]="{
       'card__image--horizontal rounded-l-lg bg-contain':
         layout() === 'horizontal',
       'card__image--regular rounded-t-lg': layout() === 'regular'
     }"
-    [src]="article().featuredImageUrl"
+    [ngSrc]="article().featuredImageUrl"
+    width="1215"
+    height="750"
   />
   <div
     class="bg-al-gray-300"

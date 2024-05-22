@@ -16,6 +16,7 @@ import { SearchDialogComponent } from './search-dialog';
   imports: [SearchDialogComponent, IconComponent],
   template: `
     <button
+      aria-label="Open a search dialog"
       class="flex items-center bg-transparent p-1"
       (click)="service.showSearchDialog()"
     >

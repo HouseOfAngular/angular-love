@@ -1,4 +1,4 @@
-import { DatePipe, NgClass, NgStyle } from '@angular/common';
+import { DatePipe, NgClass, NgOptimizedImage, NgStyle } from '@angular/common';
 import {
   ChangeDetectionStrategy,
   Component,
@@ -24,7 +24,14 @@ type SanitizedArticleDataModel = {
   selector: 'al-article-regular-card',
   changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: true,
-  imports: [AvatarComponent, DatePipe, NgClass, NgStyle, IconComponent],
+  imports: [
+    AvatarComponent,
+    DatePipe,
+    NgClass,
+    NgStyle,
+    IconComponent,
+    NgOptimizedImage,
+  ],
   templateUrl: './article-regular-card.component.html',
   styleUrl: './article-regular-card.component.scss',
 })
