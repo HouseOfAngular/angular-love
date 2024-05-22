@@ -18,6 +18,6 @@ export class NavigationComponent {
   readonly navItems: NavItem[] = [
     { title: 'About us', link: ['about-us'] },
     { title: 'Angular Meetups', link: [''] },
-    { title: 'Become an author', link: [''] },
+    { title: 'Become an author', link: ['become-author'] },
   ];
 }
