@@ -1,24 +1,19 @@
 import { Route } from '@angular/router';
 
-import { LayoutComponent } from '@angular-love/blog/layouts/ui-layouts';
-import {
-  SearchService,
-  SearchStore,
-} from '@angular-love/blog/search/data-access';
+import { RootShellComponent } from './root-shell.component';
 
 export const blogShellRoutes: Route[] = [
   {
     path: '',
-    component: LayoutComponent,
-    providers: [SearchService, SearchStore],
+    component: RootShellComponent,
     children: [
       //todo: handle wildcard route
       {
         path: 'search',
         pathMatch: 'full',
-        loadComponent: async () =>
-          (await import('@angular-love/feature-search-results-page'))
-            .FeatureSearchResultsPageComponent,
+        loadChildren: async () =>
+          (await import('@angular-love/blog/search/feature-shell'))
+            .searchRoutes,
       },
       {
         path: 'about-us',

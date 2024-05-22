@@ -93,6 +93,9 @@
       "@angular-love/blog/search/feature-search": [
         "libs/blog/search/feature-search/src/index.ts"
       ],
+      "@angular-love/blog/search/feature-shell": [
+        "libs/blog/search/feature-shell/src/index.ts"
+      ],
       "@angular-love/blog/shared/types": [
         "libs/blog/shared/types/src/index.ts"
       ],
@@ -143,6 +146,9 @@
       ],
       "@angular-love/shared/assets": ["libs/shared/assets/src/index.ts"],
       "@angular-love/shared/config": ["libs/shared/config/src/index.ts"],
+      "@angular-love/shared/utils-algolia": [
+        "libs/shared/utils-algolia/src/index.ts"
+      ],
       "@angular-love/shared/utils-signal-store": [
         "libs/shared/utils-signal-store/src/index.ts"
       ],

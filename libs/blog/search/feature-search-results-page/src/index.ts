@@ -1,1 +1,1 @@
-export * from './lib/feature-search-results-page/feature-search-results-page.component';
+export * from './lib/search-results-page/search-results-page.component';

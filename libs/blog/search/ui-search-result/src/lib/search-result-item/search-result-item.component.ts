@@ -1,13 +1,16 @@
+import { NgOptimizedImage } from '@angular/common';
 import { ChangeDetectionStrategy, Component, input } from '@angular/core';
 
+import { IconComponent } from '@angular-love/blog/shared/ui-icon';
+
 interface UiSearchResultItem {
-  post_author: {
-    user_avatar_url: string;
-    display_name: string;
+  publishDate: string;
+  readingTime: string;
+  rawTitle: string;
+  author: {
+    name: string;
+    avatarUrl: string;
   };
-  post_title: 'Main';
-  post_date_formatted: string;
-  reading_time: number | null;
 }
 
 @Component({
@@ -16,7 +19,8 @@ interface UiSearchResultItem {
   templateUrl: './search-result-item.component.html',
   styleUrl: './search-result-item.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
+  imports: [NgOptimizedImage, IconComponent],
 })
 export class SearchResultItemComponent {
-  hit = input.required<UiSearchResultItem>();
+  item = input.required<UiSearchResultItem>();
 }
