@@ -9,12 +9,15 @@
           </p>
           <div class="my-2 flex w-full flex-row">
             <input
+              aria-label="E-mail address"
+              aria-required="true"
               type="email"
               class="bg-al-gray-500 text-al-gray-100 border-al-gray-200 h-[60px] flex-grow rounded-l-md border border-r-0 p-6 text-sm focus:outline-none"
               placeholder="Your E-mail"
               formControlName="email"
             />
             <button
+              aria-label="Submit and sign up for a newsletter"
               class="bg-al-pink border-al-gray-200 h-[60px] w-[60px] rounded-r-md border p-5"
               (click)="mockEventDispatch()"
             >
@@ -24,6 +27,7 @@
           <div class="mt-2">
             <input
               id="newsletter-checkbox"
+              aria-required="true"
               type="checkbox"
               class="newsletter-checkbox peer hidden"
               formControlName="checkbox"

@@ -5,6 +5,7 @@ import { IconComponent, IconType } from '@angular-love/blog/shared/ui-icon';
 export type IconConfig = {
   href: string;
   name: IconType;
+  ariaLabel: string;
 };
 
 @Component({
@@ -18,20 +19,24 @@ export type IconConfig = {
 export class SocialMediaIconsComponent {
   readonly icons: IconConfig[] = [
     {
-      href: 'https://www.facebook.com/houseofangular',
+      href: 'https://www.facebook.com/www.angular.love',
       name: 'facebook',
+      ariaLabel: 'Like our Facebook page',
     },
     {
-      href: 'https://twitter.com/HouseOfAngular',
+      href: 'https://x.com/AngularLovePL',
       name: 'twitter-x',
+      ariaLabel: 'Follow us on Twitter',
     },
     {
-      href: 'https://www.linkedin.com/company/house-of-angular',
+      href: 'https://www.linkedin.com/company/angular-love',
       name: 'linkedIn',
+      ariaLabel: 'Follow us on LinkedIn',
     },
     {
-      href: 'https://www.youtube.com/channel/UCloreiP9fdASiW9eF3BPCKQ',
+      href: 'https://www.youtube.com/@angularlove',
       name: 'youtube',
+      ariaLabel: 'Watch our YouTube videos',
     },
   ];
 }

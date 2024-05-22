@@ -1,6 +1,11 @@
 <div class="flex items-center justify-center">
   @for (icon of icons; track $index) {
-    <a class="mr-2 flex" [href]="icon.href" target="_blank">
+    <a
+      class="mr-2 flex"
+      [attr.aria-label]="icon.ariaLabel"
+      [href]="icon.href"
+      target="_blank"
+    >
       <al-icon class="text-2xl text-white" [name]="icon.name" />
     </a>
   }
