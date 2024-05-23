@@ -5,6 +5,9 @@ import { NgIconComponent } from '@ng-icons/core';
 import { NavigationComponent } from '@angular-love/blog/layouts/ui-navigation';
 import { SocialMediaIconsComponent } from '@angular-love/blog/shared/ui-social-media-icons';
 
+import { FooterLogoComponent } from './components/footer-logo.component';
+import { FooterSocialMediaIconsComponent } from './components/footer-social-media-icons.component';
+
 @Component({
   selector: 'al-footer',
   standalone: true,
@@ -13,8 +16,11 @@ import { SocialMediaIconsComponent } from '@angular-love/blog/shared/ui-social-m
     SocialMediaIconsComponent,
     NavigationComponent,
     NgOptimizedImage,
+    FooterLogoComponent,
+    FooterSocialMediaIconsComponent,
   ],
   templateUrl: './footer.component.html',
+  styleUrl: './footer.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class FooterComponent {

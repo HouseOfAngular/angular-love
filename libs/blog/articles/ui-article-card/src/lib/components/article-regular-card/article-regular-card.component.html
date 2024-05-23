@@ -19,12 +19,12 @@
   <div
     class="bg-al-gray-300"
     [ngClass]="{
-      'card__content relative rounded-b-lg': layout() === 'regular',
+      'card__content rounded-b-lg': layout() === 'regular',
       'w-full rounded-r-lg': layout() === 'horizontal'
     }"
   >
     @if (layout() === 'regular') {
-      <div class="relative flex items-center justify-between px-4 pt-4">
+      <div class="flex items-center justify-between px-4 pt-4">
         <div class="flex items-center gap-2">
           <al-avatar [imageSrc]="article().author.avatarUrl" size="sm" />
           <span class="text-sm/[14px] font-medium text-white">
