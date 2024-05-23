@@ -29,7 +29,7 @@ import { SocialMediaIconsComponent } from '@angular-love/blog/shared/ui-social-m
   ],
 })
 export class HeaderComponent {
-  @HostBinding('class') hostClasses = 'sticky top-0';
+  @HostBinding('class') hostClasses = 'sticky top-0 z-10';
 
   language = input.required<'PL' | 'ENG'>();
 
