@@ -1,67 +1,79 @@
-<div
-  class="h-full rounded-lg bg-no-repeat"
-  [ngClass]="{
-    'bg-cover': layout() === 'compact',
-    'hover:shadow-al-pink bg-contain bg-center': layout() === 'hero'
-  }"
-  [style.background-image]="'url(' + article().featuredImageUrl + ')'"
->
+<div class="group h-full min-h-80 w-full rounded-lg">
   <div
-    class="relative flex h-full flex-col justify-between"
+    class="h-full w-full"
     [ngClass]="{
       'bg-al-gray-500': layout() === 'compact',
-      'bg-al-gradient-black rounded-lg': layout() === 'hero'
+      'rounded-lg': layout() === 'hero'
     }"
-    [routerLink]="['/', article().slug]"
   >
     <div
-      class="hover:bg-al-bottom-radial-gradient absolute h-full w-full"
-    ></div>
-
-    <div
-      class="flex items-center justify-between"
-      [ngClass]="{
-        'px-6 pt-6': layout() === 'compact',
-        'px-8 pt-8': layout() === 'hero'
-      }"
+      class="group-hover:bg-al-bottom-radial-gradient relative flex h-full w-full justify-center rounded-lg"
     >
-      <div class="flex items-center gap-2">
-        <al-avatar [imageSrc]="article().author.avatarUrl" size="sm" />
-        <span class="text-sm/[14px] font-medium text-white">
-          {{ article().author.name }}
-        </span>
+      <div
+        class="group-hover:shadow-al-pink absolute h-full w-full rounded-lg"
+      ></div>
+
+      <div class="flex h-full w-full justify-center overflow-hidden rounded-lg">
+        <img
+          alt="Post featured image"
+          class="h-auto w-auto transition-transform group-hover:scale-105"
+          [ngSrc]="article().featuredImageUrl"
+          width="1215"
+          height="750"
+        />
       </div>
 
-      <div class="flex items-center gap-2">
-        @if (layout() === 'hero') {
-          <span class="text-sm/[14px] font-medium text-white">
-            {{ article().publishDate | date: 'mediumDate' }}
-          </span>
-        }
-        <al-icon name="clock" />
-        <p class="text-sm/[14px] text-white">{{ article().readingTime }} min</p>
-      </div>
-    </div>
-
-    <div
-      class="flex flex-col"
-      [ngClass]="{
-        'px-6 pb-6 pt-8': layout() === 'compact',
-        'gap-5 px-8 pb-8 pt-44': layout() === 'hero'
-      }"
-    >
-      <p
-        class="line-clamp-2 font-bold text-white"
-        [ngClass]="{
-          'text-2xl': layout() === 'compact',
-          'text-4xl': layout() === 'hero'
-        }"
+      <div
+        class="bg-al-gradient-black absolute flex h-full w-full flex-col justify-between rounded-lg"
       >
-        {{ article().title }}
-      </p>
-      <p class="line-clamp-2 text-base text-white">
-        {{ article().excerpt }}
-      </p>
+        <div
+          class="flex items-center justify-between"
+          [ngClass]="{
+            'px-6 pt-6': layout() === 'compact',
+            'px-8 pt-8': layout() === 'hero'
+          }"
+        >
+          <div class="flex items-center gap-2">
+            <al-avatar [imageSrc]="article().author.avatarUrl" size="sm" />
+            <span class="text-sm/[14px] font-medium text-white">
+              {{ article().author.name }}
+            </span>
+          </div>
+
+          <div class="flex items-center gap-2">
+            @if (layout() === 'hero') {
+              <span class="text-sm/[14px] font-medium text-white">
+                {{ article().publishDate | date: 'mediumDate' }}
+              </span>
+            }
+            <al-icon name="clock" />
+            <p class="text-sm/[14px] text-white">
+              {{ article().readingTime }} min
+            </p>
+          </div>
+        </div>
+
+        <div
+          class="flex flex-col"
+          [ngClass]="{
+            'px-6 pb-6 pt-8': layout() === 'compact',
+            'gap-5 px-8 pb-8 pt-4': layout() === 'hero'
+          }"
+        >
+          <p
+            class="line-clamp-2 font-bold text-white"
+            [ngClass]="{
+              'text-2xl': layout() === 'compact',
+              'text-4xl': layout() === 'hero'
+            }"
+          >
+            {{ article().title }}
+          </p>
+          <p class="line-clamp-2 text-base text-white">
+            {{ article().excerpt }}
+          </p>
+        </div>
+      </div>
     </div>
   </div>
 </div>

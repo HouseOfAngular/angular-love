@@ -1,4 +1,4 @@
-import { DatePipe, NgClass } from '@angular/common';
+import { DatePipe, NgClass, NgOptimizedImage } from '@angular/common';
 import { ChangeDetectionStrategy, Component, input } from '@angular/core';
 import { RouterLink } from '@angular/router';
 
@@ -12,7 +12,14 @@ export type Layout = 'compact' | 'hero';
   selector: 'al-article-background-card',
   changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: true,
-  imports: [AvatarComponent, RouterLink, DatePipe, NgClass, IconComponent],
+  imports: [
+    AvatarComponent,
+    RouterLink,
+    DatePipe,
+    NgClass,
+    IconComponent,
+    NgOptimizedImage,
+  ],
   templateUrl: './article-background-card.component.html',
 })
 export class ArticleBackgroundCardComponent {
