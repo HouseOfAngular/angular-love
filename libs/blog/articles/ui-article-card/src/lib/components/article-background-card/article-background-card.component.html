@@ -8,13 +8,16 @@
     [style.background-image]="'url(' + article().featuredImageUrl + ')'"
   >
     <div
-      class="h-full"
+      class="relative flex h-full flex-col justify-between"
       [ngClass]="{
         'bg-al-gray-500': layout() === 'compact',
-        'bg-al-gradient-black hover:bg-al-gradient-black-red rounded-lg':
-          layout() === 'hero'
+        'bg-al-gradient-black rounded-lg': layout() === 'hero'
       }"
     >
+      <div
+        class="hover:bg-al-bottom-radial-gradient absolute h-full w-full"
+      ></div>
+
       <div
         class="flex items-center justify-between"
         [ngClass]="{
@@ -41,16 +44,24 @@
           </p>
         </div>
       </div>
+
       <div
+        class="flex flex-col"
         [ngClass]="{
           'px-6 pb-6 pt-8': layout() === 'compact',
-          'px-8 pb-8 pt-44': layout() === 'hero'
+          'gap-5 px-8 pb-8 pt-44': layout() === 'hero'
         }"
       >
-        <p class="line-clamp-2 text-2xl font-bold text-white">
+        <p
+          class="line-clamp-2 font-bold text-white"
+          [ngClass]="{
+            'text-2xl': layout() === 'compact',
+            'text-4xl': layout() === 'hero'
+          }"
+        >
           {{ article().title }}
         </p>
-        <p class="line-clamp-2 pt-2 text-base text-white">
+        <p class="line-clamp-2 text-base text-white">
           {{ article().excerpt }}
         </p>
       </div>

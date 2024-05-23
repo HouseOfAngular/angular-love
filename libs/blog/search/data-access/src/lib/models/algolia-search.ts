@@ -17,6 +17,7 @@ export type AlgoliaSearchResult = {
   post_type: 'page';
   post_type_label: 'Pages';
   reading_time: number | null;
+  featured_image: string | null;
   record_index: 0;
   _highlightResult: {
     content: { value: string };

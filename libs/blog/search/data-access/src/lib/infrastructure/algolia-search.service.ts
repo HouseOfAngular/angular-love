@@ -17,6 +17,7 @@ export class AlgoliaSearchService implements SearchService {
   ): Promise<SearchResponse> {
     return this._algoliaService
       .search<AlgoliaSearchResult>(query, {
+        filters: `locale: "en_GB"`,
         restrictSearchableAttributes: ['post_title'],
         hitsPerPage: options?.perPage,
         page: options?.page,
