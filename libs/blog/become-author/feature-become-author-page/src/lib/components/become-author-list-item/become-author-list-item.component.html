@@ -1,0 +1,22 @@
+<div
+  class="border-al-gray-200 my-1 flex h-full w-full items-center border md:my-2"
+  [ngClass]="{
+    'bg-al-gradient-red rounded-lg': layout() === 'curved'
+  }"
+>
+  @if (index()) {
+    <div
+      class="bg-al-pink ml-4 mt-5 flex aspect-square h-6 items-center justify-center self-start rounded-full"
+    >
+      <p class="text-base font-bold">{{ index() }}</p>
+    </div>
+  } @else {
+    <al-icon
+      name="tick"
+      class="text-al-pink ml-4 mr-2 mt-6 self-start md:mt-0 md:self-center"
+    />
+  }
+  <p class="ml-4 mr-6 block pb-4 pt-5 md:ml-4 md:py-5 lg:mr-[30px]">
+    {{ content() }}
+  </p>
+</div>

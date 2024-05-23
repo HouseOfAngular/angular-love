@@ -1,0 +1,25 @@
+<section>
+  <p class="pb-2 text-2xl font-bold md:pb-4 md:text-2xl">Why is it worth it?</p>
+  <p class="pb-4 text-base text-white md:pb-6">
+    Angular.love is one of the biggest and most popular polish blogs about
+    Angular. We are expanding and rapidly growing, which can be proved by the
+    fact that our blog has over 4000 unique visitors every month (from Poland
+    and abroad) and more than 2100 followers on Facebook.
+    <br />
+    <br />
+    Our mission is to inspire, educate, spread good practices and share
+    knowledge among Developers. Every 2 months we also organize Angular Meetups
+    in Warsaw, during which the speakers present different, angular-related
+    topics and share their knowledge among others. Our content is free and
+    available for everyone – we want to make the Angular Community grow! Ok, but
+    what’s in it for you?
+  </p>
+
+  @for (improvement of improvements(); track $index) {
+    <al-become-author-list-item
+      [index]="$index + 1"
+      [content]="improvement"
+      layout="curved"
+    />
+  }
+</section>
