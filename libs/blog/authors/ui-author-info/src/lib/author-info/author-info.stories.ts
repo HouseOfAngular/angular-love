@@ -110,3 +110,10 @@ export const allResolutions: Story = {
 `,
   }),
 };
+
+export const withClampedText: Story = {
+  args: {
+    ...primary.args,
+    clampText: true,
+  },
+};

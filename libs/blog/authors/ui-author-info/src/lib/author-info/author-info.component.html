@@ -6,9 +6,9 @@
   </ng-container>
 
   <ng-container author-info-description>
-    <div
-      class="line-clamp-[20] text-sm"
-      [innerText]="author().description"
-    ></div>
+    <al-dynamic-text-clamp
+      [text]="author().description"
+      [textClasses]="descriptionClass()"
+    />
   </ng-container>
 </al-author-info-template>
