@@ -1,5 +1,11 @@
-import { NgOptimizedImage } from '@angular/common';
-import { ChangeDetectionStrategy, Component, input } from '@angular/core';
+import { NgClass, NgOptimizedImage } from '@angular/common';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  HostBinding,
+  input,
+  signal,
+} from '@angular/core';
 import { RouterLink, RouterLinkActive } from '@angular/router';
 
 import { NavigationComponent } from '@angular-love/blog/layouts/ui-navigation';
@@ -19,10 +25,19 @@ import { SocialMediaIconsComponent } from '@angular-love/blog/shared/ui-social-m
     RouterLink,
     NavigationComponent,
     IconComponent,
+    NgClass,
   ],
 })
 export class HeaderComponent {
+  @HostBinding('class') hostClasses = 'sticky top-0';
+
   language = input.required<'PL' | 'ENG'>();
 
+  showNav = signal<boolean>(false);
+
   readonly logoSize = '40';
+
+  toggleNav(): void {
+    this.showNav.set(!this.showNav());
+  }
 }

@@ -16,12 +16,12 @@ import {
   template: `
     <al-card alGradientCard>
       <div alCardContent>
-        <div class="@3xl:flex-row flex w-full flex-col  items-center gap-4">
+        <div class="@3lg:flex-row flex w-full flex-col  items-center gap-4">
           <div
-            class="border-al-gray-200 @5xl:border @5xl:bg-al-gradient @5xl:min-w-[360px] min-w-fit rounded-lg p-6"
+            class="border-al-gray-200 @5lg:border @5lg:bg-al-gradient @5lg:min-w-[360px] min-w-fit rounded-lg p-6"
           >
             <div
-              class="@3xl:max-w-[360px] flex w-full  flex-col items-center gap-4"
+              class="@3lg:max-w-[360px] flex w-full  flex-col items-center gap-4"
             >
               <ng-content select="[author-info-card]"></ng-content>
             </div>

@@ -1,9 +1,16 @@
-<nav>
+<nav
+  class="flex flex-wrap"
+  [ngClass]="{
+    'flex-row': layout() === 'horizontal',
+    'flex-col': layout() === 'vertical'
+  }"
+>
   @for (item of navItems; track $index) {
     <a
-      class="p-6 font-medium text-white"
+      class="p-2 font-medium text-white md:p-6"
       [routerLinkActive]="'text-al-pink'"
       [routerLink]="item.link"
+      [ariaLabel]="item.ariaLabel"
     >
       {{ item.title }}
     </a>

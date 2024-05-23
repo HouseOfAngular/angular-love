@@ -1,8 +1,8 @@
 <header
-  class="bg-al-gray-400 border-al-gray-200 sticky top-0 z-30 h-20 border-b shadow-xl"
+  class="bg-al-gray-400 border-al-gray-200 z-30 h-20 w-full border-b shadow-xl"
 >
   <div
-    class="mx-auto flex w-full max-w-screen-xl items-center justify-between px-2 py-4 xl:px-0"
+    class="mx-auto flex h-full w-full max-w-screen-xl items-center justify-between px-2 py-4 lg:px-0"
   >
     <a class="flex items-center gap-2" [routerLink]="'/'">
       <img
@@ -16,7 +16,7 @@
     </a>
 
     <div class="flex flex-row items-center">
-      <al-navigation />
+      <al-navigation class="hidden lg:block" />
       <div class="ml-6">
         <button
           class="border-al-gray-200 mr-2 rounded border bg-transparent px-4 py-2 font-medium leading-4"
@@ -33,6 +33,25 @@
       </div>
 
       <ng-content />
+
+      <button
+        class="ml-3 flex h-6 w-6 flex-col justify-evenly lg:hidden"
+        (click)="toggleNav()"
+      >
+        <div class="h-1 w-full rounded bg-white"></div>
+        <div class="h-1 w-full rounded bg-white"></div>
+        <div class="h-1 w-full rounded bg-white"></div>
+      </button>
     </div>
   </div>
 </header>
+
+<div
+  class="bg-al-gray-600 fixed -top-[100%] left-0 z-50 flex h-full w-full flex-row items-start justify-between p-6 transition-transform duration-300 lg:hidden"
+  [ngClass]="{ 'translate-y-[100%]': showNav() }"
+>
+  <al-navigation class="pl-24 pt-24" layout="vertical" />
+  <button (click)="toggleNav()">
+    <al-icon name="cross" class="text-base text-white" />
+  </button>
+</div>
