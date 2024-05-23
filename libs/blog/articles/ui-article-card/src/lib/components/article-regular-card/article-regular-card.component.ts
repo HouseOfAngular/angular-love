@@ -8,6 +8,7 @@ import {
   SecurityContext,
 } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
+import { RouterLink } from '@angular/router';
 
 import { ArticleCard } from '@angular-love/blog/shared/types';
 import { AvatarComponent } from '@angular-love/blog/shared/ui-avatar';
@@ -30,6 +31,7 @@ type SanitizedArticleDataModel = {
     NgClass,
     NgStyle,
     IconComponent,
+    RouterLink,
     NgOptimizedImage,
   ],
   templateUrl: './article-regular-card.component.html',
