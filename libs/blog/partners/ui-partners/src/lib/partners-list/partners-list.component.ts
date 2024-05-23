@@ -12,7 +12,6 @@ export type PartnerData = {
   standalone: true,
   changeDetection: ChangeDetectionStrategy.OnPush,
   templateUrl: './partners-list.component.html',
-  styleUrl: './partners-list.component.scss',
   imports: [NgOptimizedImage],
 })
 export class PartnersListComponent {
