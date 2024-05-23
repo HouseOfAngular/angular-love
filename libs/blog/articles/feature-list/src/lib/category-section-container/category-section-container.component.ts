@@ -49,6 +49,7 @@ export class CategorySectionContainerComponent {
     const query = computed(() => ({
       category: this.category(),
       take: this.take(),
+      excludeRecent: 5,
     }));
 
     this.articleStore.fetchArticleList(query);

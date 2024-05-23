@@ -43,8 +43,6 @@ export class FeatureLatestArticlesComponent {
 
   constructor() {
     this._articleListStore.fetchArticleList({
-      // TODO: change to latest when bff is finished
-      category: 'news',
       take: 4,
     });
   }
