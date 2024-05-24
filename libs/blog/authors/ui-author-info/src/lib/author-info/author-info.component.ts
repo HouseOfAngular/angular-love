@@ -4,6 +4,7 @@ import {
   computed,
   input,
 } from '@angular/core';
+import { RouterLink } from '@angular/router';
 
 import { UiAuthorInfo } from '@angular-love/blog/authors/types';
 import { AvatarComponent } from '@angular-love/blog/shared/ui-avatar';
@@ -18,6 +19,7 @@ import { AuthorInfoTemplateComponent } from './author-info-template.component';
     AuthorInfoTemplateComponent,
     AvatarComponent,
     DynamicTextClampComponent,
+    RouterLink,
   ],
   templateUrl: './author-info.component.html',
   styleUrl: './author-info.component.scss',

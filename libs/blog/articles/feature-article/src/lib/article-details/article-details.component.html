@@ -1,18 +1,58 @@
-<ng-container *ngIf="articleDetails">
-  <section class="py-8">
-    <h1 class="flex justify-center text-4xl">{{ articleDetails.title }}</h1>
-    <span class="flex justify-center">
-      {{ articleDetails.publishDate | date: 'longDate' }}
-    </span>
+<div class="mt-8 grid grid-cols-12 gap-10">
+  <section class="order-1 col-span-12 grid gap-4 lg:col-span-9">
+    <div class="flex items-center gap-10 text-sm">
+      <span class="mr-auto">
+        {{ articleDetails().publishDate | date: 'longDate' }}
+      </span>
+
+      <!--      @todo: remove mocked value -->
+      <span class="bg-al-gray-200 rounded px-2 py-1">Medium</span>
+
+      <div class="flex items-center gap-1">
+        <al-icon name="clock" />
+        {{ articleDetails().readingTime }} min
+      </div>
+    </div>
+
+    <h1 class="flex text-[40px] font-bold">
+      {{ articleDetails().title }}
+    </h1>
+
+    <div class="flex flex-col gap-10">
+      <al-article-content [content]="articleDetails().content" />
+
+      <al-card alGradientCard #view class="">
+        <al-newsletter alCardContent />
+      </al-card>
+      @defer (on timer(3000ms); on viewport(view)) {
+        <!--  @todo replace to similar-articles    -->
+        <!--                <al- class="block min-h-[288px]" />-->
+      } @placeholder {
+        <div class="h-[288px]"></div>
+      }
+    </div>
   </section>
+  <aside class="order-3 col-span-12 lg:col-span-3">
+    <al-author-info [author]="articleDetails().author" [clampText]="true" />
 
-  <div class="grid grid-cols-3 gap-10">
-    <section class="col-span-2">
-      <al-article-content [content]="articleDetails.content" />
-    </section>
-
-    <aside class="col-span-1">
-      <al-author-card [author]="articleDetails.author" />
-    </aside>
-  </div>
-</ng-container>
+    @if (articleDetails().anchors?.length) {
+      <div class="sticky top-4 mt-5 hidden lg:block">
+        <al-card alDarkCard>
+          <div alCardContent>
+            <al-table-of-contents
+              alTableOfContentsScrollSpy
+              [anchors]="articleDetails().anchors"
+            />
+          </div>
+        </al-card>
+      </div>
+    }
+  </aside>
+  <footer class="order-2 col-span-12 lg:order-4 lg:col-span-9">
+    @defer (on viewport(view); on timer(3000ms)) {
+      <al-giscus-comments />
+    } @placeholder {
+      <div class="h-[600px]"></div>
+    }
+  </footer>
+</div>

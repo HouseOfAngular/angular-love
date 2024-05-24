@@ -1,10 +1,10 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { NgxSkeletonLoaderModule } from 'ngx-skeleton-loader';
 
+import { ArticleContentSkeletonComponent } from '@angular-love/blog/articles/ui-article-content';
 import { AuthorCardSkeletonComponent } from '@angular-love/blog/authors/ui-author-card';
+import { AuthorInfoSkeletonComponent } from '@angular-love/blog/authors/ui-author-info';
 import { CardSkeletonComponent } from '@angular-love/blog/shared/ui-card';
-
-import { ArticleContentSkeletonComponent } from '../article-content/article-content-skeleton.component';
 
 @Component({
   selector: 'al-article-details-skeleton',
@@ -12,8 +12,9 @@ import { ArticleContentSkeletonComponent } from '../article-content/article-cont
   imports: [
     CardSkeletonComponent,
     NgxSkeletonLoaderModule,
-    AuthorCardSkeletonComponent,
     ArticleContentSkeletonComponent,
+    AuthorCardSkeletonComponent,
+    AuthorInfoSkeletonComponent,
   ],
   template: `
     <section class="block w-full py-8">
@@ -46,5 +47,8 @@ import { ArticleContentSkeletonComponent } from '../article-content/article-cont
     </div>
   `,
   changeDetection: ChangeDetectionStrategy.OnPush,
+  host: {
+    class: 'block w-full',
+  },
 })
 export class ArticleDetailsSkeletonComponent {}

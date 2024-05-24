@@ -21,7 +21,8 @@ export const primary: Story = {
     activeAnchorTitle: 'Signals in Angular 16',
     anchors: [
       {
-        title: 'Signals in Angular 16',
+        title:
+          'Signals in Angls in Angls in Angls in Angls in Angls in Angls in Angls in Angls in Angls in Angls in Angls in Angular 16',
         type: 'h3',
       },
       {

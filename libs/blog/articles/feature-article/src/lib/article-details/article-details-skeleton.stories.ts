@@ -4,7 +4,7 @@ import { ArticleDetailsSkeletonComponent } from './article-details-skeleton.comp
 
 const meta: Meta<ArticleDetailsSkeletonComponent> = {
   component: ArticleDetailsSkeletonComponent,
-  title: 'Articles / details skeleton',
+  title: 'Articles / Article / Skeleton',
 };
 
 export default meta;

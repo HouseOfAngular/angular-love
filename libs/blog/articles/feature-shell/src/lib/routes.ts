@@ -23,7 +23,7 @@ export const articleRoutes: Route[] = [
             .FeatureLatestArticlesPageComponent,
       },
       {
-        path: 'article/:slug',
+        path: 'article/:articleSlug',
         pathMatch: 'full',
         loadComponent: async () =>
           (await import('@angular-love/blog/articles/feature-article'))

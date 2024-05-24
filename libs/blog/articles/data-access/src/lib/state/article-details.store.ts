@@ -1,6 +1,8 @@
 import { inject } from '@angular/core';
+import { tapResponse } from '@ngrx/operators';
 import { patchState, signalStore, withMethods, withState } from '@ngrx/signals';
-import { firstValueFrom } from 'rxjs';
+import { rxMethod } from '@ngrx/signals/rxjs-interop';
+import { pipe, switchMap, tap } from 'rxjs';
 
 import { Article } from '@angular-love/contracts/articles';
 import {
@@ -27,28 +29,34 @@ export const ArticleDetailsStore = signalStore(
   withMethods(({ ...store }) => {
     const articlesService = inject(ArticlesService);
     return {
-      fetchArticleDetails: async (data: { slug: string }) => {
-        patchState(store, {
-          slug: data.slug,
-          fetchArticleDetailsCallState: LoadingState.LOADING,
-          articleDetails: null,
-        });
-        try {
-          const articleDetails = await firstValueFrom(
-            articlesService.getArticleBySlug(data.slug),
-          );
-          patchState(store, {
-            articleDetails,
-            slug: data.slug,
-            fetchArticleDetailsCallState: LoadingState.LOADED,
-          });
-        } catch (error) {
-          patchState(store, {
-            slug: data.slug,
-            fetchArticleDetailsCallState: { error },
-          });
-        }
-      },
+      fetchArticleDetails: rxMethod<string>(
+        pipe(
+          tap((slug) =>
+            patchState(store, {
+              slug: slug,
+              fetchArticleDetailsCallState: LoadingState.LOADING,
+              articleDetails: null,
+            }),
+          ),
+          switchMap((slug) =>
+            articlesService.getArticleBySlug(slug).pipe(
+              tapResponse({
+                error: (error) =>
+                  patchState(store, {
+                    slug: slug,
+                    fetchArticleDetailsCallState: { error },
+                  }),
+                next: (articleDetails) =>
+                  patchState(store, {
+                    articleDetails,
+                    slug: slug,
+                    fetchArticleDetailsCallState: LoadingState.LOADED,
+                  }),
+              }),
+            ),
+          ),
+        ),
+      ),
     };
   }),
 );
