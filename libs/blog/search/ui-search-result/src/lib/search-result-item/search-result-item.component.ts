@@ -1,5 +1,10 @@
 import { NgOptimizedImage } from '@angular/common';
-import { ChangeDetectionStrategy, Component, input } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  HostBinding,
+  input,
+} from '@angular/core';
 
 import { IconComponent } from '@angular-love/blog/shared/ui-icon';
 
@@ -22,5 +27,7 @@ interface UiSearchResultItem {
   imports: [NgOptimizedImage, IconComponent],
 })
 export class SearchResultItemComponent {
+  @HostBinding('class') hostClasses = 'flex flex-col p-6 hover:bg-al-gray-200';
+
   item = input.required<UiSearchResultItem>();
 }

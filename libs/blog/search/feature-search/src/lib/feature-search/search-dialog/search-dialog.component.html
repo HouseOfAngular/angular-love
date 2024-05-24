@@ -29,7 +29,8 @@
         <ul class="max-h-[50vh] overflow-auto">
           @for (item of searchStore.items(); track item.slug) {
             <li
-              class="border-b-al-gray-200 w-full cursor-pointer justify-between border-b p-6 last:border-none"
+              class="border-b-al-gray-200 w-full cursor-pointer justify-between border-b last:border-none"
+              (click)="navigateToResult(item.slug)"
             >
               <al-search-result-item [item]="item" />
             </li>

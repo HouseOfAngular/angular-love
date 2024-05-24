@@ -153,6 +153,9 @@
       "@angular-love/newsletter": [
         "libs/blog/newsletter/feature-newsletter/src/index.ts"
       ],
+      "@angular-love/recommended-articles": [
+        "libs/blog/articles/feature-recommended-articles/src/index.ts"
+      ],
       "@angular-love/search-result-item": [
         "libs/blog/search/ui-search-result/src/index.ts"
       ],

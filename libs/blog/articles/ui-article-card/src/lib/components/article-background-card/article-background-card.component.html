@@ -2,7 +2,8 @@
   <div
     class="h-full rounded-lg bg-no-repeat"
     [ngClass]="{
-      'bg-cover': layout() === 'compact',
+      'bg-cover transition-transform hover:scale-105 motion-reduce:transition-none motion-reduce:hover:scale-100':
+        layout() === 'compact',
       'hover:shadow-al-pink bg-contain bg-center': layout() === 'hero'
     }"
     [style.background-image]="'url(' + article().featuredImageUrl + ')'"
