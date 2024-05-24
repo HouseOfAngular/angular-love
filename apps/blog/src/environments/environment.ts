@@ -9,6 +9,10 @@ export const environment: AppEnvironment = {
       algoliaApplicationId: process.env.AL_ALGOLIA_APPLICATION_ID,
       algoliaIndexName: process.env.AL_ALGOLIA_INDEX_NAME,
       algoliaApiKey: process.env.AL_ALGOLIA_API_KEY,
+      giscusRepo: process.env.AL_GISCUS_REPO,
+      giscusRepoId: process.env.AL_GISCUS_REPO_ID,
+      giscusCategory: process.env.AL_GISCUS_CATEGORY,
+      giscusCategoryId: process.env.AL_GISCUS_CATEGORY_ID,
     }),
   ],
 };

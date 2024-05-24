@@ -42,5 +42,5 @@ export interface Article {
     position: string;
     slug: string;
   };
-  anchors?: Anchor[];
+  anchors: Anchor[];
 }

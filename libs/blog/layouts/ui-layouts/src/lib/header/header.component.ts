@@ -2,7 +2,6 @@ import { NgClass, NgOptimizedImage } from '@angular/common';
 import {
   ChangeDetectionStrategy,
   Component,
-  HostBinding,
   input,
   signal,
 } from '@angular/core';
@@ -29,8 +28,6 @@ import { SocialMediaIconsComponent } from '@angular-love/blog/shared/ui-social-m
   ],
 })
 export class HeaderComponent {
-  @HostBinding('class') hostClasses = 'sticky top-0 z-10';
-
   language = input.required<'PL' | 'ENG'>();
 
   showNav = signal<boolean>(false);

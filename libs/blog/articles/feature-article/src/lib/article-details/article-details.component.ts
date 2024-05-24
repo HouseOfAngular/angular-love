@@ -1,25 +1,44 @@
-import { DatePipe, NgIf } from '@angular/common';
-import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
+import { DatePipe } from '@angular/common';
+import { ChangeDetectionStrategy, Component, input } from '@angular/core';
 
+import { GiscusCommentsComponent } from '@angular-love/blog/articles/feature-comments';
 import { ArticleContentComponent } from '@angular-love/blog/articles/ui-article-content';
-import { AuthorCardComponent } from '@angular-love/blog/authors/ui-author-card';
-import { SocialMediaIconsComponent } from '@angular-love/blog/shared/ui-social-media-icons';
+import {
+  TableOfContentsComponent,
+  TableOfContentsScrollSpyDirective,
+} from '@angular-love/blog/articles/ui-table-of-contents';
+import { AuthorInfoComponent } from '@angular-love/blog/authors/ui-author-info';
+import {
+  CardContentDirective,
+  CardSkeletonComponent,
+  DarkCardDirective,
+  GradientCardDirective,
+} from '@angular-love/blog/shared/ui-card';
+import { IconComponent } from '@angular-love/blog/shared/ui-icon';
 import { Article } from '@angular-love/contracts/articles';
+import { NewsletterComponent } from '@angular-love/newsletter';
 
 @Component({
   selector: 'al-article-details',
   standalone: true,
   imports: [
-    NgIf,
     DatePipe,
-    SocialMediaIconsComponent,
-    AuthorCardComponent,
+    IconComponent,
     ArticleContentComponent,
+    GradientCardDirective,
+    NewsletterComponent,
+    CardContentDirective,
+    AuthorInfoComponent,
+    DarkCardDirective,
+    TableOfContentsComponent,
+    TableOfContentsScrollSpyDirective,
+    CardSkeletonComponent,
+    GiscusCommentsComponent,
   ],
   templateUrl: './article-details.component.html',
   styleUrls: ['./article-details.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ArticleDetailsComponent {
-  @Input() articleDetails: Article | null = null;
+  articleDetails = input.required<Article>();
 }

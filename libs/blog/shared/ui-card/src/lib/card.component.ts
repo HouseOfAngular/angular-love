@@ -73,6 +73,17 @@ export class GradientCardDirective {
   }
 }
 
+@Directive({
+  standalone: true,
+  selector: 'al-card[alDarkCard]',
+})
+export class DarkCardDirective {
+  @HostBinding('class')
+  get hostClasses() {
+    return 'border !p-4 !border-al-gray-200 !bg-al-gray-600 !text-white block';
+  }
+}
+
 @Component({
   standalone: true,
   selector: 'al-card',

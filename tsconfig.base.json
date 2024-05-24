@@ -30,6 +30,9 @@
       "@angular-love/blog/articles/feature-article": [
         "libs/blog/articles/feature-article/src/index.ts"
       ],
+      "@angular-love/blog/articles/feature-comments": [
+        "libs/blog/articles/feature-comments/src/index.ts"
+      ],
       "@angular-love/blog/articles/feature-guides": [
         "libs/blog/articles/feature-guides/src/index.ts"
       ],

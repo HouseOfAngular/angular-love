@@ -53,7 +53,7 @@ export class TableOfContentsScrollSpyDirective {
                 `Anchor element with title '${section.title}' not found in the DOM`,
               );
             }
-            const sectionTop = element.offsetTop - 16;
+            const sectionTop = element.offsetTop - 16 - 80; // 16px padding, 80px header
 
             return scrollY >= sectionTop ? section.title : currentTitle;
           }, anchors[0]?.title),
