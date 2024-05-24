@@ -1,5 +1,7 @@
 <div class="mt-8 grid grid-cols-12 gap-10">
-  <section class="order-1 col-span-12 grid gap-4 lg:col-span-9">
+  <section
+    class="order-1 col-span-12 grid w-full gap-4 overflow-auto lg:col-span-8"
+  >
     <div class="flex items-center gap-10 text-sm">
       <span class="mr-auto">
         {{ articleDetails().publishDate | date: 'longDate' }}
@@ -18,7 +20,7 @@
       {{ articleDetails().title }}
     </h1>
 
-    <div class="flex flex-col gap-10">
+    <div class="flex w-full flex-col gap-10 overflow-hidden">
       <al-article-content [content]="articleDetails().content" />
 
       <al-card alGradientCard #view class="">
@@ -32,15 +34,16 @@
       }
     </div>
   </section>
-  <aside class="order-3 col-span-12 lg:col-span-3">
+  <aside class="order-3 col-span-12 lg:col-span-4">
     <al-author-info [author]="articleDetails().author" [clampText]="true" />
 
     @if (articleDetails().anchors?.length) {
-      <div class="sticky top-4 mt-5 hidden lg:block">
+      <div class="sticky top-24 mt-5 hidden lg:block">
         <al-card alDarkCard>
           <div alCardContent>
             <al-table-of-contents
               alTableOfContentsScrollSpy
+              class="al-scroll block max-h-[90dvh] overflow-auto"
               [anchors]="articleDetails().anchors"
             />
           </div>
@@ -48,7 +51,7 @@
       </div>
     }
   </aside>
-  <footer class="order-2 col-span-12 lg:order-4 lg:col-span-9">
+  <footer class="order-2 col-span-12 lg:order-4 lg:col-span-8">
     @defer (on viewport(view); on timer(3000ms)) {
       <al-giscus-comments />
     } @placeholder {

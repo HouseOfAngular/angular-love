@@ -18,3 +18,20 @@ html {
   --color-primary: #ef4444;
 }
 
+@layer utilities {
+  .al-scroll {
+    &::-webkit-scrollbar {
+      @apply w-2.5;
+    }
+
+    /* Track */
+    &::-webkit-scrollbar-track {
+      @apply bg-transparent;
+    }
+
+    /* Handle */
+    &::-webkit-scrollbar-thumb {
+      @apply rounded-lg bg-gray-400;
+    }
+  }
+}
