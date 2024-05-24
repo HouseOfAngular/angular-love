@@ -8,7 +8,10 @@ import {
 import { RouterLink } from '@angular/router';
 
 import { ArticleListStore } from '@angular-love/blog/articles/data-access';
-import { UiArticleCardComponent } from '@angular-love/blog/articles/ui-article-card';
+import {
+  CardType,
+  UiArticleCardComponent,
+} from '@angular-love/blog/articles/ui-article-card';
 import { UiArticleListTitleComponent } from '@angular-love/blog/articles/ui-article-list-title';
 import { ButtonComponent } from '@angular-love/blog/shared/ui-button';
 import { ArticleCategory } from '@angular-love/contracts/articles';
@@ -39,6 +42,7 @@ const displayNameDict: Record<ArticleCategory, string> = {
 })
 export class CategorySectionContainerComponent {
   category = input.required<ArticleCategory>();
+  cardType = input<CardType>('regular');
   take = input(6);
 
   displayName = computed(() => displayNameDict[this.category()]);

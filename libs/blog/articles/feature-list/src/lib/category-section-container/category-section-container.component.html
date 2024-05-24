@@ -12,7 +12,7 @@
     <!--    <al-article-card-skeleton *alRepeat="take()" class="h-[438px]" />-->
   } @else {
     @for (article of articleStore.articles(); track article.slug) {
-      <al-article-card [article]="article" cardType="regular" />
+      <al-article-card [article]="article" [cardType]="cardType()" />
     }
   }
 </div>

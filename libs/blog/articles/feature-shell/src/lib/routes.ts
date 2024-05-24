@@ -23,6 +23,12 @@ export const articleRoutes: Route[] = [
             .FeatureLatestArticlesPageComponent,
       },
       {
+        path: 'recommended',
+        loadComponent: async () =>
+          (await import('@angular-love/recommended-articles'))
+            .FeatureRecommendedArticlesPageComponent,
+      },
+      {
         path: 'article/:articleSlug',
         pathMatch: 'full',
         loadComponent: async () =>

@@ -1,6 +1,6 @@
 <a [routerLink]="['/', 'article', article().slug]">
   <div
-    class="hover:shadow-al-pink group relative flex h-full w-full rounded-lg shadow-none transition-transform hover:scale-105 motion-reduce:transition-none motion-reduce:hover:scale-100"
+    class="group relative flex h-full w-full rounded-lg shadow-none transition-transform hover:scale-105 motion-reduce:transition-none motion-reduce:hover:scale-100"
     [ngClass]="{
       'flex-col': layout() === 'regular',
       'flex-row': layout() === 'horizontal'
@@ -77,11 +77,11 @@
         }"
       >
         <p
-          class="*:text-al-pink line-clamp-2 text-2xl font-bold text-white *:not-italic"
+          class="*:text-al-pink *:not-italic line-clamp-2 text-2xl font-bold text-white"
           [innerHTML]="sanitizedArticle().title"
         ></p>
         <p
-          class="text-al-gray-50 *:text-al-pink line-clamp-2 font-thin *:font-medium *:not-italic"
+          class="text-al-gray-50 *:text-al-pink *:font-medium *:not-italic line-clamp-2 font-thin"
           [ngClass]="{
             'pt-5': layout() === 'horizontal'
           }"

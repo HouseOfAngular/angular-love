@@ -9,7 +9,7 @@ import {
   viewChild,
 } from '@angular/core';
 import { FormControl, ReactiveFormsModule, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { debounceTime, startWith } from 'rxjs';
 
 import {
@@ -24,7 +24,12 @@ import { GlobalSearchService } from '../global-search.service';
 @Component({
   selector: 'al-search-dialog',
   standalone: true,
-  imports: [ReactiveFormsModule, IconComponent, SearchResultItemComponent],
+  imports: [
+    ReactiveFormsModule,
+    IconComponent,
+    SearchResultItemComponent,
+    RouterLink,
+  ],
   templateUrl: './search-dialog.component.html',
   styleUrl: './search-dialog.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -86,6 +91,11 @@ export class SearchDialogComponent implements OnInit, OnDestroy {
       });
       this.closeSearch();
     }
+  }
+
+  navigateToResult(slug: string): void {
+    this._router.navigate(['article', slug]);
+    this.closeSearch();
   }
 
   private closeSearch(): void {
