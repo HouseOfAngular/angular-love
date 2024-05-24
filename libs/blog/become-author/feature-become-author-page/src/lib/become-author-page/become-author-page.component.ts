@@ -1,7 +1,12 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 
 import { BreadcrumbComponent } from '@angular-love/blog/shared/ui-breadcrumb';
+import {
+  CardComponent,
+  GradientCardDirective,
+} from '@angular-love/blog/shared/ui-card';
 
+import { BecomeAuthorAdvertisementComponent } from '../components/become-author-advertisement/become-author-advertisement.component';
 import { BecomeAuthorBenefitsComponent } from '../components/become-author-benefits/become-author-benefits.component';
 import { BecomeAuthorImprovementsComponent } from '../components/become-author-improvements/become-author-improvements.component';
 
@@ -12,6 +17,9 @@ import { BecomeAuthorImprovementsComponent } from '../components/become-author-i
     BreadcrumbComponent,
     BecomeAuthorBenefitsComponent,
     BecomeAuthorImprovementsComponent,
+    GradientCardDirective,
+    CardComponent,
+    BecomeAuthorAdvertisementComponent,
   ],
   templateUrl: './become-author-page.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,

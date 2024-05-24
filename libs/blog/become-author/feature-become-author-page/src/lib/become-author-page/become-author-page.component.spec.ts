@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { BecomeAuthorPageFeatureComponent } from './become-author-page-feature.component';
+import { BecomeAuthorPageFeatureComponent } from './become-author-page.component';
 
 // @todo-replace-with-spectator//
 describe('BecomeAuthorPageFeatureComponent', () => {
