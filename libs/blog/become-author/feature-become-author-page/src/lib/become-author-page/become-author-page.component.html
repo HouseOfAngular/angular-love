@@ -2,5 +2,16 @@
 <p class="lg:pt-15 py-4 text-4xl font-bold md:pb-6 md:text-[40px]/[56px]">
   Become a part of angular.love!
 </p>
-<al-become-author-improvements [improvements]="improvements" />
-<al-become-author-benefits [benefits]="benefits" />
+<div
+  class="grid w-full grid-cols-1 gap-y-8 lg:grid-cols-8 lg:gap-x-8 lg:gap-y-0"
+>
+  <div class="lg:col-span-5">
+    <al-become-author-improvements [improvements]="improvements" />
+    <al-become-author-benefits [benefits]="benefits" />
+  </div>
+  <div class="lg:col-span-3">
+    <al-card alGradientCard>
+      <al-become-author-advertisement alCardContent />
+    </al-card>
+  </div>
+</div>
