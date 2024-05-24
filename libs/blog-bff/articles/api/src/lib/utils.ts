@@ -18,7 +18,7 @@ export const rewriteHTML = (...adapters: RewriteAdapter[]) => {
  * @param $
  */
 export const wpCodeRewriter: RewriteAdapter = ($) => {
-  $('[class^="lang:"]').each((index, element) => {
+  $('pre').each((index, element) => {
     const code = $(element).text();
 
     // Check if the content is already wrapped in a <code> block
