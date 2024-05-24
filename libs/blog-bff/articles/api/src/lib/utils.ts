@@ -71,3 +71,18 @@ export const crayonCodeRewriter: RewriteAdapter = ($) => {
     $element.replaceWith(preCodeBlock);
   });
 };
+
+/**
+ * Removes empty paragraphs, like `<p>&nbsp;</p>`
+ * @param $
+ */
+export const removeEmptyParagraphs: RewriteAdapter = ($) => {
+  $('p').each((index, element) => {
+    const $element = $(element);
+    const text = $element.text().trim();
+
+    if (!text || text === '&nbsp;') {
+      $element.remove();
+    }
+  });
+};

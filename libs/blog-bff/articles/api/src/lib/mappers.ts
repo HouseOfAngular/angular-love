@@ -10,7 +10,12 @@ import {
 } from '@angular-love/contracts/articles';
 
 import { WPPostDetailsDto, WPPostDto } from './dtos';
-import { crayonCodeRewriter, rewriteHTML, wpCodeRewriter } from './utils';
+import {
+  crayonCodeRewriter,
+  removeEmptyParagraphs,
+  rewriteHTML,
+  wpCodeRewriter,
+} from './utils';
 
 export const toArticlePreviewList = (dtos: WPPostDto[]): ArticlePreview[] => {
   return (dtos || []).map((dto) => {
@@ -43,7 +48,7 @@ export const toArticle = (dto?: WPPostDetailsDto): Article => {
   });
   const $ = cheerio.load(content);
 
-  rewriteHTML(wpCodeRewriter, crayonCodeRewriter)($);
+  rewriteHTML(wpCodeRewriter, crayonCodeRewriter, removeEmptyParagraphs)($);
 
   // add id to anchorTypes elements for anchor links
   const anchors: Anchor[] = Array.from($(anchorTypes.join(', '))).reduce(
