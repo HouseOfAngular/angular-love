@@ -1,26 +1,32 @@
 <a [routerLink]="['/', 'article', article().slug]">
   <div
-    class="rounded-lg shadow-none hover:shadow-[0_0_0_1px_rgba(231,4,100,1)]"
+    class="hover:shadow-al-pink group relative flex h-full w-full rounded-lg shadow-none transition-transform hover:scale-105 motion-reduce:transition-none motion-reduce:hover:scale-100"
     [ngClass]="{
-      'card flex flex-col': layout() === 'regular',
-      'flex h-full w-full flex-row': layout() === 'horizontal'
+      'flex-col': layout() === 'regular',
+      'flex-row': layout() === 'horizontal'
     }"
   >
+    @if (layout() === 'regular') {
+      <div
+        class="group-hover:bg-al-bottom-radial-gradient absolute bottom-0 z-0 h-1/2 w-full opacity-50"
+      ></div>
+    }
+
     <img
       alt="Post featured image"
+      class="h-auto w-auto"
       [ngClass]="{
-        'card__image--horizontal rounded-l-lg bg-contain':
-          layout() === 'horizontal',
-        'card__image--regular rounded-t-lg': layout() === 'regular'
+        'rounded-l-lg bg-contain': layout() === 'horizontal',
+        'rounded-t-lg': layout() === 'regular'
       }"
       [ngSrc]="article().featuredImageUrl"
       width="1215"
       height="750"
     />
     <div
-      class="bg-al-gray-300"
+      class="bg-al-gray-300 h-full"
       [ngClass]="{
-        'card__content rounded-b-lg': layout() === 'regular',
+        'rounded-b-lg': layout() === 'regular',
         'w-full rounded-r-lg': layout() === 'horizontal'
       }"
     >
@@ -64,17 +70,18 @@
         </div>
       }
       <div
+        class="flex flex-col"
         [ngClass]="{
-          'px-4 pb-4 pt-3': layout() === 'regular',
+          'gap-3 px-4 pb-4 pt-3': layout() === 'regular',
           'px-6 pt-8': layout() === 'horizontal'
         }"
       >
         <p
-          class="line-clamp-2 text-2xl font-bold text-white"
+          class="*:text-al-pink line-clamp-2 text-2xl font-bold text-white *:not-italic"
           [innerHTML]="sanitizedArticle().title"
         ></p>
         <p
-          class="line-clamp-2 text-base text-white"
+          class="text-al-gray-50 *:text-al-pink line-clamp-2 font-thin *:font-medium *:not-italic"
           [ngClass]="{
             'pt-5': layout() === 'horizontal'
           }"

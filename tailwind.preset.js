@@ -22,6 +22,8 @@ module.exports = {
           'linear-gradient(180deg, #000000 0%, rgba(0, 0, 0, 0) 100%)',
         'al-gradient-black-red':
           'linear-gradient(180deg, #000000 0%, rgba(0, 0, 0, 0) 100%), radial-gradient(74.37% 74.37% at 50% 124.47%, rgba(231, 4, 100, 0.6) 0%, rgba(35, 36, 46, 0) 100%);',
+        'al-bottom-radial-gradient':
+          'linear-gradient(180deg, transparent 0%, rgba(0, 0, 0, 0) 100%), radial-gradient(74.37% 74.37% at 50% 124.47%, rgba(231, 4, 100, 0.6) 0%, rgba(35, 36, 46, 0) 100%);',
       },
       boxShadow: {
         'al-pink': '0 0 0 1px #e70464',

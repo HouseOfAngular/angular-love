@@ -9,7 +9,9 @@ export const mapHitToSearchResult = (
       name: dto.post_author.display_name,
     },
     excerpt: dto._highlightResult.content.value.slice(0, 150),
-    featuredImageUrl: 'assets/mock-avatar.png', //TODO: Replace with real dto data
+    featuredImageUrl:
+      dto.featured_image ||
+      'https://testing.angular.love/wp-content/uploads/2022/12/Templatki-do-artykulów-12.png', // TODO: Replace with statically served placeholder image
     publishDate: dto.post_date_formatted,
     readingTime: `${dto.reading_time || 0}`,
     slug: dto.post_slug,
