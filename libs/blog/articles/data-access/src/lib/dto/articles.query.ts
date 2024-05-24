@@ -5,4 +5,5 @@ export type ArticlesQuery = {
   take?: number;
   skip?: number;
   category?: ArticleCategory;
+  excludeRecent?: number;
 } | null;

@@ -38,7 +38,6 @@ export class FeatureLatestArticlesPageComponent {
   constructor() {
     const query = computed(() => ({
       ...this.pagination(),
-      category: 'latest' as const,
     }));
 
     this.articleStore.fetchArticleList(query);

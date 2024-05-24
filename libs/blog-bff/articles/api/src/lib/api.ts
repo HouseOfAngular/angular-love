@@ -28,6 +28,8 @@ app.get('/', wpClientMw, async (c) => {
 
   queryParams.authorSlug && (query.author_slug = queryParams.authorSlug);
   queryParams.category && (query.category_slug = queryParams.category);
+  queryParams.excludeRecent &&
+    (query.exclude_recent = queryParams.excludeRecent);
 
   const result = await c.var.wpClient.get<WPPostDto[]>('posts', {
     ...query,
