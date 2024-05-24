@@ -1,5 +1,4 @@
 import * as cheerio from 'cheerio';
-import hljs from 'highlight.js';
 import sanitizeHtml from 'sanitize-html';
 
 import {
@@ -11,8 +10,7 @@ import {
 } from '@angular-love/contracts/articles';
 
 import { WPPostDetailsDto, WPPostDto } from './dtos';
-
-const DEFAULT_LANGUAGE_SUBSET = ['typescript', 'html', 'css', 'scss', 'json'];
+import { crayonCodeRewriter, rewriteHTML, wpCodeRewriter } from './utils';
 
 export const toArticlePreviewList = (dtos: WPPostDto[]): ArticlePreview[] => {
   return (dtos || []).map((dto) => {
@@ -40,34 +38,12 @@ export const toArticle = (dto?: WPPostDetailsDto): Article => {
   const content = sanitizeHtml(dto?.content.rendered || '', {
     allowedClasses: {
       pre: ['lang:*'],
+      div: ['crayon-line', 'crayon-syntax'],
     },
   });
   const $ = cheerio.load(content);
 
-  $('[class^="lang:"]').each((index, element) => {
-    const code = $(element).text();
-
-    // Check if the content is already wrapped in a <code> block
-    // WordPress tends to render this randomly
-    const hasCodeBlock = $(element).children('code').length > 0;
-
-    // If not, wrap the content in a <code> block
-    // Also add `hljs` class to make it apply hljs styling schema
-    if (!hasCodeBlock) {
-      $(element).html(`<code class="hljs">${code}</code>`);
-    } else {
-      $(element).children('code').addClass('hljs');
-    }
-
-    // Detect the language and apply syntax highlighting
-    const highlightedCode = hljs.highlightAuto(
-      code,
-      DEFAULT_LANGUAGE_SUBSET,
-    ).value;
-
-    // Replace the content of the <code> block with the highlighted code
-    $(element).children('code').html(highlightedCode);
-  });
+  rewriteHTML(wpCodeRewriter, crayonCodeRewriter)($);
 
   // add id to anchorTypes elements for anchor links
   const anchors: Anchor[] = Array.from($(anchorTypes.join(', '))).reduce(
