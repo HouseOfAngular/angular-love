@@ -17,20 +17,21 @@
 
     <div class="flex flex-row items-center">
       <al-navigation class="hidden lg:block" />
-      <div class="ml-6">
-        <button
-          class="border-al-gray-200 mr-2 rounded border bg-transparent px-4 py-2 font-medium leading-4"
-          [class]="language() === 'ENG' ? 'text-white' : 'text-al-gray-50'"
-        >
-          ENG
-        </button>
-        <button
-          class="border-al-gray-200 mr-2 rounded border bg-transparent px-4 py-2 font-medium leading-4"
-          [class]="language() === 'PL' ? 'text-white' : 'text-al-gray-50'"
-        >
-          PL
-        </button>
-      </div>
+      <!--      @TODO hidden until we clarify i18 stuff-->
+      <!--      <div class="ml-6">-->
+      <!--        <button-->
+      <!--          class="border-al-gray-200 mr-2 rounded border bg-transparent px-4 py-2 font-medium leading-4"-->
+      <!--          [class]="language() === 'ENG' ? 'text-white' : 'text-al-gray-50'"-->
+      <!--        >-->
+      <!--          ENG-->
+      <!--        </button>-->
+      <!--        <button-->
+      <!--          class="border-al-gray-200 mr-2 rounded border bg-transparent px-4 py-2 font-medium leading-4"-->
+      <!--          [class]="language() === 'PL' ? 'text-white' : 'text-al-gray-50'"-->
+      <!--        >-->
+      <!--          PL-->
+      <!--        </button>-->
+      <!--      </div>-->
 
       <ng-content />
 
