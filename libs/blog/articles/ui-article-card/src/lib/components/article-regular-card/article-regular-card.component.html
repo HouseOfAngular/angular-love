@@ -2,7 +2,7 @@
   <div
     class="group relative flex h-full w-full rounded-lg shadow-none"
     [ngClass]="{
-      'hover:shadow-al-pink flex-col transition-transform hover:scale-105 motion-reduce:transition-none motion-reduce:hover:scale-100':
+      'hover:shadow-al-primary flex-col transition-transform hover:scale-105 motion-reduce:transition-none motion-reduce:hover:scale-100':
         layout() === 'regular',
       'flex-row': layout() === 'horizontal'
     }"
@@ -25,7 +25,7 @@
       height="750"
     />
     <div
-      class="bg-al-gray-300 h-full"
+      class="bg-al-card h-full"
       [ngClass]="{
         'rounded-b-lg': layout() === 'regular',
         'w-full rounded-r-lg': layout() === 'horizontal'
@@ -35,19 +35,17 @@
         <div class="flex items-center justify-between px-4 pt-4">
           <div class="flex items-center gap-2">
             <al-avatar [imageSrc]="article().author.avatarUrl" size="sm" />
-            <span class="text-sm/[14px] font-medium text-white">
+            <span class="text-sm/[14px] font-medium">
               {{ article().author.name }}
             </span>
           </div>
           <div class="flex items-center gap-2">
             <al-icon name="clock" />
-            <p class="text-sm/[14px] text-white">
-              {{ article().readingTime }}min
-            </p>
+            <p class="text-sm/[14px]">{{ article().readingTime }}min</p>
           </div>
         </div>
         <div class="flex items-center justify-between self-start px-4 pt-4">
-          <span class="text-sm/[14px] font-medium text-white">
+          <span class="text-sm/[14px] font-medium">
             {{ article().publishDate | date: 'mediumDate' }}
           </span>
         </div>
@@ -55,18 +53,16 @@
         <div class="flex items-center justify-between px-6 pt-4">
           <div class="flex items-center gap-2">
             <al-avatar [imageSrc]="article().author.avatarUrl" size="sm" />
-            <span class="text-sm/[14px] font-medium text-white">
+            <span class="text-sm/[14px] font-medium">
               {{ article().author.name }}
             </span>
           </div>
           <div class="flex items-center gap-2">
-            <span class="text-sm/[14px] text-white">
+            <span class="text-sm/[14px]">
               {{ article().publishDate | date: 'mediumDate' }}
             </span>
             <al-icon name="clock" />
-            <p class="text-sm/[14px] text-white">
-              {{ article().readingTime }}min
-            </p>
+            <p class="text-sm/[14px]">{{ article().readingTime }}min</p>
           </div>
         </div>
       }
@@ -78,11 +74,11 @@
         }"
       >
         <p
-          class="*:text-al-pink line-clamp-2 text-2xl font-bold text-white *:not-italic"
+          class="*:text-al-pink line-clamp-2 text-2xl font-bold *:not-italic"
           [innerHTML]="sanitizedArticle().title"
         ></p>
         <p
-          class="text-al-gray-50 *:text-al-pink line-clamp-3 font-thin *:font-medium *:not-italic"
+          class="*:text-al-pink line-clamp-3 *:font-medium *:not-italic"
           [ngClass]="{
             'pt-5': layout() === 'horizontal'
           }"

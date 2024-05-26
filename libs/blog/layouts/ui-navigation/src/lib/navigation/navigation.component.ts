@@ -27,7 +27,7 @@ export class NavigationComponent {
     },
     {
       title: 'Angular Meetups',
-      link: [''],
+      link: ['#'],
       ariaLabel: 'Navigate to Angular meetups page',
     },
     {

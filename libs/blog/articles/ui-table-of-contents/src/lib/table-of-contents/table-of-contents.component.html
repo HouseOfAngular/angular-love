@@ -4,15 +4,15 @@
     <ul class="text- relative z-10 flex flex-col">
       @for (anchor of anchors(); track anchor.title) {
         <li
-          class="before:bg-al-gray-100 relative py-2 before:absolute before:left-[5px] before:top-0 before:-z-10 before:h-full before:w-[1px] before:content-[''] before:first:!top-1/2 before:first:!h-1/2 before:last:!h-1/2"
+          class="before:bg-al-muted relative py-2 before:absolute before:left-[5px] before:top-0 before:-z-10 before:h-full before:w-[1px] before:content-[''] before:first:!top-1/2 before:first:!h-1/2 before:last:!h-1/2"
         >
           <div class="flex items-center gap-4">
             <div class="flex w-[11px] shrink-0 items-center justify-center">
               <div
-                class="bg-al-gray-100 outline-al-gray-600 rounded-full outline"
+                class="bg-al-muted outline-al-background rounded-full outline"
                 [ngClass]="{
                   'size-[11px]': anchor.type === 'h2',
-                  'bg-al-gray-200  size-[7px]': anchor.type === 'h3'
+                  'bg-al-border  size-[7px]': anchor.type === 'h3'
                 }"
                 [class.!bg-al-primary]="activeAnchorTitle() === anchor.title"
               ></div>

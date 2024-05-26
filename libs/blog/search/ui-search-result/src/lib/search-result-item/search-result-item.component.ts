@@ -27,7 +27,7 @@ interface UiSearchResultItem {
   imports: [NgOptimizedImage, IconComponent],
 })
 export class SearchResultItemComponent {
-  @HostBinding('class') hostClasses = 'flex flex-col p-6 hover:bg-al-gray-200';
+  @HostBinding('class') hostClasses = 'flex flex-col p-6 hover:bg-al-border';
 
   item = input.required<UiSearchResultItem>();
 }

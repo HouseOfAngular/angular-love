@@ -1,6 +1,4 @@
-<header
-  class="bg-al-gray-400 border-al-gray-200 z-30 h-20 w-full border-b shadow-xl"
->
+<header class="bg-al-background/95 z-30 h-20 w-full border-b shadow-xl">
   <div
     class="mx-auto flex h-full w-full max-w-screen-xl items-center justify-between px-6 py-4 xl:px-0"
   >
@@ -12,7 +10,7 @@
         [height]="logoSize"
         ngSrc="assets/angular-love-logo.png"
       />
-      <span class="px-4 text-lg font-bold">angular.love</span>
+      <span class="text-al-primary px-4 text-lg font-bold">angular.love</span>
     </a>
 
     <div class="flex flex-row items-center">
@@ -48,11 +46,11 @@
 </header>
 
 <div
-  class="bg-al-gray-600 fixed -top-[100%] left-0 z-50 flex h-full w-full flex-row items-start justify-between p-6 transition-transform duration-300 lg:hidden"
+  class="bg-al-background fixed -top-[100%] left-0 z-50 flex h-full w-full flex-row items-start justify-between p-6 transition-transform duration-300 lg:hidden"
   [ngClass]="{ 'translate-y-[100%]': showNav() }"
 >
   <al-navigation class="pl-24 pt-24" layout="vertical" />
   <button (click)="toggleNav()">
-    <al-icon name="cross" class="text-base text-white" />
+    <al-icon name="cross" class="text-base" />
   </button>
 </div>

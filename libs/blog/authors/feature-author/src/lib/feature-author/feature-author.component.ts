@@ -37,7 +37,7 @@ import { RepeatDirective } from '@angular-love/utils';
   styleUrl: './feature-author.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
   host: {
-    class: 'flex flex-col bg-al-gray-500 h-full w-full',
+    class: 'flex flex-col h-full w-full',
   },
 })
 export class FeatureAuthorComponent {
