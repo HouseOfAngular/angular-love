@@ -33,6 +33,7 @@ export interface ArticlePreview {
 
 export interface Article {
   title: string;
+  slug: string;
   content: string;
   publishDate: string;
   readingTime: string;
