@@ -68,7 +68,7 @@ export const toArticle = (dto?: WPPostDetailsDto): Article => {
     [] as Anchor[],
   );
 
-  const highlightedContent = $.html();
+  const highlightedContent = $('body').html().trim();
 
   return {
     title: title.text(),
