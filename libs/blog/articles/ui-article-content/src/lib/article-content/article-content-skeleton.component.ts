@@ -8,7 +8,7 @@ import { RepeatDirective } from '@angular-love/utils';
   standalone: true,
   template: `
     <article>
-      <div *alRepeat="5" class="mt-8">
+      <div *alRepeat="5">
         <ngx-skeleton-loader
           [theme]="{ width: '100%', 'margin-bottom': '4px', height: '15px' }"
           [count]="15"
