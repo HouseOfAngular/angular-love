@@ -1,4 +1,4 @@
-<div class="text-lg">
+<div class="text-sm">
   <header class="mb-4 font-bold">Table of contents</header>
   <div class="relative">
     <ul class="text- relative z-10 flex flex-col">
@@ -22,7 +22,7 @@
               [ngClass]="{
                 'text-al-primary font-bold':
                   activeAnchorTitle() === anchor.title,
-                'text-base ': anchor.type === 'h3'
+                'font-light': anchor.type === 'h3'
               }"
               [fragment]="anchor.title"
               [routerLink]="[]"
