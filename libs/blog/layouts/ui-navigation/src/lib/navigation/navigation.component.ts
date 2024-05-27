@@ -32,7 +32,7 @@ export class NavigationComponent {
     },
     {
       title: 'Become an author',
-      link: [''],
+      link: ['become-author'],
       ariaLabel: 'Navigate to become an author page',
     },
   ];
