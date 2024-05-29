@@ -17,21 +17,20 @@ import { SocialMediaIconsComponent } from '@angular-love/blog/shared/ui-social-m
   template: `
     <al-card-skeleton [withImage]="false">
       <div alCardContent>
-        <div class="flex items-center gap-6">
+        <div class="mb-4 flex flex-col items-center gap-1">
           <!-- avatar -->
           <ngx-skeleton-loader
             [appearance]="'circle'"
             [theme]="{
-              height: '60px',
-              width: '60px',
-              'margin-bottom': '10px'
+              height: '90px',
+              width: '90px'
             }"
           ></ngx-skeleton-loader>
-          <div class="w-full">
+
+          <div class="w-48">
             <!-- name -->
             <ngx-skeleton-loader
-              [theme]="{ width: '100%', 'margin-bottom': '0', height: '15px' }"
-              [count]="2"
+              [theme]="{ width: '100%', 'margin-bottom': '0', height: '20px' }"
             ></ngx-skeleton-loader>
           </div>
         </div>

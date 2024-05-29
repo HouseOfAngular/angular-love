@@ -17,31 +17,43 @@ import { CardSkeletonComponent } from '@angular-love/blog/shared/ui-card';
     AuthorInfoSkeletonComponent,
   ],
   template: `
-    <section class="block w-full py-8">
-      <h1 class="flex justify-center text-4xl">
-        <!-- title -->
-        <ngx-skeleton-loader
-          [theme]="{ width: '600px', 'margin-bottom': '0', height: '40px' }"
-          [count]="1"
-        ></ngx-skeleton-loader>
-      </h1>
-      <span class="flex justify-center">
-        <!-- date -->
-        <ngx-skeleton-loader
-          [theme]="{ width: '200px', 'margin-bottom': '0', height: '15px' }"
-          [count]="1"
-        ></ngx-skeleton-loader>
-      </span>
-    </section>
+    <div class="grid w-full grid-cols-12 gap-y-10 lg:gap-x-10">
+      <section class="col-span-12 lg:col-span-8">
+        <div>
+          <div class="mb-4 flex justify-between">
+            <!-- date -->
+            <span class="w-1/4">
+              <ngx-skeleton-loader
+                [theme]="{
+                  height: '20px'
+                }"
+              ></ngx-skeleton-loader>
+            </span>
 
-    <div class="grid grid-cols-3 gap-10">
-      <!-- content -->
-      <section class="col-span-2">
+            <!-- read time -->
+            <span class="w-1/4">
+              <ngx-skeleton-loader
+                [theme]="{
+                  height: '20px'
+                }"
+              ></ngx-skeleton-loader>
+            </span>
+          </div>
+        </div>
+
+        <h1 class="mb-4 w-3/4 text-4xl">
+          <!-- title -->
+          <ngx-skeleton-loader
+            [theme]="{
+              height: '40px'
+            }"
+          ></ngx-skeleton-loader>
+        </h1>
+
         <al-article-content-skeleton />
       </section>
 
-      <aside class="col-span-1">
-        <!-- author -->
+      <aside class="col-span-12 lg:col-span-4">
         <al-author-card-skeleton />
       </aside>
     </div>
