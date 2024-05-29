@@ -1,3 +1,5 @@
+@use 'highlight.js/styles/github-dark.min.css';
+
 @mixin heading-styles {
   padding-bottom: 0.3rem;
   margin-bottom: 1.1rem;
@@ -7,8 +9,8 @@
 
 article {
   h1 {
+    @apply text-3xl;
     @include heading-styles;
-    font-size: 2rem;
   }
 
   h2 {
@@ -32,8 +34,7 @@ article {
   }
 
   code.hljs {
-    border-radius: 1rem;
-    margin: 1rem 0;
+    @apply my-4 rounded-2xl p-6;
   }
 
   code:not(.hljs) {

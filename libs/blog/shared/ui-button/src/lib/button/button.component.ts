@@ -21,8 +21,8 @@ const buttonVariants = cva(
   {
     variants: {
       variant: <Record<AlButtonVariant, string>>{
-        Primary: 'bg-al-primary text-white',
-        Secondary: 'bg-al-gray-600 text-white border border-al-gray-200',
+        Primary: 'bg-al-primary',
+        Secondary: 'bg-al-background border',
         Outline: 'border border-al-primary bg-white text-al-primary',
         Ghost: 'bg-transparent',
         link: 'bg-transparent !underline',

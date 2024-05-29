@@ -1,32 +1,28 @@
+/** @type {import('tailwindcss').Config} */
 module.exports = {
+  darkMode: ['class'],
   theme: {
     extend: {
       colors: {
-        'al-gray': {
-          50: '#BEC4CA',
-          100: '#6A798B',
-          200: '#2E2F3B',
-          300: '#23242E',
-          400: '#16171D',
-          500: '#14151bd9',
-          600: '#14151B',
-        },
+        'al-foreground': 'rgb(var(--foreground) / <alpha-value>)',
+        'al-card': 'rgb(var(--card) / <alpha-value>)',
+        'al-background': 'rgba(var(--background) / <alpha-value>)',
+        'al-border': 'rgb(var(--border) / <alpha-value>)',
         'al-blue': '#066aff',
-        'al-pink': '#e70464',
-        'al-primary': '#E70464',
+        'al-pink': 'rgba(var(--primary) / <alpha-value>)',
+        'al-primary': 'rgba(var(--primary) / <alpha-value>)',
+        'al-muted': 'rgba(var(--muted) / <alpha-value>)',
       },
       backgroundImage: {
-        'al-gradient-red':
-          'radial-gradient(58.54% 100% at 0% 100%, rgba(231, 4, 100, 0.2) 0%, rgba(20, 21, 27, 0.2) 100%)',
-        'al-gradient-black':
-          'linear-gradient(180deg, #000000 0%, rgba(0, 0, 0, 0) 100%)',
-        'al-gradient-black-red':
-          'linear-gradient(180deg, #000000 0%, rgba(0, 0, 0, 0) 100%), radial-gradient(74.37% 74.37% at 50% 124.47%, rgba(231, 4, 100, 0.6) 0%, rgba(35, 36, 46, 0) 100%);',
+        'al-radial-gradient':
+          'radial-gradient(58.54% 100% at 0% 100%, rgba(var(--primary) / 0.2) 0%, transparent)',
+        'al-background-gradient':
+          'linear-gradient(180deg, rgba(var(--background) / 1) 0%, rgba(var(--background) / 0.6) 100%)',
         'al-bottom-radial-gradient':
-          'linear-gradient(180deg, transparent 0%, rgba(0, 0, 0, 0) 100%), radial-gradient(74.37% 74.37% at 50% 124.47%, rgba(231, 4, 100, 0.6) 0%, rgba(35, 36, 46, 0) 100%);',
+          'linear-gradient(180deg, transparent 0%, rgba(0, 0, 0, 0) 100%), radial-gradient(74.37% 74.37% at 50% 124.47%, rgba(var(--primary) / 0.6) 0%, transparent 100%)',
       },
       boxShadow: {
-        'al-pink': '0 0 0 1px #e70464',
+        'al-primary': '0 0 0 1px rgba(var(--primary) / <alpha-value>)',
       },
     },
   },

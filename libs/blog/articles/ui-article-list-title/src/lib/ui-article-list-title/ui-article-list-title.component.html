@@ -1,6 +1,6 @@
 <div class="my-3 flex flex-row items-center justify-between">
   <p class="text-2xl font-bold">{{ title() }}</p>
-  <div class="bg-al-gray-200 mx-6 hidden h-[1px] grow md:block"></div>
+  <div class="mx-6 hidden h-[1px] grow md:block"></div>
   @if (link(); as link) {
     <a class="text-base underline" [routerLink]="link.href">
       {{ link.displayName }}

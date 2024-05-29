@@ -15,9 +15,9 @@ import { ChangeDetectionStrategy, Component, input } from '@angular/core';
           height="40"
           width="36"
         />
-        <span class="px-4 text-lg font-bold">angular.love</span>
+        <span class="text-al-primary px-4 text-lg font-bold">angular.love</span>
       </div>
-      <span class="text-al-gray-50 hidden pt-1 text-xs lg:block">
+      <span class="text-al-muted hidden pt-1 text-xs lg:block">
         Copyright &#169; {{ currentYear() }}
       </span>
     </div>

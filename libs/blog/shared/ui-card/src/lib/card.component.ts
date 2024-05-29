@@ -69,7 +69,7 @@ export class CardLinkableDirective {
 export class GradientCardDirective {
   @HostBinding('class')
   get hostClasses() {
-    return 'border border-al-gray-200 !bg-al-gradient-red bg-al-gray-600 text-white';
+    return 'border !bg-al-radial-gradient bg-al-background';
   }
 }
 
@@ -80,7 +80,7 @@ export class GradientCardDirective {
 export class DarkCardDirective {
   @HostBinding('class')
   get hostClasses() {
-    return 'border !p-4 !border-al-gray-200 !bg-al-gray-600 !text-white block';
+    return 'border !p-4 !bg-al-background block';
   }
 }
 
@@ -99,5 +99,5 @@ export class CardComponent {
 
   @HostBinding('class')
   hostClasses =
-    'block rounded-lg border border-al-gray-200 shadow-sm overflow-hidden';
+    'block rounded-lg border shadow-sm overflow-hidden';
 }
