@@ -17,8 +17,10 @@
   [innerHTML]="text()"
 ></p>
 
-@if (clamped.clamped()) {
-  <button al-button (click)="toggleReadMore()" size="small" variant="link">
-    {{ readMore() ? 'Read Less' : 'Read More' }}
-  </button>
-}
+<div class="flex w-full justify-center">
+  @if (clamped.clamped()) {
+    <button al-button (click)="toggleReadMore()" size="small" variant="link">
+      {{ readMore() ? 'Read Less' : 'Read More' }}
+    </button>
+  }
+</div>

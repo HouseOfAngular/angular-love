@@ -3,4 +3,5 @@ export interface UiAuthorInfo {
   description: string;
   avatarUrl: string;
   position: string;
+  slug: string;
 }

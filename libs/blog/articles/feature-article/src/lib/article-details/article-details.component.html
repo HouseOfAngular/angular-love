@@ -35,7 +35,11 @@
     </div>
   </section>
   <aside class="order-3 col-span-12 lg:col-span-4">
-    <al-author-info [author]="articleDetails().author" [clampText]="true" />
+    <al-author-info
+      [author]="articleDetails().author"
+      [clampText]="true"
+      [linkable]="true"
+    />
 
     @if (articleDetails().anchors?.length) {
       <div class="sticky top-24 mt-5 hidden lg:block">

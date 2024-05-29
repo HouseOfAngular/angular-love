@@ -1,7 +1,17 @@
 <al-author-info-template>
   <ng-container author-info-card>
-    <al-avatar [imageSrc]="author().avatarUrl" size="md" />
-    <span class="line-clamp-2 font-bold leading-none">{{ author().name }}</span>
+    @if (linkable()) {
+      <a [routerLink]="['/', 'author', author().slug]">
+        <ng-container *ngTemplateOutlet="avatar" />
+      </a>
+
+      <a [routerLink]="['/', 'author', author().slug]">
+        <ng-container *ngTemplateOutlet="authorName" />
+      </a>
+    } @else {
+      <ng-container *ngTemplateOutlet="avatar" />
+      <ng-container *ngTemplateOutlet="authorName" />
+    }
     <span class="line-clamp-2 text-sm/none">{{ author().position }}</span>
   </ng-container>
 
@@ -12,3 +22,13 @@
     />
   </ng-container>
 </al-author-info-template>
+
+<ng-template #avatar>
+  <al-avatar [imageSrc]="author().avatarUrl" size="md" />
+</ng-template>
+
+<ng-template #authorName>
+  <span class="line-clamp-2 font-bold leading-none">
+    {{ author().name }}
+  </span>
+</ng-template>
