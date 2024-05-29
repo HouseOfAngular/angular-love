@@ -1,6 +1,7 @@
 import {
   ChangeDetectionStrategy,
   Component,
+  DestroyRef,
   ElementRef,
   HostListener,
   inject,
@@ -8,9 +9,11 @@ import {
   OnInit,
   viewChild,
 } from '@angular/core';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { FormControl, ReactiveFormsModule, Validators } from '@angular/forms';
-import { Router, RouterLink } from '@angular/router';
-import { debounceTime, startWith } from 'rxjs';
+import { NavigationEnd, Router, RouterLink } from '@angular/router';
+import { LocalizeRouterModule } from '@penleychan/ngx-transloco-router';
+import { debounceTime, filter, startWith, tap } from 'rxjs';
 
 import {
   GlobalSearchStore,
@@ -29,6 +32,7 @@ import { GlobalSearchService } from '../global-search.service';
     IconComponent,
     SearchResultItemComponent,
     RouterLink,
+    LocalizeRouterModule,
   ],
   templateUrl: './search-dialog.component.html',
   styleUrl: './search-dialog.component.scss',
@@ -45,6 +49,7 @@ export class SearchDialogComponent implements OnInit, OnDestroy {
   private readonly _searchInput =
     viewChild.required<ElementRef<HTMLInputElement>>('searchInput');
   private readonly _router = inject(Router);
+  private readonly _destroyRef = inject(DestroyRef);
 
   @HostListener('click', ['$event.target']) onClick(target: HTMLElement): void {
     if (target.classList.contains('al-overlay')) {
@@ -67,6 +72,8 @@ export class SearchDialogComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
+    this.listenToRouteChanges();
+
     this._searchInput().nativeElement.focus();
     document.body.style.overflow = 'hidden';
 
@@ -93,12 +100,17 @@ export class SearchDialogComponent implements OnInit, OnDestroy {
     }
   }
 
-  navigateToResult(slug: string): void {
-    this._router.navigate(['article', slug]);
-    this.closeSearch();
-  }
-
   private closeSearch(): void {
     this._searchService.hideSearchDialog();
+  }
+
+  private listenToRouteChanges(): void {
+    this._router.events
+      .pipe(
+        filter((event) => event instanceof NavigationEnd),
+        tap(() => this.closeSearch()),
+        takeUntilDestroyed(this._destroyRef),
+      )
+      .subscribe();
   }
 }
