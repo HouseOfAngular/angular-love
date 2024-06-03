@@ -27,6 +27,10 @@ const author: UiAuthorInfo = {
     'Jestem full-stack web Podczas moich 14 lat kodowania zdobyłem ogr,ydajności.\r\n\r\nZdając sobie sprawę z tego, jak szybko rozwija się informatyka i aspekty techniczne, staram się być na bieżąco, uczestnicząc w konferencjach i meetupach, studiując i próbując nowych technologii. Uwielbiam dzielić się swoją wiedzą i pomagać innym programistom.\r\n\r\n"Sharing is Caring"\r\n\r\nUczę Angulara w firmach korporacyjnych poprzez instytut Code.Hub, piszę artykuły i tworzę filmy na YouTube.',
   avatarUrl: '/assets/storybook/author-image.jpg',
   position: 'Full-stack web developer',
+  github: 'johnsmith',
+  twitter: 'johnsmith',
+  linkedin: 'john-smith',
+  slug: 'john-smith',
 };
 
 export default meta;
@@ -66,7 +70,12 @@ export const withToLongData: Story = {
       description: longText.repeat(10),
       position: longText,
       avatarUrl: '/assets/storybook/author-image.jpg',
+      slug: '',
+      github: null,
+      linkedin: null,
+      twitter: null,
     },
+    linkable: false,
   },
 };
 
@@ -77,6 +86,10 @@ export const withEmptyData: Story = {
       description: '',
       position: '',
       avatarUrl: '',
+      slug: '',
+      github: null,
+      linkedin: null,
+      twitter: null,
     },
   },
 };

@@ -15,6 +15,7 @@ export type IconType =
   | 'send'
   | 'tick'
   | 'twitter-x'
+  | 'github-mark'
   | 'youtube';
 
 @Component({

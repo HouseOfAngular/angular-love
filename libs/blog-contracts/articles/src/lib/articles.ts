@@ -41,6 +41,9 @@ export interface Article {
     avatarUrl: string;
     position: string;
     slug: string;
+    github: string | null;
+    twitter: string | null;
+    linkedin: string | null;
   };
   anchors: Anchor[];
 }

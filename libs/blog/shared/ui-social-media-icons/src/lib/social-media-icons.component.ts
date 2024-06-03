@@ -1,12 +1,9 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 
-import { IconComponent, IconType } from '@angular-love/blog/shared/ui-icon';
-
-export type IconConfig = {
-  href: string;
-  name: IconType;
-  ariaLabel: string;
-};
+import {
+  SocialMediaIconItemComponent,
+  SocialMediaIconItemUi,
+} from './social-media-icon-item.component';
 
 @Component({
   standalone: true,
@@ -14,28 +11,29 @@ export type IconConfig = {
   templateUrl: './social-media-icons.component.html',
   styleUrls: ['./social-media-icons.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [IconComponent],
+  imports: [SocialMediaIconItemComponent],
 })
 export class SocialMediaIconsComponent {
-  readonly icons: IconConfig[] = [
+  readonly socials: SocialMediaIconItemUi[] = [
     {
-      href: 'https://www.facebook.com/www.angular.love',
-      name: 'facebook',
+      usernameOrPageId: 'www.angular.love',
+      iconName: 'facebook',
       ariaLabel: 'Like our Facebook page',
     },
     {
-      href: 'https://x.com/AngularLovePL',
-      name: 'twitter-x',
+      usernameOrPageId: 'AngularLovePL',
+      iconName: 'twitter-x',
       ariaLabel: 'Follow us on Twitter',
     },
     {
-      href: 'https://www.linkedin.com/company/angular-love',
-      name: 'linkedIn',
+      usernameOrPageId: 'angular-love',
+      iconName: 'linkedIn',
       ariaLabel: 'Follow us on LinkedIn',
+      isCompany: true,
     },
     {
-      href: 'https://www.youtube.com/@angularlove',
-      name: 'youtube',
+      usernameOrPageId: '@angularlove',
+      iconName: 'youtube',
       ariaLabel: 'Watch our YouTube videos',
     },
   ];
