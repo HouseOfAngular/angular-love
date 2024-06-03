@@ -20,7 +20,7 @@ import { SearchDialogComponent } from './search-dialog';
       class="flex items-center bg-transparent p-1"
       (click)="service.showSearchDialog()"
     >
-      <al-icon name="magnifierGlass" class="text-al-pink text-2xl" />
+      <al-icon name="magnifier-glass" class="bg-al-pink h-6" />
     </button>
 
     @defer (when service.isSearchOpen()) {
