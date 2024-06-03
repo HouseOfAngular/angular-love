@@ -9,6 +9,7 @@ import {
 } from '@angular-love/blog/articles/ui-table-of-contents';
 import { AuthorInfoComponent } from '@angular-love/blog/authors/ui-author-info';
 import {
+  CardComponent,
   CardContentDirective,
   CardSkeletonComponent,
   DarkCardDirective,
@@ -34,6 +35,7 @@ import { NewsletterComponent } from '@angular-love/newsletter';
     TableOfContentsScrollSpyDirective,
     CardSkeletonComponent,
     GiscusCommentsComponent,
+    CardComponent,
   ],
   templateUrl: './article-details.component.html',
   styleUrls: ['./article-details.component.scss'],

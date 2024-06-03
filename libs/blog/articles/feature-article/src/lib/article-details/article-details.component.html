@@ -23,7 +23,7 @@
     <div class="flex w-full flex-col gap-10 overflow-hidden">
       <al-article-content [content]="articleDetails().content" />
 
-      <al-card alGradientCard #view class="">
+      <al-card alGradientCard #view>
         <al-newsletter alCardContent />
       </al-card>
       @defer (on timer(3000ms); on viewport(view)) {
