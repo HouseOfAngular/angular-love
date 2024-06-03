@@ -2,26 +2,30 @@ import {
   ChangeDetectionStrategy,
   Component,
   computed,
-  inject,
   input,
 } from '@angular/core';
-import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 
-import { getIcon, IconType } from '../icons';
+export type IconType =
+  | 'circle-check'
+  | 'clock'
+  | 'cross'
+  | 'facebook'
+  | 'linkedIn'
+  | 'magnifier-glass'
+  | 'send'
+  | 'tick'
+  | 'twitter-x'
+  | 'youtube';
 
 @Component({
   selector: 'al-icon',
   standalone: true,
-  templateUrl: './icon.component.html',
+  template: '',
   changeDetection: ChangeDetectionStrategy.OnPush,
+  styleUrls: ['icon.component.scss'],
+  host: { '[style.-webkit-mask-image]': 'path()' },
 })
 export class IconComponent {
-  name = input.required<IconType>();
-
-  private _sanitizer = inject(DomSanitizer);
-
-  protected svgIcon = computed<SafeHtml>(() => {
-    const icon = getIcon(this.name());
-    return this._sanitizer.bypassSecurityTrustHtml(icon);
-  });
+  readonly name = input.required<IconType>();
+  readonly path = computed(() => `url("assets/icons/${this.name()}.svg")`);
 }
