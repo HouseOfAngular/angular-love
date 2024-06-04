@@ -26,21 +26,25 @@
           'px-8 pt-8': layout() === 'hero'
         }"
       >
-        <div class="flex items-center gap-2">
+        <div class="flex items-center gap-2 max-md:self-start">
           <al-avatar [imageSrc]="article().author.avatarUrl" size="sm" />
           <span class="text-sm/[14px] font-medium">
             {{ article().author.name }}
           </span>
         </div>
 
-        <div class="flex items-center gap-2">
+        <div
+          class="flex flex-col items-center justify-end gap-6 gap-y-4 md:flex-row"
+        >
           @if (layout() === 'hero') {
-            <span class="text-sm/[14px] font-medium">
+            <span class="w-full whitespace-nowrap text-sm/[14px] font-medium">
               {{ article().publishDate | date: 'mediumDate' }}
             </span>
           }
-          <al-icon name="clock" class="h-4 bg-white" />
-          <p class="text-sm/[14px]">{{ article().readingTime }} min</p>
+          <span class="flex w-full flex-row items-center justify-end gap-2">
+            <al-icon name="clock" class="inline-block h-4 bg-white" />
+            <p class="text-sm/[14px]">{{ article().readingTime }} min</p>
+          </span>
         </div>
       </div>
 
