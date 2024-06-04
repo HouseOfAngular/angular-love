@@ -7,7 +7,7 @@ import {
 } from '@angular/core';
 import { RouterLink } from '@angular/router';
 
-import { UiAuthorInfo } from '@angular-love/blog/authors/types';
+import { UiAuthorCard } from '@angular-love/blog/authors/types';
 import { AvatarComponent } from '@angular-love/blog/shared/ui-avatar';
 import { DynamicTextClampComponent } from '@angular-love/blog/shared/ui-dynamic-text-clamp';
 import {
@@ -15,25 +15,25 @@ import {
   SocialMediaIconItemUi,
 } from '@angular-love/blog/shared/ui-social-media-icons';
 
-import { AuthorInfoTemplateComponent } from './author-info-template.component';
+import { AuthorCardTemplateComponent } from './author-card-template.component';
 
 @Component({
-  selector: 'al-author-info',
+  selector: 'al-author-card',
   standalone: true,
   imports: [
-    AuthorInfoTemplateComponent,
+    AuthorCardTemplateComponent,
     AvatarComponent,
     DynamicTextClampComponent,
     RouterLink,
     NgTemplateOutlet,
     SocialMediaIconItemComponent,
   ],
-  templateUrl: './author-info.component.html',
-  styleUrl: './author-info.component.scss',
+  templateUrl: './author-card.component.html',
+  styleUrl: './author-card.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class AuthorInfoComponent {
-  author = input.required<UiAuthorInfo>();
+export class AuthorCardComponent {
+  author = input.required<UiAuthorCard>();
 
   clampText = input<boolean>();
   linkable = input<boolean>(false);

@@ -1,4 +1,4 @@
-<al-author-info-template>
+<al-author-card-template>
   <ng-container author-info-card>
     @if (linkable()) {
       <a [routerLink]="['/', 'author', author().slug]">
@@ -28,7 +28,7 @@
       [textClasses]="descriptionClass()"
     />
   </ng-container>
-</al-author-info-template>
+</al-author-card-template>
 
 <ng-template #avatar>
   <al-avatar [imageSrc]="author().avatarUrl" size="md" />

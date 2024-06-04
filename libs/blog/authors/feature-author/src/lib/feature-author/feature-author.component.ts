@@ -11,9 +11,9 @@ import { ArticleListStore } from '@angular-love/blog/articles/data-access';
 import { UiArticleCardComponent } from '@angular-love/blog/articles/ui-article-card';
 import { AuthorDetailsStore } from '@angular-love/blog/authors/data-access';
 import {
-  AuthorInfoComponent,
-  AuthorInfoSkeletonComponent,
-} from '@angular-love/blog/authors/ui-author-info';
+  AuthorCardComponent,
+  AuthorCardSkeletonComponent,
+} from '@angular-love/blog/authors/ui-author-card';
 import { BreadcrumbComponent } from '@angular-love/blog/shared/ui-breadcrumb';
 import {
   PaginationComponent,
@@ -25,8 +25,8 @@ import { RepeatDirective } from '@angular-love/utils';
   selector: 'al-author',
   standalone: true,
   imports: [
-    AuthorInfoComponent,
-    AuthorInfoSkeletonComponent,
+    AuthorCardComponent,
+    AuthorCardSkeletonComponent,
     RepeatDirective,
     BreadcrumbComponent,
     UiArticleCardComponent,

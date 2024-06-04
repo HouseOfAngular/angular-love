@@ -49,7 +49,7 @@
 <h1 class="mb-8 mt-10 text-[40px] font-bold">Authors of Angular.Love</h1>
 
 @for (author of authors(); track author.slug) {
-  <al-author-card class="mb-6 block" [author]="author" />
+  <al-author-card class="mb-6 block" [author]="author" [linkable]="true" />
 
   @if ($index === noAuthorsInView() - 2) {
     @defer (on viewport) {

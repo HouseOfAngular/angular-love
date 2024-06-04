@@ -1,4 +1,4 @@
-export interface UiAuthorInfo {
+export interface UiAuthorCard {
   name: string;
   description: string;
   avatarUrl: string;

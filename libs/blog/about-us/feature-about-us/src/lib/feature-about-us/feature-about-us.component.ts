@@ -8,7 +8,6 @@ import {
 
 import { AuthorListStore } from '@angular-love/blog/authors/data-access';
 import { AuthorCardComponent } from '@angular-love/blog/authors/ui-author-card';
-import { AuthorInfoComponent } from '@angular-love/blog/authors/ui-author-info';
 import { BreadcrumbComponent } from '@angular-love/blog/shared/ui-breadcrumb';
 import {
   CardComponent,
@@ -28,7 +27,6 @@ import { NewsletterComponent } from '@angular-love/newsletter';
     SocialMediaIconsComponent,
     GradientCardDirective,
     AuthorCardComponent,
-    AuthorInfoComponent,
     InfiniteScrollTriggerDirective,
   ],
   templateUrl: './feature-about-us.component.html',

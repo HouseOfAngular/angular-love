@@ -7,7 +7,7 @@ import {
   TableOfContentsComponent,
   TableOfContentsScrollSpyDirective,
 } from '@angular-love/blog/articles/ui-table-of-contents';
-import { AuthorInfoComponent } from '@angular-love/blog/authors/ui-author-info';
+import { AuthorCardComponent } from '@angular-love/blog/authors/ui-author-card';
 import {
   CardComponent,
   CardContentDirective,
@@ -29,7 +29,7 @@ import { NewsletterComponent } from '@angular-love/newsletter';
     GradientCardDirective,
     NewsletterComponent,
     CardContentDirective,
-    AuthorInfoComponent,
+    AuthorCardComponent,
     DarkCardDirective,
     TableOfContentsComponent,
     TableOfContentsScrollSpyDirective,

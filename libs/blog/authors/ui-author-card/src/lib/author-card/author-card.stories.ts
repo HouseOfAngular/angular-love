@@ -5,23 +5,23 @@ import {
   StoryObj,
 } from '@storybook/angular';
 
-import { UiAuthorInfo } from '@angular-love/blog/authors/types';
+import { UiAuthorCard } from '@angular-love/blog/authors/types';
 
-import { AuthorInfoSkeletonComponent } from './author-info-skeleton.component';
-import { AuthorInfoComponent } from './author-info.component';
+import { AuthorCardSkeletonComponent } from './author-card-skeleton.component';
+import { AuthorCardComponent } from './author-card.component';
 
-const meta: Meta<AuthorInfoComponent> = {
-  component: AuthorInfoComponent,
+const meta: Meta<AuthorCardComponent> = {
+  component: AuthorCardComponent,
   title: 'Authors / Author Info',
   decorators: [
     moduleMetadata({
-      imports: [AuthorInfoSkeletonComponent],
+      imports: [AuthorCardSkeletonComponent],
     }),
     componentWrapperDecorator((story) => `<div class="p-4">${story}</div>`),
   ],
 };
 
-const author: UiAuthorInfo = {
+const author: UiAuthorCard = {
   name: 'John Smith',
   description:
     'Jestem full-stack web Podczas moich 14 lat kodowania zdobyłem ogr,ydajności.\r\n\r\nZdając sobie sprawę z tego, jak szybko rozwija się informatyka i aspekty techniczne, staram się być na bieżąco, uczestnicząc w konferencjach i meetupach, studiując i próbując nowych technologii. Uwielbiam dzielić się swoją wiedzą i pomagać innym programistom.\r\n\r\n"Sharing is Caring"\r\n\r\nUczę Angulara w firmach korporacyjnych poprzez instytut Code.Hub, piszę artykuły i tworzę filmy na YouTube.',
@@ -34,7 +34,7 @@ const author: UiAuthorInfo = {
 };
 
 export default meta;
-type Story = StoryObj<AuthorInfoComponent>;
+type Story = StoryObj<AuthorCardComponent>;
 
 export const primary: Story = {
   args: {
@@ -44,8 +44,8 @@ export const primary: Story = {
     props: args,
     template: `
        <div class="flex gap-4 flex-col">
-        <al-author-info [author]="author"/>
-        <al-author-info-skeleton/>
+        <al-author-card [author]="author"/>
+        <al-author-card-skeleton/>
       </div>`,
   }),
 };
@@ -55,7 +55,7 @@ export const skeleton: Story = {
   render: (args) => ({
     props: args,
     template: `
-    <al-author-info-skeleton/>
+    <al-author-card-skeleton/>
   `,
   }),
 };
@@ -104,19 +104,19 @@ export const allResolutions: Story = {
       <div class="flex flex-col gap-4">
   <div>
     <p class="text-2xl">Desktop</p>
-    <al-author-info [author]="author" />
-     <al-author-info-skeleton/>
+    <al-author-card [author]="author" />
+     <al-author-card-skeleton/>
 </div>
   <div class="max-w-[768px]">
     <p class="text-2xl">Tablet</p>
-    <al-author-info [author]="author" />
-     <al-author-info-skeleton/>
+    <al-author-card [author]="author" />
+     <al-author-card-skeleton/>
 
   </div>
   <div class="max-w-[390px]">
     <p class="text-2xl">Mobile</p>
-    <al-author-info [author]="author" />
-        <al-author-info-skeleton/>
+    <al-author-card [author]="author" />
+        <al-author-card-skeleton/>
 
   </div>
 </div>
