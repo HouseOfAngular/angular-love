@@ -23,6 +23,8 @@ module.exports = {
       },
       boxShadow: {
         'al-primary': '0 0 0 1px rgba(var(--primary) / <alpha-value>)',
+        'al-full-background': '0px 0px 0px 999px rgba(var(--background) / 1)',
+        'al-full-border': '0px 0px 0px 999px rgba(var(--border) / 1)',
       },
     },
   },

@@ -5,6 +5,7 @@ export type ArticleCard = {
   slug: string;
   featuredImageUrl: string;
   readingTime: string;
+  difficulty: 'beginner' | 'intermediate' | 'advanced';
   author: {
     name: string;
     avatarUrl: string;

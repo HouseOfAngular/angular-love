@@ -4,6 +4,7 @@ import { RouterLink } from '@angular/router';
 
 import { ArticleCard } from '@angular-love/blog/shared/types';
 import { AvatarComponent } from '@angular-love/blog/shared/ui-avatar';
+import { UiDifficultyComponent } from '@angular-love/blog/shared/ui-difficulty';
 import { IconComponent } from '@angular-love/blog/shared/ui-icon';
 
 export type Layout = 'compact' | 'hero';
@@ -12,7 +13,14 @@ export type Layout = 'compact' | 'hero';
   selector: 'al-article-background-card',
   changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: true,
-  imports: [AvatarComponent, RouterLink, DatePipe, NgClass, IconComponent],
+  imports: [
+    AvatarComponent,
+    RouterLink,
+    DatePipe,
+    NgClass,
+    IconComponent,
+    UiDifficultyComponent,
+  ],
   templateUrl: './article-background-card.component.html',
 })
 export class ArticleBackgroundCardComponent {

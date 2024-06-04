@@ -12,12 +12,16 @@ const meta: Meta<ArticleDetailsComponent> = {
 const articleDetails: Article = {
   readingTime: '3',
   title: "Why Angular signals won't replace RxJs",
+  difficulty: 'beginner',
   author: {
     slug: '',
     name: 'John Smith',
     description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
     avatarUrl: '/assets/storybook/author-image.jpg',
     position: '',
+    github: '',
+    linkedin: '',
+    twitter: '',
   },
   anchors: [],
   publishDate: new Date('2021-01-01').toISOString(),

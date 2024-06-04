@@ -13,6 +13,7 @@ const article: ArticleCard = {
   excerpt:
     'Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. ',
   featuredImageUrl: '/assets/storybook/article-featured-image.png',
+  difficulty: 'intermediate',
   author: {
     name: 'Author Data',
     avatarUrl: '/assets/storybook/author-image.jpg',

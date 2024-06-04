@@ -15,6 +15,7 @@ export interface WPPostDto {
   };
   acf: {
     reading_time: string | number;
+    difficulty: string;
   };
 }
 
@@ -39,5 +40,6 @@ export interface WPPostDetailsDto {
   };
   acf: {
     reading_time: string | number;
+    difficulty: string;
   };
 }

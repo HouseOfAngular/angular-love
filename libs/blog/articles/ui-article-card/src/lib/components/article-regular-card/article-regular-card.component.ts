@@ -12,6 +12,7 @@ import { RouterLink } from '@angular/router';
 
 import { ArticleCard } from '@angular-love/blog/shared/types';
 import { AvatarComponent } from '@angular-love/blog/shared/ui-avatar';
+import { UiDifficultyComponent } from '@angular-love/blog/shared/ui-difficulty';
 import { IconComponent } from '@angular-love/blog/shared/ui-icon';
 
 export type Layout = 'regular' | 'horizontal';
@@ -33,6 +34,7 @@ type SanitizedArticleDataModel = {
     IconComponent,
     RouterLink,
     NgOptimizedImage,
+    UiDifficultyComponent,
   ],
   templateUrl: './article-regular-card.component.html',
   styleUrl: './article-regular-card.component.scss',

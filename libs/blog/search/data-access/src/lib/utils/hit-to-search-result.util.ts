@@ -14,6 +14,7 @@ export const mapHitToSearchResult = (
       'https://testing.angular.love/wp-content/uploads/2022/12/Templatki-do-artykulów-12.png', // TODO: Replace with statically served placeholder image
     publishDate: dto.post_date_formatted,
     readingTime: `${dto.reading_time || 0}`,
+    difficulty: 'intermediate', // TODO reindex algolia
     slug: dto.post_slug,
     title: dto._highlightResult.post_title.value,
     rawTitle: dto.post_title,
