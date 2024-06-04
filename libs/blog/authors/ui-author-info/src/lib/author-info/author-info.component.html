@@ -12,7 +12,14 @@
       <ng-container *ngTemplateOutlet="avatar" />
       <ng-container *ngTemplateOutlet="authorName" />
     }
+
     <span class="line-clamp-2 text-sm/none">{{ author().position }}</span>
+
+    <div class="flex gap-4">
+      @for (social of socials(); track $index) {
+        <al-social-media-icon-item [socialMediaConfig]="social" />
+      }
+    </div>
   </ng-container>
 
   <ng-container author-info-description>

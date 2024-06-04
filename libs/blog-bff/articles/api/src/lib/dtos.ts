@@ -32,6 +32,10 @@ export interface WPPostDetailsDto {
     slug: string;
     avatar_url: string;
     description: string;
+    position: string;
+    github: string;
+    twitter: string;
+    linkedin: string;
   };
   acf: {
     reading_time: string | number;

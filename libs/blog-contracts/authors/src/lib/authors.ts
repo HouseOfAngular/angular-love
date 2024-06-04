@@ -4,4 +4,7 @@ export interface Author {
   avatarUrl: string;
   description: string;
   position: string;
+  github: string | null;
+  twitter: string | null;
+  linkedin: string | null;
 }

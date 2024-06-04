@@ -20,7 +20,7 @@ app.get('/', wpClientMw, async (c) => {
 
   const result = await c.var.wpClient.get<WPAuthorDto[]>('users', {
     ...query,
-    _fields: 'id,type,slug,name,description,avatar_urls',
+    _fields: 'id,type,slug,name,description,avatar_urls,acf',
   });
 
   return c.json(<ArrayResponse<Author>>{
@@ -34,7 +34,7 @@ app.get('/:slug', wpClientMw, async (c) => {
 
   const result = await c.var.wpClient.get<WPAuthorDto[]>('users', {
     slug: slug,
-    _fields: 'id,type,slug,name,description,avatar_urls',
+    _fields: 'id,type,slug,name,description,avatar_urls,acf',
   });
 
   return c.json(toAuthor(result.data[0]));
