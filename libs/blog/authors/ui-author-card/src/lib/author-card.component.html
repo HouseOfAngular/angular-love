@@ -1,14 +1,14 @@
 <al-card alGradientCard>
   <div alCardContent class="grid grid-cols-1 gap-6 md:grid-cols-[250px_auto]">
     <al-card alGradientCard class="h-fit">
-      <div alCardContent class="flex flex-col items-center">
+      <div alCardContent class="flex flex-col items-center gap-2">
         <al-avatar [imageSrc]="author().avatarUrl" size="md" />
-        <span class="mt-4 whitespace-nowrap text-base font-medium">
+        <span class="whitespace-nowrap text-base font-medium">
           {{ author().name }}
         </span>
-        <span class="mt-4 text-sm font-normal">{{ author().position }}</span>
+        <span class="text-sm font-normal">{{ author().position }}</span>
         <a
-          class="text-al-blue mt-4 text-sm font-normal"
+          class="text-al-blue text-sm font-normal"
           [routerLink]="['/', 'author', author().slug]"
         >
           Read the articles
@@ -18,7 +18,7 @@
         </div>
       </div>
     </al-card>
-    <div class="hidden text-base font-normal md:block">
+    <div class="hidden items-center text-base font-normal md:flex">
       {{ author().description }}
     </div>
   </div>

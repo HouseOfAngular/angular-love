@@ -1,3 +1,4 @@
+import { NgTemplateOutlet } from '@angular/common';
 import {
   ChangeDetectionStrategy,
   Component,
@@ -20,6 +21,7 @@ import { AuthorInfoTemplateComponent } from './author-info-template.component';
     AvatarComponent,
     DynamicTextClampComponent,
     RouterLink,
+    NgTemplateOutlet,
   ],
   templateUrl: './author-info.component.html',
   styleUrl: './author-info.component.scss',
@@ -29,6 +31,7 @@ export class AuthorInfoComponent {
   author = input.required<UiAuthorInfo>();
 
   clampText = input<boolean>();
+  linkable = input<boolean>(false);
 
   descriptionClass = computed(
     () => 'text-sm' + (this.clampText() ? ' line-clamp-3' : ''),
