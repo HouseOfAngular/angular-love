@@ -69,9 +69,6 @@
       "@angular-love/blog/authors/ui-author-card": [
         "libs/blog/authors/ui-author-card/src/index.ts"
       ],
-      "@angular-love/blog/authors/ui-author-info": [
-        "libs/blog/authors/ui-author-info/src/index.ts"
-      ],
       "@angular-love/blog/become-author-page-feature": [
         "libs/blog/become-author/feature-become-author-page/src/index.ts"
       ],

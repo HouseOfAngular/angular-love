@@ -1,14 +1,14 @@
 import { Component } from '@angular/core';
 import { NgxSkeletonLoaderModule } from 'ngx-skeleton-loader';
 
-import { AuthorInfoTemplateComponent } from './author-info-template.component';
+import { AuthorCardTemplateComponent } from './author-card-template.component';
 
 @Component({
-  selector: 'al-author-info-skeleton',
+  selector: 'al-author-card-skeleton',
   standalone: true,
-  imports: [AuthorInfoTemplateComponent, NgxSkeletonLoaderModule],
+  imports: [AuthorCardTemplateComponent, NgxSkeletonLoaderModule],
   template: `
-    <al-author-info-template>
+    <al-author-card-template>
       <ng-container author-info-card>
         <!-- avatar -->
         <ngx-skeleton-loader
@@ -49,7 +49,7 @@ import { AuthorInfoTemplateComponent } from './author-info-template.component';
           [count]="1"
         />
       </ng-container>
-    </al-author-info-template>
+    </al-author-card-template>
   `,
 })
-export class AuthorInfoSkeletonComponent {}
+export class AuthorCardSkeletonComponent {}

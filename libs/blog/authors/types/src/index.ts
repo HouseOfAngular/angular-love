@@ -1,1 +1,1 @@
-export * from './lib/author-info-data-model';
+export * from './lib/author-card-data-model';

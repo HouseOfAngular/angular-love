@@ -3,7 +3,6 @@ import { NgxSkeletonLoaderModule } from 'ngx-skeleton-loader';
 
 import { ArticleContentSkeletonComponent } from '@angular-love/blog/articles/ui-article-content';
 import { AuthorCardSkeletonComponent } from '@angular-love/blog/authors/ui-author-card';
-import { AuthorInfoSkeletonComponent } from '@angular-love/blog/authors/ui-author-info';
 import { CardSkeletonComponent } from '@angular-love/blog/shared/ui-card';
 
 @Component({
@@ -14,7 +13,6 @@ import { CardSkeletonComponent } from '@angular-love/blog/shared/ui-card';
     NgxSkeletonLoaderModule,
     ArticleContentSkeletonComponent,
     AuthorCardSkeletonComponent,
-    AuthorInfoSkeletonComponent,
   ],
   template: `
     <div class="grid w-full grid-cols-12 gap-y-10 lg:gap-x-10">

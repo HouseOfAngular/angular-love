@@ -1,2 +1,2 @@
-export * from './lib/author-card.component';
-export * from './lib/author-card-skeleton.component';
+export * from './lib/author-card/author-card.component';
+export * from './lib/author-card/author-card-skeleton.component';
