@@ -1,5 +1,7 @@
 import { Route } from '@angular/router';
 
+import { articleRoutes } from '@angular-love/blog/articles/feature/shell';
+
 import { RootShellComponent } from './root-shell.component';
 
 export const blogShellRoutes: Route[] = [
@@ -8,6 +10,13 @@ export const blogShellRoutes: Route[] = [
     component: RootShellComponent,
     children: [
       //todo: handle wildcard route
+      {
+        path: '',
+        loadComponent: async () =>
+          (await import('@angular-love/blog/home/feature-home'))
+            .HomePageComponent,
+      },
+      ...articleRoutes,
       {
         path: 'search',
         pathMatch: 'full',
@@ -23,13 +32,6 @@ export const blogShellRoutes: Route[] = [
             .FeatureAboutUsComponent,
       },
       {
-        path: '',
-        pathMatch: 'full',
-        loadComponent: async () =>
-          (await import('@angular-love/blog/home/feature-home'))
-            .HomePageComponent,
-      },
-      {
         path: 'author/:authorSlug',
         loadComponent: async () =>
           (await import('@angular-love/blog/authors/feature-author'))
@@ -40,12 +42,6 @@ export const blogShellRoutes: Route[] = [
         loadComponent: async () =>
           (await import('@angular-love/blog/become-author-page-feature'))
             .BecomeAuthorPageFeatureComponent,
-      },
-      {
-        path: '',
-        loadChildren: async () =>
-          (await import('@angular-love/blog/articles/feature/shell'))
-            .articleRoutes,
       },
       {
         path: 'not-found',

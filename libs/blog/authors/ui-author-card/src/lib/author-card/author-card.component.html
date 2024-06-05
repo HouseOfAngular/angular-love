@@ -1,11 +1,11 @@
 <al-author-card-template>
   <ng-container author-info-card>
     @if (linkable()) {
-      <a [routerLink]="['/', 'author', author().slug]">
+      <a [routerLink]="['/', 'author', author().slug] | localize">
         <ng-container *ngTemplateOutlet="avatar" />
       </a>
 
-      <a [routerLink]="['/', 'author', author().slug]">
+      <a [routerLink]="['/', 'author', author().slug] | localize">
         <ng-container *ngTemplateOutlet="authorName" />
       </a>
     } @else {

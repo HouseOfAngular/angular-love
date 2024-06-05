@@ -2,7 +2,7 @@
   <div
     class="mx-auto flex h-full w-full max-w-screen-xl items-center justify-between px-6 py-4 xl:px-0"
   >
-    <a class="flex items-center gap-2" [routerLink]="'/'">
+    <a class="flex items-center gap-2" [routerLink]="'/' | localize">
       <img
         alt="Angular Love logo"
         class="inline-block"
@@ -15,21 +15,28 @@
 
     <div class="flex flex-row items-center">
       <al-navigation class="hidden lg:block" />
-      <!--      @TODO hidden until we clarify i18 stuff-->
-      <!--      <div class="ml-6">-->
-      <!--        <button-->
-      <!--          class="border-al-gray-200 mr-2 rounded border bg-transparent px-4 py-2 font-medium leading-4"-->
-      <!--          [class]="language() === 'ENG' ? 'text-white' : 'text-al-gray-50'"-->
-      <!--        >-->
-      <!--          ENG-->
-      <!--        </button>-->
-      <!--        <button-->
-      <!--          class="border-al-gray-200 mr-2 rounded border bg-transparent px-4 py-2 font-medium leading-4"-->
-      <!--          [class]="language() === 'PL' ? 'text-white' : 'text-al-gray-50'"-->
-      <!--        >-->
-      <!--          PL-->
-      <!--        </button>-->
-      <!--      </div>-->
+      <div class="ml-6">
+        <button
+          class="border-al-gray-200 mr-2 rounded border bg-transparent px-4 py-2 font-medium leading-4"
+          [ngClass]="{
+            '!text-white': language() === 'en',
+            '!text-al-gray-50  opacity-50': language() !== 'en'
+          }"
+          (click)="languageChange.emit('en')"
+        >
+          ENG
+        </button>
+        <button
+          class="border-al-gray-200 mr-2 rounded border bg-transparent px-4 py-2 font-medium leading-4"
+          [ngClass]="{
+            '!text-white': language() === 'pl',
+            '!text-al-gray-50  opacity-50': language() !== 'pl'
+          }"
+          (click)="languageChange.emit('pl')"
+        >
+          PL
+        </button>
+      </div>
 
       <ng-content />
 

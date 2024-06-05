@@ -1,6 +1,7 @@
 import { NgClass } from '@angular/common';
 import { ChangeDetectionStrategy, Component, input } from '@angular/core';
 import { RouterLink, RouterLinkActive } from '@angular/router';
+import { LocalizeRouterModule } from '@penleychan/ngx-transloco-router';
 
 export type NavItem = {
   title: string;
@@ -11,7 +12,7 @@ export type NavItem = {
 @Component({
   selector: 'al-navigation',
   standalone: true,
-  imports: [RouterLink, RouterLinkActive, NgClass],
+  imports: [RouterLink, RouterLinkActive, NgClass, LocalizeRouterModule],
   templateUrl: './navigation.component.html',
   styleUrl: './navigation.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
