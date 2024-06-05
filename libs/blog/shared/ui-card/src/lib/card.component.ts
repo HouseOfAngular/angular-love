@@ -80,7 +80,7 @@ export class GradientCardDirective {
 export class DarkCardDirective {
   @HostBinding('class')
   get hostClasses() {
-    return 'border !p-4 !bg-al-background block';
+    return 'border !p-4 !bg-al-background block rounded-lg';
   }
 }
 

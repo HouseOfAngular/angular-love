@@ -44,13 +44,22 @@
     />
 
     @if (articleDetails().anchors.length) {
-      <div class="sticky top-24 mt-5 hidden lg:block">
+      <div class="sticky top-24 mt-5 hidden flex-col gap-4 lg:flex">
         <al-card alDarkCard>
           <div alCardContent>
             <al-table-of-contents
               alTableOfContentsScrollSpy
               class="al-scroll block max-h-[90dvh] overflow-auto"
               [anchors]="articleDetails().anchors"
+            />
+          </div>
+        </al-card>
+
+        <al-card alDarkCard>
+          <div alCardContent>
+            <al-article-share-icons
+              [slug]="articleDetails().slug"
+              [title]="articleDetails().title"
             />
           </div>
         </al-card>

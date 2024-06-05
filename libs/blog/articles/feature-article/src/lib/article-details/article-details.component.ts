@@ -20,6 +20,8 @@ import { IconComponent } from '@angular-love/blog/shared/ui-icon';
 import { Article } from '@angular-love/contracts/articles';
 import { NewsletterComponent } from '@angular-love/newsletter';
 
+import { ArticleShareIconsComponent } from '../article-share-icons/article-share-icons.component';
+
 @Component({
   selector: 'al-article-details',
   standalone: true,
@@ -38,6 +40,7 @@ import { NewsletterComponent } from '@angular-love/newsletter';
     GiscusCommentsComponent,
     CardComponent,
     UiDifficultyComponent,
+    ArticleShareIconsComponent,
   ],
   templateUrl: './article-details.component.html',
   styleUrls: ['./article-details.component.scss'],
