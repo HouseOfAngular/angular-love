@@ -15,6 +15,7 @@ import {
   DarkCardDirective,
   GradientCardDirective,
 } from '@angular-love/blog/shared/ui-card';
+import { UiDifficultyComponent } from '@angular-love/blog/shared/ui-difficulty';
 import { IconComponent } from '@angular-love/blog/shared/ui-icon';
 import { Article } from '@angular-love/contracts/articles';
 import { NewsletterComponent } from '@angular-love/newsletter';
@@ -36,6 +37,7 @@ import { NewsletterComponent } from '@angular-love/newsletter';
     CardSkeletonComponent,
     GiscusCommentsComponent,
     CardComponent,
+    UiDifficultyComponent,
   ],
   templateUrl: './article-details.component.html',
   styleUrls: ['./article-details.component.scss'],

@@ -40,6 +40,7 @@
             <span class="w-full whitespace-nowrap text-sm/[14px] font-medium">
               {{ article().publishDate | date: 'mediumDate' }}
             </span>
+            <al-difficulty [difficulty]="article().difficulty" />
           }
           <span class="flex w-full flex-row items-center justify-end gap-2">
             <al-icon name="clock" class="inline-block h-4 bg-white" />

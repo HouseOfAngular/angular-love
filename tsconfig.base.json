@@ -114,6 +114,9 @@
       "@angular-love/blog/shared/ui-card": [
         "libs/blog/shared/ui-card/src/index.ts"
       ],
+      "@angular-love/blog/shared/ui-difficulty": [
+        "libs/blog/shared/ui-difficulty/src/index.ts"
+      ],
       "@angular-love/blog/shared/ui-dynamic-text-clamp": [
         "libs/blog/shared/ui-dynamic-text-clamp/src/index.ts"
       ],

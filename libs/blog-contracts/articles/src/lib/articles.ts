@@ -23,6 +23,7 @@ export interface ArticlePreview {
   featuredImageUrl: string;
   publishDate: string;
   readingTime: string;
+  difficulty: 'beginner' | 'intermediate' | 'advanced';
   author: {
     name: string;
     slug: string;
@@ -35,6 +36,7 @@ export interface Article {
   content: string;
   publishDate: string;
   readingTime: string;
+  difficulty: 'beginner' | 'intermediate' | 'advanced';
   author: {
     name: string;
     description: string;

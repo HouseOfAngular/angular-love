@@ -48,6 +48,7 @@
           <span class="text-sm/[14px] font-medium">
             {{ article().publishDate | date: 'mediumDate' }}
           </span>
+          <al-difficulty [difficulty]="article().difficulty" />
         </div>
       } @else {
         <div class="flex items-center justify-between px-6 pt-4">

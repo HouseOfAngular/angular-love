@@ -7,8 +7,10 @@
         {{ articleDetails().publishDate | date: 'longDate' }}
       </span>
 
-      <!--      @todo: remove mocked value -->
-      <span class="bg-al-border rounded px-2 py-1">Medium</span>
+      <al-difficulty
+        [difficulty]="articleDetails().difficulty"
+        color="border"
+      />
 
       <div class="flex items-center gap-1">
         <al-icon name="clock" class="h-4 bg-white" />

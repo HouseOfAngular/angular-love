@@ -12,6 +12,7 @@ export interface SearchResult {
   featuredImageUrl: string;
   readingTime: string;
   rawTitle: string;
+  difficulty: 'beginner' | 'intermediate' | 'advanced';
   author: {
     name: string;
     avatarUrl: string;
