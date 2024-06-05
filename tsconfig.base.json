@@ -78,6 +78,9 @@
       "@angular-love/blog/home/feature-home": [
         "libs/blog/home/feature-home/src/index.ts"
       ],
+      "@angular-love/blog/i18n/data-access": [
+        "libs/blog/i18n/data-access/src/index.ts"
+      ],
       "@angular-love/blog/layouts/feature-header": [
         "libs/blog/layouts/feature-header/src/index.ts"
       ],

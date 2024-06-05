@@ -1,4 +1,8 @@
-import { provideHttpClient, withFetch } from '@angular/common/http';
+import {
+  provideHttpClient,
+  withFetch,
+  withInterceptorsFromDi,
+} from '@angular/common/http';
 import { ApplicationConfig, inject } from '@angular/core';
 import { provideClientHydration } from '@angular/platform-browser';
 import {
@@ -6,12 +10,13 @@ import {
   provideRouter,
   Router,
   withComponentInputBinding,
-  withEnabledBlockingInitialNavigation,
+  withDisabledInitialNavigation,
   withInMemoryScrolling,
   withRouterConfig,
   withViewTransitions,
 } from '@angular/router';
 
+import { provideI18n } from '@angular-love/blog/i18n/data-access';
 import { blogShellRoutes } from '@angular-love/blog/shell/feature';
 
 import { environment } from '../environments/environment';
@@ -20,7 +25,7 @@ export const appConfig: ApplicationConfig = {
   providers: [
     provideRouter(
       blogShellRoutes,
-      withEnabledBlockingInitialNavigation(),
+      withDisabledInitialNavigation(),
       withComponentInputBinding(),
       withViewTransitions({
         onViewTransitionCreated: ({ transition }) => {
@@ -48,7 +53,8 @@ export const appConfig: ApplicationConfig = {
         onSameUrlNavigation: 'reload',
       }),
     ),
-    provideHttpClient(withFetch()),
+    provideI18n({ routes: blogShellRoutes }),
+    provideHttpClient(withFetch(), withInterceptorsFromDi()),
     provideClientHydration(),
     environment.providers,
   ],

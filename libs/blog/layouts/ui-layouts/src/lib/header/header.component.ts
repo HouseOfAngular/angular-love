@@ -3,9 +3,12 @@ import {
   ChangeDetectionStrategy,
   Component,
   input,
+  output,
   signal,
 } from '@angular/core';
 import { RouterLink, RouterLinkActive } from '@angular/router';
+import { TranslocoDirective } from '@ngneat/transloco';
+import { LocalizeRouterModule } from '@penleychan/ngx-transloco-router';
 
 import { NavigationComponent } from '@angular-love/blog/layouts/ui-navigation';
 import { IconComponent } from '@angular-love/blog/shared/ui-icon';
@@ -25,10 +28,14 @@ import { SocialMediaIconsComponent } from '@angular-love/blog/shared/ui-social-m
     NavigationComponent,
     IconComponent,
     NgClass,
+    TranslocoDirective,
+    LocalizeRouterModule,
   ],
 })
 export class HeaderComponent {
-  language = input.required<'PL' | 'ENG'>();
+  language = input.required<string>();
+
+  languageChange = output<string>();
 
   showNav = signal<boolean>(false);
 

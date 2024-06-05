@@ -20,8 +20,10 @@ app.get('/', wpClientMw, async (c) => {
 
   const { per_page, page } = getPagination(queryParams);
 
+  const headerLang = c.req.header('Lang');
+
   const query: Record<string, string | number> = {
-    lang: queryParams.lang || defaultQuery.lang,
+    lang: queryParams.lang || headerLang || defaultQuery.lang,
     per_page,
     page,
   };

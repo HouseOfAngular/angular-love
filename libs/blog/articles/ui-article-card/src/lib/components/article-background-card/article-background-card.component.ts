@@ -1,6 +1,7 @@
 import { DatePipe, NgClass } from '@angular/common';
 import { ChangeDetectionStrategy, Component, input } from '@angular/core';
 import { RouterLink } from '@angular/router';
+import { LocalizeRouterModule } from '@penleychan/ngx-transloco-router';
 
 import { ArticleCard } from '@angular-love/blog/shared/types';
 import { AvatarComponent } from '@angular-love/blog/shared/ui-avatar';
@@ -20,6 +21,7 @@ export type Layout = 'compact' | 'hero';
     NgClass,
     IconComponent,
     UiDifficultyComponent,
+    LocalizeRouterModule,
   ],
   templateUrl: './article-background-card.component.html',
 })

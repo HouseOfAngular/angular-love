@@ -6,6 +6,7 @@ import {
   input,
 } from '@angular/core';
 import { RouterLink } from '@angular/router';
+import { LocalizeRouterModule } from '@penleychan/ngx-transloco-router';
 
 import { UiAuthorCard } from '@angular-love/blog/authors/types';
 import { AvatarComponent } from '@angular-love/blog/shared/ui-avatar';
@@ -27,6 +28,7 @@ import { AuthorCardTemplateComponent } from './author-card-template.component';
     RouterLink,
     NgTemplateOutlet,
     SocialMediaIconItemComponent,
+    LocalizeRouterModule,
   ],
   templateUrl: './author-card.component.html',
   styleUrl: './author-card.component.scss',
