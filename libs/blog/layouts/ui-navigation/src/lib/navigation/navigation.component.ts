@@ -7,6 +7,7 @@ export type NavItem = {
   title: string;
   link: string[];
   ariaLabel: string;
+  externalLink?: boolean;
 };
 
 @Component({
@@ -28,8 +29,9 @@ export class NavigationComponent {
     },
     {
       title: 'Angular Meetups',
-      link: ['#'],
+      link: ['https://meetup.angular.love/'],
       ariaLabel: 'Navigate to Angular meetups page',
+      externalLink: true,
     },
     {
       title: 'Become an author',

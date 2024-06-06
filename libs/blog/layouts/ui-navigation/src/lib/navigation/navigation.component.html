@@ -2,17 +2,28 @@
   class="flex flex-wrap"
   [ngClass]="{
     'flex-row': layout() === 'horizontal',
-    'flex-col': layout() === 'vertical'
+    'flex-col': layout() === 'vertical',
   }"
 >
   @for (item of navItems; track $index) {
-    <a
-      class="text-al-foreground p-2 font-medium md:p-6"
-      [routerLinkActive]="'text-al-pink'"
-      [routerLink]="item.link | localize"
-      [ariaLabel]="item.ariaLabel"
-    >
-      {{ item.title }}
-    </a>
+    @if (!item.externalLink) {
+      <a
+        class="text-al-foreground p-2 font-medium md:p-6"
+        [routerLinkActive]="'text-al-pink'"
+        [routerLink]="item.link | localize"
+        [ariaLabel]="item.ariaLabel"
+      >
+        {{ item.title }}
+      </a>
+    } @else {
+      <a
+        class="text-al-foreground p-2 font-medium md:p-6"
+        [href]="item.link"
+        [ariaLabel]="item.ariaLabel"
+        target="_blank"
+      >
+        {{ item.title }}
+      </a>
+    }
   }
 </nav>
