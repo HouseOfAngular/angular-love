@@ -7,6 +7,9 @@ import {
 
 import 'giscus';
 
+import { toSignal } from '@angular/core/rxjs-interop';
+import { TranslocoService } from '@ngneat/transloco';
+
 import {
   GISCUS_CONFIG,
   provideComments,
@@ -26,5 +29,10 @@ import {
   providers: [provideComments()],
 })
 export class GiscusCommentsComponent {
-  config = inject(GISCUS_CONFIG);
+  readonly config = inject(GISCUS_CONFIG);
+  readonly translocoService = inject(TranslocoService);
+
+  readonly lang = toSignal(this.translocoService.langChanges$, {
+    initialValue: this.translocoService.getActiveLang(),
+  });
 }

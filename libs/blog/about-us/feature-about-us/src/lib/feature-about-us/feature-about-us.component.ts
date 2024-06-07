@@ -5,6 +5,7 @@ import {
   inject,
   OnInit,
 } from '@angular/core';
+import { TranslocoDirective, TranslocoPipe } from '@ngneat/transloco';
 
 import { AuthorListStore } from '@angular-love/blog/authors/data-access';
 import { AuthorCardComponent } from '@angular-love/blog/authors/ui-author-card';
@@ -28,6 +29,8 @@ import { NewsletterComponent } from '@angular-love/newsletter';
     GradientCardDirective,
     AuthorCardComponent,
     InfiniteScrollTriggerDirective,
+    TranslocoPipe,
+    TranslocoDirective,
   ],
   templateUrl: './feature-about-us.component.html',
   styleUrl: './feature-about-us.component.scss',

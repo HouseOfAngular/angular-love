@@ -1,6 +1,97 @@
 {
-  "hello": "Hello",
-  "ROUTES": {
-    "home": "home"
+  "homePage": {
+    "seeAll": "See all the articles",
+    "latest": "Latest Articles",
+    "recommended": "Recommended Articles",
+    "angularNews": "Angular News",
+    "guides": "Guides",
+    "partners": "Our Partners"
+  },
+  "nav": {
+    "home": "Home Page",
+    "about": "About us",
+    "meetups": "Angular Meetups",
+    "become_author": "Become an author"
+  },
+  "becomeAuthorPage": {
+    "breadcrumb": "Become an author",
+    "title": "Become a part of angular.love!",
+    "improvements": {
+      "title": "Why is it worth it?",
+      "description": "Angular.love is one of the biggest and most popular polish blogs about Angular. We are expanding and rapidly growing, which can be proved by the fact that our blog has over 4000 unique visitors every month (from Poland and abroad) and more than 2100 followers on Facebook.\n\n Our mission is to inspire, educate, spread good practices and share knowledge among Developers. Every 2 months we also organize Angular Meetups in Warsaw, during which the speakers present different, angular-related topics and share their knowledge among others. Our content is free and available for everyone – we want to make the Angular Community grow! Ok, but what’s in it for you?",
+      "items": [
+        "Increase your visibility in social media and present yourself as an Angular Expert by writing articles.",
+        "Develop the Angular Community, and yourself by sharing your knowledge. Working on an article requires research and a full understanding of the issue.",
+        "And also… get access to benefits such as discounts on courses, goodies, and much more – we try to support angular.love bloggers."
+      ]
+    },
+    "becomeAuthorCard": {
+      "title": "How to become an angular.love Blogger?",
+      "description": "Do you have an idea for an article? Would you like to start contributing and creating the Angular Community with us?",
+      "buttonText": "FILL OUT THE FORM"
+    },
+    "benefits": {
+      "title": "How will you develop through this?",
+      "items": [
+        "By sharing your knowledge you inspire other Developers.",
+        "By teaching someone, you develop your own skills, not only technical ones.",
+        "New experiences allow you to broaden your horizons.",
+        "You will strengthen your personal brand.",
+        "You will get discounts on conferences, courses and free goodies."
+      ]
+    }
+  },
+  "aboutUsPage": {
+    "breadcrumb": "About Us",
+    "title": "About Us",
+    "card": {
+      "description1": "is a place for all Angular enthusiasts created to inspire and educate. It's a community of passionate people who share their knowledge and support others by providing them with the best practices and tips. This is the place where Angular lives.",
+      "description2": "We are proud to have won two Angular Awards. In 2021, we won “Angular Hero of Community” and in 2022, we won “Angular Hero of Education” at the largest Angular conference in Poland, NG Poland",
+      "description3": "Angular.love is a place where:",
+      "listItems": [
+        "you will find interesting cases, practical tips shared by Angular enthusiasts and more,",
+        "you can share interesting thoughts with the community,",
+        "together we are making Angular popular,",
+        "jointly we arrange and participate in live meetings (meetups, workshops, conferences) as well online (webinars, live chat),",
+        "you will find interesting open source projects - angular and more."
+      ],
+      "description4": "Want to stay up to date? Follow us:"
+    },
+    "authorsTitle": "Authors of Angular.Love"
+  },
+  "newsletter": {
+    "title": "Sign up for our newsletter.",
+    "description": "Join a group of people who want to grow and stay up to date!",
+    "emailPlaceholder": "Your E-mail",
+    "submitLabel": "Submit and sign up for a newsletter",
+    "consent": "I consent to Angular.love processing my email address for the purpose of sending the newsletter."
+  },
+  "notFoundPage": {
+    "title": "404",
+    "description": "It seems like you've lost your way. The page you provided does not exist or the link has expired and is no longer available.",
+    "buttonText": "Return to the home page",
+    "ariaLabels": {
+      "title": "404 Page Title",
+      "description": "404 Page Description",
+      "buttonText": "Return to Home Page Button"
+    }
+  },
+  "difficulty": {
+    "beginner": "Beginner",
+    "intermediate": "Intermediate",
+    "advanced": "Advanced"
+  },
+  "tableOfContents": {
+    "title": "Table of Contents"
+  },
+  "articleShareIcons": {
+    "title": "Share this post",
+    "twitterAriaLabel": "Share on Twitter",
+    "facebookAriaLabel": "Share on Facebook",
+    "linkedinAriaLabel": "Share on LinkedIn"
+  },
+  "dynamicTextClamp": {
+    "readMore": "Read more",
+    "readLess": "Read less"
   }
 }

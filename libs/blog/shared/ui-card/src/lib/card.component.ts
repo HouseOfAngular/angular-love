@@ -98,6 +98,5 @@ export class CardComponent {
   ref: ElementRef<HTMLElement> = inject(ElementRef);
 
   @HostBinding('class')
-  hostClasses =
-    'block rounded-lg border shadow-sm overflow-hidden';
+  hostClasses = 'block rounded-lg border shadow-sm overflow-hidden';
 }

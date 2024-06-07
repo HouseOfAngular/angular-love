@@ -1,7 +1,8 @@
 <al-article-list-title
-  [title]="displayName()"
+  *transloco="let t"
+  [title]="t(displayName())"
   [link]="{
-    displayName: displayName(),
+    displayName: t(displayName()),
     href: category()
   }"
 />

@@ -1,4 +1,5 @@
 import { Component, computed, input } from '@angular/core';
+import { TranslocoDirective } from '@ngneat/transloco';
 
 import { IconComponent, IconType } from '@angular-love/blog/shared/ui-icon';
 
@@ -11,15 +12,18 @@ type ShareItem = {
 @Component({
   standalone: true,
   selector: 'al-article-share-icons',
-  imports: [IconComponent],
+  imports: [IconComponent, TranslocoDirective],
   template: `
     <div class="flex items-center gap-3">
-      <span class="text-lg font-bold">Share this post</span>
+      <span *transloco="let t" class="text-lg font-bold">
+        {{ t('articleShareIcons.title') }}
+      </span>
 
       @for (item of items(); track $index) {
         <a
+          *transloco="let t"
           role="button"
-          [attr.aria-label]="item.ariaLabel"
+          [attr.aria-label]="t(item.ariaLabel)"
           [href]="item.href"
           target="_blank"
         >
@@ -41,17 +45,17 @@ export class ArticleShareIconsComponent {
       {
         icon: 'twitter-x',
         href: `https://x.com/intent/tweet?text=${text}&url=${url}&hashtags=angularlove`,
-        ariaLabel: 'Share on Twitter',
+        ariaLabel: 'articleShareIcons.twitterAriaLabel',
       },
       {
         icon: 'linkedIn',
         href: `https://www.linkedin.com/shareArticle?mini=true&url=${url}`,
-        ariaLabel: 'Share on LinkedIn',
+        ariaLabel: 'articleShareIcons.linkedInAriaLabel',
       },
       {
         icon: 'facebook',
         href: `https://www.facebook.com/sharer/sharer.php?u=${url}`,
-        ariaLabel: 'Share on Facebook',
+        ariaLabel: 'articleShareIcons.facebookAriaLabel',
       },
     ];
   });

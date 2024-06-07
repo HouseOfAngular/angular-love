@@ -1,6 +1,6 @@
 <section class="mt-6 md:mt-8 lg:mt-10">
-  <p class="pb-2 text-2xl font-bold md:pb-4 md:text-2xl">
-    How will you develop through this?
+  <p *transloco="let t" class="pb-2 text-2xl font-bold md:pb-4 md:text-2xl">
+    {{ t('becomeAuthorPage.benefits.title') }}
   </p>
   @for (benefit of benefits(); track $index) {
     <al-become-author-list-item [content]="benefit" layout="normal" />

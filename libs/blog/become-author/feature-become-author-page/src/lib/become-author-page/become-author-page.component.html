@@ -1,17 +1,19 @@
-<al-breadcrumb pageName="Become an author" />
-<p class="lg:pt-15 py-4 text-4xl font-bold md:pb-6 md:text-[40px]/[56px]">
-  Become a part of angular.love!
-</p>
-<div
-  class="mb-12 grid w-full grid-cols-1 gap-y-8 lg:mb-24 lg:grid-cols-8 lg:gap-x-8 lg:gap-y-0"
->
-  <div class="lg:col-span-5">
-    <al-become-author-improvements [improvements]="improvements" />
-    <al-become-author-benefits [benefits]="benefits" />
+<ng-container *transloco="let t; read: 'becomeAuthorPage'">
+  <al-breadcrumb [pageName]="t('breadcrumb')" />
+  <p class="lg:pt-15 py-4 text-4xl font-bold md:pb-6 md:text-[40px]/[56px]">
+    {{ t('title') }}
+  </p>
+  <div
+    class="mb-12 grid w-full grid-cols-1 gap-y-8 lg:mb-24 lg:grid-cols-8 lg:gap-x-8 lg:gap-y-0"
+  >
+    <div class="lg:col-span-5">
+      <al-become-author-improvements [improvements]="t('improvements.items')" />
+      <al-become-author-benefits [benefits]="t('benefits.items')" />
+    </div>
+    <div class="lg:col-span-3">
+      <al-card alGradientCard>
+        <al-become-author-advertisement alCardContent />
+      </al-card>
+    </div>
   </div>
-  <div class="lg:col-span-3">
-    <al-card alGradientCard>
-      <al-become-author-advertisement alCardContent />
-    </al-card>
-  </div>
-</div>
+</ng-container>

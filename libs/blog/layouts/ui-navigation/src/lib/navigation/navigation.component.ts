@@ -1,10 +1,11 @@
 import { NgClass } from '@angular/common';
 import { ChangeDetectionStrategy, Component, input } from '@angular/core';
 import { RouterLink, RouterLinkActive } from '@angular/router';
+import { TranslocoDirective } from '@ngneat/transloco';
 import { LocalizeRouterModule } from '@penleychan/ngx-transloco-router';
 
 export type NavItem = {
-  title: string;
+  translationPath: string;
   link: string[];
   ariaLabel: string;
   externalLink?: boolean;
@@ -13,7 +14,13 @@ export type NavItem = {
 @Component({
   selector: 'al-navigation',
   standalone: true,
-  imports: [RouterLink, RouterLinkActive, NgClass, LocalizeRouterModule],
+  imports: [
+    RouterLink,
+    RouterLinkActive,
+    NgClass,
+    LocalizeRouterModule,
+    TranslocoDirective,
+  ],
   templateUrl: './navigation.component.html',
   styleUrl: './navigation.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -23,18 +30,18 @@ export class NavigationComponent {
 
   readonly navItems: NavItem[] = [
     {
-      title: 'About us',
+      translationPath: 'nav.about',
       link: ['about-us'],
       ariaLabel: 'Navigate to about us page',
     },
     {
-      title: 'Angular Meetups',
+      translationPath: 'nav.meetups',
       link: ['https://meetup.angular.love/'],
       ariaLabel: 'Navigate to Angular meetups page',
       externalLink: true,
     },
     {
-      title: 'Become an author',
+      translationPath: 'nav.become_author',
       link: ['become-author'],
       ariaLabel: 'Navigate to become an author page',
     },

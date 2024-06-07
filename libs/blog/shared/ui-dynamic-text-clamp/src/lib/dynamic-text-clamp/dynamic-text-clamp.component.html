@@ -19,8 +19,14 @@
 
 <div class="flex w-full justify-center">
   @if (clamped.clamped()) {
-    <button al-button (click)="toggleReadMore()" size="small" variant="link">
-      {{ readMore() ? 'Read Less' : 'Read More' }}
+    <button
+      *transloco="let t; read: 'dynamicTextClamp'"
+      al-button
+      (click)="toggleReadMore()"
+      size="small"
+      variant="link"
+    >
+      {{ t(readMore() ? 'readLess' : 'readMore') }}
     </button>
   }
 </div>

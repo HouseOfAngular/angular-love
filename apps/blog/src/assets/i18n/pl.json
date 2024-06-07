@@ -1,6 +1,100 @@
 {
-  "hello": "Siema",
-  "ROUTES": {
-    "home": "accueil"
+  "homePage": {
+    "seeAll": "Zobacz wszystkie",
+    "latest": "Najnowsze Artykuły",
+    "recommended": "Polecane Artkuły",
+    "angularNews": "Wiadomości ze świata Angulara",
+    "guides": "Poradniki",
+    "partners": "Nasi Partnerzy"
+  },
+  "nav": {
+    "home": "Strona Główna",
+    "about": "O nas",
+    "meetups": "Spotkania Angular",
+    "become_author": "Zostań autorem"
+  },
+  "home": {
+    "latest": "Latest articles"
+  },
+  "becomeAuthorPage": {
+    "breadcrumb": "Zostań autorem",
+    "title": "Zostań częścią angular.love!",
+    "improvements": {
+      "title": "Dlaczego warto?",
+      "description": "Angular.love to jeden z największych i najpopularniejszych polskich blogów o Angularze. Rozwijamy się i szybko rośniemy, co potwierdza fakt, że nasz blog ma ponad 4000 unikalnych odwiedzających każdego miesiąca (z Polski i zagranicy) oraz ponad 2100 obserwujących na Facebooku. Naszą misją jest inspirowanie, edukowanie, propagowanie dobrych praktyk i dzielenie się wiedzą wśród deweloperów. Co 2 miesiące organizujemy również Angular Meetups w Warszawie, podczas których prelegenci prezentują różne tematy związane z Angular i dzielą się swoją wiedzą z innymi. Nasze treści są darmowe i dostępne dla wszystkich - chcemy, aby społeczność Angulara rosła! Ok, ale co w tym dla Ciebie?",
+      "items": [
+        "Zwiększ swoją widoczność w mediach społecznościowych i prezentuj się jako ekspert od Angulara, pisząc artykuły.",
+        "Rozwijaj społeczność Angulara, a także siebie, dzieląc się swoją wiedzą. Praca nad artykułem wymaga badań i pełnego zrozumienia problemu.",
+        "A także... uzyskaj dostęp do korzyści, takich jak zniżki na kursy, gadżety i wiele więcej - staramy się wspierać blogerów z angular.love."
+      ]
+    },
+    "becomeAuthorCard": {
+      "title": "Jak zostać blogerem angular.love?",
+      "description": "Masz pomysł na artykuł? Chciałbyś zacząć przyczyniać się do tworzenia społeczności Angulara z nami?",
+      "buttonText": "WYPEŁNIJ FORMULARZ"
+    },
+    "benefits": {
+      "title": "Jak się rozwijasz dzięki temu?",
+      "items": [
+        "Dzieląc się swoją wiedzą, inspirujesz innych deweloperów.",
+        "Ucząc kogoś, rozwijasz swoje własne umiejętności, nie tylko techniczne.",
+        "Nowe doświadczenia pozwalają Ci poszerzyć horyzonty.",
+        "Wzmocnisz swoją markę osobistą.",
+        "Otrzymasz zniżki na konferencje, kursy i darmowe gadżety."
+      ]
+    }
+  },
+  "aboutUsPage": {
+    "breadcrumb": "O nas",
+    "title": "O nas",
+    "card": {
+      "description1": "to miejsce dla wszystkich entuzjastów Angulara, stworzone, aby inspirować i edukować. To społeczność pełna pasji ludzi, którzy dzielą się swoją wiedzą i wspierają innych, dostarczając im najlepszych praktyk i wskazówek. To miejsce, w którym Angular żyje.",
+      "description2": "Z dumą możemy powiedzieć, że zdobyliśmy dwie nagrody Angular. W 2021 roku zdobyliśmy „Angular Hero of Community”, a w 2022 roku „Angular Hero of Education” na największej konferencji Angular w Polsce, NG Poland",
+      "description3": "Angular.love to miejsce, gdzie:",
+      "listItems": [
+        "znajdziesz interesujące przypadki, praktyczne wskazówki udostępniane przez entuzjastów Angulara i wiele więcej,",
+        "możesz dzielić się interesującymi myślami z społecznością,",
+        "razem czynimy Angular popularnym,",
+        "wspólnie organizujemy i uczestniczymy w spotkaniach na żywo (meetupy, warsztaty, konferencje) oraz online (webinary, czat na żywo),",
+        "znajdziesz interesujące projekty open source - angular i wiele więcej."
+      ],
+      "description4": "Chcesz być na bieżąco? Obserwuj nas:"
+    },
+    "authorsTitle": "Autorzy Angular.Love"
+  },
+  "newsletter": {
+    "title": "Zapisz się na nasz newsletter.",
+    "description": "Dołącz do grupy osób, które chcą się rozwijać i być na bieżąco!",
+    "emailPlaceholder": "Twój e-mail",
+    "submitLabel": "Wyślij i zapisz się na newsletter",
+    "consent": "Wyrażam zgodę na przetwarzanie mojego adresu e-mail przez Angular.love w celu wysyłki newslettera."
+  },
+  "notFoundPage": {
+    "title": "404",
+    "description": "Wygląda na to, że zgubiłeś drogę. Strona, której szukasz, nie istnieje lub link wygasł i jest już niedostępny.",
+    "buttonText": "Wróć na stronę główną",
+    "ariaLabels": {
+      "title": "Tytuł strony 404",
+      "description": "Opis strony 404",
+      "buttonText": "Przycisk powrotu na stronę główną"
+    }
+  },
+  "difficulty": {
+    "beginner": "Początkujący",
+    "intermediate": "Średnio zaawansowany",
+    "advanced": "Zaawansowany"
+  },
+  "tableOfContents": {
+    "title": "Spis treści"
+  },
+  "articleShareIcons": {
+    "title": "Podziel się artykułem",
+    "twitterAriaLabel": "Udostępnij na Twitterze",
+    "facebookAriaLabel": "Udostępnij na Facebooku",
+    "linkedinAriaLabel": "Udostępnij na LinkedIn"
+  },
+  "dynamicTextClamp": {
+    "readMore": "Czytaj więcej",
+    "readLess": "Czytaj mniej"
   }
 }

@@ -1,56 +1,57 @@
 <al-card alGradientCard>
   <div alCardContent>
-    @if (componentState() === 'INITIAL') {
-      <form [formGroup]="form">
-        <div class="flex flex-col">
-          <h2 class="text-4xl font-bold">Sign up for our newsletter.</h2>
-          <p class="py-4">
-            Join a group of people who want to grow and stay up to date!
-          </p>
-          <div class="my-2 flex w-full flex-row">
-            <input
-              aria-label="E-mail address"
-              aria-required="true"
-              type="email"
-              class="bg-al-background text-al-muted border-al-border h-[60px] max-w-[calc(100%-60px)] flex-grow rounded-l-md border border-r-0 p-6 text-sm focus:outline-none"
-              placeholder="Your E-mail"
-              formControlName="email"
-            />
-            <button
-              aria-label="Submit and sign up for a newsletter"
-              class="bg-al-pink border-al-border h-[60px] w-[60px] rounded-r-md border p-5 text-white"
-              (click)="mockEventDispatch()"
-            >
-              <al-icon name="send" class="block h-5 bg-white" />
-            </button>
-          </div>
-          <div class="mt-2">
-            <input
-              id="newsletter-checkbox"
-              aria-required="true"
-              type="checkbox"
-              class="newsletter-checkbox peer hidden"
-              formControlName="checkbox"
-            />
-            <label
-              class="text-al-muted flex flex-row peer-checked:[&>div>div]:block"
-              for="newsletter-checkbox"
-            >
-              <div
-                class="border-al-muted mr-2 mt-1 flex aspect-square h-[14px] items-center justify-center rounded border"
+    <ng-container *transloco="let t; read: 'newsletter'">
+      @if (componentState() === 'INITIAL') {
+        <form [formGroup]="form">
+          <div class="flex flex-col">
+            <h2 class="text-4xl font-bold">{{ t('title') }}</h2>
+            <p class="py-4">{{ t('description') }}</p>
+            <div class="my-2 flex w-full flex-row">
+              <input
+                aria-required="true"
+                type="email"
+                class="bg-al-background text-al-muted border-al-border h-[60px] max-w-[calc(100%-60px)] flex-grow rounded-l-md border border-r-0 p-6 text-sm focus:outline-none"
+                [attr.aria-label]="t('emailPlaceholder')"
+                [placeholder]="t('emailPlaceholder')"
+                formControlName="email"
+              />
+              <button
+                class="bg-al-pink border-al-border h-[60px] w-[60px] rounded-r-md border p-5 text-white"
+                [attr.aria-label]="t('submitLabel')"
+                (click)="mockEventDispatch()"
               >
-                <div class="bg-al-pink hidden h-[6px] w-[6px] rounded-sm"></div>
-              </div>
-              <span class="before:text-al-pink before:content-['*']">
-                I consent to Angular.love processing my email address for the
-                purpose of sending the newsletter.
-              </span>
-            </label>
+                <al-icon name="send" class="block h-5 bg-white" />
+              </button>
+            </div>
+            <div class="mt-2">
+              <input
+                id="newsletter-checkbox"
+                aria-required="true"
+                type="checkbox"
+                class="newsletter-checkbox peer hidden"
+                formControlName="checkbox"
+              />
+              <label
+                class="text-al-muted flex flex-row peer-checked:[&>div>div]:block"
+                for="newsletter-checkbox"
+              >
+                <div
+                  class="border-al-muted mr-2 mt-1 flex aspect-square h-[14px] items-center justify-center rounded border"
+                >
+                  <div
+                    class="bg-al-pink hidden h-[6px] w-[6px] rounded-sm"
+                  ></div>
+                </div>
+                <span class="before:text-al-pink before:content-['*']">
+                  {{ t('consent') }}
+                </span>
+              </label>
+            </div>
           </div>
-        </div>
-      </form>
-    } @else {
-      <al-newsletter-success (returnClicked)="onSuccessReturnClicked()" />
-    }
+        </form>
+      } @else {
+        <al-newsletter-success (returnClicked)="onSuccessReturnClicked()" />
+      }
+    </ng-container>
   </div>
 </al-card>

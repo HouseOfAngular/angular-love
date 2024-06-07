@@ -1,4 +1,5 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { TranslocoDirective } from '@ngneat/transloco';
 
 import { BreadcrumbComponent } from '@angular-love/blog/shared/ui-breadcrumb';
 import {
@@ -20,6 +21,7 @@ import { BecomeAuthorImprovementsComponent } from '../components/become-author-i
     GradientCardDirective,
     CardComponent,
     BecomeAuthorAdvertisementComponent,
+    TranslocoDirective,
   ],
   templateUrl: './become-author-page.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,

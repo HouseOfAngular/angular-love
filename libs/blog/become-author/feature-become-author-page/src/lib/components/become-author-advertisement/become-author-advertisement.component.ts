@@ -1,4 +1,5 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { TranslocoDirective } from '@ngneat/transloco';
 
 import {
   CardComponent,
@@ -10,6 +11,6 @@ import {
   standalone: true,
   templateUrl: './become-author-advertisement.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [GradientCardDirective, CardComponent],
+  imports: [GradientCardDirective, CardComponent, TranslocoDirective],
 })
 export class BecomeAuthorAdvertisementComponent {}

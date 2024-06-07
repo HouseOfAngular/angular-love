@@ -6,6 +6,7 @@ import {
   input,
 } from '@angular/core';
 import { RouterLink } from '@angular/router';
+import { TranslocoDirective } from '@ngneat/transloco';
 
 import { ArticleListStore } from '@angular-love/blog/articles/data-access';
 import {
@@ -17,11 +18,11 @@ import { ButtonComponent } from '@angular-love/blog/shared/ui-button';
 import { ArticleCategory } from '@angular-love/contracts/articles';
 
 const displayNameDict: Record<ArticleCategory, string> = {
-  news: 'Angular News',
-  guides: 'Angular Guides',
-  recommended: 'Recommended Articles',
-  latest: 'Latest Articles',
-  authors: 'Authors',
+  news: 'homePage.angularNews',
+  guides: 'homePage.guides',
+  recommended: 'homePage.recommended',
+  latest: 'homePage.latest',
+  authors: 'homePage.authors',
 };
 
 // TODO: Rethink if we need seperated lib for this smart component (usage only for feature-list)
@@ -37,6 +38,7 @@ const displayNameDict: Record<ArticleCategory, string> = {
     ButtonComponent,
     RouterLink,
     UiArticleListTitleComponent,
+    TranslocoDirective,
   ],
   providers: [ArticleListStore],
 })
