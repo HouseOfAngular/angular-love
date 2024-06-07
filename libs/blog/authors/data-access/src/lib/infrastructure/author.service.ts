@@ -13,8 +13,8 @@ export class AuthorService {
   private readonly _apiBaseUrl = inject(ConfigService).get('apiBaseUrl');
   private readonly _http = inject(HttpClient);
 
-  getAuthor(id: string): Observable<Author> {
-    return this._http.get<Author>(`${this._apiBaseUrl}/authors/${id}`);
+  getAuthor(slug: string): Observable<Author> {
+    return this._http.get<Author>(`${this._apiBaseUrl}/authors/${slug}`);
   }
 
   getAuthorsList(query: AuthorsQuery): Observable<ArrayResponse<Author>> {

@@ -70,8 +70,9 @@ app.get('/:slug', wpClientMw, async (c) => {
 
   const result = await c.var.wpClient.get<WPPostDetailsDto[]>('posts', {
     slug: slug,
-    _fields: `id,type,slug,title.rendered,author,content.rendered,date,featured_image_url,author_details,acf,${yoast_props}`,
+    _fields: `id,type,slug,title.rendered,author,content.rendered,date,featured_image_url,author_details,acf,other_translations,lang,${yoast_props}`,
   });
+
   return c.json(toArticle(result.data[0]));
 });
 

@@ -95,5 +95,10 @@ export interface Article {
     linkedin: string | null;
   };
   anchors: Anchor[];
+  otherTranslations: {
+    locale: string;
+    slug: string;
+  }[];
+  lang: string;
   seo: SeoData;
 }

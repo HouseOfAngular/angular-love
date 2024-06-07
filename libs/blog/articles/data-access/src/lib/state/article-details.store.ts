@@ -1,9 +1,18 @@
-import { inject } from '@angular/core';
+import { computed, inject } from '@angular/core';
+import { Router } from '@angular/router';
 import { tapResponse } from '@ngrx/operators';
-import { patchState, signalStore, withMethods, withState } from '@ngrx/signals';
+import {
+  patchState,
+  signalStore,
+  withComputed,
+  withMethods,
+  withState,
+} from '@ngrx/signals';
 import { rxMethod } from '@ngrx/signals/rxjs-interop';
-import { pipe, switchMap, tap } from 'rxjs';
+import { LocalizeRouterService } from '@penleychan/ngx-transloco-router';
+import { filter, pipe, switchMap, tap } from 'rxjs';
 
+import { withLangState } from '@angular-love/blog/i18n/data-access';
 import { Article } from '@angular-love/contracts/articles';
 import { withSeo } from '@angular-love/seo';
 import {
@@ -28,11 +37,16 @@ export const ArticleDetailsStore = signalStore(
   withSeo(),
   withState(initialState),
   withCallState('fetch article details'),
+  withLangState(),
   withMethods(({ ...store }) => {
     const articlesService = inject(ArticlesService);
+    const router = inject(Router);
+    const localizeRouterService = inject(LocalizeRouterService);
+
     return {
-      fetchArticleDetails: rxMethod<string>(
+      fetchArticleDetails: rxMethod<string | undefined>(
         pipe(
+          filter((slug): slug is string => !!slug && slug !== store.slug()),
           tap((slug) =>
             patchState(store, {
               slug: slug,
@@ -62,6 +76,29 @@ export const ArticleDetailsStore = signalStore(
           ),
         ),
       ),
+      changeSlugParam: rxMethod<string | undefined>(
+        pipe(
+          filter((slug): slug is string => !!slug && slug !== store.slug()),
+          tap((slug) => {
+            const route = localizeRouterService.translateRoute([
+              '/',
+              'article',
+              slug,
+            ]) as string[];
+
+            router.navigate(route, {
+              skipLocationChange: true,
+            });
+          }),
+        ),
+      ),
     };
   }),
+  withComputed(({ articleDetails, lang }) => ({
+    correctSlug: computed(() => {
+      return articleDetails()?.otherTranslations.find((t) =>
+        t.locale.includes(lang()),
+      )?.slug;
+    }),
+  })),
 );
