@@ -1,4 +1,5 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { TranslocoDirective } from '@ngneat/transloco';
 
 import { PartnersListComponent } from '../partners-list/partners-list.component';
 
@@ -6,7 +7,7 @@ import { PartnersListComponent } from '../partners-list/partners-list.component'
   selector: 'al-partners',
   changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: true,
-  imports: [PartnersListComponent],
+  imports: [PartnersListComponent, TranslocoDirective],
   templateUrl: './partners.component.html',
   styleUrl: './partners.component.scss',
 })

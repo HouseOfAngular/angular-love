@@ -5,6 +5,7 @@ import {
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
+import { TranslocoDirective } from '@ngneat/transloco';
 
 import {
   CardComponent,
@@ -25,6 +26,7 @@ export type NewsletterFormState = 'INITIAL' | 'SUCCESS';
     CardComponent,
     ReactiveFormsModule,
     IconComponent,
+    TranslocoDirective,
   ],
   templateUrl: './newsletter.component.html',
   styleUrl: './newsletter.component.scss',

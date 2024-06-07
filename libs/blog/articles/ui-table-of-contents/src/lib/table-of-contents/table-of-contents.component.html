@@ -1,5 +1,7 @@
 <div class="text-sm font-bold">
-  <header class="mb-4 text-lg">Table of contents</header>
+  <header *transloco="let t" class="mb-4 text-lg">
+    {{ t('tableOfContents.title') }}
+  </header>
   <div class="relative">
     <ul class="text- relative z-10 flex flex-col">
       @for (anchor of anchors(); track anchor.title) {

@@ -5,6 +5,7 @@ import {
   computed,
   input,
 } from '@angular/core';
+import { TranslocoDirective } from '@ngneat/transloco';
 
 export type UiDifficulty = 'beginner' | 'intermediate' | 'advanced';
 
@@ -23,8 +24,11 @@ export type UiDifficulty = 'beginner' | 'intermediate' | 'advanced';
           'bg-al-border': !isColorBackground()
         }"
       >
-        <span class="self-center px-2 first-letter:uppercase">
-          {{ difficulty() }}
+        <span
+          *transloco="let t; read: 'difficulty'"
+          class="self-center px-2 first-letter:uppercase"
+        >
+          {{ t(difficulty()) }}
         </span>
       </div>
 
@@ -74,7 +78,7 @@ export type UiDifficulty = 'beginner' | 'intermediate' | 'advanced';
     </div>
   `,
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [NgClass],
+  imports: [NgClass, TranslocoDirective],
 })
 export class UiDifficultyComponent {
   readonly difficulty = input.required<UiDifficulty>();

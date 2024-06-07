@@ -1,32 +1,40 @@
 import { NgOptimizedImage } from '@angular/common';
 import { Component } from '@angular/core';
 import { RouterLink } from '@angular/router';
+import { TranslocoDirective } from '@ngneat/transloco';
 
 import { ButtonComponent } from '@angular-love/blog/shared/ui-button';
 
 @Component({
   selector: 'al-not-found',
   standalone: true,
-  imports: [NgOptimizedImage, ButtonComponent, RouterLink],
+  imports: [NgOptimizedImage, ButtonComponent, RouterLink, TranslocoDirective],
   template: `
     <section class="mx-2 mt-4 grid grid-cols-3 gap-8 md:mx-12">
-      <div class="col-span-3 self-center lg:col-span-1">
+      <div
+        *transloco="let t; read: 'notFoundPage'"
+        class="col-span-3 self-center lg:col-span-1"
+      >
         <span
           class="flex justify-center break-words text-9xl font-extrabold lg:justify-normal"
+          [attr.aria-label]="t('ariaLabels.title')"
         >
-          404
+          {{ t('title') }}
         </span>
-        <p class="mx-auto my-8 max-w-xl text-center font-thin lg:text-start">
-          You seem to have lost your way. The page you specified does not exist
-          or the link has expired and is no longer available.
+        <p
+          class="mx-auto my-8 max-w-xl text-center font-thin lg:text-start"
+          [attr.aria-label]="t('ariaLabels.description')"
+        >
+          {{ t('description') }}
         </p>
         <div class="flex justify-center lg:justify-normal">
           <button
             al-button
             class="items-center self-center uppercase"
+            [attr.aria-label]="t('ariaLabels.buttonText')"
             routerLink="/"
           >
-            Go back to homepage
+            {{ t('buttonText') }}
           </button>
         </div>
       </div>
