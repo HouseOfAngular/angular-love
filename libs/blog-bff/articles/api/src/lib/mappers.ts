@@ -11,6 +11,7 @@ import {
 
 import { WPPostDetailsDto, WPPostDto } from './dtos';
 import {
+  appendAriaLabelToLinks,
   crayonCodeRewriter,
   removeEmptyParagraphs,
   rewriteHTML,
@@ -46,10 +47,18 @@ export const toArticle = (dto?: WPPostDetailsDto): Article => {
       pre: ['lang:*'],
       div: ['crayon-line', 'crayon-syntax'],
     },
+    transformTags: {
+      b: 'strong',
+    },
   });
   const $ = cheerio.load(content);
 
-  rewriteHTML(wpCodeRewriter, crayonCodeRewriter, removeEmptyParagraphs)($);
+  rewriteHTML(
+    wpCodeRewriter,
+    crayonCodeRewriter,
+    removeEmptyParagraphs,
+    appendAriaLabelToLinks,
+  )($);
 
   // add id to anchorTypes elements for anchor links
   const anchors: Anchor[] = Array.from($(anchorTypes.join(', '))).reduce(

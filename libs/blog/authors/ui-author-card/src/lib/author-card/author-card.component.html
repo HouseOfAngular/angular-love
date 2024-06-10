@@ -4,13 +4,8 @@
       <a [routerLink]="['/', 'author', author().slug] | localize">
         <ng-container *ngTemplateOutlet="avatar" />
       </a>
-
-      <a [routerLink]="['/', 'author', author().slug] | localize">
-        <ng-container *ngTemplateOutlet="authorName" />
-      </a>
     } @else {
       <ng-container *ngTemplateOutlet="avatar" />
-      <ng-container *ngTemplateOutlet="authorName" />
     }
 
     <span class="line-clamp-2 text-sm/none">{{ author().position }}</span>
@@ -31,11 +26,10 @@
 </al-author-card-template>
 
 <ng-template #avatar>
-  <al-avatar [imageSrc]="author().avatarUrl" size="md" />
-</ng-template>
-
-<ng-template #authorName>
-  <span class="line-clamp-2 font-bold leading-none">
-    {{ author().name }}
-  </span>
+  <div class="flex flex-col items-center gap-4">
+    <al-avatar [imageSrc]="author().avatarUrl" size="md" />
+    <span class="line-clamp-2 font-bold leading-none">
+      {{ author().name }}
+    </span>
+  </div>
 </ng-template>

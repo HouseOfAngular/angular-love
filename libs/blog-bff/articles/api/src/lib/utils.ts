@@ -49,12 +49,12 @@ export const wpCodeRewriter: RewriteAdapter = ($) => {
  * @param $
  */
 export const crayonCodeRewriter: RewriteAdapter = ($) => {
-  $('.crayon-syntax').each((index, element) => {
+  $('.crayon-syntax').each((_, element) => {
     const $element = $(element);
     let code = '';
 
     // Extract code from Crayon lines
-    $element.find('.crayon-line').each((i, line) => {
+    $element.find('.crayon-line').each((_, line) => {
       code += $(line).text() + '\n';
     });
 
@@ -83,6 +83,21 @@ export const removeEmptyParagraphs: RewriteAdapter = ($) => {
 
     if (!text || text === '&nbsp;') {
       $element.remove();
+    }
+  });
+};
+
+/**
+ * Appends aria-label to links
+ * @param $
+ */
+export const appendAriaLabelToLinks: RewriteAdapter = ($) => {
+  $('a').each((_, element) => {
+    const $element = $(element);
+
+    if ($element.attr('href')) {
+      const { hostname } = new URL($element.attr('href'));
+      $element.attr('aria-label', `Read more on ${hostname}`);
     }
   });
 };
