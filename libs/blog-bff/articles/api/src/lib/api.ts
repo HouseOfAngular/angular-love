@@ -48,12 +48,30 @@ app.get('/', wpClientMw, async (c) => {
 app.get('/:slug', wpClientMw, async (c) => {
   const slug = c.req.param('slug');
 
+  const yoast_props = [
+    'title',
+    'description',
+    'robots',
+    'canonical',
+    'og_locale',
+    'og_type',
+    'og_title',
+    'og_description',
+    'og_url',
+    'og_site_name',
+    'article_publisher',
+    'article_modified_time',
+    'og_image',
+    'twitter_card',
+    'twitter_misc',
+  ]
+    .map((p) => `yoast_head_json.${p}`)
+    .join(',');
+
   const result = await c.var.wpClient.get<WPPostDetailsDto[]>('posts', {
     slug: slug,
-    _fields:
-      'id,type,slug,title.rendered,author,content.rendered,date,featured_image_url,author_details,acf',
+    _fields: `id,type,slug,title.rendered,author,content.rendered,date,featured_image_url,author_details,acf,${yoast_props}`,
   });
-
   return c.json(toArticle(result.data[0]));
 });
 

@@ -162,6 +162,7 @@
       "@angular-love/search-result-item": [
         "libs/blog/search/ui-search-result/src/index.ts"
       ],
+      "@angular-love/seo": ["libs/blog/shared/util-seo/src/index.ts"],
       "@angular-love/shared/assets": ["libs/shared/assets/src/index.ts"],
       "@angular-love/shared/config": ["libs/shared/config/src/index.ts"],
       "@angular-love/shared/utils-algolia": [

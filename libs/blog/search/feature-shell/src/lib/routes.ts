@@ -9,5 +9,8 @@ export const searchRoutes: Route[] = [
       (await import('@angular-love/feature-search-results-page'))
         .SearchResultsPageComponent,
     providers: [provideSearch()],
+    data: {
+      seo: { title: 'Search Results' },
+    },
   },
 ];

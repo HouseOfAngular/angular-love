@@ -31,9 +31,9 @@ export const toArticlePreviewList = (dtos: WPPostDto[]): ArticlePreview[] => {
       readingTime: dto.acf.reading_time.toString() || '5',
       difficulty: dto.acf.difficulty || 'intermediate',
       author: {
-        slug: dto.author_details.slug || '',
-        name: dto.author_details.name || '',
-        avatarUrl: dto.author_details.avatar_url || '',
+        slug: dto.author_details?.slug || '',
+        name: dto.author_details?.name || '',
+        avatarUrl: dto.author_details?.avatar_url || '',
       },
     };
   });
@@ -78,9 +78,9 @@ export const toArticle = (dto?: WPPostDetailsDto): Article => {
     readingTime: dto.acf.reading_time.toString() || '5',
     difficulty: dto.acf.difficulty || 'intermediate',
     author: {
-      slug: dto?.author_details.slug || '',
-      name: dto?.author_details.name || '',
-      description: dto?.author_details.description || '',
+      slug: dto?.author_details?.slug || '',
+      name: dto?.author_details?.name || '',
+      description: dto?.author_details?.description || '',
       avatarUrl: dto?.author_details?.avatar_url || '',
       position: dto?.author_details?.position || '',
       github: dto?.author_details?.github || null,
@@ -89,5 +89,6 @@ export const toArticle = (dto?: WPPostDetailsDto): Article => {
     },
     content: highlightedContent,
     anchors: anchors,
+    seo: dto.yoast_head_json,
   };
 };

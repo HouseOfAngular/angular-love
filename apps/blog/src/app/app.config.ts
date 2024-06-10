@@ -18,6 +18,7 @@ import {
 
 import { provideI18n } from '@angular-love/blog/i18n/data-access';
 import { blogShellRoutes } from '@angular-love/blog/shell/feature';
+import { provideSeo } from '@angular-love/seo';
 
 import { environment } from '../environments/environment';
 
@@ -56,6 +57,7 @@ export const appConfig: ApplicationConfig = {
     provideI18n({ routes: blogShellRoutes }),
     provideHttpClient(withFetch(), withInterceptorsFromDi()),
     provideClientHydration(),
+    provideSeo(),
     environment.providers,
   ],
 };
