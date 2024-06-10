@@ -5,6 +5,7 @@ import { rxMethod } from '@ngrx/signals/rxjs-interop';
 import { pipe, switchMap, tap } from 'rxjs';
 
 import { Article } from '@angular-love/contracts/articles';
+import { withSeo } from '@angular-love/seo';
 import {
   LoadingState,
   withCallState,
@@ -24,6 +25,7 @@ const initialState: ArticleDetailsState = {
 
 export const ArticleDetailsStore = signalStore(
   { providedIn: 'root' },
+  withSeo(),
   withState(initialState),
   withCallState('fetch article details'),
   withMethods(({ ...store }) => {
@@ -46,12 +48,15 @@ export const ArticleDetailsStore = signalStore(
                     slug: slug,
                     fetchArticleDetailsCallState: { error },
                   }),
-                next: (articleDetails) =>
-                  patchState(store, {
+                next: (articleDetails) => {
+                  store.setMeta(articleDetails.seo);
+                  store.setTitle(articleDetails.seo.title);
+                  return patchState(store, {
                     articleDetails,
                     slug: slug,
                     fetchArticleDetailsCallState: LoadingState.LOADED,
-                  }),
+                  });
+                },
               }),
             ),
           ),

@@ -1,5 +1,10 @@
 import { NgClass } from '@angular/common';
-import { ChangeDetectionStrategy, Component, input } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  input,
+  output,
+} from '@angular/core';
 import { RouterLink, RouterLinkActive } from '@angular/router';
 import { TranslocoDirective } from '@ngneat/transloco';
 import { LocalizeRouterModule } from '@penleychan/ngx-transloco-router';
@@ -27,6 +32,7 @@ export type NavItem = {
 })
 export class NavigationComponent {
   layout = input<'vertical' | 'horizontal'>('horizontal');
+  navigated = output();
 
   readonly navItems: NavItem[] = [
     {

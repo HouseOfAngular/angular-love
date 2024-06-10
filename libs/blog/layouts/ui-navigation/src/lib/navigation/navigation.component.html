@@ -13,6 +13,8 @@
         [attr.aria-Label]="item.ariaLabel"
         [routerLinkActive]="'text-al-pink'"
         [routerLink]="item.link | localize"
+        [ariaLabel]="item.ariaLabel"
+        (click)="navigated.emit()"
       >
         {{ t(item.translationPath) }}
       </a>

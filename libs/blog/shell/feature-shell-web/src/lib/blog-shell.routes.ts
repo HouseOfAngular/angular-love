@@ -15,6 +15,9 @@ export const blogShellRoutes: Route[] = [
         loadComponent: async () =>
           (await import('@angular-love/blog/home/feature-home'))
             .HomePageComponent,
+        data: {
+          seo: { title: 'Home' },
+        },
       },
       ...articleRoutes,
       {
@@ -30,6 +33,9 @@ export const blogShellRoutes: Route[] = [
         loadComponent: async () =>
           (await import('@angular-love/feature-about-us'))
             .FeatureAboutUsComponent,
+        data: {
+          seo: { title: 'About Us' },
+        },
       },
       {
         path: 'author/:authorSlug',
@@ -42,12 +48,18 @@ export const blogShellRoutes: Route[] = [
         loadComponent: async () =>
           (await import('@angular-love/blog/become-author-page-feature'))
             .BecomeAuthorPageFeatureComponent,
+        data: {
+          seo: { title: 'Become an author' },
+        },
       },
       {
         path: 'not-found',
         loadComponent: async () =>
           (await import('@angular-love/blog/shared/ui-not-found'))
             .NotFoundPageComponent,
+        data: {
+          seo: { title: 'Not Found' },
+        },
       },
       {
         path: '**',

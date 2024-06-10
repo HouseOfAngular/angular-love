@@ -31,6 +31,52 @@ export interface ArticlePreview {
   };
 }
 
+export interface SeoRobotsData {
+  index: string;
+  follow: string;
+  'max-snippet': string;
+  'max-image-preview': string;
+  'max-video-preview': string;
+}
+
+export interface SeoData {
+  title?: string;
+  description?: string;
+  robots?: SeoRobotsData;
+  canonical?: string;
+  og_locale?: string;
+  og_type?: string;
+  og_title?: string;
+  og_description?: string;
+  og_url?: string;
+  og_site_name?: string;
+  article_publisher?: string;
+  article_published_time?: string;
+  article_modified_time?: string;
+  og_image?: {
+    width: number;
+    height: number;
+    url: string;
+    type: string;
+  }[];
+  twitter_card?: string;
+  twitter_misc?: Record<string, string>;
+}
+
+export type SeoMetaData = Pick<
+  SeoData,
+  | 'robots'
+  | 'og_type'
+  | 'canonical'
+  | 'og_url'
+  | 'og_image'
+  | 'article_publisher'
+  | 'article_published_time'
+  | 'article_modified_time'
+  | 'twitter_card'
+  | 'twitter_misc'
+>;
+
 export interface Article {
   title: string;
   slug: string;
@@ -49,4 +95,5 @@ export interface Article {
     linkedin: string | null;
   };
   anchors: Anchor[];
+  seo: SeoData;
 }
