@@ -13,18 +13,19 @@
         [article]="article"
         cardType="hero"
       />
-      <al-card alGradientCard class="hidden lg:block">
-        <al-newsletter alCardContent />
-      </al-card>
     } @else {
       <al-article-card
+        class="regular-card"
         [ngClass]="{ 'hidden lg:block': i === 3 }"
         [article]="article"
         cardType="regular"
       />
     }
   }
-  <al-card alGradientCard class="block md:col-span-2 lg:hidden">
+  <al-card
+    alGradientCard
+    class="md:max-lg:col-span-2 lg:col-start-3 lg:row-start-1"
+  >
     <al-newsletter alCardContent />
   </al-card>
 </div>
