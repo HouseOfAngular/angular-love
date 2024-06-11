@@ -33,6 +33,7 @@ app.get('/', wpClientMw, async (c) => {
 
   const result = await c.var.wpClient.get<WPPostDto[]>('posts', {
     ...query,
+    status: 'publish',
     _fields:
       'id,type,slug,title.rendered,author,excerpt.rendered,date,featured_image_url,author_details.name,author_details.avatar_url,author_details.slug,acf',
   });
