@@ -6,6 +6,7 @@ import { HTTPException } from 'hono/http-exception';
 import { articles } from '@angular-love/blog-bff/articles/api';
 import { authors } from '@angular-love/blog-bff/authors/api';
 import { newsletter } from '@angular-love/blog-bff/newsletter/api';
+import { getWpLang } from '@angular-love/util-wp';
 
 const app = new Hono();
 
@@ -17,6 +18,8 @@ app.use(
     wait: false,
     cacheName: 'al-bff',
     cacheControl: 'max-age=3600',
+    keyGenerator: (c) => `${c.req.url}_${getWpLang(c)}`,
+    vary: 'x-al-lang',
   }),
 );
 
