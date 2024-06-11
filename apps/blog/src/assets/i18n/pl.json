@@ -80,9 +80,9 @@
     }
   },
   "difficulty": {
-    "beginner": "Początkujący",
-    "intermediate": "Średnio zaawansowany",
-    "advanced": "Zaawansowany"
+    "beginner": "Beginner",
+    "intermediate": "Intermediate",
+    "advanced": "Advanced"
   },
   "tableOfContents": {
     "title": "Spis treści"
