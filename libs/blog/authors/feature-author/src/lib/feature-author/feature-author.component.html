@@ -4,7 +4,7 @@
 
 @if (
   !authorDetailsStore.isFetchAuthorDetailsLoading() &&
-    authorDetailsStore.authorCard();
+    authorDetailsStore.authorDetails();
   as author
 ) {
   <al-author-card [author]="author" />

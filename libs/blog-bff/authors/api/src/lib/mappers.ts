@@ -1,12 +1,14 @@
 import { Author } from '@angular-love/blog/contracts/authors';
+import { WPLang } from '@angular-love/util-wp';
 
 import { WPAuthorDto } from './dtos';
 
-export const toAuthor = (dto: WPAuthorDto): Author => {
+export const toAuthor = (dto: WPAuthorDto, lang: WPLang): Author => {
   return {
     slug: dto.slug,
     name: dto.name,
-    description: dto.description,
+    description:
+      lang === 'pl' ? dto.acf.user_description_pl : dto.acf.user_description_en,
     avatarUrl:
       Object.entries(dto.avatar_urls).find(([, url]) =>
         url.includes('96'),
@@ -15,9 +17,5 @@ export const toAuthor = (dto: WPAuthorDto): Author => {
     github: dto.acf.al_github_nickname || null,
     twitter: dto.acf.al_twitter_handle || null,
     linkedin: dto.acf.al_linkedin_id || null,
-    acf: {
-      user_description_pl: dto.acf.user_description_pl,
-      user_description_en: dto.acf.user_description_en,
-    },
   };
 };

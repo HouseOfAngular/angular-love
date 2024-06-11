@@ -18,9 +18,7 @@ export class I18nHeadersInterceptor implements HttpInterceptor {
   ): Observable<HttpEvent<unknown>> {
     const LANG = this.translocoService.getActiveLang();
     const modifiedRequest = request.clone({
-      setHeaders: {
-        LANG,
-      },
+      headers: request.headers.append('X-AL-Lang', LANG),
     });
     return next.handle(modifiedRequest);
   }

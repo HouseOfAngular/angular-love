@@ -2,7 +2,7 @@ import { Hono } from 'hono';
 
 import { ArrayResponse } from '@angular-love/blog-contracts/shared';
 import { Author } from '@angular-love/blog/contracts/authors';
-import { getPagination, wpClientMw } from '@angular-love/util-wp';
+import { getPagination, getWpLang, wpClientMw } from '@angular-love/util-wp';
 
 import { WPAuthorDto } from './dtos';
 import { toAuthor } from './mappers';
@@ -24,7 +24,7 @@ app.get('/', wpClientMw, async (c) => {
   });
 
   return c.json(<ArrayResponse<Author>>{
-    data: result.data.map(toAuthor),
+    data: result.data.map((dto) => toAuthor(dto, getWpLang(c))),
     total: Number(result.headers.get('x-wp-total')),
   });
 });
@@ -37,7 +37,7 @@ app.get('/:slug', wpClientMw, async (c) => {
     _fields: 'id,type,slug,name,description,avatar_urls,acf',
   });
 
-  return c.json(toAuthor(result.data[0]));
+  return c.json(toAuthor(result.data[0], getWpLang(c)));
 });
 
 export default app;
