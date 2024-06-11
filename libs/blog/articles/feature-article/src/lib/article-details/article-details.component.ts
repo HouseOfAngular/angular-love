@@ -8,6 +8,7 @@ import {
   TableOfContentsScrollSpyDirective,
 } from '@angular-love/blog/articles/ui-table-of-contents';
 import { AuthorCardComponent } from '@angular-love/blog/authors/ui-author-card';
+import { NewsletterComponent } from '@angular-love/blog/newsletter';
 import {
   CardComponent,
   CardContentDirective,
@@ -18,7 +19,6 @@ import {
 import { UiDifficultyComponent } from '@angular-love/blog/shared/ui-difficulty';
 import { IconComponent } from '@angular-love/blog/shared/ui-icon';
 import { Article } from '@angular-love/contracts/articles';
-import { NewsletterComponent } from '@angular-love/newsletter';
 
 import { ArticleShareIconsComponent } from '../article-share-icons/article-share-icons.component';
 

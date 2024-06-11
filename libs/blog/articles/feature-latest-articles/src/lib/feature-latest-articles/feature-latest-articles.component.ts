@@ -10,11 +10,11 @@ import { TranslocoDirective } from '@ngneat/transloco';
 import { ArticleListStore } from '@angular-love/blog/articles/data-access';
 import { UiArticleCardComponent } from '@angular-love/blog/articles/ui-article-card';
 import { UiArticleListTitleComponent } from '@angular-love/blog/articles/ui-article-list-title';
+import { NewsletterComponent } from '@angular-love/blog/newsletter';
 import {
   CardComponent,
   GradientCardDirective,
 } from '@angular-love/blog/shared/ui-card';
-import { NewsletterComponent } from '@angular-love/newsletter';
 
 @Component({
   selector: 'al-latest-articles',

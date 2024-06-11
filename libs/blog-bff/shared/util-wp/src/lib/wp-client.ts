@@ -16,14 +16,31 @@ export class WPRestClient {
 
   get<T>(url: string, params: Record<string, string>): Promise<WPRespone<T>> {
     const searchParams = new URLSearchParams(params);
-    return this.request(`${url}?${searchParams.toString()}`, { method: 'GET' });
+    return this.request(`${url}?${searchParams.toString()}`, {
+      method: 'GET',
+    });
+  }
+
+  post<T>(name: string, body: T): Promise<WPRespone<T>> {
+    const form: FormData = new FormData();
+    form.append(name, body as string);
+
+    return this.request(
+      `subscribers`,
+      {
+        body: form,
+        method: 'POST',
+      },
+      '/wp-json/newsletter/v2/',
+    );
   }
 
   private async request<T>(
     url: string,
     { body, headers, method }: FetchConfig = {},
+    namespace = '/wp-json/wp/v2/',
   ): Promise<WPRespone<T>> {
-    const request = await fetch(`${this.baseUrl}/wp-json/wp/v2/${url}`, {
+    const request = await fetch(`${this.baseUrl}${namespace}${url}`, {
       ...this.fetchConfig,
       method: method ?? 'GET',
       headers: {

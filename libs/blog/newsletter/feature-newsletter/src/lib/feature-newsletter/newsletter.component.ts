@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, signal } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import {
   FormControl,
   FormGroup,
@@ -12,10 +12,9 @@ import {
   GradientCardDirective,
 } from '@angular-love/blog/shared/ui-card';
 import { IconComponent } from '@angular-love/blog/shared/ui-icon';
+import { NewsletterStore } from '@angular-love/data-access';
 
 import { NewsletterSuccessComponent } from '../newsletter-success/newsletter-success.component';
-
-export type NewsletterFormState = 'INITIAL' | 'SUCCESS';
 
 @Component({
   selector: 'al-newsletter',
@@ -31,11 +30,10 @@ export type NewsletterFormState = 'INITIAL' | 'SUCCESS';
   templateUrl: './newsletter.component.html',
   styleUrl: './newsletter.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
+  providers: [NewsletterStore],
 })
 export class NewsletterComponent {
-  componentState = signal<NewsletterFormState>('INITIAL');
-
-  form = new FormGroup({
+  protected readonly form = new FormGroup({
     email: new FormControl<string>('', {
       validators: [Validators.required, Validators.email],
     }),
@@ -44,16 +42,21 @@ export class NewsletterComponent {
     }),
   });
 
+  private readonly _newsletterStore = inject(NewsletterStore);
+
+  readonly componentState = this._newsletterStore.loading;
+
   onSuccessReturnClicked(): void {
-    this.componentState.set('INITIAL');
+    this._newsletterStore.resetToInit();
   }
 
-  mockEventDispatch(): void {
-    // TODO: dispatch actual event
-    if (!this.form.valid) {
-      alert('form invalid');
+  postEmailAddress(): void {
+    // TODO: find good approach to handle with invalid form - alert in not acceptable - in parallel with error state handling
+    if (!this.form.valid || this._newsletterStore.loading() === 'loading') {
       return;
     }
-    this.componentState.set('SUCCESS');
+    this._newsletterStore.postEmailAddress(
+      this.form.controls['email'].getRawValue() as string,
+    );
   }
 }
