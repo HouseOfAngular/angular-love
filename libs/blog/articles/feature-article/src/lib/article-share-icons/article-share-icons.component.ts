@@ -14,7 +14,7 @@ type ShareItem = {
   selector: 'al-article-share-icons',
   imports: [IconComponent, TranslocoDirective],
   template: `
-    <div class="flex items-center gap-3">
+    <div class="flex items-center gap-4">
       <span *transloco="let t" class="text-lg font-bold">
         {{ t('articleShareIcons.title') }}
       </span>
@@ -27,7 +27,7 @@ type ShareItem = {
           [href]="item.href"
           target="_blank"
         >
-          <al-icon class="text-2xl" [name]="item.icon" />
+          <al-icon class="bg-al-foreground block h-7" [name]="item.icon" />
         </a>
       }
     </div>
@@ -39,7 +39,7 @@ export class ArticleShareIconsComponent {
 
   readonly items = computed<ShareItem[]>(() => {
     const url = `https://angular.love/${this.slug()}`;
-    const text = encodeURI(this.title());
+    const text = encodeURIComponent(this.title());
 
     return [
       {
