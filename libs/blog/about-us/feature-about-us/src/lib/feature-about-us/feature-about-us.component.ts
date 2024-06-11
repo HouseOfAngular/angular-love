@@ -9,6 +9,7 @@ import { TranslocoDirective, TranslocoPipe } from '@ngneat/transloco';
 
 import { AuthorListStore } from '@angular-love/blog/authors/data-access';
 import { AuthorCardComponent } from '@angular-love/blog/authors/ui-author-card';
+import { NewsletterComponent } from '@angular-love/blog/newsletter';
 import { BreadcrumbComponent } from '@angular-love/blog/shared/ui-breadcrumb';
 import {
   CardComponent,
@@ -16,7 +17,6 @@ import {
 } from '@angular-love/blog/shared/ui-card';
 import { InfiniteScrollTriggerDirective } from '@angular-love/blog/shared/ui-pagination';
 import { SocialMediaIconsComponent } from '@angular-love/blog/shared/ui-social-media-icons';
-import { NewsletterComponent } from '@angular-love/newsletter';
 
 @Component({
   selector: 'al-about-us',

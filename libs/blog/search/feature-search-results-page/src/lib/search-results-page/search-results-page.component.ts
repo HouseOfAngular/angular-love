@@ -1,6 +1,7 @@
 import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 
 import { UiArticleCardComponent } from '@angular-love/blog/articles/ui-article-card';
+import { NewsletterComponent } from '@angular-love/blog/newsletter';
 import { SearchListStore } from '@angular-love/blog/search/data-access';
 import { BreadcrumbComponent } from '@angular-love/blog/shared/ui-breadcrumb';
 import {
@@ -11,7 +12,6 @@ import {
   PaginationComponent,
   QueryPaginationDirective,
 } from '@angular-love/blog/shared/ui-pagination';
-import { NewsletterComponent } from '@angular-love/newsletter';
 
 import { SearchResultsPagePresenter } from './search-results-page.presenter';
 

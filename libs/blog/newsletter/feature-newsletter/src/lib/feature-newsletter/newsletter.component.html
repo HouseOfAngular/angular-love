@@ -1,7 +1,7 @@
 <al-card alGradientCard>
   <div alCardContent>
     <ng-container *transloco="let t; read: 'newsletter'">
-      @if (componentState() === 'INITIAL') {
+      @if (componentState() === 'init') {
         <form role="form" [formGroup]="form">
           <div class="flex flex-col">
             <h2 class="text-4xl font-bold">{{ t('title') }}</h2>
@@ -20,7 +20,7 @@
                 <button
                   class="bg-al-pink border-al-border h-[60px] w-[60px] rounded-r-md border p-5 text-white"
                   [attr.aria-label]="t('submitLabel')"
-                  (click)="mockEventDispatch()"
+                  (click)="postEmailAddress()"
                 >
                   <al-icon name="send" class="block h-5 bg-white" />
                 </button>
@@ -47,8 +47,7 @@
                     ></div>
                   </div>
                   <span class="before:text-al-pink before:content-['*']">
-                    I consent to Angular.love processing my email address for
-                    the purpose of sending the newsletter.
+                    {{ t('consent') }}
                   </span>
                 </label>
               </div>

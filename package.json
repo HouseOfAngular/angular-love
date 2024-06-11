@@ -53,6 +53,7 @@
     "stylelint": "^16.3.1",
     "tailwind-merge": "^2.3.0",
     "tslib": "^2.6.1",
+    "zod": "^3.23.8",
     "zone.js": "0.14.4"
   },
   "devDependencies": {

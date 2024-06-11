@@ -5,6 +5,7 @@ import { HTTPException } from 'hono/http-exception';
 
 import { articles } from '@angular-love/blog-bff/articles/api';
 import { authors } from '@angular-love/blog-bff/authors/api';
+import { newsletter } from '@angular-love/blog-bff/newsletter/api';
 
 const app = new Hono();
 
@@ -21,6 +22,7 @@ app.use(
 
 app.route('/articles', articles);
 app.route('/authors', authors);
+app.route('/subscribers', newsletter);
 
 app.onError((err, c) => {
   if (err instanceof HTTPException) {
