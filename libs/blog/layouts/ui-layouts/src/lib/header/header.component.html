@@ -41,27 +41,30 @@
       <ng-content />
 
       <button
-        class="ml-3 flex h-6 w-6 flex-col justify-evenly lg:hidden"
+        class="z-50 ml-3 flex h-6 w-6 flex-col justify-evenly lg:hidden"
+        [attr.aria-label]="showNav() ? 'Close menu' : 'Open Menu'"
         (click)="toggleNav()"
       >
-        <div class="h-1 w-full rounded bg-white"></div>
-        <div class="h-1 w-full rounded bg-white"></div>
-        <div class="h-1 w-full rounded bg-white"></div>
+        @if (showNav()) {
+          <al-icon name="cross" class="h-full w-full bg-white" />
+        } @else {
+          <div class="h-1 w-full rounded bg-white"></div>
+          <div class="h-1 w-full rounded bg-white"></div>
+          <div class="h-1 w-full rounded bg-white"></div>
+        }
       </button>
     </div>
   </div>
 </header>
 
 <div
-  class="bg-al-background fixed -top-[100%] left-0 z-50 flex h-full w-full flex-row items-start justify-between p-6 transition-transform duration-300 lg:hidden"
+  class="bg-al-background fixed -top-[100%] left-0 z-40 flex h-full w-full flex-row items-start justify-between p-6 transition-transform duration-300 lg:hidden"
   [ngClass]="{ 'translate-y-[100%]': showNav() }"
+  [attr.aria-hidden]="showNav()"
 >
   <al-navigation
     class="pl-24 pt-24"
     (navigated)="toggleNav()"
     layout="vertical"
   />
-  <button (click)="toggleNav()">
-    <al-icon name="cross" class="h-4 bg-white" />
-  </button>
 </div>
