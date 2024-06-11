@@ -16,7 +16,7 @@ export const provideI18n = (props: { routes: Routes }) => {
     importProvidersFrom(LocalizeRouterModule.forRoot(props.routes)),
     provideTransloco({
       config: {
-        availableLangs: ['en', 'pl'],
+        availableLangs: ['pl', 'en'],
         defaultLang: 'pl',
         fallbackLang: 'pl',
         reRenderOnLangChange: true,
@@ -30,6 +30,9 @@ export const provideI18n = (props: { routes: Routes }) => {
         translateRoute: true,
         initialNavigation: true,
         alwaysSetPrefix: false,
+        // force fallback language to not be overridden by the browser lang
+        // default: this._cachedLang || browserLang || this.locales[0];
+        defaultLangFunction: () => 'pl',
       }),
     },
     {
