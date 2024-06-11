@@ -2,7 +2,7 @@ import { Hono } from 'hono';
 
 import { ArrayResponse } from '@angular-love/blog-contracts/shared';
 import { ArticlePreview } from '@angular-love/contracts/articles';
-import { getPagination, wpClientMw } from '@angular-love/util-wp';
+import { getPagination, getWpLang, wpClientMw } from '@angular-love/util-wp';
 
 import { WPPostDetailsDto, WPPostDto } from './dtos';
 import { toArticle, toArticlePreviewList } from './mappers';
@@ -20,10 +20,8 @@ app.get('/', wpClientMw, async (c) => {
 
   const { per_page, page } = getPagination(queryParams);
 
-  const headerLang = c.req.header('Lang');
-
   const query: Record<string, string | number> = {
-    lang: queryParams.lang || headerLang || defaultQuery.lang,
+    lang: queryParams.lang || getWpLang(c) || defaultQuery.lang,
     per_page,
     page,
   };
