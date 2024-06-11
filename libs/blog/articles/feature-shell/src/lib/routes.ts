@@ -1,4 +1,5 @@
 import { Routes } from '@angular/router';
+import { articleExistsGuard } from '@angular-love/blog/articles/data-access';
 
 export const articleRoutes: Routes = [
   {
@@ -38,8 +39,9 @@ export const articleRoutes: Routes = [
     },
   },
   {
-    path: 'article/:articleSlug',
+    path: ':articleSlug',
     pathMatch: 'full',
+    canActivate: [articleExistsGuard],
     loadComponent: async () =>
       (await import('@angular-love/blog/articles/feature-article'))
         .ArticleDetailsContainerComponent,

@@ -9,7 +9,6 @@ export const blogShellRoutes: Route[] = [
     path: '',
     component: RootShellComponent,
     children: [
-      //todo: handle wildcard route
       {
         path: '',
         loadComponent: async () =>
@@ -19,7 +18,6 @@ export const blogShellRoutes: Route[] = [
           seo: { title: 'Home' },
         },
       },
-      ...articleRoutes,
       {
         path: 'search',
         pathMatch: 'full',
@@ -61,6 +59,7 @@ export const blogShellRoutes: Route[] = [
           seo: { title: 'Not Found' },
         },
       },
+      ...articleRoutes,
       {
         path: '**',
         redirectTo: 'not-found',

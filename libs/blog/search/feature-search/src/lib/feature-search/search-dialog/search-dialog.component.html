@@ -28,12 +28,13 @@
         <p>{{ searchStore.total() }} results</p>
         <ul class="max-h-[50vh] overflow-auto">
           @for (item of searchStore.items(); track item.slug) {
-            <li
-              class="w-full cursor-pointer justify-between border-b last:border-none"
-              (click)="navigateToResult(item.slug)"
-            >
-              <al-search-result-item [item]="item" />
-            </li>
+            <a [routerLink]="['/', item.slug] | localize">
+              <li
+                class="w-full cursor-pointer justify-between border-b last:border-none"
+              >
+                <al-search-result-item [item]="item" />
+              </li>
+            </a>
           }
         </ul>
       }

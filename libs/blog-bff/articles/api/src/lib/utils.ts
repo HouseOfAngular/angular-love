@@ -95,7 +95,7 @@ export const appendAriaLabelToLinks: RewriteAdapter = ($) => {
   $('a').each((_, element) => {
     const $element = $(element);
 
-    if ($element.attr('href')) {
+    if ($element.attr('href') && !$element.attr('href').startsWith('#')) {
       const { hostname } = new URL($element.attr('href'));
       $element.attr('aria-label', `Read more on ${hostname}`);
     }
