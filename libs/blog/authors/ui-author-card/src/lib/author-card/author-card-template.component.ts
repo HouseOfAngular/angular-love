@@ -29,7 +29,9 @@ import {
             </div>
           </div>
 
-          <div class="@3xl:pt-6 w-full flex-1 p-6 pt-0">
+          <div
+            class="@3xl:pt-6 w-full flex-1 hyphens-auto break-words p-6 pt-0"
+          >
             <ng-content select="[author-info-description]"></ng-content>
           </div>
         </div>
