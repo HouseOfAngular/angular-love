@@ -82,7 +82,6 @@ export const ArticleDetailsStore = signalStore(
           tap((slug) => {
             const route = localizeRouterService.translateRoute([
               '/',
-              'article',
               slug,
             ]) as string[];
 
