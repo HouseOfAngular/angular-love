@@ -7,7 +7,7 @@ import {
   signal,
 } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
-import { debounceTime, distinctUntilChanged, map } from 'rxjs';
+import { distinctUntilChanged, map } from 'rxjs';
 
 import { injectHostResizedEvent } from '@angular-love/blog/shared/utils-inject';
 
@@ -29,7 +29,6 @@ export class ClampedChangedDirective {
       this._resizedEvent
         .pipe(
           takeUntilDestroyed(),
-          debounceTime(50),
           map(() => this._isClamped()),
           distinctUntilChanged(),
         )

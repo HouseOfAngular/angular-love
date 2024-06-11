@@ -48,12 +48,7 @@ export class TableOfContentsScrollSpyDirective {
         map(([{ scrollY }, anchors]) =>
           anchors.reduce((currentTitle, section) => {
             const element = document.getElementById(section.title);
-            if (!element) {
-              throw new Error(
-                `Anchor element with title '${section.title}' not found in the DOM`,
-              );
-            }
-            const sectionTop = element.offsetTop - 16 - 80; // 16px padding, 80px header
+            const sectionTop = (element?.offsetTop ?? 0) - 16 - 80; // 16px padding, 80px header
 
             return scrollY >= sectionTop ? section.title : currentTitle;
           }, anchors[0]?.title),

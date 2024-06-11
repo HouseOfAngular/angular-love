@@ -98,6 +98,8 @@ export const toArticle = (dto?: WPPostDetailsDto): Article => {
     },
     content: highlightedContent,
     anchors: anchors,
+    otherTranslations: dto?.other_translations || [],
+    lang: dto?.lang,
     seo: dto.yoast_head_json,
   };
 };

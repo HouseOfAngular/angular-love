@@ -73,7 +73,12 @@ export interface WPPostDetailsDto {
   };
   acf: {
     reading_time: string | number;
-    difficulty: string;
+    difficulty: 'beginner' | 'intermediate' | 'advanced';
   };
+  other_translations: {
+    locale: string;
+    slug: string;
+  }[];
+  lang: string;
   yoast_head_json: WPPostDetailsDtoYoastData;
 }

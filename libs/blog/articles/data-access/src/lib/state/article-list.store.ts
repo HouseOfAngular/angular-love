@@ -3,6 +3,7 @@ import { patchState, signalStore, withMethods, withState } from '@ngrx/signals';
 import { rxMethod } from '@ngrx/signals/rxjs-interop';
 import { concatMap, pipe, tap } from 'rxjs';
 
+import { withLangState } from '@angular-love/blog/i18n/data-access';
 import { ArticlePreview } from '@angular-love/contracts/articles';
 import {
   LoadingState,
@@ -27,6 +28,7 @@ const initialState: ArticleListState = {
 export const ArticleListStore = signalStore(
   { providedIn: 'root' },
   withState(initialState),
+  withLangState(),
   withCallState('fetch article list'),
   withMethods((store) => {
     const articlesService = inject(ArticlesService);
