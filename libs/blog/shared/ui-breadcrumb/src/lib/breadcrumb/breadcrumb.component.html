@@ -1,5 +1,7 @@
 <div class="mb-10 flex gap-1.5">
-  <a *transloco="let t" class="text-al-muted" href="/">{{ t('nav.home') }}</a>
+  <a *transloco="let t" class="text-al-muted" [routerLink]="['/'] | localize">
+    {{ t('nav.home') }}
+  </a>
   <span class="text-al-muted">/</span>
   <span>{{ pageName() }}</span>
 </div>
