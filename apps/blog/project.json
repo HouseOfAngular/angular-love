@@ -22,7 +22,11 @@
         },
         "polyfills": ["zone.js"],
         "tsConfig": "apps/blog/tsconfig.app.json",
-        "assets": ["apps/blog/src/favicon.ico", "apps/blog/src/assets"],
+        "assets": [
+          "apps/blog/src/favicon.ico",
+          "apps/blog/src/assets",
+          "apps/blog/src/sitemap.xml"
+        ],
         "styles": [
           "apps/blog/src/styles.scss",
           "libs/shared/assets/src/lib/styles/main.scss"

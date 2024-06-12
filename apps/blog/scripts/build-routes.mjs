@@ -1,6 +1,11 @@
 import { createWriteStream } from 'node:fs';
 
+import { generateSitemap } from './build-sitemap.mjs';
+
+const API_BASE_URL = process.env.AL_API_URL;
+const BASE_URL = process.env.AL_BASE_URL;
 const SSG_ROUTES_FILE_PATH = 'apps/blog/routes.txt';
+const SITEMAP_FILE_PATH = 'apps/blog/src/sitemap.xml';
 const ROOT_PATHS_FILE_PREFIX = 'apps/blog/src/assets/root-paths';
 
 const SUPPORTED_LANGUAGES = ['pl', 'en'];
@@ -17,11 +22,11 @@ const STATIC_ROUTE_PATHS = [
 ];
 
 /**
- * @type {string[]}
+ * @type {Array<{url: string, publishDate: string}>}
  */
 const ssgRoutes = [];
 /**
- * @type {string[]}
+ * @type {Array<{url: string, publishDate: string}>}
  */
 const articleRoutes = [];
 
@@ -41,7 +46,7 @@ const constructUrl = (path, lang) => `/${lang}/${path}`;
  * @returns {Promise<void>}
  */
 async function fetchArticleRoutes(lang, skip = 0, take = 50) {
-  const url = `${process.env.AL_API_URL}/articles?skip=${skip}&take=${take}`;
+  const url = `${API_BASE_URL}/articles?skip=${skip}&take=${take}`;
   try {
     const { data, total } = await fetch(url, {
       headers: {
@@ -49,9 +54,10 @@ async function fetchArticleRoutes(lang, skip = 0, take = 50) {
       },
     }).then((resp) => resp.json());
 
-    const articleSlugs = data.map((article) =>
-      constructUrl(article.slug, lang),
-    );
+    const articleSlugs = data.map((article) => ({
+      url: constructUrl(article.slug, lang),
+      publishDate: article.publishDate,
+    }));
 
     ssgRoutes.push(...articleSlugs);
     articleRoutes.push(...articleSlugs);
@@ -73,13 +79,14 @@ async function fetchArticleRoutes(lang, skip = 0, take = 50) {
  * @returns {Promise<void>}
  */
 async function fetchAuthorRoutes(lang, skip = 0, take = 50) {
-  const url = `${process.env.AL_API_URL}/authors?skip=${skip}&take=${take}`;
+  const url = `${API_BASE_URL}/authors?skip=${skip}&take=${take}`;
   try {
     const { data, total } = await fetch(url).then((resp) => resp.json());
 
-    const authorSlugs = data.map((author) =>
-      constructUrl(`author/${author.slug}`, lang),
-    );
+    const authorSlugs = data.map((author) => ({
+      url: constructUrl(`author/${author.slug}`, lang),
+      publishDate: new Date().toISOString(), // Using current date as authors don't have a publish date
+    }));
 
     ssgRoutes.push(...authorSlugs);
 
@@ -97,9 +104,10 @@ async function fetchAuthorRoutes(lang, skip = 0, take = 50) {
  * @param {"pl" | "en"} lang
  */
 function appendStaticRoutes(lang) {
-  const staticRoutes = STATIC_ROUTE_PATHS.map((path) =>
-    constructUrl(path, lang),
-  );
+  const staticRoutes = STATIC_ROUTE_PATHS.map((path) => ({
+    url: constructUrl(path, lang),
+    publishDate: new Date().toISOString(), // Using current date for static paths
+  }));
   ssgRoutes.push(...staticRoutes);
 }
 
@@ -116,7 +124,8 @@ function writeSSGRoutesToFile() {
   });
 
   try {
-    ssgRoutes.forEach((route) => {
+    ssgRoutes.forEach((routeObj) => {
+      const route = routeObj.url;
       const defaultLangPrefix = `/${DEFAULT_LANGUAGE}/`;
       const formattedRoute = route.startsWith(defaultLangPrefix)
         ? route.replace(defaultLangPrefix, '/')
@@ -148,8 +157,8 @@ function writeArticlePathsToFile(lang) {
   });
 
   const filteredArticlePaths = articleRoutes
-    .filter((path) => path.startsWith(`/${lang}/`))
-    .map((path) => path.replace(`/${lang}/`, ''));
+    .filter((pathObj) => pathObj.url.startsWith(`/${lang}/`))
+    .map((pathObj) => pathObj.url.replace(`/${lang}/`, ''));
 
   try {
     stream.write(JSON.stringify({ articles: filteredArticlePaths }));
@@ -174,6 +183,12 @@ async function main() {
     });
 
     writeSSGRoutesToFile();
+    generateSitemap({
+      ssgRoutes,
+      baseUrl: BASE_URL,
+      staticRoutePaths: STATIC_ROUTE_PATHS,
+      sitemapFilePath: SITEMAP_FILE_PATH,
+    });
   } catch (error) {
     console.error(error);
     process.exit(1);
