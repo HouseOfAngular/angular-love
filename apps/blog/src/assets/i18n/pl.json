@@ -60,7 +60,7 @@
       ],
       "description4": "Chcesz być na bieżąco? Obserwuj nas:"
     },
-    "authorsTitle": "Autorzy Angular.Love"
+    "authorsTitle": "Członkowie community Angular.Love"
   },
   "newsletter": {
     "title": "Zapisz się na nasz newsletter.",
@@ -96,5 +96,8 @@
   "dynamicTextClamp": {
     "readMore": "Czytaj więcej",
     "readLess": "Czytaj mniej"
+  },
+  "seo": {
+    "metaDescription": "Angular.love - ciekawostki oraz rozwiązania dla średnio-zaawansowanych oraz zaawansowanych developerów Angulara."
   }
 }

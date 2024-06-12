@@ -1,4 +1,5 @@
 import { InjectionToken } from '@angular/core';
+import { Observable } from 'rxjs';
 
 export type SeoConfig = {
   locale: string;
@@ -7,4 +8,6 @@ export type SeoConfig = {
   siteName: string;
 };
 
-export const SEO_CONFIG = new InjectionToken<SeoConfig>('Seo Config');
+export const SEO_CONFIG = new InjectionToken<Observable<SeoConfig>>(
+  'Seo Config',
+);

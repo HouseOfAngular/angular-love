@@ -57,7 +57,7 @@
       ],
       "description4": "Want to stay up to date? Follow us:"
     },
-    "authorsTitle": "Authors of Angular.Love"
+    "authorsTitle": "Members of Angular.love community"
   },
   "newsletter": {
     "title": "Sign up for our newsletter.",
@@ -93,5 +93,8 @@
   "dynamicTextClamp": {
     "readMore": "Read more",
     "readLess": "Read less"
+  },
+  "seo": {
+    "metaDescription": "Angular.love - a place for all Angular enthusiasts created to inspire and educate."
   }
 }

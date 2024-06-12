@@ -174,6 +174,9 @@
       "@angular-love/shared/utils-algolia": [
         "libs/shared/utils-algolia/src/index.ts"
       ],
+      "@angular-love/shared/utils-i18n": [
+        "libs/shared/utils-i18n/src/index.ts"
+      ],
       "@angular-love/shared/utils-signal-store": [
         "libs/shared/utils-signal-store/src/index.ts"
       ],
