@@ -20,7 +20,7 @@
         "prerender": {
           "routesFile": "apps/blog/routes.txt"
         },
-        "polyfills": ["zone.js"],
+        "polyfills": [],
         "tsConfig": "apps/blog/tsconfig.app.json",
         "assets": [
           "apps/blog/src/favicon.ico",
