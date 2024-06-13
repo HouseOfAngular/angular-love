@@ -1,11 +1,18 @@
-import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  effect,
+  inject,
+} from '@angular/core';
 import {
   FormControl,
   FormGroup,
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
+import { Router } from '@angular/router';
 import { TranslocoDirective } from '@ngneat/transloco';
+import { LocalizeRouterService } from '@penleychan/ngx-transloco-router';
 
 import {
   CardComponent,
@@ -14,13 +21,10 @@ import {
 import { IconComponent } from '@angular-love/blog/shared/ui-icon';
 import { NewsletterStore } from '@angular-love/data-access';
 
-import { NewsletterSuccessComponent } from '../newsletter-success/newsletter-success.component';
-
 @Component({
   selector: 'al-newsletter',
   standalone: true,
   imports: [
-    NewsletterSuccessComponent,
     GradientCardDirective,
     CardComponent,
     ReactiveFormsModule,
@@ -38,17 +42,25 @@ export class NewsletterComponent {
       validators: [Validators.required, Validators.email],
     }),
     checkbox: new FormControl<boolean>(false, {
-      validators: [Validators.required],
+      validators: [Validators.requiredTrue],
     }),
   });
 
   private readonly _newsletterStore = inject(NewsletterStore);
-
-  readonly componentState = this._newsletterStore.loading;
-
-  onSuccessReturnClicked(): void {
-    this._newsletterStore.resetToInit();
-  }
+  private readonly _router = inject(Router);
+  private readonly _localizeRouter = inject(LocalizeRouterService);
+  private readonly _onSuccess = effect(() => {
+    if (this._newsletterStore.loading() === 'success') {
+      this._router.navigate(
+        this._localizeRouter.translateRoute(['/newsletter']) as string[],
+        {
+          queryParams: {
+            nm: 'confirmed',
+          },
+        },
+      );
+    }
+  });
 
   postEmailAddress(): void {
     // TODO: find good approach to handle with invalid form - alert in not acceptable - in parallel with error state handling

@@ -9,7 +9,10 @@ export class NewsletterService {
   private readonly _http = inject(HttpClient);
   private readonly _apiBaseUrl = inject(ConfigService).get('apiBaseUrl');
 
-  postEmailAddress(email: string): Observable<string> {
-    return this._http.post<string>(`${this._apiBaseUrl}/subscribers`, email);
+  subscribe(email: string): Observable<string> {
+    return this._http.post<string>(
+      `${this._apiBaseUrl}/newsletter/subscribe`,
+      email,
+    );
   }
 }

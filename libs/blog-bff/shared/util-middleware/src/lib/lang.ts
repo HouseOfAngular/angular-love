@@ -3,8 +3,10 @@ import { createMiddleware } from 'hono/factory';
 
 import { Lang, LangSchema } from '@angular-love/shared/utils-i18n';
 
-export const getWpLang = (c: Context): Lang =>
-  LangSchema.parse(c.req.header('x-al-lang'));
+export const getWpLang = (c: Context, fallback?: Lang): Lang => {
+  const schema = fallback ? LangSchema.default(fallback) : LangSchema;
+  return schema.parse(c.req.header('x-al-lang'));
+};
 
 /**
  * Middleware to parse the language from the request headers.

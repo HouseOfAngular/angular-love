@@ -1,15 +1,8 @@
-import { computed, inject } from '@angular/core';
+import { inject } from '@angular/core';
 import { tapResponse } from '@ngrx/operators';
-import {
-  patchState,
-  signalStore,
-  withComputed,
-  withHooks,
-  withMethods,
-  withState,
-} from '@ngrx/signals';
+import { patchState, signalStore, withMethods, withState } from '@ngrx/signals';
 import { rxMethod } from '@ngrx/signals/rxjs-interop';
-import { pipe, switchMap, tap } from 'rxjs';
+import { exhaustMap, pipe, switchMap, tap } from 'rxjs';
 
 import { NewsletterService } from '../infrastructure/newsletter.service';
 
@@ -34,8 +27,8 @@ export const NewsletterStore = signalStore(
             loading: 'loading',
           });
         }),
-        switchMap((email) =>
-          newsletterService.postEmailAddress(email).pipe(
+        exhaustMap((email) =>
+          newsletterService.subscribe(email).pipe(
             tapResponse({
               next: () => {
                 patchState(store, { loading: 'success' });

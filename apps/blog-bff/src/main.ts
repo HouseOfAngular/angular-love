@@ -12,7 +12,7 @@ app.use('*', cors());
 
 app.route('/articles', articles);
 app.route('/authors', authors);
-app.route('/subscribers', newsletter);
+app.route('/newsletter', newsletter);
 
 app.onError((err, c) => {
   if (err instanceof HTTPException) {

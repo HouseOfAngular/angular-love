@@ -66,6 +66,11 @@
     "submitLabel": "Submit and sign up for a newsletter",
     "consent": "I consent to Angular.love processing my email address for the purpose of sending the newsletter."
   },
+  "newsletterPage": {
+    "title": "You have correctly signed up for the newsletter",
+    "description": "From now on you will be up to date with all the information we will make available on the blog.",
+    "button": "Return to the home page"
+  },
   "notFoundPage": {
     "title": "404",
     "description": "It seems like you've lost your way. The page you provided does not exist or the link has expired and is no longer available.",
