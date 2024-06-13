@@ -1,5 +1,4 @@
 import { computed, inject } from '@angular/core';
-import { Router } from '@angular/router';
 import { tapResponse } from '@ngrx/operators';
 import {
   patchState,
@@ -9,7 +8,6 @@ import {
   withState,
 } from '@ngrx/signals';
 import { rxMethod } from '@ngrx/signals/rxjs-interop';
-import { LocalizeRouterService } from '@penleychan/ngx-transloco-router';
 import { filter, pipe, switchMap, tap } from 'rxjs';
 
 import { withLangState } from '@angular-love/blog/i18n/data-access';
@@ -40,8 +38,6 @@ export const ArticleDetailsStore = signalStore(
   withLangState(),
   withMethods(({ ...store }) => {
     const articlesService = inject(ArticlesService);
-    const router = inject(Router);
-    const localizeRouterService = inject(LocalizeRouterService);
 
     return {
       fetchArticleDetails: rxMethod<string | undefined>(
@@ -76,25 +72,10 @@ export const ArticleDetailsStore = signalStore(
           ),
         ),
       ),
-      changeSlugParam: rxMethod<string | undefined>(
-        pipe(
-          filter((slug): slug is string => !!slug && slug !== store.slug()),
-          tap((slug) => {
-            const route = localizeRouterService.translateRoute([
-              '/',
-              slug,
-            ]) as string[];
-
-            router.navigate(route, {
-              skipLocationChange: true,
-            });
-          }),
-        ),
-      ),
     };
   }),
   withComputed(({ articleDetails, lang }) => ({
-    correctSlug: computed(() => {
+    alternativeLanguageSlug: computed(() => {
       return articleDetails()?.otherTranslations.find((t) =>
         t.locale.includes(lang()),
       )?.slug;
