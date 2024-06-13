@@ -11,8 +11,8 @@ import {
 
 import { WPPostDetailsDto, WPPostDto } from './dtos';
 import {
-  appendAriaLabelToLinks,
   crayonCodeRewriter,
+  modifyLinks,
   removeEmptyParagraphs,
   rewriteHTML,
   wpCodeRewriter,
@@ -56,6 +56,7 @@ export const toArticle = (dto?: WPPostDetailsDto): Article => {
         'decoding',
         'sizes',
       ],
+      a: ['href'],
     },
     allowedClasses: {
       pre: ['lang:*'],
@@ -71,7 +72,7 @@ export const toArticle = (dto?: WPPostDetailsDto): Article => {
     wpCodeRewriter,
     crayonCodeRewriter,
     removeEmptyParagraphs,
-    appendAriaLabelToLinks,
+    modifyLinks,
   )($);
 
   // add id to anchorTypes elements for anchor links

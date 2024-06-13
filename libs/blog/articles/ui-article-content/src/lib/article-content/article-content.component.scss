@@ -33,6 +33,10 @@ article {
     line-height: 1.9;
   }
 
+  a {
+    @apply text-blue-400 hover:underline;
+  }
+
   code.hljs {
     @apply my-4 rounded-2xl p-6;
   }
