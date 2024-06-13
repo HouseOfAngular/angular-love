@@ -3,7 +3,7 @@
 >
   @for (partner of partnersList; track partner.asset_URL) {
     <a
-      class="aspect-[2/1] w-full max-w-[160px] rounded-lg bg-white hover:cursor-pointer md:max-w-[200px]"
+      class="aspect-[2/1] w-full max-w-[160px] rounded-lg bg-white md:max-w-[200px] lg:transition-transform lg:hover:scale-105 lg:hover:cursor-pointer lg:motion-reduce:transition-none lg:motion-reduce:hover:scale-100"
       [href]="partner.link_URL"
       target="_blank"
     >
