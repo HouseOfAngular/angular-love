@@ -43,6 +43,20 @@ export const toArticlePreviewList = (dtos: WPPostDto[]): ArticlePreview[] => {
 export const toArticle = (dto?: WPPostDetailsDto): Article => {
   const title = cheerio.load(dto.title.rendered || '');
   const content = sanitizeHtml(dto?.content.rendered || '', {
+    allowedTags: sanitizeHtml.defaults.allowedTags.concat(['img']),
+    allowedAttributes: {
+      img: [
+        'src',
+        'srcset',
+        'alt',
+        'title',
+        'width',
+        'height',
+        'loading',
+        'decoding',
+        'sizes',
+      ],
+    },
     allowedClasses: {
       pre: ['lang:*'],
       div: ['crayon-line', 'crayon-syntax'],

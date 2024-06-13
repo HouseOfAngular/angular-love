@@ -79,9 +79,9 @@ export const crayonCodeRewriter: RewriteAdapter = ($) => {
 export const removeEmptyParagraphs: RewriteAdapter = ($) => {
   $('p').each((index, element) => {
     const $element = $(element);
-    const text = $element.text().trim();
+    const html = $element.html().trim();
 
-    if (!text || text === '&nbsp;') {
+    if (html === '&nbsp;') {
       $element.remove();
     }
   });
