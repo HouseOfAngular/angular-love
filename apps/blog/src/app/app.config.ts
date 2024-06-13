@@ -3,7 +3,11 @@ import {
   withFetch,
   withInterceptorsFromDi,
 } from '@angular/common/http';
-import { ApplicationConfig, inject } from '@angular/core';
+import {
+  ApplicationConfig,
+  inject,
+  provideExperimentalZonelessChangeDetection,
+} from '@angular/core';
 import { provideClientHydration } from '@angular/platform-browser';
 import {
   IsActiveMatchOptions,
@@ -57,6 +61,7 @@ export const appConfig: ApplicationConfig = {
     ),
     provideI18n({ routes: blogShellRoutes }),
     provideHttpClient(withFetch(), withInterceptorsFromDi()),
+    provideExperimentalZonelessChangeDetection(),
     provideClientHydration(),
     provideAppSeo(),
     environment.providers,
