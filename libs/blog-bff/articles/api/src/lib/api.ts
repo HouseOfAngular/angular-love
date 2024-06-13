@@ -1,5 +1,6 @@
 import { Hono } from 'hono';
 
+import { appCache } from '@angular-love/blog-bff/shared/util-middleware';
 import { ArrayResponse } from '@angular-love/blog-contracts/shared';
 import { ArticlePreview } from '@angular-love/contracts/articles';
 import { getPagination, getWpLang, wpClientMw } from '@angular-love/util-wp';
@@ -8,6 +9,8 @@ import { WPPostDetailsDto, WPPostDto } from './dtos';
 import { toArticle, toArticlePreviewList } from './mappers';
 
 const app = new Hono();
+
+app.use('*', appCache);
 
 const defaultQuery = {
   skip: '0',
