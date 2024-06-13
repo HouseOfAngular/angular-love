@@ -2,7 +2,7 @@ main = "src/main.ts"
 account_id = ""
 route = ""
 workers_dev = true
-compatibility_date = "2023-11-12"
+compatibility_date = "2024-05-03"
 
 [env.prod]
 name = "blog-bff"
