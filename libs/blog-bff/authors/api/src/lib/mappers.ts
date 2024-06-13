@@ -1,9 +1,9 @@
 import { Author } from '@angular-love/blog/contracts/authors';
-import { WPLang } from '@angular-love/util-wp';
+import { Lang } from '@angular-love/shared/utils-i18n';
 
 import { WPAuthorDto } from './dtos';
 
-export const toAuthor = (dto: WPAuthorDto, lang: WPLang): Author => {
+export const toAuthor = (dto: WPAuthorDto, lang: Lang): Author => {
   return {
     slug: dto.slug,
     name: dto.name,

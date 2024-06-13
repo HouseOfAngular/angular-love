@@ -1,9 +1,6 @@
 import { Context } from 'hono';
-import * as z from 'zod';
 
-const WPLangSchema = z.enum(['pl', 'en']).default('en');
+import { Lang, LangSchema } from '@angular-love/shared/utils-i18n';
 
-export type WPLang = z.infer<typeof WPLangSchema>;
-
-export const getWpLang = (c: Context): WPLang =>
-  WPLangSchema.parse(c.req.header('x-al-lang'));
+export const getWpLang = (c: Context): Lang =>
+  LangSchema.parse(c.req.header('x-al-lang'));

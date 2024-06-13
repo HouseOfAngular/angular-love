@@ -30,16 +30,19 @@ export class SeoService {
           return route;
         }),
         switchMap((route) => route?.data),
+        switchMap((routeData) =>
+          this._seoConfig.pipe(map((seoConfig) => ({ routeData, seoConfig }))),
+        ),
       )
-      .subscribe((data) => {
+      .subscribe(({ routeData, seoConfig }) => {
         this.removeSeo();
 
-        this.updateTag(this._seoConfig.locale, 'ogLocale');
-        this.setMetaDescription(this._seoConfig.description);
-        this.updateTag(this._seoConfig.siteName, 'ogSiteName');
+        this.updateTag(seoConfig.locale, 'ogLocale');
+        this.setMetaDescription(seoConfig.description);
+        this.updateTag(seoConfig.siteName, 'ogSiteName');
 
-        if (data && data['seo'] && data['seo']['title']) {
-          this.setTitle(`${data['seo']['title']} - ${this._seoConfig.title}`);
+        if (routeData && routeData['seo'] && routeData['seo']['title']) {
+          this.setTitle(`${routeData['seo']['title']} - ${seoConfig.title}`);
         } else {
           this.setTitle('');
         }
