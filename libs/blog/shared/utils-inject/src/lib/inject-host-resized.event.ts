@@ -1,7 +1,12 @@
-import { DestroyRef, ElementRef, inject } from '@angular/core';
-import { Observable, Subject } from 'rxjs';
+import { isPlatformServer } from '@angular/common';
+import { DestroyRef, ElementRef, inject, PLATFORM_ID } from '@angular/core';
+import { Observable, of, Subject } from 'rxjs';
 
 export const injectHostResizedEvent = (): Observable<ResizeObserverEntry[]> => {
+  if (isPlatformServer(inject(PLATFORM_ID))) {
+    return of();
+  }
+
   const elementRef = inject(ElementRef);
   const destroyRef = inject(DestroyRef);
 
