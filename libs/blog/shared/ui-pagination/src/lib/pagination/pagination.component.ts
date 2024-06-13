@@ -1,3 +1,4 @@
+import { NgClass } from '@angular/common';
 import {
   ChangeDetectionStrategy,
   Component,
@@ -20,7 +21,7 @@ export type PageChangeEvent = {
 @Component({
   selector: 'al-pagination',
   standalone: true,
-  imports: [ButtonComponent, NgIcon],
+  imports: [ButtonComponent, NgIcon, NgClass],
   templateUrl: './pagination.component.html',
   styleUrl: './pagination.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,

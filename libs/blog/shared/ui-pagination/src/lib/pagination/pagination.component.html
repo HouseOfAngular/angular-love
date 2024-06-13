@@ -3,6 +3,10 @@
     <li class="mr-auto">
       <button
         al-button
+        [ngClass]="{
+          invisible: store.disabledPrevious(),
+        }"
+        [attr.aria-disabled]="store.disabledPrevious()"
         [disabled]="store.disabledPrevious()"
         (click)="setPreviousPage()"
         variant="Ghost"
@@ -32,6 +36,10 @@
     <li class="ml-auto">
       <button
         al-button
+        [ngClass]="{
+          invisible: store.disabledNext(),
+        }"
+        [attr.aria-disabled]="store.disabledNext()"
         [disabled]="store.disabledNext()"
         (click)="setNextPage()"
         variant="Ghost"
