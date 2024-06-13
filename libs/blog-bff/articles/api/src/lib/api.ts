@@ -1,16 +1,17 @@
 import { Hono } from 'hono';
 
-import { appCache } from '@angular-love/blog-bff/shared/util-middleware';
+import {
+  appCache,
+  langMw,
+} from '@angular-love/blog-bff/shared/util-middleware';
 import { ArrayResponse } from '@angular-love/blog-contracts/shared';
 import { ArticlePreview } from '@angular-love/contracts/articles';
-import { getPagination, getWpLang, wpClientMw } from '@angular-love/util-wp';
+import { getPagination, wpClientMw } from '@angular-love/util-wp';
 
 import { WPPostDetailsDto, WPPostDto } from './dtos';
 import { toArticle, toArticlePreviewList } from './mappers';
 
-const app = new Hono();
-
-app.use('*', appCache);
+const app = new Hono().use(appCache).use(langMw()).use(wpClientMw);
 
 const defaultQuery = {
   skip: '0',
@@ -18,13 +19,13 @@ const defaultQuery = {
   lang: 'en',
 };
 
-app.get('/', wpClientMw, async (c) => {
+app.get('/', async (c) => {
   const queryParams = c.req.query();
 
   const { per_page, page } = getPagination(queryParams);
 
   const query: Record<string, string | number> = {
-    lang: queryParams.lang || getWpLang(c) || defaultQuery.lang,
+    lang: queryParams.lang || c.var.lang || defaultQuery.lang,
     per_page,
     page,
   };
@@ -47,7 +48,7 @@ app.get('/', wpClientMw, async (c) => {
   });
 });
 
-app.get('/:slug', wpClientMw, async (c) => {
+app.get('/:slug', async (c) => {
   const slug = c.req.param('slug');
 
   const yoast_props = [
