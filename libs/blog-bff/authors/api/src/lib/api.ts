@@ -1,18 +1,19 @@
 import { Hono } from 'hono';
 
-import { appCache } from '@angular-love/blog-bff/shared/util-middleware';
+import {
+  appCache,
+  langMw,
+} from '@angular-love/blog-bff/shared/util-middleware';
 import { ArrayResponse } from '@angular-love/blog-contracts/shared';
 import { Author } from '@angular-love/blog/contracts/authors';
-import { getPagination, getWpLang, wpClientMw } from '@angular-love/util-wp';
+import { getPagination, wpClientMw } from '@angular-love/util-wp';
 
 import { WPAuthorDto } from './dtos';
 import { toAuthor } from './mappers';
 
-const app = new Hono();
+const app = new Hono().use(appCache).use(wpClientMw).use(langMw());
 
-app.use('*', appCache);
-
-app.get('/', wpClientMw, async (c) => {
+app.get('/', async (c) => {
   const queryParams = c.req.query();
   const { per_page, page } = getPagination(queryParams);
 
@@ -27,12 +28,12 @@ app.get('/', wpClientMw, async (c) => {
   });
 
   return c.json(<ArrayResponse<Author>>{
-    data: result.data.map((dto) => toAuthor(dto, getWpLang(c))),
+    data: result.data.map((dto) => toAuthor(dto, c.var.lang)),
     total: Number(result.headers.get('x-wp-total')),
   });
 });
 
-app.get('/:slug', wpClientMw, async (c) => {
+app.get('/:slug', async (c) => {
   const slug = c.req.param('slug');
 
   const result = await c.var.wpClient.get<WPAuthorDto[]>('users', {
@@ -40,7 +41,7 @@ app.get('/:slug', wpClientMw, async (c) => {
     _fields: 'id,type,slug,name,description,avatar_urls,acf',
   });
 
-  return c.json(toAuthor(result.data[0], getWpLang(c)));
+  return c.json(toAuthor(result.data[0], c.var.lang));
 });
 
 export default app;

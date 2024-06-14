@@ -1,6 +1,6 @@
 import * as z from 'zod';
 
-export const LangSchema = z.enum(['pl', 'en']).default('en');
+export const LangSchema = z.enum(['pl', 'en'], { message: 'Invalid lang' });
 
 export type Lang = z.infer<typeof LangSchema>;
 

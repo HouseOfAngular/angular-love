@@ -1,7 +1,7 @@
-import { createMiddleware } from 'hono/dist/types/helper/factory';
-import { cache } from 'hono/dist/types/middleware/cache';
+import { cache } from 'hono/cache';
+import { createMiddleware } from 'hono/factory';
 
-import { getWpLang } from '@angular-love/util-wp';
+import { getWpLang } from './lang';
 
 export const appCache = createMiddleware(
   cache({
