@@ -88,12 +88,13 @@ export const removeEmptyParagraphs: RewriteAdapter = ($) => {
 };
 
 /**
- * Appends aria-label to links
+ * Appends aria-label and target attributes to links
  * @param $
  */
-export const appendAriaLabelToLinks: RewriteAdapter = ($) => {
+export const modifyLinks: RewriteAdapter = ($) => {
   $('a').each((_, element) => {
     const $element = $(element);
+    $element.attr('target', `_blank`);
 
     if ($element.attr('href') && !$element.attr('href').startsWith('#')) {
       const { hostname } = new URL($element.attr('href'));
