@@ -8,7 +8,7 @@ export const appCache = createMiddleware(
     wait: false,
     cacheName: 'al-bff',
     cacheControl: 'max-age=3600',
-    keyGenerator: (c) => `${c.req.url}_${getWpLang(c)}`,
+    keyGenerator: (c) => `${c.req.url}_${getWpLang(c, 'en')}`,
     vary: 'x-al-lang',
   }),
 );

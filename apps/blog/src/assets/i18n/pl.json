@@ -69,6 +69,11 @@
     "submitLabel": "Wyślij i zapisz się na newsletter",
     "consent": "Wyrażam zgodę na przetwarzanie mojego adresu e-mail przez Angular.love w celu wysyłki newslettera."
   },
+  "newsletterPage": {
+    "title": "Pomyślnie zapisałeś się na newsletter!",
+    "description": "Od teraz będziesz na bieżąco ze wszystkimi informacjami jakie będziemy udostępniać na blogu.",
+    "button": "Powrót na stronę główną"
+  },
   "notFoundPage": {
     "title": "404",
     "description": "Wygląda na to, że zgubiłeś drogę. Strona, której szukasz, nie istnieje lub link wygasł i jest już niedostępny.",

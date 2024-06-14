@@ -51,6 +51,12 @@ export const blogShellRoutes: Route[] = [
         },
       },
       {
+        path: 'newsletter',
+        loadComponent: async () =>
+          (await import('@angular-love/blog/newsletter'))
+            .NewsletterPageComponent,
+      },
+      {
         path: 'not-found',
         loadComponent: async () =>
           (await import('@angular-love/blog/shared/ui-not-found'))
