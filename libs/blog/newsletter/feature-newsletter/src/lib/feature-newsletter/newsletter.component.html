@@ -11,7 +11,7 @@
               <input
                 aria-required="true"
                 type="email"
-                class="bg-al-background text-al-muted border-al-border h-[60px] max-w-[calc(100%-60px)] flex-grow rounded-l-md border border-r-0 p-6 text-sm focus:outline-none"
+                class="bg-al-background text-al-muted border-al-border h-[60px] w-full flex-grow rounded-l-md border border-r-0 p-6 text-sm focus:outline-none"
                 [attr.aria-label]="t('emailPlaceholder')"
                 [placeholder]="t('emailPlaceholder')"
                 formControlName="email"
@@ -27,8 +27,8 @@
             <div class="mt-2">
               <input
                 id="newsletter-checkbox"
-                aria-required="true"
                 aria-labelledby="newsletter-label"
+                aria-required="true"
                 type="checkbox"
                 class="newsletter-checkbox peer hidden"
                 formControlName="checkbox"
