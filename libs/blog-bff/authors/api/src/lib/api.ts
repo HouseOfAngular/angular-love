@@ -1,5 +1,6 @@
 import { Hono } from 'hono';
 
+import { appCache } from '@angular-love/blog-bff/shared/util-middleware';
 import { ArrayResponse } from '@angular-love/blog-contracts/shared';
 import { Author } from '@angular-love/blog/contracts/authors';
 import { getPagination, getWpLang, wpClientMw } from '@angular-love/util-wp';
@@ -8,6 +9,8 @@ import { WPAuthorDto } from './dtos';
 import { toAuthor } from './mappers';
 
 const app = new Hono();
+
+app.use('*', appCache);
 
 app.get('/', wpClientMw, async (c) => {
   const queryParams = c.req.query();
