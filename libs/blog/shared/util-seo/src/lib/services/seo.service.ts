@@ -164,7 +164,9 @@ export class SeoService {
 
   private updateTag(content: string, name: SeoMetaKeys | SeoTitleKeys): void {
     const meta: MetaDefinition = {
-      name: name,
+      name:
+        SEO_META_KEYS[name as SeoMetaKeys] ||
+        SEO_TITLE_KEYS[name as SeoTitleKeys],
       content: content,
     };
 
