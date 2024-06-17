@@ -1,29 +1,29 @@
-<nav aria-label="Pagination">
-  <ul class="flex w-full flex-wrap items-center gap-4">
-    <li class="mr-auto">
-      <button
-        al-button
-        [ngClass]="{
-          invisible: store.disabledPrevious(),
-        }"
-        [attr.aria-disabled]="store.disabledPrevious()"
-        [disabled]="store.disabledPrevious()"
-        (click)="setPreviousPage()"
-        variant="Ghost"
-      >
-        <ng-icon name="heroChevronLeft" class="mr-2" />
-        Previous
-      </button>
-    </li>
+<nav *transloco="let t; read: 'pagination'" aria-label="Pagination">
+  <ul class="flex w-full flex-wrap items-center">
+    <div class="flex basis-full items-center justify-center gap-1">
+      <li>
+        <button
+          al-button
+          class="!p-2"
+          [ngClass]="{
+            invisible: store.disabledPrevious(),
+          }"
+          [attr.aria-disabled]="store.disabledPrevious()"
+          [attr.aria-label]="t('previous')"
+          [disabled]="store.disabledPrevious()"
+          (click)="setPreviousPage()"
+          variant="Ghost"
+        >
+          <ng-icon name="heroChevronLeft" />
+        </button>
+      </li>
 
-    <div
-      class="order-last flex basis-full justify-center gap-4 md:order-none md:contents"
-    >
       @for (page of store.pages(); track page.index) {
         <li>
           <button
             al-button
-            class="flex min-w-[40px] justify-center !px-1 !py-3 leading-none"
+            class="flex justify-center !p-2 text-sm leading-none"
+            [attr.aria-label]="page.label + ' ' + t('page')"
             [variant]="page.isActive ? 'Primary' : 'Secondary'"
             (click)="setPage(page.index)"
           >
@@ -31,22 +31,24 @@
           </button>
         </li>
       }
-    </div>
 
-    <li class="ml-auto">
-      <button
-        al-button
-        [ngClass]="{
-          invisible: store.disabledNext(),
-        }"
-        [attr.aria-disabled]="store.disabledNext()"
-        [disabled]="store.disabledNext()"
-        (click)="setNextPage()"
-        variant="Ghost"
-      >
-        Next
-        <ng-icon name="heroChevronRight" class="ml-2" />
-      </button>
-    </li>
+      <li>
+        <button
+          al-button
+          class="!p-2"
+          [ngClass]="{
+            invisible: store.disabledNext(),
+          }"
+          [attr.aria-disabled]="store.disabledNext()"
+          [attr.aria-label]="t('next')"
+          [disabled]="store.disabledNext()"
+          (click)="setNextPage()"
+          variant="Ghost"
+          size="small"
+        >
+          <ng-icon name="heroChevronRight" />
+        </button>
+      </li>
+    </div>
   </ul>
 </nav>
