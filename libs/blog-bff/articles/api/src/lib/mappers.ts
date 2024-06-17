@@ -99,8 +99,8 @@ export const toArticle = (dto?: WPPostDetailsDto): Article => {
     title: title.text(),
     slug: dto?.slug || '',
     publishDate: dto?.date || '',
-    readingTime: dto.acf.reading_time.toString() || '5',
-    difficulty: dto.acf.difficulty || 'intermediate',
+    readingTime: dto.acf?.reading_time.toString() || '5',
+    difficulty: dto.acf?.difficulty || 'intermediate',
     author: {
       slug: dto?.author_details?.slug || '',
       name: dto?.author_details?.name || '',

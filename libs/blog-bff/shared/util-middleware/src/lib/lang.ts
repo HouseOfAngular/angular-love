@@ -5,7 +5,7 @@ import { Lang, LangSchema } from '@angular-love/shared/utils-i18n';
 
 export const getWpLang = (c: Context, fallback?: Lang): Lang => {
   const schema = fallback ? LangSchema.default(fallback) : LangSchema;
-  return schema.parse(c.req.header('x-al-lang'));
+  return schema.parse(c.req.query()['lang'] || c.req.header('x-al-lang'));
 };
 
 /**

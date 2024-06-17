@@ -8,24 +8,19 @@ import { ArrayResponse } from '@angular-love/blog-contracts/shared';
 import { ArticlePreview } from '@angular-love/contracts/articles';
 import { getPagination, wpClientMw } from '@angular-love/util-wp';
 
-import { WPPostDetailsDto, WPPostDto } from './dtos';
 import { toArticle, toArticlePreviewList } from './mappers';
+import { WpPosts } from './wp-posts';
 
 const app = new Hono().use(appCache).use(langMw()).use(wpClientMw);
 
-const defaultQuery = {
-  skip: '0',
-  take: '10',
-  lang: 'en',
-};
-
 app.get('/', async (c) => {
+  const client = new WpPosts(c.var.createWPClient());
   const queryParams = c.req.query();
 
   const { per_page, page } = getPagination(queryParams);
 
   const query: Record<string, string | number> = {
-    lang: queryParams.lang || c.var.lang || defaultQuery.lang,
+    lang: c.var.lang,
     per_page,
     page,
   };
@@ -35,12 +30,7 @@ app.get('/', async (c) => {
   queryParams.excludeRecent &&
     (query.exclude_recent = queryParams.excludeRecent);
 
-  const result = await c.var.wpClient.get<WPPostDto[]>('posts', {
-    ...query,
-    status: 'publish',
-    _fields:
-      'id,type,slug,title.rendered,author,excerpt.rendered,date,featured_image_url,author_details.name,author_details.avatar_url,author_details.slug,acf',
-  });
+  const result = await client.getPosts(query);
 
   return c.json(<ArrayResponse<ArticlePreview>>{
     data: toArticlePreviewList(result.data),
@@ -50,33 +40,11 @@ app.get('/', async (c) => {
 
 app.get('/:slug', async (c) => {
   const slug = c.req.param('slug');
+  const client = new WpPosts(c.var.createWPClient({ namespace: 'al/v1' }));
 
-  const yoast_props = [
-    'title',
-    'description',
-    'robots',
-    'canonical',
-    'og_locale',
-    'og_type',
-    'og_title',
-    'og_description',
-    'og_url',
-    'og_site_name',
-    'article_publisher',
-    'article_modified_time',
-    'og_image',
-    'twitter_card',
-    'twitter_misc',
-  ]
-    .map((p) => `yoast_head_json.${p}`)
-    .join(',');
+  const result = await client.getBySlug(slug);
 
-  const result = await c.var.wpClient.get<WPPostDetailsDto[]>('posts', {
-    slug: slug,
-    _fields: `id,type,slug,title.rendered,author,content.rendered,date,featured_image_url,author_details,acf,other_translations,lang,${yoast_props}`,
-  });
-
-  return c.json(toArticle(result.data[0]));
+  return c.json(toArticle(result.data));
 });
 
 export default app;
