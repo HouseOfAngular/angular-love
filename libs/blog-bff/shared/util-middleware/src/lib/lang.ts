@@ -1,5 +1,6 @@
 import { Context } from 'hono';
 import { createMiddleware } from 'hono/factory';
+import { HTTPException } from 'hono/http-exception';
 
 import { Lang, LangSchema } from '@angular-love/shared/utils-i18n';
 
@@ -22,7 +23,7 @@ export const langMw = (throwOnInvalidLang = false) =>
       c.set('lang', lang);
     } catch (e) {
       if (throwOnInvalidLang) {
-        throw e;
+        throw new HTTPException(400, { message: 'Invalid lang' });
       } else {
         c.set('lang', 'en');
       }
