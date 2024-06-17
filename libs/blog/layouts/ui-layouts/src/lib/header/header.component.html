@@ -15,27 +15,60 @@
 
     <div class="flex flex-row items-center">
       <al-navigation class="hidden lg:block" />
-      <div class="ml-6">
-        <button
-          class="border-al-gray-200 mr-2 rounded border bg-transparent px-4 py-2 font-medium leading-4"
-          [ngClass]="{
-            '!text-white': language() === 'en',
-            '!text-al-gray-50  opacity-50': language() !== 'en'
-          }"
-          (click)="languageChange.emit('en')"
-        >
-          ENG
-        </button>
-        <button
-          class="border-al-gray-200 mr-2 rounded border bg-transparent px-4 py-2 font-medium leading-4"
-          [ngClass]="{
-            '!text-white': language() === 'pl',
-            '!text-al-gray-50  opacity-50': language() !== 'pl'
-          }"
-          (click)="languageChange.emit('pl')"
-        >
-          PL
-        </button>
+      <div class="ml-6 mr-6">
+        <!--        <al-icon name="translate" class="bg-al-primary block h-6" />-->
+
+        <div class="flex h-full items-center">
+          <label
+            class="relative block text-gray-400 focus-within:text-gray-600"
+            for="language"
+          >
+            <span class="sr-only">Select language</span>
+            <al-icon
+              name="translate"
+              class="bg-al-primary pointer-events-none absolute left-3 top-1/2 block h-5 -translate-y-1/2 transform"
+            />
+
+            <!--            <MailIcon className="pointer-events-none w-8 h-8 absolute top-1/2 transform -translate-y-1/2 left-3" />-->
+
+            <!--            <input type="email" name="email" id="email" placeholder="email@kemuscorp.com" className="form-input w-full">-->
+            <select
+              id="language"
+              #selectLang
+              class="bg-al-background w-full rounded-md py-1 pl-8"
+              (change)="languageChange.emit(selectLang.value)"
+            >
+              @for (lang of availableLangs; track $index) {
+                <option
+                  [selected]="lang.value === language()"
+                  [value]="lang.value"
+                >
+                  {{ lang.display }}
+                </option>
+              }
+            </select>
+          </label>
+        </div>
+        <!--        <button-->
+        <!--          class="border-al-gray-200 mr-2 rounded border bg-transparent px-4 py-2 font-medium leading-4"-->
+        <!--          [ngClass]="{-->
+        <!--            '!text-white': language() === 'en',-->
+        <!--            '!text-al-gray-50  opacity-50': language() !== 'en'-->
+        <!--          }"-->
+        <!--          (click)="languageChange.emit('en')"-->
+        <!--        >-->
+        <!--          ENG-->
+        <!--        </button>-->
+        <!--        <button-->
+        <!--          class="border-al-gray-200 mr-2 rounded border bg-transparent px-4 py-2 font-medium leading-4"-->
+        <!--          [ngClass]="{-->
+        <!--            '!text-white': language() === 'pl',-->
+        <!--            '!text-al-gray-50  opacity-50': language() !== 'pl'-->
+        <!--          }"-->
+        <!--          (click)="languageChange.emit('pl')"-->
+        <!--        >-->
+        <!--          PL-->
+        <!--        </button>-->
       </div>
 
       <ng-content />
