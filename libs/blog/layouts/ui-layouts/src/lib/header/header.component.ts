@@ -41,6 +41,11 @@ export class HeaderComponent {
 
   readonly logoSize = '40';
 
+  readonly availableLangs = [
+    { value: 'pl', display: 'Polish' },
+    { value: 'en', display: 'English' },
+  ];
+
   toggleNav(): void {
     this.showNav.set(!this.showNav());
   }
