@@ -1,4 +1,5 @@
 import { Routes } from '@angular/router';
+
 import { articleExistsGuard } from '@angular-love/blog/articles/data-access';
 
 export const articleRoutes: Routes = [
@@ -27,15 +28,6 @@ export const articleRoutes: Routes = [
         .FeatureLatestArticlesPageComponent,
     data: {
       seo: { title: 'Latest Articles' },
-    },
-  },
-  {
-    path: 'recommended',
-    loadComponent: async () =>
-      (await import('@angular-love/recommended-articles'))
-        .FeatureRecommendedArticlesPageComponent,
-    data: {
-      seo: { title: 'Recommended Articles' },
     },
   },
   {

@@ -165,9 +165,6 @@
       "@angular-love/feature-search-results-page": [
         "libs/blog/search/feature-search-results-page/src/index.ts"
       ],
-      "@angular-love/recommended-articles": [
-        "libs/blog/articles/feature-recommended-articles/src/index.ts"
-      ],
       "@angular-love/search-result-item": [
         "libs/blog/search/ui-search-result/src/index.ts"
       ],

@@ -46,6 +46,7 @@ export class CategorySectionContainerComponent {
   category = input.required<ArticleCategory>();
   cardType = input<CardType>('regular');
   take = input(6);
+  hasCategoryPage = input(true);
 
   displayName = computed(() => displayNameDict[this.category()]);
 

@@ -1,10 +1,14 @@
 <al-article-list-title
   *transloco="let t"
   [title]="t(displayName())"
-  [link]="{
-    displayName: t('homePage.seeAll'),
-    href: category(),
-  }"
+  [link]="
+    hasCategoryPage()
+      ? {
+          displayName: t('homePage.seeAll'),
+          href: category(),
+        }
+      : null
+  "
 />
 
 <div class="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
