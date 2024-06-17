@@ -4,7 +4,8 @@
     [ngClass]="{
       'bg-cover transition-transform hover:scale-105 motion-reduce:transition-none motion-reduce:hover:scale-100':
         layout() === 'compact',
-      'hover:shadow-al-primary bg-contain bg-center': layout() === 'hero'
+      'shadow-al-primary lg:hover:shadow-al-primary bg-contain bg-center lg:shadow-none':
+        layout() === 'hero',
     }"
     [style.background-image]="'url(' + article().featuredImageUrl + ')'"
   >
@@ -12,7 +13,7 @@
       class="relative flex h-full flex-col justify-between"
       [ngClass]="{
         'bg-al-background opacity-85': layout() === 'compact',
-        'bg-al-background-gradient rounded-lg': layout() === 'hero'
+        'bg-al-background-gradient rounded-lg': layout() === 'hero',
       }"
     >
       <div
@@ -23,10 +24,12 @@
         class="flex items-center justify-between"
         [ngClass]="{
           'px-6 pt-6': layout() === 'compact',
-          'px-8 pt-8': layout() === 'hero'
+          'px-8 pt-8 ': layout() === 'hero',
         }"
       >
-        <div class="flex items-center gap-2 max-md:self-start">
+        <div
+          class="flex max-w-[100px] items-center gap-2 max-md:self-start md:max-w-[200px]"
+        >
           <al-avatar [imageSrc]="article().author.avatarUrl" size="sm" />
           <span class="text-sm/[14px] font-medium">
             {{ article().author.name }}
@@ -34,13 +37,16 @@
         </div>
 
         <div
-          class="flex flex-col items-center justify-end gap-6 gap-y-4 md:flex-row"
+          class="flex flex-row items-center justify-end gap-4 gap-y-4 md:gap-6"
         >
           @if (layout() === 'hero') {
             <span class="w-full whitespace-nowrap text-sm/[14px] font-medium">
               {{ article().publishDate | date: 'mediumDate' }}
             </span>
-            <al-difficulty [difficulty]="article().difficulty" />
+            <al-difficulty
+              class="hidden md:block"
+              [difficulty]="article().difficulty"
+            />
           }
           <span class="flex w-full flex-row items-center justify-end gap-2">
             <al-icon name="clock" class="inline-block h-4 bg-white" />
@@ -49,18 +55,24 @@
         </div>
       </div>
 
+      @if (layout() === 'hero') {
+        <div class="flex items-start justify-end px-8 pt-4 md:hidden">
+          <al-difficulty class="" [difficulty]="article().difficulty" />
+        </div>
+      }
+
       <div
         class="flex flex-col"
         [ngClass]="{
           'px-6 pb-6 pt-8': layout() === 'compact',
-          'gap-5 px-8 pb-8 pt-44': layout() === 'hero'
+          'gap-5 px-8 pb-8 pt-44': layout() === 'hero',
         }"
       >
         <p
           class="line-clamp-2 font-bold"
           [ngClass]="{
             'text-2xl': layout() === 'compact',
-            'text-4xl': layout() === 'hero'
+            'text-4xl': layout() === 'hero',
           }"
         >
           {{ article().title }}
