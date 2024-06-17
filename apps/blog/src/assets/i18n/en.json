@@ -101,5 +101,14 @@
   },
   "seo": {
     "metaDescription": "Angular.love - a place for all Angular enthusiasts created to inspire and educate."
+  },
+  "search": {
+    "no-matches": "No recent matches",
+    "results": "results"
+  },
+  "pagination": {
+    "previous": "Previous page",
+    "next": "Next page",
+    "page": "Page"
   }
 }

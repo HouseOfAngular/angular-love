@@ -12,6 +12,7 @@ import {
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { FormControl, ReactiveFormsModule, Validators } from '@angular/forms';
 import { NavigationEnd, Router, RouterLink } from '@angular/router';
+import { TranslocoDirective } from '@ngneat/transloco';
 import { LocalizeRouterModule } from '@penleychan/ngx-transloco-router';
 import { debounceTime, filter, startWith, tap } from 'rxjs';
 
@@ -33,6 +34,7 @@ import { GlobalSearchService } from '../global-search.service';
     SearchResultItemComponent,
     RouterLink,
     LocalizeRouterModule,
+    TranslocoDirective,
   ],
   templateUrl: './search-dialog.component.html',
   styleUrl: './search-dialog.component.scss',

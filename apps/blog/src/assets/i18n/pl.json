@@ -104,5 +104,14 @@
   },
   "seo": {
     "metaDescription": "Angular.love - ciekawostki oraz rozwiązania dla średnio-zaawansowanych oraz zaawansowanych developerów Angulara."
+  },
+  "search": {
+    "no-matches": "Brak wyników",
+    "results": "wyników"
+  },
+  "pagination": {
+    "previous": "Poprzednia strona",
+    "next": "Następna strona",
+    "page": "Strona"
   }
 }
