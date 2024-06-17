@@ -8,6 +8,7 @@ import {
 } from '@angular/core';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { heroChevronLeft, heroChevronRight } from '@ng-icons/heroicons/outline';
+import { TranslocoDirective } from '@ngneat/transloco';
 
 import { ButtonComponent } from '@angular-love/blog/shared/ui-button';
 
@@ -21,7 +22,7 @@ export type PageChangeEvent = {
 @Component({
   selector: 'al-pagination',
   standalone: true,
-  imports: [ButtonComponent, NgIcon, NgClass],
+  imports: [ButtonComponent, NgIcon, NgClass, TranslocoDirective],
   templateUrl: './pagination.component.html',
   styleUrl: './pagination.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
