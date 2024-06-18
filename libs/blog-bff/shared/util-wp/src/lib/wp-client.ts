@@ -3,6 +3,10 @@ import type { StatusCode } from 'hono/utils/http-status';
 
 type FetchConfig = Partial<Pick<RequestInit, 'method' | 'headers' | 'body'>>;
 
+type WPOptions = {
+  namespace?: string;
+};
+
 export type WPResponse<T> = {
   data: T;
   headers: Headers;
@@ -12,7 +16,12 @@ export class WPRestClient {
   constructor(
     protected readonly baseUrl: string,
     protected readonly fetchConfig: FetchConfig,
-  ) {}
+    protected readonly wpOptions?: WPOptions,
+  ) {
+    this.wpOptions = wpOptions ?? {
+      namespace: 'wp/v2',
+    };
+  }
 
   get<T>(url: string, params: Record<string, string>): Promise<WPResponse<T>> {
     const searchParams = new URLSearchParams(params);
@@ -23,15 +32,18 @@ export class WPRestClient {
     url: string,
     { body, headers, method }: FetchConfig = {},
   ): Promise<WPResponse<T>> {
-    const request = await fetch(`${this.baseUrl}/wp-json/wp/v2/${url}`, {
-      ...this.fetchConfig,
-      method: method ?? 'GET',
-      headers: {
-        ...this.fetchConfig.headers,
-        ...headers,
+    const request = await fetch(
+      `${this.baseUrl}/wp-json/${this.wpOptions.namespace}/${url}`,
+      {
+        ...this.fetchConfig,
+        method: method ?? 'GET',
+        headers: {
+          ...this.fetchConfig.headers,
+          ...headers,
+        },
+        body,
       },
-      body,
-    });
+    );
 
     if (!request.ok) {
       throw new HTTPException(
@@ -45,4 +57,17 @@ export class WPRestClient {
       headers: request.headers,
     };
   }
+}
+
+/**
+ * Creates a new instance of the `WPRestClient`
+ * @see WPRestClient
+ */
+export type WPClientFactory = (wpOptions?: WPOptions) => WPRestClient;
+
+export function createWPRestClientFactory(
+  baseUrl: string,
+  fetchConfig?: FetchConfig,
+): WPClientFactory {
+  return (wpOptions) => new WPRestClient(baseUrl, fetchConfig ?? {}, wpOptions);
 }

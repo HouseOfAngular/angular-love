@@ -8,13 +8,14 @@ import { ArrayResponse } from '@angular-love/blog-contracts/shared';
 import { Author } from '@angular-love/blog/contracts/authors';
 import { getPagination, wpClientMw } from '@angular-love/util-wp';
 
-import { WPAuthorDto } from './dtos';
 import { toAuthor } from './mappers';
+import { WpAuthors } from './wp-authors';
 
 const app = new Hono().use(appCache).use(wpClientMw).use(langMw());
 
 app.get('/', async (c) => {
   const queryParams = c.req.query();
+  const client = new WpAuthors(c.var.createWPClient());
   const { per_page, page } = getPagination(queryParams);
 
   const query: Record<string, string | number> = {
@@ -22,10 +23,7 @@ app.get('/', async (c) => {
     page,
   };
 
-  const result = await c.var.wpClient.get<WPAuthorDto[]>('users', {
-    ...query,
-    _fields: 'id,type,slug,name,description,avatar_urls,acf',
-  });
+  const result = await client.getAuthors(query);
 
   return c.json(<ArrayResponse<Author>>{
     data: result.data.map((dto) => toAuthor(dto, c.var.lang)),
@@ -35,11 +33,9 @@ app.get('/', async (c) => {
 
 app.get('/:slug', async (c) => {
   const slug = c.req.param('slug');
+  const client = new WpAuthors(c.var.createWPClient());
 
-  const result = await c.var.wpClient.get<WPAuthorDto[]>('users', {
-    slug: slug,
-    _fields: 'id,type,slug,name,description,avatar_urls,acf',
-  });
+  const result = await client.getBySlug(slug);
 
   return c.json(toAuthor(result.data[0], c.var.lang));
 });
