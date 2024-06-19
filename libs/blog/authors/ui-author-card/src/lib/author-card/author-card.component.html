@@ -18,10 +18,16 @@
   </ng-container>
 
   <ng-container author-info-description>
-    <al-dynamic-text-clamp
-      [text]="author().description"
-      [textClasses]="descriptionClass()"
-    />
+    @defer {
+      <al-dynamic-text-clamp
+        [text]="author().description"
+        [textClasses]="descriptionClass()"
+      />
+    } @placeholder {
+      <div class="hidden">
+        {{ author().description }}
+      </div>
+    }
   </ng-container>
 </al-author-card-template>
 
