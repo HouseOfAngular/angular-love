@@ -1,4 +1,5 @@
 <div
+  *transloco="let t; read: 'search'"
   class="al-overlay fixed left-0 top-0 z-40 h-screen w-screen bg-black bg-opacity-60"
 >
   <div
@@ -22,10 +23,10 @@
     <div class="p-4">
       @if (!searchStore.total()) {
         <div class="flex items-center justify-center p-4">
-          <p>No recent matches</p>
+          <p>{{ t('no-matches') }}</p>
         </div>
       } @else {
-        <p>{{ searchStore.total() }} results</p>
+        <p>{{ searchStore.total() }} {{ t('results') }}</p>
         <ul class="max-h-[50vh] overflow-auto">
           @for (item of searchStore.items(); track item.slug) {
             <a [routerLink]="['/', item.slug] | localize">
