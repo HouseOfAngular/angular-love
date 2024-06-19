@@ -4,7 +4,7 @@
     [ngClass]="{
       'hover:shadow-al-primary flex-col transition-transform hover:scale-105 motion-reduce:transition-none motion-reduce:hover:scale-100':
         layout() === 'regular',
-      'flex-row': layout() === 'horizontal'
+      'flex-row': layout() === 'horizontal',
     }"
   >
     @if (layout() === 'regular') {
@@ -18,7 +18,7 @@
       class="h-auto w-auto"
       [ngClass]="{
         'rounded-l-lg bg-contain': layout() === 'horizontal',
-        'rounded-t-lg': layout() === 'regular'
+        'rounded-t-lg': layout() === 'regular',
       }"
       [ngSrc]="article().featuredImageUrl"
       width="1215"
@@ -28,7 +28,7 @@
       class="bg-al-card h-full"
       [ngClass]="{
         'rounded-b-lg': layout() === 'regular',
-        'w-full rounded-r-lg': layout() === 'horizontal'
+        'w-full rounded-r-lg': layout() === 'horizontal',
       }"
     >
       @if (layout() === 'regular') {
@@ -46,7 +46,7 @@
         </div>
         <div class="flex items-center justify-between self-start px-4 pt-4">
           <span class="text-sm/[14px] font-medium">
-            {{ article().publishDate | date: 'mediumDate' }}
+            {{ article().publishDate | date: 'dd MMM yyyy' }}
           </span>
           <al-difficulty [difficulty]="article().difficulty" />
         </div>
@@ -60,7 +60,7 @@
           </div>
           <div class="flex items-center gap-2">
             <span class="text-sm/[14px]">
-              {{ article().publishDate | date: 'mediumDate' }}
+              {{ article().publishDate | date: 'dd MMM yyyy' }}
             </span>
             <al-icon name="clock" class="h-4 bg-white" />
             <p class="text-sm/[14px]">{{ article().readingTime }}min</p>
@@ -71,7 +71,7 @@
         class="flex flex-col"
         [ngClass]="{
           'gap-3 px-4 pb-4 pt-3': layout() === 'regular',
-          'px-6 pt-8': layout() === 'horizontal'
+          'px-6 pt-8': layout() === 'horizontal',
         }"
       >
         <p
@@ -81,7 +81,7 @@
         <p
           class="*:text-al-pink line-clamp-3 *:font-medium *:not-italic"
           [ngClass]="{
-            'pt-5': layout() === 'horizontal'
+            'pt-5': layout() === 'horizontal',
           }"
           [innerHTML]="sanitizedArticle().excerpt"
         ></p>

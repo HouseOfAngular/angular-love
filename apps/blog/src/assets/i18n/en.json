@@ -13,6 +13,9 @@
     "meetups": "Angular Meetups",
     "become_author": "Become an author"
   },
+  "authorPage": {
+    "posted_by": "Posted by {{name}}"
+  },
   "becomeAuthorPage": {
     "breadcrumb": "Become an author",
     "title": "Become a part of angular.love!",

@@ -1,8 +1,15 @@
-import { inject } from '@angular/core';
-import { patchState, signalStore, withMethods, withState } from '@ngrx/signals';
+import { computed, inject } from '@angular/core';
+import {
+  patchState,
+  signalStore,
+  withComputed,
+  withMethods,
+  withState,
+} from '@ngrx/signals';
 import { rxMethod } from '@ngrx/signals/rxjs-interop';
 import { filter, pipe, switchMap, tap } from 'rxjs';
 
+import { UiAuthorCard } from '@angular-love/blog/authors/types';
 import { Author } from '@angular-love/blog/contracts/authors';
 import { withLangState } from '@angular-love/blog/i18n/data-access';
 import {
@@ -60,4 +67,17 @@ export const AuthorDetailsStore = signalStore(
       ),
     };
   }),
+  withComputed(({ authorDetails, lang }) => ({
+    author: computed((): UiAuthorCard | null => {
+      const author = authorDetails();
+      return author
+        ? {
+            ...author,
+            description:
+              author.description[lang() as 'pl' | 'en'] ??
+              author.description.en,
+          }
+        : null;
+    }),
+  })),
 );

@@ -39,10 +39,10 @@ import { SocialMediaIconsComponent } from '@angular-love/blog/shared/ui-social-m
 })
 export class FeatureAboutUsComponent implements OnInit {
   private readonly _authorListStore = inject(AuthorListStore);
-  readonly authors = this._authorListStore.authors;
+  readonly authorsCards = this._authorListStore.authorCards;
 
   noAuthorsInView = computed(() => {
-    return this.authors()?.length || 0;
+    return this.authorsCards()?.length || 0;
   });
 
   private readonly _skip = this._authorListStore.skip;
@@ -50,7 +50,7 @@ export class FeatureAboutUsComponent implements OnInit {
   private readonly _pageSize = this._authorListStore.pageSize;
 
   ngOnInit(): void {
-    if (this.authors().length === 0) {
+    if (this.authorsCards().length === 0) {
       this._authorListStore.fetchAuthorList({
         take: this._pageSize(),
         skip: 0,

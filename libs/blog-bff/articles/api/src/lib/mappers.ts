@@ -80,6 +80,8 @@ export const toArticle = (dto?: WPPostDetailsDto): Article => {
     (anchors, element) => {
       const title = $(element).text();
 
+      if (!title) return anchors;
+
       $(element).attr('id', title);
 
       return [
@@ -99,7 +101,7 @@ export const toArticle = (dto?: WPPostDetailsDto): Article => {
     title: title.text(),
     slug: dto?.slug || '',
     publishDate: dto?.date || '',
-    readingTime: dto.acf?.reading_time.toString() || '5',
+    readingTime: dto.acf?.reading_time?.toString() || '5',
     difficulty: dto.acf?.difficulty || 'intermediate',
     author: {
       slug: dto?.author_details?.slug || '',

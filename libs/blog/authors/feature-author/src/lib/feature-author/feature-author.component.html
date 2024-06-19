@@ -4,7 +4,7 @@
 
 @if (
   !authorDetailsStore.isFetchAuthorDetailsLoading() &&
-    authorDetailsStore.authorDetails();
+    authorDetailsStore.author();
   as author
 ) {
   <al-author-card [author]="author" />
@@ -12,7 +12,12 @@
   <al-author-card-skeleton />
 }
 
-<h2 class="mb-6 mt-10 text-2xl font-bold">Posted by {{ authorName() }}</h2>
+<h2
+  *transloco="let t; read: 'authorPage'"
+  class="mb-6 mt-10 text-2xl font-bold"
+>
+  {{ t('posted_by', { name: authorName() }) }}
+</h2>
 
 <div class="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
   @if (articleStore.isFetchArticleListLoading()) {
