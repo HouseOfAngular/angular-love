@@ -16,5 +16,5 @@ export type ArticleTitleLink = {
 })
 export class UiArticleListTitleComponent {
   title = input.required<string>();
-  link = input<ArticleTitleLink>();
+  link = input<ArticleTitleLink | null>();
 }
