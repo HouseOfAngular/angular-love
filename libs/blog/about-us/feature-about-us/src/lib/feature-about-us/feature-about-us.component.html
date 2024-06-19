@@ -36,7 +36,7 @@
   </h1>
 </ng-container>
 
-@for (author of authors(); track author.slug) {
+@for (author of authorsCards(); track author.slug) {
   <al-author-card class="mb-6 block" [author]="author" [linkable]="true" />
 
   @if ($index === noAuthorsInView() - 2) {

@@ -1,9 +1,17 @@
-import { inject } from '@angular/core';
-import { patchState, signalStore, withMethods, withState } from '@ngrx/signals';
+import { computed, inject } from '@angular/core';
+import {
+  patchState,
+  signalStore,
+  withComputed,
+  withMethods,
+  withState,
+} from '@ngrx/signals';
 import { rxMethod } from '@ngrx/signals/rxjs-interop';
 import { pipe, switchMap, tap } from 'rxjs';
 
+import { UiAuthorCard } from '@angular-love/blog/authors/types';
 import { Author } from '@angular-love/blog/contracts/authors';
+import { withLangState } from '@angular-love/blog/i18n/data-access';
 import {
   LoadingState,
   withCallState,
@@ -31,6 +39,7 @@ const initialState: AuthorListState = {
 export const AuthorListStore = signalStore(
   withState(initialState),
   withCallState('fetch author list'),
+  withLangState(),
   withMethods(({ ...store }, authorsService = inject(AuthorService)) => {
     return {
       fetchAuthorList: rxMethod<AuthorsQuery>(
@@ -62,4 +71,12 @@ export const AuthorListStore = signalStore(
       ),
     };
   }),
+  withComputed(({ authors, lang }) => ({
+    authorCards: computed((): UiAuthorCard[] =>
+      authors().map((author) => ({
+        ...author,
+        description: author.description[lang() as 'en' | 'pl'],
+      })),
+    ),
+  })),
 );

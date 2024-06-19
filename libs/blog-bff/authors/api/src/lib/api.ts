@@ -26,7 +26,7 @@ app.get('/', async (c) => {
   const result = await client.getAuthors(query);
 
   return c.json(<ArrayResponse<Author>>{
-    data: result.data.map((dto) => toAuthor(dto, c.var.lang)),
+    data: result.data.map((dto) => toAuthor(dto)),
     total: Number(result.headers.get('x-wp-total')),
   });
 });
@@ -37,7 +37,7 @@ app.get('/:slug', async (c) => {
 
   const result = await client.getBySlug(slug);
 
-  return c.json(toAuthor(result.data[0], c.var.lang));
+  return c.json(toAuthor(result.data[0]));
 });
 
 export default app;

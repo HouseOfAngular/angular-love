@@ -41,7 +41,7 @@
         >
           @if (layout() === 'hero') {
             <span class="w-full whitespace-nowrap text-sm/[14px] font-medium">
-              {{ article().publishDate | date: 'mediumDate' }}
+              {{ article().publishDate | date: 'dd MMM yyyy' }}
             </span>
             <al-difficulty
               class="hidden md:block"

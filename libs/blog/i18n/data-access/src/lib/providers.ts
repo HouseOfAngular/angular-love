@@ -1,5 +1,7 @@
+import { registerLocaleData } from '@angular/common';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
-import { importProvidersFrom } from '@angular/core';
+import localePl from '@angular/common/locales/pl';
+import { importProvidersFrom, LOCALE_ID } from '@angular/core';
 import { Routes } from '@angular/router';
 import { provideTransloco } from '@ngneat/transloco';
 import {
@@ -9,7 +11,10 @@ import {
 } from '@penleychan/ngx-transloco-router';
 
 import { I18nHeadersInterceptor } from './i18n-headers.interceptor';
+import { LocaleIdProvider } from './locale-id.provider';
 import { TranslocoHttpLoader } from './transloco.loader';
+
+registerLocaleData(localePl);
 
 export const provideI18n = (props: { routes: Routes }) => {
   return [
@@ -40,5 +45,6 @@ export const provideI18n = (props: { routes: Routes }) => {
       useClass: I18nHeadersInterceptor,
       multi: true,
     },
+    { provide: LOCALE_ID, useClass: LocaleIdProvider },
   ];
 };

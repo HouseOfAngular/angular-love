@@ -16,6 +16,9 @@
   "home": {
     "latest": "Latest articles"
   },
+  "authorPage": {
+    "posted_by": "Opublikowane przez {{name}}"
+  },
   "becomeAuthorPage": {
     "breadcrumb": "Zostań autorem",
     "title": "Zostań częścią angular.love!",

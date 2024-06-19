@@ -1,14 +1,15 @@
 import { Author } from '@angular-love/blog/contracts/authors';
-import { Lang } from '@angular-love/shared/utils-i18n';
 
 import { WPAuthorDto } from './dtos';
 
-export const toAuthor = (dto: WPAuthorDto, lang: Lang): Author => {
+export const toAuthor = (dto: WPAuthorDto): Author => {
   return {
     slug: dto.slug,
     name: dto.name,
-    description:
-      lang === 'pl' ? dto.acf.user_description_pl : dto.acf.user_description_en,
+    description: {
+      pl: dto.acf.user_description_pl,
+      en: dto.acf.user_description_en,
+    },
     avatarUrl:
       Object.entries(dto.avatar_urls).find(([, url]) =>
         url.includes('96'),

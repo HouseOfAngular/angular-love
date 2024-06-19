@@ -2,12 +2,13 @@
   <section
     class="order-1 col-span-12 grid w-full gap-4 overflow-auto lg:col-span-8"
   >
-    <div class="flex items-center gap-10 text-sm">
+    <div class="flex items-center text-sm">
       <span class="mr-auto">
-        {{ articleDetails().publishDate | date: 'longDate' }}
+        {{ articleDetails().publishDate | date: 'dd MMM yyyy' }}
       </span>
 
       <al-difficulty
+        class="mr-2 md:mr-10"
         [difficulty]="articleDetails().difficulty"
         color="border"
       />

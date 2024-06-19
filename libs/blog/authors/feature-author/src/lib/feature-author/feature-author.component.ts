@@ -6,6 +6,7 @@ import {
   input,
   signal,
 } from '@angular/core';
+import { TranslocoDirective } from '@ngneat/transloco';
 
 import { ArticleListStore } from '@angular-love/blog/articles/data-access';
 import { UiArticleCardComponent } from '@angular-love/blog/articles/ui-article-card';
@@ -32,6 +33,7 @@ import { RepeatDirective } from '@angular-love/utils';
     UiArticleCardComponent,
     PaginationComponent,
     QueryPaginationDirective,
+    TranslocoDirective,
   ],
   templateUrl: './feature-author.component.html',
   styleUrl: './feature-author.component.scss',
