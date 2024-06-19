@@ -6,8 +6,8 @@
       <img
         alt="Angular Love logo"
         class="inline-block"
-        [width]="logoSize"
         [height]="logoSize"
+        [width]="logoSize"
         ngSrc="assets/angular-love-logo.png"
       />
       <span class="text-al-primary px-4 text-lg font-bold">angular.love</span>
@@ -15,22 +15,22 @@
 
     <div class="flex flex-row items-center">
       <al-navigation class="hidden lg:block" />
-      <div class="ml-6">
+      <div class="ml-6 flex max-w-20 flex-row md:max-w-[200px]">
         <button
-          class="border-al-gray-200 mr-2 rounded border bg-transparent px-4 py-2 font-medium leading-4"
+          class="border-al-gray-200 mr-1 rounded border bg-transparent px-1 py-2 font-medium leading-4 md:mr-2 md:px-4"
           [ngClass]="{
             '!text-white': language() === 'en',
-            '!text-al-gray-50  opacity-50': language() !== 'en'
+            '!text-al-gray-50  opacity-50': language() !== 'en',
           }"
           (click)="languageChange.emit('en')"
         >
           ENG
         </button>
         <button
-          class="border-al-gray-200 mr-2 rounded border bg-transparent px-4 py-2 font-medium leading-4"
+          class="border-al-gray-200 mr-1 rounded border bg-transparent px-1 py-2 font-medium leading-4 md:mr-2 md:px-4"
           [ngClass]="{
             '!text-white': language() === 'pl',
-            '!text-al-gray-50  opacity-50': language() !== 'pl'
+            '!text-al-gray-50  opacity-50': language() !== 'pl',
           }"
           (click)="languageChange.emit('pl')"
         >
