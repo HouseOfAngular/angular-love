@@ -108,6 +108,9 @@
   "seo": {
     "metaDescription": "Angular.love - ciekawostki oraz rozwiązania dla średnio-zaawansowanych oraz zaawansowanych developerów Angulara."
   },
+  "adBanner": {
+    "registerButton": "Zarejestruj się bezpłatnie"
+  },
   "search": {
     "no-matches": "Brak wyników",
     "results": "wyników"
