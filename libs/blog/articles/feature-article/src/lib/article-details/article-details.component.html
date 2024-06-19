@@ -43,17 +43,19 @@
       [linkable]="true"
     />
 
-    @if (articleDetails().anchors.length) {
+    @defer {
       <div class="sticky top-24 mt-5 hidden flex-col gap-4 lg:flex">
-        <al-card alDarkCard>
-          <div alCardContent>
-            <al-table-of-contents
-              alTableOfContentsScrollSpy
-              class="al-scroll block max-h-[90dvh] overflow-auto"
-              [anchors]="articleDetails().anchors"
-            />
-          </div>
-        </al-card>
+        @if (articleDetails().anchors.length) {
+          <al-card alDarkCard>
+            <div alCardContent>
+              <al-table-of-contents
+                alTableOfContentsScrollSpy
+                class="al-scroll block max-h-[90dvh] overflow-auto"
+                [anchors]="articleDetails().anchors"
+              />
+            </div>
+          </al-card>
+        }
 
         <al-card alDarkCard>
           <div alCardContent>
