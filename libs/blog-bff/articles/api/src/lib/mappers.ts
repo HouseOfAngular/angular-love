@@ -29,7 +29,7 @@ export const toArticlePreviewList = (dtos: WPPostDto[]): ArticlePreview[] => {
       excerpt: summary.text(),
       featuredImageUrl: dto.featured_image_url || '',
       publishDate: new Date(dto.date || '').toISOString(),
-      readingTime: dto.acf.reading_time.toString() || '5',
+      readingTime: dto.acf.reading_time?.toString() || '5',
       difficulty: dto.acf.difficulty || 'intermediate',
       author: {
         slug: dto.author_details?.slug || '',
