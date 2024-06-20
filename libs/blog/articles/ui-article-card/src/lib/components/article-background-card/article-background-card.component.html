@@ -4,8 +4,7 @@
     [ngClass]="{
       'bg-cover transition-transform hover:scale-105 motion-reduce:transition-none motion-reduce:hover:scale-100':
         layout() === 'compact',
-      'shadow-al-primary lg:hover:shadow-al-primary bg-contain bg-center lg:shadow-none':
-        layout() === 'hero',
+      ' lg:hover:shadow-al-primary bg-contain bg-center': layout() === 'hero',
     }"
     [style.background-image]="'url(' + article().featuredImageUrl + ')'"
   >
