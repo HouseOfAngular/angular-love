@@ -102,3 +102,14 @@ export const modifyLinks: RewriteAdapter = ($) => {
     }
   });
 };
+
+/**
+ * Changes all h1 tags to h2 tags. Some article tends to have
+ * multiple h1 tags, so to avoid SEO issues, we change them to h2
+ */
+export const changeH1ToH2: RewriteAdapter = ($) => {
+  $('h1').each((_, element) => {
+    const $element = $(element);
+    $element.replaceWith(`<h2>${$element.html()}</h2>`);
+  });
+};
