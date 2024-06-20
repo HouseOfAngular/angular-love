@@ -13,7 +13,10 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { FormControl, ReactiveFormsModule, Validators } from '@angular/forms';
 import { NavigationEnd, Router, RouterLink } from '@angular/router';
 import { TranslocoDirective } from '@ngneat/transloco';
-import { LocalizeRouterModule } from '@penleychan/ngx-transloco-router';
+import {
+  LocalizeRouterModule,
+  LocalizeRouterService,
+} from '@penleychan/ngx-transloco-router';
 import { debounceTime, filter, startWith, tap } from 'rxjs';
 
 import {
@@ -52,6 +55,7 @@ export class SearchDialogComponent implements OnInit, OnDestroy {
     viewChild.required<ElementRef<HTMLInputElement>>('searchInput');
   private readonly _router = inject(Router);
   private readonly _destroyRef = inject(DestroyRef);
+  private readonly _localizeRouterService = inject(LocalizeRouterService);
 
   @HostListener('click', ['$event.target']) onClick(target: HTMLElement): void {
     if (target.classList.contains('al-overlay')) {
@@ -93,11 +97,14 @@ export class SearchDialogComponent implements OnInit, OnDestroy {
   goToAllResults(): void {
     const totalResults = this.searchStore.total();
     if (totalResults && totalResults > 0) {
-      this._router.navigate(['search'], {
-        queryParams: {
-          q: this.searchForm.value,
+      this._router.navigate(
+        this._localizeRouterService.translateRoute(['search']) as string[],
+        {
+          queryParams: {
+            q: this.searchForm.value,
+          },
         },
-      });
+      );
       this.closeSearch();
     }
   }
