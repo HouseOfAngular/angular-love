@@ -1,17 +1,19 @@
 <p
   alIsClamped
   #clamped="alIsClamped"
+  class="[&_a]:al-link"
   [ngClass]="{
     absolute: readMore(),
-    invisible: readMore()
+    invisible: readMore(),
   }"
   [className]="textClasses()"
   [innerHTML]="text()"
 ></p>
 
 <p
+  class="[&_a]:al-link"
   [ngClass]="{
-    '!hidden': !readMore()
+    '!hidden': !readMore(),
   }"
   [className]="textClasses() + ' !line-clamp-none'"
   [innerHTML]="text()"
