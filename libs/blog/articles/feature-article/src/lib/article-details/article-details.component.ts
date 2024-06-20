@@ -1,6 +1,12 @@
 import { DatePipe } from '@angular/common';
-import { ChangeDetectionStrategy, Component, input } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  inject,
+  input,
+} from '@angular/core';
 
+import { AdBannerStore } from '@angular-love/blog/ad-banner/data-access';
 import { GiscusCommentsComponent } from '@angular-love/blog/articles/feature-comments';
 import { ArticleContentComponent } from '@angular-love/blog/articles/ui-article-content';
 import {
@@ -48,4 +54,6 @@ import { ArticleShareIconsComponent } from '../article-share-icons/article-share
 })
 export class ArticleDetailsComponent {
   articleDetails = input.required<Article>();
+  protected readonly adBannerStoreVisible =
+    inject(AdBannerStore).adBannerVisible;
 }

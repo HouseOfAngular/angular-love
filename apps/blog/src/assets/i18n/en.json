@@ -105,6 +105,9 @@
   "seo": {
     "metaDescription": "Angular.love - a place for all Angular enthusiasts created to inspire and educate."
   },
+  "adBanner": {
+    "registerButton": "Register for free"
+  },
   "search": {
     "no-matches": "No recent matches",
     "results": "results"

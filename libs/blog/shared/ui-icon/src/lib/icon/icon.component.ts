@@ -6,16 +6,18 @@ import {
 } from '@angular/core';
 
 export type IconType =
+  | 'calendar'
   | 'circle-check'
   | 'clock'
   | 'cross'
   | 'facebook'
+  | 'github-mark'
   | 'linkedIn'
+  | 'location-pin'
   | 'magnifier-glass'
   | 'send'
   | 'tick'
   | 'twitter-x'
-  | 'github-mark'
   | 'youtube';
 
 @Component({

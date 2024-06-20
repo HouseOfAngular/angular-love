@@ -17,6 +17,7 @@ import { TableOfContentsComponent } from './table-of-contents.component';
   selector: '[alTableOfContentsScrollSpy]',
 })
 export class TableOfContentsScrollSpyDirective {
+  adBannerVisible = input.required<boolean>();
   private readonly _ngZone = inject(NgZone);
   private readonly _tableOfContents = inject(TableOfContentsComponent);
   private readonly _destroyRef = inject(DestroyRef);
@@ -39,16 +40,19 @@ export class TableOfContentsScrollSpyDirective {
       ),
     );
 
+    const adBannerVisible$ = toObservable(this.adBannerVisible);
+
     const anchors$ = toObservable(this._tableOfContents.anchors);
 
-    combineLatest([scrollEvent$, anchors$])
+    combineLatest([scrollEvent$, anchors$, adBannerVisible$])
       .pipe(
         takeUntilDestroyed(this._destroyRef),
         debounceTime(10),
-        map(([{ scrollY }, anchors]) =>
+        map(([{ scrollY }, anchors, adBannerVisible]) =>
           anchors.reduce((currentTitle, section) => {
+            const header = adBannerVisible ? 160 : 80;
             const element = document.getElementById(section.title);
-            const sectionTop = (element?.offsetTop ?? 0) - 16 - 80; // 16px padding, 80px header
+            const sectionTop = (element?.offsetTop ?? 0) - 16 - header; // 16px padding, 80px header
 
             return scrollY >= sectionTop ? section.title : currentTitle;
           }, anchors[0]?.title),

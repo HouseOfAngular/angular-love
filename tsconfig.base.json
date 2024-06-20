@@ -30,6 +30,9 @@
       "@angular-love/blog-contracts/shared": [
         "libs/blog-contracts/shared/src/index.ts"
       ],
+      "@angular-love/blog/ad-banner/data-access": [
+        "libs/blog/ad-banner/data-access/src/index.ts"
+      ],
       "@angular-love/blog/articles/data-access": [
         "libs/blog/articles/data-access/src/index.ts"
       ],
@@ -110,6 +113,9 @@
       ],
       "@angular-love/blog/search/feature-shell": [
         "libs/blog/search/feature-shell/src/index.ts"
+      ],
+      "@angular-love/blog/shared/ad-banner": [
+        "libs/blog/ad-banner/ui/src/index.ts"
       ],
       "@angular-love/blog/shared/types": [
         "libs/blog/shared/types/src/index.ts"
