@@ -1,4 +1,4 @@
-import { DatePipe } from '@angular/common';
+import { DatePipe, NgClass } from '@angular/common';
 import {
   ChangeDetectionStrategy,
   Component,
@@ -47,6 +47,7 @@ import { ArticleShareIconsComponent } from '../article-share-icons/article-share
     CardComponent,
     UiDifficultyComponent,
     ArticleShareIconsComponent,
+    NgClass,
   ],
   templateUrl: './article-details.component.html',
   styleUrls: ['./article-details.component.scss'],
