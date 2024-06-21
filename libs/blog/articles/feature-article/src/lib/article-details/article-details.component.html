@@ -45,7 +45,13 @@
     />
 
     @defer {
-      <div class="sticky top-24 mt-5 hidden flex-col gap-4 lg:flex">
+      <div
+        class="sticky top-24 mt-5 hidden flex-col gap-4 lg:flex"
+        [ngClass]="{
+          'top-24': !adBannerStoreVisible(),
+          'top-48': adBannerStoreVisible(),
+        }"
+      >
         @if (articleDetails().anchors.length) {
           <al-card alDarkCard>
             <div alCardContent>

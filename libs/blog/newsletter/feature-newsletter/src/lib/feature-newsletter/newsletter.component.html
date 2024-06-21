@@ -17,9 +17,12 @@
                 formControlName="email"
               />
               <button
-                class="bg-al-pink border-al-border h-[60px] w-[60px] rounded-r-md border p-5 text-white"
+                al-button
+                class="bg-al-pink rounded-l-none text-white"
                 [attr.aria-label]="t('submitLabel')"
+                [disabled]="!form.valid"
                 (click)="postEmailAddress()"
+                size="small"
               >
                 <al-icon name="send" class="block h-5 bg-white" />
               </button>

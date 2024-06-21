@@ -14,6 +14,7 @@ import { Router } from '@angular/router';
 import { TranslocoDirective } from '@ngneat/transloco';
 import { LocalizeRouterService } from '@penleychan/ngx-transloco-router';
 
+import { ButtonComponent } from '@angular-love/blog/shared/ui-button';
 import {
   CardComponent,
   GradientCardDirective,
@@ -30,6 +31,7 @@ import { NewsletterStore } from '@angular-love/data-access';
     ReactiveFormsModule,
     IconComponent,
     TranslocoDirective,
+    ButtonComponent,
   ],
   templateUrl: './newsletter.component.html',
   styleUrl: './newsletter.component.scss',
@@ -39,7 +41,10 @@ import { NewsletterStore } from '@angular-love/data-access';
 export class NewsletterComponent {
   protected readonly form = new FormGroup({
     email: new FormControl<string>('', {
-      validators: [Validators.required, Validators.email],
+      validators: [
+        Validators.required,
+        Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$'),
+      ],
     }),
     checkbox: new FormControl<boolean>(false, {
       validators: [Validators.requiredTrue],
