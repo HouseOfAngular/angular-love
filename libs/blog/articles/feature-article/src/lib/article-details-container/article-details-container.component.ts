@@ -1,8 +1,6 @@
 import {
   ChangeDetectionStrategy,
   Component,
-  effect,
-  HostBinding,
   inject,
   input,
 } from '@angular/core';
@@ -25,11 +23,10 @@ import { ArticleDetailsComponent } from '../article-details/article-details.comp
   changeDetection: ChangeDetectionStrategy.OnPush,
   host: {
     class: 'block w-full',
+    'aria-live': 'polite',
   },
 })
 export class ArticleDetailsContainerComponent {
-  @HostBinding('attr.aria-live') ariaLive = 'polite';
-
   private readonly articleDetailsStore = inject(ArticleDetailsStore);
 
   readonly articleSlug = input.required<string>();
@@ -44,10 +41,5 @@ export class ArticleDetailsContainerComponent {
 
   constructor() {
     this.articleDetailsStore.fetchArticleDetails(this.articleSlug);
-    effect(() => {
-      this.ariaLive = this.articleDetailsStore.isFetchArticleDetailsLoading()
-        ? 'polite'
-        : 'off';
-    });
   }
 }

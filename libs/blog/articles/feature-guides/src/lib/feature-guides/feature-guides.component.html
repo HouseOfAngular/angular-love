@@ -6,8 +6,8 @@
 
 <section
   aria-labelledby="angular-guides-title"
+  aria-live="polite"
   class="grid gap-8 md:grid-cols-2 lg:grid-cols-3"
-  [attr.aria-live]="articleStore.isFetchArticleListLoading() ? 'polite' : 'off'"
 >
   @if (articleStore.isFetchArticleListLoading()) {
     <!--    TODO: add article skleteon when ready-->

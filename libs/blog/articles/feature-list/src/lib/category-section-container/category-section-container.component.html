@@ -13,9 +13,9 @@
 
 <section
   *transloco="let t"
+  aria-live="polite"
   class="grid gap-8 md:grid-cols-2 lg:grid-cols-3"
   [attr.aria-label]="t(displayName())"
-  [attr.aria-live]="articleStore.isFetchArticleListLoading() ? 'polite' : 'off'"
 >
   @if (articleStore.isFetchArticleListLoading()) {
     <!--    TODO: add article skleteon when ready-->

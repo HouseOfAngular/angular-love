@@ -1,11 +1,5 @@
 <al-card alGradientCard>
-  <section
-    alCardContent
-    aria-labelledby="newsletter-title"
-    [attr.aria-live]="
-      newsletterStore.loading() === 'loading' ? 'assertive' : 'off'
-    "
-  >
+  <section alCardContent aria-labelledby="newsletter-title" aria-live="polite">
     <ng-container *transloco="let t; read: 'newsletter'">
       <form role="form" [formGroup]="form">
         <div class="flex flex-col">
