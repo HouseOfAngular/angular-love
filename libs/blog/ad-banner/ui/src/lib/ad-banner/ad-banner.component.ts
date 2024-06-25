@@ -4,7 +4,7 @@ import {
   input,
   output,
 } from '@angular/core';
-import { TranslocoDirective } from '@ngneat/transloco';
+import { TranslocoDirective } from '@jsverse/transloco';
 
 import { IconComponent } from '@angular-love/blog/shared/ui-icon';
 

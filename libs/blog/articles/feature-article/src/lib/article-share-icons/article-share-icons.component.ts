@@ -1,5 +1,5 @@
 import { Component, computed, input } from '@angular/core';
-import { TranslocoDirective } from '@ngneat/transloco';
+import { TranslocoDirective } from '@jsverse/transloco';
 
 import { IconComponent, IconType } from '@angular-love/blog/shared/ui-icon';
 

@@ -1,5 +1,5 @@
 import { inject } from '@angular/core';
-import { TranslocoService } from '@ngneat/transloco';
+import { TranslocoService } from '@jsverse/transloco';
 
 // Workaround for dynamic locale id
 // Source from open github issue: https://github.com/angular/angular/issues/47637

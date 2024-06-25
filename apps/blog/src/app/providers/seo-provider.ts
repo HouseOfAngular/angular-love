@@ -3,7 +3,7 @@ import {
   inject,
   makeEnvironmentProviders,
 } from '@angular/core';
-import { TranslocoService } from '@ngneat/transloco';
+import { TranslocoService } from '@jsverse/transloco';
 import { map } from 'rxjs';
 
 import { provideSeo } from '@angular-love/seo';

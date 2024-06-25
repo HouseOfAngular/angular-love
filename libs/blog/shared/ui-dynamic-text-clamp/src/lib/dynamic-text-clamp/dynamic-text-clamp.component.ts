@@ -5,7 +5,7 @@ import {
   input,
   signal,
 } from '@angular/core';
-import { TranslocoDirective } from '@ngneat/transloco';
+import { TranslocoDirective } from '@jsverse/transloco';
 
 import { ButtonComponent } from '@angular-love/blog/shared/ui-button';
 

@@ -2,7 +2,7 @@ import { NgClass, ViewportScroller } from '@angular/common';
 import { Component, computed, effect, inject, signal } from '@angular/core';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { RouterOutlet } from '@angular/router';
-import { TranslocoService } from '@ngneat/transloco';
+import { TranslocoService } from '@jsverse/transloco';
 import { LocalizeRouterService } from '@penleychan/ngx-transloco-router';
 import { startWith } from 'rxjs';
 

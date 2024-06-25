@@ -5,7 +5,7 @@ import {
   computed,
   input,
 } from '@angular/core';
-import { TranslocoDirective } from '@ngneat/transloco';
+import { TranslocoDirective } from '@jsverse/transloco';
 
 export type UiDifficulty = 'beginner' | 'intermediate' | 'advanced';
 
@@ -21,7 +21,7 @@ export type UiDifficulty = 'beginner' | 'intermediate' | 'advanced';
         class="flex items-center self-stretch rounded-l-md text-center align-middle"
         [ngClass]="{
           'bg-al-background': isColorBackground(),
-          'bg-al-border': !isColorBackground()
+          'bg-al-border': !isColorBackground(),
         }"
       >
         <span
@@ -40,7 +40,7 @@ export type UiDifficulty = 'beginner' | 'intermediate' | 'advanced';
             class="mx-1 inline-block h-4 w-4 rounded-full bg-transparent"
             [ngClass]="{
               'shadow-al-full-background': isColorBackground(),
-              'shadow-al-full-border': !isColorBackground()
+              'shadow-al-full-border': !isColorBackground(),
             }"
           ></div>
 
@@ -51,7 +51,7 @@ export type UiDifficulty = 'beginner' | 'intermediate' | 'advanced';
               [ngClass]="{
                 'bg-green-500': difficultyLevel() === 0,
                 'bg-yellow-500': difficultyLevel() === 1,
-                'bg-red-500': difficultyLevel() === 2
+                'bg-red-500': difficultyLevel() === 2,
               }"
             ></div>
           } @else {
@@ -60,7 +60,7 @@ export type UiDifficulty = 'beginner' | 'intermediate' | 'advanced';
               class="absolute left-1/2 top-1/2 h-3 w-3 -translate-x-1/2 -translate-y-1/2 transform rounded-full"
               [ngClass]="{
                 'bg-al-background': isColorBackground(),
-                'bg-al-border': !isColorBackground()
+                'bg-al-border': !isColorBackground(),
               }"
             ></div>
           }
@@ -72,7 +72,7 @@ export type UiDifficulty = 'beginner' | 'intermediate' | 'advanced';
         class="flex items-center self-stretch rounded-r-md pr-1 text-center align-middle"
         [ngClass]="{
           'bg-al-background': isColorBackground(),
-          'bg-al-border': !isColorBackground()
+          'bg-al-border': !isColorBackground(),
         }"
       ></div>
     </div>
