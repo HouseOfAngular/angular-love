@@ -1,15 +1,21 @@
 <ng-container *transloco="let t; read: 'aboutUsPage'">
   <al-breadcrumb [pageName]="t('breadcrumb')" />
 
-  <h1 class="mb-8 text-[40px] font-bold">
+  <h2 class="mb-8 text-[40px] font-bold">
     {{ t('title') }}
-  </h1>
+  </h2>
 
   <al-card>
-    <div alCardContent class="flex flex-col p-2 lg:flex-row">
+    <section
+      alCardContent
+      aria-labelledby="angular-love"
+      class="flex flex-col p-2 lg:flex-row"
+    >
       <div class="mr-14 flex w-full flex-col items-start">
         <p class="mb-3">
-          <span class="font-bold">Angular.love&#160;</span>
+          <strong id="angular-love" class="font-bold">
+            Angular.love&#160;
+          </strong>
 
           <span>{{ t('card.description1') }}</span>
         </p>
@@ -24,16 +30,16 @@
         <al-social-media-icons class="mt-6" />
       </div>
       <al-newsletter class="hidden lg:block" />
-    </div>
+    </section>
   </al-card>
 
   <al-card alGradientCard class="mt-6 block md:mt-8 lg:hidden">
     <al-newsletter alCardContent />
   </al-card>
 
-  <h1 class="mb-8 mt-10 text-[40px] font-bold">
+  <h2 class="mb-8 mt-10 text-[40px] font-bold">
     {{ t('authorsTitle') }}
-  </h1>
+  </h2>
 </ng-container>
 
 @for (author of authorsCards(); track author.slug) {

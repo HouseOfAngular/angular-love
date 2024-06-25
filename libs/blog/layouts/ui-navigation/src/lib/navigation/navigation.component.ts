@@ -12,7 +12,6 @@ import { LocalizeRouterModule } from '@penleychan/ngx-transloco-router';
 export type NavItem = {
   translationPath: string;
   link: string[];
-  ariaLabel: string;
   externalLink?: boolean;
 };
 
@@ -38,18 +37,15 @@ export class NavigationComponent {
     {
       translationPath: 'nav.about',
       link: ['about-us'],
-      ariaLabel: 'Navigate to about us page',
     },
     {
       translationPath: 'nav.meetups',
       link: ['https://meetup.angular.love/'],
-      ariaLabel: 'Navigate to Angular meetups page',
       externalLink: true,
     },
     {
       translationPath: 'nav.become_author',
       link: ['become-author'],
-      ariaLabel: 'Navigate to become an author page',
     },
   ];
 }

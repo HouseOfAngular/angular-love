@@ -1,8 +1,14 @@
 <al-breadcrumb pageName="Angular Guides" />
 
-<h1 class="mb-8 text-4xl font-bold">Angular Guides</h1>
+<h2 id="angular-guides-title" class="mb-8 text-4xl font-bold">
+  Angular Guides
+</h2>
 
-<div class="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+<section
+  aria-labelledby="angular-guides-title"
+  class="grid gap-8 md:grid-cols-2 lg:grid-cols-3"
+  [attr.aria-live]="articleStore.isFetchArticleListLoading() ? 'polite' : 'off'"
+>
   @if (articleStore.isFetchArticleListLoading()) {
     <!--    TODO: add article skleteon when ready-->
     <!--    <al-article-card-skeleton *alRepeat="6" class="h-[438px]" />-->
@@ -11,7 +17,7 @@
       <al-article-card [article]="article" cardType="regular" />
     }
   }
-</div>
+</section>
 
 <footer class="bg-al-card mt-16 rounded-lg border px-1 py-5">
   <al-pagination

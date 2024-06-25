@@ -1,13 +1,13 @@
 <al-card alGradientCard>
-  <div alCardContent class="@container">
+  <section alCardContent aria-labelledby="author-ad-title" class="@container">
     <div
       *transloco="let t; read: 'becomeAuthorPage.becomeAuthorCard'"
       class="@xl:flex-row flex flex-col"
     >
       <div>
-        <p class="text-2xl font-bold lg:text-4xl">
+        <h3 id="author-ad-title" class="text-2xl font-bold lg:text-4xl">
           {{ t('title') }}
-        </p>
+        </h3>
         <p class="py-4 text-base">
           {{ t('description') }}
         </p>
@@ -16,7 +16,6 @@
         class="@xl:justify-end my-2 flex w-full flex-row items-center justify-center"
       >
         <a
-          aria-label="fill out the form"
           class="bg-al-pink flex h-[46px] w-full items-center justify-center rounded-lg md:w-4/5 lg:w-full"
           href="https://form.typeform.com/to/Zzf1Girt?typeform-source=angular.love"
           target="_blank"
@@ -27,5 +26,5 @@
         </a>
       </div>
     </div>
-  </div>
+  </section>
 </al-card>

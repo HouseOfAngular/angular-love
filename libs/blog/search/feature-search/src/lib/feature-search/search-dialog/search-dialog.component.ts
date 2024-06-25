@@ -1,7 +1,9 @@
+import { LiveAnnouncer } from '@angular/cdk/a11y';
 import {
   ChangeDetectionStrategy,
   Component,
   DestroyRef,
+  effect,
   ElementRef,
   HostListener,
   inject,
@@ -12,7 +14,7 @@ import {
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { FormControl, ReactiveFormsModule, Validators } from '@angular/forms';
 import { NavigationEnd, Router, RouterLink } from '@angular/router';
-import { TranslocoDirective } from '@ngneat/transloco';
+import { TranslocoDirective, TranslocoService } from '@ngneat/transloco';
 import {
   LocalizeRouterModule,
   LocalizeRouterService,
@@ -75,6 +77,25 @@ export class SearchDialogComponent implements OnInit, OnDestroy {
   ): void {
     e.preventDefault();
     this.closeSearch();
+  }
+
+  constructor(
+    private _liveAnnouncer: LiveAnnouncer,
+    private _translocoService: TranslocoService,
+  ) {
+    effect(() => {
+      if (this.searchStore.total()) {
+        this._liveAnnouncer.announce(
+          this._translocoService.translate('search.results', {
+            total: this.searchStore.total(),
+          }),
+        );
+      } else {
+        this._liveAnnouncer.announce(
+          this._translocoService.translate('no-matches'),
+        );
+      }
+    });
   }
 
   ngOnInit(): void {

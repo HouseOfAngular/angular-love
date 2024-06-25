@@ -1,11 +1,12 @@
 <a [routerLink]="['/', article().slug] | localize">
-  <div
+  <article
     class="group relative flex h-full w-full rounded-lg shadow-none"
     [ngClass]="{
       'hover:shadow-al-primary flex-col transition-transform hover:scale-105 motion-reduce:transition-none motion-reduce:hover:scale-100':
         layout() === 'regular',
       'flex-row': layout() === 'horizontal',
     }"
+    [attr.aria-labelledby]="article().slug"
   >
     @if (layout() === 'regular') {
       <div
@@ -41,7 +42,12 @@
           </div>
           <div class="flex items-center gap-2">
             <al-icon name="clock" class="h-4 bg-white" />
-            <p class="text-sm/[14px]">{{ article().readingTime }}min</p>
+            <time
+              class="text-sm/[14px]"
+              [attr.datetime]="'PT' + article().readingTime + 'M'"
+            >
+              {{ article().readingTime }}min
+            </time>
           </div>
         </div>
         <div class="flex items-center justify-between self-start px-4 pt-4">
@@ -74,10 +80,11 @@
           'px-6 pt-8': layout() === 'horizontal',
         }"
       >
-        <p
+        <h3
           class="*:text-al-pink line-clamp-2 text-2xl font-bold *:not-italic"
+          [id]="article().slug"
           [innerHTML]="sanitizedArticle().title"
-        ></p>
+        ></h3>
         <p
           class="*:text-al-pink line-clamp-3 *:font-medium *:not-italic"
           [ngClass]="{
@@ -87,5 +94,5 @@
         ></p>
       </div>
     </div>
-  </div>
+  </article>
 </a>

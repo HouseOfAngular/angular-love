@@ -51,11 +51,12 @@ export class NewsletterComponent {
     }),
   });
 
-  private readonly _newsletterStore = inject(NewsletterStore);
+  readonly newsletterStore = inject(NewsletterStore);
+
   private readonly _router = inject(Router);
   private readonly _localizeRouter = inject(LocalizeRouterService);
   private readonly _onSuccess = effect(() => {
-    if (this._newsletterStore.loading() === 'success') {
+    if (this.newsletterStore.loading() === 'success') {
       this._router.navigate(
         this._localizeRouter.translateRoute(['/newsletter']) as string[],
         {
@@ -69,10 +70,10 @@ export class NewsletterComponent {
 
   postEmailAddress(): void {
     // TODO: find good approach to handle with invalid form - alert in not acceptable - in parallel with error state handling
-    if (!this.form.valid || this._newsletterStore.loading() === 'loading') {
+    if (!this.form.valid || this.newsletterStore.loading() === 'loading') {
       return;
     }
-    this._newsletterStore.postEmailAddress(
+    this.newsletterStore.postEmailAddress(
       this.form.controls['email'].getRawValue() as string,
     );
   }

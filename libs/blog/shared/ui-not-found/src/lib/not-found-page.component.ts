@@ -10,17 +10,21 @@ import { ButtonComponent } from '@angular-love/blog/shared/ui-button';
   standalone: true,
   imports: [NgOptimizedImage, ButtonComponent, RouterLink, TranslocoDirective],
   template: `
-    <section class="mx-2 mt-4 grid grid-cols-3 gap-8 md:mx-12">
+    <section
+      aria-labelledby="not-found-title"
+      class="mx-2 mt-4 grid grid-cols-3 gap-8 md:mx-12"
+    >
       <div
         *transloco="let t; read: 'notFoundPage'"
         class="col-span-3 self-center lg:col-span-1"
       >
-        <span
+        <h2
+          id="not-found-title"
           class="flex justify-center break-words text-9xl font-extrabold lg:justify-normal"
           [attr.aria-label]="t('ariaLabels.title')"
         >
           {{ t('title') }}
-        </span>
+        </h2>
         <p
           class="mx-auto my-8 max-w-xl text-center font-thin lg:text-start"
           [attr.aria-label]="t('ariaLabels.description')"
@@ -40,7 +44,7 @@ import { ButtonComponent } from '@angular-love/blog/shared/ui-button';
       </div>
 
       <img
-        alt="Not Found Image"
+        alt=""
         class="-order-1 col-span-3 lg:order-1 lg:col-span-2"
         ngSrc="assets/not-found.svg"
         width="1200"

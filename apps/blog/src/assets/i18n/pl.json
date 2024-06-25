@@ -11,7 +11,8 @@
     "home": "Strona Główna",
     "about": "O nas",
     "meetups": "Angular Meetups",
-    "become_author": "Zostań autorem"
+    "become_author": "Zostań autorem",
+    "navLinks": "Menu"
   },
   "home": {
     "latest": "Latest articles"
@@ -113,11 +114,23 @@
   },
   "search": {
     "no-matches": "Brak wyników",
-    "results": "wyników"
+    "results": "{{total}} wyników"
   },
   "pagination": {
+    "title": "Wybór strony",
     "previous": "Poprzednia strona",
     "next": "Następna strona",
-    "page": "Strona"
+    "navigateTo": "Przejdź do strony numer {{pageNo}}"
+  },
+  "iconButtons": {
+    "close": "Zamknij",
+    "changeLangToPolish": "Zmień język na polski",
+    "changeLangToEnglish": "Zmień język na angielski"
+  },
+  "socialLinks": {
+    "facebook": "Polub nas na Facebooku",
+    "twitter-x": "Obserwuj nas na X (dawniej Twitter)",
+    "linkedIn": "Obserwuj nas na LinkedInie",
+    "youtube": "Subskrybuj nasz kanał na YouTube"
   }
 }

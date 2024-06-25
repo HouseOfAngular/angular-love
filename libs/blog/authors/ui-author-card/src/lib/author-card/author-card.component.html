@@ -1,41 +1,46 @@
-<al-author-card-template>
-  <ng-container author-info-card>
-    @if (linkable()) {
-      <a [routerLink]="['/', 'author', author().slug] | localize">
+<article [attr.aria-labelledby]="'author-title-' + author().slug">
+  <al-author-card-template>
+    <ng-container author-info-card>
+      @if (linkable()) {
+        <a [routerLink]="['/', 'author', author().slug] | localize">
+          <ng-container *ngTemplateOutlet="avatar" />
+        </a>
+      } @else {
         <ng-container *ngTemplateOutlet="avatar" />
-      </a>
-    } @else {
-      <ng-container *ngTemplateOutlet="avatar" />
-    }
-
-    <span class="line-clamp-2 text-sm/none">{{ author().position }}</span>
-
-    <div class="flex gap-4">
-      @for (social of socials(); track $index) {
-        <al-social-media-icon-item [socialMediaConfig]="social" />
       }
-    </div>
-  </ng-container>
 
-  <ng-container author-info-description>
-    @defer {
-      <al-dynamic-text-clamp
-        [text]="author().description"
-        [textClasses]="descriptionClass()"
-      />
-    } @placeholder {
-      <div class="hidden">
-        {{ author().description }}
+      <span class="line-clamp-2 text-sm/none">{{ author().position }}</span>
+
+      <div class="flex gap-4">
+        @for (social of socials(); track $index) {
+          <al-social-media-icon-item [socialMediaConfig]="social" />
+        }
       </div>
-    }
-  </ng-container>
-</al-author-card-template>
+    </ng-container>
 
-<ng-template #avatar>
-  <div class="flex flex-col items-center gap-4">
-    <al-avatar [imageSrc]="author().avatarUrl" size="md" />
-    <span class="line-clamp-2 font-bold leading-none">
-      {{ author().name }}
-    </span>
-  </div>
-</ng-template>
+    <ng-container author-info-description>
+      @defer {
+        <al-dynamic-text-clamp
+          [text]="author().description"
+          [textClasses]="descriptionClass()"
+        />
+      } @placeholder {
+        <div class="hidden">
+          {{ author().description }}
+        </div>
+      }
+    </ng-container>
+  </al-author-card-template>
+
+  <ng-template #avatar>
+    <div class="flex flex-col items-center gap-4">
+      <al-avatar [imageSrc]="author().avatarUrl" size="md" />
+      <span
+        class="line-clamp-2 font-bold leading-none"
+        [id]="'author-title-' + author().slug"
+      >
+        {{ author().name }}
+      </span>
+    </div>
+  </ng-template>
+</article>

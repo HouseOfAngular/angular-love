@@ -1,3 +1,4 @@
+import { A11yModule } from '@angular/cdk/a11y';
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { TranslocoDirective } from '@ngneat/transloco';
@@ -15,11 +16,14 @@ import { IconComponent } from '@angular-love/blog/shared/ui-icon';
     LocalizeRouterModule,
     ButtonComponent,
     TranslocoDirective,
+    A11yModule,
   ],
   template: `
     <div
       *transloco="let t; read: 'newsletterPage'"
       class="flex flex-col items-center justify-center py-5 text-center"
+      [cdkTrapFocusAutoCapture]="true"
+      cdkTrapFocus
     >
       <al-icon name="circle-check" class="mb-2 h-20 bg-white" />
       <h2 class="my-2 text-2xl font-bold">
@@ -29,7 +33,9 @@ import { IconComponent } from '@angular-love/blog/shared/ui-icon';
         {{ t('description') }}
       </p>
       <a [routerLink]="['/'] | localize">
-        <button al-button>{{ t('button') }}</button>
+        <button al-button type="button" cdkFocusInitial>
+          {{ t('button') }}
+        </button>
       </a>
     </div>
   `,

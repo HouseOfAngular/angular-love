@@ -2,6 +2,8 @@ import {
   ChangeDetectionStrategy,
   Component,
   computed,
+  effect,
+  HostBinding,
   inject,
   input,
   signal,
@@ -43,6 +45,8 @@ import { RepeatDirective } from '@angular-love/utils';
   },
 })
 export class FeatureAuthorComponent {
+  @HostBinding('aria-live') ariaLive = 'polite';
+
   readonly pageSize = 12;
 
   readonly authorSlug = input.required<string>();
@@ -61,6 +65,12 @@ export class FeatureAuthorComponent {
       ...this.pagination(),
       authorSlug: this.authorSlug(),
     }));
+
+    effect(() => {
+      this.ariaLive = this.articleStore.isFetchArticleListLoading()
+        ? 'polite'
+        : 'off';
+    });
 
     this.articleStore.fetchArticleList(fetchArticlesQuery);
     this.authorDetailsStore.fetchAuthorDetails(this.authorSlug);

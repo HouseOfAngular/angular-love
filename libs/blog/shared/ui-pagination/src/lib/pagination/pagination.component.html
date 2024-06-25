@@ -1,13 +1,14 @@
 <nav *transloco="let t; read: 'pagination'" aria-label="Pagination">
   <ul class="flex w-full flex-wrap items-center">
     <div class="flex basis-full items-center justify-center gap-1">
-      <li>
+      <li
+        [ngClass]="{
+          invisible: store.disabledPrevious(),
+        }"
+      >
         <button
           al-button
           class="!p-2"
-          [ngClass]="{
-            invisible: store.disabledPrevious(),
-          }"
           [attr.aria-disabled]="store.disabledPrevious()"
           [attr.aria-label]="t('previous')"
           [disabled]="store.disabledPrevious()"
@@ -18,12 +19,20 @@
         </button>
       </li>
 
-      @for (page of store.pages(); track page.index) {
+      @for (
+        page of store.pages();
+        track page.index;
+        let i = $index;
+        let isLast = $last
+      ) {
         <li>
           <button
             al-button
             class="flex justify-center !p-2 text-sm leading-none"
-            [attr.aria-label]="page.label + ' ' + t('page')"
+            [attr.aria-label]="
+              t('navigateTo', { pageNo: isLast ? page.label : i + 1 })
+            "
+            [attr.aria-posinset]="isLast ? page.label : i + 1"
             [variant]="page.isActive ? 'Primary' : 'Secondary'"
             (click)="setPage(page.index)"
           >
