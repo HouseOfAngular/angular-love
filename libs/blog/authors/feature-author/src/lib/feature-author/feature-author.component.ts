@@ -6,7 +6,7 @@ import {
   input,
   signal,
 } from '@angular/core';
-import { TranslocoDirective } from '@ngneat/transloco';
+import { TranslocoDirective } from '@jsverse/transloco';
 
 import { ArticleListStore } from '@angular-love/blog/articles/data-access';
 import { UiArticleCardComponent } from '@angular-love/blog/articles/ui-article-card';

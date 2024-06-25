@@ -1,5 +1,5 @@
 import { inject, Injectable } from '@angular/core';
-import { TranslocoService } from '@ngneat/transloco';
+import { TranslocoService } from '@jsverse/transloco';
 
 import { AlgoliaClientService } from '@angular-love/shared/utils-algolia';
 import { convertLangToLocale } from '@angular-love/shared/utils-i18n';

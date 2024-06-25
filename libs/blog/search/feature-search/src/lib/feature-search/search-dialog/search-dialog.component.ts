@@ -12,7 +12,7 @@ import {
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { FormControl, ReactiveFormsModule, Validators } from '@angular/forms';
 import { NavigationEnd, Router, RouterLink } from '@angular/router';
-import { TranslocoDirective } from '@ngneat/transloco';
+import { TranslocoDirective } from '@jsverse/transloco';
 import {
   LocalizeRouterModule,
   LocalizeRouterService,

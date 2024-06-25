@@ -11,7 +11,7 @@ import {
   Validators,
 } from '@angular/forms';
 import { Router } from '@angular/router';
-import { TranslocoDirective } from '@ngneat/transloco';
+import { TranslocoDirective } from '@jsverse/transloco';
 import { LocalizeRouterService } from '@penleychan/ngx-transloco-router';
 
 import { ButtonComponent } from '@angular-love/blog/shared/ui-button';

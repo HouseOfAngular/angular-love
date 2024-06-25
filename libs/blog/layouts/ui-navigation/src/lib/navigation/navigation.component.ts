@@ -6,7 +6,7 @@ import {
   output,
 } from '@angular/core';
 import { RouterLink, RouterLinkActive } from '@angular/router';
-import { TranslocoDirective } from '@ngneat/transloco';
+import { TranslocoDirective } from '@jsverse/transloco';
 import { LocalizeRouterModule } from '@penleychan/ngx-transloco-router';
 
 export type NavItem = {

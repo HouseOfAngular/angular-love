@@ -3,7 +3,7 @@ import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import localePl from '@angular/common/locales/pl';
 import { importProvidersFrom, LOCALE_ID } from '@angular/core';
 import { Routes } from '@angular/router';
-import { provideTransloco } from '@ngneat/transloco';
+import { provideTransloco } from '@jsverse/transloco';
 import {
   LOCALIZE_ROUTER_CONFIG,
   localizeRouterConfig,

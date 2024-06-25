@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { RouterLink } from '@angular/router';
-import { TranslocoDirective } from '@ngneat/transloco';
+import { TranslocoDirective } from '@jsverse/transloco';
 import { LocalizeRouterModule } from '@penleychan/ngx-transloco-router';
 
 import { ButtonComponent } from '@angular-love/blog/shared/ui-button';
