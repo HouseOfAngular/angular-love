@@ -70,7 +70,8 @@
     "description": "Dołącz do grupy osób, które chcą się rozwijać i być na bieżąco!",
     "emailPlaceholder": "Twój e-mail",
     "submitLabel": "Wyślij i zapisz się na newsletter",
-    "consent": "Wyrażam zgodę na przetwarzanie mojego adresu e-mail przez Angular.love w celu wysyłki newslettera."
+    "consent": "Wyrażam zgodę na przetwarzanie mojego adresu e-mail przez Angular.love w celu wysyłki newslettera.",
+    "error": "Ups... coś poszło nie tak. Spróbuj ponownie."
   },
   "newsletterPage": {
     "title": "Pomyślnie zapisałeś się na newsletter!",

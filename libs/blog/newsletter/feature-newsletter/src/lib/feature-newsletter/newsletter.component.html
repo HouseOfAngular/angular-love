@@ -38,19 +38,24 @@
               />
               <label
                 id="newsletter-label"
-                class="text-al-muted flex flex-row peer-checked:[&>div>div]:block"
+                class="text-al-muted flex flex-col peer-checked:[&>div>div>div]:block"
                 for="newsletter-checkbox"
               >
-                <div
-                  class="border-al-muted mr-2 mt-1 flex aspect-square h-[14px] items-center justify-center rounded border"
-                >
+                @if (newsletterStoreLoading() === 'error') {
+                  <p class="font-bold">{{ t('error') }}</p>
+                }
+                <div class="flex">
                   <div
-                    class="bg-al-pink hidden h-[6px] w-[6px] rounded-sm"
-                  ></div>
+                    class="border-al-muted mr-2 mt-1 flex aspect-square h-[14px] items-center justify-center rounded border"
+                  >
+                    <div
+                      class="bg-al-pink hidden h-[6px] w-[6px] rounded-sm"
+                    ></div>
+                  </div>
+                  <span class="before:text-al-pink before:content-['*']">
+                    {{ t('consent') }}
+                  </span>
                 </div>
-                <span class="before:text-al-pink before:content-['*']">
-                  {{ t('consent') }}
-                </span>
               </label>
             </div>
           </fieldset>
