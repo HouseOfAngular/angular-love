@@ -47,8 +47,6 @@ const buttonVariants = cva(
   imports: [],
   templateUrl: './button.component.html',
   styleUrls: ['./button.component.scss'],
-  // TODO: Uncomment once https://github.com/angular-eslint/angular-eslint/pull/1772 is resolved
-  // eslint-disable-next-line @angular-eslint/no-host-metadata-property
   host: {
     '[class]': 'class()',
   },

@@ -41,24 +41,32 @@
               />
               <label
                 id="newsletter-label"
-                class="text-al-muted flex flex-row peer-checked:[&>div>div]:block"
+                class="text-al-muted flex flex-col peer-checked:[&>div>div>div]:block"
                 for="newsletter-checkbox"
               >
-                <div
-                  tabindex="0"
-                  aria-describedby="consent-text"
-                  role="checkbox"
-                  class="border-al-muted mr-2 mt-1 flex aspect-square h-[14px] items-center justify-center rounded border"
-                  [attr.aria-checked]="form.controls.checkbox.value"
-                  (keydown.enter)="
-                    form.controls['checkbox'].setValue(
-                      !form.controls['checkbox'].value
-                    )
-                  "
-                >
+                @if (newsletterStoreLoading() === 'error') {
+                  <p class="font-bold">{{ t('error') }}</p>
+                }
+                <div class="flex">
                   <div
-                    class="bg-al-pink hidden h-[6px] w-[6px] rounded-sm"
-                  ></div>
+                    tabindex="0"
+                    aria-describedby="consent-text"
+                    role="checkbox"
+                    class="border-al-muted mr-2 mt-1 flex aspect-square h-[14px] items-center justify-center rounded border"
+                    [attr.aria-checked]="form.controls.checkbox.value"
+                    (keydown.enter)="
+                      form.controls['checkbox'].setValue(
+                        !form.controls['checkbox'].value
+                      )
+                    "
+                  >
+                    <div
+                      class="bg-al-pink hidden h-[6px] w-[6px] rounded-sm"
+                    ></div>
+                  </div>
+                  <span class="before:text-al-pink before:content-['*']">
+                    {{ t('consent') }}
+                  </span>
                 </div>
                 <span
                   id="consent-text"

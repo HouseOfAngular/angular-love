@@ -34,7 +34,6 @@ import { NewsletterStore } from '@angular-love/data-access';
     ButtonComponent,
   ],
   templateUrl: './newsletter.component.html',
-  styleUrl: './newsletter.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
   providers: [NewsletterStore],
 })
@@ -51,29 +50,29 @@ export class NewsletterComponent {
     }),
   });
 
-  readonly newsletterStore = inject(NewsletterStore);
-
+  private readonly _newsletterStore = inject(NewsletterStore);
   private readonly _router = inject(Router);
   private readonly _localizeRouter = inject(LocalizeRouterService);
   private readonly _onSuccess = effect(() => {
-    if (this.newsletterStore.loading() === 'success') {
-      this._router.navigate(
-        this._localizeRouter.translateRoute(['/newsletter']) as string[],
-        {
-          queryParams: {
-            nm: 'confirmed',
-          },
+    if (this.newsletterStoreLoading() !== 'success') return;
+    this._router.navigate(
+      this._localizeRouter.translateRoute(['/newsletter']) as string[],
+      {
+        queryParams: {
+          nm: 'confirmed',
         },
-      );
-    }
+      },
+    );
   });
+
+  protected readonly newsletterStoreLoading = this._newsletterStore.loading;
 
   postEmailAddress(): void {
     // TODO: find good approach to handle with invalid form - alert in not acceptable - in parallel with error state handling
-    if (!this.form.valid || this.newsletterStore.loading() === 'loading') {
+    if (!this.form.valid || this._newsletterStore.loading() === 'loading') {
       return;
     }
-    this.newsletterStore.postEmailAddress(
+    this._newsletterStore.postEmailAddress(
       this.form.controls['email'].getRawValue() as string,
     );
   }
