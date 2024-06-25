@@ -24,8 +24,6 @@ export type AdBanner = {
   imports: [IconComponent, TranslocoDirective],
   templateUrl: './ad-banner.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
-  // TODO: Uncomment once https://github.com/angular-eslint/angular-eslint/pull/1772 is resolved
-  // eslint-disable-next-line @angular-eslint/no-host-metadata-property
   host: {
     class: 'block w-full bg-al-card',
   },
