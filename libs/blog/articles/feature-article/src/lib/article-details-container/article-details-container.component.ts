@@ -28,7 +28,7 @@ import { ArticleDetailsComponent } from '../article-details/article-details.comp
   },
 })
 export class ArticleDetailsContainerComponent {
-  @HostBinding('aria-live') ariaLive = 'polite';
+  @HostBinding('attr.aria-live') ariaLive = 'polite';
 
   private readonly articleDetailsStore = inject(ArticleDetailsStore);
 

@@ -45,7 +45,7 @@ import { RepeatDirective } from '@angular-love/utils';
   },
 })
 export class FeatureAuthorComponent {
-  @HostBinding('aria-live') ariaLive = 'polite';
+  @HostBinding('attr.aria-live') ariaLive = 'polite';
 
   readonly pageSize = 12;
 
