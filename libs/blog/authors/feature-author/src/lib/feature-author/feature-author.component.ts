@@ -40,7 +40,6 @@ import { RepeatDirective } from '@angular-love/utils';
   changeDetection: ChangeDetectionStrategy.OnPush,
   host: {
     class: 'flex flex-col h-full w-full',
-    'aria-live': 'polite',
   },
 })
 export class FeatureAuthorComponent {

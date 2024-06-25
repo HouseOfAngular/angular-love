@@ -19,7 +19,7 @@
   {{ t('posted_by', { name: authorName() }) }}
 </span>
 
-<div class="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+<div aria-live="polite" class="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
   @if (articleStore.isFetchArticleListLoading()) {
     <!--    TODO: add article skleteon when ready-->
     <!--    <al-article-card-skeleton *alRepeat="6" class="h-[438px]" />-->
