@@ -1,5 +1,8 @@
 @if (item(); as item) {
-  <div class="flex w-full justify-between">
+  <article
+    class="flex w-full justify-between"
+    [attr.aria-label]="item.rawTitle"
+  >
     <div class="flex items-center gap-2">
       <img
         alt="Author Image"
@@ -12,11 +15,11 @@
     </div>
 
     <div class="flex items-center gap-4">
-      <span class="mr-4">{{ item.publishDate }}</span>
+      <time class="mr-4">{{ item.publishDate }}</time>
       <al-icon name="clock" class="h-4 bg-white" />
       <span>{{ item.readingTime }} min</span>
     </div>
-  </div>
+  </article>
 
   <p class="mt-6 text-lg">{{ item.rawTitle }}</p>
 }

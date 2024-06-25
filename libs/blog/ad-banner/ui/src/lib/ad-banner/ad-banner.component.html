@@ -1,8 +1,14 @@
-<div #adBanner class="bg-al-radial-gradient w-full">
+<aside
+  #adBanner
+  aria-labelledby="banner-title"
+  class="bg-al-radial-gradient w-full"
+>
   <div class="mx-auto flex max-w-screen-xl justify-between py-4">
     <div>
       <div class="flex flex-row">
-        <h3 class="text-2xl font-semibold">{{ data().title }}</h3>
+        <h2 id="banner-title" class="text-2xl font-semibold">
+          {{ data().title }}
+        </h2>
         <span
           class="text-al-pink ml-3 flex items-center rounded bg-white px-2 text-lg font-bold"
         >
@@ -12,16 +18,28 @@
       <p>{{ data().description }}</p>
     </div>
     <div class="flex flex-row items-center gap-8">
-      <p class="flex flex-row items-center">
-        <al-icon name="clock" class="mr-2 inline-block h-4 bg-white" />
+      <time class="flex flex-row items-center">
+        <al-icon
+          name="clock"
+          aria-hidden="true"
+          class="mr-2 inline-block h-4 bg-white"
+        />
         {{ data().time }}
-      </p>
-      <p class="flex flex-row items-center">
-        <al-icon name="calendar" class="mr-2 inline-block h-4 bg-white" />
+      </time>
+      <time class="flex flex-row items-center">
+        <al-icon
+          name="calendar"
+          aria-hidden="true"
+          class="mr-2 inline-block h-4 bg-white"
+        />
         {{ data().date }}
-      </p>
-      <p class="flex flex-row items-center">
-        <al-icon name="location-pin" class="mr-2 inline-block h-4 bg-white" />
+      </time>
+      <p role="note" class="flex flex-row items-center">
+        <al-icon
+          name="location-pin"
+          aria-hidden="true"
+          class="mr-2 inline-block h-4 bg-white"
+        />
         {{ data().location }}
       </p>
     </div>
@@ -37,9 +55,15 @@
           {{ t('registerButton') }}
         </p>
       </a>
-      <button class="ml-4 p-4" (click)="closed.emit()">
+      <button
+        *transloco="let t; read: 'iconButtons'"
+        type="button"
+        class="ml-4 p-4"
+        [attr.aria-label]="t('close')"
+        (click)="closed.emit()"
+      >
         <al-icon name="cross" class="block h-4 w-4 bg-white"></al-icon>
       </button>
     </div>
   </div>
-</div>
+</aside>

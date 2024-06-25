@@ -11,7 +11,8 @@
     "home": "Home Page",
     "about": "About us",
     "meetups": "Angular Meetups",
-    "become_author": "Become an author"
+    "become_author": "Become an author",
+    "navLinks": "Navigation links"
   },
   "authorPage": {
     "posted_by": "Posted by {{name}}"
@@ -111,11 +112,23 @@
   },
   "search": {
     "no-matches": "No recent matches",
-    "results": "results"
+    "results": "{{total}} results"
   },
   "pagination": {
+    "title": "Pagination",
     "previous": "Previous page",
     "next": "Next page",
-    "page": "Page"
+    "navigateTo": "Navigate to page number {{pageNo}}"
+  },
+  "iconButtons": {
+    "close": "Close",
+    "changeLangToPolish": "Change language to Polish",
+    "changeLangToEnglish": "Change language to English"
+  },
+  "socialLinks": {
+    "facebook": "Like our Facebook page",
+    "twitter-x": "Follow us on X (formerly Twitter)",
+    "linkedIn": "Follow us on LinkedIn",
+    "youtube": "Subscribe to our YouTube channel"
   }
 }

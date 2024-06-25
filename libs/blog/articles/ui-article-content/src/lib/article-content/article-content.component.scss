@@ -7,7 +7,7 @@
   margin-top: 1.6rem;
 }
 
-article {
+.blog-article-content {
   h1 {
     @apply text-3xl;
     @include heading-styles;

@@ -1,5 +1,6 @@
 <div class="mt-8 grid grid-cols-12 gap-y-10 lg:gap-x-10">
   <section
+    aria-labelledby="article-title"
     class="order-1 col-span-12 grid w-full gap-4 overflow-auto lg:col-span-8"
   >
     <div class="flex items-center text-sm">
@@ -19,9 +20,9 @@
       </div>
     </div>
 
-    <h1 class="flex text-[40px] font-bold">
+    <h2 id="article-title" class="flex text-[40px] font-bold">
       {{ articleDetails().title }}
-    </h1>
+    </h2>
 
     <div class="flex w-full flex-col gap-10 overflow-hidden">
       <al-article-content [content]="articleDetails().content" />

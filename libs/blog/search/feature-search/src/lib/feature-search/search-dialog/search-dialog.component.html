@@ -25,7 +25,7 @@
           <p>{{ t('no-matches') }}</p>
         </div>
       } @else {
-        <p>{{ searchStore.total() }} {{ t('results') }}</p>
+        <p>{{ t('results', { total: searchStore.total() }) }}</p>
         <ul class="max-h-[50vh] overflow-auto">
           @for (item of searchStore.items(); track item.slug) {
             <a [routerLink]="['/', item.slug] | localize">

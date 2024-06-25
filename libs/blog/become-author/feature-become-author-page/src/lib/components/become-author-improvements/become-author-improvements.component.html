@@ -1,18 +1,25 @@
-<section>
+<section aria-labelledby="improvements-title">
   <ng-container *transloco="let t; read: 'becomeAuthorPage.improvements'">
-    <p class="pb-2 text-2xl font-bold md:pb-4 md:text-2xl">
+    <h3
+      id="improvements-title"
+      class="pb-2 text-2xl font-bold md:pb-4 md:text-2xl"
+    >
       {{ t('title') }}
-    </p>
+    </h3>
     <p class="whitespace-pre-line pb-4 text-base md:pb-6">
       {{ t('description') }}
     </p>
   </ng-container>
 
-  @for (improvement of improvements(); track $index) {
-    <al-become-author-list-item
-      [index]="$index + 1"
-      [content]="improvement"
-      layout="curved"
-    />
-  }
+  <ol class="list-none">
+    @for (improvement of improvements(); track $index) {
+      <li>
+        <al-become-author-list-item
+          [index]="$index + 1"
+          [content]="improvement"
+          layout="curved"
+        />
+      </li>
+    }
+  </ol>
 </section>

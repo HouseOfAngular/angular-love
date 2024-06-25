@@ -11,6 +11,9 @@ importers:
       '@angular/animations':
         specifier: 18.0.0
         version: 18.0.0(@angular/core@18.0.0(rxjs@7.8.1)(zone.js@0.14.4))
+      '@angular/cdk':
+        specifier: ^18.0.4
+        version: 18.0.4(@angular/common@18.0.0(@angular/core@18.0.0(rxjs@7.8.1)(zone.js@0.14.4))(rxjs@7.8.1))(@angular/core@18.0.0(rxjs@7.8.1)(zone.js@0.14.4))(rxjs@7.8.1)
       '@angular/common':
         specifier: 18.0.0
         version: 18.0.0(@angular/core@18.0.0(rxjs@7.8.1)(zone.js@0.14.4))(rxjs@7.8.1)
@@ -517,6 +520,13 @@ packages:
         optional: true
       tailwindcss:
         optional: true
+
+  '@angular/cdk@18.0.4':
+    resolution: {integrity: sha512-OCG1EGv/nyZYGcSu7y6IAuarC5gZcZYhhvEQsgMUDrf1TGRSa+0dBN5W2HxRWKs6NsGgDjW1VcK+AC85PYLXPA==}
+    peerDependencies:
+      '@angular/common': ^18.0.0 || ^19.0.0
+      '@angular/core': ^18.0.0 || ^19.0.0
+      rxjs: ^6.5.3 || ^7.4.0
 
   '@angular/cli@18.0.3':
     resolution: {integrity: sha512-1i51QeLwLpIdBbwOANSLFAuqXOGRpvSHCuZo1SojkvZ1COZ5jJZoCaKRZzCFsA/16gv/jcTEfBGpoAXLC2lRog==}
@@ -3648,6 +3658,10 @@ packages:
     resolution: {integrity: sha512-itF1pTnN6F3unPak+kutH9raIkL3lhH1YRPGgt7QQOh43DQKVJXmWkpb+vpc/TiDHs6RSd9CTbDsc/Y+Ygq7kg==}
     engines: {node: ^18.18.0 || >=20.0.0}
 
+  '@typescript-eslint/scope-manager@7.2.0':
+    resolution: {integrity: sha512-Qh976RbQM/fYtjx9hs4XkayYujB/aPwglw2choHmf3zBjB4qOywWSdt9+KLRdHubGcoSwBnXUH2sR3hkyaERRg==}
+    engines: {node: ^16.0.0 || >=18.0.0}
+
   '@typescript-eslint/scope-manager@7.7.0':
     resolution: {integrity: sha512-/8INDn0YLInbe9Wt7dK4cXLDYp0fNHP5xKLHvZl3mOT5X17rK/YShXaiNmorl+/U4VKCVIjJnx4Ri5b0y+HClw==}
     engines: {node: ^18.18.0 || >=20.0.0}
@@ -3655,6 +3669,16 @@ packages:
   '@typescript-eslint/type-utils@7.12.0':
     resolution: {integrity: sha512-lib96tyRtMhLxwauDWUp/uW3FMhLA6D0rJ8T7HmH7x23Gk1Gwwu8UZ94NMXBvOELn6flSPiBrCKlehkiXyaqwA==}
     engines: {node: ^18.18.0 || >=20.0.0}
+    peerDependencies:
+      eslint: ^8.56.0
+      typescript: '*'
+    peerDependenciesMeta:
+      typescript:
+        optional: true
+
+  '@typescript-eslint/type-utils@7.2.0':
+    resolution: {integrity: sha512-xHi51adBHo9O9330J8GQYQwrKBqbIPJGZZVQTHHmy200hvkLZFWJIFtAG/7IYTWUyun6DE6w5InDReePJYJlJA==}
+    engines: {node: ^16.0.0 || >=18.0.0}
     peerDependencies:
       eslint: ^8.56.0
       typescript: '*'
@@ -3676,6 +3700,10 @@ packages:
     resolution: {integrity: sha512-o+0Te6eWp2ppKY3mLCU+YA9pVJxhUJE15FV7kxuD9jgwIAa+w/ycGJBMrYDTpVGUM/tgpa9SeMOugSabWFq7bg==}
     engines: {node: ^18.18.0 || >=20.0.0}
 
+  '@typescript-eslint/types@7.2.0':
+    resolution: {integrity: sha512-XFtUHPI/abFhm4cbCDc5Ykc8npOKBSJePY3a3s+lwumt7XWJuzP5cZcfZ610MIPHjQjNsOLlYK8ASPaNG8UiyA==}
+    engines: {node: ^16.0.0 || >=18.0.0}
+
   '@typescript-eslint/types@7.7.0':
     resolution: {integrity: sha512-G01YPZ1Bd2hn+KPpIbrAhEWOn5lQBrjxkzHkWvP6NucMXFtfXoevK82hzQdpfuQYuhkvFDeQYbzXCjR1z9Z03w==}
     engines: {node: ^18.18.0 || >=20.0.0}
@@ -3683,6 +3711,15 @@ packages:
   '@typescript-eslint/typescript-estree@7.12.0':
     resolution: {integrity: sha512-5bwqLsWBULv1h6pn7cMW5dXX/Y2amRqLaKqsASVwbBHMZSnHqE/HN4vT4fE0aFsiwxYvr98kqOWh1a8ZKXalCQ==}
     engines: {node: ^18.18.0 || >=20.0.0}
+    peerDependencies:
+      typescript: '*'
+    peerDependenciesMeta:
+      typescript:
+        optional: true
+
+  '@typescript-eslint/typescript-estree@7.2.0':
+    resolution: {integrity: sha512-cyxS5WQQCoBwSakpMrvMXuMDEbhOo9bNHHrNcEWis6XHx6KF518tkF1wBvKIn/tpq5ZpUYK7Bdklu8qY0MsFIA==}
+    engines: {node: ^16.0.0 || >=18.0.0}
     peerDependencies:
       typescript: '*'
     peerDependenciesMeta:
@@ -3704,6 +3741,12 @@ packages:
     peerDependencies:
       eslint: ^8.56.0
 
+  '@typescript-eslint/utils@7.2.0':
+    resolution: {integrity: sha512-YfHpnMAGb1Eekpm3XRK8hcMwGLGsnT6L+7b2XyRv6ouDuJU1tZir1GS2i0+VXRatMwSI1/UfcyPe53ADkU+IuA==}
+    engines: {node: ^16.0.0 || >=18.0.0}
+    peerDependencies:
+      eslint: ^8.56.0
+
   '@typescript-eslint/utils@7.7.0':
     resolution: {integrity: sha512-LKGAXMPQs8U/zMRFXDZOzmMKgFv3COlxUQ+2NMPhbqgVm6R1w+nU1i4836Pmxu9jZAuIeyySNrN/6Rc657ggig==}
     engines: {node: ^18.18.0 || >=20.0.0}
@@ -3713,6 +3756,10 @@ packages:
   '@typescript-eslint/visitor-keys@7.12.0':
     resolution: {integrity: sha512-uZk7DevrQLL3vSnfFl5bj4sL75qC9D6EdjemIdbtkuUmIheWpuiiylSY01JxJE7+zGrOWDZrp1WxOuDntvKrHQ==}
     engines: {node: ^18.18.0 || >=20.0.0}
+
+  '@typescript-eslint/visitor-keys@7.2.0':
+    resolution: {integrity: sha512-c6EIQRHhcpl6+tO8EMR+kjkkV+ugUNXOmeASA1rlzkd8EPIriavpWoiEz1HR/VLhbVIdhqnV6E7JZm00cBDx2A==}
+    engines: {node: ^16.0.0 || >=18.0.0}
 
   '@typescript-eslint/visitor-keys@7.7.0':
     resolution: {integrity: sha512-h0WHOj8MhdhY8YWkzIF30R379y0NqyOHExI9N9KCzvmu05EgG4FumeYa3ccfKUSphyWkWQE1ybVrgz/Pbam6YA==}
@@ -9648,6 +9695,15 @@ snapshots:
       - sugarss
       - supports-color
       - terser
+
+  '@angular/cdk@18.0.4(@angular/common@18.0.0(@angular/core@18.0.0(rxjs@7.8.1)(zone.js@0.14.4))(rxjs@7.8.1))(@angular/core@18.0.0(rxjs@7.8.1)(zone.js@0.14.4))(rxjs@7.8.1)':
+    dependencies:
+      '@angular/common': 18.0.0(@angular/core@18.0.0(rxjs@7.8.1)(zone.js@0.14.4))(rxjs@7.8.1)
+      '@angular/core': 18.0.0(rxjs@7.8.1)(zone.js@0.14.4)
+      rxjs: 7.8.1
+      tslib: 2.6.3
+    optionalDependencies:
+      parse5: 7.1.2
 
   '@angular/cli@18.0.3(chokidar@3.6.0)':
     dependencies:

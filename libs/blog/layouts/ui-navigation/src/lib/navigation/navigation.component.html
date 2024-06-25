@@ -1,32 +1,34 @@
 <nav
   *transloco="let t"
-  class="flex flex-wrap"
   [ngClass]="{
     'flex-row': layout() === 'horizontal',
-    'flex-col': layout() === 'vertical'
+    'flex-col': layout() === 'vertical',
   }"
 >
-  @for (item of navItems; track $index) {
-    @if (!item.externalLink) {
-      <a
-        class="text-al-foreground p-2 font-medium md:p-6"
-        [attr.aria-Label]="item.ariaLabel"
-        [routerLinkActive]="'text-al-pink'"
-        [routerLink]="item.link | localize"
-        [ariaLabel]="item.ariaLabel"
-        (click)="navigated.emit()"
-      >
-        {{ t(item.translationPath) }}
-      </a>
-    } @else {
-      <a
-        class="text-al-foreground p-2 font-medium md:p-6"
-        [attr.aria-Label]="item.ariaLabel"
-        [href]="item.link"
-        target="_blank"
-      >
-        {{ t(item.translationPath) }}
-      </a>
+  <ul class="flex flex-wrap" [attr.aria-label]="t('nav.navLinks')">
+    @for (item of navItems; track $index) {
+      @if (!item.externalLink) {
+        <li>
+          <a
+            class="text-al-foreground p-2 font-medium md:p-6"
+            [routerLinkActive]="'text-al-pink'"
+            [routerLink]="item.link | localize"
+            (click)="navigated.emit()"
+          >
+            {{ t(item.translationPath) }}
+          </a>
+        </li>
+      } @else {
+        <li>
+          <a
+            class="text-al-foreground p-2 font-medium md:p-6"
+            [href]="item.link"
+            target="_blank"
+          >
+            {{ t(item.translationPath) }}
+          </a>
+        </li>
+      }
     }
-  }
+  </ul>
 </nav>

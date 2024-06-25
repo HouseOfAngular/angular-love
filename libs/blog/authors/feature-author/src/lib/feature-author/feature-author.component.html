@@ -1,6 +1,6 @@
 <al-breadcrumb [pageName]="authorName()" />
 
-<h1 class="mb-8 h-10 text-4xl font-bold">{{ authorName() }}</h1>
+<h2 class="mb-8 h-10 text-4xl font-bold">{{ authorName() }}</h2>
 
 @if (
   !authorDetailsStore.isFetchAuthorDetailsLoading() &&
@@ -12,14 +12,14 @@
   <al-author-card-skeleton />
 }
 
-<h2
+<span
   *transloco="let t; read: 'authorPage'"
   class="mb-6 mt-10 text-2xl font-bold"
 >
   {{ t('posted_by', { name: authorName() }) }}
-</h2>
+</span>
 
-<div class="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+<div aria-live="polite" class="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
   @if (articleStore.isFetchArticleListLoading()) {
     <!--    TODO: add article skleteon when ready-->
     <!--    <al-article-card-skeleton *alRepeat="6" class="h-[438px]" />-->

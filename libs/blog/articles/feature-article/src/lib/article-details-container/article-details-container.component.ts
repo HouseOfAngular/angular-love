@@ -23,6 +23,7 @@ import { ArticleDetailsComponent } from '../article-details/article-details.comp
   changeDetection: ChangeDetectionStrategy.OnPush,
   host: {
     class: 'block w-full',
+    'aria-live': 'polite',
   },
 })
 export class ArticleDetailsContainerComponent {

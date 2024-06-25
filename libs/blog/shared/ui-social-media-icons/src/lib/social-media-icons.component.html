@@ -1,5 +1,7 @@
-<div class="flex items-center justify-center">
+<ul aria-label="Social media" class="flex items-center justify-center">
   @for (social of socials; track $index) {
-    <al-social-media-icon-item [socialMediaConfig]="social" />
+    <li>
+      <al-social-media-icon-item [socialMediaConfig]="social" />
+    </li>
   }
-</div>
+</ul>

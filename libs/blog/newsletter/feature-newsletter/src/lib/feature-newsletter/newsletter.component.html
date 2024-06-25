@@ -1,9 +1,11 @@
 <al-card alGradientCard>
-  <div alCardContent>
+  <section alCardContent aria-labelledby="newsletter-title" aria-live="polite">
     <ng-container *transloco="let t; read: 'newsletter'">
       <form role="form" [formGroup]="form">
         <div class="flex flex-col">
-          <h2 class="text-4xl font-bold">{{ t('title') }}</h2>
+          <h2 id="newsletter-title" class="text-4xl font-bold">
+            {{ t('title') }}
+          </h2>
           <p class="py-4">{{ t('description') }}</p>
           <fieldset>
             <legend class="hidden">Newsletter sign up form</legend>
@@ -18,6 +20,7 @@
               />
               <button
                 al-button
+                type="button"
                 class="bg-al-pink rounded-l-none text-white"
                 [attr.aria-label]="t('submitLabel')"
                 [disabled]="!form.valid"
@@ -46,13 +49,25 @@
                 }
                 <div class="flex">
                   <div
+                    tabindex="0"
+                    aria-describedby="consent-text"
+                    role="checkbox"
                     class="border-al-muted mr-2 mt-1 flex aspect-square h-[14px] items-center justify-center rounded border"
+                    [attr.aria-checked]="form.controls.checkbox.value"
+                    (keydown.enter)="
+                      form.controls['checkbox'].setValue(
+                        !form.controls['checkbox'].value
+                      )
+                    "
                   >
                     <div
                       class="bg-al-pink hidden h-[6px] w-[6px] rounded-sm"
                     ></div>
                   </div>
-                  <span class="before:text-al-pink before:content-['*']">
+                  <span
+                    id="consent-text"
+                    class="before:text-al-pink before:content-['*']"
+                  >
                     {{ t('consent') }}
                   </span>
                 </div>
@@ -62,5 +77,5 @@
         </div>
       </form>
     </ng-container>
-  </div>
+  </section>
 </al-card>

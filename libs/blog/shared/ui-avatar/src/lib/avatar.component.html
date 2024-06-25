@@ -2,12 +2,12 @@
   class="flex items-center justify-center overflow-hidden rounded-full border border-white bg-gray-200"
   [ngStyle]="{
     height: sideLength() + 'px',
-    width: sideLength() + 'px'
+    width: sideLength() + 'px',
   }"
 >
   @if (imageSrc) {
     <img
-      alt="Avatar"
+      alt=""
       [ngSrc]="imageSrc"
       [width]="sideLength()"
       [height]="sideLength()"

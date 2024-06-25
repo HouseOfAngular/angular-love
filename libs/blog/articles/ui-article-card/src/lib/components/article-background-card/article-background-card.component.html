@@ -1,5 +1,5 @@
 <a [routerLink]="['/', article().slug] | localize">
-  <div
+  <article
     class="h-full rounded-lg bg-no-repeat"
     [ngClass]="{
       'bg-cover transition-transform hover:scale-105 motion-reduce:transition-none motion-reduce:hover:scale-100':
@@ -7,6 +7,7 @@
       ' lg:hover:shadow-al-primary bg-contain bg-center': layout() === 'hero',
     }"
     [style.background-image]="'url(' + article().featuredImageUrl + ')'"
+    [attr.aria-labelledby]="article().slug"
   >
     <div
       class="relative flex h-full flex-col justify-between"
@@ -67,19 +68,20 @@
           'gap-5 px-8 pb-8 pt-44': layout() === 'hero',
         }"
       >
-        <p
+        <h3
           class="line-clamp-2 font-bold"
           [ngClass]="{
             'text-2xl': layout() === 'compact',
             'text-4xl': layout() === 'hero',
           }"
+          [id]="article().slug"
         >
           {{ article().title }}
-        </p>
+        </h3>
         <p class="line-clamp-2 text-base">
           {{ article().excerpt }}
         </p>
       </div>
     </div>
-  </div>
+  </article>
 </a>
