@@ -8,12 +8,12 @@ import { SocialMediaIconsComponent } from '@angular-love/blog/shared/ui-social-m
   imports: [SocialMediaIconsComponent],
   template: `
     <div class="flex flex-col items-start">
-      <h4
+      <h3
         id="social-media-title"
         class="mb-4 hidden text-sm font-bold lg:block"
       >
         Social media
-      </h4>
+      </h3>
       <al-social-media-icons />
     </div>
   `,

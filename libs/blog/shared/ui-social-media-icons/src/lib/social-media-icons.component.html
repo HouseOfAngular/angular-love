@@ -1,7 +1,4 @@
-<ul
-  aria-labelledby="social-media-title"
-  class="flex items-center justify-center"
->
+<ul aria-label="Social media" class="flex items-center justify-center">
   @for (social of socials; track $index) {
     <li>
       <al-social-media-icon-item [socialMediaConfig]="social" />
