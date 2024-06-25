@@ -9,7 +9,6 @@
         "plugin:@angular-eslint/template/process-inline-templates"
       ],
       "rules": {
-        "@angular-eslint/no-host-metadata-property": "off", //@todo: remove when angular 18 fix
         "@angular-eslint/directive-selector": [
           "error",
           {
