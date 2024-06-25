@@ -11,7 +11,7 @@ import { ChangeDetectionStrategy, Component, input } from '@angular/core';
         <img
           alt="Angular Love logo"
           class="inline-block"
-          ngSrc="assets/angular-love-logo.png"
+          ngSrc="assets/angular-love-logo.webp"
           height="40"
           width="36"
         />
