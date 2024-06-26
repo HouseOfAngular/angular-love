@@ -108,7 +108,8 @@
     "metaDescription": "Angular.love - a place for all Angular enthusiasts created to inspire and educate."
   },
   "adBanner": {
-    "registerButton": "Register for free"
+    "registerButton": "Download for free",
+    "registerButtonShortened": "Download"
   },
   "search": {
     "no-matches": "No recent matches",

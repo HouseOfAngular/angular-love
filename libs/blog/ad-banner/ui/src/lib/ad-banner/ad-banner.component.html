@@ -4,61 +4,42 @@
   class="bg-al-radial-gradient w-full"
 >
   <div class="mx-auto flex max-w-screen-xl justify-between py-4">
-    <div>
+    <div class="ml-2 md:ml-4 xl:ml-0">
       <div class="flex flex-row">
-        <h2 id="banner-title" class="text-2xl font-semibold">
+        <h3 class="hidden text-2xl font-semibold lg:block">
           {{ data().title }}
-        </h2>
+        </h3>
+        <h3 class="text-lg font-semibold lg:hidden">
+          {{ data().title_mobile }}
+        </h3>
         <span
-          class="text-al-pink ml-3 flex items-center rounded bg-white px-2 text-lg font-bold"
+          class="text-al-pink ml-3 hidden items-center rounded bg-white px-2 text-lg font-bold lg:flex"
         >
-          #{{ data().number }}
+          {{ data().additional_info }}
         </span>
       </div>
-      <p>{{ data().description }}</p>
-    </div>
-    <div class="flex flex-row items-center gap-8">
-      <time class="flex flex-row items-center">
-        <al-icon
-          name="clock"
-          aria-hidden="true"
-          class="mr-2 inline-block h-4 bg-white"
-        />
-        {{ data().time }}
-      </time>
-      <time class="flex flex-row items-center">
-        <al-icon
-          name="calendar"
-          aria-hidden="true"
-          class="mr-2 inline-block h-4 bg-white"
-        />
-        {{ data().date }}
-      </time>
-      <p role="note" class="flex flex-row items-center">
-        <al-icon
-          name="location-pin"
-          aria-hidden="true"
-          class="mr-2 inline-block h-4 bg-white"
-        />
-        {{ data().location }}
-      </p>
+      <p class="hidden lg:block">{{ data().description }}</p>
+      <p class="lg:hidden">{{ data().description_mobile }}</p>
     </div>
     <div class="flex flex-row items-center">
       <a
         *transloco="let t; read: 'adBanner'"
-        class="bg-al-pink flex h-[46px] w-full items-center justify-center rounded-lg px-10 md:w-4/5 lg:w-full"
+        class="bg-al-pink flex h-[46px] items-center rounded-lg px-10 text-center"
         [attr.aria-label]="t('registerButton')"
         [href]="data().href"
         target="_blank"
       >
-        <p class="text-sm font-bold">
+        <p class="hidden text-sm font-bold lg:block">
           {{ t('registerButton') }}
+        </p>
+        <p class="text-sm font-bold lg:hidden">
+          {{ t('registerButtonShortened') }}
         </p>
       </a>
       <button
         *transloco="let t; read: 'iconButtons'"
         type="button"
-        class="ml-4 p-4"
+        class="p-3 md:ml-4 md:p-4"
         [attr.aria-label]="t('close')"
         (click)="closed.emit()"
       >

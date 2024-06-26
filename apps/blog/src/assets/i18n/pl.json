@@ -111,7 +111,8 @@
     "metaDescription": "Angular.love - ciekawostki oraz rozwiązania dla średnio-zaawansowanych oraz zaawansowanych developerów Angulara."
   },
   "adBanner": {
-    "registerButton": "Zarejestruj się bezpłatnie"
+    "registerButton": "Pobierz za darmo",
+    "registerButtonShortened": "Pobierz"
   },
   "search": {
     "no-matches": "Brak wyników",
