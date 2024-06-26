@@ -10,11 +10,10 @@ import { IconComponent } from '@angular-love/blog/shared/ui-icon';
 
 export type AdBanner = {
   title: string;
-  number: number;
+  title_mobile: string;
   description: string;
-  date: string;
-  time: string;
-  location: string;
+  description_mobile: string;
+  additional_info: string;
   href: string;
 };
 
