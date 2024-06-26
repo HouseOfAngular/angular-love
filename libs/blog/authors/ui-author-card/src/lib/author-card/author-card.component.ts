@@ -33,6 +33,10 @@ import { AuthorCardTemplateComponent } from './author-card-template.component';
   templateUrl: './author-card.component.html',
   styleUrl: './author-card.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
+  host: {
+    'data-testid': 'author-card',
+    '[attr.id]': 'author().slug',
+  },
 })
 export class AuthorCardComponent {
   author = input.required<UiAuthorCard>();

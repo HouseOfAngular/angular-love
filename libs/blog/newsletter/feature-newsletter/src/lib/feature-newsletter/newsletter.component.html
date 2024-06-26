@@ -1,7 +1,7 @@
 <al-card alGradientCard>
   <section alCardContent aria-labelledby="newsletter-title" aria-live="polite">
     <ng-container *transloco="let t; read: 'newsletter'">
-      <form role="form" [formGroup]="form">
+      <form data-testid="newsletter-form" role="form" [formGroup]="form">
         <div class="flex flex-col">
           <h2 id="newsletter-title" class="text-4xl font-bold">
             {{ t('title') }}

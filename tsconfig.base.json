@@ -30,6 +30,7 @@
       "@angular-love/blog-contracts/shared": [
         "libs/blog-contracts/shared/src/index.ts"
       ],
+      "@angular-love/blog-e2e": ["apps/blog-e2e/src/index.ts"],
       "@angular-love/blog/ad-banner/data-access": [
         "libs/blog/ad-banner/data-access/src/index.ts"
       ],

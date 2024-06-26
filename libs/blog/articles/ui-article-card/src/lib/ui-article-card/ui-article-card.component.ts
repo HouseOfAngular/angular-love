@@ -14,6 +14,10 @@ export type CardType = 'regular' | 'horizontal' | 'compact' | 'hero';
   styleUrl: './ui-article-card.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [ArticleBackgroundCardComponent, ArticleRegularCardComponent],
+  host: {
+    'data-testid': 'article-card',
+    '[attr.id]': 'article().slug',
+  },
 })
 export class UiArticleCardComponent {
   cardType = input.required<CardType>();

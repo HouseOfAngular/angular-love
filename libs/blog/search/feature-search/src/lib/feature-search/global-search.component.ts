@@ -19,6 +19,7 @@ import { SearchDialogComponent } from './search-dialog';
       aria-label="Open a search dialog"
       class="flex items-center bg-transparent p-1"
       (click)="service.showSearchDialog()"
+      date-testid="header-search"
     >
       <al-icon name="magnifier-glass" class="bg-al-pink h-6" />
     </button>

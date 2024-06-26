@@ -12,5 +12,8 @@ import {
   templateUrl: './become-author-advertisement.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [GradientCardDirective, CardComponent, TranslocoDirective],
+  host: {
+    'data-testid': 'become-author-advertisement',
+  },
 })
 export class BecomeAuthorAdvertisementComponent {}
