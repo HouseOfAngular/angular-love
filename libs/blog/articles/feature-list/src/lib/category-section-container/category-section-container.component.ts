@@ -40,6 +40,9 @@ const displayNameDict: Record<ArticleCategory, string> = {
     UiArticleListTitleComponent,
     TranslocoDirective,
   ],
+  host: {
+    '[attr.data-testid]': `testId()`,
+  },
   providers: [ArticleListStore],
 })
 export class CategorySectionContainerComponent {
@@ -49,6 +52,8 @@ export class CategorySectionContainerComponent {
   hasCategoryPage = input(true);
 
   displayName = computed(() => displayNameDict[this.category()]);
+
+  protected testId = computed(() => `category-${this.category()}`);
 
   protected readonly articleStore = inject(ArticleListStore);
 

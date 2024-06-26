@@ -2,7 +2,11 @@
   <div
     class="mx-auto flex h-full w-full max-w-screen-xl items-center justify-between px-6 py-4 xl:px-0"
   >
-    <a class="flex items-center gap-2" [routerLink]="'/' | localize">
+    <a
+      data-testid="header-home"
+      class="flex items-center gap-2"
+      [routerLink]="'/' | localize"
+    >
       <img
         alt="Angular Love logo"
         class="inline-block"
@@ -20,6 +24,7 @@
         class="ml-6 flex max-w-20 flex-row md:max-w-[200px]"
       >
         <button
+          data-testid="header-en-switch"
           type="button"
           class="border-al-gray-200 mr-1 rounded border bg-transparent px-1 py-2 font-medium leading-4 md:mr-2 md:px-4"
           [ngClass]="{
@@ -32,6 +37,7 @@
           ENG
         </button>
         <button
+          data-testid="header-pl-switch"
           type="button"
           class="border-al-gray-200 mr-1 rounded border bg-transparent px-1 py-2 font-medium leading-4 md:mr-2 md:px-4"
           [ngClass]="{

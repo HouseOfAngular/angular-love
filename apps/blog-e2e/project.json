@@ -1,0 +1,49 @@
+{
+  "name": "blog-e2e",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "apps/blog-e2e/src",
+  "projectType": "library",
+  "tags": [],
+  "targets": {
+    "build": {
+      "executor": "@nx/js:tsc",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/apps/blog-e2e",
+        "main": "apps/blog-e2e/src/index.ts",
+        "tsConfig": "apps/blog-e2e/tsconfig.lib.json",
+        "assets": ["apps/blog-e2e/*.md"]
+      }
+    },
+    "lint": {
+      "executor": "@nx/eslint:lint"
+    },
+    "test": {
+      "executor": "@nx/jest:jest",
+      "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
+      "options": {
+        "jestConfig": "apps/blog-e2e/jest.config.ts"
+      }
+    },
+    "e2e": {
+      "executor": "@nx/playwright:playwright",
+      "outputs": ["{workspaceRoot}/dist/.playwright/apps/blog-e2e"],
+      "options": {
+        "config": "apps/blog-e2e/playwright.config.ts"
+      }
+    },
+    "e2e-ui": {
+      "executor": "@nx/playwright:playwright",
+      "options": {
+        "config": "apps/blog-e2e/playwright.config.ts",
+        "ui": true
+      }
+    },
+    "e2e-codegen": {
+      "executor": "@nx/playwright:playwright codegen",
+      "options": {
+        "config": "apps/blog-e2e/playwright.config.ts"
+      }
+    }
+  }
+}

@@ -10,6 +10,7 @@
       @if (!item.externalLink) {
         <li>
           <a
+            [attr.data-testid]="item.dataTestId"
             class="text-al-foreground p-2 font-medium md:p-6"
             [routerLinkActive]="'text-al-pink'"
             [routerLink]="item.link | localize"
@@ -21,6 +22,7 @@
       } @else {
         <li>
           <a
+            [attr.data-testid]="item.dataTestId"
             class="text-al-foreground p-2 font-medium md:p-6"
             [href]="item.link"
             target="_blank"

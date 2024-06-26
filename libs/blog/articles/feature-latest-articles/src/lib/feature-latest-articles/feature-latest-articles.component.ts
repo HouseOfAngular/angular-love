@@ -30,6 +30,9 @@ import {
     NgClass,
     TranslocoDirective,
   ],
+  host: {
+    'data-testid': 'latest-articles-container',
+  },
   providers: [ArticleListStore],
 })
 export class FeatureLatestArticlesComponent {
