@@ -90,9 +90,9 @@
     }
   },
   "difficulty": {
-    "beginner": "Beginner",
-    "intermediate": "Intermediate",
-    "advanced": "Advanced"
+    "beginner": "Początkujący",
+    "intermediate": "Średnio zaawansowany",
+    "advanced": "Zaawansowany"
   },
   "tableOfContents": {
     "title": "Spis treści"
