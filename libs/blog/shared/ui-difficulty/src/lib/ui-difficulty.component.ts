@@ -21,12 +21,12 @@ export type UiDifficulty = 'beginner' | 'intermediate' | 'advanced';
         class="flex items-center self-stretch rounded-l-md text-center align-middle"
         [ngClass]="{
           'bg-al-background': isColorBackground(),
-          'bg-al-border': !isColorBackground()
+          'bg-al-border': !isColorBackground(),
         }"
       >
         <span
           *transloco="let t; read: 'difficulty'"
-          class="self-center px-2 first-letter:uppercase"
+          class="self-center px-0.5 first-letter:uppercase lg:px-2"
         >
           {{ t(difficulty()) }}
         </span>
@@ -37,10 +37,10 @@ export type UiDifficulty = 'beginner' | 'intermediate' | 'advanced';
         <div class="relative flex items-center overflow-hidden py-1">
           <!-- Dot Container -->
           <div
-            class="mx-1 inline-block h-4 w-4 rounded-full bg-transparent"
+            class="mx-0.5 inline-block h-4 w-4 rounded-full bg-transparent lg:mx-1"
             [ngClass]="{
               'shadow-al-full-background': isColorBackground(),
-              'shadow-al-full-border': !isColorBackground()
+              'shadow-al-full-border': !isColorBackground(),
             }"
           ></div>
 
@@ -51,7 +51,7 @@ export type UiDifficulty = 'beginner' | 'intermediate' | 'advanced';
               [ngClass]="{
                 'bg-green-500': difficultyLevel() === 0,
                 'bg-yellow-500': difficultyLevel() === 1,
-                'bg-red-500': difficultyLevel() === 2
+                'bg-red-500': difficultyLevel() === 2,
               }"
             ></div>
           } @else {
@@ -60,7 +60,7 @@ export type UiDifficulty = 'beginner' | 'intermediate' | 'advanced';
               class="absolute left-1/2 top-1/2 h-3 w-3 -translate-x-1/2 -translate-y-1/2 transform rounded-full"
               [ngClass]="{
                 'bg-al-background': isColorBackground(),
-                'bg-al-border': !isColorBackground()
+                'bg-al-border': !isColorBackground(),
               }"
             ></div>
           }
@@ -72,7 +72,7 @@ export type UiDifficulty = 'beginner' | 'intermediate' | 'advanced';
         class="flex items-center self-stretch rounded-r-md pr-1 text-center align-middle"
         [ngClass]="{
           'bg-al-background': isColorBackground(),
-          'bg-al-border': !isColorBackground()
+          'bg-al-border': !isColorBackground(),
         }"
       ></div>
     </div>
