@@ -12,6 +12,7 @@ module.exports = {
         'al-pink': 'rgba(var(--primary) / <alpha-value>)',
         'al-primary': 'rgba(var(--primary) / <alpha-value>)',
         'al-muted': 'rgba(var(--muted) / <alpha-value>)',
+        'al-gray': 'rgba(var(--gray) / <alpha-value>)',
       },
       backgroundImage: {
         'al-radial-gradient':
