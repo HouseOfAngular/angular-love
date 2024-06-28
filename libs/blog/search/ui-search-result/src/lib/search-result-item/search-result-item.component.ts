@@ -1,4 +1,4 @@
-import { NgOptimizedImage } from '@angular/common';
+import { DatePipe, NgOptimizedImage } from '@angular/common';
 import {
   ChangeDetectionStrategy,
   Component,
@@ -9,7 +9,7 @@ import {
 import { IconComponent } from '@angular-love/blog/shared/ui-icon';
 
 interface UiSearchResultItem {
-  publishDate: string;
+  publishDate: Date;
   readingTime: string;
   rawTitle: string;
   author: {
@@ -24,7 +24,7 @@ interface UiSearchResultItem {
   templateUrl: './search-result-item.component.html',
   styleUrl: './search-result-item.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [NgOptimizedImage, IconComponent],
+  imports: [NgOptimizedImage, IconComponent, DatePipe],
 })
 export class SearchResultItemComponent {
   @HostBinding('class') hostClasses = 'flex flex-col p-6 hover:bg-al-border';

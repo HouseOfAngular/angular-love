@@ -1,6 +1,6 @@
 export type ArticleCard = {
   title: string;
-  publishDate: string;
+  publishDate: string | Date;
   excerpt: string;
   slug: string;
   featuredImageUrl: string;

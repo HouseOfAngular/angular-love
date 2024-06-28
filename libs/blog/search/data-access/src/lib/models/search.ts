@@ -6,7 +6,7 @@ export interface SearchResponse {
 
 export interface SearchResult {
   title: string;
-  publishDate: string;
+  publishDate: Date;
   excerpt: string;
   slug: string;
   featuredImageUrl: string;

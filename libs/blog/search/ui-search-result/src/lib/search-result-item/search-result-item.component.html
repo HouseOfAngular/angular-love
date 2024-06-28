@@ -15,7 +15,7 @@
     </div>
 
     <div class="flex items-center gap-4">
-      <time class="mr-4">{{ item.publishDate }}</time>
+      <time class="mr-4">{{ item.publishDate | date: 'dd MMM yyyy' }}</time>
       <al-icon name="clock" class="h-4 bg-white" />
       <span>{{ item.readingTime }} min</span>
     </div>
