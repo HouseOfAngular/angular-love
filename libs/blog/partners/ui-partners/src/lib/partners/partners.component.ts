@@ -9,6 +9,5 @@ import { PartnersListComponent } from '../partners-list/partners-list.component'
   standalone: true,
   imports: [PartnersListComponent, TranslocoDirective],
   templateUrl: './partners.component.html',
-  styleUrl: './partners.component.scss',
 })
 export class PartnersComponent {}

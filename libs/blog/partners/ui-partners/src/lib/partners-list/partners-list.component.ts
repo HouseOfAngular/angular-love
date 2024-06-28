@@ -1,11 +1,7 @@
 import { NgOptimizedImage } from '@angular/common';
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 
-export type PartnerData = {
-  asset_URL: string;
-  alt: string;
-  link_URL: string;
-};
+import { Partner } from '@angular-love/blog/shared/types';
 
 @Component({
   selector: 'al-partners-list',
@@ -15,7 +11,7 @@ export type PartnerData = {
   imports: [NgOptimizedImage],
 })
 export class PartnersListComponent {
-  protected readonly partnersList: PartnerData[] = [
+  protected readonly partnersList: Partner[] = [
     {
       asset_URL: 'assets/angular-js.png',
       alt: 'angular-js',

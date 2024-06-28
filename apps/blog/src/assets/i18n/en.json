@@ -5,7 +5,8 @@
     "recommended": "Recommended Articles",
     "angularNews": "Angular News",
     "guides": "Guides",
-    "partners": "Our Partners"
+    "partners": "Community partners",
+    "mainPartner": "Main partner"
   },
   "nav": {
     "home": "Home Page",
