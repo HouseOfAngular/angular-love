@@ -7,12 +7,18 @@ import {
 } from '@angular/core';
 
 import { ArticleListStore } from '@angular-love/blog/articles/data-access';
-import { UiArticleCardComponent } from '@angular-love/blog/articles/ui-article-card';
+import {
+  ArticleCompactCardSkeletonComponent,
+  ArticleRegularCardSkeletonComponent,
+  UiArticleCardComponent,
+} from '@angular-love/blog/articles/ui-article-card';
 import { BreadcrumbComponent } from '@angular-love/blog/shared/ui-breadcrumb';
 import {
+  PageChangeEvent,
   PaginationComponent,
   QueryPaginationDirective,
 } from '@angular-love/blog/shared/ui-pagination';
+import { RepeatDirective } from '@angular-love/utils';
 
 @Component({
   selector: 'al-guides',
@@ -22,6 +28,9 @@ import {
     PaginationComponent,
     QueryPaginationDirective,
     UiArticleCardComponent,
+    ArticleCompactCardSkeletonComponent,
+    ArticleRegularCardSkeletonComponent,
+    RepeatDirective,
   ],
   templateUrl: './feature-guides.component.html',
   styleUrl: './feature-guides.component.scss',
@@ -42,5 +51,9 @@ export class FeatureGuidesComponent {
     }));
 
     this.articleStore.fetchArticleList(query);
+  }
+  protected pageChange(event: PageChangeEvent) {
+    window.scrollTo(0, 0);
+    this.pagination.set(event);
   }
 }

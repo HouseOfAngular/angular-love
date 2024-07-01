@@ -10,6 +10,8 @@ import { TranslocoDirective } from '@ngneat/transloco';
 
 import { ArticleListStore } from '@angular-love/blog/articles/data-access';
 import {
+  ArticleCompactCardSkeletonComponent,
+  ArticleRegularCardSkeletonComponent,
   CardType,
   UiArticleCardComponent,
 } from '@angular-love/blog/articles/ui-article-card';
@@ -39,6 +41,8 @@ const displayNameDict: Record<ArticleCategory, string> = {
     RouterLink,
     UiArticleListTitleComponent,
     TranslocoDirective,
+    ArticleRegularCardSkeletonComponent,
+    ArticleCompactCardSkeletonComponent,
   ],
   host: {
     '[attr.data-testid]': `testId()`,
@@ -50,6 +54,7 @@ export class CategorySectionContainerComponent {
   cardType = input<CardType>('regular');
   take = input(6);
   hasCategoryPage = input(true);
+  skeleonLoaders = computed(() => [...Array(this.take()).keys()]);
 
   displayName = computed(() => displayNameDict[this.category()]);
 

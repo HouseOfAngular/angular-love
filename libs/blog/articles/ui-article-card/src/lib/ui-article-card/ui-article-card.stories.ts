@@ -2,7 +2,6 @@ import { Meta, moduleMetadata, StoryObj } from '@storybook/angular';
 
 import { ArticleCard } from '@angular-love/blog/shared/types';
 
-import { ArticleBackgroundCardComponent } from '../components/article-background-card/article-background-card.component';
 import { ArticleRegularCardComponent } from '../components/article-regular-card/article-regular-card.component';
 
 import { CardType, UiArticleCardComponent } from './ui-article-card.component';
@@ -30,13 +29,12 @@ const layoutHorizontal: CardType = 'horizontal';
 const meta: Meta<UiArticleCardComponent> = {
   component: UiArticleCardComponent,
   subcomponents: {
-    ArticleUiBackgroundCardComponent: ArticleBackgroundCardComponent,
     ArticleUiCardComponent: ArticleRegularCardComponent,
   },
   title: 'Articles / UiArticleCardComponent',
   decorators: [
     moduleMetadata({
-      imports: [ArticleBackgroundCardComponent, ArticleRegularCardComponent],
+      imports: [ArticleRegularCardComponent],
     }),
   ],
 };
@@ -54,7 +52,7 @@ export const compact: Story = {
     template: `
       <div class="w-[408px] h-[232px]">
         <al-article-regular-card [article]="article" [cardType]="cardType">
-          <al-article-background-card [article]="article" [layout]="cardType.layout"></al-article-background-card>
+          <al-article-hero-card [article]="article" [layout]="cardType.layout"></al-article-hero-card>
         </al-article-regular-card>
       </div>
     `,
@@ -71,7 +69,7 @@ export const hero: Story = {
     template: `
      <div class="h-[430px]">
       <al-article-regular-card [article]="article" [cardType]="cardType">
-        <al-article-background-card [article]="article" [layout]="cardType.layout"></al-article-background-card>
+        <al-article-hero-card [article]="article" [layout]="cardType.layout"></al-article-hero-card>
       </al-article-regular-card>
      </div>`,
   }),

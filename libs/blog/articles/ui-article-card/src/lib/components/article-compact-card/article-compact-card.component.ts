@@ -1,4 +1,4 @@
-import { DatePipe, NgClass } from '@angular/common';
+import { DatePipe } from '@angular/common';
 import { ChangeDetectionStrategy, Component, input } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { LocalizeRouterModule } from '@penleychan/ngx-transloco-router';
@@ -8,24 +8,20 @@ import { AvatarComponent } from '@angular-love/blog/shared/ui-avatar';
 import { UiDifficultyComponent } from '@angular-love/blog/shared/ui-difficulty';
 import { IconComponent } from '@angular-love/blog/shared/ui-icon';
 
-export type Layout = 'compact' | 'hero';
-
 @Component({
-  selector: 'al-article-background-card',
+  selector: 'al-article-compact-card',
   changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: true,
   imports: [
     AvatarComponent,
     RouterLink,
     DatePipe,
-    NgClass,
     IconComponent,
     UiDifficultyComponent,
     LocalizeRouterModule,
   ],
-  templateUrl: './article-background-card.component.html',
+  templateUrl: './article-compact-card.component.html',
 })
-export class ArticleBackgroundCardComponent {
-  layout = input.required<Layout>();
+export class ArticleCompactCardComponent {
   article = input.required<ArticleCard>();
 }

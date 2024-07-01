@@ -14,17 +14,6 @@
     --background: 16 15 21;
     --gray: 110 104 104;
   }
-
-  //@media (prefers-color-scheme: light) {
-  //  :root {
-  //    --primary: 213 1 89;--primary
-  //    --foreground: 0 0 0;--foreground
-  //    --muted: 25 25 25;--muted
-  //    --border: 200 200 200;--border
-  //    --card: 250 250 250;--card
-  //    --background: 255 255 255;--background
-  //  }
-  //}
 }
 
 @layer base {
@@ -60,6 +49,22 @@ html {
     &::-webkit-scrollbar-thumb {
       @apply rounded-lg bg-gray-400;
     }
+  }
+
+  @keyframes Pulsate {
+    from {
+      opacity: 0;
+    }
+    50% {
+      opacity: 1;
+    }
+    to {
+      opacity: 0;
+    }
+  }
+
+  .animate-pulse-from-0 {
+    animation: Pulsate 3s linear infinite;
   }
 }
 
