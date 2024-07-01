@@ -1,20 +1,20 @@
 import { NgClass } from '@angular/common';
-import {
-  ChangeDetectionStrategy,
-  Component,
-  inject,
-  Signal,
-} from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { TranslocoDirective } from '@ngneat/transloco';
 
 import { ArticleListStore } from '@angular-love/blog/articles/data-access';
-import { UiArticleCardComponent } from '@angular-love/blog/articles/ui-article-card';
+import {
+  ArticleHeroCardSkeletonComponent,
+  ArticleRegularCardSkeletonComponent,
+  UiArticleCardComponent,
+} from '@angular-love/blog/articles/ui-article-card';
 import { UiArticleListTitleComponent } from '@angular-love/blog/articles/ui-article-list-title';
 import { NewsletterComponent } from '@angular-love/blog/newsletter';
 import {
   CardComponent,
   GradientCardDirective,
 } from '@angular-love/blog/shared/ui-card';
+import { RepeatDirective } from '@angular-love/utils';
 
 @Component({
   selector: 'al-latest-articles',
@@ -29,6 +29,10 @@ import {
     GradientCardDirective,
     NgClass,
     TranslocoDirective,
+    ArticleHeroCardSkeletonComponent,
+    ArticleRegularCardSkeletonComponent,
+    CardComponent,
+    RepeatDirective,
   ],
   host: {
     'data-testid': 'latest-articles-container',
@@ -38,7 +42,7 @@ import {
 export class FeatureLatestArticlesComponent {
   private readonly _articleListStore = inject(ArticleListStore);
 
-  readonly isFetchArticleListLoading: Signal<boolean> =
+  readonly isFetchArticleListLoading =
     this._articleListStore.isFetchArticleListLoading;
 
   readonly isFetchArticleListError =

@@ -9,13 +9,15 @@
   aria-live="polite"
   class="grid gap-8 md:grid-cols-2 lg:grid-cols-3"
 >
-  @if (articleStore.isFetchArticleListLoading()) {
-    <!--    TODO: add article skleteon when ready-->
-    <!--    <al-article-card-skeleton *alRepeat="6" class="h-[438px]" />-->
-  } @else {
+  @if (!articleStore.isFetchArticleListLoading()) {
     @for (article of articleStore.articles(); track article.slug) {
       <al-article-card [article]="article" cardType="regular" />
     }
+  } @else {
+    <al-article-regular-card-skeleton
+      *alRepeat="pagination().take"
+      class="animate-pulse-from-0"
+    />
   }
 </section>
 
@@ -25,6 +27,6 @@
     [pageSize]="pagination().take"
     [skip]="pagination().skip"
     [total]="articleStore.total()"
-    (pageChange)="pagination.set($event)"
+    (pageChange)="pageChange($event)"
   />
 </footer>

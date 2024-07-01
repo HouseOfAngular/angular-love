@@ -17,13 +17,13 @@ import {
     <al-card alGradientCard>
       <div alCardContent>
         <div
-          class="@3xl:flex-row @3xl:border-none flex  w-full flex-col items-center  rounded-lg border"
+          class="@3xl:flex-row @3xl:border-none flex w-full flex-col items-center rounded-lg border"
         >
           <div
             class="@3xl:border @3xl:!bg-al-radial-gradient @3xl:bg-al-background @3xl:min-w-[260px] min-w-fit rounded-lg pb-4 pt-6"
           >
             <div
-              class="@3xl:max-w-[360px] flex w-full  flex-col items-center gap-4"
+              class="@3xl:max-w-[360px] flex w-full flex-col items-center gap-4"
             >
               <ng-content select="[author-info-card]"></ng-content>
             </div>
