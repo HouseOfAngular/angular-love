@@ -1,0 +1,47 @@
+<a [routerLink]="['/', article().slug] | localize">
+  <article
+    class="h-full rounded-lg bg-cover bg-no-repeat transition-transform hover:scale-105 motion-reduce:transition-none motion-reduce:hover:scale-100"
+    [style.background-image]="'url(' + article().featuredImageUrl + ')'"
+    [attr.aria-labelledby]="article().slug"
+  >
+    <div
+      class="bg-al-background opacity-85 relative flex h-full flex-col justify-between"
+    >
+      <div
+        class="hover:bg-al-bottom-radial-gradient absolute h-full w-full"
+      ></div>
+
+      <div class="flex items-center justify-between px-6 pt-6">
+        <div class="flex items-center gap-2 max-md:self-start">
+          <al-avatar [imageSrc]="article().author.avatarUrl" size="sm" />
+          <span class="text-sm/[14px] font-medium">
+            {{ article().author.name }}
+          </span>
+        </div>
+
+        <div
+          class="flex flex-col items-center justify-end gap-6 gap-y-4 md:flex-row"
+        >
+          <span class="flex w-full flex-row items-center justify-end gap-2">
+            <al-icon name="clock" class="inline-block h-4 bg-white" />
+            <time
+              class="text-sm/[14px]"
+              [attr.datetime]="'PT' + article().readingTime + 'M'"
+            >
+              {{ article().readingTime }}min
+            </time>
+          </span>
+        </div>
+      </div>
+
+      <div class="flex flex-col px-6 pb-6 pt-8">
+        <h3 class="line-clamp-2 text-2xl font-bold" [id]="article().slug">
+          {{ article().title }}
+        </h3>
+        <p class="line-clamp-2 text-base">
+          {{ article().excerpt }}
+        </p>
+      </div>
+    </div>
+  </article>
+</a>

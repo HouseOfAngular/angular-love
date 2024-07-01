@@ -16,15 +16,13 @@ import { AvatarComponent } from '@angular-love/blog/shared/ui-avatar';
 import { UiDifficultyComponent } from '@angular-love/blog/shared/ui-difficulty';
 import { IconComponent } from '@angular-love/blog/shared/ui-icon';
 
-export type Layout = 'regular' | 'horizontal';
-
 type SanitizedArticleDataModel = {
   title: string;
   excerpt: string;
 };
 
 @Component({
-  selector: 'al-article-regular-card',
+  selector: 'al-article-horizontal-card',
   changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: true,
   imports: [
@@ -37,9 +35,9 @@ type SanitizedArticleDataModel = {
     UiDifficultyComponent,
     LocalizeRouterModule,
   ],
-  templateUrl: './article-regular-card.component.html',
+  templateUrl: './article-horizontal-card.component.html',
 })
-export class ArticleRegularCardComponent {
+export class ArticleHorizontalCardComponent {
   article = input.required<ArticleCard>();
 
   sanitizedArticle = computed<SanitizedArticleDataModel>(() => {

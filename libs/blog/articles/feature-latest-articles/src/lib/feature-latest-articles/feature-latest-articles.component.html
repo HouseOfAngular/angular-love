@@ -8,21 +8,26 @@
   class="mt-3 grid grid-cols-1 gap-x-4 gap-y-4 md:grid-cols-2 md:gap-x-8 lg:grid-cols-3 lg:gap-y-8"
   [attr.aria-label]="t('latest')"
 >
-  @for (article of articles(); track i; let i = $index) {
-    @if (i === 0) {
-      <al-article-card
-        class="md:col-span-2"
-        [article]="article"
-        cardType="hero"
-      />
-    } @else {
-      <al-article-card
-        class="regular-card"
-        [ngClass]="{ 'hidden lg:block': i === 3 }"
-        [article]="article"
-        cardType="regular"
-      />
+  @if (!isFetchArticleListLoading()) {
+    @for (article of articles(); track i; let i = $index) {
+      @if (i === 0) {
+        <al-article-card
+          class="md:col-span-2"
+          [article]="article"
+          cardType="hero"
+        />
+      } @else {
+        <al-article-card
+          class="regular-card"
+          [ngClass]="{ 'hidden lg:block': i === 3 }"
+          [article]="article"
+          cardType="regular"
+        />
+      }
     }
+  } @else {
+    <al-article-hero-card-skeleton class="md:col-span-2" />
+    <al-article-regular-card-skeleton *alRepeat="3" />
   }
   <al-card
     alGradientCard

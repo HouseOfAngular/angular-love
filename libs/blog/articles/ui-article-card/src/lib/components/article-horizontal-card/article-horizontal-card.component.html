@@ -1,21 +1,17 @@
 <a [routerLink]="['/', article().slug] | localize">
   <article
-    class="hover:shadow-al-primary group relative grid w-full grid-rows-[220px_240px] rounded-lg border border-transparent shadow-none transition-transform hover:scale-105 motion-reduce:transition-none motion-reduce:hover:scale-100"
+    class="group relative flex h-full w-full flex-row rounded-lg shadow-none"
     [attr.aria-labelledby]="article().slug"
   >
-    <div
-      class="group-hover:bg-al-bottom-radial-gradient absolute bottom-0 z-0 h-1/2 w-full opacity-50"
-    ></div>
-
     <img
       alt="Post featured image"
-      class="h-full w-full overflow-hidden rounded-t-lg object-cover"
+      class="h-auto w-auto rounded-l-lg bg-contain"
       [ngSrc]="article().featuredImageUrl"
       width="1215"
       height="750"
     />
-    <div class="bg-al-card h-full rounded-b-lg">
-      <div class="flex items-center justify-between px-4 pt-4">
+    <div class="bg-al-card h-full w-full rounded-r-lg">
+      <div class="flex items-center justify-between px-6 pt-4">
         <div class="flex items-center gap-2">
           <al-avatar [imageSrc]="article().author.avatarUrl" size="sm" />
           <span class="text-sm/[14px] font-medium">
@@ -23,6 +19,9 @@
           </span>
         </div>
         <div class="flex items-center gap-2">
+          <span class="text-sm/[14px]">
+            {{ article().publishDate | date: 'dd MMM yyyy' }}
+          </span>
           <al-icon name="clock" class="h-4 bg-white" />
           <time
             class="text-sm/[14px]"
@@ -32,21 +31,14 @@
           </time>
         </div>
       </div>
-      <div class="flex items-center justify-between self-start px-4 pt-4">
-        <span class="text-sm/[14px] font-medium">
-          {{ article().publishDate | date: 'dd MMM yyyy' }}
-        </span>
-        <al-difficulty [difficulty]="article().difficulty" />
-      </div>
-
-      <div class="flex flex-col gap-3 px-4 pb-4 pt-3">
+      <div class="flex flex-col px-6 pt-8">
         <h3
           class="*:text-al-pink *:not-italic line-clamp-2 text-2xl font-bold"
           [id]="article().slug"
           [innerHTML]="sanitizedArticle().title"
         ></h3>
         <p
-          class="*:text-al-pink *:font-medium *:not-italic line-clamp-2"
+          class="*:text-al-pink *:font-medium *:not-italic line-clamp-3 pt-5"
           [innerHTML]="sanitizedArticle().excerpt"
         ></p>
       </div>

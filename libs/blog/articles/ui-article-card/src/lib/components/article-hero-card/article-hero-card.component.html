@@ -1,0 +1,51 @@
+<a [routerLink]="['/', article().slug] | localize">
+  <article
+    class="hover:shadow-al-primary h-full rounded-lg bg-contain bg-center bg-no-repeat"
+    [style.background-image]="'url(' + article().featuredImageUrl + ')'"
+    [attr.aria-labelledby]="article().slug"
+  >
+    <div
+      class="bg-al-background-gradient relative flex h-full flex-col justify-between rounded-lg"
+    >
+      <div
+        class="hover:bg-al-bottom-radial-gradient absolute h-full w-full"
+      ></div>
+
+      <div class="flex items-center justify-between px-8 pt-8">
+        <div class="flex items-center gap-2 max-md:self-start">
+          <al-avatar [imageSrc]="article().author.avatarUrl" size="sm" />
+          <span class="text-sm/[14px] font-medium">
+            {{ article().author.name }}
+          </span>
+        </div>
+
+        <div
+          class="flex flex-col items-center justify-end gap-6 gap-y-4 md:flex-row"
+        >
+          <span class="w-full whitespace-nowrap text-sm/[14px] font-medium">
+            {{ article().publishDate | date: 'dd MMM yyyy' }}
+          </span>
+          <al-difficulty [difficulty]="article().difficulty" />
+          <span class="flex w-full flex-row items-center justify-end gap-2">
+            <al-icon name="clock" class="inline-block h-4 bg-white" />
+            <time
+              class="text-sm/[14px]"
+              [attr.datetime]="'PT' + article().readingTime + 'M'"
+            >
+              {{ article().readingTime }}min
+            </time>
+          </span>
+        </div>
+      </div>
+
+      <div class="flex flex-col gap-5 px-8 pb-8 pt-44">
+        <h3 class="line-clamp-2 text-4xl font-bold" [id]="article().slug">
+          {{ article().title }}
+        </h3>
+        <p class="line-clamp-2 text-base">
+          {{ article().excerpt }}
+        </p>
+      </div>
+    </div>
+  </article>
+</a>
