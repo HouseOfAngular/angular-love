@@ -13,7 +13,7 @@ export const mapHitToSearchResult = (
       dto.featured_image ||
       'https://testing.angular.love/wp-content/uploads/2022/12/Templatki-do-artykulów-12.png', // TODO: Replace with statically served placeholder image
     publishDate: new Date(dto.post_date * 1000),
-    readingTime: `${dto.reading_time || 0}`,
+    readingTime: `${dto.reading_time || 5}`,
     difficulty: 'intermediate', // TODO reindex algolia
     slug: dto.post_slug,
     title: dto._highlightResult.post_title.value,
