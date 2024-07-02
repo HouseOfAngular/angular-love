@@ -1,4 +1,5 @@
 import { LiveAnnouncer } from '@angular/cdk/a11y';
+import { NgClass } from '@angular/common';
 import {
   ChangeDetectionStrategy,
   Component,
@@ -21,6 +22,7 @@ import {
 } from '@penleychan/ngx-transloco-router';
 import { debounceTime, filter, startWith, tap } from 'rxjs';
 
+import { AdBannerStore } from '@angular-love/blog/ad-banner/data-access';
 import {
   GlobalSearchStore,
   provideSearch,
@@ -40,6 +42,7 @@ import { GlobalSearchService } from '../global-search.service';
     RouterLink,
     LocalizeRouterModule,
     TranslocoDirective,
+    NgClass,
   ],
   templateUrl: './search-dialog.component.html',
   styleUrl: './search-dialog.component.scss',
@@ -51,6 +54,9 @@ export class SearchDialogComponent implements OnInit, OnDestroy {
   readonly searchForm = new FormControl('', {
     validators: [Validators.maxLength(50)],
   });
+
+  protected readonly adBannerStoreVisible =
+    inject(AdBannerStore).adBannerVisible;
 
   private readonly _searchService = inject(GlobalSearchService);
   private readonly _searchInput =

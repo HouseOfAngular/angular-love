@@ -2,7 +2,8 @@
   class="al-overlay fixed left-0 top-0 z-40 h-screen w-screen bg-black bg-opacity-60"
 >
   <div
-    class="bg-al-card relative top-[84px] z-50 m-auto w-full max-w-screen-xl rounded-tl-lg rounded-tr-lg"
+    class="bg-al-card relative z-50 m-auto w-full max-w-screen-xl rounded-tl-lg rounded-tr-lg"
+    [ngClass]="adBannerStoreVisible() ? 'top-[168px]' : 'top-[84px]'"
   >
     <div class="w-full border-b p-4">
       <div
