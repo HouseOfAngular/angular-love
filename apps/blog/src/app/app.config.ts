@@ -26,6 +26,7 @@ import { blogShellRoutes } from '@angular-love/blog/shell/feature';
 import { environment } from '../environments/environment';
 
 import { provideAppSeo } from './providers/seo-provider';
+import { provideSkeletonConfig } from './providers/skeleton-config-provider';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -64,6 +65,7 @@ export const appConfig: ApplicationConfig = {
     provideExperimentalZonelessChangeDetection(),
     provideClientHydration(),
     provideAppSeo(),
+    provideSkeletonConfig(),
     environment.providers,
   ],
 };
