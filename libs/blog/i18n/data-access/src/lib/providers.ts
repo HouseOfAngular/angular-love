@@ -1,7 +1,7 @@
 import { registerLocaleData } from '@angular/common';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import localePl from '@angular/common/locales/pl';
-import { importProvidersFrom, LOCALE_ID } from '@angular/core';
+import { importProvidersFrom, isDevMode, LOCALE_ID } from '@angular/core';
 import { Routes } from '@angular/router';
 import { provideTransloco } from '@ngneat/transloco';
 import {
@@ -25,7 +25,7 @@ export const provideI18n = (props: { routes: Routes }) => {
         defaultLang: 'pl',
         fallbackLang: 'pl',
         reRenderOnLangChange: true,
-        prodMode: false, //@todo: change to !isDevMode()
+        prodMode: !isDevMode(),
       },
       loader: TranslocoHttpLoader,
     }),
