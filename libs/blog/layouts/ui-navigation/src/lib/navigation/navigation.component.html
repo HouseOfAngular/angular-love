@@ -5,10 +5,20 @@
     'flex-col': layout() === 'vertical',
   }"
 >
-  <ul class="flex flex-wrap" [attr.aria-label]="t('nav.navLinks')">
+  <ul
+    class="flex flex-wrap"
+    [ngClass]="{
+      'flex-col justify-between': layout() === 'vertical',
+    }"
+    [attr.aria-label]="t('nav.navLinks')"
+  >
     @for (item of navItems; track $index) {
       @if (!item.externalLink) {
-        <li>
+        <li
+          [ngClass]="{
+            'py-10 text-center': layout() === 'vertical',
+          }"
+        >
           <a
             [attr.data-testid]="item.dataTestId"
             class="text-al-foreground p-2 font-medium md:p-6"

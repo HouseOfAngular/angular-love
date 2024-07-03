@@ -72,13 +72,9 @@
 </header>
 
 <div
-  class="bg-al-background fixed -top-[100%] left-0 z-40 flex h-full w-full flex-row items-start justify-between p-6 transition-transform duration-300 lg:hidden"
+  class="bg-al-background fixed -top-[100%] left-0 z-40 flex h-full w-full flex-row items-center justify-center transition-transform duration-300 lg:hidden"
   [ngClass]="{ 'translate-y-[100%]': showNav() }"
   [attr.aria-hidden]="showNav()"
 >
-  <al-navigation
-    class="pl-24 pt-24"
-    (navigated)="toggleNav()"
-    layout="vertical"
-  />
+  <al-navigation (navigated)="toggleNav()" layout="vertical" />
 </div>
