@@ -13,7 +13,7 @@
           {{ data().title_mobile }}
         </h3>
         <span
-          class="text-al-pink ml-3 hidden items-center rounded bg-white px-2 text-lg font-bold lg:flex"
+          class="text-al-pink ml-2 hidden items-center rounded bg-white px-2 text-lg font-semibold lg:flex xl:ml-3"
         >
           {{ data().additional_info }}
         </span>
@@ -24,7 +24,7 @@
     <div class="flex flex-row items-center">
       <a
         *transloco="let t; read: 'adBanner'"
-        class="bg-al-pink flex h-[46px] items-center rounded-lg px-10 text-center"
+        class="bg-al-pink flex h-[46px] items-center rounded-lg px-8 text-center"
         [attr.aria-label]="t('registerButton')"
         [href]="data().href"
         target="_blank"
