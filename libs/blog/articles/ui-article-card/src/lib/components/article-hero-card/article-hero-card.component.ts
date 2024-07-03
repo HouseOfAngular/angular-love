@@ -10,6 +10,7 @@ import { IconComponent } from '@angular-love/blog/shared/ui-icon';
 
 export type Layout = 'compact' | 'hero';
 
+// TODO rethink this card
 @Component({
   selector: 'al-article-hero-card',
   changeDetection: ChangeDetectionStrategy.OnPush,

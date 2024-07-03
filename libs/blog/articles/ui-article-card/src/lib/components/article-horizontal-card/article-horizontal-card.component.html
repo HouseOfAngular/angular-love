@@ -7,6 +7,7 @@
       alt="Post featured image"
       class="h-auto w-auto rounded-l-lg bg-contain"
       [ngSrc]="article().featuredImageUrl"
+      [priority]="imagePriority()"
       width="1215"
       height="750"
     />
@@ -33,12 +34,12 @@
       </div>
       <div class="flex flex-col px-6 pt-8">
         <h3
-          class="*:text-al-pink *:not-italic line-clamp-2 text-2xl font-bold"
+          class="*:text-al-pink line-clamp-2 text-2xl font-bold *:not-italic"
           [id]="article().slug"
           [innerHTML]="sanitizedArticle().title"
         ></h3>
         <p
-          class="*:text-al-pink *:font-medium *:not-italic line-clamp-3 pt-5"
+          class="*:text-al-pink line-clamp-3 pt-5 *:font-medium *:not-italic"
           [innerHTML]="sanitizedArticle().excerpt"
         ></p>
       </div>

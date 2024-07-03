@@ -3,7 +3,6 @@ import { ChangeDetectionStrategy, Component, input } from '@angular/core';
 import { ArticleCard } from '@angular-love/blog/shared/types';
 
 import { ArticleCompactCardComponent } from '../components/article-compact-card/article-compact-card.component';
-import { ArticleHeroCardComponent } from '../components/article-hero-card/article-hero-card.component';
 import { ArticleHorizontalCardComponent } from '../components/article-horizontal-card/article-horizontal-card.component';
 import { ArticleRegularCardComponent } from '../components/article-regular-card/article-regular-card.component';
 
@@ -18,7 +17,6 @@ export type CardType = 'regular' | 'horizontal' | 'compact' | 'hero';
   imports: [
     ArticleRegularCardComponent,
     ArticleHorizontalCardComponent,
-    ArticleHeroCardComponent,
     ArticleCompactCardComponent,
   ],
   host: {
@@ -29,4 +27,5 @@ export type CardType = 'regular' | 'horizontal' | 'compact' | 'hero';
 export class UiArticleCardComponent {
   cardType = input.required<CardType>();
   article = input.required<ArticleCard>();
+  imagePriority = input<number | null>(null);
 }

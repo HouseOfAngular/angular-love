@@ -39,6 +39,7 @@ type SanitizedArticleDataModel = {
 })
 export class ArticleHorizontalCardComponent {
   article = input.required<ArticleCard>();
+  imagePriority = input<number | null>(null);
 
   sanitizedArticle = computed<SanitizedArticleDataModel>(() => {
     return {
