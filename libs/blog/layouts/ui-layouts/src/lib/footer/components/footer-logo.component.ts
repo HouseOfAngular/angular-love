@@ -10,10 +10,10 @@ import { ChangeDetectionStrategy, Component, input } from '@angular/core';
       <div>
         <img
           alt="Angular Love logo"
-          class="inline-block"
+          class="inline-block h-10 w-auto"
           ngSrc="assets/angular-love-logo.webp"
-          height="40"
-          width="36"
+          height="547"
+          width="492"
         />
         <span class="text-al-primary px-4 text-lg font-bold">angular.love</span>
       </div>
