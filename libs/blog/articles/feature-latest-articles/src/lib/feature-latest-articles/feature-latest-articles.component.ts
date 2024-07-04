@@ -4,7 +4,6 @@ import { TranslocoDirective } from '@ngneat/transloco';
 
 import { ArticleListStore } from '@angular-love/blog/articles/data-access';
 import {
-  ArticleHeroCardSkeletonComponent,
   ArticleRegularCardSkeletonComponent,
   UiArticleCardComponent,
 } from '@angular-love/blog/articles/ui-article-card';
@@ -29,7 +28,6 @@ import { RepeatDirective } from '@angular-love/utils';
     GradientCardDirective,
     NgClass,
     TranslocoDirective,
-    ArticleHeroCardSkeletonComponent,
     ArticleRegularCardSkeletonComponent,
     CardComponent,
     RepeatDirective,
@@ -52,7 +50,7 @@ export class FeatureLatestArticlesComponent {
 
   constructor() {
     this._articleListStore.fetchArticleList({
-      take: 4,
+      take: 5,
     });
   }
 }

@@ -1,12 +1,15 @@
 @switch (cardType()) {
   @case ('regular') {
-    <al-article-regular-card [article]="article()" />
+    <al-article-regular-card
+      [article]="article()"
+      [imagePriority]="imagePriority()"
+    />
   }
   @case ('horizontal') {
-    <al-article-horizontal-card [article]="article()" />
-  }
-  @case ('hero') {
-    <al-article-hero-card [article]="article()" />
+    <al-article-horizontal-card
+      [article]="article()"
+      [imagePriority]="imagePriority()"
+    />
   }
   @case ('compact') {
     <al-article-compact-card [article]="article()" />

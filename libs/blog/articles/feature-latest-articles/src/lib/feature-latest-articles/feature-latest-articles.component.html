@@ -9,25 +9,21 @@
   [attr.aria-label]="t('latest')"
 >
   @if (!isFetchArticleListLoading()) {
-    @for (article of articles(); track i; let i = $index) {
-      @if (i === 0) {
-        <al-article-card
-          class="md:col-span-2"
-          [article]="article"
-          cardType="hero"
-        />
-      } @else {
-        <al-article-card
-          class="regular-card"
-          [ngClass]="{ 'hidden lg:block': i === 3 }"
-          [article]="article"
-          cardType="regular"
-        />
-      }
+    @for (
+      article of articles();
+      track $index;
+      let last = $last, first = $first
+    ) {
+      <al-article-card
+        class="regular-card"
+        [ngClass]="{ 'hidden lg:block': last }"
+        [article]="article"
+        [imagePriority]="first ? 1 : null"
+        cardType="regular"
+      />
     }
   } @else {
-    <al-article-hero-card-skeleton class="md:col-span-2" />
-    <al-article-regular-card-skeleton *alRepeat="3" />
+    <al-article-regular-card-skeleton *alRepeat="4" />
   }
   <al-card
     alGradientCard

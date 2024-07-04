@@ -41,6 +41,7 @@ type SanitizedArticleDataModel = {
 })
 export class ArticleRegularCardComponent {
   article = input.required<ArticleCard>();
+  imagePriority = input<number | null>(null);
 
   sanitizedArticle = computed<SanitizedArticleDataModel>(() => {
     return {

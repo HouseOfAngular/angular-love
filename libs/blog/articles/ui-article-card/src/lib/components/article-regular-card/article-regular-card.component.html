@@ -11,6 +11,7 @@
       alt="Post featured image"
       class="h-full w-full overflow-hidden rounded-t-lg object-cover"
       [ngSrc]="article().featuredImageUrl"
+      [priority]="imagePriority()"
       width="1215"
       height="750"
     />
@@ -41,12 +42,12 @@
 
       <div class="flex flex-col gap-3 px-4 pb-4 pt-3">
         <h3
-          class="*:text-al-pink *:not-italic line-clamp-2 text-2xl font-bold"
+          class="*:text-al-pink line-clamp-2 text-2xl font-bold *:not-italic"
           [id]="article().slug"
           [innerHTML]="sanitizedArticle().title"
         ></h3>
         <p
-          class="*:text-al-pink *:font-medium *:not-italic line-clamp-2"
+          class="*:text-al-pink line-clamp-2 *:font-medium *:not-italic"
           [innerHTML]="sanitizedArticle().excerpt"
         ></p>
       </div>
