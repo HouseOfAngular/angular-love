@@ -23,7 +23,7 @@ import { CardSkeletonComponent } from '@angular-love/blog/shared/ui-card';
             <span class="w-1/4">
               <ngx-skeleton-loader
                 [theme]="{
-                  height: '20px'
+                  height: '20px',
                 }"
               ></ngx-skeleton-loader>
             </span>
@@ -32,7 +32,7 @@ import { CardSkeletonComponent } from '@angular-love/blog/shared/ui-card';
             <span class="w-1/4">
               <ngx-skeleton-loader
                 [theme]="{
-                  height: '20px'
+                  height: '20px',
                 }"
               ></ngx-skeleton-loader>
             </span>
@@ -43,7 +43,7 @@ import { CardSkeletonComponent } from '@angular-love/blog/shared/ui-card';
           <!-- title -->
           <ngx-skeleton-loader
             [theme]="{
-              height: '40px'
+              height: '40px',
             }"
           ></ngx-skeleton-loader>
         </h1>
@@ -53,6 +53,27 @@ import { CardSkeletonComponent } from '@angular-love/blog/shared/ui-card';
 
       <aside class="col-span-12 lg:col-span-4">
         <al-author-card-skeleton />
+        <!-- table-of-contents -->
+        <div
+          class="!mt-4 hidden h-[344px] flex-col items-start justify-between rounded-lg border lg:flex"
+        >
+          <ngx-skeleton-loader
+            class="w-1/4"
+            [theme]="{
+              'margin-left': '40px',
+              'margin-top': '40px',
+              height: '24px',
+            }"
+          ></ngx-skeleton-loader>
+          <ngx-skeleton-loader
+            class="w-3/4"
+            [theme]="{
+              'margin-left': '40px',
+              'margin-bottom': '40px',
+              height: '200px',
+            }"
+          ></ngx-skeleton-loader>
+        </div>
       </aside>
     </div>
   `,

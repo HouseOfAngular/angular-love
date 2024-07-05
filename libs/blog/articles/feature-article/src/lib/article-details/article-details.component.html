@@ -45,7 +45,7 @@
       [linkable]="true"
     />
 
-    @defer {
+    @defer (on viewport(view); on timer(500ms)) {
       <div
         class="sticky top-24 mt-5 hidden flex-col gap-4 lg:flex"
         [ngClass]="{
@@ -75,6 +75,9 @@
           </div>
         </al-card>
       </div>
+    } @placeholder {
+      <div class="mt-4 h-[344px] rounded-lg border"></div>
+      <div class="mt-4 h-[138px] rounded-lg border"></div>
     }
   </aside>
   <footer class="order-2 col-span-12 lg:order-4 lg:col-span-8">
