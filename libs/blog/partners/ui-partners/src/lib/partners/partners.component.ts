@@ -1,5 +1,7 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component, input } from '@angular/core';
 import { TranslocoDirective } from '@ngneat/transloco';
+
+import { Partner } from '@angular-love/blog/shared/types';
 
 import { PartnersListComponent } from '../partners-list/partners-list.component';
 
@@ -10,4 +12,7 @@ import { PartnersListComponent } from '../partners-list/partners-list.component'
   imports: [PartnersListComponent, TranslocoDirective],
   templateUrl: './partners.component.html',
 })
-export class PartnersComponent {}
+export class PartnersComponent {
+  title = input.required<string>();
+  partnerList = input.required<Partner[]>();
+}
