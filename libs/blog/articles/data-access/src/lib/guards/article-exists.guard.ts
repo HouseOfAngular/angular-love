@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { inject, isDevMode } from '@angular/core';
 import { CanActivateFn, Router } from '@angular/router';
-import { TranslocoService } from '@ngneat/transloco';
+import { TranslocoService } from '@jsverse/transloco';
 import { catchError, map, of } from 'rxjs';
 
 import { ArticleDetailsStore } from '../state/article-details.store';

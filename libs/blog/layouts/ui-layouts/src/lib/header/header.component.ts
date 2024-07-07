@@ -7,7 +7,7 @@ import {
   signal,
 } from '@angular/core';
 import { RouterLink, RouterLinkActive } from '@angular/router';
-import { TranslocoDirective } from '@ngneat/transloco';
+import { TranslocoDirective } from '@jsverse/transloco';
 
 import { NavigationComponent } from '@angular-love/blog/layouts/ui-navigation';
 import { SocialMediaIconsComponent } from '@angular-love/blog/shared/ui-social-media-icons';

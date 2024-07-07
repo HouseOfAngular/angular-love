@@ -29,6 +29,7 @@
     "@angular/platform-server": "18.0.0",
     "@angular/router": "18.0.0",
     "@angular/ssr": "18.0.1",
+    "@jsverse/transloco": "^7.4.2",
     "@ng-icons/bootstrap-icons": "^27.3.1",
     "@ng-icons/core": "^25.6.0",
     "@ng-icons/heroicons": "^25.6.0",
