@@ -13,7 +13,6 @@ import { RouterLink } from '@angular/router';
 import { ArticleCard } from '@angular-love/blog/shared/types';
 import { AvatarComponent } from '@angular-love/blog/shared/ui-avatar';
 import { UiDifficultyComponent } from '@angular-love/blog/shared/ui-difficulty';
-import { LocalizeRouterModule } from '@penleychan/ngx-transloco-router';
 import { FastSvgComponent } from '@push-based/ngx-fast-svg';
 
 type SanitizedArticleDataModel = {
@@ -32,7 +31,6 @@ type SanitizedArticleDataModel = {
     RouterLink,
     NgOptimizedImage,
     UiDifficultyComponent,
-    LocalizeRouterModule,
     FastSvgComponent,
   ],
   templateUrl: './article-horizontal-card.component.html',

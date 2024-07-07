@@ -11,7 +11,6 @@ import { TranslocoDirective } from '@ngneat/transloco';
 
 import { NavigationComponent } from '@angular-love/blog/layouts/ui-navigation';
 import { SocialMediaIconsComponent } from '@angular-love/blog/shared/ui-social-media-icons';
-import { LocalizeRouterModule } from '@penleychan/ngx-transloco-router';
 import { FastSvgComponent } from '@push-based/ngx-fast-svg';
 
 @Component({
@@ -28,7 +27,6 @@ import { FastSvgComponent } from '@push-based/ngx-fast-svg';
     NavigationComponent,
     NgClass,
     TranslocoDirective,
-    LocalizeRouterModule,
     FastSvgComponent,
   ],
 })

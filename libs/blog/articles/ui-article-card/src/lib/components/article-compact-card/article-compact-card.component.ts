@@ -17,7 +17,6 @@ import { FastSvgComponent } from '@push-based/ngx-fast-svg';
     RouterLink,
     DatePipe,
     UiDifficultyComponent,
-    LocalizeRouterModule,
     FastSvgComponent,
   ],
   templateUrl: './article-compact-card.component.html',

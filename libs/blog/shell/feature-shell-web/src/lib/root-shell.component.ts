@@ -3,7 +3,6 @@ import { Component, computed, effect, inject, signal } from '@angular/core';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { RouterOutlet } from '@angular/router';
 import { TranslocoService } from '@ngneat/transloco';
-import { LocalizeRouterService } from '@penleychan/ngx-transloco-router';
 import { startWith } from 'rxjs';
 
 import { AdBannerStore } from '@angular-love/blog/ad-banner/data-access';
@@ -52,7 +51,6 @@ import { AdBannerComponent } from '@angular-love/blog/shared/ad-banner';
 })
 export class RootShellComponent {
   readonly translocoService = inject(TranslocoService);
-  readonly localizeRouterService = inject(LocalizeRouterService);
 
   protected readonly adBannerStore = inject(AdBannerStore);
 
@@ -76,7 +74,7 @@ export class RootShellComponent {
   );
 
   onLanguageChange(lang: string) {
-    this.localizeRouterService.changeLanguage(lang);
+    // this.localizeRouterService.changeLanguage(lang);
   }
 
   constructor(viewport: ViewportScroller) {

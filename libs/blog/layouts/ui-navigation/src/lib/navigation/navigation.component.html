@@ -23,7 +23,7 @@
             [attr.data-testid]="item.dataTestId"
             class="text-al-foreground p-2 font-medium md:p-6"
             [routerLinkActive]="'text-al-pink'"
-            [routerLink]="item.link | localize"
+            [routerLink]="item.link"
             (click)="navigated.emit()"
           >
             {{ t(item.translationPath) }}

@@ -39,7 +39,6 @@ import { GlobalSearchService } from '../global-search.service';
     ReactiveFormsModule,
     SearchResultItemComponent,
     RouterLink,
-    LocalizeRouterModule,
     TranslocoDirective,
     NgClass,
     FastSvgComponent,
@@ -63,7 +62,6 @@ export class SearchDialogComponent implements OnInit, OnDestroy {
     viewChild.required<ElementRef<HTMLInputElement>>('searchInput');
   private readonly _router = inject(Router);
   private readonly _destroyRef = inject(DestroyRef);
-  private readonly _localizeRouterService = inject(LocalizeRouterService);
 
   @HostListener('click', ['$event.target']) onClick(target: HTMLElement): void {
     if (target.classList.contains('al-overlay')) {
@@ -124,14 +122,11 @@ export class SearchDialogComponent implements OnInit, OnDestroy {
   goToAllResults(): void {
     const totalResults = this.searchStore.total();
     if (totalResults && totalResults > 0) {
-      this._router.navigate(
-        this._localizeRouterService.translateRoute(['search']) as string[],
-        {
-          queryParams: {
-            q: this.searchForm.value,
-          },
+      this._router.navigate(['search'], {
+        queryParams: {
+          q: this.searchForm.value,
         },
-      );
+      });
       this.closeSearch();
     }
   }

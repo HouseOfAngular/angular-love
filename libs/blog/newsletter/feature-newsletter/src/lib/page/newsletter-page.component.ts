@@ -12,7 +12,6 @@ import { FastSvgComponent } from '@push-based/ngx-fast-svg';
   standalone: true,
   imports: [
     RouterLink,
-    LocalizeRouterModule,
     ButtonComponent,
     TranslocoDirective,
     A11yModule,
@@ -32,7 +31,7 @@ import { FastSvgComponent } from '@push-based/ngx-fast-svg';
       <p class="my-3">
         {{ t('description') }}
       </p>
-      <a [routerLink]="['/'] | localize">
+      <a [routerLink]="['/']">
         <button al-button type="button" cdkFocusInitial>
           {{ t('button') }}
         </button>

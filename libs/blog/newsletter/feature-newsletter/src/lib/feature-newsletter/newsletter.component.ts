@@ -52,17 +52,9 @@ export class NewsletterComponent {
 
   private readonly _newsletterStore = inject(NewsletterStore);
   private readonly _router = inject(Router);
-  private readonly _localizeRouter = inject(LocalizeRouterService);
   private readonly _onSuccess = effect(() => {
     if (this.newsletterStoreLoading() !== 'success') return;
-    this._router.navigate(
-      this._localizeRouter.translateRoute(['/newsletter']) as string[],
-      {
-        queryParams: {
-          nm: 'confirmed',
-        },
-      },
-    );
+    this._router.navigate(['/newsletter']);
   });
 
   protected readonly newsletterStoreLoading = this._newsletterStore.loading;

@@ -5,7 +5,6 @@ import { RouterLink } from '@angular/router';
 import { ArticleCard } from '@angular-love/blog/shared/types';
 import { AvatarComponent } from '@angular-love/blog/shared/ui-avatar';
 import { UiDifficultyComponent } from '@angular-love/blog/shared/ui-difficulty';
-import { LocalizeRouterModule } from '@penleychan/ngx-transloco-router';
 import { FastSvgComponent } from '@push-based/ngx-fast-svg';
 
 export type Layout = 'compact' | 'hero';
@@ -20,7 +19,6 @@ export type Layout = 'compact' | 'hero';
     RouterLink,
     DatePipe,
     UiDifficultyComponent,
-    LocalizeRouterModule,
     FastSvgComponent,
   ],
   templateUrl: './article-hero-card.component.html',

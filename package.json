@@ -37,7 +37,6 @@
     "@ngrx/operators": "^17.2.0",
     "@ngrx/signals": "^17.0.1",
     "@nx/angular": "19.1.0",
-    "@penleychan/ngx-transloco-router": "^15.0.1",
     "@push-based/ngx-fast-svg": "^18.0.0",
     "@tailwindcss/container-queries": "^0.1.1",
     "algoliasearch": "^4.23.3",

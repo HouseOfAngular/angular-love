@@ -9,7 +9,6 @@ import {
 } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
 import { RouterLink } from '@angular/router';
-import { LocalizeRouterModule } from '@penleychan/ngx-transloco-router';
 
 import { ArticleCard } from '@angular-love/blog/shared/types';
 import { AvatarComponent } from '@angular-love/blog/shared/ui-avatar';
@@ -34,7 +33,6 @@ type SanitizedArticleDataModel = {
     RouterLink,
     NgOptimizedImage,
     UiDifficultyComponent,
-    LocalizeRouterModule,
     FastSvgComponent,
   ],
   templateUrl: './article-regular-card.component.html',
