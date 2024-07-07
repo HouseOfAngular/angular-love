@@ -29,8 +29,8 @@ export const toArticlePreviewList = (dtos: WPPostDto[]): ArticlePreview[] => {
       excerpt: summary.text(),
       featuredImageUrl: dto.featured_image_url || null,
       publishDate: new Date(dto.date || '').toISOString(),
-      readingTime: dto.acf.reading_time?.toString() || '5',
-      difficulty: dto.acf.difficulty || 'intermediate',
+      readingTime: dto.acf?.reading_time?.toString() || '5',
+      difficulty: dto.acf?.difficulty || 'intermediate',
       author: {
         slug: dto.author_details?.slug || '',
         name: dto.author_details?.name || '',
@@ -98,6 +98,7 @@ export const toArticle = (dto?: WPPostDetailsDto): Article => {
   const highlightedContent = $('body').html().trim();
 
   return {
+    id: dto.id || 0,
     title: title.text(),
     slug: dto?.slug || '',
     publishDate: dto?.date || '',

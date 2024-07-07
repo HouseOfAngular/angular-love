@@ -47,4 +47,23 @@ app.get('/:slug', async (c) => {
   return c.json(toArticle(result.data));
 });
 
+app.get('/:id/related', async (c) => {
+  const id = c.req.param('id');
+  const limit = c.req.query('limit');
+
+  const query: Record<string, string | number> = {
+    lang: c.var.lang,
+    limit: limit || 2,
+  };
+
+  const client = new WpPosts(c.var.createWPClient({ namespace: 'yarpp/v1' }));
+
+  const result = await client.getRelatedPosts(id, query);
+
+  return c.json(<ArrayResponse<ArticlePreview>>{
+    data: toArticlePreviewList(result.data),
+    total: Number(result.headers.get('x-wp-total')),
+  });
+});
+
 export default app;

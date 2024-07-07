@@ -53,6 +53,7 @@ interface WPPostDetailsDtoYoastData {
 }
 
 export interface WPPostDetailsDto {
+  id: number;
   date: string;
   slug: string;
   title: {
