@@ -1,11 +1,12 @@
 import { NgClass, ViewportScroller } from '@angular/common';
 import { Component, computed, effect, inject, signal } from '@angular/core';
 import { toSignal } from '@angular/core/rxjs-interop';
-import { RouterOutlet } from '@angular/router';
+import { Router, RouterOutlet } from '@angular/router';
 import { TranslocoService } from '@jsverse/transloco';
 import { startWith } from 'rxjs';
 
 import { AdBannerStore } from '@angular-love/blog/ad-banner/data-access';
+import { AlLocalizeService } from '@angular-love/blog/i18n/util';
 import {
   FooterComponent,
   HeaderComponent,
@@ -73,8 +74,13 @@ export class RootShellComponent {
     },
   );
 
+  private readonly _router = inject(Router);
+  private readonly _localizeService = inject(AlLocalizeService);
+
   onLanguageChange(lang: string) {
-    // this.localizeRouterService.changeLanguage(lang);
+    this._router.navigateByUrl(
+      this._localizeService.localizeExplicitPath(this._router.url, lang),
+    );
   }
 
   constructor(viewport: ViewportScroller) {

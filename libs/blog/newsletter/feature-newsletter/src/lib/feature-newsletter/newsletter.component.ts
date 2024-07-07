@@ -12,15 +12,15 @@ import {
 } from '@angular/forms';
 import { Router } from '@angular/router';
 import { TranslocoDirective } from '@jsverse/transloco';
+import { FastSvgComponent } from '@push-based/ngx-fast-svg';
 
+import { AlLocalizeService } from '@angular-love/blog/i18n/util';
 import { ButtonComponent } from '@angular-love/blog/shared/ui-button';
 import {
   CardComponent,
   GradientCardDirective,
 } from '@angular-love/blog/shared/ui-card';
 import { NewsletterStore } from '@angular-love/data-access';
-import { LocalizeRouterService } from '@penleychan/ngx-transloco-router';
-import { FastSvgComponent } from '@push-based/ngx-fast-svg';
 
 @Component({
   selector: 'al-newsletter',
@@ -52,9 +52,14 @@ export class NewsletterComponent {
 
   private readonly _newsletterStore = inject(NewsletterStore);
   private readonly _router = inject(Router);
+  private readonly _localizeService = inject(AlLocalizeService);
   private readonly _onSuccess = effect(() => {
     if (this.newsletterStoreLoading() !== 'success') return;
-    this._router.navigate(['/newsletter']);
+    this._router.navigate(this._localizeService.localizePath(['/newsletter']), {
+      queryParams: {
+        nm: 'confirmed',
+      },
+    });
   });
 
   protected readonly newsletterStoreLoading = this._newsletterStore.loading;

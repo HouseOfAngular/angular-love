@@ -34,7 +34,6 @@
     "@ng-icons/core": "^25.6.0",
     "@ng-icons/heroicons": "^25.6.0",
     "@ng-icons/tabler-icons": "^25.6.0",
-    "@ngneat/transloco": "^6.0.4",
     "@ngrx/operators": "^17.2.0",
     "@ngrx/signals": "^17.0.1",
     "@nx/angular": "19.1.0",

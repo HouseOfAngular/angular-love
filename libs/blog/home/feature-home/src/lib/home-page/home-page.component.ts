@@ -6,7 +6,7 @@ import {
 } from '@angular/core';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { ReactiveFormsModule } from '@angular/forms';
-import { TranslocoService } from '@ngneat/transloco';
+import { TranslocoService } from '@jsverse/transloco';
 
 import { ArticlesListContainerComponent } from '@angular-love/blog/articles/feature-list';
 import { UiArticleCardComponent } from '@angular-love/blog/articles/ui-article-card';

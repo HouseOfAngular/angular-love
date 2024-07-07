@@ -4,6 +4,8 @@ import { CanActivateFn, Router } from '@angular/router';
 import { TranslocoService } from '@jsverse/transloco';
 import { catchError, map, of } from 'rxjs';
 
+import { AlLocalizeService } from '@angular-love/blog/i18n/util';
+
 import { ArticleDetailsStore } from '../state/article-details.store';
 
 export const articleExistsGuard: CanActivateFn = (route) => {
@@ -13,11 +15,17 @@ export const articleExistsGuard: CanActivateFn = (route) => {
   const http = inject(HttpClient);
   const router = inject(Router);
   const transloco = inject(TranslocoService);
+  const localizeService = inject(AlLocalizeService);
+
   const { articleDetails, alternativeLanguageSlug } =
     inject(ArticleDetailsStore);
 
-  const notFoundPageUrlTree = router.createUrlTree(['/', 'not-found']);
-  const homepageUrlTree = router.createUrlTree(['/']);
+  const notFoundPageUrlTree = router.createUrlTree(
+    localizeService.localizePath(['/', 'not-found']),
+  );
+  const homepageUrlTree = router.createUrlTree(
+    localizeService.localizePath(['/']),
+  );
 
   return http
     .get<{
@@ -35,7 +43,10 @@ export const articleExistsGuard: CanActivateFn = (route) => {
         if (articleDetails()?.lang !== transloco.getActiveLang()) {
           // if the article is in the alternative language, redirect to the alternative language page
           if (alternativeLanguageSlug()) {
-            return router.createUrlTree(['/', alternativeLanguageSlug()], {});
+            return router.createUrlTree(
+              localizeService.localizePath(['/', alternativeLanguageSlug()]),
+              {},
+            );
           } else {
             return homepageUrlTree;
           }

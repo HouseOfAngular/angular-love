@@ -8,6 +8,7 @@ import {
 import { RouterLink } from '@angular/router';
 
 import { UiAuthorCard } from '@angular-love/blog/authors/types';
+import { AlLocalizePipe } from '@angular-love/blog/i18n/util';
 import { AvatarComponent } from '@angular-love/blog/shared/ui-avatar';
 import { DynamicTextClampComponent } from '@angular-love/blog/shared/ui-dynamic-text-clamp';
 import {
@@ -27,6 +28,7 @@ import { AuthorCardTemplateComponent } from './author-card-template.component';
     RouterLink,
     NgTemplateOutlet,
     SocialMediaIconItemComponent,
+    AlLocalizePipe,
   ],
   templateUrl: './author-card.component.html',
   styleUrl: './author-card.component.scss',

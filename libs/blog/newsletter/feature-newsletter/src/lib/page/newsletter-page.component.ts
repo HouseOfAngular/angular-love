@@ -3,8 +3,8 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { TranslocoDirective } from '@jsverse/transloco';
 
+import { AlLocalizePipe } from '@angular-love/blog/i18n/util';
 import { ButtonComponent } from '@angular-love/blog/shared/ui-button';
-import { LocalizeRouterModule } from '@penleychan/ngx-transloco-router';
 import { FastSvgComponent } from '@push-based/ngx-fast-svg';
 
 @Component({
@@ -15,6 +15,7 @@ import { FastSvgComponent } from '@push-based/ngx-fast-svg';
     ButtonComponent,
     TranslocoDirective,
     A11yModule,
+    AlLocalizePipe,
     FastSvgComponent,
   ],
   template: `
@@ -31,7 +32,7 @@ import { FastSvgComponent } from '@push-based/ngx-fast-svg';
       <p class="my-3">
         {{ t('description') }}
       </p>
-      <a [routerLink]="['/']">
+      <a [routerLink]="['/'] | alLocalize">
         <button al-button type="button" cdkFocusInitial>
           {{ t('button') }}
         </button>

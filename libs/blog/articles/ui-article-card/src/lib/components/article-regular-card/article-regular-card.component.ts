@@ -10,6 +10,7 @@ import {
 import { DomSanitizer } from '@angular/platform-browser';
 import { RouterLink } from '@angular/router';
 
+import { AlLocalizePipe } from '@angular-love/blog/i18n/util';
 import { ArticleCard } from '@angular-love/blog/shared/types';
 import { AvatarComponent } from '@angular-love/blog/shared/ui-avatar';
 import { UiDifficultyComponent } from '@angular-love/blog/shared/ui-difficulty';
@@ -34,6 +35,7 @@ type SanitizedArticleDataModel = {
     NgOptimizedImage,
     UiDifficultyComponent,
     FastSvgComponent,
+    AlLocalizePipe,
   ],
   templateUrl: './article-regular-card.component.html',
 })

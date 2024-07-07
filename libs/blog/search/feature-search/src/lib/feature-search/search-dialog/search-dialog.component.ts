@@ -20,14 +20,14 @@ import { debounceTime, filter, startWith, tap } from 'rxjs';
 
 import { AdBannerStore } from '@angular-love/blog/ad-banner/data-access';
 import {
+  AlLocalizePipe,
+  AlLocalizeService,
+} from '@angular-love/blog/i18n/util';
+import {
   GlobalSearchStore,
   provideSearch,
 } from '@angular-love/blog/search/data-access';
 import { SearchResultItemComponent } from '@angular-love/search-result-item';
-import {
-  LocalizeRouterModule,
-  LocalizeRouterService,
-} from '@penleychan/ngx-transloco-router';
 import { FastSvgComponent } from '@push-based/ngx-fast-svg';
 
 import { GlobalSearchService } from '../global-search.service';
@@ -42,6 +42,7 @@ import { GlobalSearchService } from '../global-search.service';
     TranslocoDirective,
     NgClass,
     FastSvgComponent,
+    AlLocalizePipe,
   ],
   templateUrl: './search-dialog.component.html',
   styleUrl: './search-dialog.component.scss',
@@ -62,6 +63,7 @@ export class SearchDialogComponent implements OnInit, OnDestroy {
     viewChild.required<ElementRef<HTMLInputElement>>('searchInput');
   private readonly _router = inject(Router);
   private readonly _destroyRef = inject(DestroyRef);
+  private readonly _localizeService = inject(AlLocalizeService);
 
   @HostListener('click', ['$event.target']) onClick(target: HTMLElement): void {
     if (target.classList.contains('al-overlay')) {
@@ -122,7 +124,7 @@ export class SearchDialogComponent implements OnInit, OnDestroy {
   goToAllResults(): void {
     const totalResults = this.searchStore.total();
     if (totalResults && totalResults > 0) {
-      this._router.navigate(['search'], {
+      this._router.navigate(this._localizeService.localizePath(['search']), {
         queryParams: {
           q: this.searchForm.value,
         },

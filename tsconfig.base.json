@@ -91,6 +91,7 @@
       "@angular-love/blog/i18n/data-access": [
         "libs/blog/i18n/data-access/src/index.ts"
       ],
+      "@angular-love/blog/i18n/util": ["libs/blog/i18n/util/src/index.ts"],
       "@angular-love/blog/layouts/feature-header": [
         "libs/blog/layouts/feature-header/src/index.ts"
       ],

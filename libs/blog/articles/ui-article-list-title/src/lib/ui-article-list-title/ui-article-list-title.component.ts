@@ -1,6 +1,8 @@
 import { ChangeDetectionStrategy, Component, input } from '@angular/core';
 import { RouterLink } from '@angular/router';
 
+import { AlLocalizePipe } from '@angular-love/blog/i18n/util';
+
 export type ArticleTitleLink = {
   displayName: string;
   href: string;
@@ -11,7 +13,7 @@ export type ArticleTitleLink = {
   standalone: true,
   templateUrl: './ui-article-list-title.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [RouterLink],
+  imports: [RouterLink, AlLocalizePipe],
 })
 export class UiArticleListTitleComponent {
   title = input.required<string>();

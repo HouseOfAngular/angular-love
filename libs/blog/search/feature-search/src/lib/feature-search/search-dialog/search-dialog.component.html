@@ -29,7 +29,7 @@
         <p>{{ t('results', { total: searchStore.total() }) }}</p>
         <ul class="max-h-[50vh] overflow-auto">
           @for (item of searchStore.items(); track item.slug) {
-            <a [routerLink]="['/', item.slug]">
+            <a [routerLink]="['/', item.slug] | alLocalize">
               <li
                 class="w-full cursor-pointer justify-between border-b last:border-none"
               >

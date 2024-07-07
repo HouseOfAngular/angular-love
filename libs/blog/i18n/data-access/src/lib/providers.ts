@@ -4,6 +4,8 @@ import localePl from '@angular/common/locales/pl';
 import { isDevMode, LOCALE_ID } from '@angular/core';
 import { provideTransloco } from '@jsverse/transloco';
 
+import { AlLocalizeService } from '@angular-love/blog/i18n/util';
+
 import { I18nHeadersInterceptor } from './i18n-headers.interceptor';
 import { LocaleIdProvider } from './locale-id.provider';
 import { TranslocoHttpLoader } from './transloco.loader';
@@ -28,5 +30,6 @@ export const provideI18n = () => {
       multi: true,
     },
     { provide: LOCALE_ID, useClass: LocaleIdProvider },
+    AlLocalizeService,
   ];
 };
