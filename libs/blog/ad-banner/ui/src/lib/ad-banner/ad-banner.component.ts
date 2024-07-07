@@ -6,7 +6,7 @@ import {
 } from '@angular/core';
 import { TranslocoDirective } from '@ngneat/transloco';
 
-import { IconComponent } from '@angular-love/blog/shared/ui-icon';
+import { FastSvgComponent } from '@push-based/ngx-fast-svg';
 
 export type AdBanner = {
   title: string;
@@ -20,7 +20,7 @@ export type AdBanner = {
 @Component({
   selector: 'al-ad-banner',
   standalone: true,
-  imports: [IconComponent, TranslocoDirective],
+  imports: [TranslocoDirective, FastSvgComponent],
   templateUrl: './ad-banner.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
   host: {

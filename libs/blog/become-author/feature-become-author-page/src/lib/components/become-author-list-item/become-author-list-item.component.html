@@ -11,10 +11,9 @@
       <p class="text-base font-bold">{{ index() }}</p>
     </div>
   } @else {
-    <al-icon
-      name="tick"
-      class="bg-al-pink ml-4 mr-2 mt-6 h-4 self-start md:mt-0 md:self-center"
-    />
+    <div class="ml-4 mr-2 mt-6 h-4 self-start md:mt-0 md:self-center">
+      <fast-svg name="tick" size="16" class="text-al-pink " />
+    </div>
   }
   <p class="ml-4 mr-6 block pb-4 pt-5 md:ml-4 md:py-5 lg:mr-[30px]">
     {{ content() }}

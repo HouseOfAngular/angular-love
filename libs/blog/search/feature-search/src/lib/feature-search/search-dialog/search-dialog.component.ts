@@ -16,10 +16,6 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { FormControl, ReactiveFormsModule, Validators } from '@angular/forms';
 import { NavigationEnd, Router, RouterLink } from '@angular/router';
 import { TranslocoDirective, TranslocoService } from '@ngneat/transloco';
-import {
-  LocalizeRouterModule,
-  LocalizeRouterService,
-} from '@penleychan/ngx-transloco-router';
 import { debounceTime, filter, startWith, tap } from 'rxjs';
 
 import { AdBannerStore } from '@angular-love/blog/ad-banner/data-access';
@@ -27,8 +23,12 @@ import {
   GlobalSearchStore,
   provideSearch,
 } from '@angular-love/blog/search/data-access';
-import { IconComponent } from '@angular-love/blog/shared/ui-icon';
 import { SearchResultItemComponent } from '@angular-love/search-result-item';
+import {
+  LocalizeRouterModule,
+  LocalizeRouterService,
+} from '@penleychan/ngx-transloco-router';
+import { FastSvgComponent } from '@push-based/ngx-fast-svg';
 
 import { GlobalSearchService } from '../global-search.service';
 
@@ -37,12 +37,12 @@ import { GlobalSearchService } from '../global-search.service';
   standalone: true,
   imports: [
     ReactiveFormsModule,
-    IconComponent,
     SearchResultItemComponent,
     RouterLink,
     LocalizeRouterModule,
     TranslocoDirective,
     NgClass,
+    FastSvgComponent,
   ],
   templateUrl: './search-dialog.component.html',
   styleUrl: './search-dialog.component.scss',

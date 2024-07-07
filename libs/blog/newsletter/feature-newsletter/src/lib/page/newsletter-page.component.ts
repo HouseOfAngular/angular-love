@@ -2,21 +2,21 @@ import { A11yModule } from '@angular/cdk/a11y';
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { TranslocoDirective } from '@ngneat/transloco';
-import { LocalizeRouterModule } from '@penleychan/ngx-transloco-router';
 
 import { ButtonComponent } from '@angular-love/blog/shared/ui-button';
-import { IconComponent } from '@angular-love/blog/shared/ui-icon';
+import { LocalizeRouterModule } from '@penleychan/ngx-transloco-router';
+import { FastSvgComponent } from '@push-based/ngx-fast-svg';
 
 @Component({
   selector: 'al-newsletter-page',
   standalone: true,
   imports: [
-    IconComponent,
     RouterLink,
     LocalizeRouterModule,
     ButtonComponent,
     TranslocoDirective,
     A11yModule,
+    FastSvgComponent,
   ],
   template: `
     <div
@@ -25,7 +25,7 @@ import { IconComponent } from '@angular-love/blog/shared/ui-icon';
       [cdkTrapFocusAutoCapture]="true"
       cdkTrapFocus
     >
-      <al-icon name="circle-check" class="mb-2 h-20 bg-white" />
+      <fast-svg name="circle-check" size="80" />
       <h2 class="my-2 text-2xl font-bold">
         {{ t('title') }}
       </h2>

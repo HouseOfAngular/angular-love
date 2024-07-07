@@ -5,7 +5,7 @@ import {
   input,
 } from '@angular/core';
 
-import { IconComponent } from '@angular-love/blog/shared/ui-icon';
+import { FastSvgComponent } from '@push-based/ngx-fast-svg';
 
 type SocialMediaBase<
   TIconName extends
@@ -38,12 +38,12 @@ export type SocialMediaIconItemUi =
         [href]="href"
         target="_blank"
       >
-        <al-icon class="h-6 bg-white" [name]="socialMediaConfig().iconName" />
+        <fast-svg [name]="socialMediaConfig().iconName" size="24" />
       </a>
     }
   `,
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [IconComponent],
+  imports: [FastSvgComponent],
 })
 export class SocialMediaIconItemComponent {
   socialMediaConfig = input.required<SocialMediaIconItemUi>();

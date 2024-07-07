@@ -12,15 +12,15 @@ import {
 } from '@angular/forms';
 import { Router } from '@angular/router';
 import { TranslocoDirective } from '@ngneat/transloco';
-import { LocalizeRouterService } from '@penleychan/ngx-transloco-router';
 
 import { ButtonComponent } from '@angular-love/blog/shared/ui-button';
 import {
   CardComponent,
   GradientCardDirective,
 } from '@angular-love/blog/shared/ui-card';
-import { IconComponent } from '@angular-love/blog/shared/ui-icon';
 import { NewsletterStore } from '@angular-love/data-access';
+import { LocalizeRouterService } from '@penleychan/ngx-transloco-router';
+import { FastSvgComponent } from '@push-based/ngx-fast-svg';
 
 @Component({
   selector: 'al-newsletter',
@@ -29,9 +29,9 @@ import { NewsletterStore } from '@angular-love/data-access';
     GradientCardDirective,
     CardComponent,
     ReactiveFormsModule,
-    IconComponent,
     TranslocoDirective,
     ButtonComponent,
+    FastSvgComponent,
   ],
   templateUrl: './newsletter.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
