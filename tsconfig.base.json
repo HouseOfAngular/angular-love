@@ -100,9 +100,6 @@
       "@angular-love/blog/layouts/ui-navigation": [
         "libs/blog/layouts/ui-navigation/src/index.ts"
       ],
-      "@angular-love/blog/main-partner/ui-main-partner": [
-        "libs/blog/main-partner/ui-main-partner/src/index.ts"
-      ],
       "@angular-love/blog/newsletter": [
         "libs/blog/newsletter/feature-newsletter/src/index.ts"
       ],
