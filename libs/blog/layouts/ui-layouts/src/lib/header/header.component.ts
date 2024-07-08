@@ -8,11 +8,11 @@ import {
 } from '@angular/core';
 import { RouterLink, RouterLinkActive } from '@angular/router';
 import { TranslocoDirective } from '@ngneat/transloco';
-import { LocalizeRouterModule } from '@penleychan/ngx-transloco-router';
 
 import { NavigationComponent } from '@angular-love/blog/layouts/ui-navigation';
-import { IconComponent } from '@angular-love/blog/shared/ui-icon';
 import { SocialMediaIconsComponent } from '@angular-love/blog/shared/ui-social-media-icons';
+import { LocalizeRouterModule } from '@penleychan/ngx-transloco-router';
+import { FastSvgComponent } from '@push-based/ngx-fast-svg';
 
 @Component({
   standalone: true,
@@ -26,10 +26,10 @@ import { SocialMediaIconsComponent } from '@angular-love/blog/shared/ui-social-m
     RouterLinkActive,
     RouterLink,
     NavigationComponent,
-    IconComponent,
     NgClass,
     TranslocoDirective,
     LocalizeRouterModule,
+    FastSvgComponent,
   ],
 })
 export class HeaderComponent {

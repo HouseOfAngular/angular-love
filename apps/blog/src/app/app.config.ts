@@ -22,6 +22,7 @@ import {
 
 import { provideI18n } from '@angular-love/blog/i18n/data-access';
 import { blogShellRoutes } from '@angular-love/blog/shell/feature';
+import { provideFastSVG } from '@push-based/ngx-fast-svg';
 
 import { environment } from '../environments/environment';
 
@@ -66,6 +67,9 @@ export const appConfig: ApplicationConfig = {
     provideClientHydration(),
     provideAppSeo(),
     provideSkeletonConfig(),
+    provideFastSVG({
+      url: (name: string) => `assets/icons/${name}.svg`,
+    }),
     environment.providers,
   ],
 };

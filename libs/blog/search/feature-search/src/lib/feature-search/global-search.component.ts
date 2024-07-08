@@ -5,7 +5,7 @@ import {
   inject,
 } from '@angular/core';
 
-import { IconComponent } from '@angular-love/blog/shared/ui-icon';
+import { FastSvgComponent } from '@push-based/ngx-fast-svg';
 
 import { GlobalSearchService } from './global-search.service';
 import { SearchDialogComponent } from './search-dialog';
@@ -13,7 +13,7 @@ import { SearchDialogComponent } from './search-dialog';
 @Component({
   selector: 'al-search',
   standalone: true,
-  imports: [SearchDialogComponent, IconComponent],
+  imports: [SearchDialogComponent, FastSvgComponent],
   template: `
     <button
       aria-label="Open a search dialog"
@@ -21,7 +21,7 @@ import { SearchDialogComponent } from './search-dialog';
       (click)="service.showSearchDialog()"
       date-testid="header-search"
     >
-      <al-icon name="magnifier-glass" class="bg-al-pink h-6" />
+      <fast-svg name="magnifier-glass" class="text-al-pink" size="24" />
     </button>
 
     @defer (when service.isSearchOpen()) {

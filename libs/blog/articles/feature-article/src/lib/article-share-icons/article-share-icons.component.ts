@@ -2,6 +2,7 @@ import { Component, computed, input } from '@angular/core';
 import { TranslocoDirective } from '@ngneat/transloco';
 
 import { IconComponent, IconType } from '@angular-love/blog/shared/ui-icon';
+import { FastSvgComponent } from "@push-based/ngx-fast-svg";
 
 type ShareItem = {
   href: string;
@@ -12,7 +13,7 @@ type ShareItem = {
 @Component({
   standalone: true,
   selector: 'al-article-share-icons',
-  imports: [IconComponent, TranslocoDirective],
+  imports: [IconComponent, TranslocoDirective, FastSvgComponent],
   template: `
     <div class="flex items-center gap-4">
       <span *transloco="let t" class="text-lg font-bold">
@@ -27,7 +28,7 @@ type ShareItem = {
           [href]="item.href"
           target="_blank"
         >
-          <al-icon class="bg-al-foreground block h-7" [name]="item.icon" />
+          <fast-svg class="text-al-foreground" [name]="item.icon" size="28" />
         </a>
       }
     </div>

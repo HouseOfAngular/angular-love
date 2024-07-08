@@ -23,8 +23,8 @@ import {
   GradientCardDirective,
 } from '@angular-love/blog/shared/ui-card';
 import { UiDifficultyComponent } from '@angular-love/blog/shared/ui-difficulty';
-import { IconComponent } from '@angular-love/blog/shared/ui-icon';
 import { Article } from '@angular-love/contracts/articles';
+import { FastSvgComponent } from '@push-based/ngx-fast-svg';
 
 import { ArticleShareIconsComponent } from '../article-share-icons/article-share-icons.component';
 
@@ -33,7 +33,6 @@ import { ArticleShareIconsComponent } from '../article-share-icons/article-share
   standalone: true,
   imports: [
     DatePipe,
-    IconComponent,
     ArticleContentComponent,
     GradientCardDirective,
     NewsletterComponent,
@@ -48,6 +47,7 @@ import { ArticleShareIconsComponent } from '../article-share-icons/article-share
     UiDifficultyComponent,
     ArticleShareIconsComponent,
     NgClass,
+    FastSvgComponent,
   ],
   templateUrl: './article-details.component.html',
   styleUrls: ['./article-details.component.scss'],
