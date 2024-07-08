@@ -6,7 +6,7 @@
     <img
       alt="Post featured image"
       class="h-auto w-auto rounded-l-lg bg-contain"
-      [ngSrc]="article().featuredImageUrl"
+      [ngSrc]="article().featuredImageUrl || 'assets/article-placeholder.webp'"
       [priority]="imagePriority()"
       width="1215"
       height="750"
