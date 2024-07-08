@@ -7,7 +7,7 @@
   </h2>
   <span class="bg-al-border hidden h-[1px] grow md:block"></span>
   @if (link(); as link) {
-    <a class="text-base underline" [routerLink]="link.href | localize">
+    <a class="text-base underline" [routerLink]="link.href | alLocalize">
       {{ link.displayName }}
     </a>
   }

@@ -5,7 +5,7 @@ import {
   inject,
   OnInit,
 } from '@angular/core';
-import { TranslocoDirective, TranslocoPipe } from '@ngneat/transloco';
+import { TranslocoDirective, TranslocoPipe } from '@jsverse/transloco';
 
 import { AuthorListStore } from '@angular-love/blog/authors/data-access';
 import { AuthorCardComponent } from '@angular-love/blog/authors/ui-author-card';

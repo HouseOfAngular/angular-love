@@ -1,9 +1,10 @@
 import { HttpClient } from '@angular/common/http';
 import { inject, isDevMode } from '@angular/core';
 import { CanActivateFn, Router } from '@angular/router';
-import { TranslocoService } from '@ngneat/transloco';
-import { LocalizeRouterService } from '@penleychan/ngx-transloco-router';
+import { TranslocoService } from '@jsverse/transloco';
 import { catchError, map, of } from 'rxjs';
+
+import { AlLocalizeService } from '@angular-love/blog/i18n/util';
 
 import { ArticleDetailsStore } from '../state/article-details.store';
 
@@ -14,15 +15,16 @@ export const articleExistsGuard: CanActivateFn = (route) => {
   const http = inject(HttpClient);
   const router = inject(Router);
   const transloco = inject(TranslocoService);
+  const localizeService = inject(AlLocalizeService);
+
   const { articleDetails, alternativeLanguageSlug } =
     inject(ArticleDetailsStore);
-  const localizeRouterService = inject(LocalizeRouterService);
 
   const notFoundPageUrlTree = router.createUrlTree(
-    localizeRouterService.translateRoute(['/', 'not-found']) as string[],
+    localizeService.localizePath(['/', 'not-found']),
   );
   const homepageUrlTree = router.createUrlTree(
-    localizeRouterService.translateRoute(['/']) as string[],
+    localizeService.localizePath(['/']),
   );
 
   return http
@@ -41,11 +43,10 @@ export const articleExistsGuard: CanActivateFn = (route) => {
         if (articleDetails()?.lang !== transloco.getActiveLang()) {
           // if the article is in the alternative language, redirect to the alternative language page
           if (alternativeLanguageSlug()) {
-            const route = localizeRouterService.translateRoute([
-              '/',
-              alternativeLanguageSlug(),
-            ]) as string[];
-            return router.createUrlTree(route, {});
+            return router.createUrlTree(
+              localizeService.localizePath(['/', alternativeLanguageSlug()]),
+              {},
+            );
           } else {
             return homepageUrlTree;
           }

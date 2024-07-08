@@ -6,9 +6,9 @@ import {
   input,
   output,
 } from '@angular/core';
+import { TranslocoDirective } from '@jsverse/transloco';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { heroChevronLeft, heroChevronRight } from '@ng-icons/heroicons/outline';
-import { TranslocoDirective } from '@ngneat/transloco';
 
 import { ButtonComponent } from '@angular-love/blog/shared/ui-button';
 

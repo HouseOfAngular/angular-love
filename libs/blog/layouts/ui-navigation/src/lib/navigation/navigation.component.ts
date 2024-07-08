@@ -6,8 +6,9 @@ import {
   output,
 } from '@angular/core';
 import { RouterLink, RouterLinkActive } from '@angular/router';
-import { TranslocoDirective } from '@ngneat/transloco';
-import { LocalizeRouterModule } from '@penleychan/ngx-transloco-router';
+import { TranslocoDirective } from '@jsverse/transloco';
+
+import { AlLocalizePipe } from '@angular-love/blog/i18n/util';
 
 export type NavItem = {
   translationPath: string;
@@ -23,8 +24,8 @@ export type NavItem = {
     RouterLink,
     RouterLinkActive,
     NgClass,
-    LocalizeRouterModule,
     TranslocoDirective,
+    AlLocalizePipe,
   ],
   templateUrl: './navigation.component.html',
   styleUrl: './navigation.component.scss',

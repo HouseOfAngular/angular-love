@@ -7,11 +7,11 @@ import {
   signal,
 } from '@angular/core';
 import { RouterLink, RouterLinkActive } from '@angular/router';
-import { TranslocoDirective } from '@ngneat/transloco';
+import { TranslocoDirective } from '@jsverse/transloco';
 
+import { AlLocalizePipe } from '@angular-love/blog/i18n/util';
 import { NavigationComponent } from '@angular-love/blog/layouts/ui-navigation';
 import { SocialMediaIconsComponent } from '@angular-love/blog/shared/ui-social-media-icons';
-import { LocalizeRouterModule } from '@penleychan/ngx-transloco-router';
 import { FastSvgComponent } from '@push-based/ngx-fast-svg';
 
 @Component({
@@ -28,7 +28,7 @@ import { FastSvgComponent } from '@push-based/ngx-fast-svg';
     NavigationComponent,
     NgClass,
     TranslocoDirective,
-    LocalizeRouterModule,
+    AlLocalizePipe,
     FastSvgComponent,
   ],
 })
@@ -38,8 +38,6 @@ export class HeaderComponent {
   languageChange = output<string>();
 
   showNav = signal<boolean>(false);
-
-  readonly logoSize = '40';
 
   toggleNav(): void {
     this.showNav.set(!this.showNav());

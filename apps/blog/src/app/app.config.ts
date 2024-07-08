@@ -33,7 +33,7 @@ export const appConfig: ApplicationConfig = {
   providers: [
     provideRouter(
       blogShellRoutes,
-      withDisabledInitialNavigation(),
+      // withDisabledInitialNavigation(),
       withComponentInputBinding(),
       withViewTransitions({
         onViewTransitionCreated: ({ transition }) => {
@@ -61,7 +61,7 @@ export const appConfig: ApplicationConfig = {
         onSameUrlNavigation: 'reload',
       }),
     ),
-    provideI18n({ routes: blogShellRoutes }),
+    provideI18n(),
     provideHttpClient(withFetch(), withInterceptorsFromDi()),
     provideExperimentalZonelessChangeDetection(),
     provideClientHydration(),

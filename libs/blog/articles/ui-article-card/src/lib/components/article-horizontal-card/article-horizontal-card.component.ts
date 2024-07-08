@@ -10,10 +10,10 @@ import {
 import { DomSanitizer } from '@angular/platform-browser';
 import { RouterLink } from '@angular/router';
 
+import { AlLocalizePipe } from '@angular-love/blog/i18n/util';
 import { ArticleCard } from '@angular-love/blog/shared/types';
 import { AvatarComponent } from '@angular-love/blog/shared/ui-avatar';
 import { UiDifficultyComponent } from '@angular-love/blog/shared/ui-difficulty';
-import { LocalizeRouterModule } from '@penleychan/ngx-transloco-router';
 import { FastSvgComponent } from '@push-based/ngx-fast-svg';
 
 type SanitizedArticleDataModel = {
@@ -32,7 +32,7 @@ type SanitizedArticleDataModel = {
     RouterLink,
     NgOptimizedImage,
     UiDifficultyComponent,
-    LocalizeRouterModule,
+    AlLocalizePipe,
     FastSvgComponent,
   ],
   templateUrl: './article-horizontal-card.component.html',

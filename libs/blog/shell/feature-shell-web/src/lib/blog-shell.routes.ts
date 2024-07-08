@@ -1,10 +1,26 @@
 import { Route } from '@angular/router';
 
 import { articleRoutes } from '@angular-love/blog/articles/feature/shell';
+import { resolveActiveLanguage } from '@angular-love/blog/i18n/data-access';
 
 import { RootShellComponent } from './root-shell.component';
 
 export const blogShellRoutes: Route[] = [
+  {
+    path: 'en',
+    pathMatch: 'prefix',
+    loadChildren: () => routes,
+    resolve: [resolveActiveLanguage('en')],
+  },
+  {
+    path: '',
+    pathMatch: 'prefix',
+    loadChildren: () => routes,
+    resolve: [resolveActiveLanguage('pl')],
+  },
+];
+
+export const routes: Route[] = [
   {
     path: '',
     component: RootShellComponent,
