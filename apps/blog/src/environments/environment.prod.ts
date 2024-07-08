@@ -1,5 +1,7 @@
 import { provideConfig } from '@angular-love/shared/config';
 
+import { provideAppTracking } from '../app/providers/tracking';
+
 import { AppEnvironment } from './app-environment';
 
 export const environment: AppEnvironment = {
@@ -16,5 +18,6 @@ export const environment: AppEnvironment = {
       giscusCategory: process.env.AL_GISCUS_CATEGORY,
       giscusCategoryId: process.env.AL_GISCUS_CATEGORY_ID,
     }),
+    provideAppTracking(),
   ],
 };

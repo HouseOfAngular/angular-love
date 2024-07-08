@@ -30,6 +30,7 @@
     "@angular/router": "18.0.0",
     "@angular/ssr": "18.0.1",
     "@jsverse/transloco": "^7.4.2",
+    "@builder.io/partytown": "^0.10.2",
     "@ng-icons/bootstrap-icons": "^27.3.1",
     "@ng-icons/core": "^25.6.0",
     "@ng-icons/heroicons": "^25.6.0",
@@ -56,6 +57,7 @@
     "stylelint": "^16.3.1",
     "tailwind-merge": "^2.3.0",
     "tslib": "^2.6.1",
+    "vanilla-cookieconsent": "3.0.1",
     "xmlbuilder2": "^3.1.1",
     "zod": "^3.23.8",
     "zone.js": "0.14.4"
