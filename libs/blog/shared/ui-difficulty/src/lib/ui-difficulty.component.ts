@@ -18,7 +18,7 @@ export type UiDifficulty = 'beginner' | 'intermediate' | 'advanced';
     >
       <!-- Left Block -->
       <div
-        class="flex items-center self-stretch rounded-l-md text-center align-middle"
+        class="flex items-center self-stretch rounded-l-md pl-1 text-center align-middle xl:pl-2"
         [ngClass]="{
           'bg-al-background': isColorBackground(),
           'bg-al-border': !isColorBackground(),
@@ -26,7 +26,7 @@ export type UiDifficulty = 'beginner' | 'intermediate' | 'advanced';
       >
         <span
           *transloco="let t; read: 'difficulty'"
-          class="self-center px-0.5 first-letter:uppercase lg:px-2"
+          class="hidden self-center first-letter:uppercase xl:block"
         >
           {{ t(difficulty()) }}
         </span>

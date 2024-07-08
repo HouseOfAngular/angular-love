@@ -5,12 +5,13 @@
     width: sideLength() + 'px',
   }"
 >
-  @if (imageSrc) {
+  @if (imageSrc()) {
     <img
       alt=""
-      [ngSrc]="imageSrc"
+      [ngSrc]="imageSrc()"
       [width]="sideLength()"
       [height]="sideLength()"
+      [priority]="priority()"
     />
   } @else {
     <ng-icon name="heroUsers"></ng-icon>
