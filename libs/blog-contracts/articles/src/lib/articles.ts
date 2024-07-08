@@ -20,7 +20,7 @@ export interface ArticlePreview {
   slug: string;
   title: string;
   excerpt: string;
-  featuredImageUrl: string;
+  featuredImageUrl: string | null;
   publishDate: string;
   readingTime: string;
   difficulty: 'beginner' | 'intermediate' | 'advanced';

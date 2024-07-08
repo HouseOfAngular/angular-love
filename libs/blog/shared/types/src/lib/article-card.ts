@@ -3,7 +3,7 @@ export type ArticleCard = {
   publishDate: string | Date;
   excerpt: string;
   slug: string;
-  featuredImageUrl: string;
+  featuredImageUrl: string | null;
   readingTime: string;
   difficulty: 'beginner' | 'intermediate' | 'advanced';
   author: {

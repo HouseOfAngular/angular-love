@@ -1,7 +1,10 @@
 <a [routerLink]="['/', article().slug] | localize">
   <article
     class="hover:shadow-al-primary h-full rounded-lg bg-contain bg-center bg-no-repeat"
-    [style.background-image]="'url(' + article().featuredImageUrl + ')'"
+    [style.background-image]="
+      'url(' + article().featuredImageUrl ||
+      'assets/article-placeholder.webp' + ')'
+    "
     [attr.aria-labelledby]="article().slug"
   >
     <div

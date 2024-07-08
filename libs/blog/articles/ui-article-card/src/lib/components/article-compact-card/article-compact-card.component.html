@@ -1,11 +1,14 @@
 <a [routerLink]="['/', article().slug] | localize">
   <article
     class="h-full rounded-lg bg-cover bg-no-repeat transition-transform hover:scale-105 motion-reduce:transition-none motion-reduce:hover:scale-100"
-    [style.background-image]="'url(' + article().featuredImageUrl + ')'"
+    [style.background-image]="
+      'url(' + article().featuredImageUrl ||
+      'assets/article-placeholder.webp' + ')'
+    "
     [attr.aria-labelledby]="article().slug"
   >
     <div
-      class="bg-al-background opacity-85 relative flex h-full flex-col justify-between"
+      class="bg-al-background relative flex h-full flex-col justify-between opacity-85"
     >
       <div
         class="hover:bg-al-bottom-radial-gradient absolute h-full w-full"

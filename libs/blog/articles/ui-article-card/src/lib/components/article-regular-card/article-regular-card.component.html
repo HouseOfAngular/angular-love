@@ -10,7 +10,7 @@
     <img
       alt="Post featured image"
       class="h-full w-full overflow-hidden rounded-t-lg object-cover"
-      [ngSrc]="article().featuredImageUrl"
+      [ngSrc]="article().featuredImageUrl || 'assets/article-placeholder.webp'"
       [priority]="imagePriority()"
       width="1215"
       height="750"
