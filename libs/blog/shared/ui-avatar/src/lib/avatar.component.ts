@@ -3,8 +3,7 @@ import {
   ChangeDetectionStrategy,
   Component,
   computed,
-  Input,
-  signal,
+  input,
 } from '@angular/core';
 import { NgIconComponent, provideIcons } from '@ng-icons/core';
 import { heroUsers } from '@ng-icons/heroicons/outline';
@@ -21,17 +20,12 @@ type AvatarSize = 'sm' | 'md';
   providers: [provideIcons({ heroUsers })],
 })
 export class AvatarComponent {
-  @Input() imageSrc?: string;
-
-  @Input()
-  set size(val: AvatarSize) {
-    this._size.set(val);
-  }
-
-  private _size = signal<AvatarSize>('sm');
+  imageSrc = input.required<string>();
+  size = input<AvatarSize>('sm');
+  priority = input<number | null>(null);
 
   sideLength = computed(() => {
-    switch (this._size()) {
+    switch (this.size()) {
       case 'sm':
         return '32';
       case 'md':

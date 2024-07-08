@@ -18,7 +18,11 @@
     <div class="bg-al-card h-full rounded-b-lg">
       <div class="flex items-center justify-between px-4 pt-4">
         <div class="flex items-center gap-2">
-          <al-avatar [imageSrc]="article().author.avatarUrl" size="sm" />
+          <al-avatar
+            [imageSrc]="article().author.avatarUrl"
+            [priority]="imagePriority()"
+            size="sm"
+          />
           <span class="text-sm/[14px] font-medium">
             {{ article().author.name }}
           </span>
