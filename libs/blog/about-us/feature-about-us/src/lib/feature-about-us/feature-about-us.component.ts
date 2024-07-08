@@ -48,12 +48,15 @@ export class FeatureAboutUsComponent implements OnInit {
   private readonly _skip = this._authorListStore.skip;
   private readonly _total = this._authorListStore.total;
   private readonly _pageSize = this._authorListStore.pageSize;
+  private readonly _sortedTitles =
+    'key_contributor,contributor,gde,hoa,blogger';
 
   ngOnInit(): void {
     if (this.authorsCards().length === 0) {
       this._authorListStore.fetchAuthorList({
         take: this._pageSize(),
         skip: 0,
+        sorted_titles: this._sortedTitles,
       });
     }
   }
@@ -63,6 +66,7 @@ export class FeatureAboutUsComponent implements OnInit {
       this._authorListStore.fetchAuthorList({
         take: this._pageSize(),
         skip: this._skip() + this._pageSize(),
+        sorted_titles: this._sortedTitles,
       });
     }
   }

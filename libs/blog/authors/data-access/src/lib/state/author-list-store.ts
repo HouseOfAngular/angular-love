@@ -51,8 +51,8 @@ export const AuthorListStore = signalStore(
               skip: query?.skip,
             }),
           ),
-          switchMap((id) =>
-            authorsService.getAuthorsList(id).pipe(
+          switchMap((query) =>
+            authorsService.getAuthorsList(query).pipe(
               tap({
                 next: ({ data, total }) =>
                   patchState(store, {
