@@ -4,6 +4,7 @@ import {
   withInterceptorsFromDi,
 } from '@angular/common/http';
 import {
+  APP_INITIALIZER,
   ApplicationConfig,
   inject,
   provideExperimentalZonelessChangeDetection,
@@ -19,10 +20,10 @@ import {
   withRouterConfig,
   withViewTransitions,
 } from '@angular/router';
+import { provideFastSVG } from '@push-based/ngx-fast-svg';
 
 import { provideI18n } from '@angular-love/blog/i18n/data-access';
 import { blogShellRoutes } from '@angular-love/blog/shell/feature';
-import { provideFastSVG } from '@push-based/ngx-fast-svg';
 
 import { environment } from '../environments/environment';
 
@@ -31,6 +32,7 @@ import { provideSkeletonConfig } from './providers/skeleton-config-provider';
 
 export const appConfig: ApplicationConfig = {
   providers: [
+    provideExperimentalZonelessChangeDetection(),
     provideRouter(
       blogShellRoutes,
       // withDisabledInitialNavigation(),
@@ -61,15 +63,23 @@ export const appConfig: ApplicationConfig = {
         onSameUrlNavigation: 'reload',
       }),
     ),
+    {
+      provide: APP_INITIALIZER,
+      useFactory: () => (): Promise<void> =>
+        new Promise<void>((resolve) => {
+          setTimeout(() => resolve());
+        }),
+      deps: [],
+      multi: true,
+    },
     provideI18n(),
     provideHttpClient(withFetch(), withInterceptorsFromDi()),
-    provideExperimentalZonelessChangeDetection(),
-    provideClientHydration(),
     provideAppSeo(),
     provideSkeletonConfig(),
     provideFastSVG({
       url: (name: string) => `assets/icons/${name}.svg`,
     }),
     environment.providers,
+    provideClientHydration(),
   ],
 };
