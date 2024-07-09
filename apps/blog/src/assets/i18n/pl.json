@@ -68,8 +68,8 @@
     "authorsTitle": "Członkowie community Angular.Love"
   },
   "newsletter": {
-    "title": "Zapisz się na nasz newsletter.",
-    "description": "Dołącz do grupy osób, które chcą się rozwijać i być na bieżąco!",
+    "title": "Zapisz się na nasz newsletter",
+    "description": "Dołącz do community Angular.love i bądź na bieżąco z trendami.",
     "emailPlaceholder": "Twój e-mail",
     "submitLabel": "Wyślij i zapisz się na newsletter",
     "consent": "Wyrażam zgodę na przetwarzanie mojego adresu e-mail przez Angular.love w celu wysyłki newslettera.",

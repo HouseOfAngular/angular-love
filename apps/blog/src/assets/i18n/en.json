@@ -65,8 +65,8 @@
     "authorsTitle": "Members of Angular.love community"
   },
   "newsletter": {
-    "title": "Sign up for our newsletter.",
-    "description": "Join a group of people who want to grow and stay up to date!",
+    "title": "Sign up for our newsletter",
+    "description": "Stay up-to-date with the trends and be a part of a thriving community.",
     "emailPlaceholder": "Your E-mail",
     "submitLabel": "Submit and sign up for a newsletter",
     "consent": "I consent to Angular.love processing my email address for the purpose of sending the newsletter.",
