@@ -9,12 +9,12 @@ import {
 } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
 import { RouterLink } from '@angular/router';
+import { FastSvgComponent } from '@push-based/ngx-fast-svg';
 
 import { AlLocalizePipe } from '@angular-love/blog/i18n/util';
 import { ArticleCard } from '@angular-love/blog/shared/types';
 import { AvatarComponent } from '@angular-love/blog/shared/ui-avatar';
 import { UiDifficultyComponent } from '@angular-love/blog/shared/ui-difficulty';
-import { FastSvgComponent } from '@push-based/ngx-fast-svg';
 
 type SanitizedArticleDataModel = {
   title: string;
@@ -38,8 +38,8 @@ type SanitizedArticleDataModel = {
   templateUrl: './article-horizontal-card.component.html',
 })
 export class ArticleHorizontalCardComponent {
-  article = input.required<ArticleCard>();
-  imagePriority = input<number | null>(null);
+  readonly article = input.required<ArticleCard>();
+  readonly imagePriority = input<number | null>(null);
 
   sanitizedArticle = computed<SanitizedArticleDataModel>(() => {
     return {

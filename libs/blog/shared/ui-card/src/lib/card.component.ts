@@ -93,7 +93,7 @@ export class DarkCardDirective {
   imports: [NgOptimizedImage],
 })
 export class CardComponent {
-  imageSrc = input<string>();
+  readonly imageSrc = input<string>();
 
   ref: ElementRef<HTMLElement> = inject(ElementRef);
 

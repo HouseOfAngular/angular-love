@@ -25,5 +25,5 @@ import { ChangeDetectionStrategy, Component, input } from '@angular/core';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class FooterLogoComponent {
-  currentYear = input.required<number>();
+  readonly currentYear = input.required<number>();
 }

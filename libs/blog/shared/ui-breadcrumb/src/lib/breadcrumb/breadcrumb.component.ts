@@ -13,5 +13,5 @@ import { AlLocalizePipe } from '@angular-love/blog/i18n/util';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class BreadcrumbComponent {
-  pageName = input.required<string>();
+  readonly pageName = input.required<string>();
 }

@@ -5,7 +5,6 @@ import {
   HostBinding,
   input,
 } from '@angular/core';
-
 import { FastSvgComponent } from '@push-based/ngx-fast-svg';
 
 interface UiSearchResultItem {
@@ -29,5 +28,5 @@ interface UiSearchResultItem {
 export class SearchResultItemComponent {
   @HostBinding('class') hostClasses = 'flex flex-col p-6 hover:bg-al-border';
 
-  item = input.required<UiSearchResultItem>();
+  readonly item = input.required<UiSearchResultItem>();
 }

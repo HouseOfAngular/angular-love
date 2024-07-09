@@ -5,6 +5,7 @@ import {
   inject,
   input,
 } from '@angular/core';
+import { FastSvgComponent } from '@push-based/ngx-fast-svg';
 
 import { AdBannerStore } from '@angular-love/blog/ad-banner/data-access';
 import { GiscusCommentsComponent } from '@angular-love/blog/articles/feature-comments';
@@ -24,7 +25,6 @@ import {
 } from '@angular-love/blog/shared/ui-card';
 import { UiDifficultyComponent } from '@angular-love/blog/shared/ui-difficulty';
 import { Article } from '@angular-love/contracts/articles';
-import { FastSvgComponent } from '@push-based/ngx-fast-svg';
 
 import { ArticleShareIconsComponent } from '../article-share-icons/article-share-icons.component';
 
@@ -54,7 +54,7 @@ import { ArticleShareIconsComponent } from '../article-share-icons/article-share
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ArticleDetailsComponent {
-  articleDetails = input.required<Article>();
+  readonly articleDetails = input.required<Article>();
   protected readonly adBannerStoreVisible =
     inject(AdBannerStore).adBannerVisible;
 }

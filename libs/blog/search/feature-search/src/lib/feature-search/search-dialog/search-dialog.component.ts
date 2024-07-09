@@ -16,6 +16,7 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { FormControl, ReactiveFormsModule, Validators } from '@angular/forms';
 import { NavigationEnd, Router, RouterLink } from '@angular/router';
 import { TranslocoDirective, TranslocoService } from '@jsverse/transloco';
+import { FastSvgComponent } from '@push-based/ngx-fast-svg';
 import { debounceTime, filter, startWith, tap } from 'rxjs';
 
 import { AdBannerStore } from '@angular-love/blog/ad-banner/data-access';
@@ -28,7 +29,6 @@ import {
   provideSearch,
 } from '@angular-love/blog/search/data-access';
 import { SearchResultItemComponent } from '@angular-love/search-result-item';
-import { FastSvgComponent } from '@push-based/ngx-fast-svg';
 
 import { GlobalSearchService } from '../global-search.service';
 
@@ -121,7 +121,7 @@ export class SearchDialogComponent implements OnInit, OnDestroy {
     document.body.style.overflow = 'auto';
   }
 
-  goToAllResults(): void {
+  protected goToAllResults(): void {
     const totalResults = this.searchStore.total();
     if (totalResults && totalResults > 0) {
       this._router.navigate(this._localizeService.localizePath(['search']), {

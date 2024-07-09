@@ -25,7 +25,7 @@ export type CardType = 'regular' | 'horizontal' | 'compact' | 'hero';
   },
 })
 export class UiArticleCardComponent {
-  cardType = input.required<CardType>();
-  article = input.required<ArticleCard>();
-  imagePriority = input<number | null>(null);
+  readonly cardType = input.required<CardType>();
+  readonly article = input.required<ArticleCard>();
+  readonly imagePriority = input<number | null>(null);
 }

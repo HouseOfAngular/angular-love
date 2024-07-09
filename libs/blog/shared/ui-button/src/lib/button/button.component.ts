@@ -52,11 +52,11 @@ const buttonVariants = cva(
   },
 })
 export class ButtonComponent {
-  variant = input<AlButtonVariant>();
+  readonly variant = input<AlButtonVariant>();
 
-  size = input<AlButtonSize>();
+  readonly size = input<AlButtonSize>();
 
-  class = computed(() => {
+  protected class = computed(() => {
     return buttonVariants({
       variant: this.variant(),
       size: this.size(),

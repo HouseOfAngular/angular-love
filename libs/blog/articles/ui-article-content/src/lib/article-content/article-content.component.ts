@@ -22,7 +22,7 @@ export class ArticleContentComponent {
 
   private readonly _domSanitizer = inject(DomSanitizer);
 
-  readonly sanitizedContent = computed(() =>
+  protected readonly sanitizedContent = computed(() =>
     this._domSanitizer.bypassSecurityTrustHtml(this.content()!),
   );
 }
