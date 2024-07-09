@@ -1,4 +1,3 @@
-import { AsyncPipe, JsonPipe } from '@angular/common';
 import {
   ChangeDetectionStrategy,
   Component,
@@ -15,12 +14,7 @@ import { CategorySectionContainerComponent } from './category-section-container/
 @Component({
   selector: 'al-articles-list',
   templateUrl: './articles-list-container.component.html',
-  imports: [
-    RepeatDirective,
-    AsyncPipe,
-    JsonPipe,
-    CategorySectionContainerComponent,
-  ],
+  imports: [RepeatDirective, CategorySectionContainerComponent],
   changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: true,
 })

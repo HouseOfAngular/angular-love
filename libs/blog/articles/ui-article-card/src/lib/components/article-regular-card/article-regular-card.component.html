@@ -48,12 +48,12 @@
         <h3
           class="*:text-al-pink line-clamp-2 text-2xl font-bold *:not-italic"
           [id]="article().slug"
-          [innerHTML]="sanitizedArticle().title"
-        ></h3>
-        <p
-          class="*:text-al-pink line-clamp-2 *:font-medium *:not-italic"
-          [innerHTML]="sanitizedArticle().excerpt"
-        ></p>
+        >
+          {{ article().title }}
+        </h3>
+        <p class="*:text-al-pink line-clamp-2 *:font-medium *:not-italic">
+          {{ article().excerpt }}
+        </p>
       </div>
     </div>
   </article>
