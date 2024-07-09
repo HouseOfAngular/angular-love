@@ -6,6 +6,7 @@ export type SeoConfig = {
   description: string;
   title: string;
   siteName: string;
+  baseUrl: string;
 };
 
 export const SEO_CONFIG = new InjectionToken<Observable<SeoConfig>>(
