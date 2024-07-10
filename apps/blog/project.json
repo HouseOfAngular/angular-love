@@ -23,7 +23,6 @@
         "polyfills": [],
         "tsConfig": "apps/blog/tsconfig.app.json",
         "assets": [
-          "apps/blog/src/favicon.ico",
           "apps/blog/src/assets",
           "apps/blog/src/sitemap.xml",
           "apps/blog/src/_redirects"
