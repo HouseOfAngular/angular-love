@@ -23,6 +23,9 @@ app.get('/', async (c) => {
     page,
   };
 
+  queryParams['sortedTitles'] &&
+    (query['sorted_titles'] = queryParams['sortedTitles']);
+
   const result = await client.getAuthors(query);
 
   return c.json(<ArrayResponse<Author>>{
