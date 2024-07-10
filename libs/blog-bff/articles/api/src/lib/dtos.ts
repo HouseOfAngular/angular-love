@@ -29,7 +29,6 @@ interface WPPostDetailsDtoYoastData {
     'max-image-preview': string;
     'max-video-preview': string;
   };
-  canonical: string;
   og_locale: string;
   og_type: string;
   og_title: string;

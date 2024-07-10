@@ -4,7 +4,6 @@ import {
   HostListener,
   inject,
 } from '@angular/core';
-
 import { FastSvgComponent } from '@push-based/ngx-fast-svg';
 
 import { GlobalSearchService } from './global-search.service';

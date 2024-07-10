@@ -43,7 +43,6 @@ export interface SeoData {
   title?: string;
   description?: string;
   robots?: SeoRobotsData;
-  canonical?: string;
   og_locale?: string;
   og_type?: string;
   og_title?: string;
@@ -67,7 +66,6 @@ export type SeoMetaData = Pick<
   SeoData,
   | 'robots'
   | 'og_type'
-  | 'canonical'
   | 'og_url'
   | 'og_image'
   | 'article_publisher'

@@ -1,4 +1,5 @@
-import { inject, Injectable } from '@angular/core';
+import { DOCUMENT } from '@angular/common';
+import { inject, Injectable, signal } from '@angular/core';
 import { Meta, MetaDefinition, Title } from '@angular/platform-browser';
 import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 import { filter, map, switchMap } from 'rxjs';
@@ -16,7 +17,9 @@ export class SeoService {
   private readonly _activatedRoute = inject(ActivatedRoute);
   private readonly _title = inject(Title);
   private readonly _meta = inject(Meta);
+  private readonly _document = inject(DOCUMENT);
   private readonly _seoConfig = inject(SEO_CONFIG);
+  private _url = '';
 
   init(): void {
     this._router.events
@@ -35,6 +38,8 @@ export class SeoService {
         ),
       )
       .subscribe(({ routeData, seoConfig }) => {
+        this._url = this.getUrl(seoConfig.baseUrl, this._router.url);
+
         this.removeSeo();
 
         this.updateTag(seoConfig.locale, 'ogLocale');
@@ -46,6 +51,8 @@ export class SeoService {
         } else {
           this.setTitle('');
         }
+
+        this.handleCanonicalUrl(this._url);
       });
   }
 
@@ -63,13 +70,9 @@ export class SeoService {
       this.updateTag(seoData.og_type, 'ogType');
     }
 
-    if (seoData.canonical) {
-      this.updateTag(seoData.canonical, 'canonical');
-    }
-
     if (seoData.og_url) {
-      this.updateTag(seoData.og_url, 'ogURL');
-      this.updateTag(seoData.og_url, 'twitterURL');
+      this.updateTag(this._url, 'ogURL');
+      this.updateTag(this._url, 'twitterURL');
     }
 
     if (seoData.og_image) {
@@ -190,5 +193,37 @@ export class SeoService {
         }
       },
     );
+  }
+
+  private handleCanonicalUrl(url: string): void {
+    if (this.canonicalLinkExists) {
+      this.updateCanonicalLink(url);
+    } else {
+      this.appendCanonicalLink(url);
+    }
+  }
+
+  private get canonicalLinkExists(): boolean {
+    const links = this._document.head.querySelectorAll('link[rel="canonical"]');
+    return !!links.length;
+  }
+
+  private appendCanonicalLink(url: string): void {
+    const link = this._document.createElement('link');
+    link.setAttribute('rel', 'canonical');
+    link.setAttribute('href', url);
+    this._document.head.appendChild(link);
+  }
+
+  private updateCanonicalLink(url: string): void {
+    const link = this._document.head.querySelector('link[rel="canonical"]');
+    if (link) {
+      link.setAttribute('href', url);
+    }
+  }
+
+  private getUrl(origin: string, path: string): string {
+    const _url = new URL(`${origin}${path}`);
+    return `${_url.origin}${_url.pathname}`;
   }
 }

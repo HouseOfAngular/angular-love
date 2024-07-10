@@ -2,7 +2,6 @@ export const SEO_META_KEYS = {
   articleModifiedTime: 'article:modifiedd_time',
   articlePublishedTime: 'article:published_time',
   articlePublisher: 'article:publisher',
-  canonical: 'canonical',
   description: 'description',
   image: 'image',
   ogDescription: 'og:description',
