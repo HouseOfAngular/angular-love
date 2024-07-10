@@ -74,6 +74,32 @@ import { CardSkeletonComponent } from '@angular-love/blog/shared/ui-card';
             }"
           ></ngx-skeleton-loader>
         </div>
+        <!-- share article section -->
+        <div
+          class="!mt-4 hidden h-[138px] flex-row items-center justify-between rounded-lg border lg:flex"
+        >
+          <div class="ml-10 flex h-10 w-[100px] ">
+            <ngx-skeleton-loader
+              class="w-full"
+              [theme]="{
+                height: '40px',
+                width: '100%',
+              }"
+            ></ngx-skeleton-loader>
+          </div>
+
+          <div class="mr-10 flex h-10 w-[140px] items-start justify-between">
+            @for (i of [0, 1, 2]; track $index) {
+              <ngx-skeleton-loader
+                [appearance]="'circle'"
+                [theme]="{
+                  height: '28px',
+                  width: '28px',
+                }"
+              ></ngx-skeleton-loader>
+            }
+          </div>
+        </div>
       </aside>
     </div>
   `,
