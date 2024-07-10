@@ -56,7 +56,7 @@ export class FeatureAboutUsComponent implements OnInit {
       this._authorListStore.fetchAuthorList({
         take: this._pageSize(),
         skip: 0,
-        sorted_titles: this._sortedTitles,
+        sortedTitles: this._sortedTitles,
       });
     }
   }
@@ -66,7 +66,7 @@ export class FeatureAboutUsComponent implements OnInit {
       this._authorListStore.fetchAuthorList({
         take: this._pageSize(),
         skip: this._skip() + this._pageSize(),
-        sorted_titles: this._sortedTitles,
+        sortedTitles: this._sortedTitles,
       });
     }
   }

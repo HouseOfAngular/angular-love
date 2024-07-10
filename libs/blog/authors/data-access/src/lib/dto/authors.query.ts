@@ -1,5 +1,5 @@
 export type AuthorsQuery = {
   take?: number;
   skip?: number;
-  sorted_titles?: string;
+  sortedTitles?: string;
 } | null;
