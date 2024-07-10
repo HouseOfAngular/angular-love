@@ -30,11 +30,15 @@
       <al-card alGradientCard #view>
         <al-newsletter alCardContent />
       </al-card>
-      @defer (on timer(3000ms); on viewport(view)) {
-        <!--  @todo replace to similar-articles    -->
-        <!--                <al- class="block min-h-[288px]" />-->
+
+      @defer (on viewport(view); on timer(5s)) {
+        <section>
+          <al-related-articles [id]="articleDetails().id" />
+        </section>
       } @placeholder {
-        <div class="h-[288px]"></div>
+        <div class="grid grid-cols-2 gap-4">
+          <al-article-compact-card-skeleton *alRepeat="2" />
+        </div>
       }
     </div>
   </section>

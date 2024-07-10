@@ -49,6 +49,9 @@
       "@angular-love/blog/articles/feature-list": [
         "libs/blog/articles/feature-list/src/index.ts"
       ],
+      "@angular-love/blog/articles/feature-related-articles": [
+        "libs/blog/articles/feature-related-articles/src/index.ts"
+      ],
       "@angular-love/blog/articles/feature/news": [
         "libs/blog/articles/feature-news/src/index.ts"
       ],

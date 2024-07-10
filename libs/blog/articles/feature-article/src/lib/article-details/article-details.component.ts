@@ -9,6 +9,7 @@ import { FastSvgComponent } from '@push-based/ngx-fast-svg';
 
 import { AdBannerStore } from '@angular-love/blog/ad-banner/data-access';
 import { GiscusCommentsComponent } from '@angular-love/blog/articles/feature-comments';
+import { RelatedArticlesComponent } from '@angular-love/blog/articles/feature-related-articles';
 import { ArticleContentComponent } from '@angular-love/blog/articles/ui-article-content';
 import {
   TableOfContentsComponent,
@@ -27,6 +28,8 @@ import { UiDifficultyComponent } from '@angular-love/blog/shared/ui-difficulty';
 import { Article } from '@angular-love/contracts/articles';
 
 import { ArticleShareIconsComponent } from '../article-share-icons/article-share-icons.component';
+import { ArticleCompactCardSkeletonComponent } from "@angular-love/blog/articles/ui-article-card";
+import { RepeatDirective } from "@angular-love/utils";
 
 @Component({
   selector: 'al-article-details',
@@ -48,6 +51,9 @@ import { ArticleShareIconsComponent } from '../article-share-icons/article-share
     ArticleShareIconsComponent,
     NgClass,
     FastSvgComponent,
+    RelatedArticlesComponent,
+    ArticleCompactCardSkeletonComponent,
+    RepeatDirective,
   ],
   templateUrl: './article-details.component.html',
   styleUrls: ['./article-details.component.scss'],
