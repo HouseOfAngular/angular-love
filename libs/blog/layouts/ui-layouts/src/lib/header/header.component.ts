@@ -8,11 +8,11 @@ import {
 } from '@angular/core';
 import { RouterLink, RouterLinkActive } from '@angular/router';
 import { TranslocoDirective } from '@jsverse/transloco';
+import { FastSvgComponent } from '@push-based/ngx-fast-svg';
 
 import { AlLocalizePipe } from '@angular-love/blog/i18n/util';
 import { NavigationComponent } from '@angular-love/blog/layouts/ui-navigation';
 import { SocialMediaIconsComponent } from '@angular-love/blog/shared/ui-social-media-icons';
-import { FastSvgComponent } from '@push-based/ngx-fast-svg';
 
 @Component({
   standalone: true,
@@ -33,13 +33,13 @@ import { FastSvgComponent } from '@push-based/ngx-fast-svg';
   ],
 })
 export class HeaderComponent {
-  language = input.required<string>();
+  readonly language = input.required<string>();
 
-  languageChange = output<string>();
+  protected languageChange = output<string>();
 
-  showNav = signal<boolean>(false);
+  protected showNav = signal<boolean>(false);
 
-  toggleNav(): void {
+  protected toggleNav(): void {
     this.showNav.set(!this.showNav());
   }
 }

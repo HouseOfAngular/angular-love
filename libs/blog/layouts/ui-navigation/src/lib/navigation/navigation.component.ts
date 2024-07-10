@@ -32,8 +32,7 @@ export type NavItem = {
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class NavigationComponent {
-  layout = input<'vertical' | 'horizontal'>('horizontal');
-  navigated = output();
+  readonly layout = input<'vertical' | 'horizontal'>('horizontal');
 
   readonly navItems: NavItem[] = [
     {
@@ -53,4 +52,5 @@ export class NavigationComponent {
       dataTestId: 'navigation-become-author',
     },
   ];
+  protected navigated = output();
 }

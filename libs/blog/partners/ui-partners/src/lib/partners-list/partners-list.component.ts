@@ -11,5 +11,5 @@ import { Partner } from '@angular-love/blog/shared/types';
   imports: [NgOptimizedImage],
 })
 export class PartnersListComponent {
-  partnersList = input.required<Partner[]>();
+  readonly partnersList = input.required<Partner[]>();
 }

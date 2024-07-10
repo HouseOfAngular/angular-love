@@ -13,6 +13,6 @@ import { PartnersListComponent } from '../partners-list/partners-list.component'
   templateUrl: './partners.component.html',
 })
 export class PartnersComponent {
-  title = input.required<string>();
-  partnerList = input.required<Partner[]>();
+  readonly title = input.required<string>();
+  readonly partnerList = input.required<Partner[]>();
 }

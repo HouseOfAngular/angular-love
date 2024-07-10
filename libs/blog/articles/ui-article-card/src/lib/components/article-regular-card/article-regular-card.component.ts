@@ -1,12 +1,5 @@
 import { DatePipe, NgOptimizedImage, NgStyle } from '@angular/common';
-import {
-  ChangeDetectionStrategy,
-  Component,
-  computed,
-  inject,
-  input,
-  SecurityContext,
-} from '@angular/core';
+import { ChangeDetectionStrategy, Component, input } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
 import { RouterLink } from '@angular/router';
 import { FastSvgComponent } from '@push-based/ngx-fast-svg';
@@ -33,6 +26,6 @@ import { UiDifficultyComponent } from '@angular-love/blog/shared/ui-difficulty';
   templateUrl: './article-regular-card.component.html',
 })
 export class ArticleRegularCardComponent {
-  article = input.required<ArticleCard>();
-  imagePriority = input<number | null>(null);
+  readonly article = input.required<ArticleCard>();
+  readonly imagePriority = input<number | null>(null);
 }

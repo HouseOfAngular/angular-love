@@ -1,12 +1,12 @@
 import { DatePipe } from '@angular/common';
 import { ChangeDetectionStrategy, Component, input } from '@angular/core';
 import { RouterLink } from '@angular/router';
+import { FastSvgComponent } from '@push-based/ngx-fast-svg';
 
 import { AlLocalizePipe } from '@angular-love/blog/i18n/util';
 import { ArticleCard } from '@angular-love/blog/shared/types';
 import { AvatarComponent } from '@angular-love/blog/shared/ui-avatar';
 import { UiDifficultyComponent } from '@angular-love/blog/shared/ui-difficulty';
-import { FastSvgComponent } from '@push-based/ngx-fast-svg';
 
 export type Layout = 'compact' | 'hero';
 
@@ -26,5 +26,5 @@ export type Layout = 'compact' | 'hero';
   templateUrl: './article-hero-card.component.html',
 })
 export class ArticleHeroCardComponent {
-  article = input.required<ArticleCard>();
+  readonly article = input.required<ArticleCard>();
 }

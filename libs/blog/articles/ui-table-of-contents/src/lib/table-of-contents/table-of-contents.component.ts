@@ -24,5 +24,5 @@ export class TableOfContentsComponent {
 
   readonly activeAnchorTitle = model<string | undefined>(undefined);
 
-  readonly anchorClick = output<Anchor>();
+  protected readonly anchorClick = output<Anchor>();
 }

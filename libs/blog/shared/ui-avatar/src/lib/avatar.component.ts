@@ -20,11 +20,11 @@ type AvatarSize = 'sm' | 'md';
   providers: [provideIcons({ heroUsers })],
 })
 export class AvatarComponent {
-  imageSrc = input.required<string>();
-  size = input<AvatarSize>('sm');
-  priority = input<number | null>(null);
+  readonly imageSrc = input.required<string>();
+  readonly size = input<AvatarSize>('sm');
+  readonly priority = input<number | null>(null);
 
-  sideLength = computed(() => {
+  protected sideLength = computed(() => {
     switch (this.size()) {
       case 'sm':
         return '32';

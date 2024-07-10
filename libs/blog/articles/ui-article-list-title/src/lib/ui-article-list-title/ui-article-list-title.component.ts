@@ -16,6 +16,6 @@ export type ArticleTitleLink = {
   imports: [RouterLink, AlLocalizePipe],
 })
 export class UiArticleListTitleComponent {
-  title = input.required<string>();
-  link = input<ArticleTitleLink | null>();
+  readonly title = input.required<string>();
+  readonly link = input<ArticleTitleLink | null>();
 }

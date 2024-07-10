@@ -50,13 +50,13 @@ const displayNameDict: Record<ArticleCategory, string> = {
   providers: [ArticleListStore],
 })
 export class CategorySectionContainerComponent {
-  category = input.required<ArticleCategory>();
-  cardType = input<CardType>('regular');
-  take = input(6);
-  hasCategoryPage = input(true);
-  skeleonLoaders = computed(() => [...Array(this.take()).keys()]);
+  readonly category = input.required<ArticleCategory>();
+  readonly cardType = input<CardType>('regular');
+  readonly take = input(6);
+  readonly hasCategoryPage = input(true);
+  readonly skeleonLoaders = computed(() => [...Array(this.take()).keys()]);
 
-  displayName = computed(() => displayNameDict[this.category()]);
+  protected displayName = computed(() => displayNameDict[this.category()]);
 
   protected testId = computed(() => `category-${this.category()}`);
 
