@@ -72,6 +72,7 @@
     "description": "Dołącz do community Angular.love i bądź na bieżąco z trendami.",
     "emailPlaceholder": "Twój e-mail",
     "submitLabel": "Wyślij i zapisz się na newsletter",
+    "label": "Zgoda na przetwarzanie adresu email do newslettera.",
     "consent": "Wyrażam zgodę na przetwarzanie mojego adresu e-mail przez Angular.love w celu wysyłki newslettera.",
     "error": "Ups... coś poszło nie tak. Spróbuj ponownie."
   },
