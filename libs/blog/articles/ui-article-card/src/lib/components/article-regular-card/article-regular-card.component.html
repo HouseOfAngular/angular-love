@@ -1,6 +1,6 @@
 <a [routerLink]="['/', article().slug] | alLocalize">
   <article
-    class="hover:shadow-al-primary group relative grid w-full grid-rows-[220px_240px] rounded-lg border border-transparent shadow-none transition-transform hover:scale-105 motion-reduce:transition-none motion-reduce:hover:scale-100"
+    class="hover:shadow-al-primary group relative grid h-full w-full rounded-lg border border-transparent shadow-none transition-transform hover:scale-105 motion-reduce:transition-none motion-reduce:hover:scale-100"
     [attr.aria-labelledby]="article().slug"
   >
     <div
@@ -45,13 +45,10 @@
       </div>
 
       <div class="flex flex-col gap-3 px-4 pb-4 pt-3">
-        <h3
-          class="*:text-al-pink line-clamp-2 text-2xl font-bold *:not-italic"
-          [id]="article().slug"
-        >
+        <h3 class="text-2xl font-bold" [id]="article().slug">
           {{ article().title }}
         </h3>
-        <p class="*:text-al-pink line-clamp-2 *:font-medium *:not-italic">
+        <p class="line-clamp-2">
           {{ article().excerpt }}
         </p>
       </div>
