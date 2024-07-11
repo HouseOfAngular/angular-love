@@ -69,6 +69,7 @@
     "description": "Stay up-to-date with the trends and be a part of a thriving community.",
     "emailPlaceholder": "Your E-mail",
     "submitLabel": "Submit and sign up for a newsletter",
+    "label": "Consent to process email for newsletter.",
     "consent": "I consent to Angular.love processing my email address for the purpose of sending the newsletter.",
     "error": "Something went wrong. Please try again."
   },

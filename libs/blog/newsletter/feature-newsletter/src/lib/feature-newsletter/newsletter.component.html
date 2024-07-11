@@ -1,7 +1,7 @@
 <al-card alGradientCard>
   <section alCardContent aria-labelledby="newsletter-title" aria-live="polite">
     <ng-container *transloco="let t; read: 'newsletter'">
-      <form data-testid="newsletter-form" role="form" [formGroup]="form">
+      <form data-testid="newsletter-form" [formGroup]="form">
         <div class="flex flex-col">
           <h2
             id="newsletter-title"
@@ -56,6 +56,7 @@
                     aria-describedby="consent-text"
                     role="checkbox"
                     class="border-al-muted mr-2 mt-1 flex aspect-square h-[14px] items-center justify-center rounded border"
+                    [attr.aria-label]="t('label')"
                     [attr.aria-checked]="form.controls.checkbox.value"
                     (keydown.enter)="
                       form.controls['checkbox'].setValue(
