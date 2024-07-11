@@ -1,10 +1,10 @@
 <a [routerLink]="['/', article().slug] | alLocalize">
   <article
-    class="hover:shadow-al-primary group relative grid h-full w-full rounded-lg border border-transparent shadow-none transition-transform hover:scale-105 motion-reduce:transition-none motion-reduce:hover:scale-100"
+    class="md:hover:shadow-al-primary group relative grid h-full w-full rounded-lg border border-transparent shadow-none transition-transform motion-reduce:transition-none lg:hover:scale-105 lg:motion-reduce:hover:scale-100"
     [attr.aria-labelledby]="article().slug"
   >
     <div
-      class="group-hover:bg-al-bottom-radial-gradient absolute bottom-0 z-0 h-1/2 w-full opacity-50"
+      class="md:group-hover:bg-al-bottom-radial-gradient absolute bottom-0 z-0 h-1/2 w-full opacity-50"
     ></div>
 
     <img
