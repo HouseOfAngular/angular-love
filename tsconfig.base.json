@@ -161,6 +161,9 @@
       "@angular-love/blog/shell/feature": [
         "libs/blog/shell/feature-shell-web/src/index.ts"
       ],
+      "@angular-love/blog/tracking/feature": [
+        "libs/blog/tracking/feature/src/index.ts"
+      ],
       "@angular-love/contracts/articles": [
         "libs/blog-contracts/articles/src/index.ts"
       ],

@@ -25,11 +25,17 @@
         "assets": [
           "apps/blog/src/assets",
           "apps/blog/src/sitemap.xml",
-          "apps/blog/src/_redirects"
+          "apps/blog/src/_redirects",
+          {
+            "glob": "**/*",
+            "input": "node_modules/@builder.io/partytown/lib",
+            "output": "/~partytown"
+          }
         ],
         "styles": [
           "apps/blog/src/styles.scss",
-          "libs/shared/assets/src/lib/styles/main.scss"
+          "libs/shared/assets/src/lib/styles/main.scss",
+          "node_modules/vanilla-cookieconsent/dist/cookieconsent.css"
         ],
         "stylePreprocessorOptions": {
           "includePaths": ["libs/shared/assets/src/lib/styles"]
