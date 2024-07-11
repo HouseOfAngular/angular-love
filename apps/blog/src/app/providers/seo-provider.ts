@@ -4,7 +4,7 @@ import {
   makeEnvironmentProviders,
 } from '@angular/core';
 import { TranslocoService } from '@jsverse/transloco';
-import { map } from 'rxjs';
+import { map, switchMap } from 'rxjs';
 
 import { provideSeo } from '@angular-love/seo';
 import { ConfigService } from '@angular-love/shared/config';
@@ -16,8 +16,8 @@ export function provideAppSeo(): EnvironmentProviders {
       useFactory: () => {
         const transloco = inject(TranslocoService);
         const baseUrl = inject(ConfigService).get<string>('baseUrl');
-
-        return transloco.load(transloco.getActiveLang()).pipe(
+        return transloco.langChanges$.pipe(
+          switchMap((lang) => transloco.load(lang)),
           map(() => ({
             title: 'Angular.love',
             siteName: 'Angular.love',
