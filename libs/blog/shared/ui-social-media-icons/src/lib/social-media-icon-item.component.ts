@@ -4,7 +4,7 @@ import {
   computed,
   input,
 } from '@angular/core';
-
+import { TranslocoDirective } from '@jsverse/transloco';
 import { FastSvgComponent } from '@push-based/ngx-fast-svg';
 
 type SocialMediaBase<
@@ -33,8 +33,9 @@ export type SocialMediaIconItemUi =
   template: `
     @if (href(); as href) {
       <a
+        *transloco="let t"
         class="mr-2 flex"
-        [attr.aria-label]="socialMediaConfig().ariaLabel"
+        [attr.aria-label]="t(socialMediaConfig().ariaLabel)"
         [href]="href"
         target="_blank"
       >
@@ -43,7 +44,7 @@ export type SocialMediaIconItemUi =
     }
   `,
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [FastSvgComponent],
+  imports: [FastSvgComponent, TranslocoDirective],
 })
 export class SocialMediaIconItemComponent {
   socialMediaConfig = input.required<SocialMediaIconItemUi>();

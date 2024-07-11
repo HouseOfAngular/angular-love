@@ -21,23 +21,23 @@ export class SocialMediaIconsComponent {
     {
       usernameOrPageId: 'www.angular.love',
       iconName: 'facebook',
-      ariaLabel: this._transloco.translate('socialLinks.facebook'),
+      ariaLabel: 'socialLinks.facebook',
     },
     {
       usernameOrPageId: 'AngularLovePL',
       iconName: 'twitter-x',
-      ariaLabel: this._transloco.translate('socialLinks.twitter-x'),
+      ariaLabel: 'socialLinks.twitter-x',
     },
     {
       usernameOrPageId: 'angular-love',
       iconName: 'linkedIn',
-      ariaLabel: this._transloco.translate('socialLinks.linkedIn'),
+      ariaLabel: 'socialLinks.linkedIn',
       isCompany: true,
     },
     {
       usernameOrPageId: '@angularlove',
       iconName: 'youtube',
-      ariaLabel: this._transloco.translate('socialLinks.youtube'),
+      ariaLabel: 'socialLinks.youtube',
     },
   ];
 }
