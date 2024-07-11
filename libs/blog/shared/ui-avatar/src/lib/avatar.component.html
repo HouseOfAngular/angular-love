@@ -1,19 +1,15 @@
 <div
   class="flex items-center justify-center overflow-hidden rounded-full border border-white bg-gray-200"
-  [ngStyle]="{
-    height: sideLength() + 'px',
-    width: sideLength() + 'px',
-  }"
 >
   @if (imageSrc()) {
     <img
       alt=""
       [ngSrc]="imageSrc()"
-      [width]="sideLength()"
-      [height]="sideLength()"
+      [width]="size()"
+      [height]="size()"
       [priority]="priority()"
     />
   } @else {
-    <ng-icon name="heroUsers"></ng-icon>
+    <div></div>
   }
 </div>

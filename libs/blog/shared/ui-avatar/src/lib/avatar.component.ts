@@ -1,14 +1,8 @@
 import { NgOptimizedImage, NgStyle } from '@angular/common';
-import {
-  ChangeDetectionStrategy,
-  Component,
-  computed,
-  input,
-} from '@angular/core';
-import { NgIconComponent, provideIcons } from '@ng-icons/core';
-import { heroUsers } from '@ng-icons/heroicons/outline';
+import { ChangeDetectionStrategy, Component, input } from '@angular/core';
+import { NgIconComponent } from '@ng-icons/core';
 
-type AvatarSize = 'sm' | 'md';
+type AvatarSize = '32' | '96';
 
 @Component({
   standalone: true,
@@ -17,21 +11,9 @@ type AvatarSize = 'sm' | 'md';
   styleUrls: ['./avatar.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [NgOptimizedImage, NgIconComponent, NgStyle],
-  providers: [provideIcons({ heroUsers })],
 })
 export class AvatarComponent {
   readonly imageSrc = input.required<string>();
-  readonly size = input<AvatarSize>('sm');
+  readonly size = input<AvatarSize>('32');
   readonly priority = input<number | null>(null);
-
-  protected sideLength = computed(() => {
-    switch (this.size()) {
-      case 'sm':
-        return '32';
-      case 'md':
-        return '96';
-      default:
-        return '32';
-    }
-  });
 }
