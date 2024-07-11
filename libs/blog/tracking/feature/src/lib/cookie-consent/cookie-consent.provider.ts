@@ -24,9 +24,11 @@ export const provideCookieConsent = (
 
         return () => {
           if (isPlatformBrowser(platformId)) {
-            cookieConsentService.cookieConsent.subscribe((cc) => {
-              cc.run(config);
-            });
+            requestIdleCallback(() => {
+              cookieConsentService.cookieConsent.subscribe((cc) => {
+                cc.run(config);
+              });
+            })
           }
         };
       },

@@ -1,6 +1,8 @@
 import { Route } from '@angular/router';
 
 import { articleRoutes } from '@angular-love/blog/articles/feature/shell';
+// eslint-disable-next-line @nx/enforce-module-boundaries
+import { HomePageComponent } from '@angular-love/blog/home/feature-home';
 import { activeLanguageGuard } from '@angular-love/blog/i18n/data-access';
 
 import { RootShellComponent } from './root-shell.component';
@@ -27,9 +29,7 @@ export const routes: Route[] = [
     children: [
       {
         path: '',
-        loadComponent: async () =>
-          (await import('@angular-love/blog/home/feature-home'))
-            .HomePageComponent,
+        component: HomePageComponent,
         data: {
           seo: { title: 'Home' },
         },
