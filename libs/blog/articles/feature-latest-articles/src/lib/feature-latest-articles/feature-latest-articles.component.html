@@ -9,16 +9,12 @@
   [attr.aria-label]="t('latest')"
 >
   @if (!isFetchArticleListLoading()) {
-    @for (
-      article of articles();
-      track $index;
-      let last = $last, first = $first
-    ) {
+    @for (article of articles(); track i; let last = $last, i = $index) {
       <al-article-card
         class="regular-card"
         [ngClass]="{ 'hidden lg:block': last }"
         [article]="article"
-        [imagePriority]="first ? 1 : null"
+        [imagePriority]="i < 2 ? 1 : null"
         cardType="regular"
       />
     }
