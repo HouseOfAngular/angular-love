@@ -19,6 +19,7 @@ export const provideAppTracking = (): EnvironmentProviders => {
           proxiedHosts: [
             'region1.analytics.google.com',
             'www.google-analytics.com',
+            'www.googletagmanager.com',
             'googletagmanager.com',
             'connect.facebook.net',
             'googleads.g.doubleclick.net',
