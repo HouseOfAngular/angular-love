@@ -8,8 +8,7 @@ import {
   makeEnvironmentProviders,
   PLATFORM_ID,
 } from '@angular/core';
-import { NavigationStart, Router } from '@angular/router';
-import { filter, first, tap } from 'rxjs';
+import tagAssistantMain, { tagAssistantWorker } from "./gtm-tag-assistant";
 
 /**
  * Credits https://github.com/find-ida/angular-ssr-partytown
@@ -22,6 +21,7 @@ export type PartyTownConfig = {
     forward?: string[];
     reverseProxy?: string;
     proxiedHosts?: string[];
+    mainWindowAccessors?: string[];
   };
   scripts?: PartyTownScriptFactory[];
   pixels?: PartyTownPixelFactory[];
@@ -47,6 +47,7 @@ export const providePartyTown = (
           forward: config.partyTown?.forward ?? ['dataLayer.push', 'fbq'],
           reverseProxy: config.partyTown?.reverseProxy ?? '',
           proxiedHosts: config.partyTown?.proxiedHosts ?? [],
+          mainWindowAccessors: config.partyTown?.mainWindowAccessors ?? [],
         },
         scripts: config?.scripts ?? [],
         pixels: config?.pixels ?? [],
@@ -79,28 +80,25 @@ export type PartyTownPixelFactory = (img: HTMLImageElement) => HTMLImageElement;
 export class PartyTownService {
   private readonly _config = inject(PARTY_TOWN_CONFIG, { optional: true });
   private readonly _document = inject(DOCUMENT);
-  private readonly _router = inject(Router);
 
   init(): void {
     if (this._config?.partyTown?.enabled) {
-      this._router.events
-        .pipe(
-          filter((ev): ev is NavigationStart => ev instanceof NavigationStart),
-          tap({
-            next: (asd) => {
-              this.initPartyTownScript();
-              const disablePartyTown = asd.url.includes('gtm_debug=');
+      this.initPartyTownScript();
+      // const disablePartyTown = window.location.search.includes('gtm_debug=');
 
-              this.initScripts(
-                disablePartyTown,
-                ...(this._config?.scripts ?? []),
-              );
-              this.initPixels(...(this._config?.pixels ?? []));
-            },
-          }),
-          first(),
-        )
-        .subscribe();
+      const workerScript = document.createElement('script');
+      workerScript.type = 'text/javascript';
+      workerScript.textContent = `(${tagAssistantMain})()`;
+      document.head.append(workerScript);
+
+      const tagAssistantScript = document.createElement('script');
+      tagAssistantScript.type = 'text/partytown';
+      tagAssistantScript.textContent = `(${tagAssistantWorker})()`;
+      document.head.append(tagAssistantScript);
+
+
+      this.initScripts(false, ...(this._config?.scripts ?? []));
+      this.initPixels(...(this._config?.pixels ?? []));
     }
   }
 
@@ -138,6 +136,7 @@ export class PartyTownService {
     partyTownConfigurationScript.textContent = `partytown = {
       debug: ${config.debug ?? false},
       forward: ${JSON.stringify(config.forward ?? [])},
+      mainWindowAccessors: ${JSON.stringify(config.mainWindowAccessors ?? [])},
       resolveUrl: function (url, location, type) {
         const proxiedHosts = ${JSON.stringify(config.proxiedHosts ?? [])};
         if (proxiedHosts.includes(url.hostname)) {

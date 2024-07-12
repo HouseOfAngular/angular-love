@@ -14,6 +14,8 @@ export const provideAppTracking = (): EnvironmentProviders => {
     provideTracking({
       partyTown: {
         partyTown: {
+          forward: ['dataLayer.push', 'fbq', '__TAG_ASSISTANT_FORWARDER'],
+          mainWindowAccessors: ['__TAG_ASSISTANT_ACCESSOR'],
           enabled: true,
           reverseProxy: 'https://reverse.contact-ef8.workers.dev/',
           proxiedHosts: [
