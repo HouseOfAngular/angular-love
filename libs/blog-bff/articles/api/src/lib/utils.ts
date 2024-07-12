@@ -102,3 +102,24 @@ export const modifyLinks: RewriteAdapter = ($) => {
     }
   });
 };
+
+/**
+ * Replaces image source to the new domain
+ * @param $
+ */
+export const modifyImages: RewriteAdapter = ($) => {
+  $('img').each((_, element) => {
+    const $element = $(element);
+    const src = $element.attr('src');
+
+    if (src && src.startsWith('https://angular.love/wp-content')) {
+      $element.attr(
+        'src',
+        src.replace(
+          'https://angular.love/wp-content',
+          'https://wp.angular.love/wp-content',
+        ),
+      );
+    }
+  });
+};
