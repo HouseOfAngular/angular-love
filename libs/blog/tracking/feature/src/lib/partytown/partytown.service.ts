@@ -8,6 +8,8 @@ import {
   makeEnvironmentProviders,
   PLATFORM_ID,
 } from '@angular/core';
+import { NavigationStart, Router } from '@angular/router';
+import { filter, first, tap } from 'rxjs';
 
 /**
  * Credits https://github.com/find-ida/angular-ssr-partytown
@@ -77,19 +79,42 @@ export type PartyTownPixelFactory = (img: HTMLImageElement) => HTMLImageElement;
 export class PartyTownService {
   private readonly _config = inject(PARTY_TOWN_CONFIG, { optional: true });
   private readonly _document = inject(DOCUMENT);
+  private readonly _router = inject(Router);
 
   init(): void {
     if (this._config?.partyTown?.enabled) {
-      this.initPartyTownScript();
-      this.initScripts(...(this._config.scripts ?? []));
-      this.initPixels(...(this._config.pixels ?? []));
+      this._router.events
+        .pipe(
+          filter((ev): ev is NavigationStart => ev instanceof NavigationStart),
+          tap({
+            next: (asd) => {
+              this.initPartyTownScript();
+              const disablePartyTown = asd.url.includes('gtm_debug=');
+
+              this.initScripts(
+                disablePartyTown,
+                ...(this._config?.scripts ?? []),
+              );
+              this.initPixels(...(this._config?.pixels ?? []));
+            },
+          }),
+          first(),
+        )
+        .subscribe();
     }
   }
 
-  private initScripts(...scripts: PartyTownScriptFactory[]): void {
+  private initScripts(
+    disablePartyTown = false,
+    ...scripts: PartyTownScriptFactory[]
+  ): void {
     scripts.forEach((script) => {
       const scriptElement = this._document.createElement('script');
       const _script = script(scriptElement);
+      if (disablePartyTown) {
+        _script.removeAttribute('data-type');
+      }
+
       this._document.head.appendChild(_script);
     });
   }
