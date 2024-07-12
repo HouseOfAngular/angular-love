@@ -22,6 +22,7 @@ export type PartyTownConfig = {
     proxiedHosts?: string[];
   };
   scripts?: PartyTownScriptFactory[];
+  pixels?: PartyTownPixelFactory[];
 };
 
 export const PARTY_TOWN_CONFIG = new InjectionToken<PartyTownConfig>(
@@ -46,6 +47,7 @@ export const providePartyTown = (
           proxiedHosts: config.partyTown?.proxiedHosts ?? [],
         },
         scripts: config?.scripts ?? [],
+        pixels: config?.pixels ?? [],
       } satisfies PartyTownConfig,
     },
     PartyTownService,
@@ -69,6 +71,8 @@ export type PartyTownScriptFactory = (
   scriptElement: HTMLScriptElement,
 ) => HTMLScriptElement;
 
+export type PartyTownPixelFactory = (img: HTMLImageElement) => HTMLImageElement;
+
 @Injectable()
 export class PartyTownService {
   private readonly _config = inject(PARTY_TOWN_CONFIG, { optional: true });
@@ -78,6 +82,7 @@ export class PartyTownService {
     if (this._config?.partyTown?.enabled) {
       this.initPartyTownScript();
       this.initScripts(...(this._config.scripts ?? []));
+      this.initPixels(...(this._config.pixels ?? []));
     }
   }
 
@@ -86,6 +91,16 @@ export class PartyTownService {
       const scriptElement = this._document.createElement('script');
       const _script = script(scriptElement);
       this._document.head.appendChild(_script);
+    });
+  }
+
+  private initPixels(...scripts: PartyTownPixelFactory[]): void {
+    scripts.forEach((pixel) => {
+      const noScriptElement = this._document.createElement('noscript');
+      const pixelElement = this._document.createElement('img');
+      const _pixel = pixel(pixelElement);
+      noScriptElement.append(_pixel);
+      this._document.head.appendChild(noScriptElement);
     });
   }
 
