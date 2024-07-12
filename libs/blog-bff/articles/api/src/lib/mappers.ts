@@ -12,6 +12,7 @@ import {
 import { WPPostDetailsDto, WPPostDto } from './dtos';
 import {
   crayonCodeRewriter,
+  modifyImages,
   modifyLinks,
   removeEmptyParagraphs,
   rewriteHTML,
@@ -73,6 +74,7 @@ export const toArticle = (dto?: WPPostDetailsDto): Article => {
     crayonCodeRewriter,
     removeEmptyParagraphs,
     modifyLinks,
+    modifyImages,
   )($);
 
   // add id to anchorTypes elements for anchor links
