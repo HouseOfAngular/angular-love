@@ -1,8 +1,8 @@
 import { Component, computed, input } from '@angular/core';
 import { TranslocoDirective } from '@jsverse/transloco';
+import { FastSvgComponent } from '@push-based/ngx-fast-svg';
 
 import { IconComponent, IconType } from '@angular-love/blog/shared/ui-icon';
-import { FastSvgComponent } from "@push-based/ngx-fast-svg";
 
 type ShareItem = {
   href: string;
@@ -37,9 +37,13 @@ type ShareItem = {
 export class ArticleShareIconsComponent {
   slug = input.required<string>();
   title = input.required<string>();
+  language = input.required<string>();
 
   readonly items = computed<ShareItem[]>(() => {
-    const url = `https://angular.love/${this.slug()}`;
+    const url =
+      this.language() === 'pl_PL'
+        ? `https://angular.love/${this.slug()}`
+        : `https://angular.love/en/${this.slug()}`;
     const text = encodeURIComponent(this.title());
 
     return [
