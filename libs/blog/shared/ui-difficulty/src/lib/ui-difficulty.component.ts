@@ -26,7 +26,7 @@ export type UiDifficulty = 'beginner' | 'intermediate' | 'advanced';
       <div
         class="flex items-center self-stretch rounded-l-md pl-1 text-center align-middle xl:pl-2"
         [ngClass]="{
-          'bg-al-background': isColorBackground(),
+          'dark:bg-al-background bg-transparent': isColorBackground(),
           'bg-al-border': !isColorBackground(),
         }"
       >
@@ -45,7 +45,8 @@ export type UiDifficulty = 'beginner' | 'intermediate' | 'advanced';
           <div
             class="mx-0.5 inline-block h-4 w-4 rounded-full bg-transparent lg:mx-1"
             [ngClass]="{
-              'shadow-al-full-background': isColorBackground(),
+              'dark:shadow-al-full-background shadow-transparent':
+                isColorBackground(),
               'shadow-al-full-border': !isColorBackground(),
             }"
           ></div>
@@ -77,7 +78,7 @@ export type UiDifficulty = 'beginner' | 'intermediate' | 'advanced';
       <div
         class="flex items-center self-stretch rounded-r-md pr-1 text-center align-middle"
         [ngClass]="{
-          'bg-al-background': isColorBackground(),
+          'dark:bg-al-background bg-transparent': isColorBackground(),
           'bg-al-border': !isColorBackground(),
         }"
       ></div>

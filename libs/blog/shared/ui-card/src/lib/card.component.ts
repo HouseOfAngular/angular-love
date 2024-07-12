@@ -69,7 +69,7 @@ export class CardLinkableDirective {
 export class GradientCardDirective {
   @HostBinding('class')
   get hostClasses() {
-    return 'border !bg-al-radial-gradient bg-al-background';
+    return 'border !bg-al-radial-gradient bg-al-card dark:bg-al-background';
   }
 }
 
