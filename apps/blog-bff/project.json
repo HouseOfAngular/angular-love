@@ -26,6 +26,12 @@
       "options": {
         "jestConfig": "apps/blog-bff/jest.config.ts"
       }
+    },
+    "mv": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "wrangler deploy --config apps/blog-bff/wrangler.toml --name bff --dry-run --outdir dist"
+      }
     }
   }
 }

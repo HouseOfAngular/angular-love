@@ -10,6 +10,10 @@ const app = new Hono();
 
 app.use('*', cors());
 
+app.get('/', (c) => {
+  return c.json({ msg: 'test' });
+});
+
 app.route('/articles', articles);
 app.route('/authors', authors);
 app.route('/newsletter', newsletter);
