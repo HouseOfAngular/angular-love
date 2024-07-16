@@ -1,5 +1,13 @@
 import type { CookieConsentConfig } from 'vanilla-cookieconsent';
 
+declare global {
+  interface Window {
+    dataLayer: {
+      push: (...args: any[]) => void;
+    };
+  }
+}
+
 export const cookieConsentConfig = {
   categories: {
     necessary: {
@@ -14,11 +22,18 @@ export const cookieConsentConfig = {
       enabled: false,
       readOnly: false,
     },
+    ads: {},
+  },
+  onConsent: () => {
+    window.dataLayer.push({ event: 'consent_update' });
+    window.dispatchEvent(new CustomEvent('ptupdate'));
   },
   onChange: () => {
+    window.dataLayer.push({ event: 'consent_update_change' });
     window.dispatchEvent(new CustomEvent('ptupdate'));
   },
   onFirstConsent: () => {
+    window.dataLayer.push({ event: 'consent_update_first' });
     window.dispatchEvent(new CustomEvent('ptupdate'));
   },
   language: {

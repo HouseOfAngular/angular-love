@@ -1,11 +1,21 @@
 import { PartyTownScriptFactory } from './partytown.service';
 
+export const gtag = (): PartyTownScriptFactory => (gtmScript) => {
+  gtmScript.textContent = `
+             window.dataLayer = window.dataLayer || [];
+            window.gtag = function gtag(){dataLayer.push(arguments);}
+    
+            gtag('consent', 'default', {
+              'ad_storage': 'denied',
+              'analytics_storage': 'denied'
+            });
+        `;
+  return gtmScript;
+};
+
 export const gtmScript =
   (id: string): PartyTownScriptFactory =>
   (gtmScript) => {
-    gtmScript.setAttribute('type', 'text/plain');
-    gtmScript.setAttribute('data-type', 'text/partytown');
-    gtmScript.setAttribute('data-category', 'analytics');
     gtmScript.textContent = `(function (w, d, s, l, i) {
   w[l] = w[l] || [];
   w[l].push({'gtm.start': new Date().getTime(), event: 'gtm.js'});
@@ -14,5 +24,25 @@ export const gtmScript =
   j.src = 'https://www.googletagmanager.com/gtm.js?id=' + i + dl;
   f.parentNode.insertBefore(j, f);
 })(window, document, 'script', 'dataLayer', '${id}');`;
+    return gtmScript;
+  };
+
+export const consent =
+  (
+    category: 'analytics' | 'ads',
+    consentType: 'ad_storage' | 'analytics_storage',
+    status: 'granted' | 'denied',
+  ): PartyTownScriptFactory =>
+  (gtmScript) => {
+    gtmScript.setAttribute('type', 'text/plain');
+    gtmScript.setAttribute(
+      'data-category',
+      status === 'granted' ? category : `!${category}`,
+    );
+    gtmScript.textContent = `
+    gtag('consent', 'update', {
+        '${consentType}': '${status}'
+    });
+`;
     return gtmScript;
   };
