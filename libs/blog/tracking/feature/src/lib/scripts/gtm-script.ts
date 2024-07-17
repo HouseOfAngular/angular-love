@@ -1,6 +1,6 @@
-import { PartyTownScriptFactory } from './partytown.service';
+import { ScriptFactory } from '../scripts-loader';
 
-export const gtag = (): PartyTownScriptFactory => (gtmScript) => {
+export const initialConsentScript = (): ScriptFactory => (gtmScript) => {
   gtmScript.textContent = `
              window.dataLayer = window.dataLayer || [];
             window.gtag = function gtag(){dataLayer.push(arguments);}
@@ -14,7 +14,7 @@ export const gtag = (): PartyTownScriptFactory => (gtmScript) => {
 };
 
 export const gtmScript =
-  (id: string): PartyTownScriptFactory =>
+  (id: string): ScriptFactory =>
   (gtmScript) => {
     gtmScript.textContent = `(function (w, d, s, l, i) {
   w[l] = w[l] || [];
@@ -27,12 +27,12 @@ export const gtmScript =
     return gtmScript;
   };
 
-export const consent =
+export const consentUpdateScript =
   (
     category: 'analytics' | 'ads',
     consentType: 'ad_storage' | 'analytics_storage',
     status: 'granted' | 'denied',
-  ): PartyTownScriptFactory =>
+  ): ScriptFactory =>
   (gtmScript) => {
     gtmScript.setAttribute('type', 'text/plain');
     gtmScript.setAttribute(

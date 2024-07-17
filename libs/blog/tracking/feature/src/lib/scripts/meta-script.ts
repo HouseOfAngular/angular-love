@@ -1,7 +1,7 @@
-import { PartyTownScriptFactory } from './partytown.service';
+import { ScriptFactory } from '../scripts-loader';
 
 export const metaScript =
-  (id: string): PartyTownScriptFactory =>
+  (id: string): ScriptFactory =>
   (gtmScript) => {
     gtmScript.setAttribute('type', 'text/plain');
     gtmScript.setAttribute('data-type', 'text/partytown');
