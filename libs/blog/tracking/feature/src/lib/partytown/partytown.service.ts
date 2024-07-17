@@ -8,8 +8,6 @@ import {
   makeEnvironmentProviders,
   PLATFORM_ID,
 } from '@angular/core';
-import { NavigationStart, Router } from '@angular/router';
-import { filter, first, tap } from 'rxjs';
 
 /**
  * Credits https://github.com/find-ida/angular-ssr-partytown
@@ -19,7 +17,7 @@ export type PartyTownConfig = {
     enabled: boolean;
     debug?: boolean;
     basePath?: string;
-    forward?: string[];
+    forward?: (string | [string, { preserveBehavior: boolean }])[];
     reverseProxy?: string;
     proxiedHosts?: string[];
   };
@@ -44,7 +42,7 @@ export const providePartyTown = (
           enabled: config.partyTown?.enabled ?? false,
           debug: config.partyTown?.debug ?? false,
           basePath: config.partyTown?.basePath ?? '/~partytown',
-          forward: config.partyTown?.forward ?? ['dataLayer.push', 'fbq'],
+          forward: config.partyTown?.forward ?? [],
           reverseProxy: config.partyTown?.reverseProxy ?? '',
           proxiedHosts: config.partyTown?.proxiedHosts ?? [],
         },
@@ -79,28 +77,14 @@ export type PartyTownPixelFactory = (img: HTMLImageElement) => HTMLImageElement;
 export class PartyTownService {
   private readonly _config = inject(PARTY_TOWN_CONFIG, { optional: true });
   private readonly _document = inject(DOCUMENT);
-  private readonly _router = inject(Router);
 
   init(): void {
     if (this._config?.partyTown?.enabled) {
-      this._router.events
-        .pipe(
-          filter((ev): ev is NavigationStart => ev instanceof NavigationStart),
-          tap({
-            next: (asd) => {
-              this.initPartyTownScript();
-              const disablePartyTown = asd.url.includes('gtm_debug=');
+      this.initPartyTownScript();
+      const disablePartyTown = window.location.search.includes('gtm_debug=');
 
-              this.initScripts(
-                disablePartyTown,
-                ...(this._config?.scripts ?? []),
-              );
-              this.initPixels(...(this._config?.pixels ?? []));
-            },
-          }),
-          first(),
-        )
-        .subscribe();
+      this.initScripts(disablePartyTown, ...(this._config?.scripts ?? []));
+      this.initPixels(...(this._config?.pixels ?? []));
     }
   }
 
@@ -111,11 +95,16 @@ export class PartyTownService {
     scripts.forEach((script) => {
       const scriptElement = this._document.createElement('script');
       const _script = script(scriptElement);
-      if (disablePartyTown) {
-        _script.removeAttribute('data-type');
+      if (!disablePartyTown) {
+        if (_script.type) {
+          _script.setAttribute('data-type', 'text/partytown');
+        } else {
+          _script.setAttribute('type', 'text/partytown');
+        }
       }
 
       this._document.head.appendChild(_script);
+      window.dispatchEvent(new CustomEvent('ptupdate'));
     });
   }
 
