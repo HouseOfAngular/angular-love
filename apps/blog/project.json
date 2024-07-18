@@ -25,12 +25,7 @@
         "assets": [
           "apps/blog/src/assets",
           "apps/blog/src/sitemap.xml",
-          "apps/blog/src/_redirects",
-          {
-            "glob": "**/*",
-            "input": "node_modules/@builder.io/partytown/lib",
-            "output": "/~partytown"
-          }
+          "apps/blog/src/_redirects"
         ],
         "styles": [
           "apps/blog/src/styles.scss",

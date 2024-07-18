@@ -9,20 +9,18 @@ import {
   PLATFORM_ID,
 } from '@angular/core';
 
+import { ScriptFactory, ScriptsLoader } from '../scripts-loader';
+
 /**
  * Credits https://github.com/find-ida/angular-ssr-partytown
  */
 export type PartyTownConfig = {
-  partyTown?: {
-    enabled: boolean;
-    debug?: boolean;
-    basePath?: string;
-    forward?: (string | [string, { preserveBehavior: boolean }])[];
-    reverseProxy?: string;
-    proxiedHosts?: string[];
-  };
-  scripts?: PartyTownScriptFactory[];
-  pixels?: PartyTownPixelFactory[];
+  enabled: boolean;
+  debug?: boolean;
+  basePath?: string;
+  forward?: (string | [string, { preserveBehavior: boolean }])[];
+  reverseProxy?: string;
+  proxiedHosts?: string[];
 };
 
 export const PARTY_TOWN_CONFIG = new InjectionToken<PartyTownConfig>(
@@ -37,60 +35,34 @@ export const providePartyTown = (
       provide: PARTY_TOWN_CONFIG,
       useValue: {
         ...config,
-        partyTown: {
-          ...config.partyTown,
-          enabled: config.partyTown?.enabled ?? false,
-          debug: config.partyTown?.debug ?? false,
-          basePath: config.partyTown?.basePath ?? '/~partytown',
-          forward: config.partyTown?.forward ?? [],
-          reverseProxy: config.partyTown?.reverseProxy ?? '',
-          proxiedHosts: config.partyTown?.proxiedHosts ?? [],
-        },
-        scripts: config?.scripts ?? [],
-        pixels: config?.pixels ?? [],
+        enabled: config?.enabled ?? false,
+        debug: config?.debug ?? false,
+        basePath: config?.basePath ?? '/~partytown',
+        forward: config?.forward ?? [],
+        reverseProxy: config?.reverseProxy ?? '',
+        proxiedHosts: config?.proxiedHosts ?? [],
       } satisfies PartyTownConfig,
     },
     PartyTownService,
-    {
-      provide: APP_INITIALIZER,
-      multi: true,
-      useFactory: () => {
-        const platformId = inject(PLATFORM_ID);
-        const partyTownService = inject(PartyTownService);
-
-        return () => {
-          if (config.partyTown?.enabled && isPlatformBrowser(platformId)) {
-            partyTownService.init();
-          }
-        };
-      },
-    },
   ]);
 
-export type PartyTownScriptFactory = (
-  scriptElement: HTMLScriptElement,
-) => HTMLScriptElement;
-
-export type PartyTownPixelFactory = (img: HTMLImageElement) => HTMLImageElement;
-
 @Injectable()
-export class PartyTownService {
+export class PartyTownService implements ScriptsLoader {
   private readonly _config = inject(PARTY_TOWN_CONFIG, { optional: true });
   private readonly _document = inject(DOCUMENT);
 
-  init(): void {
-    if (this._config?.partyTown?.enabled) {
+  init(scripts: ScriptFactory[]): void {
+    if (this._config?.enabled) {
       this.initPartyTownScript();
       const disablePartyTown = window.location.search.includes('gtm_debug=');
 
-      this.initScripts(disablePartyTown, ...(this._config?.scripts ?? []));
-      this.initPixels(...(this._config?.pixels ?? []));
+      this.initScripts(disablePartyTown, ...(scripts ?? []));
     }
   }
 
   private initScripts(
     disablePartyTown = false,
-    ...scripts: PartyTownScriptFactory[]
+    ...scripts: ScriptFactory[]
   ): void {
     scripts.forEach((script) => {
       const scriptElement = this._document.createElement('script');
@@ -108,19 +80,9 @@ export class PartyTownService {
     });
   }
 
-  private initPixels(...scripts: PartyTownPixelFactory[]): void {
-    scripts.forEach((pixel) => {
-      const noScriptElement = this._document.createElement('noscript');
-      const pixelElement = this._document.createElement('img');
-      const _pixel = pixel(pixelElement);
-      noScriptElement.append(_pixel);
-      this._document.head.appendChild(noScriptElement);
-    });
-  }
-
   private initPartyTownScript(): void {
-    if (!this._config?.partyTown) return;
-    const config = this._config.partyTown;
+    if (!this._config) return;
+    const config = this._config;
 
     // Config Script
     const partyTownConfigurationScript = this._document.createElement('script');
