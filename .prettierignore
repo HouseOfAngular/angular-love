@@ -5,3 +5,5 @@
 .angular
 pnpm-lock.yaml
 /app/blog-bff/.wrangler
+
+/.nx/workspace-data
