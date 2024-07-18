@@ -14,13 +14,14 @@ import {
   PartyTownService,
   providePartyTown,
 } from './partytown';
-import { ScriptFactory, ScriptsLoader } from './scripts-loader';
+import { PixelFactory, ScriptFactory, ScriptsLoader } from './scripts-loader';
 import { ScriptsLoaderService } from './scripts-loader.service';
 
 export type TrackingConfig = {
   partyTown: PartyTownConfig;
   cookieConsent: CookieConsentConfig;
   scripts?: ScriptFactory[];
+  pixels?: PixelFactory[];
 };
 
 export const provideTracking = (
@@ -52,7 +53,7 @@ export const provideTracking = (
 
         return () => {
           if (isPlatformBrowser(platformId)) {
-            scriptsLoader.init(config.scripts ?? []);
+            scriptsLoader.init(config.scripts ?? [], config.pixels ?? []);
           }
         };
       },

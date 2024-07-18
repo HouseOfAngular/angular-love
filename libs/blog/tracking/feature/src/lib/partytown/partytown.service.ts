@@ -1,15 +1,13 @@
-import { DOCUMENT, isPlatformBrowser } from '@angular/common';
+import { DOCUMENT } from '@angular/common';
 import {
-  APP_INITIALIZER,
   EnvironmentProviders,
   inject,
   Injectable,
   InjectionToken,
   makeEnvironmentProviders,
-  PLATFORM_ID,
 } from '@angular/core';
 
-import { ScriptFactory, ScriptsLoader } from '../scripts-loader';
+import { PixelFactory, ScriptFactory, ScriptsLoader } from '../scripts-loader';
 
 /**
  * Credits https://github.com/find-ida/angular-ssr-partytown
@@ -51,12 +49,13 @@ export class PartyTownService implements ScriptsLoader {
   private readonly _config = inject(PARTY_TOWN_CONFIG, { optional: true });
   private readonly _document = inject(DOCUMENT);
 
-  init(scripts: ScriptFactory[]): void {
+  init(scripts: ScriptFactory[], pixels: PixelFactory[]): void {
     if (this._config?.enabled) {
       this.initPartyTownScript();
       const disablePartyTown = window.location.search.includes('gtm_debug=');
 
       this.initScripts(disablePartyTown, ...(scripts ?? []));
+      this.initPixels(pixels);
     }
   }
 
@@ -77,6 +76,16 @@ export class PartyTownService implements ScriptsLoader {
 
       this._document.head.appendChild(_script);
       window.dispatchEvent(new CustomEvent('ptupdate'));
+    });
+  }
+
+  private initPixels(pixels: PixelFactory[]): void {
+    pixels.forEach((pixel) => {
+      const noScriptElement = this._document.createElement('noscript');
+      const pixelElement = this._document.createElement('img');
+      const _pixel = pixel(pixelElement);
+      noScriptElement.append(_pixel);
+      this._document.head.appendChild(noScriptElement);
     });
   }
 

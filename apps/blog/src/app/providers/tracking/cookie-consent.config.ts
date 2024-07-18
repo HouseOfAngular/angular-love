@@ -24,6 +24,9 @@ export const cookieConsentConfig = {
     },
     ads: {},
   },
+  cookie: {
+    name: 'cc_cookie_al',
+  },
   onConsent: () => {
     window.dataLayer.push({ event: 'consent_update' });
     window.dispatchEvent(new CustomEvent('ptupdate'));

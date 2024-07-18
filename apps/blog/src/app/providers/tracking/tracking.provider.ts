@@ -4,6 +4,7 @@ import {
   consentUpdateScript,
   gtmScript,
   initialConsentScript,
+  metaPixel,
   metaScript,
   provideTracking,
 } from '@angular-love/blog/tracking/feature';
@@ -41,6 +42,7 @@ export const provideAppTracking = (): EnvironmentProviders => {
         consentUpdateScript('analytics', 'analytics_storage', 'denied'),
         metaScript('284876369340184'),
       ],
+      pixels: [metaPixel('284876369340184')],
     }),
   ]);
 };
