@@ -1,6 +1,15 @@
-import { Meta, moduleMetadata, StoryObj } from '@storybook/angular';
+import { importProvidersFrom } from '@angular/core';
+import {
+  applicationConfig,
+  Meta,
+  moduleMetadata,
+  StoryObj,
+} from '@storybook/angular';
 
+import { provideI18n } from '@angular-love/blog/i18n/data-access';
+import { AlLocalizeService } from '@angular-love/blog/i18n/util';
 import { ArticleCard } from '@angular-love/blog/shared/types';
+import { ConfigService } from '@angular-love/shared/config';
 
 import { ArticleRegularCardComponent } from '../components/article-regular-card/article-regular-card.component';
 
@@ -36,6 +45,10 @@ const meta: Meta<UiArticleCardComponent> = {
     moduleMetadata({
       imports: [ArticleRegularCardComponent],
     }),
+    applicationConfig({
+      // List of providers and environment providers that should be available to the root component and all its children.
+      providers: [importProvidersFrom(ConfigService), provideI18n()],
+    }),
   ],
 };
 
@@ -48,6 +61,10 @@ export const compact: Story = {
     cardType: layoutCompact,
   },
   render: (args) => ({
+    applicationConfig: {
+      // The providers will be merged with the ones defined in the applicationConfig decorators providers array of the global meta object
+      providers: [ConfigService, provideI18n()],
+    },
     props: args,
     template: `
       <div class="w-[408px] h-[232px]">
