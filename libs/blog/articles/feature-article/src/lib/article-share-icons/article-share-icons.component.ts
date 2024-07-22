@@ -1,8 +1,9 @@
-import { Component, computed, input } from '@angular/core';
+import { CdkCopyToClipboard } from '@angular/cdk/clipboard';
+import { Component, computed, input, signal } from '@angular/core';
 import { TranslocoDirective } from '@jsverse/transloco';
 import { FastSvgComponent } from '@push-based/ngx-fast-svg';
 
-import { IconComponent, IconType } from '@angular-love/blog/shared/ui-icon';
+import { IconType } from '@angular-love/blog/shared/ui-icon';
 
 type ShareItem = {
   href: string;
@@ -13,16 +14,16 @@ type ShareItem = {
 @Component({
   standalone: true,
   selector: 'al-article-share-icons',
-  imports: [IconComponent, TranslocoDirective, FastSvgComponent],
+  imports: [TranslocoDirective, FastSvgComponent, CdkCopyToClipboard],
+  styleUrls: ['./article-share-icons.component.scss'],
   template: `
-    <div class="flex items-center gap-4">
-      <span *transloco="let t" class="text-lg font-bold">
+    <div *transloco="let t" class="flex items-center gap-4">
+      <span class="text-lg font-bold">
         {{ t('articleShareIcons.title') }}
       </span>
 
       @for (item of items(); track $index) {
         <a
-          *transloco="let t"
           role="button"
           [attr.aria-label]="t(item.ariaLabel)"
           [href]="item.href"
@@ -31,19 +32,46 @@ type ShareItem = {
           <fast-svg class="text-al-foreground" [name]="item.icon" size="28" />
         </a>
       }
+      <a
+        role="button"
+        [attr.aria-label]="t('articleShareIcons.urlAriaLabel')"
+        [class.url-icon-animated]="animating()"
+        [cdkCopyToClipboard]="articleUrl()"
+        (click)="animating.set(true)"
+        (animationend)="animating.set(false)"
+        target="_blank"
+      >
+        <fast-svg
+          name="link"
+          class="text-al-foreground"
+          [class.!hidden]="animating()"
+          size="28"
+        />
+        <fast-svg
+          name="circle-check"
+          class="text-al-foreground"
+          [class.!hidden]="!animating()"
+          size="28"
+        />
+      </a>
     </div>
   `,
 })
 export class ArticleShareIconsComponent {
-  slug = input.required<string>();
-  title = input.required<string>();
-  language = input.required<string>();
+  readonly slug = input.required<string>();
+  readonly title = input.required<string>();
+  readonly language = input.required<string>();
+
+  readonly animating = signal(false);
+
+  readonly articleUrl = computed(() =>
+    this.language() === 'pl_PL'
+      ? `https://angular.love/${this.slug()}`
+      : `https://angular.love/en/${this.slug()}`,
+  );
 
   readonly items = computed<ShareItem[]>(() => {
-    const url =
-      this.language() === 'pl_PL'
-        ? `https://angular.love/${this.slug()}`
-        : `https://angular.love/en/${this.slug()}`;
+    const url = this.articleUrl();
     const text = encodeURIComponent(this.title());
 
     return [

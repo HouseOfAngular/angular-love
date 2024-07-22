@@ -103,7 +103,8 @@
     "title": "Podziel się artykułem",
     "twitterAriaLabel": "Udostępnij na Twitterze",
     "facebookAriaLabel": "Udostępnij na Facebooku",
-    "linkedInAriaLabel": "Udostępnij na LinkedIn"
+    "linkedInAriaLabel": "Udostępnij na LinkedIn",
+    "urlAriaLabel": "Skopiuj URL"
   },
   "dynamicTextClamp": {
     "readMore": "Czytaj więcej",

@@ -100,7 +100,8 @@
     "title": "Share this post",
     "twitterAriaLabel": "Share on Twitter",
     "facebookAriaLabel": "Share on Facebook",
-    "linkedInAriaLabel": "Share on LinkedIn"
+    "linkedInAriaLabel": "Share on LinkedIn",
+    "urlAriaLabel": "Copy URL"
   },
   "dynamicTextClamp": {
     "readMore": "Read more",
