@@ -8,7 +8,6 @@ import {
 } from '@angular/core';
 import type { CookieConsentConfig } from 'vanilla-cookieconsent';
 
-import { provideCookieConsent } from './cookie-consent/cookie-consent.provider';
 import {
   PartyTownConfig,
   PartyTownService,
@@ -43,7 +42,6 @@ export const provideTracking = (
             useClass: ScriptsLoaderService,
           },
         ]),
-    provideCookieConsent(config.cookieConsent),
     {
       provide: APP_INITIALIZER,
       multi: true,
