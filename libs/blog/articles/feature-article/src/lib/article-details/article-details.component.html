@@ -27,6 +27,15 @@
     <div class="flex w-full flex-col gap-10 overflow-hidden">
       <al-article-content [content]="articleDetails().content" />
 
+      <al-card alDarkCard class="lg:hidden">
+        <div alCardContent>
+          <al-article-share-icons
+            [slug]="articleDetails().slug"
+            [title]="articleDetails().title"
+            [language]="articleDetails().lang"
+          />
+        </div>
+      </al-card>
       <al-card alGradientCard #view>
         <al-newsletter alCardContent />
       </al-card>
