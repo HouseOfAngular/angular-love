@@ -1,7 +1,8 @@
 import { DOCUMENT } from '@angular/common';
-import { inject, Injectable, signal } from '@angular/core';
+import { inject, Injectable } from '@angular/core';
 import { Meta, MetaDefinition, Title } from '@angular/platform-browser';
 import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
+import { TranslocoService } from '@jsverse/transloco';
 import { filter, map, switchMap } from 'rxjs';
 
 import { SeoMetaData } from '@angular-love/contracts/articles';
@@ -19,6 +20,7 @@ export class SeoService {
   private readonly _meta = inject(Meta);
   private readonly _document = inject(DOCUMENT);
   private readonly _seoConfig = inject(SEO_CONFIG);
+  private readonly _translocoService = inject(TranslocoService);
   private _url = '';
 
   init(): void {
@@ -47,7 +49,9 @@ export class SeoService {
         this.updateTag(seoConfig.siteName, 'ogSiteName');
 
         if (routeData && routeData['seo'] && routeData['seo']['title']) {
-          this.setTitle(`${routeData['seo']['title']} - ${seoConfig.title}`);
+          this.setTitle(
+            `${seoConfig.title} - ${this._translocoService.translate(routeData['seo']['title'])}`,
+          );
         } else {
           this.setTitle('');
         }
