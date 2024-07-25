@@ -1,4 +1,4 @@
-@use 'highlight.js/styles/github-dark.min.css';
+//@use 'highlight.js/styles/github-dark.min.css';
 
 @mixin heading-styles {
   padding-bottom: 0.3rem;
@@ -8,6 +8,10 @@
 }
 
 .blog-article-content {
+  pre.shiki {
+    @apply mb-4 rounded-2xl p-4;
+  }
+
   h1 {
     @apply text-3xl;
     @include heading-styles;
@@ -35,10 +39,6 @@
 
   a {
     @apply al-link;
-  }
-
-  code.hljs {
-    @apply my-4 rounded-2xl p-6;
   }
 
   code:not(.hljs) {

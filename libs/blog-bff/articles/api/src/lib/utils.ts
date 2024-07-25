@@ -1,15 +1,30 @@
 import type { CheerioAPI } from 'cheerio';
 import hljs from 'highlight.js';
+import { createHighlighterCore, loadWasm } from 'shiki/core';
+import angularTs from 'shiki/langs/angular-ts.mjs';
+import angularTemplate from 'shiki/langs/angular-ts.mjs';
+import js from 'shiki/langs/javascript.mjs';
+import typescript from 'shiki/langs/typescript.mjs';
+import githubDark from 'shiki/themes/github-dark.mjs';
+
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-ignore
+await loadWasm(import('shiki/dist/onig.wasm'));
+
+const highlighter = await createHighlighterCore({
+  themes: [githubDark],
+  langs: [js, angularTs, typescript, angularTemplate],
+});
 
 const DEFAULT_LANGUAGE_SUBSET = ['typescript', 'html', 'css', 'scss', 'json'];
 
-type RewriteAdapter = ($: CheerioAPI) => void;
+type RewriteAdapter = ($: CheerioAPI) => Promise<void> | void;
 
 export const rewriteHTML = (...adapters: RewriteAdapter[]) => {
-  return (content: CheerioAPI) => {
-    adapters.forEach((adapter) => {
-      adapter(content);
-    });
+  return async (content: CheerioAPI) => {
+    for await (const adapter of adapters) {
+      await adapter(content);
+    }
   };
 };
 
@@ -17,7 +32,7 @@ export const rewriteHTML = (...adapters: RewriteAdapter[]) => {
  * Rewrites default Wordpress code blocks and applies HLJS styling
  * @param $
  */
-export const wpCodeRewriter: RewriteAdapter = ($) => {
+export const wpCodeRewriter: RewriteAdapter = async ($) => {
   $('pre').each((index, element) => {
     const code = $(element).text();
 
@@ -34,10 +49,20 @@ export const wpCodeRewriter: RewriteAdapter = ($) => {
     }
 
     // Detect the language and apply syntax highlighting
-    const highlightedCode = hljs.highlightAuto(
-      code,
-      DEFAULT_LANGUAGE_SUBSET,
-    ).value;
+    let language = hljs.highlightAuto(code, DEFAULT_LANGUAGE_SUBSET).language;
+
+    if (language === 'typescript') {
+      language = 'angular-ts';
+    }
+
+    if (language === 'html') {
+      language = 'angular-html';
+    }
+
+    const highlightedCode = highlighter.codeToHtml(code, {
+      theme: 'github-dark',
+      lang: language,
+    });
 
     // Replace the content of the <code> block with the highlighted code
     $(element).children('code').html(highlightedCode);
