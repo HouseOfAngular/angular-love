@@ -1,6 +1,6 @@
 <a [routerLink]="['/', article().slug] | alLocalize">
   <article
-    class="md:hover:shadow-al-primary group relative grid h-full w-full rounded-lg border border-transparent shadow-none transition-transform motion-reduce:transition-none lg:hover:scale-105 lg:motion-reduce:hover:scale-100"
+    class="bg-al-card md:hover:shadow-al-primary group relative h-full w-full rounded-lg border border-transparent shadow-none transition-transform motion-reduce:transition-none lg:hover:scale-105 lg:motion-reduce:hover:scale-100"
     [attr.aria-labelledby]="article().slug"
   >
     <div
@@ -9,13 +9,13 @@
 
     <img
       alt="Post featured image"
-      class="h-full w-full overflow-hidden rounded-t-lg object-cover"
+      class="w-full overflow-hidden rounded-t-lg object-cover"
       [ngSrc]="article().featuredImageUrl || 'assets/article-placeholder.webp'"
       [priority]="imagePriority()"
       width="1215"
       height="750"
     />
-    <div class="bg-al-card h-full rounded-b-lg">
+    <div class="rounded-b-lg">
       <div class="flex items-center justify-between px-4 pt-4">
         <div class="flex items-center gap-2">
           <al-avatar
