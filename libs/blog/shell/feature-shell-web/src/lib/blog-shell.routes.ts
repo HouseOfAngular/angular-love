@@ -31,7 +31,7 @@ export const routes: Route[] = [
           (await import('@angular-love/blog/home/feature-home'))
             .HomePageComponent,
         data: {
-          seo: { title: 'Home' },
+          seo: { title: 'seo.home' },
         },
       },
       {
@@ -48,7 +48,7 @@ export const routes: Route[] = [
           (await import('@angular-love/feature-about-us'))
             .FeatureAboutUsComponent,
         data: {
-          seo: { title: 'About Us' },
+          seo: { title: 'seo.aboutUs' },
         },
       },
       {
@@ -63,7 +63,7 @@ export const routes: Route[] = [
           (await import('@angular-love/blog/become-author-page-feature'))
             .BecomeAuthorPageFeatureComponent,
         data: {
-          seo: { title: 'Become an author' },
+          seo: { title: 'seo.becomeAuthor' },
         },
       },
       {
@@ -78,7 +78,7 @@ export const routes: Route[] = [
           (await import('@angular-love/blog/shared/ui-not-found'))
             .NotFoundPageComponent,
         data: {
-          seo: { title: 'Not Found' },
+          seo: { title: 'seo.notFound' },
         },
       },
       ...articleRoutes,

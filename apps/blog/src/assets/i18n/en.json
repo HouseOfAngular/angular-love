@@ -100,14 +100,19 @@
     "title": "Share this post",
     "twitterAriaLabel": "Share on Twitter",
     "facebookAriaLabel": "Share on Facebook",
-    "linkedInAriaLabel": "Share on LinkedIn"
+    "linkedInAriaLabel": "Share on LinkedIn",
+    "urlAriaLabel": "Copy URL"
   },
   "dynamicTextClamp": {
     "readMore": "Read more",
     "readLess": "Read less"
   },
   "seo": {
-    "metaDescription": "Angular.love - a place for all Angular enthusiasts created to inspire and educate."
+    "metaDescription": "Angular.love - a place for all Angular enthusiasts created to inspire and educate.",
+    "home": "Blog and community for Angular fans",
+    "aboutUs": "About us",
+    "becomeAuthor": "Become an author",
+    "notFound": "Not found"
   },
   "adBanner": {
     "registerButton": "Download for free",

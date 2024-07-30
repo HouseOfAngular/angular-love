@@ -103,14 +103,19 @@
     "title": "Podziel się artykułem",
     "twitterAriaLabel": "Udostępnij na Twitterze",
     "facebookAriaLabel": "Udostępnij na Facebooku",
-    "linkedInAriaLabel": "Udostępnij na LinkedIn"
+    "linkedInAriaLabel": "Udostępnij na LinkedIn",
+    "urlAriaLabel": "Skopiuj URL"
   },
   "dynamicTextClamp": {
     "readMore": "Czytaj więcej",
     "readLess": "Czytaj mniej"
   },
   "seo": {
-    "metaDescription": "Angular.love - ciekawostki oraz rozwiązania dla średnio-zaawansowanych oraz zaawansowanych developerów Angulara."
+    "metaDescription": "Angular.love - ciekawostki oraz rozwiązania dla średnio-zaawansowanych oraz zaawansowanych developerów Angulara.",
+    "home": "Blog dla sympatyków Angulara",
+    "aboutUs": "O nas",
+    "becomeAuthor": "Zostań autorem",
+    "notFound": "Nie znaleziono"
   },
   "adBanner": {
     "registerButton": "Pobierz za darmo",
