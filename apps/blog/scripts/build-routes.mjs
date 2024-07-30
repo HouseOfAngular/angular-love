@@ -9,7 +9,7 @@ const SITEMAP_FILE_PATH = 'apps/blog/src/sitemap.xml';
 const ROOT_PATHS_FILE_PREFIX = 'apps/blog/src/assets/root-paths';
 
 const SUPPORTED_LANGUAGES = ['pl', 'en'];
-const DEFAULT_LANGUAGE = 'pl';
+const DEFAULT_LANGUAGE = 'en';
 
 const STATIC_ROUTE_PATHS = [
   '',
@@ -19,6 +19,7 @@ const STATIC_ROUTE_PATHS = [
   'latest',
   'news',
   'guides',
+  '404',
 ];
 
 /**

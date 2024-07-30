@@ -17,7 +17,7 @@ export function generateSitemap({
 
   ssgRoutes.forEach((routeObj) => {
     const url = urlset.ele('url');
-    const modifiedUrl = routeObj.url.replace('/pl/', '/');
+    const modifiedUrl = routeObj.url.replace('/en/', '/');
 
     url.ele('loc').txt(`${baseUrl}${modifiedUrl}`);
     url.ele('lastmod').txt(new Date(routeObj.publishDate).toISOString());
