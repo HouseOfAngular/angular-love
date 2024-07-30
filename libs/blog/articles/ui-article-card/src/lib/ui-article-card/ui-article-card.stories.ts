@@ -7,7 +7,6 @@ import {
 } from '@storybook/angular';
 
 import { provideI18n } from '@angular-love/blog/i18n/data-access';
-import { AlLocalizeService } from '@angular-love/blog/i18n/util';
 import { ArticleCard } from '@angular-love/blog/shared/types';
 import { ConfigService } from '@angular-love/shared/config';
 
@@ -46,7 +45,6 @@ const meta: Meta<UiArticleCardComponent> = {
       imports: [ArticleRegularCardComponent],
     }),
     applicationConfig({
-      // List of providers and environment providers that should be available to the root component and all its children.
       providers: [importProvidersFrom(ConfigService), provideI18n()],
     }),
   ],
@@ -62,7 +60,6 @@ export const compact: Story = {
   },
   render: (args) => ({
     applicationConfig: {
-      // The providers will be merged with the ones defined in the applicationConfig decorators providers array of the global meta object
       providers: [ConfigService, provideI18n()],
     },
     props: args,

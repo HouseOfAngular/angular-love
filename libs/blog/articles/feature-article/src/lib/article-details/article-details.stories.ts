@@ -1,7 +1,6 @@
 import { importProvidersFrom } from '@angular/core';
 import {
   applicationConfig,
-  moduleMetadata,
   type Meta,
   type StoryObj,
 } from '@storybook/angular';
@@ -10,8 +9,6 @@ import { provideI18n } from '@angular-love/blog/i18n/data-access';
 import { Article } from '@angular-love/contracts/articles';
 import { ConfigService } from '@angular-love/shared/config';
 
-import { SeoData } from '../../../../../../blog-contracts/articles/src/lib/articles';
-
 import { ArticleDetailsComponent } from './article-details.component';
 
 const meta: Meta<ArticleDetailsComponent> = {
@@ -19,7 +16,6 @@ const meta: Meta<ArticleDetailsComponent> = {
   title: 'Articles / details',
   decorators: [
     applicationConfig({
-      // List of providers and environment providers that should be available to the root component and all its children.
       providers: [provideI18n(), importProvidersFrom(ConfigService)],
     }),
   ],
@@ -47,7 +43,7 @@ const articleDetails: Article = {
   slug: '',
   otherTranslations: [],
   lang: '',
-  seo: {} as SeoData,
+  seo: {},
 };
 
 export default meta;
@@ -56,7 +52,6 @@ type Story = StoryObj<ArticleDetailsComponent>;
 export const primary: Story = {
   decorators: [
     applicationConfig({
-      // List of providers and environment providers that should be available to the root component and all its children.
       providers: [ConfigService, provideI18n()],
     }),
   ],
