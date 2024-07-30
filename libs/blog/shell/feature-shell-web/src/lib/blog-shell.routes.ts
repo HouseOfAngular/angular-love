@@ -7,16 +7,16 @@ import { RootShellComponent } from './root-shell.component';
 
 export const blogShellRoutes: Route[] = [
   {
-    path: 'en',
+    path: 'pl',
     pathMatch: 'prefix',
     loadChildren: () => routes,
-    canActivate: [activeLanguageGuard('en')],
+    canActivate: [activeLanguageGuard('pl')],
   },
   {
     path: '',
     pathMatch: 'prefix',
     loadChildren: () => routes,
-    canActivate: [activeLanguageGuard('pl')],
+    canActivate: [activeLanguageGuard('en')],
   },
 ];
 

@@ -16,9 +16,9 @@ export const provideI18n = () => {
   return [
     provideTransloco({
       config: {
-        availableLangs: ['pl', 'en'],
-        defaultLang: 'pl',
-        fallbackLang: 'pl',
+        availableLangs: ['en', 'pl'],
+        defaultLang: 'en',
+        fallbackLang: 'en',
         reRenderOnLangChange: true,
         prodMode: !isDevMode(),
       },
