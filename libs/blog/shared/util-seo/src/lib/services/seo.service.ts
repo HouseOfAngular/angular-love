@@ -82,7 +82,14 @@ export class SeoService {
     if (seoData.og_image) {
       this.setMetaImage(
         seoData.og_image.map((i) => {
-          return { url: i.url, height: i.height, width: i.width };
+          const updatedUrl = i.url.startsWith('https://angular.love/wp-content')
+            ? i.url.replace(
+                'https://angular.love/wp-content',
+                'https://wp.angular.love/wp-content',
+              )
+            : i.url;
+
+          return { url: updatedUrl, height: i.height, width: i.width };
         }),
       );
     }
