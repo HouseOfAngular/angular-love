@@ -1,0 +1,11 @@
+al-author-card-template {
+  &:hover {
+    @media (min-width: 1024px) {
+      .author-description {
+        overflow: initial;
+        display: inline-block;
+        -webkit-line-clamp: none;
+      }
+    }
+  }
+}

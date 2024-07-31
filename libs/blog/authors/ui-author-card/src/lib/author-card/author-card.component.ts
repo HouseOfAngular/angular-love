@@ -10,7 +10,6 @@ import { RouterLink } from '@angular/router';
 import { UiAuthorCard } from '@angular-love/blog/authors/types';
 import { AlLocalizePipe } from '@angular-love/blog/i18n/util';
 import { AvatarComponent } from '@angular-love/blog/shared/ui-avatar';
-import { DynamicTextClampComponent } from '@angular-love/blog/shared/ui-dynamic-text-clamp';
 import {
   SocialMediaIconItemComponent,
   SocialMediaIconItemUi,
@@ -24,7 +23,6 @@ import { AuthorCardTemplateComponent } from './author-card-template.component';
   imports: [
     AuthorCardTemplateComponent,
     AvatarComponent,
-    DynamicTextClampComponent,
     RouterLink,
     NgTemplateOutlet,
     SocialMediaIconItemComponent,
@@ -39,16 +37,10 @@ import { AuthorCardTemplateComponent } from './author-card-template.component';
   },
 })
 export class AuthorCardComponent {
-  author = input.required<UiAuthorCard>();
+  readonly author = input.required<UiAuthorCard>();
+  readonly linkable = input<boolean>(false);
 
-  clampText = input<boolean>();
-  linkable = input<boolean>(false);
-
-  descriptionClass = computed(
-    () => 'text-sm' + (this.clampText() ? ' line-clamp-3' : ''),
-  );
-
-  socials = computed<SocialMediaIconItemUi[]>(() => {
+  protected readonly socials = computed<SocialMediaIconItemUi[]>(() => {
     const { github, twitter, linkedin } = this.author();
     return [
       {
