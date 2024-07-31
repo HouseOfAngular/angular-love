@@ -1,6 +1,14 @@
-import { Meta, moduleMetadata, StoryObj } from '@storybook/angular';
+import { importProvidersFrom } from '@angular/core';
+import {
+  applicationConfig,
+  Meta,
+  moduleMetadata,
+  StoryObj,
+} from '@storybook/angular';
 
+import { provideI18n } from '@angular-love/blog/i18n/data-access';
 import { ArticleCard } from '@angular-love/blog/shared/types';
+import { ConfigService } from '@angular-love/shared/config';
 
 import { ArticleRegularCardComponent } from '../components/article-regular-card/article-regular-card.component';
 
@@ -36,6 +44,9 @@ const meta: Meta<UiArticleCardComponent> = {
     moduleMetadata({
       imports: [ArticleRegularCardComponent],
     }),
+    applicationConfig({
+      providers: [importProvidersFrom(ConfigService), provideI18n()],
+    }),
   ],
 };
 
@@ -48,6 +59,9 @@ export const compact: Story = {
     cardType: layoutCompact,
   },
   render: (args) => ({
+    applicationConfig: {
+      providers: [ConfigService, provideI18n()],
+    },
     props: args,
     template: `
       <div class="w-[408px] h-[232px]">
