@@ -1,4 +1,6 @@
-<header class="bg-al-background/95 z-30 h-20 w-full border-b shadow-xl">
+<header
+  class="dark:bg-al-background/95 z-30 h-20 w-full border-b bg-white shadow-xl"
+>
   <div
     class="mx-auto flex h-full w-full max-w-screen-xl items-center justify-between px-6 py-4 xl:px-0"
   >
@@ -29,7 +31,7 @@
           type="button"
           class="border-al-gray-200 mr-1 rounded border bg-transparent px-1 py-2 font-medium leading-4 md:mr-2 md:px-4"
           [ngClass]="{
-            '!text-white': language() === 'en',
+            '!text-al-foreground': language() === 'en',
             '!text-al-gray-50  opacity-50': language() !== 'en',
           }"
           [attr.aria-label]="t('changeLangToEnglish')"
@@ -42,7 +44,7 @@
           type="button"
           class="border-al-gray-200 mr-1 rounded border bg-transparent px-1 py-2 font-medium leading-4 md:mr-2 md:px-4"
           [ngClass]="{
-            '!text-white': language() === 'pl',
+            '!text-al-foreground': language() === 'pl',
             '!text-al-gray-50  opacity-50': language() !== 'pl',
           }"
           [attr.aria-label]="t('changeLangToPolish')"

@@ -1,10 +1,11 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-  darkMode: ['class'],
   theme: {
     extend: {
       colors: {
         'al-foreground': 'rgb(var(--foreground) / <alpha-value>)',
+        'al-primary-foreground':
+          'rgb(var(--primary-foreground) / <alpha-value>)',
         'al-card': 'rgb(var(--card) / <alpha-value>)',
         'al-background': 'rgba(var(--background) / <alpha-value>)',
         'al-border': 'rgb(var(--border) / <alpha-value>)',
