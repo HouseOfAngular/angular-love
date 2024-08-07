@@ -32,6 +32,7 @@ export class WPRestClient {
     url: string,
     { body, headers, method }: FetchConfig = {},
   ): Promise<WPResponse<T>> {
+    // console.log(`${this.baseUrl}/wp-json/${this.wpOptions.namespace}/${url}`);
     const request = await fetch(
       `${this.baseUrl}/wp-json/${this.wpOptions.namespace}/${url}`,
       {

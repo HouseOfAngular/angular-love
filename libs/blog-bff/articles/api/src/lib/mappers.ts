@@ -43,6 +43,8 @@ export const toArticlePreviewList = (dtos: WPPostDto[]): ArticlePreview[] => {
 
 export const toArticle = (dto?: WPPostDetailsDto): Article => {
   const title = cheerio.load(dto.title.rendered || '');
+  console.log('hereee');
+
   const content = sanitizeHtml(dto?.content.rendered || '', {
     allowedTags: sanitizeHtml.defaults.allowedTags.concat(['img']),
     allowedAttributes: {
@@ -68,6 +70,7 @@ export const toArticle = (dto?: WPPostDetailsDto): Article => {
     },
   });
   const $ = cheerio.load(content);
+  console.log($);
 
   rewriteHTML(
     wpCodeRewriter,
@@ -76,6 +79,7 @@ export const toArticle = (dto?: WPPostDetailsDto): Article => {
     modifyLinks,
     modifyImages,
   )($);
+  console.log('hereee');
 
   // add id to anchorTypes elements for anchor links
   const anchors: Anchor[] = Array.from($(anchorTypes.join(', '))).reduce(
@@ -98,7 +102,7 @@ export const toArticle = (dto?: WPPostDetailsDto): Article => {
   );
 
   const highlightedContent = $('body').html().trim();
-
+  console.log('hereee');
   return {
     id: dto.id || 0,
     title: title.text(),

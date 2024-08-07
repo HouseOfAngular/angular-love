@@ -11,7 +11,7 @@ import { getPagination, wpClientMw } from '@angular-love/util-wp';
 import { toAuthor } from './mappers';
 import { WpAuthors } from './wp-authors';
 
-const app = new Hono().use(appCache).use(wpClientMw).use(langMw());
+const app = new Hono().use(wpClientMw).use(langMw());
 
 app.get('/', async (c) => {
   const queryParams = c.req.query();
@@ -25,6 +25,10 @@ app.get('/', async (c) => {
 
   queryParams['sortedTitles'] &&
     (query['sorted_titles'] = queryParams['sortedTitles']);
+
+  queryParams['acfFormat'] && (query['acf_format'] = queryParams['acfFormat']);
+
+  console.log(query);
 
   const result = await client.getAuthors(query);
 

@@ -4,6 +4,7 @@ export const articleCategories = [
   'recommended',
   'authors',
   'latest',
+  'angular-in-depth',
 ] as const;
 
 export type ArticleCategory = (typeof articleCategories)[number];
