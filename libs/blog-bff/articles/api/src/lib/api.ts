@@ -11,7 +11,7 @@ import { getPagination, wpClientMw } from '@angular-love/util-wp';
 import { toArticle, toArticlePreviewList } from './mappers';
 import { WpPosts } from './wp-posts';
 
-const app = new Hono().use(appCache).use(langMw()).use(wpClientMw);
+const app = new Hono().use(langMw()).use(wpClientMw);
 
 app.get('/', async (c) => {
   const client = new WpPosts(c.var.createWPClient());
@@ -43,7 +43,7 @@ app.get('/:slug', async (c) => {
   const client = new WpPosts(c.var.createWPClient({ namespace: 'al/v1' }));
 
   const result = await client.getBySlug(slug);
-
+  console.log(result);
   return c.json(toArticle(result.data));
 });
 

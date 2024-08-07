@@ -50,6 +50,7 @@ export class FeatureAboutUsComponent implements OnInit {
   private readonly _pageSize = this._authorListStore.pageSize;
   private readonly _sortedTitles =
     'key_contributor,contributor,gde,hoa,blogger';
+  private readonly _acfFormat = 'standard';
 
   ngOnInit(): void {
     if (this.authorsCards().length === 0) {
@@ -57,6 +58,7 @@ export class FeatureAboutUsComponent implements OnInit {
         take: this._pageSize(),
         skip: 0,
         sortedTitles: this._sortedTitles,
+        acfFormat: this._acfFormat,
       });
     }
   }
@@ -67,6 +69,7 @@ export class FeatureAboutUsComponent implements OnInit {
         take: this._pageSize(),
         skip: this._skip() + this._pageSize(),
         sortedTitles: this._sortedTitles,
+        acfFormat: this._acfFormat,
       });
     }
   }

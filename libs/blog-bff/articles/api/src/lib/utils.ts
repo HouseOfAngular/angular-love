@@ -95,9 +95,11 @@ export const modifyLinks: RewriteAdapter = ($) => {
   $('a').each((_, element) => {
     const $element = $(element);
     $element.attr('target', `_blank`);
-
+    // console.log($element.html());
     if ($element.attr('href') && !$element.attr('href').startsWith('#')) {
+      console.log($element.attr('href'));
       const { hostname } = new URL($element.attr('href'));
+      console.log($element.attr('aria-label', `Read more on ${hostname}`));
       $element.attr('aria-label', `Read more on ${hostname}`);
     }
   });
@@ -108,7 +110,9 @@ export const modifyLinks: RewriteAdapter = ($) => {
  * @param $
  */
 export const modifyImages: RewriteAdapter = ($) => {
+  console.log('images: ', $('img'));
   $('img').each((_, element) => {
+    console.log('elementtttt', element);
     const $element = $(element);
     const src = $element.attr('src');
 

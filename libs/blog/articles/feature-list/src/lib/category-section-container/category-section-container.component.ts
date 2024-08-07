@@ -25,6 +25,7 @@ const displayNameDict: Record<ArticleCategory, string> = {
   recommended: 'homePage.recommended',
   latest: 'homePage.latest',
   authors: 'homePage.authors',
+  'angular-in-depth': 'homePage.angularInDepth',
 };
 
 // TODO: Rethink if we need seperated lib for this smart component (usage only for feature-list)
