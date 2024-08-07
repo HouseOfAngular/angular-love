@@ -1,3 +1,4 @@
+import { NgOptimizedImage } from '@angular/common';
 import {
   ChangeDetectionStrategy,
   Component,
@@ -29,6 +30,7 @@ import { hoaHireUs, hoaHiring, partnersList } from './partners';
     FeatureLatestArticlesComponent,
     UiArticleCardComponent,
     ArticlesListContainerComponent,
+    NgOptimizedImage,
   ],
   templateUrl: './home-page.component.html',
   styleUrls: ['./home-page.component.scss'],
