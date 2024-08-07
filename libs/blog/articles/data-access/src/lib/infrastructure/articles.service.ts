@@ -20,6 +20,7 @@ export class ArticlesService {
   getArticleList(
     query: ArticlesQuery,
   ): Observable<ArrayResponse<ArticlePreview>> {
+    console.log(query);
     return this._http.get<ArrayResponse<ArticlePreview>>(
       `${this._apiBaseUrl}/articles`,
       {

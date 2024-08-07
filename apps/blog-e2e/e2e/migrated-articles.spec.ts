@@ -1319,13 +1319,26 @@ const slugs = [
     slug: 'the-simple-math-behind-decimal-binary-conversion-algorithms',
   },
 ];
-
+const wrongSlugs = [
+  { slug: 'change-detection-big-picture-rendering-cycle' },
+  { slug: 'running-change-detection-manual-control' },
+  { slug: 'expression-changed-error-debugging-algorithm' },
+  { slug: 'rendering-cycle' },
+  { slug: 'craft-a-complete-gitlab-pipeline-for-angular-part-2' },
+  { slug: 'new-possibilities-with-angulars-push-pipe-part-2' },
+  { slug: 'angular-cli-flows-big-picture' },
+  { slug: 'a-deep-dive-into-injectable-and-providedin-in-ivy' },
+  { slug: 'getting-inside-angulars-elementschemaregistry-mechanism' },
+  { slug: 'top-15-angular-indepth-articles-of-2019' },
+  { slug: 'do-you-know-how-angular-transforms-your-code' },
+  { slug: 'the-angular-library-series-building-and-packaging' },
+];
 test.describe('migrated articles', () => {
   test.beforeEach(async ({ page }) => {
     await page.goto('/');
   });
 
-  slugs.forEach(({ slug }) => {
+  wrongSlugs.forEach(({ slug }) => {
     test(`should proper display ${slug}`, async ({ page }) => {
       await page.goto(`/en/${slug}`);
 

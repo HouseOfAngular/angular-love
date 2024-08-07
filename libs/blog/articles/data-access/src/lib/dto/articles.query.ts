@@ -6,4 +6,5 @@ export type ArticlesQuery = {
   skip?: number;
   category?: ArticleCategory;
   excludeRecent?: number;
+  excludeCategory?: string;
 } | null;

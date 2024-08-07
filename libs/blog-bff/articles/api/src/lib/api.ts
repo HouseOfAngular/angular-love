@@ -29,6 +29,8 @@ app.get('/', async (c) => {
   queryParams.category && (query.category_slug = queryParams.category);
   queryParams.excludeRecent &&
     (query.exclude_recent = queryParams.excludeRecent);
+  queryParams.excludeCategory &&
+    (query.exclude_category = queryParams.excludeCategory);
 
   const result = await client.getPosts(query);
 
