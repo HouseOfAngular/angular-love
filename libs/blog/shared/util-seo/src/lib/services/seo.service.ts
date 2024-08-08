@@ -130,12 +130,12 @@ export class SeoService {
 
     for (const [index, entry] of entries.entries()) {
       const label: MetaDefinition = {
-        name: `${SEO_META_KEYS.twitterMiscLabel}${index + 1}`,
+        property: `${SEO_META_KEYS.twitterMiscLabel}${index + 1}`,
         content: entry[0],
       };
 
       const data: MetaDefinition = {
-        name: `${SEO_META_KEYS.twitterMiscData}${index + 1}`,
+        property: `${SEO_META_KEYS.twitterMiscData}${index + 1}`,
         content: entry[1],
       };
 
@@ -178,7 +178,7 @@ export class SeoService {
 
   private updateTag(content: string, name: SeoMetaKeys | SeoTitleKeys): void {
     const meta: MetaDefinition = {
-      name:
+      property:
         SEO_META_KEYS[name as SeoMetaKeys] ||
         SEO_TITLE_KEYS[name as SeoTitleKeys],
       content: content,
