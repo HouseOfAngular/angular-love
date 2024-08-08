@@ -88,17 +88,57 @@ export const removeEmptyParagraphs: RewriteAdapter = ($) => {
 };
 
 /**
+ * Transforms legacy links to new ones
+ * @param url
+ */
+function transformUrl(url: string): URL {
+  const parsedUrl = new URL(url);
+
+  const hostnamesToModify = ['wp.angular.love', 'replica.angular.love'];
+
+  const matchedHostname = hostnamesToModify.find(
+    (hostname) => hostname === parsedUrl.hostname,
+  );
+
+  if (matchedHostname) {
+    parsedUrl.hostname = 'angular.love';
+
+    // Regex pattern to match optional language code and /{year}/{month}/{day}/{slug}/ structure
+    const dateSlugPattern =
+      /^(\/[a-z]{2})?\/(\d{4})\/(\d{2})\/(\d{2})\/([^/]+)\/?$/;
+
+    const match = parsedUrl.pathname.match(dateSlugPattern);
+
+    if (match) {
+      // If the pattern matches, extract the language code (if present) and the slug
+      const [, langCode, , , , slug] = match;
+
+      if (langCode) {
+        parsedUrl.pathname = `${langCode}/${slug}`;
+      } else {
+        parsedUrl.pathname = `/${slug}`;
+      }
+    }
+  }
+
+  return parsedUrl;
+}
+
+/**
  * Appends aria-label and target attributes to links
  * @param $
  */
 export const modifyLinks: RewriteAdapter = ($) => {
   $('a').each((_, element) => {
     const $element = $(element);
-    $element.attr('target', `_blank`);
+    $element.attr('target', '_blank');
 
     if ($element.attr('href') && !$element.attr('href').startsWith('#')) {
-      const { hostname } = new URL($element.attr('href'));
-      $element.attr('aria-label', `Read more on ${hostname}`);
+      const originalHref = $element.attr('href');
+      const transformedURL = transformUrl(originalHref);
+      $element.attr('href', transformedURL.toString());
+
+      $element.attr('aria-label', `Read more on ${transformedURL.hostname}`);
     }
   });
 };

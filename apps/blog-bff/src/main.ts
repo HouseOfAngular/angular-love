@@ -15,6 +15,7 @@ app.route('/authors', authors);
 app.route('/newsletter', newsletter);
 
 app.onError((err, c) => {
+  console.error(err);
   if (err instanceof HTTPException) {
     return err.getResponse();
   }
