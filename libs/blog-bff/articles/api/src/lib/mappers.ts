@@ -41,7 +41,7 @@ export const toArticlePreviewList = (dtos: WPPostDto[]): ArticlePreview[] => {
   });
 };
 
-export const toArticle = (dto?: WPPostDetailsDto): Article => {
+export const toArticle = async (dto?: WPPostDetailsDto): Promise<Article> => {
   const title = cheerio.load(dto.title.rendered || '');
   const content = sanitizeHtml(dto?.content.rendered || '', {
     allowedTags: sanitizeHtml.defaults.allowedTags.concat(['img']),
@@ -69,7 +69,7 @@ export const toArticle = (dto?: WPPostDetailsDto): Article => {
   });
   const $ = cheerio.load(content);
 
-  rewriteHTML(
+  await rewriteHTML(
     wpCodeRewriter,
     crayonCodeRewriter,
     removeEmptyParagraphs,

@@ -44,7 +44,7 @@ app.get('/:slug', async (c) => {
 
   const result = await client.getBySlug(slug);
 
-  return c.json(toArticle(result.data));
+  return c.json(await toArticle(result.data));
 });
 
 app.get('/:id/related', async (c) => {
