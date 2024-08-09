@@ -1,12 +1,5 @@
-import {
-  ChangeDetectionStrategy,
-  Component,
-  computed,
-  inject,
-} from '@angular/core';
-import { toSignal } from '@angular/core/rxjs-interop';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
-import { TranslocoService } from '@jsverse/transloco';
 
 import { ArticlesListContainerComponent } from '@angular-love/blog/articles/feature-list';
 import { UiArticleCardComponent } from '@angular-love/blog/articles/ui-article-card';
@@ -15,7 +8,7 @@ import { PartnersComponent } from '@angular-love/blog/partners/ui-partners';
 import { CardComponent } from '@angular-love/blog/shared/ui-card';
 import { FeatureLatestArticlesComponent } from '@angular-love/feature-latest-articles';
 
-import { hoaHireUs, hoaHiring, partnersList } from './partners';
+import { hoaHireUs, partnersList } from './partners';
 
 @Component({
   selector: 'al-home-page',
@@ -35,16 +28,6 @@ import { hoaHireUs, hoaHiring, partnersList } from './partners';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class HomePageComponent {
-  private readonly _translocoService = inject(TranslocoService);
-  private readonly _hoaHireUs = hoaHireUs;
-  private readonly _hoaHiring = hoaHiring;
-
+  protected readonly hoaHireUs = hoaHireUs;
   protected readonly partnersList = partnersList;
-  protected readonly lang = toSignal(this._translocoService.langChanges$, {
-    initialValue: this._translocoService.getActiveLang(),
-  });
-
-  protected readonly hoaMainPartner = computed(() => {
-    return this.lang() === 'en' ? [this._hoaHireUs] : [this._hoaHiring];
-  });
 }
