@@ -14,7 +14,12 @@ import {
 } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { FormControl, ReactiveFormsModule, Validators } from '@angular/forms';
-import { NavigationEnd, Router, RouterLink } from '@angular/router';
+import {
+  ActivatedRoute,
+  NavigationEnd,
+  Router,
+  RouterLink,
+} from '@angular/router';
 import { TranslocoDirective, TranslocoService } from '@jsverse/transloco';
 import { FastSvgComponent } from '@push-based/ngx-fast-svg';
 import { debounceTime, filter, startWith, tap } from 'rxjs';
@@ -64,6 +69,7 @@ export class SearchDialogComponent implements OnInit, OnDestroy {
   private readonly _router = inject(Router);
   private readonly _destroyRef = inject(DestroyRef);
   private readonly _localizeService = inject(AlLocalizeService);
+  private readonly _activatedRoute = inject(ActivatedRoute);
 
   @HostListener('click', ['$event.target']) onClick(target: HTMLElement): void {
     if (target.classList.contains('al-overlay')) {
@@ -128,6 +134,7 @@ export class SearchDialogComponent implements OnInit, OnDestroy {
         queryParams: {
           q: this.searchForm.value,
         },
+        relativeTo: this._activatedRoute,
       });
       this.closeSearch();
     }
