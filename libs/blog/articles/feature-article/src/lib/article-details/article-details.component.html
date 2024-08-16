@@ -52,11 +52,7 @@
     </div>
   </section>
   <aside class="order-3 col-span-12 lg:col-span-4">
-    <al-author-card
-      [author]="articleDetails().author"
-      [clampText]="true"
-      [linkable]="true"
-    />
+    <al-author-card [author]="articleDetails().author" [linkable]="true" />
 
     @defer (on viewport(view); on timer(500ms)) {
       <div
