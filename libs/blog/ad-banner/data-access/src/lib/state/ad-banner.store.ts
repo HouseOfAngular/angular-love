@@ -15,7 +15,7 @@ type AdBannerState = {
 
 // @todo remove hardcoded adBanner state when BFF is ready
 const initialState: AdBannerState = {
-  adBannerVisible: false,
+  adBannerVisible: true,
   adBanner: {
     title: 'FREE EBOOK: The Ultimate Guide to Angular Evolution',
     title_mobile: 'Free ebook',
