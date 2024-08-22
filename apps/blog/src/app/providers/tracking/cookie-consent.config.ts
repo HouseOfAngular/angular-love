@@ -47,9 +47,8 @@ export const cookieConsentConfig = {
         consentModal: {
           title: 'We use cookies',
           description:
-            'We use cookies to enhance your experience on our website. You can manage your preferences below.',
+            'Hello, Angular Enthusiast! We use cookies on our website to provide content that best suits your interests and brings you the most value. By accepting all cookies, you allow us to learn more about the topics you prefer, enabling us to tailor our content to your needs. Thank you for joining us and helping to grow the Angular community.<br><br>You can also manage your preferences below.',
           acceptAllBtn: 'Accept all',
-          acceptNecessaryBtn: 'Reject all',
           showPreferencesBtn: 'Manage Individual preferences',
         },
         preferencesModal: {
@@ -62,7 +61,7 @@ export const cookieConsentConfig = {
             {
               title: 'Somebody said ... cookies?',
               description:
-                'We use cookies to enhance your experience on our website. Some cookies are necessary for the website to function properly, while others help us improve your experience by providing insights into how the site is being used.',
+                'Hello, Angular Enthusiast! We use cookies on our website to provide content that best suits your interests and brings you the most value. By accepting all cookies, you allow us to learn more about the topics you prefer, enabling us to tailor our content to your needs. Thank you for joining us and helping to grow the Angular community.<br><br>You can also manage your preferences below.',
             },
             {
               title: 'Strictly Necessary Cookies',
@@ -90,6 +89,59 @@ export const cookieConsentConfig = {
           ],
         },
       },
+      pl: {
+        consentModal: {
+          title: 'Używamy plików cookie',
+          description:
+            'Używamy plików cookie na naszej stronie, aby dostarczać treści, które najlepiej odpowiadają Twoim zainteresowaniom i przynoszą Ci najwięcej korzyści. Akceptując wszystkie pliki cookie, pozwalasz nam lepiej poznać tematy, które Cię interesują, co umożliwia nam dostosowanie treści do Twoich potrzeb. Dziękujemy za dołączenie do nas i pomoc w rozwoju społeczności Angulara.<br><br>Możesz także zarządzać swoimi preferencjami poniżej.',
+          acceptAllBtn: 'Zaakceptuj wszystkie',
+          showPreferencesBtn: 'Zarządzaj indywidualnymi preferencjami',
+        },
+        preferencesModal: {
+          title: 'Zarządzaj preferencjami plików cookie',
+          acceptAllBtn: 'Zaakceptuj wszystkie',
+          acceptNecessaryBtn: 'Odrzuc wszystkie',
+          savePreferencesBtn: 'Zaakceptuj wybrane',
+          closeIconLabel: 'Zamknij zaawansowane ustawienia',
+          sections: [
+            {
+              title: 'Czy ktoś powiedział... ciasteczka?',
+              description:
+                'Używamy plików cookie na naszej stronie, aby dostarczać treści, które najlepiej odpowiadają Twoim zainteresowaniom i przynoszą Ci najwięcej korzyści. Akceptując wszystkie pliki cookie, pozwalasz nam lepiej poznać tematy, które Cię interesują, co umożliwia nam dostosowanie treści do Twoich potrzeb. Dziękujemy za dołączenie do nas i pomoc w rozwoju społeczności Angulara.<br><br>Możesz także zarządzać swoimi preferencjami poniżej.',
+            },
+            {
+              title: 'Niezbędne pliki cookie',
+              description:
+                'Te pliki cookie są niezbędne do prawidłowego funkcjonowania strony i nie można ich wyłączyć.',
+              linkedCategory: 'necessary',
+            },
+            {
+              title: 'Wydajność i analityka',
+              description:
+                'Te pliki cookie zbierają informacje o tym, w jaki sposób korzystasz z naszej witryny. Wszystkie dane są anonimowe i nie pozwalają na identyfikację użytkownika. Pomagają nam zrozumieć, w jaki sposób odwiedzający wchodzą w interakcję z naszą witryną, co pozwala nam ulepszać nasz kontent i wygodę użytkownika.',
+              linkedCategory: 'analytics',
+            },
+            {
+              title: 'Marketing',
+              description:
+                'Te pliki cookie służą do śledzenia osób odwiedzających strony internetowe. Celem jest wyświetlanie spersonalizowanych reklam, a tym samym bardziej wartościowych dla wydawców i zewnętrznych reklamodawców.',
+              linkedCategory: 'marketing',
+            },
+            {
+              title: 'Więcej informacji',
+              description:
+                'W przypadku jakichkolwiek pytań związanych z naszą polityką dotyczącą plików cookie i Twoimi wyborami, skontaktuj się z nami.',
+            },
+          ],
+        },
+      },
     },
   },
+  guiOptions: {
+    consentModal: {
+      layout: 'bar',
+      position: 'bottom',
+    },
+  },
+  disablePageInteraction: true,
 } satisfies CookieConsentConfig;
