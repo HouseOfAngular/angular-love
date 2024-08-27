@@ -91,7 +91,10 @@
   "difficulty": {
     "beginner": "Beginner",
     "intermediate": "Intermediate",
-    "advanced": "Advanced"
+    "advanced": "Advanced",
+    "tooltipBeginner": "Fundamental concepts, basic syntax, and simple projects.",
+    "tooltipIntermediate": "More complex features, intermediate concepts, performance, and best practices.",
+    "tooltipAdvanced": "Advanced topics, architecture, scalability, and professional development practices."
   },
   "tableOfContents": {
     "title": "Table of Contents"

@@ -94,7 +94,10 @@
   "difficulty": {
     "beginner": "Początkujący",
     "intermediate": "Średnio zaawansowany",
-    "advanced": "Zaawansowany"
+    "advanced": "Zaawansowany",
+    "tooltipBeginner": "Podstawowe pojęcia, podstawowa składnia oraz proste projekty.",
+    "tooltipIntermediate": "Bardziej zaawansowane funkcje, performance oraz najlepsze praktyki.",
+    "tooltipAdvanced": "Jeżeli jest potrzebna jeszcze jakaś informacja czy design, proszę o znak"
   },
   "tableOfContents": {
     "title": "Spis treści"

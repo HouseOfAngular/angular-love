@@ -1,4 +1,4 @@
-import { NgClass } from '@angular/common';
+import { AsyncPipe, NgClass } from '@angular/common';
 import {
   ChangeDetectionStrategy,
   Component,
@@ -7,6 +7,10 @@ import {
 } from '@angular/core';
 import { TranslocoDirective } from '@jsverse/transloco';
 
+import { TooltipDirective } from '@angular-love/ui-tooltip';
+
+import { DifficultyLevelPipe } from './difficulty-level.pipe';
+
 export type UiDifficulty = 'beginner' | 'intermediate' | 'advanced';
 
 @Component({
@@ -14,7 +18,9 @@ export type UiDifficulty = 'beginner' | 'intermediate' | 'advanced';
   standalone: true,
   template: `
     <div
+      alTooltip
       class="text-al-foreground/90 flex items-center overflow-hidden text-sm"
+      [tooltipText]="difficultyLevel() | difficultyLevelTooltip | async"
     >
       <!-- Left Block -->
       <div
@@ -78,7 +84,13 @@ export type UiDifficulty = 'beginner' | 'intermediate' | 'advanced';
     </div>
   `,
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [NgClass, TranslocoDirective],
+  imports: [
+    NgClass,
+    TranslocoDirective,
+    TooltipDirective,
+    DifficultyLevelPipe,
+    AsyncPipe,
+  ],
 })
 export class UiDifficultyComponent {
   readonly difficulty = input.required<UiDifficulty>();
