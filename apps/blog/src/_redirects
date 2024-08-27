@@ -5,3 +5,5 @@
 # Polish articles (no language prefix)
 /:year/:month/:day/:slug /:slug 301
 /:year/:month/:day/:slug/ /:slug 301
+/pl/:year/:month/:day/:slug /:slug 301
+/pl/:year/:month/:day/:slug/ /:slug 301
