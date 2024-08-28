@@ -143,8 +143,8 @@
 /angular-2-resolver-dostarczamy-dane-przed-aktywacja-routa /pl/angular-2-resolver-dostarczamy-dane-przed-aktywacja-routa/ 301
 
 # English articles
-/en/:year/:month/:day/:slug /en/:slug 301
-/en/:year/:month/:day/:slug/ /en/:slug 301
+/en/:year/:month/:day/:slug /en/:slug/ 301
+/en/:year/:month/:day/:slug/ /en/:slug/ 301
 
 # Polish articles (no language prefix)
 /:year/:month/:day/:slug /pl/:slug/ 301
