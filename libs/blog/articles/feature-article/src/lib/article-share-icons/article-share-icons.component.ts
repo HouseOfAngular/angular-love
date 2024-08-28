@@ -66,8 +66,8 @@ export class ArticleShareIconsComponent {
 
   readonly articleUrl = computed(() =>
     this.language() === 'pl_PL'
-      ? `https://angular.love/${this.slug()}`
-      : `https://angular.love/en/${this.slug()}`,
+      ? `https://angular.love/pl/${this.slug()}`
+      : `https://angular.love/${this.slug()}`,
   );
 
   readonly items = computed<ShareItem[]>(() => {

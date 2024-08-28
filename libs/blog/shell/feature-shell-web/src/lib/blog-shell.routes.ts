@@ -7,20 +7,20 @@ import { RootShellComponent } from './root-shell.component';
 
 export const blogShellRoutes: Route[] = [
   {
-    path: 'en',
+    path: 'pl',
     pathMatch: 'prefix',
-    loadChildren: () => routes,
-    canActivate: [activeLanguageGuard('en')],
+    loadChildren: () => commonRoutes,
+    canActivate: [activeLanguageGuard('pl')],
   },
   {
     path: '',
     pathMatch: 'prefix',
-    loadChildren: () => routes,
-    canActivate: [activeLanguageGuard('pl')],
+    loadChildren: () => commonRoutes,
+    canActivate: [activeLanguageGuard('en')],
   },
 ];
 
-export const routes: Route[] = [
+export const commonRoutes: Route[] = [
   {
     path: '',
     component: RootShellComponent,
@@ -73,7 +73,7 @@ export const routes: Route[] = [
             .NewsletterPageComponent,
       },
       {
-        path: 'not-found',
+        path: '404',
         loadComponent: async () =>
           (await import('@angular-love/blog/shared/ui-not-found'))
             .NotFoundPageComponent,
@@ -84,7 +84,7 @@ export const routes: Route[] = [
       ...articleRoutes,
       {
         path: '**',
-        redirectTo: 'not-found',
+        redirectTo: '404',
       },
     ],
   },

@@ -21,10 +21,7 @@ export const articleExistsGuard: CanActivateFn = (route) => {
     inject(ArticleDetailsStore);
 
   const notFoundPageUrlTree = router.createUrlTree(
-    localizeService.localizePath(['/', 'not-found']),
-  );
-  const homepageUrlTree = router.createUrlTree(
-    localizeService.localizePath(['/']),
+    localizeService.localizePath(['/', '404']),
   );
 
   return http
@@ -48,7 +45,7 @@ export const articleExistsGuard: CanActivateFn = (route) => {
               {},
             );
           } else {
-            return homepageUrlTree;
+            return notFoundPageUrlTree;
           }
         }
 
