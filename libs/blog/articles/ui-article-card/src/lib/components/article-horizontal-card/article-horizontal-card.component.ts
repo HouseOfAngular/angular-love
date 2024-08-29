@@ -43,14 +43,14 @@ export class ArticleHorizontalCardComponent {
 
   sanitizedArticle = computed<SanitizedArticleDataModel>(() => {
     return {
-      excerpt: this.sanitize(this.article().excerpt),
-      title: this.sanitize(this.article().title),
+      excerpt: this._sanitize(this.article().excerpt),
+      title: this._sanitize(this.article().title),
     };
   });
 
-  private readonly domSanitizer = inject(DomSanitizer);
+  private readonly _domSanitizer = inject(DomSanitizer);
 
-  private sanitize(val: string): string {
-    return this.domSanitizer.sanitize(SecurityContext.HTML, val) || '';
+  private _sanitize(val: string): string {
+    return this._domSanitizer.sanitize(SecurityContext.HTML, val) || '';
   }
 }
