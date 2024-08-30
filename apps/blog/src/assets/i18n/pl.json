@@ -22,7 +22,6 @@
     "posted_by": "Opublikowane przez {{name}}"
   },
   "becomeAuthorPage": {
-    "breadcrumb": "Zostań autorem",
     "title": "Zostań częścią angular.love!",
     "improvements": {
       "title": "Dlaczego warto?",
@@ -50,7 +49,6 @@
     }
   },
   "aboutUsPage": {
-    "breadcrumb": "O nas",
     "title": "O nas",
     "card": {
       "description1": "to miejsce dla wszystkich entuzjastów Angulara, stworzone, aby inspirować i edukować. To społeczność pełna pasji ludzi, którzy dzielą się swoją wiedzą i wspierają innych, dostarczając im najlepszych praktyk i wskazówek. To miejsce, w którym Angular żyje.",

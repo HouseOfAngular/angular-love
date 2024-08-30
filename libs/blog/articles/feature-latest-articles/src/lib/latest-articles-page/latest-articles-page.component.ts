@@ -12,7 +12,6 @@ import {
   ArticleRegularCardSkeletonComponent,
   UiArticleCardComponent,
 } from '@angular-love/blog/articles/ui-article-card';
-import { BreadcrumbComponent } from '@angular-love/blog/shared/ui-breadcrumb';
 import {
   PageChangeEvent,
   PaginationComponent,
@@ -24,7 +23,6 @@ import { RepeatDirective } from '@angular-love/utils';
   selector: 'al-latest',
   standalone: true,
   imports: [
-    BreadcrumbComponent,
     UiArticleCardComponent,
     PaginationComponent,
     QueryPaginationDirective,

@@ -3,7 +3,6 @@ import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { UiArticleCardComponent } from '@angular-love/blog/articles/ui-article-card';
 import { NewsletterComponent } from '@angular-love/blog/newsletter';
 import { SearchListStore } from '@angular-love/blog/search/data-access';
-import { BreadcrumbComponent } from '@angular-love/blog/shared/ui-breadcrumb';
 import {
   CardComponent,
   GradientCardDirective,
@@ -25,7 +24,6 @@ import { SearchResultsPagePresenter } from './search-results-page.presenter';
   imports: [
     UiArticleCardComponent,
     NewsletterComponent,
-    BreadcrumbComponent,
     CardComponent,
     GradientCardDirective,
     PaginationComponent,

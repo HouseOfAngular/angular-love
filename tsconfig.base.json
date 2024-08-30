@@ -128,9 +128,6 @@
       "@angular-love/blog/shared/ui-avatar": [
         "libs/blog/shared/ui-avatar/src/index.ts"
       ],
-      "@angular-love/blog/shared/ui-breadcrumb": [
-        "libs/blog/shared/ui-breadcrumb/src/index.ts"
-      ],
       "@angular-love/blog/shared/ui-button": [
         "libs/blog/shared/ui-button/src/index.ts"
       ],

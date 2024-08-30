@@ -10,7 +10,6 @@ import { TranslocoDirective, TranslocoPipe } from '@jsverse/transloco';
 import { AuthorListStore } from '@angular-love/blog/authors/data-access';
 import { AuthorCardComponent } from '@angular-love/blog/authors/ui-author-card';
 import { NewsletterComponent } from '@angular-love/blog/newsletter';
-import { BreadcrumbComponent } from '@angular-love/blog/shared/ui-breadcrumb';
 import {
   CardComponent,
   GradientCardDirective,
@@ -23,7 +22,6 @@ import { SocialMediaIconsComponent } from '@angular-love/blog/shared/ui-social-m
   standalone: true,
   imports: [
     CardComponent,
-    BreadcrumbComponent,
     NewsletterComponent,
     SocialMediaIconsComponent,
     GradientCardDirective,
