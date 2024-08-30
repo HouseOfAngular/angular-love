@@ -19,7 +19,6 @@
     "posted_by": "Posted by {{name}}"
   },
   "becomeAuthorPage": {
-    "breadcrumb": "Become an author",
     "title": "Become a part of angular.love!",
     "improvements": {
       "title": "Why is it worth it?",
@@ -47,7 +46,6 @@
     }
   },
   "aboutUsPage": {
-    "breadcrumb": "About Us",
     "title": "About Us",
     "card": {
       "description1": "is a place for all Angular enthusiasts created to inspire and educate. It's a community of passionate people who share their knowledge and support others by providing them with the best practices and tips. This is the place where Angular lives.",

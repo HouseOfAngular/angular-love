@@ -15,7 +15,6 @@ import {
   AuthorCardComponent,
   AuthorCardSkeletonComponent,
 } from '@angular-love/blog/authors/ui-author-card';
-import { BreadcrumbComponent } from '@angular-love/blog/shared/ui-breadcrumb';
 import {
   PaginationComponent,
   QueryPaginationDirective,
@@ -29,7 +28,6 @@ import { RepeatDirective } from '@angular-love/utils';
     AuthorCardComponent,
     AuthorCardSkeletonComponent,
     RepeatDirective,
-    BreadcrumbComponent,
     UiArticleCardComponent,
     PaginationComponent,
     QueryPaginationDirective,

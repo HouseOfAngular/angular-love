@@ -1,7 +1,6 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { TranslocoDirective } from '@jsverse/transloco';
 
-import { BreadcrumbComponent } from '@angular-love/blog/shared/ui-breadcrumb';
 import {
   CardComponent,
   GradientCardDirective,
@@ -15,7 +14,6 @@ import { BecomeAuthorImprovementsComponent } from '../components/become-author-i
   selector: 'al-feature-become-author-page',
   standalone: true,
   imports: [
-    BreadcrumbComponent,
     BecomeAuthorBenefitsComponent,
     BecomeAuthorImprovementsComponent,
     GradientCardDirective,
