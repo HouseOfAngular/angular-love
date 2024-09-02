@@ -297,4 +297,5 @@
 /pl/:year/:month/:day/:slug/ /pl/:slug/ 301
 
 /en / 301
+/en/ / 301
 /en/* /:splat/ 301
