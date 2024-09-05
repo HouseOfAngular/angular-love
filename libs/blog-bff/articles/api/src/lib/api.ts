@@ -29,6 +29,8 @@ app.get('/', async (c) => {
   queryParams.category && (query.category_slug = queryParams.category);
   queryParams.excludeRecent &&
     (query.exclude_recent = queryParams.excludeRecent);
+  queryParams.excludeCategory &&
+    (query.exclude_category = queryParams.excludeCategory);
 
   const result = await client.getPosts(query);
 
@@ -43,7 +45,6 @@ app.get('/:slug', async (c) => {
   const client = new WpPosts(c.var.createWPClient({ namespace: 'al/v1' }));
 
   const result = await client.getBySlug(slug);
-
   return c.json(toArticle(result.data));
 });
 
