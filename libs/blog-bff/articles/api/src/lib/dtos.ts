@@ -15,7 +15,7 @@ export interface WPPostDto {
   };
   acf: {
     reading_time: string | number;
-    difficulty: string;
+    difficulty: 'beginner' | 'intermediate' | 'advanced';
   };
 }
 

@@ -43,8 +43,9 @@ export const toArticlePreviewList = (dtos: WPPostDto[]): ArticlePreview[] => {
 
 export const toArticle = (dto?: WPPostDetailsDto): Article => {
   const title = cheerio.load(dto.title.rendered || '');
+
   const content = sanitizeHtml(dto?.content.rendered || '', {
-    allowedTags: sanitizeHtml.defaults.allowedTags.concat(['img']),
+    allowedTags: sanitizeHtml.defaults.allowedTags.concat(['img', 'iframe']),
     allowedAttributes: {
       img: [
         'src',
@@ -58,6 +59,7 @@ export const toArticle = (dto?: WPPostDetailsDto): Article => {
         'sizes',
       ],
       a: ['href'],
+      iframe: ['src'],
     },
     allowedClasses: {
       pre: ['lang:*'],
