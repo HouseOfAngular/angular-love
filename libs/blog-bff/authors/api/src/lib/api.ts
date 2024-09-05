@@ -26,6 +26,8 @@ app.get('/', async (c) => {
   queryParams['sortedTitles'] &&
     (query['sorted_titles'] = queryParams['sortedTitles']);
 
+  queryParams['acfFormat'] && (query['acf_format'] = queryParams['acfFormat']);
+
   const result = await client.getAuthors(query);
 
   return c.json(<ArrayResponse<Author>>{

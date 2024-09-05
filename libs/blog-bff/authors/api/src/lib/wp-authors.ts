@@ -18,6 +18,7 @@ export class WpAuthors {
     return this._wpClient.get<WPAuthorDto[]>('users', {
       slug: slug,
       _fields: 'id,type,slug,name,description,avatar_urls,acf',
+      acf_format: 'standard',
     });
   }
 }
