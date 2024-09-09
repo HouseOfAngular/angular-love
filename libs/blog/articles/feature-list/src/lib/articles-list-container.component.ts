@@ -4,6 +4,7 @@ import {
   inject,
   Signal,
 } from '@angular/core';
+import { TranslocoService } from '@jsverse/transloco';
 
 import { ArticleListStore } from '@angular-love/blog/articles/data-access';
 import { ArticlePreview } from '@angular-love/contracts/articles';
@@ -19,6 +20,7 @@ import { CategorySectionContainerComponent } from './category-section-container/
   standalone: true,
 })
 export class ArticlesListContainerComponent {
+  readonly activeLang = inject(TranslocoService).getActiveLang();
   private readonly _articleListStore = inject(ArticleListStore);
 
   readonly isFetchArticleListLoading: Signal<boolean> =

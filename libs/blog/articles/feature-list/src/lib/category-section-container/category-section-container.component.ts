@@ -25,6 +25,7 @@ const displayNameDict: Record<ArticleCategory, string> = {
   recommended: 'homePage.recommended',
   latest: 'homePage.latest',
   authors: 'homePage.authors',
+  'angular-in-depth': 'homePage.angularInDepth',
 };
 
 // TODO: Rethink if we need seperated lib for this smart component (usage only for feature-list)
@@ -66,7 +67,6 @@ export class CategorySectionContainerComponent {
     const query = computed(() => ({
       category: this.category(),
       take: this.take(),
-      excludeRecent: 5,
     }));
 
     this.articleStore.fetchArticleList(query);

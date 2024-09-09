@@ -31,6 +31,15 @@ export const articleRoutes: Routes = [
     },
   },
   {
+    path: 'angular-in-depth',
+    loadComponent: async () =>
+      (await import('@angular-love/feature-angular-in-depth'))
+        .FeatureAngularInDepthComponent,
+    data: {
+      seo: { title: 'Angular In Depth' },
+    },
+  },
+  {
     path: ':articleSlug',
     pathMatch: 'full',
     canActivate: [articleExistsGuard],

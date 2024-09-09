@@ -170,6 +170,9 @@
       "@angular-love/feature-about-us": [
         "libs/blog/about-us/feature-about-us/src/index.ts"
       ],
+      "@angular-love/feature-angular-in-depth": [
+        "libs/blog/articles/feature-angular-in-depth/src/index.ts"
+      ],
       "@angular-love/feature-latest-articles": [
         "libs/blog/articles/feature-latest-articles/src/index.ts"
       ],
