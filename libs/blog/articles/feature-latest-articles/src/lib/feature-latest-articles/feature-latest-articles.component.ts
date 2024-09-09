@@ -51,7 +51,7 @@ export class FeatureLatestArticlesComponent {
   constructor() {
     this._articleListStore.fetchArticleList({
       take: 5,
-      excludeCategory: 'angular-in-depth',
+      excludeCategory: 'angular-in-depth-en',
     });
   }
 }
