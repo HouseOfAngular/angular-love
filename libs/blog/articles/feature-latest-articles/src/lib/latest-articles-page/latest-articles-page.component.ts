@@ -43,7 +43,7 @@ export class FeatureLatestArticlesPageComponent {
   constructor() {
     const query = computed(() => ({
       ...this.pagination(),
-      excludeCategory: 'angular-in-depth-en',
+      excludeCategory: 'angular-in-depth',
     }));
 
     this.articleStore.fetchArticleList(query);
