@@ -1,15 +1,41 @@
-import type { Meta, StoryObj } from '@storybook/angular';
+import { provideTransloco, translocoConfig } from '@jsverse/transloco';
+import { applicationConfig, Meta, StoryObj } from '@storybook/angular';
 
-import { Article } from '@angular-love/contracts/articles';
+import { TranslocoHttpLoader } from '@angular-love/blog/i18n/data-access';
+import { AlLocalizeService } from '@angular-love/blog/i18n/util';
+import { Article, SeoData } from '@angular-love/contracts/articles';
+import { ConfigService } from '@angular-love/shared/config';
 
 import { ArticleDetailsComponent } from './article-details.component';
+
+const translocoConf = translocoConfig({
+  availableLangs: ['pl', 'en'],
+  defaultLang: 'pl',
+});
 
 const meta: Meta<ArticleDetailsComponent> = {
   component: ArticleDetailsComponent,
   title: 'Articles / details',
+  decorators: [
+    applicationConfig({
+      providers: [
+        ConfigService,
+        AlLocalizeService,
+        provideTransloco({
+          config: translocoConf,
+          loader: TranslocoHttpLoader,
+        }),
+      ],
+    }),
+  ],
 };
 
 const articleDetails: Article = {
+  id: 0,
+  slug: '',
+  seo: {} as SeoData,
+  otherTranslations: {} as any,
+  lang: 'en',
   readingTime: '3',
   title: "Why Angular signals won't replace RxJs",
   difficulty: 'beginner',

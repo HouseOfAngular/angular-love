@@ -1,7 +1,20 @@
-import { Meta, moduleMetadata, StoryObj } from '@storybook/angular';
+import { provideTransloco, translocoConfig } from '@jsverse/transloco';
+import {
+  applicationConfig,
+  Meta,
+  moduleMetadata,
+  StoryObj,
+} from '@storybook/angular';
+
+import { TranslocoHttpLoader } from '@angular-love/blog/i18n/data-access';
 
 import { TableOfContentsScrollSpyDirective } from './table-of-contents-scroll-spy.directive';
 import { TableOfContentsComponent } from './table-of-contents.component';
+
+const translocoConf = translocoConfig({
+  availableLangs: ['pl', 'en'],
+  defaultLang: 'pl',
+});
 
 const meta: Meta<TableOfContentsComponent> = {
   component: TableOfContentsComponent,
@@ -9,6 +22,14 @@ const meta: Meta<TableOfContentsComponent> = {
   decorators: [
     moduleMetadata({
       imports: [TableOfContentsScrollSpyDirective],
+    }),
+    applicationConfig({
+      providers: [
+        provideTransloco({
+          config: translocoConf,
+          loader: TranslocoHttpLoader,
+        }),
+      ],
     }),
   ],
 };

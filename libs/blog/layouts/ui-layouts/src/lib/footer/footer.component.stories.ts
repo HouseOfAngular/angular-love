@@ -1,8 +1,20 @@
+import { provideTransloco, translocoConfig } from '@jsverse/transloco';
 import { NgIconComponent } from '@ng-icons/core';
-import type { Meta, StoryObj } from '@storybook/angular';
-import { moduleMetadata } from '@storybook/angular';
+import {
+  applicationConfig,
+  Meta,
+  moduleMetadata,
+  StoryObj,
+} from '@storybook/angular';
+
+import { TranslocoHttpLoader } from '@angular-love/blog/i18n/data-access';
 
 import { FooterComponent } from './footer.component';
+
+const translocoConf = translocoConfig({
+  availableLangs: ['pl', 'en'],
+  defaultLang: 'pl',
+});
 
 const meta: Meta<FooterComponent> = {
   component: FooterComponent,
@@ -10,6 +22,14 @@ const meta: Meta<FooterComponent> = {
   decorators: [
     moduleMetadata({
       imports: [NgIconComponent],
+    }),
+    applicationConfig({
+      providers: [
+        provideTransloco({
+          config: translocoConf,
+          loader: TranslocoHttpLoader,
+        }),
+      ],
     }),
   ],
 };
