@@ -2,13 +2,13 @@
   *transloco="let t"
   [ngClass]="{
     'flex-row': layout() === 'horizontal',
-    'flex-col': layout() === 'vertical',
+    'flex-col': layout() === 'vertical'
   }"
 >
   <ul
     class="flex flex-wrap"
     [ngClass]="{
-      'flex-col justify-between': layout() === 'vertical',
+      'flex-col justify-between': layout() === 'vertical'
     }"
     [attr.aria-label]="t('nav.navLinks')"
   >
@@ -16,12 +16,12 @@
       @if (!item.externalLink) {
         <li
           [ngClass]="{
-            'py-10 text-center': layout() === 'vertical',
+            'py-10 text-center': layout() === 'vertical'
           }"
         >
           <a
             [attr.data-testid]="item.dataTestId"
-            class="text-al-foreground p-2 font-medium md:p-6"
+            class="p-2 font-medium text-[#fff] md:p-6"
             [routerLinkActive]="'text-al-pink'"
             [routerLink]="item.link | alLocalize"
             (click)="navigated.emit()"
@@ -33,7 +33,7 @@
         <li>
           <a
             [attr.data-testid]="item.dataTestId"
-            class="text-al-foreground p-2 font-medium md:p-6"
+            class="p-2 font-medium text-[#fff] md:p-6"
             [href]="item.link"
             target="_blank"
           >

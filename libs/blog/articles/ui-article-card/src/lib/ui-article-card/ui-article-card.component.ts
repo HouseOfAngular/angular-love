@@ -22,6 +22,7 @@ export type CardType = 'regular' | 'horizontal' | 'compact' | 'hero';
   host: {
     'data-testid': 'article-card',
     '[attr.id]': 'article().slug',
+    class: 'light:border light:rounded-lg',
   },
 })
 export class UiArticleCardComponent {
