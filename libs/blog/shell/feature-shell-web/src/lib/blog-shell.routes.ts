@@ -2,6 +2,7 @@ import { Route } from '@angular/router';
 
 import { articleRoutes } from '@angular-love/blog/articles/feature/shell';
 import { activeLanguageGuard } from '@angular-love/blog/i18n/data-access';
+import { pageRoutes } from '@angular-love/blog/pages/feature-shell';
 
 import { RootShellComponent } from './root-shell.component';
 
@@ -82,6 +83,7 @@ export const commonRoutes: Route[] = [
         },
       },
       ...articleRoutes,
+      ...pageRoutes,
       {
         path: '**',
         redirectTo: '404',

@@ -30,6 +30,7 @@ const ssgRoutes = [];
  * @type {Array<{url: string, publishDate: string}>}
  */
 const articleRoutes = [];
+const pageRoutes = [];
 
 /**
  * Constructs a URL for a given path and language.
@@ -96,6 +97,27 @@ async function fetchAuthorRoutes(lang, skip = 0, take = 50) {
     }
   } catch (error) {
     console.error(`Failed to fetch authors from ${url}`);
+    throw error;
+  }
+}
+
+/**
+ * Fetches pages paths and appends them to the routes array.
+ * @param {"pl" | "en"} lang
+ * @returns {Promise<void>}
+ */
+async function fetchPageRoutes(lang) {
+  const url = `${API_BASE_URL}/pages`;
+  try {
+    const { data, total } = await fetch(url).then((resp) => resp.json());
+    const pageSlugs = data.map((page) => ({
+      url: constructUrl(`pages/${page.slug}`, lang),
+      publishDate: new Date().toISOString(),
+    }));
+    ssgRoutes.push(...pageSlugs);
+    // pageRoutes.push(...pageSlugs);
+  } catch (error) {
+    console.error(`Failed to fetch pages from ${url}`);
     throw error;
   }
 }
@@ -171,16 +193,41 @@ function writeArticlePathsToFile(lang) {
   }
 }
 
+function writePagePathsToFile(lang) {
+  const stream = createWriteStream(`${ROOT_PATHS_FILE_PREFIX}-${lang}.json`, {
+    encoding: 'utf-8',
+  });
+
+  stream.on('error', (error) => {
+    console.error('Error writing paths to file:', error);
+  });
+
+  const filteredPagePaths = pageRoutes
+    .filter((pathObj) => pathObj.url.startsWith(`/${lang}/`))
+    .map((pathObj) => pathObj.url.replace(`/${lang}/`, ''));
+
+  try {
+    stream.write(JSON.stringify({ pages: filteredPagePaths }));
+  } catch (error) {
+    console.error('Error during write operation:', error);
+    throw error;
+  } finally {
+    stream.end();
+  }
+}
+
 async function main() {
   try {
     await Promise.all([
       ...SUPPORTED_LANGUAGES.map((lang) => fetchArticleRoutes(lang)),
       ...SUPPORTED_LANGUAGES.map((lang) => fetchAuthorRoutes(lang)),
+      ...SUPPORTED_LANGUAGES.map((lang) => fetchPageRoutes(lang)),
     ]);
 
     SUPPORTED_LANGUAGES.forEach((lang) => {
       appendStaticRoutes(lang);
       writeArticlePathsToFile(lang);
+      writePagePathsToFile(lang);
     });
 
     writeSSGRoutesToFile();

@@ -27,6 +27,9 @@
       "@angular-love/blog-bff/newsletter/api": [
         "libs/blog-bff/newsletter/src/index.ts"
       ],
+      "@angular-love/blog-bff/pages/api": [
+        "libs/blog-bff/pages/api/src/index.ts"
+      ],
       "@angular-love/blog-bff/shared/util-middleware": [
         "libs/blog-bff/shared/util-middleware/src/index.ts"
       ],
@@ -91,6 +94,9 @@
       "@angular-love/blog/contracts/banners": [
         "libs/blog-contracts/banners/src/index.ts"
       ],
+      "@angular-love/blog/contracts/pages": [
+        "libs/blog-contracts/pages/src/index.ts"
+      ],
       "@angular-love/blog/home/feature-home": [
         "libs/blog/home/feature-home/src/index.ts"
       ],
@@ -109,6 +115,18 @@
       ],
       "@angular-love/blog/newsletter": [
         "libs/blog/newsletter/feature-newsletter/src/index.ts"
+      ],
+      "@angular-love/blog/pages/data-access": [
+        "libs/blog/pages/data-access/src/index.ts"
+      ],
+      "@angular-love/blog/pages/feature-page": [
+        "libs/blog/pages/feature-page/src/index.ts"
+      ],
+      "@angular-love/blog/pages/feature-shell": [
+        "libs/blog/pages/feature-shell/src/index.ts"
+      ],
+      "@angular-love/blog/pages/ui-page-content": [
+        "libs/blog/pages/ui-page-content/src/index.ts"
       ],
       "@angular-love/blog/partners/ui-partners": [
         "libs/blog/partners/ui-partners/src/index.ts"

@@ -1,0 +1,11 @@
+@if (isFetchPageDetailsLoading()) {
+  <al-page-details-skeleton />
+} @else if (pageDetails()) {
+  <al-page-content
+    [pageDetailsTitle]="sanitizedTitle()"
+    [pageDetailsContent]="sanitizedContent()"
+  ></al-page-content>
+} @else if (isFetchPageDetailsError()) {
+  <!-- @TODO - error handling -->
+  Something went wrong...
+}
