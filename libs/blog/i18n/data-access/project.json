@@ -16,5 +16,17 @@
     "lint": {
       "executor": "@nx/eslint:lint"
     }
-  }
+  },
+  "nx-enforce-module-boundaries": [
+    true,
+    {
+      "allow": [],
+      "depConstraints": [
+        {
+          "sourceTag": "*",
+          "onlyDependOnLibsWithTags": ["*"]
+        }
+      ]
+    }
+  ]
 }
