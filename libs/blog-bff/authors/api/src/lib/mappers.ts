@@ -15,5 +15,6 @@ export const toAuthor = (dto: WPAuthorDto): Author => {
     github: dto.acf.al_github_nickname || null,
     twitter: dto.acf.al_twitter_handle || null,
     linkedin: dto.acf.al_linkedin_id || null,
+    titles: dto.acf.al_titles,
   };
 };

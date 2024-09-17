@@ -117,6 +117,7 @@ export const toArticle = (dto?: WPPostDetailsDto): Article => {
       github: dto?.author_details?.github || null,
       twitter: dto?.author_details?.twitter || null,
       linkedin: dto?.author_details?.linkedin || null,
+      titles: dto?.author_details?.titles || [],
     },
     content: highlightedContent,
     anchors: anchors,
