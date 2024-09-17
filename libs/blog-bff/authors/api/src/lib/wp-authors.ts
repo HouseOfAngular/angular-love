@@ -10,14 +10,14 @@ export class WpAuthors {
   ): Promise<WPResponse<WPAuthorDto[]>> {
     return this._wpClient.get<WPAuthorDto[]>('users', {
       ...query,
-      _fields: 'id,type,slug,name,description,avatar_urls,acf',
+      _fields: 'id,type,slug,name,description,avatar_urls,acf,titles',
     });
   }
 
   async getBySlug(slug: string): Promise<WPResponse<WPAuthorDto[]>> {
     return this._wpClient.get<WPAuthorDto[]>('users', {
       slug: slug,
-      _fields: 'id,type,slug,name,description,avatar_urls,acf',
+      _fields: 'id,type,slug,name,description,avatar_urls,acf,titles',
       acf_format: 'standard',
     });
   }

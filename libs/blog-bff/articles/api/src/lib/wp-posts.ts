@@ -50,7 +50,7 @@ export class WpPosts {
       .join(',');
 
     return this._wpClient.get<WPPostDetailsDto>(`posts/${slug}`, {
-      _fields: `id,type,slug,title.rendered,author,content.rendered,date,featured_image_url,author_details,acf,other_translations,lang,${yoast_props}`,
+      _fields: `id,type,slug,title.rendered,author,content.rendered,date,featured_image_url,author_details,acf,other_translations,lang,author_details.al_titles${yoast_props}`,
     });
   }
 }

@@ -70,6 +70,7 @@ export interface WPPostDetailsDto {
     github: string;
     twitter: string;
     linkedin: string;
+    titles: string[];
   };
   acf: {
     reading_time: string | number;
