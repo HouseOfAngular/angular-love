@@ -9,7 +9,11 @@
         <ng-container *ngTemplateOutlet="avatar" />
       }
 
-      <span class="line-clamp-2 text-sm/none">{{ author().position }}</span>
+      @if (authorTitles()) {
+        <span data-testid="author-titles" class="text-sm">
+          {{ authorTitles() }}
+        </span>
+      }
 
       <div class="flex gap-4">
         @for (social of socials(); track $index) {

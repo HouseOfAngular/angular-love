@@ -89,6 +89,7 @@ export interface Article {
     description: string;
     avatarUrl: string;
     position: string;
+    titles: string[];
     slug: string;
     github: string | null;
     twitter: string | null;

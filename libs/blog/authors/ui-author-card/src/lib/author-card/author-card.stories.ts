@@ -31,6 +31,7 @@ const author: UiAuthorCard = {
   twitter: 'johnsmith',
   linkedin: 'john-smith',
   slug: 'john-smith',
+  titles: ['blogger', 'GDE'],
 };
 
 export default meta;
@@ -74,6 +75,7 @@ export const withToLongData: Story = {
       github: null,
       linkedin: null,
       twitter: null,
+      titles: ['blogger', 'GDE'],
     },
     linkable: false,
   },
@@ -90,6 +92,7 @@ export const withEmptyData: Story = {
       github: null,
       linkedin: null,
       twitter: null,
+      titles: [],
     },
   },
 };

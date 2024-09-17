@@ -7,4 +7,5 @@ export interface UiAuthorCard {
   twitter: string | null;
   linkedin: string | null;
   description: string;
+  titles: string[];
 }

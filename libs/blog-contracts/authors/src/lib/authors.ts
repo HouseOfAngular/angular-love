@@ -10,4 +10,5 @@ export interface Author {
   github: string | null;
   twitter: string | null;
   linkedin: string | null;
+  titles: string[];
 }

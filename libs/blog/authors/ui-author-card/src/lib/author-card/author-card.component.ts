@@ -3,9 +3,11 @@ import {
   ChangeDetectionStrategy,
   Component,
   computed,
+  inject,
   input,
 } from '@angular/core';
 import { RouterLink } from '@angular/router';
+import { TranslocoService } from '@jsverse/transloco';
 
 import { UiAuthorCard } from '@angular-love/blog/authors/types';
 import { AlLocalizePipe } from '@angular-love/blog/i18n/util';
@@ -46,6 +48,21 @@ export class AuthorCardComponent {
 
   descriptionClass = computed(
     () => 'text-sm' + (this.clampText() ? ' line-clamp-3' : ''),
+  );
+
+  private readonly _authorTitlesTranslations = inject(
+    TranslocoService,
+  ).translateObject('authorCard.titles') as { [titleKey: string]: string };
+  readonly authorTitles = computed(
+    () =>
+      this.author()
+        ?.titles.reduce((titlesList, titleKey) => {
+          // skip titles without translation (e.g. 'hoa')
+          return this._authorTitlesTranslations[titleKey]
+            ? titlesList.concat(this._authorTitlesTranslations[titleKey])
+            : titlesList;
+        }, [] as string[])
+        .join(', ') ?? '',
   );
 
   socials = computed<SocialMediaIconItemUi[]>(() => {
