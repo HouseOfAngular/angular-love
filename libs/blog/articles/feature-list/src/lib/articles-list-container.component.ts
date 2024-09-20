@@ -7,6 +7,7 @@ import {
 import { TranslocoService } from '@jsverse/transloco';
 
 import { ArticleListStore } from '@angular-love/blog/articles/data-access';
+import { AlIndepthBannerComponent } from '@angular-love/blog/shared/ad-banner';
 import { ArticlePreview } from '@angular-love/contracts/articles';
 import { RepeatDirective } from '@angular-love/utils';
 
@@ -15,7 +16,11 @@ import { CategorySectionContainerComponent } from './category-section-container/
 @Component({
   selector: 'al-articles-list',
   templateUrl: './articles-list-container.component.html',
-  imports: [RepeatDirective, CategorySectionContainerComponent],
+  imports: [
+    RepeatDirective,
+    CategorySectionContainerComponent,
+    AlIndepthBannerComponent,
+  ],
   changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: true,
 })
