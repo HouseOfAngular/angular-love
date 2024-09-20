@@ -3,23 +3,23 @@
   aria-labelledby="banner-title"
   class="bg-al-radial-gradient w-full"
 >
-  <div class="mx-auto flex max-w-screen-xl justify-between py-4">
+  <div class="mx-auto flex max-w-screen-xl justify-between px-2 py-4 2xl:px-0">
     <div class="ml-2 md:ml-4 xl:ml-0">
       <div class="flex flex-row">
-        <h3 class="hidden text-2xl font-semibold lg:block">
+        <h3 class="hidden text-2xl font-semibold xl:block">
           {{ data().title }}
         </h3>
-        <h3 class="text-lg font-semibold lg:hidden">
+        <h3 class="text-lg font-semibold xl:hidden">
           {{ data().title_mobile }}
         </h3>
         <span
-          class="text-al-pink ml-2 hidden items-center rounded bg-white px-2 text-lg font-semibold lg:flex xl:ml-3"
+          class="text-al-pink ml-2 hidden items-center rounded bg-white px-2 text-lg font-semibold xl:ml-3 xl:flex"
         >
           {{ data().additional_info }}
         </span>
       </div>
-      <p class="hidden lg:block">{{ data().description }}</p>
-      <p class="lg:hidden">{{ data().description_mobile }}</p>
+      <p class="hidden xl:block">{{ data().description }}</p>
+      <p class="xl:hidden">{{ data().description_mobile }}</p>
     </div>
     <div class="flex flex-row items-center">
       <a
@@ -29,10 +29,10 @@
         [href]="data().href"
         target="_blank"
       >
-        <p class="hidden text-sm font-bold lg:block">
+        <p class="hidden text-sm font-bold xl:block">
           {{ t('registerButton') }}
         </p>
-        <p class="text-sm font-bold lg:hidden">
+        <p class="text-sm font-bold xl:hidden">
           {{ t('registerButtonShortened') }}
         </p>
       </a>
