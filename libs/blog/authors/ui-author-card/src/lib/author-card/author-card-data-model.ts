@@ -1,3 +1,5 @@
+import { AuthorTitle } from '@angular-love/blog/contracts/authors';
+
 export interface UiAuthorCard {
   name: string;
   avatarUrl: string;
@@ -7,5 +9,5 @@ export interface UiAuthorCard {
   twitter: string | null;
   linkedin: string | null;
   description: string;
-  titles: string[];
+  titles: AuthorTitle[];
 }

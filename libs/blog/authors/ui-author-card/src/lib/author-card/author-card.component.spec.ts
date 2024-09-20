@@ -1,8 +1,7 @@
 import { TranslocoTestingModule } from '@jsverse/transloco';
 import { createComponentFactory, Spectator } from '@ngneat/spectator/jest';
 
-import { UiAuthorCard } from '@angular-love/blog/authors/types';
-
+import { UiAuthorCard } from './author-card-data-model';
 import { AuthorCardComponent } from './author-card.component';
 
 const selectors = {

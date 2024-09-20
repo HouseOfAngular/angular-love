@@ -15,11 +15,13 @@
         </span>
       }
 
-      <div class="flex gap-4">
-        @for (social of socials(); track $index) {
-          <al-social-media-icon-item [socialMediaConfig]="social" />
-        }
-      </div>
+      @if (socials().length) {
+        <div class="flex gap-4">
+          @for (social of socials(); track $index) {
+            <al-social-media-icon-item [socialMediaConfig]="social" />
+          }
+        </div>
+      }
     </ng-container>
 
     <ng-container author-info-description>

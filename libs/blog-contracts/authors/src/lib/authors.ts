@@ -1,3 +1,10 @@
+export type AuthorTitle =
+  | 'gde'
+  | 'hoa'
+  | 'contributor'
+  | 'key_contributor'
+  | 'blogger';
+
 export interface Author {
   slug: string;
   name: string;
@@ -10,5 +17,5 @@ export interface Author {
   github: string | null;
   twitter: string | null;
   linkedin: string | null;
-  titles: string[];
+  titles: AuthorTitle[];
 }
