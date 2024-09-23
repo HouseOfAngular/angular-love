@@ -1,5 +1,5 @@
 export interface AdImageBanner {
   url: string;
   alt: string;
-  slug: string;
+  action: { type: 'slug'; slug: string } | { type: 'url'; url: string };
 }

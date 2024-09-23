@@ -1,5 +1,6 @@
 import { ChangeDetectionStrategy, Component, signal } from '@angular/core';
 
+import { AdImageBanner } from '../../ad-image-banner/ad-image-banner-data.interface';
 import { AdImageBannerComponent } from '../../ad-image-banner/ad-image-banner.component';
 import { AlInfiniteSliderDirective } from '../../infinite-slider-directive/al-infinite-slider.directive';
 
@@ -23,5 +24,5 @@ import { AUTUMN_CAMP_BANNERS } from './autumn-camp-banners.const';
   `,
 })
 export class AlAutumnCampBannerComponent {
-  protected readonly banners = signal(AUTUMN_CAMP_BANNERS);
+  protected readonly banners = signal<AdImageBanner[]>(AUTUMN_CAMP_BANNERS);
 }
