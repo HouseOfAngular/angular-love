@@ -1,11 +1,10 @@
 import { NgClass, ViewportScroller } from '@angular/common';
-import { Component, computed, effect, inject, signal } from '@angular/core';
+import { Component, computed, effect, inject } from '@angular/core';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { Router, RouterOutlet } from '@angular/router';
 import { TranslocoService } from '@jsverse/transloco';
 import { startWith } from 'rxjs';
 
-import { AdBannerStore } from '@angular-love/blog/ad-banner/data-access';
 import { AlLocalizeService } from '@angular-love/blog/i18n/util';
 import {
   FooterComponent,
@@ -19,13 +18,14 @@ import { AdBannerComponent } from '@angular-love/blog/shared/ad-banner';
   selector: 'al-root-shell',
   template: `
     <div class="fixed top-0 z-10 w-full">
-      @if (adBannerVisible()) {
+      <!--top screen closable banner-->
+      <!--@if (adBannerVisible()) {
         <al-ad-banner
           class="block"
           [data]="adBanner()"
           (closed)="adBannerStore.onClose()"
         />
-      }
+      }-->
       <al-header
         class="block w-full"
         [language]="language()"
@@ -53,17 +53,8 @@ import { AdBannerComponent } from '@angular-love/blog/shared/ad-banner';
 export class RootShellComponent {
   readonly translocoService = inject(TranslocoService);
 
-  protected readonly adBannerStore = inject(AdBannerStore);
-
-  protected readonly adBannerVisible = computed(() => {
-    //TODO: after data-binding is done we can set this boolean if wp sends banner data
-    const data = this.adBannerStore.adBanner;
-    return this.adBannerStore.adBannerVisible() && data();
-  });
-
-  protected readonly adBanner = computed(() => {
-    return this.adBannerStore.adBanner();
-  });
+  // todo: temporary solution to keep in mind how banner influence the layout
+  protected readonly adBannerVisible = computed(() => false);
 
   readonly language = toSignal(
     this.translocoService.langChanges$.pipe(
@@ -84,6 +75,7 @@ export class RootShellComponent {
   }
 
   constructor(viewport: ViewportScroller) {
+    // todo: temporary solution to keep in mind how banner influence the layout
     effect(() => {
       this.adBannerVisible()
         ? viewport.setOffset([0, 160])

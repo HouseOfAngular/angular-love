@@ -10,6 +10,7 @@ import {
   inject,
   OnDestroy,
   OnInit,
+  signal,
   viewChild,
 } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
@@ -24,7 +25,6 @@ import { TranslocoDirective, TranslocoService } from '@jsverse/transloco';
 import { FastSvgComponent } from '@push-based/ngx-fast-svg';
 import { debounceTime, filter, startWith, tap } from 'rxjs';
 
-import { AdBannerStore } from '@angular-love/blog/ad-banner/data-access';
 import {
   AlLocalizePipe,
   AlLocalizeService,
@@ -60,8 +60,7 @@ export class SearchDialogComponent implements OnInit, OnDestroy {
     validators: [Validators.maxLength(50)],
   });
 
-  protected readonly adBannerStoreVisible =
-    inject(AdBannerStore).adBannerVisible;
+  protected readonly adBannerStoreVisible = signal(false);
 
   private readonly _searchService = inject(GlobalSearchService);
   private readonly _searchInput =
