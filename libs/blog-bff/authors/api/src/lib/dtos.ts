@@ -1,3 +1,5 @@
+import { AuthorTitle } from '@angular-love/blog/contracts/authors';
+
 export interface WPAuthorDto {
   name: string;
   slug: string;
@@ -9,7 +11,7 @@ export interface WPAuthorDto {
     al_github_nickname: string;
     al_twitter_handle: string;
     al_linkedin_id: string;
-    al_titles: string[];
+    al_titles: AuthorTitle[];
     user_description_pl: string;
     user_description_en: string;
   };

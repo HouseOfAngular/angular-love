@@ -5,8 +5,7 @@ import {
   StoryObj,
 } from '@storybook/angular';
 
-import { UiAuthorCard } from '@angular-love/blog/authors/types';
-
+import { UiAuthorCard } from './author-card-data-model';
 import { AuthorCardSkeletonComponent } from './author-card-skeleton.component';
 import { AuthorCardComponent } from './author-card.component';
 
@@ -31,6 +30,7 @@ const author: UiAuthorCard = {
   twitter: 'johnsmith',
   linkedin: 'john-smith',
   slug: 'john-smith',
+  titles: ['blogger', 'gde'],
 };
 
 export default meta;
@@ -74,6 +74,7 @@ export const withToLongData: Story = {
       github: null,
       linkedin: null,
       twitter: null,
+      titles: ['blogger', 'gde'],
     },
     linkable: false,
   },
@@ -90,6 +91,7 @@ export const withEmptyData: Story = {
       github: null,
       linkedin: null,
       twitter: null,
+      titles: [],
     },
   },
 };

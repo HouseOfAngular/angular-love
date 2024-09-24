@@ -1,3 +1,5 @@
+import { AuthorTitle } from '@angular-love/blog/contracts/authors';
+
 export interface WPPostDto {
   date: string;
   slug: string;
@@ -70,7 +72,7 @@ export interface WPPostDetailsDto {
     github: string;
     twitter: string;
     linkedin: string;
-    titles: string[];
+    titles: AuthorTitle[];
   };
   acf: {
     reading_time: string | number;

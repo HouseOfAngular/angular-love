@@ -9,7 +9,7 @@ import {
 import { rxMethod } from '@ngrx/signals/rxjs-interop';
 import { filter, pipe, switchMap, tap } from 'rxjs';
 
-import { UiAuthorCard } from '@angular-love/blog/authors/types';
+import { UiAuthorCard } from '@angular-love/blog/authors/ui-author-card';
 import { Author } from '@angular-love/blog/contracts/authors';
 import { withLangState } from '@angular-love/blog/i18n/data-access';
 import {

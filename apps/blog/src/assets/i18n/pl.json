@@ -22,6 +22,14 @@
   "authorPage": {
     "posted_by": "Opublikowane przez {{name}}"
   },
+  "authorCard": {
+    "titles": {
+      "blogger": "Blogger",
+      "key_contributor": "Key Contributor",
+      "contributor": "Contributor",
+      "gde": "Google Developer Expert"
+    }
+  },
   "becomeAuthorPage": {
     "title": "Zostań częścią angular.love!",
     "improvements": {

@@ -76,9 +76,6 @@
       "@angular-love/blog/authors/feature-author": [
         "libs/blog/authors/feature-author/src/index.ts"
       ],
-      "@angular-love/blog/authors/types": [
-        "libs/blog/authors/types/src/index.ts"
-      ],
       "@angular-love/blog/authors/ui-author-card": [
         "libs/blog/authors/ui-author-card/src/index.ts"
       ],

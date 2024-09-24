@@ -3,11 +3,13 @@ import {
   ChangeDetectionStrategy,
   Component,
   computed,
+  inject,
   input,
 } from '@angular/core';
 import { RouterLink } from '@angular/router';
+import { TranslocoService } from '@jsverse/transloco';
 
-import { UiAuthorCard } from '@angular-love/blog/authors/types';
+import { AuthorTitle } from '@angular-love/blog/contracts/authors';
 import { AlLocalizePipe } from '@angular-love/blog/i18n/util';
 import { AvatarComponent } from '@angular-love/blog/shared/ui-avatar';
 import { DynamicTextClampComponent } from '@angular-love/blog/shared/ui-dynamic-text-clamp';
@@ -16,6 +18,7 @@ import {
   SocialMediaIconItemUi,
 } from '@angular-love/blog/shared/ui-social-media-icons';
 
+import { UiAuthorCard } from './author-card-data-model';
 import { AuthorCardTemplateComponent } from './author-card-template.component';
 
 @Component({
@@ -46,6 +49,20 @@ export class AuthorCardComponent {
 
   descriptionClass = computed(
     () => 'text-sm' + (this.clampText() ? ' line-clamp-3' : ''),
+  );
+
+  private readonly _authorTitlesTranslations = inject(
+    TranslocoService,
+  ).translateObject('authorCard.titles') as {
+    [titleKey in AuthorTitle]: string;
+  };
+  readonly authorTitles = computed(
+    () =>
+      this.author()
+        ?.titles.map((titleKey) => this._authorTitlesTranslations[titleKey])
+        // skip titles without translation (e.g. 'hoa')
+        .filter(Boolean)
+        .join(', ') ?? '',
   );
 
   socials = computed<SocialMediaIconItemUi[]>(() => {

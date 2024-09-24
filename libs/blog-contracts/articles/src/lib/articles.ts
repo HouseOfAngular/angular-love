@@ -1,3 +1,5 @@
+import { AuthorTitle } from '@angular-love/blog/contracts/authors';
+
 export const articleCategories = [
   'news',
   'guides',
@@ -89,6 +91,7 @@ export interface Article {
     description: string;
     avatarUrl: string;
     position: string;
+    titles: AuthorTitle[];
     slug: string;
     github: string | null;
     twitter: string | null;
