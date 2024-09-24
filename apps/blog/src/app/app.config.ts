@@ -9,20 +9,20 @@ import {
   provideExperimentalZonelessChangeDetection,
 } from '@angular/core';
 import { provideClientHydration } from '@angular/platform-browser';
+import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import {
   IsActiveMatchOptions,
   provideRouter,
   Router,
   withComponentInputBinding,
-  withDisabledInitialNavigation,
   withInMemoryScrolling,
   withRouterConfig,
   withViewTransitions,
 } from '@angular/router';
+import { provideFastSVG } from '@push-based/ngx-fast-svg';
 
 import { provideI18n } from '@angular-love/blog/i18n/data-access';
 import { blogShellRoutes } from '@angular-love/blog/shell/feature';
-import { provideFastSVG } from '@push-based/ngx-fast-svg';
 
 import { environment } from '../environments/environment';
 
@@ -70,6 +70,7 @@ export const appConfig: ApplicationConfig = {
     provideFastSVG({
       url: (name: string) => `assets/icons/${name}.svg`,
     }),
+    provideAnimationsAsync(),
     environment.providers,
   ],
 };

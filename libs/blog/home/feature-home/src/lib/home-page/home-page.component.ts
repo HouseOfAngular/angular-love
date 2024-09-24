@@ -5,7 +5,10 @@ import { ArticlesListContainerComponent } from '@angular-love/blog/articles/feat
 import { UiArticleCardComponent } from '@angular-love/blog/articles/ui-article-card';
 import { NewsletterComponent } from '@angular-love/blog/newsletter';
 import { PartnersComponent } from '@angular-love/blog/partners/ui-partners';
-import { AdImageBannerComponent } from '@angular-love/blog/shared/ad-banner';
+import {
+  AdImageBannerComponent,
+  AlAutumnCampBannerComponent,
+} from '@angular-love/blog/shared/ad-banner';
 import { CardComponent } from '@angular-love/blog/shared/ui-card';
 import { FeatureLatestArticlesComponent } from '@angular-love/feature-latest-articles';
 
@@ -24,6 +27,7 @@ import { hoaHireUs, partnersList } from './partners';
     UiArticleCardComponent,
     ArticlesListContainerComponent,
     AdImageBannerComponent,
+    AlAutumnCampBannerComponent,
   ],
   templateUrl: './home-page.component.html',
   styleUrls: ['./home-page.component.scss'],

@@ -19,8 +19,16 @@ export class AdImageBannerComponent {
   private readonly _localizeService = inject(AlLocalizeService);
 
   navigateFromBanner(): void {
-    this._router.navigate(
-      this._localizeService.localizePath(['/', this.banner()!.slug]),
-    );
+    const banner = this.banner();
+    switch (banner.action.type) {
+      case 'slug':
+        this._router.navigate(
+          this._localizeService.localizePath(['/', banner.action.slug]),
+        );
+        break;
+      case 'url':
+        window.location.href = banner.action.url;
+        break;
+    }
   }
 }
