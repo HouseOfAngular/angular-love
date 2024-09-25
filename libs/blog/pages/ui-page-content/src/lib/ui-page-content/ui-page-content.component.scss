@@ -1,0 +1,53 @@
+.blog-page-title {
+  span {
+    margin-left: 8px;
+  }
+}
+
+.blog-page-content {
+  h1 {
+    @apply text-3xl;
+  }
+
+  h2 {
+    @apply text-2xl font-bold;
+  }
+
+  h3 {
+    font-size: 1.2rem;
+  }
+
+  h4 {
+    font-size: 1rem;
+  }
+
+  p {
+    @apply mb-6;
+    line-height: 1.9;
+  }
+
+  a {
+    @apply al-link;
+  }
+
+  strong {
+    font-weight: 900;
+  }
+
+  ul,
+  ol {
+    padding-left: 1.8rem;
+    margin: 1.4rem 0;
+    line-height: 1.7;
+    li {
+      margin: 0.4rem 0;
+    }
+  }
+
+  ul > li {
+    list-style: disc;
+  }
+  ol > li {
+    list-style: decimal;
+  }
+}
