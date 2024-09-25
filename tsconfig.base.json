@@ -21,6 +21,9 @@
       "@angular-love/blog-bff/authors/api": [
         "libs/blog-bff/authors/api/src/index.ts"
       ],
+      "@angular-love/blog-bff/banners/api": [
+        "libs/blog-bff/banners/api/src/index.ts"
+      ],
       "@angular-love/blog-bff/newsletter/api": [
         "libs/blog-bff/newsletter/src/index.ts"
       ],
@@ -84,6 +87,9 @@
       ],
       "@angular-love/blog/contracts/authors": [
         "libs/blog-contracts/authors/src/index.ts"
+      ],
+      "@angular-love/blog/contracts/banners": [
+        "libs/blog-contracts/banners/src/index.ts"
       ],
       "@angular-love/blog/home/feature-home": [
         "libs/blog/home/feature-home/src/index.ts"
