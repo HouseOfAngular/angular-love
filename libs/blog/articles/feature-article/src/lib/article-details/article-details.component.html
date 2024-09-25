@@ -63,7 +63,7 @@
         class="sticky top-24 mt-5 hidden flex-col gap-4 lg:flex"
         [ngClass]="{
           'top-24': !adBannerStoreVisible(),
-          'top-48': adBannerStoreVisible(),
+          'top-48': adBannerStoreVisible()
         }"
       >
         @if (articleDetails().anchors.length) {
@@ -73,7 +73,6 @@
                 alTableOfContentsScrollSpy
                 class="al-scroll block max-h-[50dvh] overflow-auto"
                 [anchors]="articleDetails().anchors"
-                [adBannerVisible]="adBannerStoreVisible()"
               />
             </div>
           </al-card>

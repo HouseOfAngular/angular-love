@@ -33,9 +33,15 @@ import { debounceTime, interval, tap } from 'rxjs';
   standalone: true,
 })
 export class AlInfiniteSliderDirective {
-  readonly alInfiniteSliderOf = input.required<unknown[]>();
-  readonly msPerSlide = input<number>(7000);
-  readonly msPerAnimation = input<number>(1000);
+  readonly slidesElements = input.required<unknown[]>({
+    alias: 'alInfiniteSliderOf',
+  });
+  readonly msPerSlide = input<number>(7000, {
+    alias: 'alInfiniteSliderMsPerSlide',
+  });
+  readonly msPerAnimation = input<number>(1000, {
+    alias: 'alInfiniteSliderMsPerAnimation',
+  });
 
   private readonly _templateRef = inject(TemplateRef);
   private readonly _viewContainerRef = inject(ViewContainerRef);
@@ -50,7 +56,7 @@ export class AlInfiniteSliderDirective {
 
   private _initView() {
     effect(() => {
-      this.alInfiniteSliderOf()?.forEach((item, index) => {
+      this.slidesElements()?.forEach((item, index) => {
         // Create a new embedded view for each item in the collection
         this._viewContainerRef.createEmbeddedView(this._templateRef, {
           $implicit: item, // Pass the current item as the context

@@ -6,6 +6,7 @@ import {
   distinctUntilChanged,
   fromEvent,
   map,
+  of,
   startWith,
   switchMap,
 } from 'rxjs';
@@ -17,7 +18,6 @@ import { TableOfContentsComponent } from './table-of-contents.component';
   selector: '[alTableOfContentsScrollSpy]',
 })
 export class TableOfContentsScrollSpyDirective {
-  adBannerVisible = input.required<boolean>();
   private readonly _ngZone = inject(NgZone);
   private readonly _tableOfContents = inject(TableOfContentsComponent);
   private readonly _destroyRef = inject(DestroyRef);
@@ -40,7 +40,8 @@ export class TableOfContentsScrollSpyDirective {
       ),
     );
 
-    const adBannerVisible$ = toObservable(this.adBannerVisible);
+    // todo: left to keep in mind how banner influence the layout
+    const adBannerVisible$ = of(false);
 
     const anchors$ = toObservable(this._tableOfContents.anchors);
 
