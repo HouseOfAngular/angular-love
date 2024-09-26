@@ -3,7 +3,7 @@ import { TranslocoDirective } from '@jsverse/transloco';
 
 import {
   CardComponent,
-  GradientCardDirective,
+  DarkGradientCardDirective,
 } from '@angular-love/blog/shared/ui-card';
 
 import { BecomeAuthorAdvertisementComponent } from '../components/become-author-advertisement/become-author-advertisement.component';
@@ -16,7 +16,7 @@ import { BecomeAuthorImprovementsComponent } from '../components/become-author-i
   imports: [
     BecomeAuthorBenefitsComponent,
     BecomeAuthorImprovementsComponent,
-    GradientCardDirective,
+    DarkGradientCardDirective,
     CardComponent,
     BecomeAuthorAdvertisementComponent,
     TranslocoDirective,

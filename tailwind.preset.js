@@ -9,6 +9,7 @@ module.exports = {
         'al-background': 'rgba(var(--background) / <alpha-value>)',
         'al-border': 'rgb(var(--border) / <alpha-value>)',
         'al-blue': '#066aff',
+        'al-white-smoke': '#f2f2f2',
         'al-pink': 'rgba(var(--primary) / <alpha-value>)',
         'al-primary': 'rgba(var(--primary) / <alpha-value>)',
         'al-muted': 'rgba(var(--muted) / <alpha-value>)',
