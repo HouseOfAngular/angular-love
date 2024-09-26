@@ -4,6 +4,7 @@ import { HTTPException } from 'hono/http-exception';
 
 import { articles } from '@angular-love/blog-bff/articles/api';
 import { authors } from '@angular-love/blog-bff/authors/api';
+import { banners } from '@angular-love/blog-bff/banners/api';
 import { newsletter } from '@angular-love/blog-bff/newsletter/api';
 
 const app = new Hono();
@@ -13,6 +14,7 @@ app.use('*', cors());
 app.route('/articles', articles);
 app.route('/authors', authors);
 app.route('/newsletter', newsletter);
+app.route('/banners', banners);
 
 app.onError((err, c) => {
   console.error(err);
