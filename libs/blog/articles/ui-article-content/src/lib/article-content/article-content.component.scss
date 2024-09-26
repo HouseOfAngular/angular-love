@@ -53,15 +53,21 @@
     font-weight: 900;
   }
 
-  ul {
-    padding-left: 1.8rem;
-    margin: 1.4rem 0;
-    line-height: 1.7;
+  ul,
+  ol {
+    @apply my-5 pl-7 leading-7;
 
     li {
-      list-style: disc;
-      margin: 0.4rem 0;
+      @apply my-2;
     }
+  }
+
+  ul {
+    @apply list-disc;
+  }
+
+  ol {
+    @apply list-decimal;
   }
 
   img {
