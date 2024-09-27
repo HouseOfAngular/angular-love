@@ -11,7 +11,7 @@ import { UiArticleListTitleComponent } from '@angular-love/blog/articles/ui-arti
 import { NewsletterComponent } from '@angular-love/blog/newsletter';
 import {
   CardComponent,
-  GradientCardDirective,
+  DarkGradientCardDirective,
 } from '@angular-love/blog/shared/ui-card';
 import { RepeatDirective } from '@angular-love/utils';
 
@@ -25,7 +25,7 @@ import { RepeatDirective } from '@angular-love/utils';
     UiArticleCardComponent,
     NewsletterComponent,
     CardComponent,
-    GradientCardDirective,
+    DarkGradientCardDirective,
     NgClass,
     TranslocoDirective,
     ArticleRegularCardSkeletonComponent,

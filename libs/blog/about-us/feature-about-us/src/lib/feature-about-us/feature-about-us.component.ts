@@ -12,7 +12,7 @@ import { AuthorCardComponent } from '@angular-love/blog/authors/ui-author-card';
 import { NewsletterComponent } from '@angular-love/blog/newsletter';
 import {
   CardComponent,
-  GradientCardDirective,
+  DarkGradientCardDirective,
 } from '@angular-love/blog/shared/ui-card';
 import { InfiniteScrollTriggerDirective } from '@angular-love/blog/shared/ui-pagination';
 import { SocialMediaIconsComponent } from '@angular-love/blog/shared/ui-social-media-icons';
@@ -24,7 +24,7 @@ import { SocialMediaIconsComponent } from '@angular-love/blog/shared/ui-social-m
     CardComponent,
     NewsletterComponent,
     SocialMediaIconsComponent,
-    GradientCardDirective,
+    DarkGradientCardDirective,
     AuthorCardComponent,
     InfiniteScrollTriggerDirective,
     TranslocoPipe,
