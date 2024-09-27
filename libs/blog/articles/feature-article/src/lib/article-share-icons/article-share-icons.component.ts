@@ -75,9 +75,10 @@ export class ArticleShareIconsComponent {
     const text = encodeURIComponent(this.title());
 
     return [
+      /* https://developer.x.com/en/docs/x-for-websites/web-intents/overview */
       {
         icon: 'twitter-x',
-        href: `https://x.com/intent/tweet?text=${text}&url=${url}&hashtags=angularlove`,
+        href: `https://twitter.com/intent/tweet?text=${text}&url=${url}&hashtags=angularlove`,
         ariaLabel: 'articleShareIcons.twitterAriaLabel',
       },
       {
