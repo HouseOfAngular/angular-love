@@ -30,7 +30,8 @@
         "styles": [
           "apps/blog/src/styles.scss",
           "libs/shared/assets/src/lib/styles/main.scss",
-          "libs/shared/assets/src/lib/styles/cookies-consent.scss"
+          "libs/shared/assets/src/lib/styles/cookies-consent.scss",
+          "node_modules/vanilla-cookieconsent/dist/cookieconsent.css"
         ],
         "stylePreprocessorOptions": {
           "includePaths": ["libs/shared/assets/src/lib/styles"]

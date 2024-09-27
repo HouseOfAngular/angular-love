@@ -1,0 +1,124 @@
+:root {
+  --cc-primary-color: #fff !important;
+  --cc-secondary-color: #d9d9d9 !important;
+  --cc-btn-secondary-bg: #ff006a !important;
+  --cc-btn-primary-bg: #ff006a !important;
+}
+
+.cm--bottom {
+  background: #100f15 !important;
+
+  .cm__btn {
+    &:hover {
+      background: var(--cc-btn-secondary-bg) !important;
+      color: #fff !important;
+      border-color: var(--cc-btn-secondary-bg) !important;
+    }
+  }
+
+  .cm__btn--secondary {
+    opacity: 30% !important;
+    &:hover {
+      opacity: 1 !important;
+    }
+  }
+}
+
+.pm--box {
+  background: #100f15 !important;
+
+  .pm__section {
+    &:hover {
+      background: none !important;
+    }
+  }
+
+  .pm__section-title {
+    background: #100f15 !important;
+  }
+
+  .pm__btn {
+    &:hover {
+      background: var(--cc-btn-secondary-bg) !important;
+      color: #fff !important;
+      border-color: var(--cc-btn-secondary-bg) !important;
+    }
+  }
+
+  .pm__btn--secondary {
+    opacity: 30% !important;
+
+    &:hover {
+      opacity: 1 !important;
+    }
+  }
+
+  .pm__close-btn {
+    opacity: 30% !important;
+
+    &:hover {
+      background: var(--cc-btn-secondary-bg) !important;
+      opacity: 1 !important;
+      border-color: var(--cc-btn-secondary-bg) !important;
+    }
+  }
+}
+
+@media (prefers-color-scheme: light) {
+  :root {
+    --cc-primary-color: 106 121 139 !important;
+    --cc-secondary-color: 106 121 139 !important;
+    --cc-btn-secondary-bg: #30363c !important;
+    --cc-btn-primary-bg: #30363c !important;
+  }
+  .cm--bottom {
+    background: #fff !important;
+
+    .cm__btn {
+      &:hover {
+        background: var(--cc-btn-primary-bg) !important;
+        color: #fff !important;
+        border-color: var(--cc-btn-primary-bg) !important;
+      }
+    }
+
+    .cm__btn--secondary {
+      background: #eaeff2 !important;
+      border-color: #eaeff2 !important;
+      opacity: 1 !important;
+    }
+  }
+  .pm--box {
+    background: #fff !important;
+
+    .pm__section-title {
+      background: #fff !important;
+    }
+
+    .pm__btn {
+      &:hover {
+        background: var(--cc-btn-primary-bg) !important;
+        color: #fff !important;
+        border-color: var(--cc-btn-primary-bg) !important;
+      }
+    }
+
+    .pm__btn--secondary {
+      background: #eaeff2 !important;
+      border-color: #eaeff2 !important;
+      opacity: 1 !important;
+    }
+
+    .pm__close-btn {
+      background: #eaeff2 !important;
+      border-color: #eaeff2 !important;
+      opacity: 1 !important;
+
+      &:hover {
+        background: var(--cc-btn-primary-bg) !important;
+        color: #fff !important;
+        border-color: var(--cc-btn-primary-bg) !important;
+      }
+    }
+  }
+}
