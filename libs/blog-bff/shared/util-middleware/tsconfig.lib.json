@@ -2,9 +2,10 @@
   "extends": "./tsconfig.json",
   "compilerOptions": {
     "module": "commonjs",
+    "lib": ["ESNext"],
     "outDir": "../../../../dist/out-tsc",
     "declaration": true,
-    "types": ["node"]
+    "types": ["node", "@cloudflare/workers-types"]
   },
   "exclude": ["jest.config.ts", "src/**/*.spec.ts", "src/**/*.test.ts"],
   "include": ["src/**/*.ts"]

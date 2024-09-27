@@ -12,3 +12,8 @@ vars = { IS_PROD = "true" }
 [env.dev]
 name = "blog-bff-dev"
 vars = { IS_PROD = "false" }
+
+[[kv_namespaces]]
+binding = "CACHE_KV"
+id = ""
+preview_id = ""
