@@ -1,4 +1,6 @@
-<al-autumn-camp-banner />
+@if (slides(); as slides) {
+  <al-banner-carousel [banners]="slides" [msPerSlide]="msPerSlide()!" />
+}
 <al-latest-articles />
 <al-articles-list />
 <al-partners [partnerList]="[hoaHireUs]" title="homePage.mainPartner" />

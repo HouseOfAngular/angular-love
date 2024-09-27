@@ -12,7 +12,6 @@ import {
   LayoutComponent,
 } from '@angular-love/blog/layouts/ui-layouts';
 import { SearchComponent } from '@angular-love/blog/search/feature-search';
-import { AdBannerComponent } from '@angular-love/blog/shared/ad-banner';
 
 @Component({
   selector: 'al-root-shell',
@@ -46,7 +45,6 @@ import { AdBannerComponent } from '@angular-love/blog/shared/ad-banner';
     FooterComponent,
     LayoutComponent,
     SearchComponent,
-    AdBannerComponent,
     NgClass,
   ],
 })
