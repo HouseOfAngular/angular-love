@@ -1,0 +1,17 @@
+#cc-main {
+  /** Change font **/
+  --cc-font-family: 'Inter';
+
+  --cc-btn-primary-bg: rgba(255, 0, 106, 1);
+  --cc-btn-primary-border-color: transparent;
+  --cc-btn-primary-hover-bg: rgba(255, 0, 106, 0.7);
+  --cc-btn-primary-hover-border-color: transparent;
+
+  --cc-btn-secondary-bg: rgba(255, 0, 106, 0.3);
+  --cc-btn-secondary-border-color: transparent;
+  --cc-btn-secondary-hover-bg: rgba(255, 0, 106, 0.15);
+  --cc-btn-secondary-hover-border-color: transparent;
+
+  /** Also make toggles the same color as the button **/
+  --cc-toggle-on-bg: var(--cc-btn-primary-bg);
+}
