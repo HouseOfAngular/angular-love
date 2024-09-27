@@ -1,6 +1,8 @@
 import { ViewportScroller } from '@angular/common';
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
+
+import { AppThemeStore } from '@angular-love/data-access-app-theme';
 
 @Component({
   standalone: true,
@@ -11,8 +13,11 @@ import { RouterOutlet } from '@angular/router';
   imports: [RouterOutlet],
 })
 export class AppComponent {
+  private readonly _appThemeStore = inject(AppThemeStore);
+
   constructor(viewport: ViewportScroller) {
     viewport.setOffset([0, 80]);
+    this._appThemeStore.syncWithSystemTheme();
 
     // Our fonts are self-hosted.
     // https://fonts.google.com/knowledge/using_type/self_hosting_web_fonts
