@@ -1,4 +1,4 @@
-import { DatePipe } from '@angular/common';
+import { DatePipe, NgOptimizedImage } from '@angular/common';
 import { ChangeDetectionStrategy, Component, input } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { FastSvgComponent } from '@push-based/ngx-fast-svg';
@@ -19,9 +19,11 @@ import { UiDifficultyComponent } from '@angular-love/blog/shared/ui-difficulty';
     UiDifficultyComponent,
     AlLocalizePipe,
     FastSvgComponent,
+    NgOptimizedImage,
   ],
   templateUrl: './article-compact-card.component.html',
 })
 export class ArticleCompactCardComponent {
   readonly article = input.required<ArticleCard>();
+  readonly imagePriority = input<number | null>(null);
 }
