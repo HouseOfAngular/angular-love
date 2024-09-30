@@ -28,7 +28,7 @@
       @defer {
         <a [routerLink]="['/', 'author', author().slug] | alLocalize">
           <p
-            class="author-description line-clamp-5 text-justify text-sm"
+            class="@3xl:line-clamp-none line-clamp-5 text-justify text-sm"
             [innerHTML]="sanitizedDescription().description"
           ></p>
         </a>
