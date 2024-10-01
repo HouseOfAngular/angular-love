@@ -9,11 +9,14 @@ logpush = true
 name = "blog-bff"
 vars = { IS_PROD = "true" }
 
+[[env.prod.kv_namespaces]]
+binding = "CACHE_KV"
+id = "<kv_prod_namespace_id>"
+
 [env.dev]
 name = "blog-bff-dev"
 vars = { IS_PROD = "false" }
 
-[[kv_namespaces]]
+[[env.dev.kv_namespaces]]
 binding = "CACHE_KV"
-id = ""
-preview_id = ""
+id = "<kv_dev_namespace_id>"
