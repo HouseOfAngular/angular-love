@@ -5,14 +5,15 @@ import {
   computed,
   inject,
   input,
+  SecurityContext,
 } from '@angular/core';
+import { DomSanitizer } from '@angular/platform-browser';
 import { RouterLink } from '@angular/router';
 import { TranslocoService } from '@jsverse/transloco';
 
 import { AuthorTitle } from '@angular-love/blog/contracts/authors';
 import { AlLocalizePipe } from '@angular-love/blog/i18n/util';
 import { AvatarComponent } from '@angular-love/blog/shared/ui-avatar';
-import { DynamicTextClampComponent } from '@angular-love/blog/shared/ui-dynamic-text-clamp';
 import {
   SocialMediaIconItemComponent,
   SocialMediaIconItemUi,
@@ -27,7 +28,6 @@ import { AuthorCardTemplateComponent } from './author-card-template.component';
   imports: [
     AuthorCardTemplateComponent,
     AvatarComponent,
-    DynamicTextClampComponent,
     RouterLink,
     NgTemplateOutlet,
     SocialMediaIconItemComponent,
@@ -42,14 +42,8 @@ import { AuthorCardTemplateComponent } from './author-card-template.component';
   },
 })
 export class AuthorCardComponent {
-  author = input.required<UiAuthorCard>();
-
-  clampText = input<boolean>();
-  linkable = input<boolean>(false);
-
-  descriptionClass = computed(
-    () => 'text-sm' + (this.clampText() ? ' line-clamp-3' : ''),
-  );
+  readonly author = input.required<UiAuthorCard>();
+  readonly linkable = input<boolean>(false);
 
   private readonly _authorTitlesTranslations = inject(
     TranslocoService,
@@ -65,7 +59,7 @@ export class AuthorCardComponent {
         .join(', ') ?? '',
   );
 
-  socials = computed<SocialMediaIconItemUi[]>(() => {
+  protected readonly socials = computed<SocialMediaIconItemUi[]>(() => {
     const { github, twitter, linkedin } = this.author();
     return [
       {
@@ -89,4 +83,14 @@ export class AuthorCardComponent {
         social.usernameOrPageId !== null,
     );
   });
+
+  private readonly _domSanitizer = inject(DomSanitizer);
+
+  private sanitize(val: string): string {
+    return this._domSanitizer.sanitize(SecurityContext.HTML, val) || '';
+  }
+
+  readonly sanitizedDescription = computed<{ description: string }>(() => ({
+    description: this.sanitize(this.author().description),
+  }));
 }
