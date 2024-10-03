@@ -1,124 +1,17 @@
-:root {
-  --cc-primary-color: #fff !important;
-  --cc-secondary-color: #d9d9d9 !important;
-  --cc-btn-secondary-bg: #ff006a !important;
-  --cc-btn-primary-bg: #ff006a !important;
-}
+#cc-main {
+  /** Change font **/
+  --cc-font-family: 'Inter';
 
-.cm--bottom {
-  background: #100f15 !important;
+  --cc-btn-primary-bg: rgba(255, 0, 106, 1);
+  --cc-btn-primary-border-color: transparent;
+  --cc-btn-primary-hover-bg: rgba(255, 0, 106, 0.7);
+  --cc-btn-primary-hover-border-color: transparent;
 
-  .cm__btn {
-    &:hover {
-      background: var(--cc-btn-secondary-bg) !important;
-      color: #fff !important;
-      border-color: var(--cc-btn-secondary-bg) !important;
-    }
-  }
+  --cc-btn-secondary-bg: rgba(255, 0, 106, 0.3);
+  --cc-btn-secondary-border-color: transparent;
+  --cc-btn-secondary-hover-bg: rgba(255, 0, 106, 0.15);
+  --cc-btn-secondary-hover-border-color: transparent;
 
-  .cm__btn--secondary {
-    opacity: 30% !important;
-    &:hover {
-      opacity: 1 !important;
-    }
-  }
-}
-
-.pm--box {
-  background: #100f15 !important;
-
-  .pm__section {
-    &:hover {
-      background: none !important;
-    }
-  }
-
-  .pm__section-title {
-    background: #100f15 !important;
-  }
-
-  .pm__btn {
-    &:hover {
-      background: var(--cc-btn-secondary-bg) !important;
-      color: #fff !important;
-      border-color: var(--cc-btn-secondary-bg) !important;
-    }
-  }
-
-  .pm__btn--secondary {
-    opacity: 30% !important;
-
-    &:hover {
-      opacity: 1 !important;
-    }
-  }
-
-  .pm__close-btn {
-    opacity: 30% !important;
-
-    &:hover {
-      background: var(--cc-btn-secondary-bg) !important;
-      opacity: 1 !important;
-      border-color: var(--cc-btn-secondary-bg) !important;
-    }
-  }
-}
-
-@media (prefers-color-scheme: light) {
-  :root {
-    --cc-primary-color: 106 121 139 !important;
-    --cc-secondary-color: 106 121 139 !important;
-    --cc-btn-secondary-bg: #30363c !important;
-    --cc-btn-primary-bg: #30363c !important;
-  }
-  .cm--bottom {
-    background: #fff !important;
-
-    .cm__btn {
-      &:hover {
-        background: var(--cc-btn-primary-bg) !important;
-        color: #fff !important;
-        border-color: var(--cc-btn-primary-bg) !important;
-      }
-    }
-
-    .cm__btn--secondary {
-      background: #eaeff2 !important;
-      border-color: #eaeff2 !important;
-      opacity: 1 !important;
-    }
-  }
-  .pm--box {
-    background: #fff !important;
-
-    .pm__section-title {
-      background: #fff !important;
-    }
-
-    .pm__btn {
-      &:hover {
-        background: var(--cc-btn-primary-bg) !important;
-        color: #fff !important;
-        border-color: var(--cc-btn-primary-bg) !important;
-      }
-    }
-
-    .pm__btn--secondary {
-      background: #eaeff2 !important;
-      border-color: #eaeff2 !important;
-      opacity: 1 !important;
-    }
-
-    .pm__close-btn {
-      background: #eaeff2 !important;
-      border-color: #eaeff2 !important;
-      opacity: 1 !important;
-
-      &:hover {
-        background: var(--cc-btn-primary-bg) !important;
-        color: #fff !important;
-        border-color: var(--cc-btn-primary-bg) !important;
-      }
-    }
-  }
+  /** Also make toggles the same color as the button **/
+  --cc-toggle-on-bg: var(--cc-btn-primary-bg);
 }
