@@ -3,7 +3,7 @@ import { TranslocoDirective } from '@jsverse/transloco';
 
 import {
   CardComponent,
-  GradientCardDirective,
+  DarkGradientCardDirective,
 } from '@angular-love/blog/shared/ui-card';
 
 @Component({
@@ -11,7 +11,7 @@ import {
   standalone: true,
   templateUrl: './become-author-advertisement.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [GradientCardDirective, CardComponent, TranslocoDirective],
+  imports: [DarkGradientCardDirective, CardComponent, TranslocoDirective],
   host: {
     'data-testid': 'become-author-advertisement',
   },

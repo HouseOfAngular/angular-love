@@ -8,7 +8,7 @@ import { CardComponent } from '@angular-love/blog/shared/ui-card';
   standalone: true,
   imports: [NgxSkeletonLoaderModule, CardComponent],
   template: `
-    <al-card>
+    <al-card class="bg-transparent">
       <div alCardContent class="p-2">
         <div class="flex flex-row items-center">
           <!-- avatar -->
@@ -18,7 +18,7 @@ import { CardComponent } from '@angular-love/blog/shared/ui-card';
             [theme]="{
               height: '32px',
               width: '32px',
-              margin: '0'
+              margin: '0',
             }"
           />
           <!-- name -->

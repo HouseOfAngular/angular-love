@@ -170,6 +170,9 @@
       "@angular-love/data-access": [
         "libs/blog/newsletter/data-access/src/index.ts"
       ],
+      "@angular-love/data-access-app-theme": [
+        "libs/blog/app-theme/data-access-app-theme/src/index.ts"
+      ],
       "@angular-love/feature-about-us": [
         "libs/blog/about-us/feature-about-us/src/index.ts"
       ],

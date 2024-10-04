@@ -18,7 +18,7 @@ import { AlLocalizeService } from '@angular-love/blog/i18n/util';
 import { ButtonComponent } from '@angular-love/blog/shared/ui-button';
 import {
   CardComponent,
-  GradientCardDirective,
+  DarkGradientCardDirective,
 } from '@angular-love/blog/shared/ui-card';
 import { NewsletterStore } from '@angular-love/data-access';
 
@@ -26,7 +26,7 @@ import { NewsletterStore } from '@angular-love/data-access';
   selector: 'al-newsletter',
   standalone: true,
   imports: [
-    GradientCardDirective,
+    DarkGradientCardDirective,
     CardComponent,
     ReactiveFormsModule,
     TranslocoDirective,

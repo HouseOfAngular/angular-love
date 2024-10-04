@@ -1,10 +1,17 @@
+const {
+  themeVariants,
+  prefersLight,
+  prefersDark,
+} = require('tailwindcss-theme-variants');
+
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-  darkMode: ['class'],
   theme: {
     extend: {
       colors: {
         'al-foreground': 'rgb(var(--foreground) / <alpha-value>)',
+        'al-primary-foreground':
+          'rgb(var(--primary-foreground) / <alpha-value>)',
         'al-card': 'rgb(var(--card) / <alpha-value>)',
         'al-background': 'rgba(var(--background) / <alpha-value>)',
         'al-border': 'rgb(var(--border) / <alpha-value>)',
@@ -28,5 +35,17 @@ module.exports = {
       },
     },
   },
-  plugins: [require('@tailwindcss/container-queries')],
+  plugins: [
+    require('@tailwindcss/container-queries'),
+    themeVariants({
+      themes: {
+        light: {
+          mediaQuery: prefersLight /* "@media (prefers-color-scheme: light)" */,
+        },
+        dark: {
+          mediaQuery: prefersDark /* "@media (prefers-color-scheme: dark)" */,
+        },
+      },
+    }),
+  ],
 };
