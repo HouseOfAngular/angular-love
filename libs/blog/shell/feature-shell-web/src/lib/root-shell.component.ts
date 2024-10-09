@@ -5,6 +5,10 @@ import { Router, RouterOutlet } from '@angular/router';
 import { TranslocoService } from '@jsverse/transloco';
 import { startWith } from 'rxjs';
 
+import {
+  ArticleDetailsStore,
+  ArticleListStore,
+} from '@angular-love/blog/articles/data-access';
 import { AlLocalizeService } from '@angular-love/blog/i18n/util';
 import {
   FooterComponent,
@@ -65,11 +69,29 @@ export class RootShellComponent {
 
   private readonly _router = inject(Router);
   private readonly _localizeService = inject(AlLocalizeService);
+  private readonly _articleDetailsStore = inject(ArticleDetailsStore);
 
   onLanguageChange(lang: string) {
-    this._router.navigateByUrl(
-      this._localizeService.localizeExplicitPath(this._router.url, lang),
-    );
+    const availablePolishTranslation = this._articleDetailsStore
+      .articleDetails()
+      ?.otherTranslations.find((item) => item.locale === 'pl_PL');
+
+    const localizedExplicitPath: Readonly<string> =
+      this._localizeService.localizeExplicitPath(this._router.url, lang);
+
+    const restrictedURLs: Readonly<string[]> = ['about-us', 'become-author'];
+
+    if (
+      lang === 'pl' &&
+      !availablePolishTranslation &&
+      !restrictedURLs.includes(localizedExplicitPath) &&
+      localizedExplicitPath.length > 3
+    ) {
+      this._router.navigateByUrl('/');
+      return;
+    }
+
+    this._router.navigateByUrl(localizedExplicitPath);
   }
 
   constructor(viewport: ViewportScroller) {
