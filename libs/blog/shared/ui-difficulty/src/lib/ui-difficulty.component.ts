@@ -27,7 +27,7 @@ export type UiDifficulty = 'beginner' | 'intermediate' | 'advanced';
         class="flex items-center self-stretch rounded-l-md pl-1 text-center align-middle xl:pl-2"
         [ngClass]="{
           'dark:bg-al-background bg-transparent': isColorBackground(),
-          'bg-al-border': !isColorBackground(),
+          'bg-al-grey': !isColorBackground(),
         }"
       >
         <span
@@ -79,7 +79,7 @@ export type UiDifficulty = 'beginner' | 'intermediate' | 'advanced';
         class="flex items-center self-stretch rounded-r-md pr-1 text-center align-middle"
         [ngClass]="{
           'dark:bg-al-background bg-transparent': isColorBackground(),
-          'bg-al-border': !isColorBackground(),
+          'bg-al-grey': !isColorBackground(),
         }"
       ></div>
     </div>

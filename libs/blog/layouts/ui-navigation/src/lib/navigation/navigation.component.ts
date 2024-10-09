@@ -33,6 +33,7 @@ export type NavItem = {
 })
 export class NavigationComponent {
   readonly layout = input<'vertical' | 'horizontal'>('horizontal');
+  readonly whiteFont = input<boolean>(false);
 
   readonly navItems: NavItem[] = [
     {

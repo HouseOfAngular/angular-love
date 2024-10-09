@@ -19,6 +19,7 @@ module.exports = {
         'al-pink': 'rgba(var(--primary) / <alpha-value>)',
         'al-primary': 'rgba(var(--primary) / <alpha-value>)',
         'al-muted': 'rgba(var(--muted) / <alpha-value>)',
+        'al-grey': 'rgba(var(--grey) / <alpha-value>)',
       },
       backgroundImage: {
         'al-radial-gradient':
@@ -31,7 +32,7 @@ module.exports = {
       boxShadow: {
         'al-primary': '0 0 0 1px rgba(var(--primary) / <alpha-value>)',
         'al-full-background': '0px 0px 0px 999px rgba(var(--background) / 1)',
-        'al-full-border': '0px 0px 0px 999px rgba(var(--border) / 1)',
+        'al-full-border': '0px 0px 0px 999px rgba(var(--grey) / 1)',
       },
     },
   },
