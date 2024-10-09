@@ -17,6 +17,9 @@ export const kvCache = (options: {
   ttl?: number; // TTL in seconds
 }): MiddlewareHandler => {
   return async function kvCache(c, next) {
+    const cacheControl = c.req.header('Cache-Control') || '';
+    const noCache = /no-cache/.test(cacheControl);
+
     let key = c.req.url;
     if (options.keyGenerator) {
       key = await options.keyGenerator(c);
@@ -26,22 +29,26 @@ export const kvCache = (options: {
       key = options.cacheKeyPrefix + key;
     }
 
-    // Attempt to retrieve the cached response
-    const cachedResponseBody = await options.kvNamespace.get(
-      key,
-      'arrayBuffer',
-    );
-    if (cachedResponseBody) {
-      // Retrieve stored headers
-      const cachedHeadersJson = await options.kvNamespace.get(key + ':headers');
-      const headers = new Headers();
-      if (cachedHeadersJson) {
-        const headersObj = JSON.parse(cachedHeadersJson);
-        for (const [k, v] of Object.entries(headersObj)) {
-          headers.set(k, v as string);
+    if (!noCache) {
+      // Attempt to retrieve the cached response
+      const cachedResponseBody = await options.kvNamespace.get(
+        key,
+        'arrayBuffer',
+      );
+      if (cachedResponseBody) {
+        // Retrieve stored headers
+        const cachedHeadersJson = await options.kvNamespace.get(
+          key + ':headers',
+        );
+        const headers = new Headers();
+        if (cachedHeadersJson) {
+          const headersObj = JSON.parse(cachedHeadersJson);
+          for (const [k, v] of Object.entries(headersObj)) {
+            headers.set(k, v as string);
+          }
         }
+        return new Response(cachedResponseBody, { headers });
       }
-      return new Response(cachedResponseBody, { headers });
     }
 
     // Proceed to the next middleware or handler
@@ -49,6 +56,11 @@ export const kvCache = (options: {
 
     // Cache the response if it's successful
     if (!c.res.ok) {
+      return;
+    }
+
+    // Do not cache the response if `no-cache` was passed
+    if (noCache) {
       return;
     }
 
