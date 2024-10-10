@@ -16,6 +16,14 @@ app.route('/authors', authors);
 app.route('/newsletter', newsletter);
 app.route('/banners', banners);
 
+app.get('/robots.txt', (c) => {
+  const robotsTxt = `User-agent: *
+Disallow: /`;
+  return c.text(robotsTxt, 200, {
+    'Content-Type': 'text/plain',
+  });
+});
+
 app.onError((err, c) => {
   console.error(err);
   if (err instanceof HTTPException) {

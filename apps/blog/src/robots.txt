@@ -1,0 +1,14 @@
+User-agent: *
+Allow: /
+
+Host: staging.angular.love
+User-agent: *
+Disallow: /
+
+Host: testing.angular.love
+User-agent: *
+Disallow: /
+
+Host: bff.angular.love
+User-agent: *
+Disallow: /
