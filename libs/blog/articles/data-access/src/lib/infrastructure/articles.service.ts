@@ -17,6 +17,14 @@ export class ArticlesService {
     return this._http.get<Article>(`${this._apiBaseUrl}/articles/${slug}`);
   }
 
+  getArticlePreviewBySlug(slug: string): Observable<Article> {
+    return this._http.get<Article>(`${this._apiBaseUrl}/articles/${slug}`, {
+      headers: {
+        'Cache-Control': 'no-cache',
+      },
+    });
+  }
+
   getArticleList(
     query: ArticlesQuery,
   ): Observable<ArrayResponse<ArticlePreview>> {

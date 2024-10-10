@@ -1,6 +1,10 @@
 import { Routes } from '@angular/router';
 
-import { articleExistsGuard } from '@angular-love/blog/articles/data-access';
+import {
+  ArticleDetailsStore,
+  articleExistsGuard,
+  IsArticlePreview,
+} from '@angular-love/blog/articles/data-access';
 
 export const articleRoutes: Routes = [
   {
@@ -38,6 +42,16 @@ export const articleRoutes: Routes = [
     data: {
       seo: { title: 'Angular In Depth' },
     },
+  },
+  {
+    path: 'preview/:articleSlug',
+    providers: [
+      { provide: IsArticlePreview, useValue: true },
+      ArticleDetailsStore,
+    ],
+    loadComponent: async () =>
+      (await import('@angular-love/blog/articles/feature-article'))
+        .ArticleDetailsContainerComponent,
   },
   {
     path: ':articleSlug',
