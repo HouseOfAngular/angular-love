@@ -69,6 +69,9 @@ export const PageDetailsStore = signalStore(
           ),
         ),
       ),
+      reset: () => {
+        return patchState(store, initialState);
+      },
     };
   }),
   withComputed(({ pageDetails, lang }) => ({

@@ -109,13 +109,15 @@ async function fetchAuthorRoutes(lang, skip = 0, take = 50) {
 async function fetchPageRoutes(lang) {
   const url = `${API_BASE_URL}/pages`;
   try {
-    const { data, total } = await fetch(url).then((resp) => resp.json());
-    const pageSlugs = data.map((page) => ({
-      url: constructUrl(`pages/${page.slug}`, lang),
-      publishDate: new Date().toISOString(),
-    }));
+    const { data } = await fetch(url).then((resp) => resp.json());
+    const pageSlugs = data
+      .filter((page) => page.lang === lang)
+      .map((page) => ({
+        url: constructUrl(page.slug, lang),
+        publishDate: new Date().toISOString(),
+      }));
     ssgRoutes.push(...pageSlugs);
-    // pageRoutes.push(...pageSlugs);
+    pageRoutes.push(...pageSlugs);
   } catch (error) {
     console.error(`Failed to fetch pages from ${url}`);
     throw error;
@@ -167,10 +169,10 @@ function writeSSGRoutesToFile() {
 }
 
 /**
- * Creates a static JSON asset with allowed article paths for a given language.
+ * Creates a static JSON asset with allowed article & pages paths for a given language.
  * @param {"pl" | "en"} lang
  */
-function writeArticlePathsToFile(lang) {
+function writePathsToFile(lang) {
   const stream = createWriteStream(`${ROOT_PATHS_FILE_PREFIX}-${lang}.json`, {
     encoding: 'utf-8',
   });
@@ -182,32 +184,17 @@ function writeArticlePathsToFile(lang) {
   const filteredArticlePaths = articleRoutes
     .filter((pathObj) => pathObj.url.startsWith(`/${lang}/`))
     .map((pathObj) => pathObj.url.replace(`/${lang}/`, ''));
-
-  try {
-    stream.write(JSON.stringify({ articles: filteredArticlePaths }));
-  } catch (error) {
-    console.error('Error during write operation:', error);
-    throw error;
-  } finally {
-    stream.end();
-  }
-}
-
-function writePagePathsToFile(lang) {
-  const stream = createWriteStream(`${ROOT_PATHS_FILE_PREFIX}-${lang}.json`, {
-    encoding: 'utf-8',
-  });
-
-  stream.on('error', (error) => {
-    console.error('Error writing paths to file:', error);
-  });
-
   const filteredPagePaths = pageRoutes
     .filter((pathObj) => pathObj.url.startsWith(`/${lang}/`))
     .map((pathObj) => pathObj.url.replace(`/${lang}/`, ''));
 
   try {
-    stream.write(JSON.stringify({ pages: filteredPagePaths }));
+    stream.write(
+      JSON.stringify({
+        articles: filteredArticlePaths,
+        pages: filteredPagePaths,
+      }),
+    );
   } catch (error) {
     console.error('Error during write operation:', error);
     throw error;
@@ -226,8 +213,7 @@ async function main() {
 
     SUPPORTED_LANGUAGES.forEach((lang) => {
       appendStaticRoutes(lang);
-      writeArticlePathsToFile(lang);
-      writePagePathsToFile(lang);
+      writePathsToFile(lang);
     });
 
     writeSSGRoutesToFile();

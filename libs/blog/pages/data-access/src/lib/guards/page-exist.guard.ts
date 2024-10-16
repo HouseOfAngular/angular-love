@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { inject, isDevMode } from '@angular/core';
-import { CanActivateFn, Router } from '@angular/router';
+import { CanMatchFn, Router } from '@angular/router';
 import { TranslocoService } from '@jsverse/transloco';
 import { catchError, map, of } from 'rxjs';
 
@@ -8,9 +8,9 @@ import { AlLocalizeService } from '@angular-love/blog/i18n/util';
 
 import { PageDetailsStore } from '../state/page-details.store';
 
-export const pageExistGuard: CanActivateFn = (route) => {
+export const pageExistGuard: CanMatchFn = (route, segments) => {
   // bypass for local development
-  if (isDevMode()) return true;
+  if (isDevMode()) return false;
 
   const http = inject(HttpClient);
   const router = inject(Router);
@@ -19,42 +19,35 @@ export const pageExistGuard: CanActivateFn = (route) => {
 
   const { pageDetails, alternativeLanguageSlug } = inject(PageDetailsStore);
 
-  const notFoundPageUrlTree = router.createUrlTree(
-    localizeService.localizePath(['/', '404']),
-  );
-
   return http
     .get<{
       pages: string[];
     }>(`/assets/root-paths-${transloco.getActiveLang()}.json`)
     .pipe(
       map((data) => {
-        const slug = route.paramMap.get('slug');
+        const slug = segments[segments.length - 1].path;
 
         if (slug && data.pages.includes(slug)) {
           return true;
         }
 
         // check if the page is in the alternative language
-        if (pageDetails()?.lang !== transloco.getActiveLang()) {
-          // if the page is in the alternative language, redirect to the alternative language page
-          if (alternativeLanguageSlug()) {
-            return router.createUrlTree(
-              localizeService.localizePath([
-                'pages/',
-                alternativeLanguageSlug(),
-              ]),
-              {},
-            );
-          } else {
-            return notFoundPageUrlTree;
-          }
+        // if the page is in the alternative language, redirect to the alternative language page
+        if (
+          pageDetails() &&
+          pageDetails()!.lang !== transloco.getActiveLang() &&
+          alternativeLanguageSlug()
+        ) {
+          return router.createUrlTree(
+            localizeService.localizePath(['/', alternativeLanguageSlug()]),
+          );
         }
 
-        return notFoundPageUrlTree;
+        return false;
       }),
-      catchError(() => {
-        return of(notFoundPageUrlTree);
+      catchError((err) => {
+        console.error(err);
+        return of(false);
       }),
     );
 };

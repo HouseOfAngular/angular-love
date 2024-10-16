@@ -10,7 +10,7 @@ export const toPageList = (dto: WPPageDto[]): Page[] => {
       content: dto.content.rendered,
       excerpt: dto.excerpt.rendered,
       otherTranslations: dto.other_translations || [],
-      lang: dto.lang,
+      lang: dto.lang.slice(0, 2),
     };
   });
 };
@@ -22,6 +22,6 @@ export const toPage = (dto: WPPageDto): Page => {
     content: dto.content.rendered,
     excerpt: dto.excerpt.rendered,
     otherTranslations: dto.other_translations || [],
-    lang: dto.lang,
+    lang: dto.lang.slice(0, 2),
   };
 };

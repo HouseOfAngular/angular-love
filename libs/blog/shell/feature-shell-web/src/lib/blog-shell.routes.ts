@@ -11,13 +11,13 @@ export const blogShellRoutes: Route[] = [
     path: 'pl',
     pathMatch: 'prefix',
     loadChildren: () => commonRoutes,
-    canActivate: [activeLanguageGuard('pl')],
+    canMatch: [activeLanguageGuard('pl')],
   },
   {
     path: '',
     pathMatch: 'prefix',
     loadChildren: () => commonRoutes,
-    canActivate: [activeLanguageGuard('en')],
+    canMatch: [activeLanguageGuard('en')],
   },
 ];
 
@@ -82,8 +82,8 @@ export const commonRoutes: Route[] = [
           seo: { title: 'seo.notFound' },
         },
       },
-      ...articleRoutes,
       ...pageRoutes,
+      ...articleRoutes,
       {
         path: '**',
         redirectTo: '404',
