@@ -45,7 +45,7 @@ export const articleExistsGuard: CanActivateFn = (route) => {
               {},
             );
           } else {
-            return notFoundPageUrlTree;
+            return router.createUrlTree(['/pl']);
           }
         }
 
