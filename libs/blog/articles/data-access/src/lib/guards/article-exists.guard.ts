@@ -44,9 +44,7 @@ export const articleExistsGuard: CanActivateFn = (route) => {
               localizeService.localizePath(['/', alternativeLanguageSlug()]),
               {},
             );
-          } else {
-            return notFoundPageUrlTree;
-          }
+          } else return router.createUrlTree([`/${transloco.getActiveLang()}`]);
         }
 
         return notFoundPageUrlTree;
