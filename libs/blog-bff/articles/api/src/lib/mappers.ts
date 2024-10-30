@@ -45,7 +45,13 @@ export const toArticle = (dto?: WPPostDetailsDto): Article => {
   const title = cheerio.load(dto.title.rendered || '');
 
   const content = sanitizeHtml(dto?.content.rendered || '', {
-    allowedTags: sanitizeHtml.defaults.allowedTags.concat(['img', 'iframe']),
+    allowedTags: sanitizeHtml.defaults.allowedTags.concat([
+      'img',
+      'iframe',
+      'script',
+    ]),
+    allowVulnerableTags: true,
+    allowedScriptHostnames: ['platform.twitter.com'],
     allowedAttributes: {
       img: [
         'src',
@@ -60,8 +66,10 @@ export const toArticle = (dto?: WPPostDetailsDto): Article => {
       ],
       a: ['href'],
       iframe: ['src'],
+      script: ['src', 'async', 'charset'],
     },
     allowedClasses: {
+      blockquote: ['twitter-tweet'],
       pre: ['lang:*'],
       div: ['crayon-line', 'crayon-syntax'],
     },
