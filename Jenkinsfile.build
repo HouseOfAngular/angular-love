@@ -1,0 +1,38 @@
+pipeline {
+    agent any
+
+    stages {
+        stage('Trigger Builds') {
+            steps {
+                script {
+                    // Sleeps are since we don't watch for end of the process, and jobs only start the process
+                    build(job: 'angular.love/clear-bff-cache', 
+                        parameters: [
+                            [$class: 'BooleanParameterValue', name: 'RUN_ON_DEV', value: true],
+                            [$class: 'BooleanParameterValue', name: 'RUN_ON_PROD', value: true]
+                        ],
+                        wait: true)
+                    sleep(time:3,unit:"MINUTES")
+
+                    build(job: 'angular.love/clear-site-cache', wait: true)
+                    sleep(time:30,unit:"SECONDS")
+
+                    build(job: 'angular.love/build-new-blog-main', wait: false)
+                    sleep(time:20,unit:"MINUTES")
+
+                    build(job: 'angular.love/clear-site-cache', wait: true)
+                }
+            }
+        }
+    }
+
+    post {
+        failure {
+            echo "Failed to trigger builds"
+        }
+        success {
+            echo "Successfully triggered all builds"
+        }
+    }
+}
+
