@@ -34,7 +34,7 @@ pipeline {
                     usernamePassword(credentialsId: 'cf-workers-creds', usernameVariable: 'CLOUDFLARE_ACCOUNT_ID', passwordVariable: 'CLOUDFLARE_API_TOKEN'),
                 ]) {
                     sh """
-                        ./purge_kv.sh $KV_DEV
+                        ./scripts/purge_kv.sh $KV_DEV
                     """   
                 }
             }
@@ -48,7 +48,7 @@ pipeline {
                     usernamePassword(credentialsId: 'cf-workers-creds', usernameVariable: 'CLOUDFLARE_ACCOUNT_ID', passwordVariable: 'CLOUDFLARE_API_TOKEN'),
                 ]) {
                     sh """
-                        ./purge_kv.sh $KV_PROD
+                        ./scripts/purge_kv.sh $KV_PROD
                     """   
                 }
             }
