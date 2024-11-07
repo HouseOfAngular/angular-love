@@ -1,9 +1,10 @@
 User-agent: *
 Allow: /
 
-Host: staging.angular.love
+Host: wp.angular.love
 User-agent: *
 Disallow: /
+Allow: /wp-content/
 
 Host: testing.angular.love
 User-agent: *
