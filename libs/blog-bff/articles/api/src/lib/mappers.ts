@@ -11,7 +11,6 @@ import {
 
 import { WPPostDetailsDto, WPPostDto } from './dtos';
 import {
-  crayonCodeRewriter,
   modifyImages,
   modifyLinks,
   removeEmptyParagraphs,
@@ -71,6 +70,7 @@ export const toArticle = (dto?: WPPostDetailsDto): Article => {
     allowedClasses: {
       blockquote: ['twitter-tweet'],
       pre: ['lang:*'],
+      code: ['language-*'],
       div: ['crayon-line', 'crayon-syntax'],
     },
     transformTags: {
@@ -81,7 +81,6 @@ export const toArticle = (dto?: WPPostDetailsDto): Article => {
 
   rewriteHTML(
     wpCodeRewriter,
-    crayonCodeRewriter,
     removeEmptyParagraphs,
     modifyLinks,
     modifyImages,
