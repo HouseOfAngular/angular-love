@@ -38,7 +38,7 @@
     "@ngrx/operators": "^17.2.0",
     "@ngrx/signals": "^17.0.1",
     "@nx/angular": "19.5.1",
-    "@push-based/ngx-fast-svg": "^18.0.0",
+    "@push-based/ngx-fast-svg": "^18.1.0",
     "@tailwindcss/container-queries": "^0.1.1",
     "algoliasearch": "^4.23.3",
     "cheerio": "1.0.0-rc.12",
