@@ -21,7 +21,8 @@ const highlighter = await createHighlighterCore({
   ],
 });
 
-const themes = highlighter.getLoadedThemes();
+const shikiThemes = highlighter.getLoadedThemes();
+const shikiLanguages = highlighter.getLoadedLanguages();
 
 type RewriteAdapter = ($: CheerioAPI) => void;
 
@@ -65,6 +66,10 @@ export const wpCodeRewriter: RewriteAdapter = ($) => {
       language = 'angular-ts';
     }
 
+    if (!shikiLanguages.includes(language)) {
+      language = 'angular-ts';
+    }
+
     if (language === 'typescript' || language === 'ts') {
       language = 'angular-ts';
     }
@@ -74,10 +79,9 @@ export const wpCodeRewriter: RewriteAdapter = ($) => {
     }
 
     const highlightedCode = highlighter.codeToHtml(code, {
-      theme: highlighter.getLoadedThemes()[0],
       themes: {
-        dark: themes[0],
-        light: themes[1],
+        dark: shikiThemes[0],
+        light: shikiThemes[1],
       },
       lang: language,
     });
