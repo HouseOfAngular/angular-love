@@ -2,6 +2,7 @@ import { Route } from '@angular/router';
 
 import { articleRoutes } from '@angular-love/blog/articles/feature/shell';
 import { activeLanguageGuard } from '@angular-love/blog/i18n/data-access';
+import { pageRoutes } from '@angular-love/blog/pages/feature-shell';
 
 import { RootShellComponent } from './root-shell.component';
 
@@ -10,13 +11,13 @@ export const blogShellRoutes: Route[] = [
     path: 'pl',
     pathMatch: 'prefix',
     loadChildren: () => commonRoutes,
-    canActivate: [activeLanguageGuard('pl')],
+    canMatch: [activeLanguageGuard('pl')],
   },
   {
     path: '',
     pathMatch: 'prefix',
     loadChildren: () => commonRoutes,
-    canActivate: [activeLanguageGuard('en')],
+    canMatch: [activeLanguageGuard('en')],
   },
 ];
 
@@ -81,6 +82,7 @@ export const commonRoutes: Route[] = [
           seo: { title: 'seo.notFound' },
         },
       },
+      ...pageRoutes,
       ...articleRoutes,
       {
         path: '**',

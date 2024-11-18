@@ -37,7 +37,10 @@ export const articleExistsGuard: CanActivateFn = (route) => {
         }
 
         // check if the article is in the alternative language
-        if (articleDetails()?.lang !== transloco.getActiveLang()) {
+        if (
+          articleDetails() &&
+          articleDetails()!.lang !== transloco.getActiveLang()
+        ) {
           // if the article is in the alternative language, redirect to the alternative language page
           if (alternativeLanguageSlug()) {
             return router.createUrlTree(
@@ -49,7 +52,8 @@ export const articleExistsGuard: CanActivateFn = (route) => {
 
         return notFoundPageUrlTree;
       }),
-      catchError(() => {
+      catchError((err) => {
+        console.error(err);
         return of(notFoundPageUrlTree);
       }),
     );

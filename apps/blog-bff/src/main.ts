@@ -6,6 +6,7 @@ import { articles } from '@angular-love/blog-bff/articles/api';
 import { authors } from '@angular-love/blog-bff/authors/api';
 import { banners } from '@angular-love/blog-bff/banners/api';
 import { newsletter } from '@angular-love/blog-bff/newsletter/api';
+import { pages } from '@angular-love/blog-bff/pages/api';
 
 const app = new Hono();
 
@@ -23,6 +24,7 @@ Disallow: /`;
     'Content-Type': 'text/plain',
   });
 });
+app.route('/pages', pages);
 
 app.onError((err, c) => {
   console.error(err);

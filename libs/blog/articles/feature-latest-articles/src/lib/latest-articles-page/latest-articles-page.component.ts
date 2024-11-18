@@ -1,9 +1,11 @@
+import { isPlatformBrowser } from '@angular/common';
 import {
   ChangeDetectionStrategy,
   Component,
   computed,
   HostBinding,
   inject,
+  PLATFORM_ID,
   signal,
 } from '@angular/core';
 
@@ -39,6 +41,7 @@ export class FeatureLatestArticlesPageComponent {
   pagination = signal({ take: 12, skip: 0 });
 
   protected readonly articleStore = inject(ArticleListStore);
+  private readonly _platformId = inject(PLATFORM_ID);
 
   constructor() {
     const query = computed(() => ({
@@ -50,7 +53,9 @@ export class FeatureLatestArticlesPageComponent {
   }
 
   protected pageChange(event: PageChangeEvent) {
-    window.scrollTo(0, 0);
+    if (isPlatformBrowser(this._platformId)) {
+      window.scrollTo(0, 0);
+    }
     this.pagination.set(event);
   }
 }
