@@ -1,6 +1,6 @@
+import type { CheerioAPI } from 'cheerio';
 import { createHighlighterCore } from 'shiki/core';
 import { loadWasm } from 'shiki/engine/oniguruma';
-import type { CheerioAPI } from 'cheerio';
 
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
@@ -53,7 +53,7 @@ export const wpCodeRewriter: RewriteAdapter = ($) => {
     }
 
     const classAttr = $(element).find('code').attr()['class'];
-    const classes = classAttr.split(' ');
+    const classes = classAttr?.split(' ') ?? [];
     const codeLanguageClass = classes.find((cl) =>
       /^language-[\w-]+$/.test(cl),
     );
