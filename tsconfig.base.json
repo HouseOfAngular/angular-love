@@ -140,9 +140,6 @@
       "@angular-love/blog/shared/ui-difficulty": [
         "libs/blog/shared/ui-difficulty/src/index.ts"
       ],
-      "@angular-love/blog/shared/ui-dynamic-text-clamp": [
-        "libs/blog/shared/ui-dynamic-text-clamp/src/index.ts"
-      ],
       "@angular-love/blog/shared/ui-icon": [
         "libs/blog/shared/ui-icon/src/index.ts"
       ],

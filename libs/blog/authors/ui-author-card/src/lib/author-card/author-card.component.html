@@ -26,10 +26,12 @@
 
     <ng-container author-info-description>
       @defer {
-        <al-dynamic-text-clamp
-          [text]="author().description"
-          [textClasses]="descriptionClass()"
-        />
+        <a [routerLink]="['/', 'author', author().slug] | alLocalize">
+          <p
+            class="@3xl:line-clamp-none line-clamp-5 text-left text-sm"
+            [innerHTML]="sanitizedDescription().description"
+          ></p>
+        </a>
       } @placeholder {
         <div class="hidden">
           {{ author().description }}
