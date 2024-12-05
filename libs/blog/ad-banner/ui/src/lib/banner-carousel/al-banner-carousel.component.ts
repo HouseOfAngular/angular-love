@@ -12,11 +12,21 @@ import { AlInfiniteSliderDirective } from '../infinite-slider-directive/al-infin
   template: `
     <div class="overflow-hidden">
       <div class="flex">
-        <al-ad-image-banner
-          *alInfiniteSlider="let banner of banners(); msPerSlide: msPerSlide()"
-          class="flex-shrink-0 flex-grow-0 basis-full"
-          [banner]="banner"
-        />
+        @if (banners().length > 1) {
+          <al-ad-image-banner
+            *alInfiniteSlider="
+              let banner of banners();
+              msPerSlide: msPerSlide()
+            "
+            class="flex-shrink-0 flex-grow-0 basis-full"
+            [banner]="banner"
+          />
+        } @else if (banners().length === 1) {
+          <al-ad-image-banner
+            class="flex-shrink-0 flex-grow-0 basis-full"
+            [banner]="banners()[0]"
+          />
+        }
       </div>
     </div>
   `,
