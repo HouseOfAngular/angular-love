@@ -6,7 +6,6 @@ import { AlInfiniteSliderDirective } from '../infinite-slider-directive/al-infin
 
 @Component({
   selector: 'al-banner-carousel',
-  standalone: true,
   imports: [AdImageBannerComponent, AlInfiniteSliderDirective],
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `

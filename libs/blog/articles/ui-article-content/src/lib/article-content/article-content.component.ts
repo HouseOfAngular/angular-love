@@ -10,7 +10,6 @@ import { DomSanitizer } from '@angular/platform-browser';
 
 @Component({
   selector: 'al-article-content',
-  standalone: true,
   templateUrl: './article-content.component.html',
   styleUrl: './article-content.component.scss',
   imports: [],

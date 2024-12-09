@@ -17,7 +17,6 @@ import { RepeatDirective } from '@angular-love/utils';
 
 @Component({
   selector: 'al-latest-articles',
-  standalone: true,
   templateUrl: './feature-latest-articles.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [

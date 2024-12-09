@@ -11,7 +11,6 @@ import { UiArticleCardComponent } from '@angular-love/blog/articles/ui-article-c
 
 @Component({
   selector: 'al-related-articles',
-  standalone: true,
   template: `
     @if (store.isFetchRelatedArticleListLoaded()) {
       <strong class="text-3xl">Related Articles</strong>

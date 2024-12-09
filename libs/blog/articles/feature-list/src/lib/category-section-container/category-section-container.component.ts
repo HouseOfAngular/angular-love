@@ -31,7 +31,6 @@ const displayNameDict: Record<ArticleCategory, string> = {
 // TODO: Rethink if we need seperated lib for this smart component (usage only for feature-list)
 // needed for demo and testing
 @Component({
-  standalone: true,
   selector: 'al-category-section-container',
   templateUrl: './category-section-container.component.html',
   styleUrls: ['./category-section-container.component.scss'],

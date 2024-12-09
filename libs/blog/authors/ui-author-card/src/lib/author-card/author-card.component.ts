@@ -23,7 +23,6 @@ import { AuthorCardTemplateComponent } from './author-card-template.component';
 
 @Component({
   selector: 'al-author-card',
-  standalone: true,
   imports: [
     AuthorCardTemplateComponent,
     AvatarComponent,

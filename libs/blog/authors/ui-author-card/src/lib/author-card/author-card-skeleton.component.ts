@@ -5,7 +5,6 @@ import { AuthorCardTemplateComponent } from './author-card-template.component';
 
 @Component({
   selector: 'al-author-card-skeleton',
-  standalone: true,
   imports: [AuthorCardTemplateComponent, NgxSkeletonLoaderModule],
   template: `
     <al-author-card-template>
@@ -17,7 +16,7 @@ import { AuthorCardTemplateComponent } from './author-card-template.component';
           [theme]="{
             height: '96px',
             width: '96px',
-            margin: '0'
+            margin: '0',
           }"
         />
 

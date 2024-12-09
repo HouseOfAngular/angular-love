@@ -1,8 +1,8 @@
 import {
-  APP_INITIALIZER,
   EnvironmentProviders,
   inject,
   makeEnvironmentProviders,
+  provideAppInitializer,
 } from '@angular/core';
 import { Observable } from 'rxjs';
 
@@ -24,15 +24,14 @@ export const provideSeo = (seoProvider: SeoProvider): EnvironmentProviders => {
       ...seoProvider,
     },
     SeoService,
-    {
-      provide: APP_INITIALIZER,
-      useFactory: () => {
+    provideAppInitializer(() => {
+      const initializerFn = (() => {
         const seoService = inject(SeoService);
         return () => {
           seoService.init();
         };
-      },
-      multi: true,
-    },
+      })();
+      return initializerFn();
+    }),
   ]);
 };

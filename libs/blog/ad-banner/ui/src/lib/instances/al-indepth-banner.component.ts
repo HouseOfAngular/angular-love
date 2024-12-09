@@ -5,7 +5,6 @@ import { AdImageBannerComponent } from '../ad-image-banner/ad-image-banner.compo
 
 @Component({
   selector: 'al-indepth-banner',
-  standalone: true,
   imports: [AdImageBannerComponent],
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `

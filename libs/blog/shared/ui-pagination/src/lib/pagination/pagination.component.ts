@@ -21,7 +21,6 @@ export type PageChangeEvent = {
 
 @Component({
   selector: 'al-pagination',
-  standalone: true,
   imports: [ButtonComponent, NgIcon, NgClass, TranslocoDirective],
   templateUrl: './pagination.component.html',
   styleUrl: './pagination.component.scss',

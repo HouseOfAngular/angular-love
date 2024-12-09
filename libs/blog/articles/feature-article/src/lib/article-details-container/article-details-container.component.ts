@@ -12,7 +12,6 @@ import { ArticleDetailsComponent } from '../article-details/article-details.comp
 
 @Component({
   selector: 'al-article-details-container',
-  standalone: true,
   imports: [ArticleDetailsSkeletonComponent, ArticleDetailsComponent],
   templateUrl: './article-details-container.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,

@@ -3,7 +3,6 @@ import { ChangeDetectionStrategy, Component, signal } from '@angular/core';
 
 @Component({
   selector: 'al-ui-tooltip',
-  standalone: true,
   template: `
     <div
       class="box-border max-w-[13rem] rounded-[0.25rem] bg-[#2e2f3a] p-[0.3rem] text-sm text-white"

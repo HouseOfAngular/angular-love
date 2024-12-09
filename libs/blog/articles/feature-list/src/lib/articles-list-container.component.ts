@@ -22,7 +22,6 @@ import { CategorySectionContainerComponent } from './category-section-container/
     AlIndepthBannerComponent,
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
-  standalone: true,
 })
 export class ArticlesListContainerComponent {
   readonly activeLang = inject(TranslocoService).getActiveLang();

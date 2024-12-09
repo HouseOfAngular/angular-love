@@ -15,7 +15,6 @@ import { NavigationComponent } from '@angular-love/blog/layouts/ui-navigation';
 import { SocialMediaIconsComponent } from '@angular-love/blog/shared/ui-social-media-icons';
 
 @Component({
-  standalone: true,
   selector: 'al-header',
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss'],

@@ -85,7 +85,6 @@ export class DarkCardDirective {
 }
 
 @Component({
-  standalone: true,
   selector: 'al-card',
   templateUrl: './card.component.html',
   styleUrls: ['./card.component.scss'],
