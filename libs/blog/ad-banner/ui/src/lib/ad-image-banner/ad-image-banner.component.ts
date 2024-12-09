@@ -8,7 +8,6 @@ import { AdImageBanner } from './ad-image-banner-data.interface';
 
 @Component({
   selector: 'al-ad-image-banner',
-  standalone: true,
   imports: [NgOptimizedImage],
   templateUrl: './ad-image-banner.component.html',
 })

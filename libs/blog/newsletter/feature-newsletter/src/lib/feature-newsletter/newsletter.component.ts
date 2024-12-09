@@ -24,7 +24,6 @@ import { NewsletterStore } from '@angular-love/data-access';
 
 @Component({
   selector: 'al-newsletter',
-  standalone: true,
   imports: [
     GradientCardDirective,
     CardComponent,

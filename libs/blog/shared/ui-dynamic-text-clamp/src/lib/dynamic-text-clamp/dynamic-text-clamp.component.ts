@@ -13,7 +13,6 @@ import { ClampedChangedDirective } from './clamped-changed.directive';
 
 @Component({
   selector: 'al-dynamic-text-clamp',
-  standalone: true,
   imports: [
     ButtonComponent,
     ClampedChangedDirective,

@@ -10,7 +10,6 @@ import { FooterSocialMediaIconsComponent } from './components/footer-social-medi
 
 @Component({
   selector: 'al-footer',
-  standalone: true,
   imports: [
     NgIconComponent,
     SocialMediaIconsComponent,

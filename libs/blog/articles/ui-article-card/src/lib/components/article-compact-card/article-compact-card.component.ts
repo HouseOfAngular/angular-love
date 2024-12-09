@@ -11,7 +11,6 @@ import { UiDifficultyComponent } from '@angular-love/blog/shared/ui-difficulty';
 @Component({
   selector: 'al-article-compact-card',
   changeDetection: ChangeDetectionStrategy.OnPush,
-  standalone: true,
   imports: [
     AvatarComponent,
     RouterLink,

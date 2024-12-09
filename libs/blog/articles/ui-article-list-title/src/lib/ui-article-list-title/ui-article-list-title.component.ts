@@ -10,7 +10,6 @@ export type ArticleTitleLink = {
 
 @Component({
   selector: 'al-article-list-title',
-  standalone: true,
   templateUrl: './ui-article-list-title.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [RouterLink, AlLocalizePipe],

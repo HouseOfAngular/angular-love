@@ -39,7 +39,6 @@ import { GlobalSearchService } from '../global-search.service';
 
 @Component({
   selector: 'al-search-dialog',
-  standalone: true,
   imports: [
     ReactiveFormsModule,
     SearchResultItemComponent,

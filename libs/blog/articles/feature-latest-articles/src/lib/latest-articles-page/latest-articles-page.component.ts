@@ -21,7 +21,6 @@ import { RepeatDirective } from '@angular-love/utils';
 
 @Component({
   selector: 'al-latest',
-  standalone: true,
   imports: [
     UiArticleCardComponent,
     PaginationComponent,

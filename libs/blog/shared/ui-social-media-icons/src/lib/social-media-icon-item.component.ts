@@ -28,7 +28,6 @@ export type SocialMediaIconItemUi =
   | (SocialMediaBase<'linkedIn'> & { isCompany: boolean });
 
 @Component({
-  standalone: true,
   selector: 'al-social-media-icon-item',
   template: `
     @if (href(); as href) {
