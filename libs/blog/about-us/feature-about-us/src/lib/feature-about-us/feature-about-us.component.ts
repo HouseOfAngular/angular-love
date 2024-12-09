@@ -19,7 +19,6 @@ import { SocialMediaIconsComponent } from '@angular-love/blog/shared/ui-social-m
 
 @Component({
   selector: 'al-about-us',
-  standalone: true,
   imports: [
     CardComponent,
     NewsletterComponent,

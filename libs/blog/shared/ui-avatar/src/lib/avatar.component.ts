@@ -5,7 +5,6 @@ import { NgIconComponent } from '@ng-icons/core';
 type AvatarSize = '32' | '96';
 
 @Component({
-  standalone: true,
   selector: 'al-avatar',
   templateUrl: './avatar.component.html',
   styleUrls: ['./avatar.component.scss'],

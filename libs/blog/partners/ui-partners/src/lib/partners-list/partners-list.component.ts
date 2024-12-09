@@ -5,7 +5,6 @@ import { Partner } from '@angular-love/blog/shared/types';
 
 @Component({
   selector: 'al-partners-list',
-  standalone: true,
   changeDetection: ChangeDetectionStrategy.OnPush,
   templateUrl: './partners-list.component.html',
   imports: [NgOptimizedImage],

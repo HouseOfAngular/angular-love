@@ -8,7 +8,6 @@ import {
 import { NgxSkeletonLoaderModule } from 'ngx-skeleton-loader';
 
 @Component({
-  standalone: true,
   selector: 'al-card-skeleton',
   template: `
     <div *ngIf="withImage">
@@ -17,7 +16,7 @@ import { NgxSkeletonLoaderModule } from 'ngx-skeleton-loader';
           class="h-full w-full"
           [theme]="{
             'margin-bottom': '0',
-            height: '100%'
+            height: '100%',
           }"
         ></ngx-skeleton-loader>
       </div>

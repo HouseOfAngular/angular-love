@@ -12,7 +12,6 @@ type ShareItem = {
 };
 
 @Component({
-  standalone: true,
   selector: 'al-article-share-icons',
   imports: [TranslocoDirective, FastSvgComponent, CdkCopyToClipboard],
   styleUrls: ['./article-share-icons.component.scss'],

@@ -8,7 +8,6 @@ import {
 
 @Component({
   selector: 'al-author-card-template',
-  standalone: true,
   imports: [CardComponent, CardContentDirective, GradientCardDirective],
   host: {
     class: 'block @container',

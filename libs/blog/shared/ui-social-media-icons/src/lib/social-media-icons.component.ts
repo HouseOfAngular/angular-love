@@ -7,7 +7,6 @@ import {
 } from './social-media-icon-item.component';
 
 @Component({
-  standalone: true,
   selector: 'al-social-media-icons',
   templateUrl: './social-media-icons.component.html',
   styleUrls: ['./social-media-icons.component.scss'],

@@ -7,7 +7,6 @@ import { ButtonComponent } from '@angular-love/blog/shared/ui-button';
 
 @Component({
   selector: 'al-not-found',
-  standalone: true,
   imports: [NgOptimizedImage, ButtonComponent, RouterLink, TranslocoDirective],
   template: `
     <section

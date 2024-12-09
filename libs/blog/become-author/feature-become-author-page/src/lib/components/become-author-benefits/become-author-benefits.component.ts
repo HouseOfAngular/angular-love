@@ -5,7 +5,6 @@ import { BecomeAuthorListItemComponent } from '../become-author-list-item/become
 
 @Component({
   selector: 'al-become-author-benefits',
-  standalone: true,
   imports: [BecomeAuthorListItemComponent, TranslocoDirective],
   templateUrl: './become-author-benefits.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,

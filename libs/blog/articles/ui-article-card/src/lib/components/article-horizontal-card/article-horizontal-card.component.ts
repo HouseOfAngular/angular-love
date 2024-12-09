@@ -24,7 +24,6 @@ type SanitizedArticleDataModel = {
 @Component({
   selector: 'al-article-horizontal-card',
   changeDetection: ChangeDetectionStrategy.OnPush,
-  standalone: true,
   imports: [
     AvatarComponent,
     DatePipe,

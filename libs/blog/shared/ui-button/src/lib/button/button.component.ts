@@ -43,7 +43,6 @@ const buttonVariants = cva(
 @Component({
   // eslint-disable-next-line @angular-eslint/component-selector
   selector: 'button[al-button],a[al-button]',
-  standalone: true,
   imports: [],
   templateUrl: './button.component.html',
   styleUrls: ['./button.component.scss'],

@@ -11,7 +11,6 @@ import { SearchDialogComponent } from './search-dialog';
 
 @Component({
   selector: 'al-search',
-  standalone: true,
   imports: [SearchDialogComponent, FastSvgComponent],
   template: `
     <button

@@ -1,10 +1,10 @@
 import { isPlatformBrowser } from '@angular/common';
 import {
-  APP_INITIALIZER,
   EnvironmentProviders,
   inject,
   makeEnvironmentProviders,
   PLATFORM_ID,
+  provideAppInitializer,
 } from '@angular/core';
 import type { CookieConsentConfig } from 'vanilla-cookieconsent';
 
@@ -15,10 +15,8 @@ export const provideCookieConsent = (
 ): EnvironmentProviders => {
   return makeEnvironmentProviders([
     CookieConsentService,
-    {
-      provide: APP_INITIALIZER,
-      multi: true,
-      useFactory: () => {
+    provideAppInitializer(() => {
+      const initializerFn = (() => {
         const platformId = inject(PLATFORM_ID);
         const cookieConsentService = inject(CookieConsentService);
 
@@ -29,7 +27,8 @@ export const provideCookieConsent = (
             });
           }
         };
-      },
-    },
+      })();
+      return initializerFn();
+    }),
   ]);
 };

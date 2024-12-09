@@ -21,7 +21,6 @@ import { RepeatDirective } from '@angular-love/utils';
 
 @Component({
   selector: 'al-guides',
-  standalone: true,
   imports: [
     PaginationComponent,
     QueryPaginationDirective,

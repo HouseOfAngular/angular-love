@@ -19,7 +19,6 @@ export type NavItem = {
 
 @Component({
   selector: 'al-navigation',
-  standalone: true,
   imports: [
     RouterLink,
     RouterLinkActive,

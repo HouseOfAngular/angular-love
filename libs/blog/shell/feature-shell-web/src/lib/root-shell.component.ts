@@ -38,7 +38,6 @@ import {
     </al-layout>
     <al-footer class="mt-auto block" />
   `,
-  standalone: true,
   imports: [
     RouterOutlet,
     HeaderComponent,
