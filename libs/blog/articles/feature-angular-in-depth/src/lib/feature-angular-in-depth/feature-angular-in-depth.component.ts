@@ -8,7 +8,6 @@ import {
 
 import { ArticleListStore } from '@angular-love/blog/articles/data-access';
 import {
-  ArticleCompactCardSkeletonComponent,
   ArticleRegularCardSkeletonComponent,
   UiArticleCardComponent,
 } from '@angular-love/blog/articles/ui-article-card';
@@ -25,7 +24,6 @@ import { RepeatDirective } from '@angular-love/utils';
     PaginationComponent,
     QueryPaginationDirective,
     UiArticleCardComponent,
-    ArticleCompactCardSkeletonComponent,
     ArticleRegularCardSkeletonComponent,
     RepeatDirective,
   ],

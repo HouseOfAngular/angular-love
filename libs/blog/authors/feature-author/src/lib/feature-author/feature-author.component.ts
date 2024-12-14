@@ -19,14 +19,12 @@ import {
   PaginationComponent,
   QueryPaginationDirective,
 } from '@angular-love/blog/shared/ui-pagination';
-import { RepeatDirective } from '@angular-love/utils';
 
 @Component({
   selector: 'al-author',
   imports: [
     AuthorCardComponent,
     AuthorCardSkeletonComponent,
-    RepeatDirective,
     UiArticleCardComponent,
     PaginationComponent,
     QueryPaginationDirective,

@@ -6,13 +6,12 @@ import {
   output,
   signal,
 } from '@angular/core';
-import { RouterLink, RouterLinkActive } from '@angular/router';
+import { RouterLink } from '@angular/router';
 import { TranslocoDirective } from '@jsverse/transloco';
 import { FastSvgComponent } from '@push-based/ngx-fast-svg';
 
 import { AlLocalizePipe } from '@angular-love/blog/i18n/util';
 import { NavigationComponent } from '@angular-love/blog/layouts/ui-navigation';
-import { SocialMediaIconsComponent } from '@angular-love/blog/shared/ui-social-media-icons';
 
 @Component({
   selector: 'al-header',
@@ -21,8 +20,6 @@ import { SocialMediaIconsComponent } from '@angular-love/blog/shared/ui-social-m
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [
     NgOptimizedImage,
-    SocialMediaIconsComponent,
-    RouterLinkActive,
     RouterLink,
     NavigationComponent,
     NgClass,
