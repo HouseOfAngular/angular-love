@@ -18,11 +18,7 @@
     <div class="rounded-b-lg">
       <div class="flex items-center justify-between px-4 pt-4">
         <div class="flex items-center gap-2">
-          <al-avatar
-            [imageSrc]="article().author.avatarUrl"
-            [priority]="imagePriority()"
-            size="32"
-          />
+          <al-avatar [imageSrc]="article().author.avatarUrl" size="32" />
           <span class="text-sm/[14px] font-medium">
             {{ article().author.name }}
           </span>
