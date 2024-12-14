@@ -5,7 +5,7 @@ const { join } = require('path');
 module.exports = {
   presets: [require('../../../tailwind.preset.js')],
   content: [
-    join(__dirname, '../../../**/!(*.spec).{ts,html}'),
+    join(__dirname, '../../**/!(*.spec).{ts,html}'),
     ...createGlobPatternsForDependencies(__dirname),
   ],
 };
