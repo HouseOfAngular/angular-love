@@ -1,8 +1,11 @@
+import { isPlatformBrowser } from '@angular/common';
 import {
   ChangeDetectionStrategy,
   Component,
   computed,
   inject,
+  input,
+  PLATFORM_ID,
   signal,
 } from '@angular/core';
 
@@ -16,10 +19,11 @@ import {
   PaginationComponent,
   QueryPaginationDirective,
 } from '@angular-love/blog/shared/ui-pagination';
+import { ArticleCategory } from '@angular-love/contracts/articles';
 import { RepeatDirective } from '@angular-love/utils';
 
 @Component({
-  selector: 'al-angular-in-depth',
+  selector: 'al-category-articles',
   imports: [
     PaginationComponent,
     QueryPaginationDirective,
@@ -27,27 +31,39 @@ import { RepeatDirective } from '@angular-love/utils';
     ArticleRegularCardSkeletonComponent,
     RepeatDirective,
   ],
-  templateUrl: './feature-angular-in-depth.component.html',
+  templateUrl: './category-articles.component.html',
+  styleUrl: './category-articles.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
   host: {
     class: 'flex flex-col  h-full w-full',
   },
 })
-export class FeatureAngularInDepthComponent {
-  pagination = signal({ take: 12, skip: 0 });
+export class CategoryArticlesComponent {
+  readonly category = input<ArticleCategory>();
+  readonly excludeCategory = input<string>();
+  readonly title = input.required<string>();
+  readonly id = input.required<string>();
+
+  readonly pagination = signal({ take: 12, skip: 0 });
 
   protected readonly articleStore = inject(ArticleListStore);
+
+  private readonly _platform = inject(PLATFORM_ID);
 
   constructor() {
     const query = computed(() => ({
       ...this.pagination(),
-      category: 'angular-in-depth' as const,
+      ...(this.category() && { category: this.category() }),
+      ...(this.excludeCategory() && {
+        excludeCategory: this.excludeCategory(),
+      }),
     }));
 
     this.articleStore.fetchArticleList(query);
   }
+
   protected pageChange(event: PageChangeEvent) {
-    window.scrollTo(0, 0);
+    isPlatformBrowser(this._platform) && window.scrollTo(0, 0);
     this.pagination.set(event);
   }
 }

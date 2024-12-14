@@ -1,17 +1,17 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { FeatureGuidesComponent } from './feature-guides.component';
+import { CategoryArticlesComponent } from './category-articles.component';
 
 describe('FeatureGuidesComponent', () => {
-  let component: FeatureGuidesComponent;
-  let fixture: ComponentFixture<FeatureGuidesComponent>;
+  let component: CategoryArticlesComponent;
+  let fixture: ComponentFixture<CategoryArticlesComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [FeatureGuidesComponent],
+      imports: [CategoryArticlesComponent],
     }).compileComponents();
 
-    fixture = TestBed.createComponent(FeatureGuidesComponent);
+    fixture = TestBed.createComponent(CategoryArticlesComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
