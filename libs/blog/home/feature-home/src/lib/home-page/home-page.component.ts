@@ -12,7 +12,6 @@ import { hoaHireUs, partnersList } from './partners';
 
 @Component({
   selector: 'al-home-page',
-  standalone: true,
   imports: [
     NewsletterComponent,
     ReactiveFormsModule,

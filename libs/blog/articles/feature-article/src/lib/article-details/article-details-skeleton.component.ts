@@ -7,7 +7,6 @@ import { CardSkeletonComponent } from '@angular-love/blog/shared/ui-card';
 
 @Component({
   selector: 'al-article-details-skeleton',
-  standalone: true,
   imports: [
     CardSkeletonComponent,
     NgxSkeletonLoaderModule,

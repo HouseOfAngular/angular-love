@@ -5,7 +5,6 @@ import { RouterOutlet } from '@angular/router';
 import { AppThemeStore } from '@angular-love/data-access-app-theme';
 
 @Component({
-  standalone: true,
   selector: 'al-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],

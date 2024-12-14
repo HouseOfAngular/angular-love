@@ -5,7 +5,6 @@ import { RepeatDirective } from '@angular-love/utils';
 
 @Component({
   selector: 'al-article-content-skeleton',
-  standalone: true,
   template: `
     <article>
       <div *alRepeat="5">
@@ -19,7 +18,7 @@ import { RepeatDirective } from '@angular-love/utils';
             width: '100%',
             'margin-bottom': '20px',
             height: '200px',
-            'margin-top': '30px'
+            'margin-top': '30px',
           }"
           [count]="1"
         />

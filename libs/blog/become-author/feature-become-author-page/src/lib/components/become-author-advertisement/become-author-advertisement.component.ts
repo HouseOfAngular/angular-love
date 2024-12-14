@@ -8,7 +8,6 @@ import {
 
 @Component({
   selector: 'al-become-author-advertisement',
-  standalone: true,
   templateUrl: './become-author-advertisement.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [GradientCardDirective, CardComponent, TranslocoDirective],

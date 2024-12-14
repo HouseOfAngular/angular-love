@@ -12,7 +12,6 @@ import { BecomeAuthorImprovementsComponent } from '../components/become-author-i
 
 @Component({
   selector: 'al-feature-become-author-page',
-  standalone: true,
   imports: [
     BecomeAuthorBenefitsComponent,
     BecomeAuthorImprovementsComponent,

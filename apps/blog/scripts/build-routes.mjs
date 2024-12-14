@@ -124,24 +124,30 @@ function writeSSGRoutesToFile() {
     console.error('Error writing paths to file:', error);
   });
 
-  try {
-    ssgRoutes.forEach((routeObj) => {
-      const route = routeObj.url;
-      const defaultLangPrefix = `/${DEFAULT_LANGUAGE}/`;
-      const formattedRoute = route.startsWith(defaultLangPrefix)
-        ? route.replace(defaultLangPrefix, '/')
-        : route;
+  let currentIndex = 0;
+  const totalRoutes = ssgRoutes.length;
 
-      if (!stream.write(`${formattedRoute}\n`)) {
-        stream.once('drain', () => writeSSGRoutesToFile());
-      }
-    });
-  } catch (error) {
-    console.error('Error during write operation:', error);
-    throw error;
-  } finally {
-    stream.end();
+  function writeNextRoute() {
+    let canContinue = true;
+    while (currentIndex < totalRoutes && canContinue) {
+      const routeObj = ssgRoutes[currentIndex];
+      const defaultLangPrefix = `/${DEFAULT_LANGUAGE}/`;
+      const formattedRoute = routeObj.url.startsWith(defaultLangPrefix)
+        ? routeObj.url.replace(defaultLangPrefix, '/')
+        : routeObj.url;
+
+      canContinue = stream.write(`${formattedRoute}\n`);
+      currentIndex++;
+    }
+
+    if (currentIndex < totalRoutes) {
+      stream.once('drain', writeNextRoute);
+    } else {
+      stream.end();
+    }
   }
+
+  writeNextRoute();
 }
 
 /**

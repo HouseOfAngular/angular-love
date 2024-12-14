@@ -20,7 +20,6 @@ import { RepeatDirective } from '@angular-love/utils';
 
 @Component({
   selector: 'al-news',
-  standalone: true,
   imports: [
     UiArticleCardComponent,
     PaginationComponent,

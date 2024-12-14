@@ -10,7 +10,6 @@ export type CardType = 'regular' | 'horizontal' | 'compact' | 'hero';
 
 @Component({
   selector: 'al-article-card',
-  standalone: true,
   templateUrl: './ui-article-card.component.html',
   styleUrl: './ui-article-card.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,

@@ -23,7 +23,6 @@ import { RepeatDirective } from '@angular-love/utils';
 
 @Component({
   selector: 'al-author',
-  standalone: true,
   imports: [
     AuthorCardComponent,
     AuthorCardSkeletonComponent,

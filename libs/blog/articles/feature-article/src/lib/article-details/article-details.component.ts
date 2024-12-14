@@ -32,7 +32,6 @@ import { ArticleShareIconsComponent } from '../article-share-icons/article-share
 
 @Component({
   selector: 'al-article-details',
-  standalone: true,
   imports: [
     DatePipe,
     ArticleContentComponent,
