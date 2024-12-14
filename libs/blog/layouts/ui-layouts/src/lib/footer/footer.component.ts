@@ -1,9 +1,6 @@
-import { NgOptimizedImage } from '@angular/common';
 import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { NgIconComponent } from '@ng-icons/core';
 
 import { NavigationComponent } from '@angular-love/blog/layouts/ui-navigation';
-import { SocialMediaIconsComponent } from '@angular-love/blog/shared/ui-social-media-icons';
 
 import { FooterLogoComponent } from './components/footer-logo.component';
 import { FooterSocialMediaIconsComponent } from './components/footer-social-media-icons.component';
@@ -11,10 +8,7 @@ import { FooterSocialMediaIconsComponent } from './components/footer-social-medi
 @Component({
   selector: 'al-footer',
   imports: [
-    NgIconComponent,
-    SocialMediaIconsComponent,
     NavigationComponent,
-    NgOptimizedImage,
     FooterLogoComponent,
     FooterSocialMediaIconsComponent,
   ],

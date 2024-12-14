@@ -3,12 +3,10 @@ import { NgxSkeletonLoaderModule } from 'ngx-skeleton-loader';
 
 import { ArticleContentSkeletonComponent } from '@angular-love/blog/articles/ui-article-content';
 import { AuthorCardSkeletonComponent } from '@angular-love/blog/authors/ui-author-card';
-import { CardSkeletonComponent } from '@angular-love/blog/shared/ui-card';
 
 @Component({
   selector: 'al-article-details-skeleton',
   imports: [
-    CardSkeletonComponent,
     NgxSkeletonLoaderModule,
     ArticleContentSkeletonComponent,
     AuthorCardSkeletonComponent,

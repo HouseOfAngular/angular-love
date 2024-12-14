@@ -6,14 +6,14 @@ import {
   model,
   output,
 } from '@angular/core';
-import { RouterLink, RouterLinkActive } from '@angular/router';
+import { RouterLink } from '@angular/router';
 import { TranslocoDirective } from '@jsverse/transloco';
 
 import { Anchor } from '@angular-love/contracts/articles';
 
 @Component({
   selector: 'al-table-of-contents',
-  imports: [NgClass, RouterLink, RouterLinkActive, TranslocoDirective],
+  imports: [NgClass, RouterLink, TranslocoDirective],
   templateUrl: './table-of-contents.component.html',
   styleUrls: ['./table-of-contents.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,

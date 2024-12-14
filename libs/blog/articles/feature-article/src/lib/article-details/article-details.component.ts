@@ -20,7 +20,6 @@ import { NewsletterComponent } from '@angular-love/blog/newsletter';
 import {
   CardComponent,
   CardContentDirective,
-  CardSkeletonComponent,
   DarkCardDirective,
   GradientCardDirective,
 } from '@angular-love/blog/shared/ui-card';
@@ -42,7 +41,6 @@ import { ArticleShareIconsComponent } from '../article-share-icons/article-share
     DarkCardDirective,
     TableOfContentsComponent,
     TableOfContentsScrollSpyDirective,
-    CardSkeletonComponent,
     GiscusCommentsComponent,
     CardComponent,
     UiDifficultyComponent,
