@@ -1,9 +1,8 @@
-/* eslint-disable */
 export default {
-  displayName: 'feature-news',
+  displayName: 'blog-articles-feature-category',
   preset: '../../../../jest.preset.js',
   setupFilesAfterEnv: ['<rootDir>/src/test-setup.ts'],
-  coverageDirectory: '../../../../coverage/libs/blog/articles/feature-news',
+  coverageDirectory: '../../../../coverage/libs/blog/articles/feature-category',
   transform: {
     '^.+\\.(ts|mjs|js|html)$': [
       'jest-preset-angular',
