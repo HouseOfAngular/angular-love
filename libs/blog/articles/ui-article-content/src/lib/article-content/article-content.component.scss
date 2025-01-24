@@ -88,4 +88,8 @@
     width: 100%;
     min-height: 300px;
   }
+
+  table td {
+    @apply border-al-border border border-solid p-3;
+  }
 }
