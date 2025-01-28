@@ -1,10 +1,8 @@
 import type { CheerioAPI } from 'cheerio';
 import { createHighlighterCore } from 'shiki/core';
-import { loadWasm } from 'shiki/engine/oniguruma';
+import { createJavaScriptRegexEngine } from 'shiki/engine/javascript';
 
-// eslint-disable-next-line @typescript-eslint/ban-ts-comment
-// @ts-ignore
-await loadWasm(import('shiki/dist/onig.wasm'));
+const jsEngine = createJavaScriptRegexEngine();
 
 const highlighter = await createHighlighterCore({
   themes: [
@@ -19,6 +17,7 @@ const highlighter = await createHighlighterCore({
     import('shiki/langs/angular-ts.mjs'),
     import('shiki/langs/angular-html.mjs'),
   ],
+  engine: jsEngine,
 });
 
 const shikiThemes = highlighter.getLoadedThemes();
