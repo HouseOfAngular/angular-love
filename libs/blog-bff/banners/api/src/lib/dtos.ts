@@ -2,10 +2,12 @@ export interface WPBannerDto {
   id: number;
   acf: {
     display_time: string;
-    slides: {
-      slide_image: number /* slideId */;
-      slide_url: string /* url to navigate to after click */;
-    }[];
+    slides:
+      | {
+          slide_image: number /* slideId */;
+          slide_url: string /* url to navigate to after click */;
+        }[]
+      | null;
   };
 }
 
