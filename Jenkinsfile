@@ -28,6 +28,7 @@ pipeline {
                     steps {
                         script {
                             sh """
+                                corepack enable && corepack prepare pnpm@9.15.2 --activate
                                 pnpm install 
                             """
                         }
