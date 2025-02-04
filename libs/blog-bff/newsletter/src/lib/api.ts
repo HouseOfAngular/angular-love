@@ -49,30 +49,62 @@ app.post('/subscribe', async (c) => {
   }
 
   try {
-    const parsedNewSubscriber = emailSchema.parse(newSubscriber);
+    const parsedEmail = emailSchema.parse(newSubscriber);
     const client = new NewsletterClient(BREVO_API_URL, BREVO_API_KEY);
+    let sendTemplate = true;
 
-    await client.createContact({
-      email: parsedNewSubscriber,
-      emailBlacklisted: false,
-      listIds,
-      smsBlacklisted: false,
-    });
+    try {
+      const existingContact = await client.getContact(parsedEmail);
+      const mergedListIds = Array.from(
+        new Set([...existingContact.listIds, ...listIds]),
+      );
+      const alreadySubscribed = listIds.some((listId) =>
+        existingContact.listIds.includes(listId),
+      );
 
-    const template = await client.getTemplate(templateId);
+      if (!alreadySubscribed) {
+        await client.updateContact({
+          email: parsedEmail,
+          emailBlacklisted: false,
+          smsBlacklisted: false,
+          listIds: mergedListIds,
+        });
+      }
 
-    await client.sendEmail({
-      sender: {
-        id: template.sender.id,
-      },
-      subject: template.subject,
-      htmlContent: template.htmlContent,
-      to: [
-        {
-          email: parsedNewSubscriber,
+      // Contact is already on the list, we should not send a welcoming template
+      sendTemplate = !alreadySubscribed;
+    } catch (err) {
+      if (
+        typeof err === 'object' &&
+        err &&
+        'code' in err &&
+        err.code === 'document_not_found'
+      ) {
+        await client.createContact({
+          email: parsedEmail,
+          emailBlacklisted: false,
+          smsBlacklisted: false,
+          listIds,
+        });
+      }
+    }
+
+    if (sendTemplate) {
+      const template = await client.getTemplate(templateId);
+
+      await client.sendEmail({
+        sender: {
+          id: template.sender.id,
         },
-      ],
-    });
+        subject: template.subject,
+        htmlContent: template.htmlContent,
+        to: [
+          {
+            email: parsedEmail,
+          },
+        ],
+      });
+    }
 
     return c.json({ success: true }, 200);
   } catch (e) {
