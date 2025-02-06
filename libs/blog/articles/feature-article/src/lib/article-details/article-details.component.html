@@ -62,8 +62,8 @@
       <div
         class="sticky top-24 mt-5 hidden flex-col gap-4 lg:flex"
         [ngClass]="{
-          'top-24': !adBannerStoreVisible(),
-          'top-48': adBannerStoreVisible()
+          'top-24': !bannerStore.banners()?.topBanner,
+          'top-48': bannerStore.banners()?.topBanner,
         }"
       >
         @if (articleDetails().anchors.length) {
