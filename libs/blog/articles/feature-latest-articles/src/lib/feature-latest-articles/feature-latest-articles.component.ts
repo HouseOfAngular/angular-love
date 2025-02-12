@@ -1,11 +1,10 @@
-import { NgClass, NgOptimizedImage } from '@angular/common';
+import { NgClass } from '@angular/common';
 import {
   ChangeDetectionStrategy,
   Component,
   computed,
   inject,
 } from '@angular/core';
-import { Router } from '@angular/router';
 import { TranslocoDirective } from '@jsverse/transloco';
 
 import { AdBannerStore } from '@angular-love/blog/ad-banner/data-access';
@@ -16,6 +15,7 @@ import {
 } from '@angular-love/blog/articles/ui-article-card';
 import { UiArticleListTitleComponent } from '@angular-love/blog/articles/ui-article-list-title';
 import { NewsletterComponent } from '@angular-love/blog/newsletter';
+import { AlNewsletterBannerComponent } from '@angular-love/blog/shared/ad-banner';
 import {
   CardComponent,
   CardContentDirective,
@@ -36,7 +36,7 @@ import { RepeatDirective } from '@angular-love/utils';
     ArticleRegularCardSkeletonComponent,
     RepeatDirective,
     CardContentDirective,
-    NgOptimizedImage,
+    AlNewsletterBannerComponent,
   ],
   host: {
     'data-testid': 'latest-articles-container',
@@ -45,18 +45,12 @@ import { RepeatDirective } from '@angular-love/utils';
 })
 export class FeatureLatestArticlesComponent {
   private readonly _articleListStore = inject(ArticleListStore);
-  private readonly _router = inject(Router);
   private readonly _bannerStore = inject(AdBannerStore);
   protected readonly cardBanner = computed(
     () => this._bannerStore.banners()?.cardBanner,
   );
-
   readonly isFetchArticleListLoading =
     this._articleListStore.isFetchArticleListLoading;
-
-  readonly isFetchArticleListError =
-    this._articleListStore.isFetchArticleListError;
-
   readonly articles = this._articleListStore.articles;
 
   constructor() {
@@ -64,9 +58,5 @@ export class FeatureLatestArticlesComponent {
       take: 5,
       excludeCategory: 'angular-in-depth-en',
     });
-  }
-
-  navigateFromBanner() {
-    this._router.navigate([this.cardBanner()?.url]);
   }
 }

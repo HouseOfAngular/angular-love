@@ -1,5 +1,5 @@
-import { NgClass, ViewportScroller } from '@angular/common';
-import { Component, computed, effect, inject } from '@angular/core';
+import { NgClass } from '@angular/common';
+import { Component, computed, inject } from '@angular/core';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { Router, RouterOutlet } from '@angular/router';
 import { TranslocoService } from '@jsverse/transloco';
@@ -30,7 +30,7 @@ import {
             alt: topBanner.alt!,
             action: {
               type: 'url',
-              url: '',
+              url: topBanner.navigateTo!,
             },
           }"
         />

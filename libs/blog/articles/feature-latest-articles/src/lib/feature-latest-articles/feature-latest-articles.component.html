@@ -21,50 +21,10 @@
   } @else {
     <al-article-regular-card-skeleton *alRepeat="4" />
   }
-  <div
-    class="relative flex items-center md:max-lg:col-span-2 lg:col-start-3 lg:row-start-1"
-  >
+  <div class="md:max-lg:col-span-2 lg:col-start-3 lg:row-start-1">
     <!-- when "newsletter banner" exist put it in place of the real newsletter -->
     @if (cardBanner()) {
-      <aside
-        style="
-          width: 100%;
-          height: 100%;
-          position: absolute;
-          overflow: hidden;
-          border-radius: 8px;
-        "
-      >
-        <img
-          tabindex="0"
-          role="button"
-          class="!relative cursor-pointer shadow-inner blur-xl"
-          [attr.aria-label]="cardBanner()!.alt!"
-          [alt]="cardBanner()!.alt!"
-          [ngSrc]="cardBanner()!.url!"
-          (click)="navigateFromBanner()"
-          (keydown.enter)="navigateFromBanner()"
-          style="object-fit: cover"
-          fill
-          priority
-        />
-      </aside>
-      <aside>
-        <div style="box-shadow: 0 0 8px 8px blue inset">
-          <img
-            tabindex="0"
-            role="button"
-            class="!relative cursor-pointer"
-            [attr.aria-label]="cardBanner()!.alt!"
-            [alt]="cardBanner()!.alt!"
-            [ngSrc]="cardBanner()!.url!"
-            (click)="navigateFromBanner()"
-            (keydown.enter)="navigateFromBanner()"
-            fill
-            priority
-          />
-        </div>
-      </aside>
+      <al-newsletter-banner [cardBanner]="cardBanner()!" />
     } @else {
       <al-newsletter alCardContent />
     }
