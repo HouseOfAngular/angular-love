@@ -48,7 +48,7 @@ const articleDetails: Article = {
     github: '',
     linkedin: '',
     twitter: '',
-    titles: ['Software Engineer', 'GDE'],
+    titles: ['gde', 'blogger'],
   },
   anchors: [],
   publishDate: new Date('2021-01-01').toISOString(),
