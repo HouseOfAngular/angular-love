@@ -10,14 +10,14 @@ const highlighter = await createHighlighterCore({
     import('shiki/themes/github-light.mjs'), // light mode
   ],
   langs: [
-    import('@shikijs/langs-precompiled/shell'),
-    import('@shikijs/langs-precompiled/bash'),
-    import('@shikijs/langs-precompiled/json'),
-    import('@shikijs/langs-precompiled/typescript'),
-    import('@shikijs/langs-precompiled/angular-ts'),
-    import('@shikijs/langs-precompiled/angular-html'),
-    import('@shikijs/langs-precompiled/scss'),
-    import('@shikijs/langs-precompiled/css'),
+    import('shiki/langs/shell.mjs'),
+    import('shiki/langs/bash.mjs'),
+    import('shiki/langs/json.mjs'),
+    import('shiki/langs/typescript.mjs'),
+    import('shiki/langs/angular-ts.mjs'),
+    import('shiki/langs/angular-html.mjs'),
+    import('shiki/langs/scss.mjs'),
+    import('shiki/langs/css.mjs'),
   ],
   engine: jsEngine,
 });
