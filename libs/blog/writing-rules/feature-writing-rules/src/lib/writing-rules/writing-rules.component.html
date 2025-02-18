@@ -1,0 +1,40 @@
+<ng-container *transloco="let t">
+  <h2 class="lg:pt-15 py-4 text-4xl font-bold md:pb-6 md:text-[40px]/[56px]">
+    {{ t('writingRules.title') }}
+  </h2>
+  <p class="lg:pt-15 py-4 md:pb-6">
+    {{ t('writingRules.description1') }}
+  </p>
+  <p
+    class="lg:pt-15 py-4 md:pb-6"
+    [innerHTML]="
+      t('writingRules.description2', {
+        link: 'https://www.facebook.com/groups/185089226096025',
+      })
+    "
+  ></p>
+  @for (
+    step of rulesContentData;
+    track step;
+    let i = $index, first = $first, last = $last
+  ) {
+    <al-rules-row
+      #ruleRow
+      class="scroll-mt-[90px]"
+      [index]="i"
+      [step]="step"
+      [first]="first"
+      [last]="last"
+      [isOpen]="ruleStepSelectionModel.isSelected(i)"
+      (toggleStep)="toggleStep($event)"
+      (scrollToRule)="scrollIntoRule($event)"
+    />
+  }
+  <p class="lg:pt-15 py-4">
+    {{ t('writingRules.description3') }}
+  </p>
+  <p class="lg:pt-15 py-4">
+    {{ t('writingRules.description4') }}
+  </p>
+  <p class="mb-10" [innerHTML]="'angular@angular.love'"></p>
+</ng-container>
