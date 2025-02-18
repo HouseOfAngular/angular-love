@@ -21,10 +21,12 @@
   } @else {
     <al-article-regular-card-skeleton *alRepeat="4" />
   }
-  <al-card
-    alGradientCard
-    class="md:max-lg:col-span-2 lg:col-start-3 lg:row-start-1"
-  >
-    <al-newsletter alCardContent />
-  </al-card>
+  <div class="md:max-lg:col-span-2 lg:col-start-3 lg:row-start-1">
+    <!-- when "newsletter banner" exist put it in place of the real newsletter -->
+    @if (cardBanner()) {
+      <al-newsletter-banner [cardBanner]="cardBanner()!" />
+    } @else {
+      <al-newsletter alCardContent />
+    }
+  </div>
 </section>

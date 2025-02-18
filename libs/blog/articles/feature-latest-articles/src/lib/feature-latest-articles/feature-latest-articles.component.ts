@@ -1,7 +1,13 @@
 import { NgClass } from '@angular/common';
-import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  computed,
+  inject,
+} from '@angular/core';
 import { TranslocoDirective } from '@jsverse/transloco';
 
+import { AdBannerStore } from '@angular-love/blog/ad-banner/data-access';
 import { ArticleListStore } from '@angular-love/blog/articles/data-access';
 import {
   ArticleRegularCardSkeletonComponent,
@@ -9,9 +15,10 @@ import {
 } from '@angular-love/blog/articles/ui-article-card';
 import { UiArticleListTitleComponent } from '@angular-love/blog/articles/ui-article-list-title';
 import { NewsletterComponent } from '@angular-love/blog/newsletter';
+import { AlNewsletterBannerComponent } from '@angular-love/blog/shared/ad-banner';
 import {
   CardComponent,
-  GradientCardDirective,
+  CardContentDirective,
 } from '@angular-love/blog/shared/ui-card';
 import { RepeatDirective } from '@angular-love/utils';
 
@@ -24,12 +31,12 @@ import { RepeatDirective } from '@angular-love/utils';
     UiArticleCardComponent,
     NewsletterComponent,
     CardComponent,
-    GradientCardDirective,
     NgClass,
     TranslocoDirective,
     ArticleRegularCardSkeletonComponent,
-    CardComponent,
     RepeatDirective,
+    CardContentDirective,
+    AlNewsletterBannerComponent,
   ],
   host: {
     'data-testid': 'latest-articles-container',
@@ -38,13 +45,12 @@ import { RepeatDirective } from '@angular-love/utils';
 })
 export class FeatureLatestArticlesComponent {
   private readonly _articleListStore = inject(ArticleListStore);
-
+  private readonly _bannerStore = inject(AdBannerStore);
+  protected readonly cardBanner = computed(
+    () => this._bannerStore.banners()?.cardBanner,
+  );
   readonly isFetchArticleListLoading =
     this._articleListStore.isFetchArticleListLoading;
-
-  readonly isFetchArticleListError =
-    this._articleListStore.isFetchArticleListError;
-
   readonly articles = this._articleListStore.articles;
 
   constructor() {

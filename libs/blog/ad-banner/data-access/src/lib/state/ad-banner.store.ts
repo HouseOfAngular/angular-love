@@ -4,16 +4,16 @@ import { patchState, signalStore, withMethods, withState } from '@ngrx/signals';
 import { rxMethod } from '@ngrx/signals/rxjs-interop';
 import { pipe, switchMap } from 'rxjs';
 
-import { Slider } from '@angular-love/blog/contracts/banners';
+import { Banners } from '@angular-love/blog/contracts/banners';
 
 import { AdBannerService } from '../infrastructure/ad-banner.service';
 
 type AdBannerState = {
-  slider: Slider | null;
+  banners: Banners | null;
 };
 
 const initialState: AdBannerState = {
-  slider: null,
+  banners: null,
 };
 
 export const AdBannerStore = signalStore(
@@ -23,10 +23,10 @@ export const AdBannerStore = signalStore(
     getData: rxMethod<void>(
       pipe(
         switchMap(() =>
-          adBannerService.getBannerSlider().pipe(
+          adBannerService.getVisibleBanners().pipe(
             tapResponse({
-              next: (slider) => {
-                patchState(store, { slider });
+              next: (banners) => {
+                patchState(store, { banners });
               },
               error: () => {
                 patchState(store);
