@@ -148,5 +148,82 @@
     "twitter-x": "Follow us on X (formerly Twitter)",
     "linkedIn": "Follow us on LinkedIn",
     "youtube": "Subscribe to our YouTube channel"
+  },
+  "writingRules": {
+    "title": "Article Writing Rules",
+    "description1": "If you’re here, it means you want to share your knowledge with the Angular community! Here, you’ll learn how the publication process works—from the idea to sharing the finished article.",
+    "description2": "You are welcome to contact us for support and consultation at any stage. The first step is to join our Facebook group, <a class='text-al-primary' href='{{link}}' target='_blank'>angular.love bloggers</a> where we gather all bloggers and communicate together.",
+    "description3": "This is what the process of writing your article looks like :)",
+    "description4": "Let us know if you need further refinements!",
+    "nextButton": "Next",
+    "previousButton": "Previous",
+    "ideaStep": {
+      "title": "Idea",
+      "section1": "Topic – if you don’t yet have a vision of what you want to write about, you can consult with us (on the Facebook group).",
+      "section2": "If you’re considering the format for your topic, here are some suggestions:",
+      "subsectionTitle1": "N Tips (What to do or avoid)",
+      "description1": "“5 ways to… ..”",
+      "description2": "Quick to read, well-organized, and full of concrete facts.",
+      "subsectionTitle2": "Guides",
+      "description3": "Step-by-step instructions, e.g., how to use a library.",
+      "subsectionTitle3": "Controversial Topic",
+      "description4": "Write cautiously; ensure the title sparks interest.",
+      "subsectionTitle4": "Checklists",
+      "description5": "For example, “Do you have everything you need for ____?”",
+      "description6": "These are similar to guides but structured as checklists.",
+      "subsectionTitle5": "Reviews",
+      "description7": "E.g., library, book, or product reviews.",
+      "subsectionTitle6": "News",
+      "description8": "Share updates on conferences, technology releases, or important contacts.",
+      "subsectionTitle7": "Interview",
+      "description9": "Act as a journalist interviewing an expert. Include questions and their answers in a structured way.",
+      "subsectionTitle8": "Short Story/Case Study",
+      "description10": "Share expertise based on real projects or experiences.",
+      "subsectionTitle9": "Tips & Tricks",
+      "description11": "Condensed knowledge focused on best practices and overcoming challenges."
+    },
+    "researchRules": {
+      "title": "Topic Research",
+      "section1": "Check if there are other articles on a similar topic on angular.love.",
+      "section2": "Originality is key. Articles previously published elsewhere can't be republished."
+    },
+    "synopsisRules": {
+      "title": "Synopsis",
+      "section1": "Sketch a plan for your article—propose a catchy title, outline paragraphs, and identify the target audience.",
+      "section2": "Share your synopsis in the angular.love bloggers group for feedback.",
+      "section3": "After incorporating feedback, move on to writing."
+    },
+    "articleWorkRules": {
+      "title": "Working on the Article",
+      "section1": "While writing the article, keep these rules in mind:",
+      "subsectionTitle1": "Clear Structure",
+      "description1": "Divide into an introduction, body, and conclusion.",
+      "description2": "Use headings.",
+      "description3": " Use paragraphs.",
+      "subsectionTitle2": "Use interactive examples, such as on StackBlitz, if possible.",
+      "subsectionTitle3": "Code Snippets",
+      "description4": "Use code blocks and follow Angular standards (e.g., standalone components, Inject function, signals).",
+      "subsectionTitle4": "Use code blocks and follow Angular standards:",
+      "description5": "Standalone components.",
+      "description6": "Inject function.",
+      "description7": "Signals.",
+      "subsectionTitle5": "Add clear and high-quality graphics where possible.",
+      "section2": "Remember, the blogging community is here to support you at every stage!"
+    },
+    "reviewRules": {
+      "title": "Final Review",
+      "section1": "Share your completed article in the angular.love.bloggers group for review.",
+      "section2": "Address feedback and update the article as needed."
+    },
+    "translateRules": {
+      "title": "Article Translation",
+      "section1": "Our blog is available in both Polish and English.  If you wrote an article in one language, it must be translated into the other.",
+      "section2": " If you don’t know Polish, we’ll translate it for you!"
+    },
+    "publicationRules": {
+      "title": "Publication",
+      "section1": "We’ll transfer your article to the CMS and schedule its publication.",
+      "section2": "We’ll also promote it on social media to maximize its reach."
+    }
   }
 }

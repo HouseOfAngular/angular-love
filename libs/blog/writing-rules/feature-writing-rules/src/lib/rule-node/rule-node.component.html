@@ -1,0 +1,15 @@
+<ng-container *transloco="let t">
+  @for (node of node(); track node; let index = $index) {
+    <div [ngClass]="node.tabSpace || 'ml-5'">
+      <ul class="my-2" [ngClass]="node.listStyle || 'list-disc'">
+        <li>
+          <p [ngClass]="node.textColor">{{ t(node.text) }}</p>
+
+          @if (node.content?.length) {
+            <al-rule-node [node]="node.content"></al-rule-node>
+          }
+        </li>
+      </ul>
+    </div>
+  }
+</ng-container>

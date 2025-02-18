@@ -151,5 +151,82 @@
     "twitter-x": "Obserwuj nas na X (dawniej Twitter)",
     "linkedIn": "Obserwuj nas na LinkedInie",
     "youtube": "Subskrybuj nasz kanał na YouTube"
+  },
+  "writingRules": {
+    "title": "Zasady pisania artykułów",
+    "description1": "Cześć! Jeśli tu trafiłeś oznacza to, że chcesz podzielić się wiedzą z angularowym community! Dowiesz się tutaj między innymi jak przebiega proces publikacji artykułu - od pomysłu, aż do udostępnienia gotowego artykułu.",
+    "description2": "W każdym kroku możesz zgłosić się do nas o wsparcie i konsultacje. Pierwszą rzeczą będzie dołączenie do naszej grupy na Facebooku <a class='text-al-primary' href='{{link}}' target='_blank'>angular.love bloggers</a> gdzie zrzeszamy wszystkich blogerów i wspólnie się komunikujemy",
+    "description3": "Tak wygląda proces pisania przez Ciebie artykułu :)",
+    "description4": "Masz jakieś pytania? Skontaktuj się z nami.",
+    "nextButton": "Następny",
+    "previousButton": "Poprzedni",
+    "ideaStep": {
+      "title": "Pomysł",
+      "section1": "Temat - jeśli nie masz jeszcze wizji na to co chcesz napisać, możesz skonsultować się z nami (na grupie na facebooku)",
+      "section2": "Jeśli zastanawiasz się nad formą w jakiej ująć dany temat, oto kilka propozycji:",
+      "subsectionTitle1": "Wskazówki (co robić lub czego nie robić)",
+      "description1": "„5 sposobów na… ..”",
+      "description2": "Tego rodzaju artykuły są szybkie do przeczytania. Niektórzy czytają je tylko za pomocą nagłówków, a potem czytają, jeśli znajdą interesującą wskazówkę. Musi być dobrze zorganizowany, podzielony i zawierać wiele konkretnych faktów.",
+      "subsectionTitle2": "Poradniki",
+      "description3": "Coś w rodzaju N Tips, ale krok po kroku i bardziej precyzyjne instrukcje. Przykładowo jak krok po kroku użyć jakiejś biblioteki. ",
+      "subsectionTitle3": "Temat Kontrowersyjny",
+      "description4": "Ponieważ kontrowersje są bardzo emocjonalne, musisz być ostrożny i mądrze dobierać słowa. W tego typu postach tytuł powinien być kluczowym punktem zainteresowania odbiorców.",
+      "subsectionTitle4": "Listy Kontrolne",
+      "description5": "Czy masz wszystko, czego potrzebujesz do ____?",
+      "description6": "Coś w rodzaju poradników, ale utworzonych jako zawartość listy kontrolnej.",
+      "subsectionTitle5": "Opinie",
+      "description7": "Ludzie szukają recenzji przed użyciem czegoś. Możesz napisać np. recenzję jakiejś biblioteki, książki, produktu itd.",
+      "subsectionTitle6": "Aktualności",
+      "description8": "Wiadomości, zarówno oryginalne, jak i opiniotwórcze, są korzystne, ponieważ dostarczają czytelnikom nieprzetworzone, aktualne informacje. Mogą to być wiadomości dotyczące konferencji, udostępnienia technologii, ważnych kontaktów itp.",
+      "subsectionTitle7": "Wywiad",
+      "description9": "Odegrasz tutaj rolę dziennikarza, który zadaje jakieś pytania jednemu z ekspertów w swoim temacie. Wywiad musi być autoryzowany przez osobę przesłuchiwaną. Struktura powinna składać się z pytania, kilku zdań odpowiedzi, następnego pytania itd.",
+      "subsectionTitle8": "Krótka historia/studium przypadku",
+      "description10": "Ten typ artykułu powinien potwierdzać niektóre fakty lub wiedzę specjalistyczną w oparciu o pewne studium przypadku – prawdziwy projekt, który wykonałeś lub rzeczywistą sytuację, którą miałeś. Inną historią może być dzielenie się Twoim sukcesem, gdy zakończyłeś jakiś duży projekt, który znajduje się obecnie w fazie produkcji i jakie po drodze były wyzwania technologiczne i nie tylko.",
+      "subsectionTitle9": "Tips & Tricks",
+      "description11": "Ten typ artykułów jest osobny. Ma to na celu przekazanie czytelnikowi bardziej skondensowanej wiedzy na temat najpopularniejszych tematów w obszarze zainteresowania. Powinien koncentrować się na tematach, które potencjalnie mogą stanowić wyzwanie dla czytelników lub nawet nie wiedzą, że jest to wyzwanie, ale wiemy, że znamy tam naprawdę dobrą praktykę i chcemy się z nimi podzielić wiedzą na ten temat. Powinno to być coś w rodzaju artykułów na Stackoverlow, na przykład 2-3 najlepsze odpowiedzi razem."
+    },
+    "researchRules": {
+      "title": "Research Tematu",
+      "section1": "Sprawdź czy istnieją już inne artykuły na podobny temat na angular.love. Jeśli tak (a jest ich sporo, więc szansa jest duża), nic nie szkodzi - tak długo jak twój artykuł rzuca na dany temat nowe światło, wciąż warto go napisać! Ale pamiętaj! Bardzo ważne jest dla nas aby content na naszym blogu był możliwie oryginalny.",
+      "section2": "Nie możemy opublikować Twojego artykułu który został wcześniej opublikowany w innym miejscu"
+    },
+    "synopsisRules": {
+      "title": "Konspekt",
+      "section1": "Mając wiedzę o tym co już znajduje się na blogu, spróbuj naszkicować plan na artykuł - zaproponuj tytuł (w miarę możliwości chwytliwy), wstępnie wypisz z jakich akapitów będzie się składał, zastanów się do jakiej grupy zaawansowania jest kierowany (jakiej wiedzy potrzebuje czytelnik do jego zrozumienia, dlaczego temat może być ważny dla naszych czytelników)",
+      "section2": "Podziel się konspektem z innymi bloggerami na grupie angular.love bloggers. Dopracowanie konspektu bardzo pomoże ci w pisaniu i sprawi że efekt końcowy będzie wysokiej jakości! A wkład innych w tym procesie jest nieoceniony!",
+      "section3": "Po uwzględnieniu uwag innych autorów czas przejść do właściwego pisania."
+    },
+    "articleWorkRules": {
+      "title": "Praca nad artykułem",
+      "section1": "Pisząc artykuł, warto uwzględnić następujące zasady:",
+      "subsectionTitle1": "Przejrzysta struktura artykułu",
+      "description1": "Podziel artykuł na wstęp, rozwinięcie i podsumowanie",
+      "description2": "Stosuj nagłówki",
+      "description3": "Dziel tekst na akapity",
+      "subsectionTitle2": "W ramach możliwości użyj interaktywnego przykładu, np. na stackblitz",
+      "subsectionTitle3": "Snipetty kodu powinny być wstawiane jako code block",
+      "description4": "Żeby łatwo je dodawać należy włączyć formatowanie markdown (Use Markdown in Google Docs, Slides, & Drawings) i wpisać ``` + enter",
+      "subsectionTitle4": "Staraj się aby kod użyty w przykładach wykorzystywał najnowsze standardy w angularze, takie jak:",
+      "description5": "Standalone komponenty",
+      "description6": "Inject function",
+      "description7": "Sygnały",
+      "subsectionTitle5": "W miarę możliwości wzbogać swój artykuł o grafiki, uwzględniając to żeby były one czytelne i dobrej jakości",
+      "section2": "Pamiętaj, że na każdym etapie prac, społeczność bloggerów jest do twojej dyspozycji!"
+    },
+    "reviewRules": {
+      "title": "Review końcowe",
+      "section1": "Gdy jesteś usatysfakcjonowany treścią swojego artykułu, udostępnij go na grupie angular.love.bloggers, tak, żeby inni autorzy mogli poddać go recenzji",
+      "section2": "Odnieś się do uwag i daj znać w komentarzu gdy wprowadzisz poprawki"
+    },
+    "translateRules": {
+      "title": "Tłumaczenie artykułu",
+      "section1": "Jak zapewne wiesz nasz blog jest prowadzony w dwóch językach Polskim i Angielskim. Jeżeli napisałeś artykuł po Angielsku trzeba będzie go przetłumaczyć na język Polski. (Podobnie w drugą stronę :)) ",
+      "section2": "Jeżeli nie znasz języka polskiego - nic się nie martw przetłumaczymy go za Ciebie!"
+    },
+    "publicationRules": {
+      "title": "Publikacja",
+      "section1": "Teraz my zajmiemy się przeniesieniem twojego artykułu do CMS’a i zaplanujemy jego opublikowanie",
+      "section2": "Zajmiemy się również jego promowaniem w mediach społecznościowych, aby jak najwięcej osób mogło skorzystać z wiedzy, którą w nim zawarłeś!"
+    }
   }
 }

@@ -88,6 +88,9 @@
       "@angular-love/blog/contracts/banners": [
         "libs/blog-contracts/banners/src/index.ts"
       ],
+      "@angular-love/blog/feature-writing-rules": [
+        "libs/blog/writing-rules/feature-writing-rules/src/index.ts"
+      ],
       "@angular-love/blog/home/feature-home": [
         "libs/blog/home/feature-home/src/index.ts"
       ],

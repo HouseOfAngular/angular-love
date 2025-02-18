@@ -1,0 +1,59 @@
+<div
+  *transloco="let t"
+  class="bg-al-radial-gradient md:hover:shadow-al-primary my-1 w-full items-center rounded-lg border"
+>
+  <div
+    class="flex w-full cursor-pointer justify-between"
+    (click)="toggleStep.emit(this.index())"
+    (transitionend)="scrollToRule.emit(index())"
+  >
+    <div class="flex">
+      <div
+        class="bg-al-pink mx-4 mt-5 flex aspect-square h-6 items-center justify-center self-start rounded-full"
+      >
+        <p class="text-base font-bold">{{ index() + 1 }}</p>
+      </div>
+      <div class="w-full lg:mr-[30px]">
+        <p class="block pb-4 pt-5 md:py-5">{{ t(step().text) }}</p>
+      </div>
+    </div>
+    <div
+      class="mr-5 mt-5 self-start transition-transform duration-300"
+      [class.rotate-180]="isOpen()"
+    >
+      <fast-svg name="down-arrow" size="16" />
+    </div>
+  </div>
+
+  <div
+    class="grid transition-all duration-300 ease-in-out"
+    [class.grid-rows-[1fr]]="isOpen()"
+    [class.grid-rows-[0fr]]="!isOpen()"
+  >
+    <div class="overflow-hidden">
+      <div class="mx-6">
+        <al-rule-node [node]="step().content"></al-rule-node>
+        <div class="my-5 flex justify-end">
+          @if (!first()) {
+            <button
+              type="button"
+              class="border-al-gray-200 mr-1 w-1/2 rounded border bg-transparent px-1 py-2 font-medium leading-4 md:mr-2 md:w-auto md:px-4"
+              (click)="toggleStep.emit(index() - 1)"
+            >
+              {{ t('writingRules.previousButton') }}
+            </button>
+          }
+          @if (!last()) {
+            <button
+              type="button"
+              class="border-al-gray-200 bg-al-pink w-1/2 rounded border px-2 py-2 font-medium leading-4 md:w-auto md:px-6"
+              (click)="toggleStep.emit(index() + 1)"
+            >
+              {{ t('writingRules.nextButton') }}
+            </button>
+          }
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
