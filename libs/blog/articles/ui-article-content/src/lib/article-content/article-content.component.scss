@@ -89,7 +89,11 @@
     min-height: 300px;
   }
 
-  table td {
-    @apply border-al-border border border-solid p-3;
+  table {
+    @apply mb-6;
+
+    td {
+      @apply border-al-border border border-solid p-3;
+    }
   }
 }
