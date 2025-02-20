@@ -9,6 +9,7 @@ import {
 import { BecomeAuthorAdvertisementComponent } from '../components/become-author-advertisement/become-author-advertisement.component';
 import { BecomeAuthorBenefitsComponent } from '../components/become-author-benefits/become-author-benefits.component';
 import { BecomeAuthorImprovementsComponent } from '../components/become-author-improvements/become-author-improvements.component';
+import { BecomeAuthorWritingRulesAddComponent } from '../components/become-author-writing-rules-add/become-author-writing-rules-add.component';
 
 @Component({
   selector: 'al-feature-become-author-page',
@@ -19,6 +20,7 @@ import { BecomeAuthorImprovementsComponent } from '../components/become-author-i
     CardComponent,
     BecomeAuthorAdvertisementComponent,
     TranslocoDirective,
+    BecomeAuthorWritingRulesAddComponent,
   ],
   templateUrl: './become-author-page.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
