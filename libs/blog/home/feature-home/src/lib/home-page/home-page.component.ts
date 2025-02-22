@@ -1,5 +1,6 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
+import { RouterLink } from '@angular/router';
 
 import { ArticlesListContainerComponent } from '@angular-love/blog/articles/feature-list';
 import { PartnersComponent } from '@angular-love/blog/partners/ui-partners';
@@ -14,6 +15,7 @@ import { hoaHireUs, partnersList } from './partners';
     PartnersComponent,
     FeatureLatestArticlesComponent,
     ArticlesListContainerComponent,
+    RouterLink,
   ],
   templateUrl: './home-page.component.html',
   styleUrls: ['./home-page.component.scss'],
