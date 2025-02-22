@@ -12,7 +12,7 @@ import { FastSvgComponent } from '@push-based/ngx-fast-svg';
   template: `
     <button
       type="button"
-      class="z-50 ml-3 flex h-6 w-6 flex-col justify-evenly lg:hidden"
+      class="ml-3 flex h-6 w-6 flex-col justify-evenly lg:hidden"
       [attr.aria-label]="isOpened() ? 'Close menu' : 'Open Menu'"
       (click)="toggleOpen.emit()"
     >
@@ -27,6 +27,9 @@ import { FastSvgComponent } from '@push-based/ngx-fast-svg';
   `,
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [FastSvgComponent],
+  host: {
+    class: 'z-50',
+  },
 })
 export class HeaderHamburgerComponent {
   readonly isOpened = input.required<boolean>();
