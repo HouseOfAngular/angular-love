@@ -155,14 +155,14 @@
   "writingRules": {
     "title": "Zasady pisania artykułów",
     "description1": "Cześć! Jeśli tu trafiłeś oznacza to, że chcesz podzielić się wiedzą z angularowym community! Dowiesz się tutaj między innymi jak przebiega proces publikacji artykułu - od pomysłu, aż do udostępnienia gotowego artykułu.",
-    "description2": "W każdym kroku możesz zgłosić się do nas o wsparcie i konsultacje. Pierwszą rzeczą będzie dołączenie do naszej grupy na Facebooku <a class='text-al-primary' href='{{link}}' target='_blank'>angular.love bloggers</a> gdzie zrzeszamy wszystkich blogerów i wspólnie się komunikujemy",
+    "description2": "W każdym kroku możesz zgłosić się do nas o wsparcie i konsultacje. Pierwszą rzeczą będzie dołączenie do naszej grupy na Discord <a class='text-al-primary' href='{{link}}' target='_blank'>angular.love bloggers</a> gdzie zrzeszamy wszystkich blogerów i wspólnie się komunikujemy",
     "description3": "Tak wygląda proces pisania przez Ciebie artykułu :)",
     "description4": "Masz jakieś pytania? Skontaktuj się z nami.",
     "nextButton": "Następny",
     "previousButton": "Poprzedni",
     "ideaStep": {
       "title": "Pomysł",
-      "section1": "Temat - jeśli nie masz jeszcze wizji na to co chcesz napisać, możesz skonsultować się z nami (na grupie na facebooku)",
+      "section1": "Temat - jeśli nie masz jeszcze wizji na to co chcesz napisać, możesz skonsultować się z nami (na grupie na Discord)",
       "section2": "Jeśli zastanawiasz się nad formą w jakiej ująć dany temat, oto kilka propozycji:",
       "subsectionTitle1": "Wskazówki (co robić lub czego nie robić)",
       "description1": "„5 sposobów na… ..”",

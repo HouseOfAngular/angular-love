@@ -152,14 +152,14 @@
   "writingRules": {
     "title": "Article Writing Rules",
     "description1": "If you’re here, it means you want to share your knowledge with the Angular community! Here, you’ll learn how the publication process works—from the idea to sharing the finished article.",
-    "description2": "You are welcome to contact us for support and consultation at any stage. The first step is to join our Facebook group, <a class='text-al-primary' href='{{link}}' target='_blank'>angular.love bloggers</a> where we gather all bloggers and communicate together.",
+    "description2": "You are welcome to contact us for support and consultation at any stage. The first step is to join our Discord group, <a class='text-al-primary' href='{{link}}' target='_blank'>angular.love bloggers</a> where we gather all bloggers and communicate together.",
     "description3": "This is what the process of writing your article looks like :)",
     "description4": "Let us know if you need further refinements!",
     "nextButton": "Next",
     "previousButton": "Previous",
     "ideaStep": {
       "title": "Idea",
-      "section1": "Topic – if you don’t yet have a vision of what you want to write about, you can consult with us (on the Facebook group).",
+      "section1": "Topic – if you don’t yet have a vision of what you want to write about, you can consult with us (on the Discord group).",
       "section2": "If you’re considering the format for your topic, here are some suggestions:",
       "subsectionTitle1": "N Tips (What to do or avoid)",
       "description1": "“5 ways to… ..”",
