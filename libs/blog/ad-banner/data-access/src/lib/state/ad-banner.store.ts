@@ -2,7 +2,7 @@ import { inject } from '@angular/core';
 import { tapResponse } from '@ngrx/operators';
 import { patchState, signalStore, withMethods, withState } from '@ngrx/signals';
 import { rxMethod } from '@ngrx/signals/rxjs-interop';
-import { pipe, switchMap } from 'rxjs';
+import { of, pipe, switchMap } from 'rxjs';
 
 import { Slider } from '@angular-love/blog/contracts/banners';
 
@@ -23,7 +23,11 @@ export const AdBannerStore = signalStore(
     getData: rxMethod<void>(
       pipe(
         switchMap(() =>
-          adBannerService.getBannerSlider().pipe(
+          // todo rollback
+          of({
+            slideDisplayTimeMs: 5000,
+            slides: [],
+          }).pipe(
             tapResponse({
               next: (slider) => {
                 patchState(store, { slider });

@@ -10,7 +10,7 @@ import { ArticlesQuery } from '../dto/articles.query';
 
 @Injectable({ providedIn: 'root' })
 export class ArticlesService {
-  private readonly _apiBaseUrl = inject(ConfigService).get('apiBaseUrl');
+  private readonly _apiBaseUrl = inject(ConfigService).get('apiV2BaseUrl');
   private readonly _http = inject(HttpClient);
 
   getArticleBySlug(slug: string): Observable<Article> {
