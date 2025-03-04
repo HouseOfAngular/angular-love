@@ -10,6 +10,7 @@ export const environment: AppEnvironment = {
     provideConfig({
       baseUrl: process.env.AL_BASE_URL,
       apiBaseUrl: process.env.AL_API_URL,
+      apiV2BaseUrl: process.env.AL_API_URL_V2,
       algoliaApplicationId: process.env.AL_ALGOLIA_APPLICATION_ID,
       algoliaIndexName: process.env.AL_ALGOLIA_INDEX_NAME,
       algoliaApiKey: process.env.AL_ALGOLIA_API_KEY,
