@@ -2,6 +2,10 @@
   "name": "@angular-love/source",
   "version": "0.0.0",
   "license": "MIT",
+  "engines": {
+    "node": "^22.14.0",
+    "pnpm": ">=10"
+  },
   "scripts": {
     "start": "npx nx run blog:serve",
     "start:storybook": "nx storybook storybook",
