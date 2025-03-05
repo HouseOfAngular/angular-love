@@ -7,7 +7,14 @@
     "guides": "Guides",
     "partners": "Community partners",
     "mainPartner": "Main partner",
-    "angularInDepth": "Angular In Depth"
+    "angularInDepth": "Angular In Depth",
+    "categories": {
+      "all": "Latest",
+      "news": "News",
+      "guides": "Guides",
+      "inDepth": "In-Depth",
+      "showAll": "Show All {{category}}"
+    }
   },
   "nav": {
     "home": "Home Page",
