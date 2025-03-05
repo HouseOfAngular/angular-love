@@ -1,0 +1,98 @@
+pipeline {
+    agent {
+        dockerfile {
+            filename 'Dockerfile-deploy'
+            reuseNode true
+        }
+    }
+
+    options {
+        quietPeriod(0)
+        disableConcurrentBuilds()
+        timestamps()
+    }
+
+    environment {
+        KV_DEV = credentials('cf-kv-dev')
+        KV_PROD = credentials('cf-kv-prod')
+    }
+
+    stages {
+        stage("Install dependencies") {
+            steps {
+                script {
+                    sh """
+                        corepack enable && corepack prepare pnpm@9.15.2 --activate
+                        pnpm install 
+                    """
+                }
+            }
+        }
+        stage("Branch db") {
+            steps {
+                sh """
+                    echo "turso branch db"
+                """
+            }
+        }
+        stage("Deploy bff prod") {
+            stages {
+                stage("Prepare secrets") {
+                    steps {
+                        sh """
+                            sed -i "s/<kv_dev_namespace_id>/$KV_DEV/g" apps/blog-bff/wrangler.toml
+                            sed -i "s/<kv_prod_namespace_id>/$KV_PROD/g" apps/blog-bff/wrangler.toml
+                            echo "DB_URL=$DB_URL" > new-secrets
+                        """
+                    }
+                }
+                stage ("Wrangler upload new version") {
+                    steps {
+                        withCredentials([
+                            usernamePassword(credentialsId: 'cf-workers-creds', usernameVariable: 'CLOUDFLARE_ACCOUNT_ID', passwordVariable: 'CLOUDFLARE_API_TOKEN'),
+                        ]) {
+                            sh """
+                                npx wrangler version upload --config apps/blog-bff/wrangler.toml --env prod
+                            """   
+                        }
+                    }
+                }
+                stage ("Wrangler upload new secrets") {
+                    steps {
+                        withCredentials([
+                            usernamePassword(credentialsId: 'cf-workers-creds', usernameVariable: 'CLOUDFLARE_ACCOUNT_ID', passwordVariable: 'CLOUDFLARE_API_TOKEN'),
+                        ]) {
+                            sh """
+                                wrangler versions secret bulk new-secrets --config apps/blog-bff/wrangler.toml --env prod
+                            """   
+                        }
+                    }
+                }
+                stage ("Wrangler deploy bff") {
+                    steps {
+                        withCredentials([
+                            usernamePassword(credentialsId: 'cf-workers-creds', usernameVariable: 'CLOUDFLARE_ACCOUNT_ID', passwordVariable: 'CLOUDFLARE_API_TOKEN'),
+                        ]) {
+                            sh """
+                                wrangler versions deploy --config apps/blog-bff/wrangler.toml --env prod
+                            """   
+                        }
+                    }
+                }
+            }
+        }
+        stage("Deploy blog prod") {
+            steps {
+                sh """
+                    echo "turso branch db"
+                """
+            }
+        }
+
+    }
+    post {
+        always {
+            cleanWs()
+        }
+    }
+}
