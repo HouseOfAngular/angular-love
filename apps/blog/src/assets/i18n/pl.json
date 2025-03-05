@@ -46,6 +46,11 @@
       "description": "Masz pomysł na artykuł? Chciałbyś zacząć przyczyniać się do tworzenia społeczności Angulara z nami?",
       "buttonText": "WYPEŁNIJ FORMULARZ"
     },
+    "articleWritingRules": {
+      "title": "Zasady pisania artykułów",
+      "description": "Cześć! Oto kilka praktycznych wskazówek, które ułatwią Ci start i sprawią, że Twoje teksty będą się wyróżniać.",
+      "buttonText": "PRZECZYTAJ WSKAZÓWKI PISANIA ARTYKUŁÓW"
+    },
     "benefits": {
       "title": "Jak się rozwijasz dzięki temu?",
       "items": [

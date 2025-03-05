@@ -43,6 +43,11 @@
       "description": "Do you have an idea for an article? Would you like to start contributing and creating the Angular Community with us?",
       "buttonText": "FILL OUT THE FORM"
     },
+    "articleWritingRules": {
+      "title": "Article Writing Rules",
+      "description": "Hey! Here are some practical tips to help you get started and make your writing stand out",
+      "buttonText": "DISCOVER WRITING TIPS"
+    },
     "benefits": {
       "title": "How will you develop through this?",
       "items": [
