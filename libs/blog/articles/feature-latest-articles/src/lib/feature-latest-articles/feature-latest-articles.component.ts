@@ -4,7 +4,7 @@ import {
   Component,
   computed,
   inject,
-  signal,
+  linkedSignal,
 } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { TranslocoDirective } from '@jsverse/transloco';
@@ -24,7 +24,7 @@ import { PillDirective } from '@angular-love/blog/shared/ui-pill';
 import { ArticleCategory } from '@angular-love/contracts/articles';
 import { RepeatDirective } from '@angular-love/utils';
 
-import { CATEGORIES_LIST, CategoryListItem } from './categories.const';
+import { CategoryListItem, injectCategories } from './categories.const';
 
 @Component({
   selector: 'al-latest-articles',
@@ -50,11 +50,14 @@ import { CATEGORIES_LIST, CategoryListItem } from './categories.const';
   providers: [ArticleListStore],
 })
 export class FeatureLatestArticlesComponent {
-  readonly selected = signal<CategoryListItem>(CATEGORIES_LIST[0]);
   readonly selectedCategorySlug = computed<ArticleCategory | null>(
     () => this.selected().slug,
   );
-  readonly categories = CATEGORIES_LIST;
+  readonly categories = injectCategories();
+  readonly selected = linkedSignal<CategoryListItem>(
+    () => this.categories()[0],
+  );
+
   readonly take = 8;
 
   private readonly _articleListStore = inject(ArticleListStore);
