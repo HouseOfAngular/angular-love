@@ -1,6 +1,6 @@
 <ng-container *transloco="let t; read: 'homePage'">
   <section class="flex justify-center gap-3">
-    @for (category of categories; track $index) {
+    @for (category of categories(); track $index) {
       <button
         alPill
         [variant]="category.name === selected().name ? 'flat' : 'outline'"
