@@ -15,6 +15,13 @@ pipeline {
     environment {
         KV_DEV = credentials('cf-kv-dev')
         KV_PROD = credentials('cf-kv-prod')
+        TURSO_ORG="angular-love"
+        TURSO_EU_DB=credentials('turso-eu-db')
+        TURSO_US_WEST_DB=credentials('turso-us-west-db')
+        TURSO_US_EAST_DB=credentials('turso-us-east-db')
+        TURSO_EU_AUTH_TOKEN=credentials('turso-eu-auth-token')
+        TURSO_US_WEST_AUTH_TOKEN=credentials('turso-us-west-auth-token')
+        TURSO_US_EAST_AUTH_TOKEN=credentials('turso-us-east-auth-token')
     }
 
     stages {
@@ -28,11 +35,31 @@ pipeline {
                 }
             }
         }
+        stage("Decide environment") {
+            steps {
+                script {
+                    env.ENVIRONMENT = 'dev'
+                    if (env.BRANCH_NAME == 'main') {
+                        env.ENVIRONMENT = 'prod'
+                    }
+                }
+            }
+        }
         stage("Branch db") {
             steps {
-                sh """
-                    echo "turso branch db"
-                """
+                script {
+                    def timestamp = new Date().getTime()
+                    def random = Math.abs(new Random().nextInt())
+                    env.BRANCH_HASH = "${timestamp}-${random}"
+                }
+                withCredentials([string(credentialsId: 'tursor_api_token', variable: 'TURSO_API_TOKEN')]) {
+                    sh """
+                        turso db create blog-eu-branch-${BRANCH_HASH} --from-db $TURSO_EU_DB --group blog-eu
+                        turso db create blog-us-west-branch-${BRANCH_HASH} --from-db $TURSO_US_WEST_DB --group blog-us-west
+                        turso db create blog-us-east-branch-${BRANCH_HASH} --from-db $TURSO_US_EAST_DB --group blog-us-east
+                    """
+                }
+                
             }
         }
         stage("Deploy bff prod") {
@@ -42,7 +69,13 @@ pipeline {
                         sh """
                             sed -i "s/<kv_dev_namespace_id>/$KV_DEV/g" apps/blog-bff/wrangler.toml
                             sed -i "s/<kv_prod_namespace_id>/$KV_PROD/g" apps/blog-bff/wrangler.toml
-                            echo "DB_URL=$DB_URL" > new-secrets
+                            echo "
+TURSO_EU_CONNECTION_URL=libsql://blog-eu-branch-${BRANCH_HASH}-angular-love.turso.io
+TURSO_EU_AUTH_TOKEN=$TURSO_EU_AUTH_TOKEN
+TURSO_US_EAST_CONNECTION_URL=libsql://blog-us-east-branch-${BRANCH_HASH}-angular-love.turso.io
+TURSO_US_EAST_AUTH_TOKEN=$TURSO_US_EAST_AUTH_TOKEN
+TURSO_US_WEST_CONNECTION_URL=libsql://blog-us-west-branch-${BRANCH_HASH}-angular-love.turso.io
+TURSO_US_WEST_AUTH_TOKEN=$TURSO_US_WEST_AUTH_TOKEN" > new-secrets
                         """
                     }
                 }
@@ -52,7 +85,7 @@ pipeline {
                             usernamePassword(credentialsId: 'cf-workers-creds', usernameVariable: 'CLOUDFLARE_ACCOUNT_ID', passwordVariable: 'CLOUDFLARE_API_TOKEN'),
                         ]) {
                             sh """
-                                npx wrangler version upload --config apps/blog-bff/wrangler.toml --env prod
+                                npx wrangler version upload --config apps/blog-bff/wrangler.toml --env $ENVIRONMENT
                             """   
                         }
                     }
@@ -63,9 +96,9 @@ pipeline {
                             usernamePassword(credentialsId: 'cf-workers-creds', usernameVariable: 'CLOUDFLARE_ACCOUNT_ID', passwordVariable: 'CLOUDFLARE_API_TOKEN'),
                         ]) {
                             sh """
-                                wrangler versions secret bulk new-secrets --config apps/blog-bff/wrangler.toml --env prod
+                                wrangler versions secret bulk new-secrets --config apps/blog-bff/wrangler.toml --env $ENVIRONMENT
                             """   
-                        }
+                        }   
                     }
                 }
                 stage ("Wrangler deploy bff") {
@@ -74,7 +107,7 @@ pipeline {
                             usernamePassword(credentialsId: 'cf-workers-creds', usernameVariable: 'CLOUDFLARE_ACCOUNT_ID', passwordVariable: 'CLOUDFLARE_API_TOKEN'),
                         ]) {
                             sh """
-                                wrangler versions deploy --config apps/blog-bff/wrangler.toml --env prod
+                                wrangler versions deploy --config apps/blog-bff/wrangler.toml --env $ENVIRONMENT
                             """   
                         }
                     }
