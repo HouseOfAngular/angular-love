@@ -1,5 +1,9 @@
 {
   "homePage": {
+    "welcomeMessage": {
+      "description": "Miejsce, gdzie możesz nauczyć się Angulara, odkrywać najlepsze praktyki, eksplorować zaawansowane techniki i być na bieżąco z najnowszymi Angularowymi wiadomościami oraz trendami.",
+      "descriptionAriaLabel": "Sprawdź stronę House of Angular"
+    },
     "seeAll": "Zobacz wszystkie",
     "latest": "Najnowsze Artykuły",
     "recommended": "Polecane Artykuły",

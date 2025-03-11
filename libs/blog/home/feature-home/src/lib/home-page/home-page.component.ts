@@ -6,6 +6,7 @@ import { PartnersComponent } from '@angular-love/blog/partners/ui-partners';
 import { FeatureLatestArticlesComponent } from '@angular-love/feature-latest-articles';
 
 import { hoaHireUs, partnersList } from './partners';
+import { WelcomeMessageComponent } from './welcome-message/welcome-message.component';
 
 @Component({
   selector: 'al-home-page',
@@ -14,6 +15,7 @@ import { hoaHireUs, partnersList } from './partners';
     PartnersComponent,
     FeatureLatestArticlesComponent,
     ArticlesListContainerComponent,
+    WelcomeMessageComponent,
   ],
   templateUrl: './home-page.component.html',
   styleUrls: ['./home-page.component.scss'],
