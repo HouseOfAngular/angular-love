@@ -86,7 +86,7 @@ TURSO_US_WEST_AUTH_TOKEN=$TURSO_US_WEST_AUTH_TOKEN" > new-secrets
                             usernamePassword(credentialsId: 'cf-workers-creds', usernameVariable: 'CLOUDFLARE_ACCOUNT_ID', passwordVariable: 'CLOUDFLARE_API_TOKEN'),
                         ]) {
                             sh """
-                                npx wrangler version upload --config apps/blog-bff/wrangler.toml --env $ENVIRONMENT
+                                npx wrangler versions upload --config apps/blog-bff/wrangler.toml --env $ENVIRONMENT
                             """   
                         }
                     }
