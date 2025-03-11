@@ -7,7 +7,7 @@ import {
 } from '@angular/core';
 import { TranslocoDirective } from '@jsverse/transloco';
 
-import { Lang } from '@angular-love/shared/utils-i18n';
+import { Lang } from '@angular-love/contracts/articles';
 
 import { HeaderLanguageButtonComponent } from './header-language-button.component';
 
