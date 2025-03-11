@@ -27,6 +27,9 @@
       "@angular-love/blog-bff/newsletter/api": [
         "libs/blog-bff/newsletter/src/index.ts"
       ],
+      "@angular-love/blog-bff/shared/util-drizzle": [
+        "libs/blog-bff/shared/util-drizzle/src/index.ts"
+      ],
       "@angular-love/blog-bff/shared/util-middleware": [
         "libs/blog-bff/shared/util-middleware/src/index.ts"
       ],
