@@ -1,12 +1,13 @@
 import { Context } from 'hono';
 import { createMiddleware } from 'hono/factory';
 import { HTTPException } from 'hono/http-exception';
+import * as v from 'valibot';
 
-import { Lang, LangSchema } from '@angular-love/shared/utils-i18n';
+import { Lang, LangSchema } from '@angular-love/contracts/articles';
 
 export const getWpLang = (c: Context, fallback?: Lang): Lang => {
-  const schema = fallback ? LangSchema.default(fallback) : LangSchema;
-  return schema.parse(c.req.query()['lang'] || c.req.header('x-al-lang'));
+  const schema = fallback ? v.optional(LangSchema, fallback) : LangSchema;
+  return v.parse(schema, c.req.query()['lang'] || c.req.header('x-al-lang'));
 };
 
 /**
