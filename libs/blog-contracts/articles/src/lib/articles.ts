@@ -78,6 +78,11 @@ export type SeoMetaData = Pick<
   | 'twitter_misc'
 >;
 
+export interface ArticleTranslation {
+  locale: string;
+  slug: string;
+}
+
 export interface Article {
   id: number;
   title: string;
