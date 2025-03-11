@@ -11,7 +11,7 @@ import { AuthorsQuery } from '../dto/authors.query';
 
 @Injectable({ providedIn: 'root' })
 export class AuthorService {
-  private readonly _apiBaseUrl = inject(ConfigService).get('apiV2BaseUrl');
+  private readonly _apiBaseUrl = inject(ConfigService).get('apiBaseUrl');
   private readonly _http = inject(HttpClient);
 
   getAuthor(slug: string): Observable<Author> {
