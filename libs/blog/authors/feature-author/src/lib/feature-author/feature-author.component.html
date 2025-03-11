@@ -18,23 +18,23 @@
 </span>
 
 <div aria-live="polite" class="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
-  @if (articleStore.isFetchArticleListLoading()) {
+  @if (authorDetailsStore.isFetchAuthorArticlesLoading()) {
     <!--    TODO: add article skleteon when ready-->
     <!--    <al-article-card-skeleton *alRepeat="6" class="h-[438px]" />-->
   } @else {
-    @for (article of articleStore.articles(); track article.slug) {
+    @for (article of authorDetailsStore.articles(); track article.slug) {
       <al-article-card [article]="article" cardType="regular" />
     }
   }
 </div>
 
-@if (articleStore.total() > pageSize) {
+@if (authorDetailsStore.total() > pageSize) {
   <footer class="bg-al-card mt-16 rounded-lg border px-1 py-5">
     <al-pagination
       alQueryPagination
       [pageSize]="pagination().take"
       [skip]="pagination().skip"
-      [total]="articleStore.total()"
+      [total]="authorDetailsStore.total()"
       (pageChange)="pagination.set($event)"
     />
   </footer>
