@@ -68,7 +68,6 @@
     "valibot": "1.0.0-rc.3",
     "vanilla-cookieconsent": "3.0.1",
     "xmlbuilder2": "^3.1.1",
-    "zod": "^3.23.8",
     "zone.js": "0.14.4"
   },
   "devDependencies": {
