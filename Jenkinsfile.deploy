@@ -51,16 +51,30 @@ pipeline {
                 script {
                     def timestamp = new Date().getTime()
                     def random = Math.abs(new Random().nextInt())
-                    env.BRANCH_HASH = "${timestamp}-${random}"
-                    env.BRANCH_NAME = "${ENVIRONMENT}-${BRANCH_NAME}-${BRANCH_HASH}"
+                    env.BRANCH_HASH = "${random}"
+                    
+                    def branchNameForDB = env.BRANCH_NAME
+                    if (env.BRANCH_NAME.length() > 30) {
+                        echo "Branch name is too long, truncating to 30 characters"
+                        branchNameForDB = env.BRANCH_NAME.substring(0, 30)
+                    }
+
+                    env.DB_BRANCH_NAME = "${ENVIRONMENT}-${branchNameForDB}-${BRANCH_HASH}"
+                    if (env.DB_BRANCH_NAME.length() > 50) {
+                        echo "DB branch name is too long, truncating to 50 characters"
+                        env.DB_BRANCH_NAME = env.BRANCH_NAME.substring(0, 50)
+                    }
                 }
                 withCredentials([string(credentialsId: 'tursor_api_token', variable: 'TURSO_API_TOKEN')]) {
                     sh """
                         turso org switch angular-love
-                        turso db create blog-eu-${BRANCH_NAME} --from-db $TURSO_EU_DB --group blog-eu
-                        turso db create blog-us-west-${BRANCH_NAME} --from-db $TURSO_US_WEST_DB --group blog-us-west
-                        turso db create blog-us-east-${BRANCH_NAME} --from-db $TURSO_US_EAST_DB --group blog-us-east
+                        turso db create eu-${DB_BRANCH_NAME} --from-db $TURSO_EU_DB --group blog-eu
+                        turso db create us-west-${DB_BRANCH_NAME} --from-db $TURSO_US_WEST_DB --group blog-us-west
+                        turso db create us-east-${DB_BRANCH_NAME} --from-db $TURSO_US_EAST_DB --group blog-us-east
                     """
+                    env.TURSO_EU_CONNECTION_URL = "libsql://eu-${DB_BRANCH_NAME}-angular-love.turso.io"
+                    env.TURSO_US_WEST_CONNECTION_URL = "libsql://us-west-${DB_BRANCH_NAME}-angular-love.turso.io"
+                    env.TURSO_US_EAST_CONNECTION_URL = "libsql://us-east-${DB_BRANCH_NAME}-angular-love.turso.io"
                 }
                 
             }
@@ -73,11 +87,11 @@ pipeline {
                             sed -i "s/<kv_dev_namespace_id>/$KV_DEV/g" apps/blog-bff/wrangler.toml
                             sed -i "s/<kv_prod_namespace_id>/$KV_PROD/g" apps/blog-bff/wrangler.toml
                             echo "
-TURSO_EU_CONNECTION_URL=libsql://blog-eu-${BRANCH_NAME}-angular-love.turso.io
+TURSO_EU_CONNECTION_URL=$TURSO_EU_CONNECTION_URL
 TURSO_EU_AUTH_TOKEN=$TURSO_EU_AUTH_TOKEN
-TURSO_US_EAST_CONNECTION_URL=libsql://blog-us-east-${BRANCH_NAME}-angular-love.turso.io
+TURSO_US_EAST_CONNECTION_URL=$TURSO_US_EAST_CONNECTION_URL
 TURSO_US_EAST_AUTH_TOKEN=$TURSO_US_EAST_AUTH_TOKEN
-TURSO_US_WEST_CONNECTION_URL=libsql://blog-us-west-${BRANCH_NAME}-angular-love.turso.io
+TURSO_US_WEST_CONNECTION_URL=$TURSO_US_WEST_CONNECTION_URL
 TURSO_US_WEST_AUTH_TOKEN=$TURSO_US_WEST_AUTH_TOKEN" > new-secrets
                         """
                     }
