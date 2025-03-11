@@ -146,9 +146,6 @@ importers:
       xmlbuilder2:
         specifier: ^3.1.1
         version: 3.1.1
-      zod:
-        specifier: ^3.23.8
-        version: 3.23.8
       zone.js:
         specifier: 0.14.4
         version: 0.14.4
