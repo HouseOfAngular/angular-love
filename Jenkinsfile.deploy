@@ -89,8 +89,8 @@ TURSO_US_WEST_AUTH_TOKEN=$TURSO_US_WEST_AUTH_TOKEN" > new-secrets
                                 output = sh(returnStdout: true, script: """
                                     npx wrangler versions upload --config apps/blog-bff/wrangler.toml --env $ENVIRONMENT
                                 """)
-                                def versionId = output.findAll(/Worker Version ID: ([^\s]+)/)[0][1]
-                                def previewUrl = output.findAll(/Version Preview URL: ([^\s]+)/)[0][1]
+                                def versionId = (output =~ /Worker Version ID: ([^\s]+)/)[0][1]
+                                def previewUrl = (output =~ /Version Preview URL: ([^\s]+)/)[0][1]
                                 env.VERSION_ID = versionId
                                 env.PREVIEW_URL = previewUrl
                                 echo "Version ID: $versionId"
