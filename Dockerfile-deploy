@@ -1,9 +1,11 @@
-FROM node:23.9.0-slim AS base
+FROM node:22.14.0-slim AS base
 ENV PNPM_HOME="/pnpm"
 ENV PATH="$PNPM_HOME:$PATH"
 RUN corepack enable
 
 RUN apt-get update && apt-get install -y jq && apt-get install -y curl
+
+RUN curl -sSfL https://get.tur.so/install.sh | bash
 
 COPY . /app
 WORKDIR /app
