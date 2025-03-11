@@ -54,6 +54,7 @@ pipeline {
                 }
                 withCredentials([string(credentialsId: 'tursor_api_token', variable: 'TURSO_API_TOKEN')]) {
                     sh """
+                        turso org switch angular-love
                         turso db create blog-eu-branch-${BRANCH_HASH} --from-db $TURSO_EU_DB --group blog-eu
                         turso db create blog-us-west-branch-${BRANCH_HASH} --from-db $TURSO_US_WEST_DB --group blog-us-west
                         turso db create blog-us-east-branch-${BRANCH_HASH} --from-db $TURSO_US_EAST_DB --group blog-us-east
