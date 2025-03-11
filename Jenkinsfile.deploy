@@ -85,9 +85,15 @@ TURSO_US_WEST_AUTH_TOKEN=$TURSO_US_WEST_AUTH_TOKEN" > new-secrets
                         withCredentials([
                             usernamePassword(credentialsId: 'cf-workers-creds', usernameVariable: 'CLOUDFLARE_ACCOUNT_ID', passwordVariable: 'CLOUDFLARE_API_TOKEN'),
                         ]) {
-                            sh """
+                            output = sh(returnStdout: true, script: """
                                 npx wrangler versions upload --config apps/blog-bff/wrangler.toml --env $ENVIRONMENT
-                            """   
+                            """)
+                            def versionId = output.findAll(/Worker Version ID: ([^\s]+)/)[0][1]
+                            def previewUrl = output.findAll(/Version Preview URL: ([^\s]+)/)[0][1]
+                            env.VERSION_ID = versionId
+                            env.PREVIEW_URL = previewUrl
+                            echo "Version ID: $versionId"
+                            echo "Preview URL: $previewUrl"
                         }
                     }
                 }
@@ -108,7 +114,7 @@ TURSO_US_WEST_AUTH_TOKEN=$TURSO_US_WEST_AUTH_TOKEN" > new-secrets
                             usernamePassword(credentialsId: 'cf-workers-creds', usernameVariable: 'CLOUDFLARE_ACCOUNT_ID', passwordVariable: 'CLOUDFLARE_API_TOKEN'),
                         ]) {
                             sh """
-                                npx wrangler versions deploy --config apps/blog-bff/wrangler.toml --env $ENVIRONMENT
+                                npx wrangler versions deploy --config apps/blog-bff/wrangler.toml --env $ENVIRONMENT $VERSION_ID@100 -y
                             """   
                         }
                     }
