@@ -63,8 +63,13 @@
                 "onlyDependOnLibsWithTags": [
                   "type:api",
                   "type:contract",
-                  "type:util"
+                  "type:util",
+                  "type:schema"
                 ]
+              },
+              {
+                "sourceTag": "type:schema",
+                "onlyDependOnLibsWithTags": ["type:types", "type:contract"]
               },
               {
                 "sourceTag": "type:util",

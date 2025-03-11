@@ -1,7 +1,7 @@
 import { Hono } from 'hono';
 
 import {
-  appCache,
+  databaseMw,
   langMw,
 } from '@angular-love/blog-bff/shared/util-middleware';
 import { ArrayResponse } from '@angular-love/blog-contracts/shared';
@@ -11,7 +11,7 @@ import { getPagination, wpClientMw } from '@angular-love/util-wp';
 import { toArticle, toArticlePreviewList } from './mappers';
 import { WpPosts } from './wp-posts';
 
-const app = new Hono().use(appCache).use(langMw()).use(wpClientMw);
+const app = new Hono().use(langMw()).use(databaseMw).use(wpClientMw);
 
 app.get('/', async (c) => {
   const client = new WpPosts(c.var.createWPClient());
