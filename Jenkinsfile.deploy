@@ -15,6 +15,7 @@ pipeline {
     environment {
         KV_DEV = credentials('cf-kv-dev')
         KV_PROD = credentials('cf-kv-prod')
+        AL_BASE_URL = 'https://angular.love'
         TURSO_ORG="angular-love"
         TURSO_EU_DB=credentials('turso-eu-db')
         TURSO_US_WEST_DB=credentials('turso-us-west-db')
@@ -51,13 +52,14 @@ pipeline {
                     def timestamp = new Date().getTime()
                     def random = Math.abs(new Random().nextInt())
                     env.BRANCH_HASH = "${timestamp}-${random}"
+                    env.BRANCH_NAME = "${ENVIRONMENT}-${BRANCH_NAME}-${BRANCH_HASH}"
                 }
                 withCredentials([string(credentialsId: 'tursor_api_token', variable: 'TURSO_API_TOKEN')]) {
                     sh """
                         turso org switch angular-love
-                        turso db create blog-eu-branch-${BRANCH_HASH} --from-db $TURSO_EU_DB --group blog-eu
-                        turso db create blog-us-west-branch-${BRANCH_HASH} --from-db $TURSO_US_WEST_DB --group blog-us-west
-                        turso db create blog-us-east-branch-${BRANCH_HASH} --from-db $TURSO_US_EAST_DB --group blog-us-east
+                        turso db create blog-eu-${BRANCH_NAME} --from-db $TURSO_EU_DB --group blog-eu
+                        turso db create blog-us-west-${BRANCH_NAME} --from-db $TURSO_US_WEST_DB --group blog-us-west
+                        turso db create blog-us-east-${BRANCH_NAME} --from-db $TURSO_US_EAST_DB --group blog-us-east
                     """
                 }
                 
@@ -71,11 +73,11 @@ pipeline {
                             sed -i "s/<kv_dev_namespace_id>/$KV_DEV/g" apps/blog-bff/wrangler.toml
                             sed -i "s/<kv_prod_namespace_id>/$KV_PROD/g" apps/blog-bff/wrangler.toml
                             echo "
-TURSO_EU_CONNECTION_URL=libsql://blog-eu-branch-${BRANCH_HASH}-angular-love.turso.io
+TURSO_EU_CONNECTION_URL=libsql://blog-eu-${BRANCH_NAME}-angular-love.turso.io
 TURSO_EU_AUTH_TOKEN=$TURSO_EU_AUTH_TOKEN
-TURSO_US_EAST_CONNECTION_URL=libsql://blog-us-east-branch-${BRANCH_HASH}-angular-love.turso.io
+TURSO_US_EAST_CONNECTION_URL=libsql://blog-us-east-${BRANCH_NAME}-angular-love.turso.io
 TURSO_US_EAST_AUTH_TOKEN=$TURSO_US_EAST_AUTH_TOKEN
-TURSO_US_WEST_CONNECTION_URL=libsql://blog-us-west-branch-${BRANCH_HASH}-angular-love.turso.io
+TURSO_US_WEST_CONNECTION_URL=libsql://blog-us-west-${BRANCH_NAME}-angular-love.turso.io
 TURSO_US_WEST_AUTH_TOKEN=$TURSO_US_WEST_AUTH_TOKEN" > new-secrets
                         """
                     }
@@ -93,6 +95,7 @@ TURSO_US_WEST_AUTH_TOKEN=$TURSO_US_WEST_AUTH_TOKEN" > new-secrets
                                 def previewUrl = (output =~ /Version Preview URL: ([^\s]+)/)[0][1]
                                 env.VERSION_ID = versionId
                                 env.PREVIEW_URL = previewUrl
+                                env.AL_API_URL = previewUrl
                                 echo "Version ID: $versionId"
                                 echo "Preview URL: $previewUrl"
                             }
@@ -123,11 +126,22 @@ TURSO_US_WEST_AUTH_TOKEN=$TURSO_US_WEST_AUTH_TOKEN" > new-secrets
                 }
             }
         }
-        stage("Deploy blog prod") {
+        stage("Build blog") {
             steps {
                 sh """
-                    echo "turso branch db"
+                    pnpm run prerender
                 """
+            }
+        }
+        stage("Deploy blog prod") {
+            steps {
+                withCredentials([
+                    usernamePassword(credentialsId: 'cf-workers-creds', usernameVariable: 'CLOUDFLARE_ACCOUNT_ID', passwordVariable: 'CLOUDFLARE_API_TOKEN'),
+                ]) {
+                    sh """                                                
+                        npx wrangler pages deploy dist/apps/blog --project-name angular-love-client --branch ${BRANCH_NAME}
+                    """
+                }
             }
         }
 
