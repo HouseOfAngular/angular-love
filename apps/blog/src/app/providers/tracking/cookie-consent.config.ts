@@ -27,6 +27,15 @@ export const cookieConsentConfig = {
   cookie: {
     name: 'cc_cookie_al',
   },
+  onModalShow: () => {
+    const ccEl = document.getElementById('cc-main');
+    // Check if the cookie consent dialog has been hidden by injected styles from an external extension (e.g., "I don't care about cookies").
+    // To respect this and avoid issues with the `disablePageInteraction` flag, we manually remove the overlay that blocks page interaction.
+    if (ccEl && window.getComputedStyle(ccEl).display === 'none') {
+      // Reference: https://github.com/orestbida/cookieconsent/blob/e6279509aab5b96be198297b0283b321ad76b0a9/src/utils/constants.js#L8C50-L8C70
+      document.documentElement.classList.remove('disable--interaction');
+    }
+  },
   onConsent: () => {
     window.dataLayer.push({ event: 'consent_update' });
     window.dispatchEvent(new CustomEvent('ptupdate'));
