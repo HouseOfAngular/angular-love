@@ -31,8 +31,12 @@ import {
       </al-header>
     </div>
     <al-layout class="mt-20" [ngClass]="{ 'mt-40': adBannerVisible() }">
-      @if (slides(); as slides) {
-        <al-banner-carousel [banners]="slides" [msPerSlide]="msPerSlide()!" />
+      @if (slides()?.length && slides(); as slides) {
+        <al-banner-carousel
+          class="mb-4 inline-block"
+          [banners]="slides"
+          [msPerSlide]="msPerSlide()!"
+        />
       }
       <router-outlet />
     </al-layout>
