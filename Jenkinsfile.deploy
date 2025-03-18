@@ -57,6 +57,8 @@ pipeline {
                     if (env.BRANCH_NAME.length() > 30) {
                         echo "Branch name is too long, truncating to 30 characters"
                         branchNameForDB = env.BRANCH_NAME.substring(0, 30)
+                        branchNameForDB = branchNameForDB.replace("_", "-")
+                        branchNameForDB = branchNameForDB.replace("/", "-")
                     }
 
                     env.DB_BRANCH_NAME = "${ENVIRONMENT}-${branchNameForDB}-${BRANCH_HASH}"
