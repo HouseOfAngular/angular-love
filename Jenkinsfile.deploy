@@ -64,7 +64,6 @@ pipeline {
                         echo "DB branch name is too long, truncating to 50 characters"
                         env.DB_BRANCH_NAME = env.BRANCH_NAME.substring(0, 50)
                     }
-                }
                 withCredentials([string(credentialsId: 'tursor_api_token', variable: 'TURSO_API_TOKEN')]) {
                     sh """
                         turso org switch angular-love
@@ -75,6 +74,7 @@ pipeline {
                     env.TURSO_EU_CONNECTION_URL = "libsql://eu-${DB_BRANCH_NAME}-angular-love.turso.io"
                     env.TURSO_US_WEST_CONNECTION_URL = "libsql://us-west-${DB_BRANCH_NAME}-angular-love.turso.io"
                     env.TURSO_US_EAST_CONNECTION_URL = "libsql://us-east-${DB_BRANCH_NAME}-angular-love.turso.io"
+                }
                 }
                 
             }
@@ -92,7 +92,7 @@ TURSO_EU_AUTH_TOKEN=$TURSO_EU_AUTH_TOKEN
 TURSO_US_EAST_CONNECTION_URL=$TURSO_US_EAST_CONNECTION_URL
 TURSO_US_EAST_AUTH_TOKEN=$TURSO_US_EAST_AUTH_TOKEN
 TURSO_US_WEST_CONNECTION_URL=$TURSO_US_WEST_CONNECTION_URL
-TURSO_US_WEST_AUTH_TOKEN=$TURSO_US_WEST_AUTH_TOKEN" > new-secrets
+TURSO_US_WEST_AUTH_TOKEN=$TURSO_US_WEST_AUTH_TOKEN" > new-secrets-bff
                         """
                     }
                 }
@@ -122,7 +122,7 @@ TURSO_US_WEST_AUTH_TOKEN=$TURSO_US_WEST_AUTH_TOKEN" > new-secrets
                             usernamePassword(credentialsId: 'cf-workers-creds', usernameVariable: 'CLOUDFLARE_ACCOUNT_ID', passwordVariable: 'CLOUDFLARE_API_TOKEN'),
                         ]) {
                             sh """
-                                npx wrangler versions secret bulk new-secrets --config apps/blog-bff/wrangler.toml --env $ENVIRONMENT
+                                npx wrangler versions secret bulk new-secrets-bff --config apps/blog-bff/wrangler.toml --env $ENVIRONMENT
                             """   
                         }   
                     }
