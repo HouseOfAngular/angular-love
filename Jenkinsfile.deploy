@@ -57,9 +57,9 @@ pipeline {
                     if (env.BRANCH_NAME.length() > 30) {
                         echo "Branch name is too long, truncating to 30 characters"
                         branchNameForDB = env.BRANCH_NAME.substring(0, 30)
-                        branchNameForDB = branchNameForDB.replace("_", "-")
-                        branchNameForDB = branchNameForDB.replace("/", "-")
                     }
+                    branchNameForDB = branchNameForDB.replace("_", "-")
+                    branchNameForDB = branchNameForDB.replace("/", "-")
 
                     env.DB_BRANCH_NAME = "${ENVIRONMENT}-${branchNameForDB}-${BRANCH_HASH}"
                     if (env.DB_BRANCH_NAME.length() > 50) {
@@ -88,13 +88,13 @@ pipeline {
                         sh """
                             sed -i "s/<kv_dev_namespace_id>/$KV_DEV/g" apps/blog-bff/wrangler.toml
                             sed -i "s/<kv_prod_namespace_id>/$KV_PROD/g" apps/blog-bff/wrangler.toml
-                            echo "
-TURSO_EU_CONNECTION_URL=$TURSO_EU_CONNECTION_URL
-TURSO_EU_AUTH_TOKEN=$TURSO_EU_AUTH_TOKEN
-TURSO_US_EAST_CONNECTION_URL=$TURSO_US_EAST_CONNECTION_URL
-TURSO_US_EAST_AUTH_TOKEN=$TURSO_US_EAST_AUTH_TOKEN
-TURSO_US_WEST_CONNECTION_URL=$TURSO_US_WEST_CONNECTION_URL
-TURSO_US_WEST_AUTH_TOKEN=$TURSO_US_WEST_AUTH_TOKEN" > new-secrets-bff
+                            echo "{
+\"TURSO_EU_CONNECTION_URL\":\"$TURSO_EU_CONNECTION_URL\",
+\"TURSO_EU_AUTH_TOKEN\":\"$TURSO_EU_AUTH_TOKEN\",
+\"TURSO_US_EAST_CONNECTION_URL\":\"$TURSO_US_EAST_CONNECTION_URL\",
+\"TURSO_US_EAST_AUTH_TOKEN\":\"$TURSO_US_EAST_AUTH_TOKEN\",
+\"TURSO_US_WEST_CONNECTION_URL\":\"$TURSO_US_WEST_CONNECTION_URL\",
+\"TURSO_US_WEST_AUTH_TOKEN\":\"$TURSO_US_WEST_AUTH_TOKEN\"}" > new-secrets-bff
                         """
                     }
                 }
