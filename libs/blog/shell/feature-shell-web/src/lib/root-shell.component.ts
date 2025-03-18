@@ -16,12 +16,14 @@ import { SearchComponent } from '@angular-love/blog/search/feature-search';
 import {
   AdImageBanner,
   AlBannerCarouselComponent,
+  TopBannerComponent,
 } from '@angular-love/blog/shared/ad-banner';
 
 @Component({
   selector: 'al-root-shell',
   template: `
-    <div class="fixed top-0 z-10 w-full">
+    <al-top-banner #topBanner />
+    <div class="sticky top-0 z-10 w-full">
       <al-header
         class="block w-full"
         [language]="language()"
@@ -30,7 +32,7 @@ import {
         <al-search />
       </al-header>
     </div>
-    <al-layout class="mt-20" [ngClass]="{ 'mt-40': adBannerVisible() }">
+    <al-layout class="mt-0" [ngClass]="{ 'mt-20': adBannerVisible() }">
       @if (slides()?.length && slides(); as slides) {
         <al-banner-carousel
           class="mb-4 inline-block"
@@ -50,6 +52,7 @@ import {
     SearchComponent,
     NgClass,
     AlBannerCarouselComponent,
+    TopBannerComponent,
   ],
 })
 export class RootShellComponent {
