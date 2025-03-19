@@ -6,11 +6,13 @@ import {
   signal,
 } from '@angular/core';
 
-import { NavigationComponent } from '@angular-love/blog/layouts/ui-navigation';
+import {
+  LanguagePickerComponent,
+  NavigationComponent,
+} from '@angular-love/blog/layouts/ui-navigation';
 
 import {
   HeaderHamburgerComponent,
-  HeaderLanguageComponent,
   HeaderLogoComponent,
   HeaderMobileMenuComponent,
 } from './components';
@@ -25,10 +27,11 @@ import {
       >
         <al-header-logo />
 
-        <div class="flex flex-row items-center">
-          <al-navigation class="hidden lg:block" />
+        <al-navigation class="hidden lg:block" />
 
-          <al-header-language
+        <div class="flex flex-row items-center">
+          <al-language-picker
+            class="mr-3 hidden md:block"
             [language]="language()"
             (languageChange)="languageChange.emit($event)"
           />
@@ -43,15 +46,20 @@ import {
       </div>
     </header>
 
-    <al-header-mobile-menu [isOpened]="showNav()" (closed)="toggleNav()" />
+    <al-header-mobile-menu
+      [isOpened]="showNav()"
+      [language]="language()"
+      (closed)="toggleNav()"
+      (languageChange)="languageChange.emit($event)"
+    />
   `,
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [
     NavigationComponent,
     HeaderLogoComponent,
-    HeaderLanguageComponent,
     HeaderHamburgerComponent,
     HeaderMobileMenuComponent,
+    LanguagePickerComponent,
   ],
 })
 export class HeaderComponent {
