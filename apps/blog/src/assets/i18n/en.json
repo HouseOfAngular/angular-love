@@ -1,5 +1,9 @@
 {
   "homePage": {
+    "welcomeMessage": {
+      "description": "This is the place where you can learn Angular, discover best practices, explore advanced techniques, and stay updated with the latest news and trends.",
+      "descriptionAriaLabel": "Visit House of Angular website"
+    },
     "seeAll": "See all the articles",
     "latest": "Latest Articles",
     "recommended": "Recommended Articles",
