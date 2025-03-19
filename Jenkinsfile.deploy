@@ -40,8 +40,10 @@ pipeline {
             steps {
                 script {
                     env.ENVIRONMENT = 'dev'
+                    env.WORKER_DOMAIN_END = '-blog-bff-dev.contact-ef8.workers.dev' 
                     if (env.BRANCH_NAME == 'main') {
                         env.ENVIRONMENT = 'prod'
+                        env.WORKER_DOMAIN_END = '-blog-bff.contact-ef8.workers.dev'
                     }
                 }
             }
@@ -89,12 +91,12 @@ pipeline {
                             sed -i "s/<kv_dev_namespace_id>/$KV_DEV/g" apps/blog-bff/wrangler.toml
                             sed -i "s/<kv_prod_namespace_id>/$KV_PROD/g" apps/blog-bff/wrangler.toml
                             echo "{
-\"TURSO_EU_CONNECTION_URL\":\"$TURSO_EU_CONNECTION_URL\",
-\"TURSO_EU_AUTH_TOKEN\":\"$TURSO_EU_AUTH_TOKEN\",
-\"TURSO_US_EAST_CONNECTION_URL\":\"$TURSO_US_EAST_CONNECTION_URL\",
-\"TURSO_US_EAST_AUTH_TOKEN\":\"$TURSO_US_EAST_AUTH_TOKEN\",
-\"TURSO_US_WEST_CONNECTION_URL\":\"$TURSO_US_WEST_CONNECTION_URL\",
-\"TURSO_US_WEST_AUTH_TOKEN\":\"$TURSO_US_WEST_AUTH_TOKEN\"}" > new-secrets-bff
+\\"TURSO_EU_CONNECTION_URL\\":\\"$TURSO_EU_CONNECTION_URL\\",
+\\"TURSO_EU_AUTH_TOKEN\\":\\"$TURSO_EU_AUTH_TOKEN\\",
+\\"TURSO_US_EAST_CONNECTION_URL\\":\\"$TURSO_US_EAST_CONNECTION_URL\\",
+\\"TURSO_US_EAST_AUTH_TOKEN\\":\\"$TURSO_US_EAST_AUTH_TOKEN\\",
+\\"TURSO_US_WEST_CONNECTION_URL\\":\\"$TURSO_US_WEST_CONNECTION_URL\\",
+\\"TURSO_US_WEST_AUTH_TOKEN\\":\\"$TURSO_US_WEST_AUTH_TOKEN\\"}" > new-secrets-bff
                         """
                     }
                 }
@@ -107,13 +109,6 @@ pipeline {
                                 output = sh(returnStdout: true, script: """
                                     npx wrangler versions upload --config apps/blog-bff/wrangler.toml --env $ENVIRONMENT
                                 """)
-                                def versionId = (output =~ /Worker Version ID: ([^\s]+)/)[0][1]
-                                def previewUrl = (output =~ /Version Preview URL: ([^\s]+)/)[0][1]
-                                env.VERSION_ID = versionId
-                                env.PREVIEW_URL = previewUrl
-                                env.AL_API_URL = previewUrl
-                                echo "Version ID: $versionId"
-                                echo "Preview URL: $previewUrl"
                             }
                         }
                     }
@@ -123,9 +118,19 @@ pipeline {
                         withCredentials([
                             usernamePassword(credentialsId: 'cf-workers-creds', usernameVariable: 'CLOUDFLARE_ACCOUNT_ID', passwordVariable: 'CLOUDFLARE_API_TOKEN'),
                         ]) {
-                            sh """
-                                npx wrangler versions secret bulk new-secrets-bff --config apps/blog-bff/wrangler.toml --env $ENVIRONMENT
-                            """   
+                            script {
+                                output = sh(returnStdout: true, script: """
+                                    npx wrangler versions secret bulk new-secrets-bff --config apps/blog-bff/wrangler.toml --env $ENVIRONMENT
+                                """)
+                                def versionId = (output =~ /Worker Version ID: ([^\s]+)/)[0][1]
+                                env.VERSION_ID = versionId
+
+                                def previewUrl = versionId.substring(0, 8) + env.WORKER_DOMAIN_END
+                                env.PREVIEW_URL = previewUrl
+                                env.AL_API_URL = previewUrl
+                                echo "Version ID: $versionId"
+                                echo "Preview URL: $previewUrl"
+                            }
                         }   
                     }
                 }
