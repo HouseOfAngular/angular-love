@@ -122,13 +122,13 @@ pipeline {
                                 output = sh(returnStdout: true, script: """
                                     npx wrangler versions secret bulk new-secrets-bff --config apps/blog-bff/wrangler.toml --env $ENVIRONMENT
                                 """)
-                                def versionId = (output =~ /Worker Version ID: ([^\s]+)/)[0][1]
+                                def versionId = (output =~ /Created version ([^\s]+)/)[0][1]
                                 env.VERSION_ID = versionId
+                                echo "Version ID: $versionId"
 
                                 def previewUrl = versionId.substring(0, 8) + env.WORKER_DOMAIN_END
                                 env.PREVIEW_URL = previewUrl
-                                env.AL_API_URL = previewUrl
-                                echo "Version ID: $versionId"
+                                env.AL_API_URL = "https://" + previewUrl
                                 echo "Preview URL: $previewUrl"
                             }
                         }   
