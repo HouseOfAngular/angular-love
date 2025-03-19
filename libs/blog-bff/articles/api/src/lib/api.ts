@@ -37,6 +37,7 @@ app.get('/', async (c) => {
       excerpt: articles.excerpt,
       featuredImageUrl: articles.imageUrl,
       readingTime: articles.readingTime,
+      publishDate: articles.publishDate,
       author: {
         slug: authors.slug,
         name: authors.name,
