@@ -69,7 +69,7 @@ export const toArticle = (dto?: WPPostDetailsDto): Article => {
     },
     allowedClasses: {
       blockquote: ['twitter-tweet'],
-      pre: ['lang:*'],
+      pre: ['lang:*', 'language*'],
       code: ['language-*'],
       div: ['crayon-line', 'crayon-syntax'],
     },
