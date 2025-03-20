@@ -53,11 +53,13 @@ export const wpCodeRewriter: RewriteAdapter = ($) => {
       $(element).html(`<code class="hljs">${code}</code>`);
     }
 
-    const classAttr = $(element).find('code').attr()['class'];
-    const classes = classAttr?.split(' ') ?? [];
-    const codeLanguageClass = classes.find((cl) =>
-      /^language-[\w-]+$/.test(cl),
-    );
+    const codeClassAttr = $(element).find('code').attr()['class'];
+    const preClassAttr = $(element).attr()['class'];
+    const classes = codeClassAttr?.split(' ') ?? [];
+    const preClasses = preClassAttr?.split(' ') ?? [];
+    const codeLanguageClass = classes
+      .concat(preClasses)
+      .find((cl) => /^language-[\w-]+$/.test(cl));
 
     let language: string;
 
