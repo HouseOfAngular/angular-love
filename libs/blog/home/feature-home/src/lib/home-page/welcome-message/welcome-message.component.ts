@@ -9,7 +9,7 @@ import { TranslocoDirective } from '@jsverse/transloco';
       *transloco="let t; read: 'homePage.welcomeMessage'"
       class="flex flex-col items-center justify-center space-y-3 py-3 text-center"
     >
-      <h1 class="text-4xl font-bold">Angular.love Blog</h1>
+      <h2 class="text-4xl font-bold">Angular.love Blog</h2>
       <p class="px-8">
         {{ t('description') }}
       </p>

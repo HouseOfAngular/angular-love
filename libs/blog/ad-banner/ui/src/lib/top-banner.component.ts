@@ -9,7 +9,7 @@ import { Component } from '@angular/core';
       href="https://houseofangular.io/the-ultimate-guide-to-angular-evolution/?utm_source=www-al&utm_medium=baner&utm_campaign=angular19-evolution"
     >
       <span>Enhance Your Project with</span>
-      <span class="rounded-[4px] bg-white px-[6px] text-[#f9506a]">
+      <span class="rounded-[4px] bg-white px-[6px] text-[#b10620]">
         Angular 19
       </span>
       <span class="underline">Download a free ebook!</span>
