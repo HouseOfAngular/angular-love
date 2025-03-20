@@ -25,7 +25,11 @@
     "about": "O nas",
     "meetups": "Angular Meetups",
     "become_author": "Zostań autorem",
-    "navLinks": "Menu"
+    "navLinks": "Menu",
+    "languagePicker": {
+      "pl": "Polski",
+      "en": "Angielski"
+    }
   },
   "home": {
     "latest": "Latest articles"

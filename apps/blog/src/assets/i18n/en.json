@@ -25,7 +25,11 @@
     "about": "About us",
     "meetups": "Angular Meetups",
     "become_author": "Become an author",
-    "navLinks": "Navigation links"
+    "navLinks": "Navigation links",
+    "languagePicker": {
+      "pl": "Polish",
+      "en": "English"
+    }
   },
   "authorPage": {
     "posted_by": "Posted by {{name}}"
