@@ -64,6 +64,7 @@ pipeline {
                     if (env.IS_PR == "TRUE") {
                         pullRequest.comment("PR is detected, will deploy to dev environment")
                     }
+                }
             }
         }
         stage("Branch db") {
@@ -206,7 +207,6 @@ pipeline {
                 }
             }
         }
-
     }
     post {
         always {
