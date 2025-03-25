@@ -81,6 +81,7 @@ pipeline {
                     }
                     branchNameForDB = branchNameForDB.replace("_", "-")
                     branchNameForDB = branchNameForDB.replace("/", "-")
+                    branchNameForDB = branchNameForDB.toLowerCase()
 
                     env.DB_BRANCH_NAME = "${ENVIRONMENT}-${branchNameForDB}-${BRANCH_HASH}"
                     if (env.DB_BRANCH_NAME.length() > 50) {
