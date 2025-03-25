@@ -39,13 +39,31 @@ pipeline {
         stage("Decide environment") {
             steps {
                 script {
+                    env.IS_PR = "FALSE"
                     env.ENVIRONMENT = 'dev'
                     env.WORKER_DOMAIN_END = '-blog-bff-dev.contact-ef8.workers.dev' 
                     if (env.BRANCH_NAME == 'main') {
                         env.ENVIRONMENT = 'prod'
                         env.WORKER_DOMAIN_END = '-blog-bff.contact-ef8.workers.dev'
                     }
-                }
+
+                    echo "CHANGE_ID: $CHANGE_ID"
+                    if (env.CHANGE_ID) {
+                        env.IS_PR = "TRUE"
+                    }
+
+                    // DOn't rember how it worked so for safety for now , todo remove later 
+                    if (env.IS_PR == "TRUE" && env.CHANGE_BRANCH != env.BRANCH_NAME) {
+                        echo "Banch missmatch in pr"
+                        echo "CHANGE_BRANCH: $CHANGE_BRANCH"    
+                        echo "BRANCH_NAME: $BRANCH_NAME"
+                        env.ENVIRONMENT = 'dev'
+                        env.WORKER_DOMAIN_END = '-blog-bff-dev.contact-ef8.workers.dev' 
+                    }
+
+                    if (env.IS_PR == "TRUE") {
+                        pullRequest.comment("PR is detected, will deploy to dev environment")
+                    }
             }
         }
         stage("Branch db") {
@@ -159,9 +177,32 @@ pipeline {
                 withCredentials([
                     usernamePassword(credentialsId: 'cf-workers-creds', usernameVariable: 'CLOUDFLARE_ACCOUNT_ID', passwordVariable: 'CLOUDFLARE_API_TOKEN'),
                 ]) {
-                    sh """                                                
+                    output = sh(returnStdout: true, script: """                                                
                         npx wrangler pages deploy dist/apps/blog --project-name angular-love-client --branch ${BRANCH_NAME}
-                    """
+                    """)
+                    def deploy_url = (output =~ /Take a peek over at ([^\s]+)/)[0][1]
+                    def alias_url = (output =~ /Deployment alias URL: ([^\s]+)/)[0][1]
+                    echo "Deploy URL: $deploy_url"
+                    echo "Alias URL: $alias_url"
+
+                }
+            }
+        }
+        stage("Comment on PR") {
+            when {
+                expression {
+                    return env.IS_PR == "TRUE"
+                }
+            }
+            steps {
+                script {
+                    pullRequest.comment("""
+                    Deployed to $ENVIRONMENT environment
+                    Branch: $BRANCH_NAME
+                    BFF URL: $AL_API_URL
+                    Deploy URL: $deploy_url
+                    Alias URL: $alias_url
+                    """)
                 }
             }
         }
