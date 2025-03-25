@@ -203,12 +203,12 @@ pipeline {
             steps {
                 script {
                     pullRequest.comment("""
-                    Deployed to $ENVIRONMENT environment
-                    Branch: $BRANCH_NAME
-                    BFF URL: $AL_API_URL
-                    Deploy URL: $DEPLOY_URL
-                    Alias URL: $ALIAS_URL
-                    """)
+Deployed to $ENVIRONMENT environment
+Branch: $BRANCH_NAME
+BFF URL: $AL_API_URL
+Deploy URL: $DEPLOY_URL
+Alias URL: $ALIAS_URL
+""")
                 }
             }
         }
