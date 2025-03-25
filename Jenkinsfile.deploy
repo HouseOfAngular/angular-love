@@ -47,8 +47,8 @@ pipeline {
                         env.WORKER_DOMAIN_END = '-blog-bff.contact-ef8.workers.dev'
                     }
 
-                    echo "CHANGE_ID: $CHANGE_ID"
                     if (env.CHANGE_ID) {
+                        echo "CHANGE_ID: $CHANGE_ID"
                         env.IS_PR = "TRUE"
                     }
 
