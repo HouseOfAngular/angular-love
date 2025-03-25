@@ -175,17 +175,19 @@ pipeline {
         }
         stage("Deploy blog prod") {
             steps {
-                withCredentials([
-                    usernamePassword(credentialsId: 'cf-workers-creds', usernameVariable: 'CLOUDFLARE_ACCOUNT_ID', passwordVariable: 'CLOUDFLARE_API_TOKEN'),
-                ]) {
-                    output = sh(returnStdout: true, script: """                                                
-                        npx wrangler pages deploy dist/apps/blog --project-name angular-love-client --branch ${BRANCH_NAME}
-                    """)
-                    def deploy_url = (output =~ /Take a peek over at ([^\s]+)/)[0][1]
-                    def alias_url = (output =~ /Deployment alias URL: ([^\s]+)/)[0][1]
-                    echo "Deploy URL: $deploy_url"
-                    echo "Alias URL: $alias_url"
+                script {
+                    withCredentials([
+                        usernamePassword(credentialsId: 'cf-workers-creds', usernameVariable: 'CLOUDFLARE_ACCOUNT_ID', passwordVariable: 'CLOUDFLARE_API_TOKEN'),
+                    ]) {
+                        output = sh(returnStdout: true, script: """                                                
+                            npx wrangler pages deploy dist/apps/blog --project-name angular-love-client --branch ${BRANCH_NAME}
+                        """)
+                        def deploy_url = (output =~ /Take a peek over at ([^\s]+)/)[0][1]
+                        def alias_url = (output =~ /Deployment alias URL: ([^\s]+)/)[0][1]
+                        echo "Deploy URL: $deploy_url"
+                        echo "Alias URL: $alias_url"
 
+                    }
                 }
             }
         }
