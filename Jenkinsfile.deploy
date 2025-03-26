@@ -187,7 +187,7 @@ pipeline {
                         usernamePassword(credentialsId: 'cf-workers-creds', usernameVariable: 'CLOUDFLARE_ACCOUNT_ID', passwordVariable: 'CLOUDFLARE_API_TOKEN'),
                     ]) {
                         output = sh(returnStdout: true, script: """                                                
-                            npx wrangler pages deploy dist/apps/blog --project-name angular-love-client --branch ${BRANCH_NAME}
+                            npx wrangler pages deploy dist/apps/blog/browser --project-name angular-love-client --branch ${BRANCH_NAME}
                         """)
                         echo "Output: $output"
                         def deploy_url = (output =~ /Take a peek over at ([^\s]+)/)[0][1]
