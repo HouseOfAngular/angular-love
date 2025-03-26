@@ -133,6 +133,7 @@ pipeline {
                                 output = sh(returnStdout: true, script: """
                                     npx wrangler versions upload --config apps/blog-bff/wrangler.toml --env $ENVIRONMENT
                                 """)
+                                echo "Output: $output"
                             }
                         }
                     }
@@ -146,6 +147,7 @@ pipeline {
                                 output = sh(returnStdout: true, script: """
                                     npx wrangler versions secret bulk new-secrets-bff --config apps/blog-bff/wrangler.toml --env $ENVIRONMENT
                                 """)
+                                echo "Output: $output"
                                 def versionId = (output =~ /Created version ([^\s]+)/)[0][1]
                                 env.VERSION_ID = versionId
                                 echo "Version ID: $versionId"
@@ -187,6 +189,7 @@ pipeline {
                         output = sh(returnStdout: true, script: """                                                
                             npx wrangler pages deploy dist/apps/blog --project-name angular-love-client --branch ${BRANCH_NAME}
                         """)
+                        echo "Output: $output"
                         def deploy_url = (output =~ /Take a peek over at ([^\s]+)/)[0][1]
                         def alias_url = (output =~ /Deployment alias URL: ([^\s]+)/)[0][1]
                         echo "Deploy URL: $deploy_url"
