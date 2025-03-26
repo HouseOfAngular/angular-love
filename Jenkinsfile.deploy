@@ -217,5 +217,15 @@ Alias URL: $ALIAS_URL
         always {
             cleanWs()
         }
+        failure {
+            script {
+                slackSend(channel: '#blog-deployments', message: "Deploy failed, please check the logs in jenkins for more details.")
+                if (env.IS_PR == "TRUE") {
+                    pullRequest.comment("""
+Deploy failed, please check the logs in jenkins for more details.
+""")            
+                }
+            }
+        }
     }
 }
