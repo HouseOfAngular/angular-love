@@ -7,7 +7,7 @@ import {
 import { TranslocoPipe } from '@jsverse/transloco';
 import { FastSvgComponent } from '@push-based/ngx-fast-svg';
 
-import { Lang } from '@angular-love/shared/utils-i18n';
+import { Lang } from '@angular-love/contracts/articles';
 
 @Component({
   standalone: true,
