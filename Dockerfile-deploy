@@ -10,7 +10,7 @@ ENV PATH="/usr/local/go/bin:${PATH}"
 RUN mkdir -p /go
 ENV GOPATH="/go"
 ENV PATH="/go/bin:$PATH"
-RUN go install github.com/tursodatabase/turso-cli/cmd/turso@latest
+RUN go install github.com/tursodatabase/turso-cli/cmd/turso@v1.0.3
 
 COPY . /app
 WORKDIR /app
