@@ -45,6 +45,7 @@
     "@nx/angular": "20.2.2",
     "@push-based/ngx-fast-svg": "^18.1.0",
     "@shikijs/langs-precompiled": "^2.4.2",
+    "@swimlane/ngx-graph": "9.0.1",
     "@tailwindcss/container-queries": "^0.1.1",
     "algoliasearch": "^4.23.3",
     "cheerio": "1.0.0-rc.12",
