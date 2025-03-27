@@ -1,7 +1,7 @@
-import { NgClass, ViewportScroller } from '@angular/common';
+import { ViewportScroller } from '@angular/common';
 import { Component, computed, effect, inject } from '@angular/core';
 import { toSignal } from '@angular/core/rxjs-interop';
-import { Router, RouterOutlet } from '@angular/router';
+import { Router } from '@angular/router';
 import { TranslocoService } from '@jsverse/transloco';
 import { startWith } from 'rxjs';
 
@@ -10,53 +10,35 @@ import { AlLocalizeService } from '@angular-love/blog/i18n/util';
 import {
   FooterComponent,
   HeaderComponent,
-  LayoutComponent,
 } from '@angular-love/blog/layouts/ui-layouts';
 import { SearchComponent } from '@angular-love/blog/search/feature-search';
-import {
-  AdImageBanner,
-  AlBannerCarouselComponent,
-} from '@angular-love/blog/shared/ad-banner';
+import { AdImageBanner } from '@angular-love/blog/shared/ad-banner';
+import { FeatureRoadmapComponent } from '@angular-love/feature-roadmap';
 
 @Component({
   selector: 'al-root-shell',
   template: `
-    <!--    <al-top-banner #topBanner />-->
-    <div class="sticky top-0 z-10 w-full">
-      <al-header
-        class="block w-full"
-        [language]="language()"
-        (languageChange)="onLanguageChange($event)"
-      >
-        <al-search />
-      </al-header>
-    </div>
-    <al-layout class="mt-0" [ngClass]="{ 'mt-20': adBannerVisible() }">
-      @if (slides()?.length && slides(); as slides) {
-        <al-banner-carousel
-          class="mb-4 inline-block"
-          [banners]="slides"
-          [msPerSlide]="msPerSlide()!"
-        />
-      }
-      <router-outlet />
-    </al-layout>
-    <al-footer class="mt-auto block" />
+    <al-header
+      class="block w-full"
+      [language]="language()"
+      (languageChange)="onLanguageChange($event)"
+    >
+      <al-search />
+    </al-header>
+    <al-feature-roadmap class="flex-1" />
+    <al-footer />
   `,
   imports: [
-    RouterOutlet,
     HeaderComponent,
     FooterComponent,
-    LayoutComponent,
     SearchComponent,
-    NgClass,
-    AlBannerCarouselComponent,
+    FeatureRoadmapComponent,
   ],
   host: {
     class: 'flex flex-col min-h-screen',
   },
 })
-export class RootShellComponent {
+export class RoadmapShellComponent {
   protected readonly sliderStore = inject(AdBannerStore);
   protected readonly slides = computed<AdImageBanner[] | undefined>(() =>
     this.sliderStore.slider()?.slides.map((slide) => ({
