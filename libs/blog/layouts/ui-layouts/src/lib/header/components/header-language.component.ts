@@ -1,4 +1,3 @@
-import { NgClass } from '@angular/common';
 import {
   ChangeDetectionStrategy,
   Component,
@@ -29,7 +28,7 @@ import { HeaderLanguageButtonComponent } from './header-language-button.componen
     </div>
   `,
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [TranslocoDirective, NgClass, HeaderLanguageButtonComponent],
+  imports: [TranslocoDirective, HeaderLanguageButtonComponent],
 })
 export class HeaderLanguageComponent {
   readonly language = input.required<string>();
