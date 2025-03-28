@@ -8,7 +8,6 @@ import {
 } from '@angular/core';
 import { TranslocoDirective } from '@jsverse/transloco';
 
-import { ArticleListStore } from '@angular-love/blog/articles/data-access';
 import { UiArticleCardComponent } from '@angular-love/blog/articles/ui-article-card';
 import { AuthorDetailsStore } from '@angular-love/blog/authors/data-access';
 import {
@@ -44,7 +43,6 @@ export class FeatureAuthorComponent {
 
   readonly pagination = signal({ skip: 0, take: this.pageSize });
 
-  protected readonly articleStore = inject(ArticleListStore);
   protected readonly authorDetailsStore = inject(AuthorDetailsStore);
 
   readonly authorName = computed(
@@ -53,11 +51,11 @@ export class FeatureAuthorComponent {
 
   constructor() {
     const fetchArticlesQuery = computed(() => ({
-      ...this.pagination(),
-      authorSlug: this.authorSlug(),
+      query: this.pagination(),
+      slug: this.authorSlug(),
     }));
 
-    this.articleStore.fetchArticleList(fetchArticlesQuery);
+    this.authorDetailsStore.fetchArticleList(fetchArticlesQuery);
     this.authorDetailsStore.fetchAuthorDetails(this.authorSlug);
   }
 }

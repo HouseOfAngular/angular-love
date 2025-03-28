@@ -1,0 +1,19 @@
+{
+  "name": "blog-bff-shared-schema",
+  "$schema": "../../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/blog-bff/shared/schema/src",
+  "projectType": "library",
+  "tags": ["scope:bff", "type:schema"],
+  "targets": {
+    "lint": {
+      "executor": "@nx/eslint:lint"
+    },
+    "test": {
+      "executor": "@nx/jest:jest",
+      "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
+      "options": {
+        "jestConfig": "libs/blog-bff/shared/schema/jest.config.ts"
+      }
+    }
+  }
+}

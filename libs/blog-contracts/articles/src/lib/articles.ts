@@ -78,6 +78,27 @@ export type SeoMetaData = Pick<
   | 'twitter_misc'
 >;
 
+export interface ArticleTranslation {
+  locale: string;
+  slug: string;
+}
+
+export const enum ArticleStatus {
+  Publish = 1,
+  Future = 2,
+  Draft = 3,
+  Private = 4,
+  Pending = 5,
+}
+
+export const statusMap = {
+  publish: ArticleStatus.Publish,
+  future: ArticleStatus.Future,
+  draft: ArticleStatus.Draft,
+  pending: ArticleStatus.Pending,
+  private: ArticleStatus.Private,
+} as const;
+
 export interface Article {
   id: number;
   title: string;
