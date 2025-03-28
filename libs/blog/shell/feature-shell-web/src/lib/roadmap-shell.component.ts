@@ -25,7 +25,7 @@ import { FeatureRoadmapComponent } from '@angular-love/feature-roadmap';
     >
       <al-search />
     </al-header>
-    <al-feature-roadmap class="flex-1" />
+    <al-feature-roadmap class="flex-1 basis-0" />
     <al-footer />
   `,
   imports: [
