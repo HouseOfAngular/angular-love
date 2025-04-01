@@ -180,6 +180,11 @@ pipeline {
                 }
             }
         }
+        stage("sleep") {
+            steps {
+                sleep 10
+            }
+        }
         stage("Build blog") {
             steps {
                 sh """
