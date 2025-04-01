@@ -23,6 +23,8 @@ pipeline {
         TURSO_EU_AUTH_TOKEN=credentials('turso-eu-auth-token')
         TURSO_US_WEST_AUTH_TOKEN=credentials('turso-us-west-auth-token')
         TURSO_US_EAST_AUTH_TOKEN=credentials('turso-us-east-auth-token')
+        WP_REST_API_BASE_URL="https://wp.angular.love"
+        WP_REST_API_TOKEN=credentials('al-wp-token')
     }
 
     stages {
@@ -73,6 +75,10 @@ pipeline {
                     def timestamp = new Date().getTime()
                     def random = Math.abs(new Random().nextInt())
                     env.BRANCH_HASH = "${random}"
+
+                    if (env.BRANCH_HASH.length() > 10) {
+                        env.BRANCH_HASH = env.BRANCH_HASH.substring(0, 10)
+                    }
                     
                     def branchNameForDB = env.BRANCH_NAME
                     if (env.BRANCH_NAME.length() > 30) {
@@ -85,23 +91,22 @@ pipeline {
 
                     env.DB_BRANCH_NAME = "${ENVIRONMENT}-${branchNameForDB}-${BRANCH_HASH}"
                     if (env.DB_BRANCH_NAME.length() > 50) {
-                        echo "DB branch name is too long, truncating to 50 characters"
-                        env.DB_BRANCH_NAME = env.DB_BRANCH_NAME.substring(0, 50)
+                        error("DB branch name is too long, truncating to 50 characters")
                     }
                 withCredentials([string(credentialsId: 'tursor_api_token', variable: 'TURSO_API_TOKEN')]) {
                     sh """
                         turso org switch angular-love
                         turso db create eu-${DB_BRANCH_NAME} --from-db $TURSO_EU_DB --group blog-eu
-                        turso db create us-west-${DB_BRANCH_NAME} --from-db $TURSO_US_WEST_DB --group blog-us-west
-                        turso db create us-east-${DB_BRANCH_NAME} --from-db $TURSO_US_EAST_DB --group blog-us-east
+                        turso db create usw-${DB_BRANCH_NAME} --from-db $TURSO_US_WEST_DB --group blog-us-west
+                        turso db create use-${DB_BRANCH_NAME} --from-db $TURSO_US_EAST_DB --group blog-us-east
 
                         turso db list | grep -q "eu-${DB_BRANCH_NAME}" || { echo "EU database not found after creation"; exit 1; }
-                        turso db list | grep -q "us-west-${DB_BRANCH_NAME}" || { echo "US West database not found after creation"; exit 1; }
-                        turso db list | grep -q "us-east-${DB_BRANCH_NAME}" || { echo "US East database not found after creation"; exit 1; }
+                        turso db list | grep -q "usw-${DB_BRANCH_NAME}" || { echo "US West database not found after creation"; exit 1; }
+                        turso db list | grep -q "use-${DB_BRANCH_NAME}" || { echo "US East database not found after creation"; exit 1; }
                     """
                     env.TURSO_EU_CONNECTION_URL = "libsql://eu-${DB_BRANCH_NAME}-angular-love.turso.io"
-                    env.TURSO_US_WEST_CONNECTION_URL = "libsql://us-west-${DB_BRANCH_NAME}-angular-love.turso.io"
-                    env.TURSO_US_EAST_CONNECTION_URL = "libsql://us-east-${DB_BRANCH_NAME}-angular-love.turso.io"
+                    env.TURSO_US_WEST_CONNECTION_URL = "libsql://usw-${DB_BRANCH_NAME}-angular-love.turso.io"
+                    env.TURSO_US_EAST_CONNECTION_URL = "libsql://use-${DB_BRANCH_NAME}-angular-love.turso.io"
                 }
                 }
                 
@@ -115,6 +120,8 @@ pipeline {
                             sed -i "s/<kv_dev_namespace_id>/$KV_DEV/g" apps/blog-bff/wrangler.toml
                             sed -i "s/<kv_prod_namespace_id>/$KV_PROD/g" apps/blog-bff/wrangler.toml
                             echo "{
+\\"WP_REST_API_BASE_URL\\":\\"$WP_REST_API_BASE_URL\\",
+\\"WP_REST_API_TOKEN\\":\\"$WP_REST_API_TOKEN\\",
 \\"TURSO_EU_CONNECTION_URL\\":\\"$TURSO_EU_CONNECTION_URL\\",
 \\"TURSO_EU_AUTH_TOKEN\\":\\"$TURSO_EU_AUTH_TOKEN\\",
 \\"TURSO_US_EAST_CONNECTION_URL\\":\\"$TURSO_US_EAST_CONNECTION_URL\\",
