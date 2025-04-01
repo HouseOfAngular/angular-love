@@ -180,16 +180,16 @@ pipeline {
                 }
             }
         }
+        stage("sleep") {
+            steps {
+                sleep 100
+            }
+        }
         stage("test") {
             steps {
                 sh """
                     curl $AL_API_URL/banners
                 """
-            }
-        }
-        stage("sleep") {
-            steps {
-                sleep 100
             }
         }
         stage("Build blog") {
