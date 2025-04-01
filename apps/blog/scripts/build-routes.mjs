@@ -5,6 +5,7 @@ import { generateSitemap } from './build-sitemap.mjs';
 const API_BASE_URL = process.env.AL_API_URL;
 console.log('API_BASE_URL', API_BASE_URL);
 const BASE_URL = process.env.AL_BASE_URL;
+const BANNERS_API_URL = 'https://blog-bff-dev.contact-ef8.workers.dev';
 const SSG_ROUTES_FILE_PATH = 'apps/blog/routes.txt';
 const SITEMAP_FILE_PATH = 'apps/blog/src/sitemap.xml';
 const ROOT_PATHS_FILE_PREFIX = 'apps/blog/src/assets/root-paths';
@@ -107,7 +108,7 @@ async function fetchAuthorRoutes(lang, skip = 0, take = 50) {
  * @returns {Promise<void>}
  */
 async function fetchBannersAndWriteToFile() {
-  const url = `${API_BASE_URL}/banners`;
+  const url = `${BANNERS_API_URL}/banners`;
   try {
     const data = await fetch(url).then((resp) => resp.json());
 
@@ -215,7 +216,7 @@ async function main() {
     await Promise.all([
       ...SUPPORTED_LANGUAGES.map((lang) => fetchArticleRoutes(lang)),
       ...SUPPORTED_LANGUAGES.map((lang) => fetchAuthorRoutes(lang)),
-      // fetchBannersAndWriteToFile(),
+      fetchBannersAndWriteToFile(),
     ]);
 
     SUPPORTED_LANGUAGES.forEach((lang) => {
