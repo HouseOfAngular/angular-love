@@ -3,6 +3,7 @@ import { createWriteStream } from 'node:fs';
 import { generateSitemap } from './build-sitemap.mjs';
 
 const API_BASE_URL = process.env.AL_API_URL;
+console.log('API_BASE_URL', API_BASE_URL);
 const BASE_URL = process.env.AL_BASE_URL;
 const SSG_ROUTES_FILE_PATH = 'apps/blog/routes.txt';
 const SITEMAP_FILE_PATH = 'apps/blog/src/sitemap.xml';
@@ -214,7 +215,7 @@ async function main() {
     await Promise.all([
       ...SUPPORTED_LANGUAGES.map((lang) => fetchArticleRoutes(lang)),
       ...SUPPORTED_LANGUAGES.map((lang) => fetchAuthorRoutes(lang)),
-      fetchBannersAndWriteToFile(),
+      // fetchBannersAndWriteToFile(),
     ]);
 
     SUPPORTED_LANGUAGES.forEach((lang) => {
