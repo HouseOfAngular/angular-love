@@ -56,6 +56,9 @@ export class WPRestClient {
     );
 
     if (!request.ok) {
+      const text = await request.text();
+      console.log('text');
+      console.log(text);
       throw new HTTPException(
         request.status as StatusCode,
         await request.json(),
