@@ -21,13 +21,7 @@ vars = { IS_PROD = "false" }
 binding = "CACHE_KV"
 id = "<kv_dev_namespace_id>"
 
-[env.prod.observability]
-enabled = true
-head_sampling_rate = 1 # 100% default
-
-[env.dev.observability]
+[observability.logs]
 enabled = true
 head_sampling_rate = 1
-
-[observability.logs]
 invocation_logs = true
