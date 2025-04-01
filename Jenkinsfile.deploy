@@ -162,7 +162,7 @@ pipeline {
                                 def previewUrl = versionId.substring(0, 8) + env.WORKER_DOMAIN_END
                                 env.PREVIEW_URL = "https://" + previewUrl
                                 env.AL_API_URL = "https://" + previewUrl
-                                echo "Preview URL: $previewUrl"
+                                echo "Preview URL: $PREVIEW_URL"
                             }
                         }   
                     }
@@ -178,18 +178,6 @@ pipeline {
                         }
                     }
                 }
-            }
-        }
-        stage("sleep") {
-            steps {
-                sleep 100
-            }
-        }
-        stage("test") {
-            steps {
-                sh """
-                    curl $AL_API_URL/banners
-                """
             }
         }
         stage("Build blog") {
