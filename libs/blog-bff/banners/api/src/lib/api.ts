@@ -1,28 +1,51 @@
 import { Hono } from 'hono';
+import { env } from 'hono/adapter';
 
 import { langMw } from '@angular-love/blog-bff/shared/util-middleware';
+import { Slider } from '@angular-love/blog/contracts/banners';
 import { wpClientMw } from '@angular-love/util-wp';
 
 import { toBanner } from './mappers';
 import { WpBanners } from './wp-banners';
 
-const app = new Hono().use(wpClientMw).use(langMw());
+type Env = {
+  Bindings: {
+    DISABLE_CACHE?: string;
+    CACHE_KV: KVNamespace;
+  };
+};
+
+const app = new Hono<Env>().use(wpClientMw).use(langMw());
+
+const bannersMock: Slider = {
+  slideDisplayTimeMs: 9000,
+  slides: [],
+};
 
 app.get('/', async (c) => {
-  console.log('endpoint start');
+  try {
+    const client = new WpBanners(c.var.createWPClient());
 
-  const client = new WpBanners(c.var.createWPClient());
+    const banner = (await client.getBanners()).data[0];
+    const media = await client.getMediaByBannerId(banner.id);
 
-  const banner = (await client.getBanners()).data[0];
-  console.log('banner');
-  console.log(banner);
-  const media = await client.getMediaByBannerId(banner.id);
-  console.log('media');
-  console.log(media);
-  console.log('toBanner(banner, media.data)');
-  console.log(toBanner(banner, media.data));
+    return c.json(toBanner(banner, media.data));
+  } catch (e) {
+    const cacheKv = env(c).CACHE_KV;
+    const kvBanners = await cacheKv.get('banners');
+    let banners: Slider;
+    if (kvBanners) {
+      try {
+        banners = JSON.parse(kvBanners);
+      } catch (e) {
+        banners = bannersMock;
+      }
+    } else {
+      banners = bannersMock;
+    }
 
-  return c.json(toBanner(banner, media.data));
+    return c.json(banners);
+  }
 });
 
 export default app;
