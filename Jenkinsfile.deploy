@@ -115,7 +115,8 @@ pipeline {
                 build(job: 'angular.love/clean_db_branches', parameters: [
                     [$class: 'StringParameterValue', name: 'env', value: "${ENVIRONMENT}"],
                     [$class: 'StringParameterValue', name: 'branchName', value: "${branchNameForDB}"],
-                    [$class: 'StringParameterValue', name: 'branchHash', value: "${BRANCH_HASH}"]])
+                    [$class: 'StringParameterValue', name: 'branchHash', value: "${BRANCH_HASH}"],
+                    [$class: 'BooleanParameterValue', name: 'dryRun', value: false]])
                 }
                 
             }
