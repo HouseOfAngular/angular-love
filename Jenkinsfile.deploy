@@ -41,6 +41,7 @@ pipeline {
         stage("Decide environment") {
             steps {
                 script {
+                    env.USE_BRANCH_NAME = env.BRANCH_NAME
                     env.IS_PR = "FALSE"
                     env.ENVIRONMENT = 'dev'
                     env.WORKER_DOMAIN_END = '-blog-bff-dev.contact-ef8.workers.dev' 
@@ -61,6 +62,7 @@ pipeline {
                         echo "BRANCH_NAME: $BRANCH_NAME"
                         env.ENVIRONMENT = 'dev'
                         env.WORKER_DOMAIN_END = '-blog-bff-dev.contact-ef8.workers.dev' 
+                        env.USE_BRANCH_NAME = env.CHANGE_BRANCH
                     }
 
                     if (env.IS_PR == "TRUE") {
@@ -80,10 +82,10 @@ pipeline {
                         env.BRANCH_HASH = env.BRANCH_HASH.substring(0, 10)
                     }
                     
-                    def branchNameForDB = env.BRANCH_NAME
-                    if (env.BRANCH_NAME.length() > 30) {
+                    def branchNameForDB = env.USE_BRANCH_NAME
+                    if (env.USE_BRANCH_NAME.length() > 30) {
                         echo "Branch name is too long, truncating to 30 characters"
-                        branchNameForDB = env.BRANCH_NAME.substring(0, 30)
+                        branchNameForDB = env.USE_BRANCH_NAME.substring(0, 30)
                     }
                     branchNameForDB = branchNameForDB.replace("_", "-")
                     branchNameForDB = branchNameForDB.replace("/", "-")
@@ -108,6 +110,12 @@ pipeline {
                     env.TURSO_US_WEST_CONNECTION_URL = "libsql://usw-${DB_BRANCH_NAME}-angular-love.turso.io"
                     env.TURSO_US_EAST_CONNECTION_URL = "libsql://use-${DB_BRANCH_NAME}-angular-love.turso.io"
                 }
+
+                // clean old branches
+                build(job: 'angular.love/job/clean_db_branches', parameters: [
+                    [$class: 'StringParameterValue', name: 'env', value: '${ENVIRONMENT}'],
+                    [$class: 'StringParameterValue', name: 'branchName', value: '${branchNameForDB}'],
+                    [$class: 'StringParameterValue', name: 'branchHash', value: '${BRANCH_HASH}']])
                 }
                 
             }
@@ -199,7 +207,7 @@ pipeline {
                         usernamePassword(credentialsId: 'cf-workers-creds', usernameVariable: 'CLOUDFLARE_ACCOUNT_ID', passwordVariable: 'CLOUDFLARE_API_TOKEN'),
                     ]) {
                         output = sh(returnStdout: true, script: """                                                
-                            npx wrangler pages deploy dist/apps/blog/browser --project-name angular-love-client --branch ${BRANCH_NAME}
+                            npx wrangler pages deploy dist/apps/blog/browser --project-name angular-love-client --branch ${USE_BRANCH_NAME}
                         """)
                         echo "Output: $output"
                         def deploy_url = (output =~ /Take a peek over at ([^\s]+)/)[0][1]
@@ -223,7 +231,7 @@ pipeline {
                 script {
                     pullRequest.comment("""
 Deployed to $ENVIRONMENT environment
-Branch: $BRANCH_NAME
+Branch: $USE_BRANCH_NAME
 BFF URL: $AL_API_URL
 Deploy URL: $DEPLOY_URL
 Alias URL: $ALIAS_URL
