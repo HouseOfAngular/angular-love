@@ -6,7 +6,10 @@ import {
 } from '@angular/core';
 
 import { LeftSlicePipe, RightSlicePipe } from './slice.pipes';
-import { UiRoadmapNodeComponent } from './ui-roadmap-node.component';
+import { UiRoadmapAngularLoveNodeComponent } from './ui/ui-roadmap-angular-love-node.component';
+import { UiRoadmapClusterComponent } from './ui/ui-roadmap-cluster.component';
+import { UiRoadmapPrimaryNodeComponent } from './ui/ui-roadmap-primary-node.component';
+import { UiRoadmapSecondaryNodeComponent } from './ui/ui-roadmap-secondary-node.component';
 
 export type NodeType = 'primary' | 'secondary' | 'cluster' | 'angular-love';
 
@@ -35,7 +38,14 @@ export interface RoadmapLayer {
 
 @Component({
   selector: 'al-feature-roadmap',
-  imports: [UiRoadmapNodeComponent, LeftSlicePipe, RightSlicePipe],
+  imports: [
+    LeftSlicePipe,
+    RightSlicePipe,
+    UiRoadmapClusterComponent,
+    UiRoadmapPrimaryNodeComponent,
+    UiRoadmapAngularLoveNodeComponent,
+    UiRoadmapSecondaryNodeComponent,
+  ],
   templateUrl: './feature-roadmap.component.html',
   styleUrl: './feature-roadmap.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -72,6 +82,11 @@ export class FeatureRoadmapComponent {
       id: '5',
       parentNodeId: '4',
       title: 'Sass',
+    },
+    {
+      id: '8',
+      previousNodeId: '2',
+      title: 'Modules',
     },
   ]);
 

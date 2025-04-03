@@ -18,17 +18,35 @@
     >
       @for (layer of roadmapLayers(); track layer.parentNode.id) {
         <div class="flex w-full flex-col items-center gap-12">
-          <al-ui-roadmap-node [node]="layer.parentNode" />
+          @if (layer.parentNode.nodeType === 'primary') {
+            <al-ui-roadmap-primary-node [node]="layer.parentNode" />
+          } @else if (layer.parentNode.nodeType === 'angular-love') {
+            <al-ui-roadmap-angular-love-node
+              [node]="layer.parentNode"
+            ></al-ui-roadmap-angular-love-node>
+          }
           @if (layer.childNodes?.length) {
             <div class="flex gap-12">
               @for (node of layer.childNodes | leftSlice; track node.id) {
                 <div class="flex gap-10">
-                  <al-ui-roadmap-node [node]="node" />
+                  @if (node.nodeType === 'secondary') {
+                    <al-ui-roadmap-secondary-node [node]="node" />
+                  } @else if (node.nodeType === 'cluster') {
+                    <al-ui-roadmap-cluster
+                      [cluster]="$any(node)"
+                    ></al-ui-roadmap-cluster>
+                  }
                 </div>
               }
               @for (node of layer.childNodes | rightSlice; track node.id) {
                 <div class="flex gap-10">
-                  <al-ui-roadmap-node [node]="node" />
+                  @if (node.nodeType === 'secondary') {
+                    <al-ui-roadmap-secondary-node [node]="node" />
+                  } @else if (node.nodeType === 'cluster') {
+                    <al-ui-roadmap-cluster
+                      [cluster]="$any(node)"
+                    ></al-ui-roadmap-cluster>
+                  }
                 </div>
               }
             </div>

@@ -1,4 +1,4 @@
-.node-container {
+.roadmap-hover-border-gradient {
   position: relative;
   overflow: hidden;
 
@@ -6,17 +6,17 @@
     content: '';
     display: block;
     position: absolute;
-    width: 1000%;
-    height: 1000%;
-    top: -450%;
-    left: -450%;
+    width: 2000px;
+    height: 2000px;
+    top: calc(50% - 1000px);
+    left: calc(50% - 1000px);
     background: conic-gradient(#ff006a, #923cff, #ff006a);
     opacity: 0;
     transition: opacity 0.2s ease-in-out;
     z-index: 1;
   }
 
-  &:hover::before {
+  &:not(.cluster-node):hover::before {
     opacity: 1;
     animation: rotate 1s linear infinite;
   }
