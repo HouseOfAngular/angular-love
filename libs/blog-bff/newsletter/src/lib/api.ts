@@ -34,7 +34,7 @@ const EmailSchema = v.pipe(
   v.string(),
   v.nonEmpty('Please enter your email.'),
   v.email('Invalid email address'),
-  v.maxLength(30, 'Your email is too long.'),
+  v.maxLength(254, 'Your email is too long.'),
 );
 
 app.post('/subscribe', async (c) => {
