@@ -6,7 +6,6 @@ import {
 } from '@angular/core';
 
 import { LeftSlicePipe, RightSlicePipe } from './slice.pipes';
-import { SvgPathComponent } from './temp.component';
 import { UiRoadmapNodeComponent } from './ui-roadmap-node.component';
 
 export type NodeType = 'primary' | 'secondary' | 'cluster' | 'angular-love';
@@ -25,12 +24,8 @@ export interface RoadmapNode {
 }
 
 export interface RoadmapCluster extends RoadmapNode {
-  clusteredNodes?: NodeType[];
+  clusteredNodes?: RoadmapNode[];
   nodeType: 'cluster';
-}
-
-export interface RoadmapRootNode extends RoadmapNode {
-  nodeType: 'angular-love';
 }
 
 export interface RoadmapLayer {
@@ -40,12 +35,7 @@ export interface RoadmapLayer {
 
 @Component({
   selector: 'al-feature-roadmap',
-  imports: [
-    SvgPathComponent,
-    UiRoadmapNodeComponent,
-    LeftSlicePipe,
-    RightSlicePipe,
-  ],
+  imports: [UiRoadmapNodeComponent, LeftSlicePipe, RightSlicePipe],
   templateUrl: './feature-roadmap.component.html',
   styleUrl: './feature-roadmap.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -66,6 +56,23 @@ export class FeatureRoadmapComponent {
       parentNodeId: '2',
       title: 'Styling',
     },
+    {
+      id: '6',
+      parentNodeId: '4',
+      title: 'Angular Material',
+      previousNodeId: '5',
+    },
+    {
+      id: '7',
+      parentNodeId: '4',
+      title: 'View Encapsulation',
+      previousNodeId: '6',
+    },
+    {
+      id: '5',
+      parentNodeId: '4',
+      title: 'Sass',
+    },
   ]);
 
   protected readonly roadmapLayers = computed<RoadmapLayer[]>(() => {
@@ -83,7 +90,7 @@ export class FeatureRoadmapComponent {
           const parentClusterNodeDto = nodeDtoMap[nodeDto.parentNodeId];
 
           clusterMap[parentClusterNodeDto.id] = [
-            ...clusterMap[parentClusterNodeDto.id],
+            ...(clusterMap[parentClusterNodeDto.id] ?? []),
             nodeDto.id,
           ];
 
@@ -121,6 +128,27 @@ export class FeatureRoadmapComponent {
       }
     });
 
+    // setup clusters
+    Object.entries(clusterMap).forEach(([clusterNodeId, childrenNodeIds]) => {
+      const previousClusterNodeIdToNodeIdMap = childrenNodeIds.reduce(
+        (acc, primaryNodeId) => ({
+          ...acc,
+          [nodeDtoMap[primaryNodeId].previousNodeId || 'initialNode']:
+            primaryNodeId,
+        }),
+        {} as { [previousNodeId: string | 'initialNode']: string },
+      );
+
+      const clusterNode = nodeMap[clusterNodeId] as RoadmapCluster;
+      clusterNode.clusteredNodes = [];
+      let nextNodeId = previousClusterNodeIdToNodeIdMap['initialNode'];
+      while (nextNodeId) {
+        clusterNode.clusteredNodes.push(nodeMap[nextNodeId]);
+        nextNodeId = previousClusterNodeIdToNodeIdMap[nextNodeId];
+      }
+    });
+
+    // setup layers
     const previousLayerNodeIdToNodeIdMap = Object.keys(layerMap).reduce(
       (acc, primaryNodeId) => ({
         ...acc,
