@@ -25,6 +25,13 @@ pipeline {
         TURSO_US_EAST_AUTH_TOKEN=credentials('turso-us-east-auth-token')
         WP_REST_API_BASE_URL="https://wp.angular.love"
         WP_REST_API_TOKEN=credentials('al-wp-token')
+        AL_ALGOLIA_API_KEY=credentials('al_angolia_api_key')
+        AL_ALGOLIA_APPLICATION_ID=credentials('al_angolia_app_id')
+        AL_ALGOLIA_INDEX_NAME=credentials('al_angolia_index_name')
+        AL_GISCUS_CATEGORY=credentials('al_giscus_category')
+        AL_GISCUS_CATEGORY_ID=credentials('al_giscus_category_id')
+        AL_GISCUS_REPO=credentials('al_giscus_repo')
+        AL_GISCUS_REPO_ID=credentials('al_giscus_repo_id')
     }
 
     stages {
@@ -116,7 +123,8 @@ pipeline {
                     [$class: 'StringParameterValue', name: 'env', value: "${ENVIRONMENT}"],
                     [$class: 'StringParameterValue', name: 'branchName', value: "${branchNameForDB}"],
                     [$class: 'StringParameterValue', name: 'branchHash', value: "${BRANCH_HASH}"],
-                    [$class: 'BooleanParameterValue', name: 'dryRun', value: false]])
+                    [$class: 'BooleanParameterValue', name: 'dryRun', value: false]], wait: false)
+
                 }
                 
             }
