@@ -212,12 +212,14 @@ pipeline {
                         """)
                         echo "Output: $output"
                         def deploy_url = (output =~ /Take a peek over at ([^\s]+)/)[0][1]
-                        def alias_url = (output =~ /Deployment alias URL: ([^\s]+)/)[0][1]
                         echo "Deploy URL: $deploy_url"
-                        echo "Alias URL: $alias_url"
                         env.DEPLOY_URL = deploy_url
-                        env.ALIAS_URL = alias_url
-
+                        
+                        if (env.IS_PR == "TRUE") {
+                            def alias_url = (output =~ /Deployment alias URL: ([^\s]+)/)[0][1]
+                            echo "Alias URL: $alias_url"
+                            env.ALIAS_URL = alias_url
+                        }
                     }
                 }
             }
