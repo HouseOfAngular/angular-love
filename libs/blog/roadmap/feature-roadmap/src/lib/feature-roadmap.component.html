@@ -1,23 +1,44 @@
-<svg #svg width="100%" height="100%" xmlns:svg="http://www.w3.org/1999/html">
-  <svg:defs>
-    <marker
-      id="arrowhead"
-      markerWidth="6"
-      markerHeight="8"
-      refX="0"
-      refY="4"
-      orient="auto"
-    >
-      <polygon points="0 0, 6 4, 0 8" fill="#FDF5FD" />
-    </marker>
-  </svg:defs>
-
+<svg width="100%" height="100%" xmlns:svg="http://www.w3.org/1999/html">
   <svg:foreignObject height="0" width="0" overflow="visible">
     <div
-      class="flex h-fit w-fit translate-x-80 translate-y-16 flex-col items-center gap-16"
+      class="relative flex h-fit w-fit translate-x-80 translate-y-16 flex-col items-center gap-16"
     >
       @for (layer of roadmapLayers(); track layer.parentNode.id) {
-        <div class="flex w-full flex-col items-center gap-12">
+        <div #layerEl class="flex w-full flex-col items-center gap-16">
+          @if (!$last) {
+            @let layerHeightWithGap = layerEl.clientHeight + 64 - 24 || 0;
+            <svg
+              [attr.height]="layerHeightWithGap"
+              style="position: absolute"
+              overflow="visible"
+              width="100"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <svg:defs>
+                <marker
+                  id="arrowhead"
+                  markerWidth="6"
+                  markerHeight="8"
+                  refX="0"
+                  refY="4"
+                  orient="auto"
+                >
+                  <polygon points="0 0, 6 4, 0 8" fill="#FDF5FD" />
+                </marker>
+              </svg:defs>
+              <line
+                [attr.y2]="layerHeightWithGap"
+                x1="50"
+                y1="0"
+                x2="50"
+                stroke="white"
+                stroke-width="4"
+                marker-end="url(#arrowhead)"
+              />
+            </svg>
+          }
+
+          <!-- layer parent node-->
           @if (layer.parentNode.nodeType === 'primary') {
             <al-ui-roadmap-primary-node [node]="layer.parentNode" />
           } @else if (layer.parentNode.nodeType === 'angular-love') {
@@ -25,19 +46,28 @@
               [node]="layer.parentNode"
             ></al-ui-roadmap-angular-love-node>
           }
+
+          <!-- layer child nodes-->
           @if (layer.childNodes?.length) {
-            <div class="flex gap-12">
-              @for (node of layer.childNodes | leftSlice; track node.id) {
-                <div class="flex gap-10">
-                  @if (node.nodeType === 'secondary') {
-                    <al-ui-roadmap-secondary-node [node]="node" />
-                  } @else if (node.nodeType === 'cluster') {
-                    <al-ui-roadmap-cluster
-                      [cluster]="$any(node)"
-                    ></al-ui-roadmap-cluster>
-                  }
-                </div>
-              }
+            <div
+              #allChildNodesEl
+              class="translate-x-[{{
+                allChildNodesEl.clientWidth - leftChildNodesEl.clientWidth
+              }}px] flex gap-12"
+            >
+              <div #leftChildNodesEl class="flex gap-12">
+                @for (node of layer.childNodes | leftSlice; track node.id) {
+                  <div class="flex gap-10">
+                    @if (node.nodeType === 'secondary') {
+                      <al-ui-roadmap-secondary-node [node]="node" />
+                    } @else if (node.nodeType === 'cluster') {
+                      <al-ui-roadmap-cluster
+                        [cluster]="$any(node)"
+                      ></al-ui-roadmap-cluster>
+                    }
+                  </div>
+                }
+              </div>
               @for (node of layer.childNodes | rightSlice; track node.id) {
                 <div class="flex gap-10">
                   @if (node.nodeType === 'secondary') {
