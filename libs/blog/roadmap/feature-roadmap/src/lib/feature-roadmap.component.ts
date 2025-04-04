@@ -62,9 +62,20 @@ export class FeatureRoadmapComponent {
       title: 'Change Detection',
     },
     {
+      id: '9',
+      parentNodeId: '2',
+      previousNodeId: '4',
+      title: 'Dynamic Components',
+    },
+    {
       id: '4',
       parentNodeId: '2',
       title: 'Styling',
+    },
+    {
+      id: '11',
+      parentNodeId: '2',
+      title: 'Ble ble ble',
     },
     {
       id: '6',
