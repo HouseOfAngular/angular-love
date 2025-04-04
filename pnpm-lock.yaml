@@ -108,8 +108,8 @@ importers:
         specifier: ^11.9.0
         version: 11.10.0
       hono:
-        specifier: ^4.4.5
-        version: 4.6.3
+        specifier: ^4.7.5
+        version: 4.7.5
       lint-staged:
         specifier: ^15.0.2
         version: 15.2.10
@@ -6350,8 +6350,8 @@ packages:
     resolution: {integrity: sha512-eSmmWE5bZTK2Nou4g0AI3zZ9rswp7GRKoKXS1BLUkvPviOqs4YTN1djQIqrXy9k5gEtdLPy86JjRwsNM9tnDcA==}
     engines: {node: '>=0.10.0'}
 
-  hono@4.6.3:
-    resolution: {integrity: sha512-0LeEuBNFeSHGqZ9sNVVgZjB1V5fmhkBSB0hZrpqStSMLOWgfLy0dHOvrjbJh0H2khsjet6rbHfWTHY0kpYThKQ==}
+  hono@4.7.5:
+    resolution: {integrity: sha512-fDOK5W2C1vZACsgLONigdZTRZxuBqFtcKh7bUQ5cVSbwI2RWjloJDcgFOVzbQrlI6pCmhlTsVYZ7zpLj4m4qMQ==}
     engines: {node: '>=16.9.0'}
 
   hosted-git-info@7.0.2:
@@ -17953,7 +17953,7 @@ snapshots:
     dependencies:
       parse-passwd: 1.0.0
 
-  hono@4.6.3: {}
+  hono@4.7.5: {}
 
   hosted-git-info@7.0.2:
     dependencies:
