@@ -1,7 +1,18 @@
-<svg width="100%" height="100%" xmlns:svg="http://www.w3.org/1999/html">
-  <svg:foreignObject height="0" width="0" overflow="visible">
+<svg
+  class="roadmap-container"
+  width="100%"
+  height="100%"
+  xmlns:svg="http://www.w3.org/1999/html"
+>
+  <svg:foreignObject
+    style="transform: translateX(calc(50% - {{ layoutEl.clientWidth / 2 }}px))"
+    height="0"
+    width="0"
+    overflow="visible"
+  >
     <div
-      class="relative flex h-fit w-fit translate-x-80 translate-y-16 flex-col items-center gap-16"
+      #layoutEl
+      class="relative flex h-fit w-fit translate-y-16 flex-col items-center gap-16"
     >
       @for (layer of roadmapLayers(); track layer.parentNode.id) {
         <div #layerEl class="flex w-full flex-col items-center gap-16">
@@ -14,7 +25,7 @@
               width="100"
               xmlns="http://www.w3.org/2000/svg"
             >
-              <svg:defs>
+              <defs>
                 <marker
                   id="arrowhead"
                   markerWidth="6"
@@ -25,7 +36,7 @@
                 >
                   <polygon points="0 0, 6 4, 0 8" fill="#FDF5FD" />
                 </marker>
-              </svg:defs>
+              </defs>
               <line
                 [attr.y2]="layerHeightWithGap"
                 x1="50"
@@ -49,15 +60,40 @@
 
           <!-- layer child nodes-->
           @if (layer.childNodes?.length) {
+            @let shift =
+              (allChildNodesEl.clientWidth / 2 - leftChildNodesEl.clientWidth ||
+                0) - 32;
             <div
               #allChildNodesEl
-              class="translate-x-[{{
-                allChildNodesEl.clientWidth - leftChildNodesEl.clientWidth
-              }}px] flex gap-12"
+              class="flex gap-16"
+              style="transform: translate({{ shift }}px)"
             >
               <div #leftChildNodesEl class="flex gap-12">
+                @let centerShift = layerEl.clientWidth / 2 - shift;
                 @for (node of layer.childNodes | leftSlice; track node.id) {
-                  <div class="flex gap-10">
+                  @let arrowShift =
+                    secondaryNode.offsetLeft -
+                    centerShift +
+                    secondaryNode.clientWidth / 2;
+                  <svg
+                    [attr.height]="64"
+                    style="position: absolute; top: -64px; left: {{
+                      centerShift
+                    }}px"
+                    overflow="visible"
+                    width="1"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <svg:path
+                      [attr.d]="arrowShift | secondaryArrow: $first"
+                      fill="none"
+                      stroke="#FDF5FD"
+                      stroke-width="2"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    />
+                  </svg>
+                  <div #secondaryNode>
                     @if (node.nodeType === 'secondary') {
                       <al-ui-roadmap-secondary-node [node]="node" />
                     } @else if (node.nodeType === 'cluster') {
@@ -69,7 +105,29 @@
                 }
               </div>
               @for (node of layer.childNodes | rightSlice; track node.id) {
-                <div class="flex gap-10">
+                @let arrowShift =
+                  secondaryNode.offsetLeft -
+                  centerShift +
+                  secondaryNode.clientWidth / 2;
+                <svg
+                  [attr.height]="64"
+                  style="position: absolute; top: -64px; left: {{
+                    centerShift
+                  }}px"
+                  overflow="visible"
+                  width="1"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <svg:path
+                    [attr.d]="arrowShift | secondaryArrow: $last"
+                    fill="none"
+                    stroke="#FDF5FD"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
+                </svg>
+                <div #secondaryNode>
                   @if (node.nodeType === 'secondary') {
                     <al-ui-roadmap-secondary-node [node]="node" />
                   } @else if (node.nodeType === 'cluster') {

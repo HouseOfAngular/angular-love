@@ -5,6 +5,7 @@ import {
   signal,
 } from '@angular/core';
 
+import { SecondaryArrowPipe } from './secondary-arrow.pipe';
 import { LeftSlicePipe, RightSlicePipe } from './slice.pipes';
 import { UiRoadmapAngularLoveNodeComponent } from './ui/ui-roadmap-angular-love-node.component';
 import { UiRoadmapClusterComponent } from './ui/ui-roadmap-cluster.component';
@@ -45,6 +46,7 @@ export interface RoadmapLayer {
     UiRoadmapPrimaryNodeComponent,
     UiRoadmapAngularLoveNodeComponent,
     UiRoadmapSecondaryNodeComponent,
+    SecondaryArrowPipe,
   ],
   templateUrl: './feature-roadmap.component.html',
   styleUrl: './feature-roadmap.component.scss',
@@ -71,11 +73,6 @@ export class FeatureRoadmapComponent {
       id: '4',
       parentNodeId: '2',
       title: 'Styling',
-    },
-    {
-      id: '11',
-      parentNodeId: '2',
-      title: 'Ble ble ble',
     },
     {
       id: '6',
