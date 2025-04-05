@@ -22,6 +22,7 @@
   },
   "private": true,
   "dependencies": {
+    "@algolia/client-search": "^5.23.2",
     "@angular/animations": "19.2.5",
     "@angular/cdk": "19.2.8",
     "@angular/common": "19.2.5",
@@ -46,7 +47,6 @@
     "@push-based/ngx-fast-svg": "^18.1.0",
     "@shikijs/langs-precompiled": "^2.4.2",
     "@tailwindcss/container-queries": "^0.1.1",
-    "algoliasearch": "^4.23.3",
     "cheerio": "1.0.0-rc.12",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.1",
@@ -71,7 +71,6 @@
     "zone.js": "0.14.4"
   },
   "devDependencies": {
-    "@algolia/client-search": "^4.23.3",
     "@angular-devkit/build-angular": "19.2.6",
     "@angular-devkit/core": "19.2.6",
     "@angular-devkit/schematics": "19.2.6",
