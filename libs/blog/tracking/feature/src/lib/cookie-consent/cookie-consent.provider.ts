@@ -6,12 +6,12 @@ import {
   PLATFORM_ID,
   provideAppInitializer,
 } from '@angular/core';
-import type { CookieConsentConfig } from 'vanilla-cookieconsent';
 
 import { CookieConsentService } from './cookie-consent.service';
+import { CreateCookieConsentConfigFn } from './models';
 
 export const provideCookieConsent = (
-  config: CookieConsentConfig,
+  config: CreateCookieConsentConfigFn,
 ): EnvironmentProviders => {
   return makeEnvironmentProviders([
     CookieConsentService,
@@ -23,7 +23,7 @@ export const provideCookieConsent = (
         return () => {
           if (isPlatformBrowser(platformId)) {
             cookieConsentService.cookieConsent.subscribe((cc) => {
-              cc.run(config);
+              cc.run(config(cc));
             });
           }
         };
