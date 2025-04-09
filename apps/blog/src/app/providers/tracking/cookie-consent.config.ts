@@ -82,6 +82,7 @@ export const cookieConsentConfig: CreateCookieConsentConfigFn = (cc) => {
     },
     onConsent: () => {
       updateGtagConsent(cc);
+      cc.loadScript('/assets/scripts/gtm.js');
     },
     onChange: () => {
       updateGtagConsent(cc);
