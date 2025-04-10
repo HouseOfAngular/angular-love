@@ -1,4 +1,9 @@
-import { Overlay, OverlayRef, PositionStrategy } from '@angular/cdk/overlay';
+import {
+  ConnectedPosition,
+  Overlay,
+  OverlayRef,
+  PositionStrategy,
+} from '@angular/cdk/overlay';
 import { ComponentPortal } from '@angular/cdk/portal';
 import {
   ComponentRef,
@@ -18,6 +23,7 @@ import { UiTooltipComponent } from './ui-tooltip.component';
 })
 export class TooltipDirective implements OnDestroy {
   tooltipText = input.required<string | null>();
+  customPosition = input<ConnectedPosition | null>(null);
 
   private _overlayRef: OverlayRef | null = null;
 
@@ -53,6 +59,7 @@ export class TooltipDirective implements OnDestroy {
     const tooltipRef: ComponentRef<UiTooltipComponent> =
       this._overlayRef.attach(new ComponentPortal(UiTooltipComponent));
     tooltipRef.instance.tooltipText.set(this.tooltipText()!);
+    tooltipRef.instance.customPosition.set(this.customPosition()!);
   }
 
   private _getPositionStrategy(): PositionStrategy {
@@ -61,11 +68,11 @@ export class TooltipDirective implements OnDestroy {
       .flexibleConnectedTo(this._element)
       .withPositions([
         {
-          originX: 'center',
-          originY: 'bottom',
-          overlayX: 'center',
-          overlayY: 'top',
-          panelClass: 'bottom',
+          originX: this.customPosition()?.originX || 'center',
+          originY: this.customPosition()?.originY || 'bottom',
+          overlayX: this.customPosition()?.overlayX || 'center',
+          overlayY: this.customPosition()?.overlayY || 'top',
+          panelClass: this.customPosition()?.panelClass || 'bottom',
         },
       ]);
   }
