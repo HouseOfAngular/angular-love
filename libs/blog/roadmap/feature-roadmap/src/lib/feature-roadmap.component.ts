@@ -1,9 +1,16 @@
+import { isPlatformBrowser } from '@angular/common';
 import {
+  AfterViewInit,
   ChangeDetectionStrategy,
   Component,
   computed,
+  ElementRef,
+  inject,
+  PLATFORM_ID,
   signal,
+  viewChild,
 } from '@angular/core';
+import { FastSvgComponent } from '@push-based/ngx-fast-svg';
 
 import { SecondaryArrowPipe } from './secondary-arrow.pipe';
 import { LeftSlicePipe, RightSlicePipe } from './slice.pipes';
@@ -11,8 +18,17 @@ import { UiRoadmapAngularLoveNodeComponent } from './ui/ui-roadmap-angular-love-
 import { UiRoadmapClusterComponent } from './ui/ui-roadmap-cluster.component';
 import { UiRoadmapPrimaryNodeComponent } from './ui/ui-roadmap-primary-node.component';
 import { UiRoadmapSecondaryNodeComponent } from './ui/ui-roadmap-secondary-node.component';
+import { UiRoadmapSvgControlComponent } from './ui/ui-roadmap-svg-control.component';
 
 export type NodeType = 'primary' | 'secondary' | 'cluster' | 'angular-love';
+
+export type EventType = 'increment' | 'decrement' | 'reset' | 'zoom-reset';
+
+export interface Control {
+  size: string;
+  name: string;
+  event: EventType;
+}
 
 export interface RoadmapNodeDTO {
   id: string;
@@ -37,6 +53,14 @@ export interface RoadmapLayer {
   childNodes: RoadmapNode[];
 }
 
+const svgPanZoomInitialConfig = {
+  fit: false,
+  center: false,
+  minZoom: 0.5,
+  maxZoom: 2.5,
+  zoomScaleSensitivity: 0.1,
+};
+
 @Component({
   selector: 'al-feature-roadmap',
   imports: [
@@ -46,13 +70,19 @@ export interface RoadmapLayer {
     UiRoadmapPrimaryNodeComponent,
     UiRoadmapAngularLoveNodeComponent,
     UiRoadmapSecondaryNodeComponent,
+    UiRoadmapSvgControlComponent,
     SecondaryArrowPipe,
+    FastSvgComponent,
   ],
   templateUrl: './feature-roadmap.component.html',
   styleUrl: './feature-roadmap.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class FeatureRoadmapComponent {
+export class FeatureRoadmapComponent implements AfterViewInit {
+  private readonly _platform = inject(PLATFORM_ID);
+  private _svgPanZoom!: SvgPanZoom.Instance;
+  private readonly _svgRoadmap = viewChild<ElementRef<SVGElement>>('roadmap');
+
   private readonly nodesDto = signal<RoadmapNodeDTO[]>([
     {
       id: '2',
@@ -97,6 +127,42 @@ export class FeatureRoadmapComponent {
       title: 'Modules',
     },
   ]);
+
+  protected readonly controls: Control[] = [
+    {
+      event: 'increment',
+      size: '24',
+      name: 'zoom-in',
+    },
+    {
+      event: 'reset',
+      size: '24',
+      name: 'circle-center',
+    },
+    {
+      event: 'zoom-reset',
+      size: '24',
+      name: 'zoom-reset',
+    },
+    {
+      event: 'decrement',
+      size: '24',
+      name: 'zoom-out',
+    },
+  ];
+
+  async ngAfterViewInit() {
+    if (isPlatformBrowser(this._platform)) {
+      await this.initSvgPanZoom();
+    }
+  }
+
+  resizeRoadmap(event: EventType): void {
+    if (event === 'reset') this._svgPanZoom.reset();
+    if (event === 'decrement') this._svgPanZoom.zoomOut();
+    if (event === 'increment') this._svgPanZoom.zoomIn();
+    if (event === 'zoom-reset') this._svgPanZoom.resetZoom();
+  }
 
   protected readonly roadmapLayers = computed<RoadmapLayer[]>(() => {
     const nodeDtoMap = this.nodesDto().reduce(
@@ -208,4 +274,17 @@ export class FeatureRoadmapComponent {
       ...layers,
     ];
   });
+
+  private async initSvgPanZoom() {
+    const svgPanZoomModule = await import('svg-pan-zoom');
+    const svgPanZoom: SvgPanZoom.Instance =
+      (svgPanZoomModule as any)['default'] || svgPanZoomModule;
+
+    const svgRoadmap = this._svgRoadmap();
+    if (svgRoadmap) {
+      this._svgPanZoom = svgPanZoom(svgRoadmap.nativeElement, {
+        ...svgPanZoomInitialConfig,
+      });
+    }
+  }
 }
