@@ -85,8 +85,8 @@ pipeline {
                     def random = Math.abs(new Random().nextInt())
                     env.BRANCH_HASH = "${random}"
 
-                    if (env.BRANCH_HASH.length() > 10) {
-                        env.BRANCH_HASH = env.BRANCH_HASH.substring(0, 10)
+                    if (env.BRANCH_HASH.length() > 5) {
+                        env.BRANCH_HASH = env.BRANCH_HASH.substring(0, 5)
                     }
                     
                     def branchNameForDB = env.USE_BRANCH_NAME
@@ -99,8 +99,8 @@ pipeline {
                     branchNameForDB = branchNameForDB.toLowerCase()
 
                     env.DB_BRANCH_NAME = "${ENVIRONMENT}-${branchNameForDB}-${BUILD_NUMBER}-${BRANCH_HASH}"
-                    if (env.DB_BRANCH_NAME.length() > 50) {
-                        error("DB branch name is too long, truncating to 50 characters")
+                    if (env.DB_BRANCH_NAME.length() > 46) { // 46 since we will be adding the group name to the db name
+                        error("DB branch name is too long")
                     }
                 withCredentials([string(credentialsId: 'tursor_api_token', variable: 'TURSO_API_TOKEN')]) {                    
                     sh """
