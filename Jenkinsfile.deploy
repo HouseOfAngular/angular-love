@@ -85,8 +85,8 @@ pipeline {
                     def random = Math.abs(new Random().nextInt())
                     env.BRANCH_HASH = "${random}"
 
-                    if (env.BRANCH_HASH.length() > 10) {
-                        env.BRANCH_HASH = env.BRANCH_HASH.substring(0, 10)
+                    if (env.BRANCH_HASH.length() > 5) {
+                        env.BRANCH_HASH = env.BRANCH_HASH.substring(0, 5)
                     }
                     
                     def branchNameForDB = env.USE_BRANCH_NAME
@@ -98,20 +98,20 @@ pipeline {
                     branchNameForDB = branchNameForDB.replace("/", "-")
                     branchNameForDB = branchNameForDB.toLowerCase()
 
-                    env.DB_BRANCH_NAME = "${ENVIRONMENT}-${branchNameForDB}-${BRANCH_HASH}"
-                    if (env.DB_BRANCH_NAME.length() > 50) {
-                        error("DB branch name is too long, truncating to 50 characters")
+                    env.DB_BRANCH_NAME = "${ENVIRONMENT}-${branchNameForDB}-${BUILD_NUMBER}-${BRANCH_HASH}"
+                    if (env.DB_BRANCH_NAME.length() > 46) { // 46 since we will be adding the group name to the db name
+                        error("DB branch name is too long")
                     }
-                withCredentials([string(credentialsId: 'tursor_api_token', variable: 'TURSO_API_TOKEN')]) {
+                withCredentials([string(credentialsId: 'tursor_api_token', variable: 'TURSO_API_TOKEN')]) {                    
                     sh """
                         turso org switch angular-love
                         turso db create eu-${DB_BRANCH_NAME} --from-db $TURSO_EU_DB --group blog-eu
                         turso db create usw-${DB_BRANCH_NAME} --from-db $TURSO_US_WEST_DB --group blog-us-west
                         turso db create use-${DB_BRANCH_NAME} --from-db $TURSO_US_EAST_DB --group blog-us-east
 
-                        turso db list | grep -q "eu-${DB_BRANCH_NAME}" || { echo "EU database not found after creation"; exit 1; }
-                        turso db list | grep -q "usw-${DB_BRANCH_NAME}" || { echo "US West database not found after creation"; exit 1; }
-                        turso db list | grep -q "use-${DB_BRANCH_NAME}" || { echo "US East database not found after creation"; exit 1; }
+                        turso db list -g blog-eu | grep -q "eu-${DB_BRANCH_NAME}" || { echo "EU database not found after creation"; exit 1; }
+                        turso db list -g blog-us-west | grep -q "usw-${DB_BRANCH_NAME}" || { echo "US West database not found after creation"; exit 1; }
+                        turso db list -g blog-us-east | grep -q "use-${DB_BRANCH_NAME}" || { echo "US East database not found after creation"; exit 1; }
                     """
                     env.TURSO_EU_CONNECTION_URL = "libsql://eu-${DB_BRANCH_NAME}-angular-love.turso.io"
                     env.TURSO_US_WEST_CONNECTION_URL = "libsql://usw-${DB_BRANCH_NAME}-angular-love.turso.io"
@@ -123,6 +123,7 @@ pipeline {
                     [$class: 'StringParameterValue', name: 'env', value: "${ENVIRONMENT}"],
                     [$class: 'StringParameterValue', name: 'branchName', value: "${branchNameForDB}"],
                     [$class: 'StringParameterValue', name: 'branchHash', value: "${BRANCH_HASH}"],
+                    [$class: 'StringParameterValue', name: 'buildNumber', value: "${BUILD_NUMBER}"],
                     [$class: 'BooleanParameterValue', name: 'dryRun', value: false]], wait: false)
 
                 }
