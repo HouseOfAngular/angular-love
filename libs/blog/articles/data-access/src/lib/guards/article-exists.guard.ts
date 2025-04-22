@@ -32,9 +32,7 @@ export const articleExistsGuard: CanActivateFn = (route) => {
       map((data) => {
         const slug = route.paramMap.get('articleSlug');
 
-        if (slug && data.articles.includes(slug)) {
-          return true;
-        }
+        if (slug && data.articles.includes(slug)) return true;
 
         // check if the article is in the alternative language
         if (articleDetails()?.lang !== transloco.getActiveLang()) {
