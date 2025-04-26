@@ -66,10 +66,13 @@
                   leftChildNodesEl.clientWidth || 0) - 32;
               <div
                 #allChildNodesEl
-                class="flex gap-16"
+                class="flex justify-center gap-16"
                 style="transform: translate({{ shift }}px)"
               >
-                <div #leftChildNodesEl class="flex gap-12">
+                <div
+                  #leftChildNodesEl
+                  class="flex w-[5000px] justify-end gap-12"
+                >
                   @let centerShift = layerEl.clientWidth / 2 - shift;
                   @for (node of layer.childNodes | leftSlice; track node.id) {
                     @let arrowShift =
@@ -105,39 +108,44 @@
                     </div>
                   }
                 </div>
-                @for (node of layer.childNodes | rightSlice; track node.id) {
-                  @let arrowShift =
-                    secondaryNode.offsetLeft -
-                    centerShift +
-                    secondaryNode.clientWidth / 2;
-                  <svg
-                    [attr.height]="64"
-                    style="position: absolute; top: -64px; left: {{
-                      centerShift
-                    }}px"
-                    overflow="visible"
-                    width="1"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <svg:path
-                      [attr.d]="arrowShift | secondaryArrow: $last"
-                      fill="none"
-                      stroke="#FDF5FD"
-                      stroke-width="2"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                    />
-                  </svg>
-                  <div #secondaryNode>
-                    @if (node.nodeType === 'secondary') {
-                      <al-ui-roadmap-secondary-node [node]="node" />
-                    } @else if (node.nodeType === 'cluster') {
-                      <al-ui-roadmap-cluster
-                        [cluster]="$any(node)"
-                      ></al-ui-roadmap-cluster>
-                    }
-                  </div>
-                }
+                <div
+                  #leftChildNodesEl
+                  class="flex w-[5000px] justify-start gap-12"
+                >
+                  @for (node of layer.childNodes | rightSlice; track node.id) {
+                    @let arrowShift =
+                      secondaryNode.offsetLeft -
+                      centerShift +
+                      secondaryNode.clientWidth / 2;
+                    <svg
+                      [attr.height]="64"
+                      style="position: absolute; top: -64px; left: {{
+                        centerShift
+                      }}px"
+                      overflow="visible"
+                      width="1"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <svg:path
+                        [attr.d]="arrowShift | secondaryArrow: $last"
+                        fill="none"
+                        stroke="#FDF5FD"
+                        stroke-width="2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      />
+                    </svg>
+                    <div #secondaryNode>
+                      @if (node.nodeType === 'secondary') {
+                        <al-ui-roadmap-secondary-node [node]="node" />
+                      } @else if (node.nodeType === 'cluster') {
+                        <al-ui-roadmap-cluster
+                          [cluster]="$any(node)"
+                        ></al-ui-roadmap-cluster>
+                      }
+                    </div>
+                  }
+                </div>
               </div>
             }
           </div>

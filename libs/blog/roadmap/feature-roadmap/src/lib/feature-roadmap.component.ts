@@ -1,4 +1,5 @@
 import { isPlatformBrowser } from '@angular/common';
+import { HttpClient } from '@angular/common/http';
 import {
   AfterViewInit,
   ChangeDetectionStrategy,
@@ -7,10 +8,9 @@ import {
   ElementRef,
   inject,
   PLATFORM_ID,
-  signal,
   viewChild,
 } from '@angular/core';
-import { FastSvgComponent } from '@push-based/ngx-fast-svg';
+import { rxResource } from '@angular/core/rxjs-interop';
 
 import { SecondaryArrowPipe } from './secondary-arrow.pipe';
 import { LeftSlicePipe, RightSlicePipe } from './slice.pipes';
@@ -72,7 +72,6 @@ const svgPanZoomInitialConfig = {
     UiRoadmapSecondaryNodeComponent,
     UiRoadmapSvgControlComponent,
     SecondaryArrowPipe,
-    FastSvgComponent,
   ],
   templateUrl: './feature-roadmap.component.html',
   styleUrl: './feature-roadmap.component.scss',
@@ -83,50 +82,13 @@ export class FeatureRoadmapComponent implements AfterViewInit {
   private _svgPanZoom!: SvgPanZoom.Instance;
   private readonly _svgRoadmap = viewChild<ElementRef<SVGElement>>('roadmap');
 
-  private readonly nodesDto = signal<RoadmapNodeDTO[]>([
-    {
-      id: '2',
-      title: 'Components',
-    },
-    {
-      id: '3',
-      parentNodeId: '2',
-      title: 'Change Detection',
-    },
-    {
-      id: '9',
-      parentNodeId: '2',
-      previousNodeId: '4',
-      title: 'Dynamic Components',
-    },
-    {
-      id: '4',
-      parentNodeId: '2',
-      title: 'Styling',
-    },
-    {
-      id: '6',
-      parentNodeId: '4',
-      title: 'Angular Material',
-      previousNodeId: '5',
-    },
-    {
-      id: '7',
-      parentNodeId: '4',
-      title: 'View Encapsulation',
-      previousNodeId: '6',
-    },
-    {
-      id: '5',
-      parentNodeId: '4',
-      title: 'Sass',
-    },
-    {
-      id: '8',
-      previousNodeId: '2',
-      title: 'Modules',
-    },
-  ]);
+  private readonly _http = inject(HttpClient);
+  private readonly nodesDto = rxResource({
+    loader: () =>
+      this._http.get<RoadmapNodeDTO[]>('assets/roadmap-tiles.json', {
+        responseType: 'json',
+      }),
+  }).value.asReadonly();
 
   protected readonly controls: Control[] = [
     {
@@ -165,61 +127,82 @@ export class FeatureRoadmapComponent implements AfterViewInit {
   }
 
   protected readonly roadmapLayers = computed<RoadmapLayer[]>(() => {
-    const nodeDtoMap = this.nodesDto().reduce(
-      (acc, node) => ({ ...acc, [node.id]: node }),
-      {} as { [nodeId: string]: RoadmapNodeDTO },
-    );
-    const layerMap: { [parentNodeId: string]: string[] } = {};
-    const clusterMap: { [clusterNodeId: string]: string[] } = {};
-    const nodeMap: { [nodeId: string]: RoadmapNode } = {};
+    const nodesDto = this.nodesDto();
+    if (nodesDto) {
+      const nodeDtoMap = nodesDto.reduce(
+        (acc, node) => ({ ...acc, [node.id]: node }),
+        {} as { [nodeId: string]: RoadmapNodeDTO },
+      );
+      const layerMap: { [parentNodeId: string]: string[] } = {};
+      const clusterMap: { [clusterNodeId: string]: string[] } = {};
+      const nodeMap: { [nodeId: string]: RoadmapNode } = {};
 
-    this.nodesDto().forEach((nodeDto) => {
-      if (nodeDto.parentNodeId) {
-        if (nodeDtoMap[nodeDto.parentNodeId].parentNodeId) {
-          const parentClusterNodeDto = nodeDtoMap[nodeDto.parentNodeId];
+      nodesDto.forEach((nodeDto) => {
+        if (nodeDto.parentNodeId) {
+          if (nodeDtoMap[nodeDto.parentNodeId].parentNodeId) {
+            const parentClusterNodeDto = nodeDtoMap[nodeDto.parentNodeId];
 
-          clusterMap[parentClusterNodeDto.id] = [
-            ...(clusterMap[parentClusterNodeDto.id] ?? []),
-            nodeDto.id,
-          ];
+            clusterMap[parentClusterNodeDto.id] = [
+              ...(clusterMap[parentClusterNodeDto.id] ?? []),
+              nodeDto.id,
+            ];
 
-          if (nodeMap[nodeDto.parentNodeId]) {
-            nodeMap[parentClusterNodeDto.id].nodeType = 'cluster';
+            if (nodeMap[nodeDto.parentNodeId]) {
+              nodeMap[parentClusterNodeDto.id].nodeType = 'cluster';
+            } else {
+              nodeMap[parentClusterNodeDto.id] = {
+                id: parentClusterNodeDto.id,
+                nodeType: 'cluster',
+                title: parentClusterNodeDto.title,
+              };
+            }
           } else {
-            nodeMap[parentClusterNodeDto.id] = {
-              id: parentClusterNodeDto.id,
-              nodeType: 'cluster',
-              title: parentClusterNodeDto.title,
+            layerMap[nodeDto.parentNodeId] = [
+              ...(layerMap[nodeDto.parentNodeId] ?? []),
+              nodeDto.id,
+            ];
+          }
+          if (!nodeMap[nodeDto.id]) {
+            nodeMap[nodeDto.id] = {
+              id: nodeDto.id,
+              nodeType: 'secondary',
+              title: nodeDto.title,
             };
           }
         } else {
-          layerMap[nodeDto.parentNodeId] = [
-            ...(layerMap[nodeDto.parentNodeId] ?? []),
-            nodeDto.id,
-          ];
-        }
-        if (!nodeMap[nodeDto.id]) {
           nodeMap[nodeDto.id] = {
             id: nodeDto.id,
-            nodeType: 'secondary',
+            nodeType: 'primary',
             title: nodeDto.title,
           };
+          if (!layerMap[nodeDto.id]) {
+            layerMap[nodeDto.id] = [];
+          }
         }
-      } else {
-        nodeMap[nodeDto.id] = {
-          id: nodeDto.id,
-          nodeType: 'primary',
-          title: nodeDto.title,
-        };
-        if (!layerMap[nodeDto.id]) {
-          layerMap[nodeDto.id] = [];
-        }
-      }
-    });
+      });
 
-    // setup clusters
-    Object.entries(clusterMap).forEach(([clusterNodeId, childrenNodeIds]) => {
-      const previousClusterNodeIdToNodeIdMap = childrenNodeIds.reduce(
+      // setup clusters
+      Object.entries(clusterMap).forEach(([clusterNodeId, childrenNodeIds]) => {
+        const previousClusterNodeIdToNodeIdMap = childrenNodeIds.reduce(
+          (acc, primaryNodeId) => ({
+            ...acc,
+            [nodeDtoMap[primaryNodeId].previousNodeId || 'initialNode']:
+              primaryNodeId,
+          }),
+          {} as { [previousNodeId: string | 'initialNode']: string },
+        );
+
+        const clusterNode = nodeMap[clusterNodeId] as RoadmapCluster;
+        clusterNode.clusteredNodes = [];
+        let nextNodeId = previousClusterNodeIdToNodeIdMap['initialNode'];
+        while (nextNodeId) {
+          clusterNode.clusteredNodes.push(nodeMap[nextNodeId]);
+          nextNodeId = previousClusterNodeIdToNodeIdMap[nextNodeId];
+        }
+      });
+
+      // setup layers
+      const previousLayerNodeIdToNodeIdMap = Object.keys(layerMap).reduce(
         (acc, primaryNodeId) => ({
           ...acc,
           [nodeDtoMap[primaryNodeId].previousNodeId || 'initialNode']:
@@ -228,51 +211,34 @@ export class FeatureRoadmapComponent implements AfterViewInit {
         {} as { [previousNodeId: string | 'initialNode']: string },
       );
 
-      const clusterNode = nodeMap[clusterNodeId] as RoadmapCluster;
-      clusterNode.clusteredNodes = [];
-      let nextNodeId = previousClusterNodeIdToNodeIdMap['initialNode'];
-      while (nextNodeId) {
-        clusterNode.clusteredNodes.push(nodeMap[nextNodeId]);
-        nextNodeId = previousClusterNodeIdToNodeIdMap[nextNodeId];
+      const layers: {
+        parentNode: RoadmapNode;
+        childNodes: RoadmapNode[];
+      }[] = [];
+      let nextParentNodeId = previousLayerNodeIdToNodeIdMap['initialNode'];
+      while (nextParentNodeId) {
+        layers.push({
+          parentNode: nodeMap[nextParentNodeId],
+          childNodes: layerMap[nextParentNodeId].map(
+            (childrenNodeId) => nodeMap[childrenNodeId],
+          ),
+        });
+        nextParentNodeId = previousLayerNodeIdToNodeIdMap[nextParentNodeId];
       }
-    });
 
-    // setup layers
-    const previousLayerNodeIdToNodeIdMap = Object.keys(layerMap).reduce(
-      (acc, primaryNodeId) => ({
-        ...acc,
-        [nodeDtoMap[primaryNodeId].previousNodeId || 'initialNode']:
-          primaryNodeId,
-      }),
-      {} as { [previousNodeId: string | 'initialNode']: string },
-    );
-
-    const layers: {
-      parentNode: RoadmapNode;
-      childNodes: RoadmapNode[];
-    }[] = [];
-    let nextParentNodeId = previousLayerNodeIdToNodeIdMap['initialNode'];
-    while (nextParentNodeId) {
-      layers.push({
-        parentNode: nodeMap[nextParentNodeId],
-        childNodes: layerMap[nextParentNodeId].map(
-          (childrenNodeId) => nodeMap[childrenNodeId],
-        ),
-      });
-      nextParentNodeId = previousLayerNodeIdToNodeIdMap[nextParentNodeId];
-    }
-
-    return [
-      {
-        parentNode: {
-          id: '1',
-          title: 'Angular.Love Roadmap Introduction',
-          nodeType: 'angular-love',
+      return [
+        {
+          parentNode: {
+            id: '1',
+            title: 'Angular.Love Roadmap Introduction',
+            nodeType: 'angular-love',
+          },
+          childNodes: [],
         },
-        childNodes: [],
-      },
-      ...layers,
-    ];
+        ...layers,
+      ];
+    }
+    return [];
   });
 
   private async initSvgPanZoom() {
