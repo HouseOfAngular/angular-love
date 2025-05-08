@@ -20,7 +20,6 @@ import { NewsletterComponent } from '@angular-love/blog/newsletter';
 import {
   CardComponent,
   CardContentDirective,
-  CardSkeletonComponent,
   DarkCardDirective,
   DarkGradientCardDirective,
 } from '@angular-love/blog/shared/ui-card';
@@ -32,7 +31,6 @@ import { ArticleShareIconsComponent } from '../article-share-icons/article-share
 
 @Component({
   selector: 'al-article-details',
-  standalone: true,
   imports: [
     DatePipe,
     ArticleContentComponent,
@@ -43,7 +41,6 @@ import { ArticleShareIconsComponent } from '../article-share-icons/article-share
     DarkCardDirective,
     TableOfContentsComponent,
     TableOfContentsScrollSpyDirective,
-    CardSkeletonComponent,
     GiscusCommentsComponent,
     CardComponent,
     UiDifficultyComponent,

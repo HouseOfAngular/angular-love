@@ -1,0 +1,63 @@
+pipeline {
+    agent {
+        dockerfile {
+            filename 'Dockerfile-deploy'
+            reuseNode true
+        }
+    }
+
+    options {
+        quietPeriod(0)
+        timeout(time: 1, unit: 'HOURS')
+        timestamps()
+        buildDiscarder(logRotator(numToKeepStr: '20'))
+        disableConcurrentBuilds()
+    }
+
+    parameters {
+        booleanParam(name: 'RUN_ON_DEV', defaultValue: false, description: 'Run the purge on the development environment')
+        booleanParam(name: 'RUN_ON_PROD', defaultValue: false, description: 'Run the purge on the production environment')
+    }
+
+    environment {
+        KV_DEV = credentials('cf-kv-dev')
+        KV_PROD = credentials('cf-kv-prod')
+    }
+
+    stages {
+        stage('Run purge dev') {
+            when {
+                expression { params.RUN_ON_DEV }
+            }
+            steps {
+                withCredentials([
+                    usernamePassword(credentialsId: 'cf-workers-creds', usernameVariable: 'CLOUDFLARE_ACCOUNT_ID', passwordVariable: 'CLOUDFLARE_API_TOKEN'),
+                ]) {
+                    sh """
+                        ./scripts/purge_kv.sh $KV_DEV
+                    """   
+                }
+            }
+        }
+        stage('Run purge prod') {
+            when {
+                expression { params.RUN_ON_PROD }
+            }
+            steps {
+                withCredentials([
+                    usernamePassword(credentialsId: 'cf-workers-creds', usernameVariable: 'CLOUDFLARE_ACCOUNT_ID', passwordVariable: 'CLOUDFLARE_API_TOKEN'),
+                ]) {
+                    sh """
+                        ./scripts/purge_kv.sh $KV_PROD
+                    """   
+                }
+            }
+        }
+    }
+
+    post {
+        always {
+            cleanWs()
+        }
+    }
+}

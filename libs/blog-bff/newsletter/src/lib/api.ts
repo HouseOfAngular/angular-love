@@ -2,7 +2,7 @@ import { Hono } from 'hono';
 import { env } from 'hono/adapter';
 import { csrf } from 'hono/csrf';
 import { HTTPException } from 'hono/http-exception';
-import { z, ZodError } from 'zod';
+import * as v from 'valibot';
 
 import { langMw } from '@angular-love/blog-bff/shared/util-middleware';
 
@@ -30,7 +30,12 @@ app.use(
   }),
 );
 
-const emailSchema = z.string().email({ message: 'Invalid email address' });
+const EmailSchema = v.pipe(
+  v.string(),
+  v.nonEmpty('Please enter your email.'),
+  v.email('Invalid email address'),
+  v.maxLength(254, 'Your email is too long.'),
+);
 
 app.post('/subscribe', async (c) => {
   const newSubscriber = await c.req.text();
@@ -49,34 +54,66 @@ app.post('/subscribe', async (c) => {
   }
 
   try {
-    const parsedNewSubscriber = emailSchema.parse(newSubscriber);
+    const parsedEmail = v.parse(EmailSchema, newSubscriber);
     const client = new NewsletterClient(BREVO_API_URL, BREVO_API_KEY);
+    let sendTemplate = true;
 
-    await client.createContact({
-      email: parsedNewSubscriber,
-      emailBlacklisted: false,
-      listIds,
-      smsBlacklisted: false,
-    });
+    try {
+      const existingContact = await client.getContact(parsedEmail);
+      const mergedListIds = Array.from(
+        new Set([...existingContact.listIds, ...listIds]),
+      );
+      const alreadySubscribed = listIds.some((listId) =>
+        existingContact.listIds.includes(listId),
+      );
 
-    const template = await client.getTemplate(templateId);
+      if (!alreadySubscribed) {
+        await client.updateContact({
+          email: parsedEmail,
+          emailBlacklisted: false,
+          smsBlacklisted: false,
+          listIds: mergedListIds,
+        });
+      }
 
-    await client.sendEmail({
-      sender: {
-        id: template.sender.id,
-      },
-      subject: template.subject,
-      htmlContent: template.htmlContent,
-      to: [
-        {
-          email: parsedNewSubscriber,
+      // Contact is already on the list, we should not send a welcoming template
+      sendTemplate = !alreadySubscribed;
+    } catch (err) {
+      if (
+        typeof err === 'object' &&
+        err &&
+        'code' in err &&
+        err.code === 'document_not_found'
+      ) {
+        await client.createContact({
+          email: parsedEmail,
+          emailBlacklisted: false,
+          smsBlacklisted: false,
+          listIds,
+        });
+      }
+    }
+
+    if (sendTemplate) {
+      const template = await client.getTemplate(templateId);
+
+      await client.sendEmail({
+        sender: {
+          id: template.sender.id,
         },
-      ],
-    });
+        subject: template.subject,
+        htmlContent: template.htmlContent,
+        to: [
+          {
+            email: parsedEmail,
+          },
+        ],
+      });
+    }
 
     return c.json({ success: true }, 200);
   } catch (e) {
-    if (e instanceof ZodError) {
+    if (e instanceof v.ValiError) {
       return c.json('Email validation error', 400);
     }
     if (e instanceof HTTPException) {

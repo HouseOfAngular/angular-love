@@ -9,9 +9,64 @@
       <al-become-author-improvements [improvements]="t('improvements.items')" />
       <al-become-author-benefits [benefits]="t('benefits.items')" />
     </div>
-    <div class="lg:col-span-3">
+    <div class="space-y-6 lg:col-span-3">
       <al-card alDarkGradientCard>
-        <al-become-author-advertisement alCardContent />
+        <al-become-author-advertisement
+          alCardContent
+          [ariaLabel]="'author-ad-title'"
+        >
+          <div>
+            <h3 id="author-ad-title" class="text-2xl font-bold lg:text-4xl">
+              {{ t('becomeAuthorCard.title') }}
+            </h3>
+            <p class="py-4 text-base">
+              {{ t('becomeAuthorCard.description') }}
+            </p>
+          </div>
+          <div
+            class="@xl:justify-end my-2 flex w-full flex-row items-center justify-center"
+          >
+            <a
+              class="bg-al-pink flex h-[46px] w-full items-center justify-center rounded-lg md:w-4/5 lg:w-full"
+              href="https://form.typeform.com/to/Zzf1Girt?typeform-source=angular.love"
+              target="_blank"
+            >
+              <p class="text-sm font-bold">
+                {{ t('becomeAuthorCard.buttonText') }}
+              </p>
+            </a>
+          </div>
+        </al-become-author-advertisement>
+      </al-card>
+      <al-card alGradientCard>
+        <al-become-author-advertisement
+          alCardContent
+          [ariaLabel]="'writing-rules-ad-title'"
+        >
+          <div>
+            <h3
+              id="writing-rules-ad-title"
+              class="text-2xl font-bold lg:text-4xl"
+            >
+              {{ t('articleWritingRules.title') }}
+            </h3>
+            <p class="py-4 text-base">
+              {{ t('articleWritingRules.description') }}
+            </p>
+          </div>
+          <div
+            class="@xl:justify-end my-2 flex w-full flex-row items-center justify-center"
+          >
+            <a
+              class="bg-al-pink flex h-[46px] w-full items-center justify-center rounded-lg md:w-4/5 lg:w-full"
+              [routerLink]="'/writing-rules' | alLocalize"
+            >
+              <p class="text-center text-sm font-bold">
+                {{ t('articleWritingRules.buttonText') }}
+              </p>
+            </a>
+          </div>
+        </al-become-author-advertisement>
       </al-card>
     </div>
   </div>

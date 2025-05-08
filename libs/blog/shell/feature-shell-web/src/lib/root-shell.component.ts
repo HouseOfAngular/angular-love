@@ -5,6 +5,7 @@ import { Router, RouterOutlet } from '@angular/router';
 import { TranslocoService } from '@jsverse/transloco';
 import { startWith } from 'rxjs';
 
+import { AdBannerStore } from '@angular-love/blog/ad-banner/data-access';
 import { AlLocalizeService } from '@angular-love/blog/i18n/util';
 import {
   FooterComponent,
@@ -12,19 +13,17 @@ import {
   LayoutComponent,
 } from '@angular-love/blog/layouts/ui-layouts';
 import { SearchComponent } from '@angular-love/blog/search/feature-search';
+import {
+  AdImageBanner,
+  AlBannerCarouselComponent,
+  TopBannerComponent,
+} from '@angular-love/blog/shared/ad-banner';
 
 @Component({
   selector: 'al-root-shell',
   template: `
-    <div class="fixed top-0 z-10 w-full">
-      <!--top screen closable banner-->
-      <!--@if (adBannerVisible()) {
-        <al-ad-banner
-          class="block"
-          [data]="adBanner()"
-          (closed)="adBannerStore.onClose()"
-        />
-      }-->
+    <al-top-banner #topBanner />
+    <div class="sticky top-0 z-10 w-full">
       <al-header
         class="block w-full"
         [language]="language()"
@@ -33,12 +32,18 @@ import { SearchComponent } from '@angular-love/blog/search/feature-search';
         <al-search />
       </al-header>
     </div>
-    <al-layout class="mt-20" [ngClass]="{ 'mt-40': adBannerVisible() }">
+    <al-layout class="mt-0" [ngClass]="{ 'mt-20': adBannerVisible() }">
+      @if (slides()?.length && slides(); as slides) {
+        <al-banner-carousel
+          class="mb-4 inline-block"
+          [banners]="slides"
+          [msPerSlide]="msPerSlide()!"
+        />
+      }
       <router-outlet />
     </al-layout>
     <al-footer class="mt-auto block" />
   `,
-  standalone: true,
   imports: [
     RouterOutlet,
     HeaderComponent,
@@ -46,9 +51,26 @@ import { SearchComponent } from '@angular-love/blog/search/feature-search';
     LayoutComponent,
     SearchComponent,
     NgClass,
+    AlBannerCarouselComponent,
+    TopBannerComponent,
   ],
 })
 export class RootShellComponent {
+  protected readonly sliderStore = inject(AdBannerStore);
+  protected readonly slides = computed<AdImageBanner[] | undefined>(() =>
+    this.sliderStore.slider()?.slides.map((slide) => ({
+      url: slide.url,
+      alt: slide.alt,
+      action: {
+        type: 'url',
+        url: slide.navigateTo,
+      },
+    })),
+  );
+  protected readonly msPerSlide = computed(
+    () => this.sliderStore.slider()?.slideDisplayTimeMs,
+  );
+
   readonly translocoService = inject(TranslocoService);
 
   // todo: temporary solution to keep in mind how banner influence the layout
@@ -79,5 +101,6 @@ export class RootShellComponent {
         ? viewport.setOffset([0, 160])
         : viewport.setOffset([0, 80]);
     });
+    this.sliderStore.getData();
   }
 }

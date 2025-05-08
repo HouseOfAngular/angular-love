@@ -1,0 +1,30 @@
+<h2 class="mb-8 text-4xl font-bold" [id]="id()">
+  {{ title() }}
+</h2>
+
+<section
+  aria-live="polite"
+  class="grid gap-8 md:grid-cols-2 lg:grid-cols-3"
+  [attr.aria-labelledby]="id()"
+>
+  @if (!articleStore.isFetchArticleListLoading()) {
+    @for (article of articleStore.articles(); track article.slug) {
+      <al-article-card [article]="article" cardType="regular" />
+    }
+  } @else {
+    <al-article-regular-card-skeleton
+      *alRepeat="pagination().take"
+      class="animate-pulse-from-0"
+    />
+  }
+</section>
+
+<footer class="bg-al-card mt-16 rounded-lg border px-1 py-5">
+  <al-pagination
+    alQueryPagination
+    [pageSize]="pagination().take"
+    [skip]="pagination().skip"
+    [total]="articleStore.total()"
+    (pageChange)="pageChange($event)"
+  />
+</footer>

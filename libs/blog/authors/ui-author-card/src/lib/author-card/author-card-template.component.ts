@@ -9,7 +9,13 @@ import {
 @Component({
   selector: 'al-author-card-template',
   standalone: true,
-  imports: [CardComponent, CardContentDirective, DarkGradientCardDirective],
+  imports: [
+    CardComponent,
+    CardContentDirective,
+    DarkGradientCardDirective,
+    CardComponent,
+    CardContentDirective,
+  ],
   host: {
     class: 'block @container',
   },

@@ -5,7 +5,6 @@ import { CardComponent } from '@angular-love/blog/shared/ui-card';
 
 @Component({
   selector: 'al-article-regular-card-skeleton',
-  standalone: true,
   imports: [NgxSkeletonLoaderModule, CardComponent],
   template: `
     <al-card class="[&>*]:!p-0">
@@ -20,7 +19,7 @@ import { CardComponent } from '@angular-love/blog/shared/ui-card';
               [theme]="{
                 height: '32px',
                 width: '32px',
-                margin: '0'
+                margin: '0',
               }"
             />
             <!-- name -->

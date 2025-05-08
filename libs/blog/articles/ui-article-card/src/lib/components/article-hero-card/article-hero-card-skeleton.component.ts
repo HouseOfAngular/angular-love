@@ -5,7 +5,6 @@ import { CardComponent } from '@angular-love/blog/shared/ui-card';
 
 @Component({
   selector: 'al-article-hero-card-skeleton',
-  standalone: true,
   imports: [NgxSkeletonLoaderModule, CardComponent],
   template: `
     <al-card class="bg-transparent">

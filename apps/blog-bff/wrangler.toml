@@ -20,3 +20,10 @@ vars = { IS_PROD = "false" }
 [[env.dev.kv_namespaces]]
 binding = "CACHE_KV"
 id = "<kv_dev_namespace_id>"
+
+[observability]
+enabled = true
+head_sampling_rate = 1
+
+[observability.logs]
+invocation_logs = true

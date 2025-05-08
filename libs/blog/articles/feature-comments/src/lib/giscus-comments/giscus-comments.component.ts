@@ -17,7 +17,6 @@ import {
 
 @Component({
   selector: 'al-giscus-comments',
-  standalone: true,
   imports: [],
   templateUrl: './giscus-comments.component.html',
   styleUrl: './giscus-comments.component.scss',

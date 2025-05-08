@@ -8,11 +8,10 @@ import { PartnersListComponent } from '../partners-list/partners-list.component'
 @Component({
   selector: 'al-partners',
   changeDetection: ChangeDetectionStrategy.OnPush,
-  standalone: true,
   imports: [PartnersListComponent, TranslocoDirective],
   templateUrl: './partners.component.html',
 })
 export class PartnersComponent {
-  readonly title = input.required<string>();
+  readonly heading = input.required<string>();
   readonly partnerList = input.required<Partner[]>();
 }

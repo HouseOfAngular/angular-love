@@ -19,7 +19,6 @@ export type NavItem = {
 
 @Component({
   selector: 'al-navigation',
-  standalone: true,
   imports: [
     RouterLink,
     RouterLinkActive,
@@ -43,7 +42,7 @@ export class NavigationComponent {
     },
     {
       translationPath: 'nav.meetups',
-      link: ['https://meetup.angular.love/'],
+      link: ['https://meetup.angular.love/spring-camp-2025/'],
       externalLink: true,
       dataTestId: 'navigation-meetups',
     },

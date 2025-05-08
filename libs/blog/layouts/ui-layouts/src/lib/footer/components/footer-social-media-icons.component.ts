@@ -4,7 +4,6 @@ import { SocialMediaIconsComponent } from '@angular-love/blog/shared/ui-social-m
 
 @Component({
   selector: 'al-footer-social-media-icons',
-  standalone: true,
   imports: [SocialMediaIconsComponent],
   template: `
     <div class="flex flex-col items-start">

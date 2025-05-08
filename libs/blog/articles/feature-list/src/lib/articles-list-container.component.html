@@ -1,22 +1,6 @@
-<div class="mt-10">
-  <al-category-section-container
-    [take]="3"
-    [hasCategoryPage]="false"
-    cardType="compact"
-    category="recommended"
-  />
-</div>
-
-@if (activeLang === 'en') {
-  <div class="mb-10 mt-10">
-    <al-indepth-banner />
-    <al-category-section-container category="angular-in-depth" />
-  </div>
-}
-
-<div class="mt-10">
-  <al-category-section-container category="news" />
-</div>
-<div class="mb-10 mt-10">
-  <al-category-section-container category="guides" />
-</div>
+<al-category-section-container
+  [take]="3"
+  [hasCategoryPage]="false"
+  cardType="compact"
+  category="recommended"
+/>

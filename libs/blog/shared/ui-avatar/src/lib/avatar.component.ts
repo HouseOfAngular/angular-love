@@ -1,16 +1,14 @@
-import { NgOptimizedImage, NgStyle } from '@angular/common';
+import { NgOptimizedImage } from '@angular/common';
 import { ChangeDetectionStrategy, Component, input } from '@angular/core';
-import { NgIconComponent } from '@ng-icons/core';
 
 type AvatarSize = '32' | '96';
 
 @Component({
-  standalone: true,
   selector: 'al-avatar',
   templateUrl: './avatar.component.html',
   styleUrls: ['./avatar.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [NgOptimizedImage, NgIconComponent, NgStyle],
+  imports: [NgOptimizedImage],
 })
 export class AvatarComponent {
   readonly imageSrc = input.required<string>();

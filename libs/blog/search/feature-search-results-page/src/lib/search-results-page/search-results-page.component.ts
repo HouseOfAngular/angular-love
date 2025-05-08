@@ -16,7 +16,6 @@ import { SearchResultsPagePresenter } from './search-results-page.presenter';
 
 @Component({
   selector: 'al-search-results-page',
-  standalone: true,
   templateUrl: './search-results-page.component.html',
   styleUrl: './search-results-page.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,

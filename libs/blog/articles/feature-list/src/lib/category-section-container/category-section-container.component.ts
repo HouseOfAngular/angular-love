@@ -5,7 +5,6 @@ import {
   inject,
   input,
 } from '@angular/core';
-import { RouterLink } from '@angular/router';
 import { TranslocoDirective } from '@jsverse/transloco';
 
 import { ArticleListStore } from '@angular-love/blog/articles/data-access';
@@ -16,7 +15,6 @@ import {
   UiArticleCardComponent,
 } from '@angular-love/blog/articles/ui-article-card';
 import { UiArticleListTitleComponent } from '@angular-love/blog/articles/ui-article-list-title';
-import { ButtonComponent } from '@angular-love/blog/shared/ui-button';
 import { ArticleCategory } from '@angular-love/contracts/articles';
 
 const displayNameDict: Record<ArticleCategory, string> = {
@@ -31,15 +29,12 @@ const displayNameDict: Record<ArticleCategory, string> = {
 // TODO: Rethink if we need seperated lib for this smart component (usage only for feature-list)
 // needed for demo and testing
 @Component({
-  standalone: true,
   selector: 'al-category-section-container',
   templateUrl: './category-section-container.component.html',
   styleUrls: ['./category-section-container.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [
     UiArticleCardComponent,
-    ButtonComponent,
-    RouterLink,
     UiArticleListTitleComponent,
     TranslocoDirective,
     ArticleRegularCardSkeletonComponent,

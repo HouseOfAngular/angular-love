@@ -1,4 +1,4 @@
-import { computed, inject } from '@angular/core';
+import { computed, inject, InjectionToken } from '@angular/core';
 import { tapResponse } from '@ngrx/operators';
 import {
   patchState,
@@ -30,6 +30,13 @@ const initialState: ArticleDetailsState = {
   slug: null,
 };
 
+export const IsArticlePreview = new InjectionToken<boolean>(
+  'Article Details Store Is Article Preview',
+  {
+    factory: () => false,
+  },
+);
+
 export const ArticleDetailsStore = signalStore(
   { providedIn: 'root' },
   withSeo(),
@@ -38,6 +45,7 @@ export const ArticleDetailsStore = signalStore(
   withLangState(),
   withMethods(({ ...store }) => {
     const articlesService = inject(ArticlesService);
+    const isPreview = inject(IsArticlePreview);
 
     return {
       fetchArticleDetails: rxMethod<string | undefined>(
@@ -51,7 +59,10 @@ export const ArticleDetailsStore = signalStore(
             }),
           ),
           switchMap((slug) =>
-            articlesService.getArticleBySlug(slug).pipe(
+            (isPreview
+              ? articlesService.getArticlePreviewBySlug(slug)
+              : articlesService.getArticleBySlug(slug)
+            ).pipe(
               tapResponse({
                 error: (error) =>
                   patchState(store, {

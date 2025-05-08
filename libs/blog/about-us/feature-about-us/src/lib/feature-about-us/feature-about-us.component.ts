@@ -5,7 +5,7 @@ import {
   inject,
   OnInit,
 } from '@angular/core';
-import { TranslocoDirective, TranslocoPipe } from '@jsverse/transloco';
+import { TranslocoDirective } from '@jsverse/transloco';
 
 import { AuthorListStore } from '@angular-love/blog/authors/data-access';
 import { AuthorCardComponent } from '@angular-love/blog/authors/ui-author-card';
@@ -19,7 +19,6 @@ import { SocialMediaIconsComponent } from '@angular-love/blog/shared/ui-social-m
 
 @Component({
   selector: 'al-about-us',
-  standalone: true,
   imports: [
     CardComponent,
     NewsletterComponent,
@@ -27,7 +26,6 @@ import { SocialMediaIconsComponent } from '@angular-love/blog/shared/ui-social-m
     DarkGradientCardDirective,
     AuthorCardComponent,
     InfiniteScrollTriggerDirective,
-    TranslocoPipe,
     TranslocoDirective,
   ],
   templateUrl: './feature-about-us.component.html',

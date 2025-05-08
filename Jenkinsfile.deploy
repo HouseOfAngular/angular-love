@@ -1,0 +1,270 @@
+pipeline {
+    agent {
+        dockerfile {
+            filename 'Dockerfile-deploy'
+            reuseNode true
+        }
+    }
+
+    options {
+        quietPeriod(0)
+        disableConcurrentBuilds()
+        timestamps()
+    }
+
+    environment {
+        KV_DEV = credentials('cf-kv-dev')
+        KV_PROD = credentials('cf-kv-prod')
+        AL_BASE_URL = 'https://angular.love'
+        TURSO_ORG="angular-love"
+        TURSO_EU_DB=credentials('turso-eu-db')
+        TURSO_US_WEST_DB=credentials('turso-us-west-db')
+        TURSO_US_EAST_DB=credentials('turso-us-east-db')
+        TURSO_EU_AUTH_TOKEN=credentials('turso-eu-auth-token')
+        TURSO_US_WEST_AUTH_TOKEN=credentials('turso-us-west-auth-token')
+        TURSO_US_EAST_AUTH_TOKEN=credentials('turso-us-east-auth-token')
+        WP_REST_API_BASE_URL="https://wp.angular.love"
+        WP_REST_API_TOKEN=credentials('al-wp-token')
+        AL_ALGOLIA_API_KEY=credentials('al_angolia_api_key')
+        AL_ALGOLIA_APPLICATION_ID=credentials('al_angolia_app_id')
+        AL_ALGOLIA_INDEX_NAME=credentials('al_angolia_index_name')
+        AL_GISCUS_CATEGORY=credentials('al_giscus_category')
+        AL_GISCUS_CATEGORY_ID=credentials('al_giscus_category_id')
+        AL_GISCUS_REPO=credentials('al_giscus_repo')
+        AL_GISCUS_REPO_ID=credentials('al_giscus_repo_id')
+    }
+
+    stages {
+        stage("Install dependencies") {
+            steps {
+                script {
+                    sh """
+                        corepack enable && corepack prepare pnpm@10.6.2 --activate
+                        pnpm install 
+                    """
+                }
+            }
+        }
+        stage("Decide environment") {
+            steps {
+                script {
+                    env.USE_BRANCH_NAME = env.BRANCH_NAME
+                    env.IS_PR = "FALSE"
+                    env.ENVIRONMENT = 'dev'
+                    env.WORKER_DOMAIN_END = '-blog-bff-dev.contact-ef8.workers.dev' 
+                    if (env.BRANCH_NAME == 'main') {
+                        env.ENVIRONMENT = 'prod'
+                        env.WORKER_DOMAIN_END = '-blog-bff.contact-ef8.workers.dev'
+                    }
+
+                    if (env.CHANGE_ID) {
+                        echo "CHANGE_ID: $CHANGE_ID"
+                        env.IS_PR = "TRUE"
+                    }
+
+                    // DOn't rember how it worked so for safety for now , todo remove later 
+                    if (env.IS_PR == "TRUE" && env.CHANGE_BRANCH != env.BRANCH_NAME) {
+                        echo "Banch missmatch in pr"
+                        echo "CHANGE_BRANCH: $CHANGE_BRANCH"    
+                        echo "BRANCH_NAME: $BRANCH_NAME"
+                        env.ENVIRONMENT = 'dev'
+                        env.WORKER_DOMAIN_END = '-blog-bff-dev.contact-ef8.workers.dev' 
+                        env.USE_BRANCH_NAME = env.CHANGE_BRANCH
+                    }
+
+                    if (env.IS_PR == "TRUE") {
+                        pullRequest.comment("PR is detected, will deploy to dev environment")
+                    }
+                }
+            }
+        }
+        stage("Branch db") {
+            steps {
+                script {
+                    def timestamp = new Date().getTime()
+                    def random = Math.abs(new Random().nextInt())
+                    env.BRANCH_HASH = "${random}"
+
+                    if (env.BRANCH_HASH.length() > 5) {
+                        env.BRANCH_HASH = env.BRANCH_HASH.substring(0, 5)
+                    }
+                    
+                    def branchNameForDB = env.USE_BRANCH_NAME
+                    if (env.USE_BRANCH_NAME.length() > 30) {
+                        echo "Branch name is too long, truncating to 30 characters"
+                        branchNameForDB = env.USE_BRANCH_NAME.substring(0, 30)
+                    }
+                    branchNameForDB = branchNameForDB.replace("_", "-")
+                    branchNameForDB = branchNameForDB.replace("/", "-")
+                    branchNameForDB = branchNameForDB.toLowerCase()
+
+                    env.DB_BRANCH_NAME = "${ENVIRONMENT}-${branchNameForDB}-${BUILD_NUMBER}-${BRANCH_HASH}"
+                    if (env.DB_BRANCH_NAME.length() > 46) { // 46 since we will be adding the group name to the db name
+                        error("DB branch name is too long")
+                    }
+                withCredentials([string(credentialsId: 'tursor_api_token', variable: 'TURSO_API_TOKEN')]) {                    
+                    sh """
+                        turso org switch angular-love
+                        turso db create eu-${DB_BRANCH_NAME} --from-db $TURSO_EU_DB --group blog-eu
+                        turso db create usw-${DB_BRANCH_NAME} --from-db $TURSO_US_WEST_DB --group blog-us-west
+                        turso db create use-${DB_BRANCH_NAME} --from-db $TURSO_US_EAST_DB --group blog-us-east
+
+                        turso db list -g blog-eu | grep -q "eu-${DB_BRANCH_NAME}" || { echo "EU database not found after creation"; exit 1; }
+                        turso db list -g blog-us-west | grep -q "usw-${DB_BRANCH_NAME}" || { echo "US West database not found after creation"; exit 1; }
+                        turso db list -g blog-us-east | grep -q "use-${DB_BRANCH_NAME}" || { echo "US East database not found after creation"; exit 1; }
+                    """
+                    env.TURSO_EU_CONNECTION_URL = "libsql://eu-${DB_BRANCH_NAME}-angular-love.turso.io"
+                    env.TURSO_US_WEST_CONNECTION_URL = "libsql://usw-${DB_BRANCH_NAME}-angular-love.turso.io"
+                    env.TURSO_US_EAST_CONNECTION_URL = "libsql://use-${DB_BRANCH_NAME}-angular-love.turso.io"
+                }
+
+                // clean old branches
+                build(job: 'angular.love/clean_db_branches', parameters: [
+                    [$class: 'StringParameterValue', name: 'env', value: "${ENVIRONMENT}"],
+                    [$class: 'StringParameterValue', name: 'branchName', value: "${branchNameForDB}"],
+                    [$class: 'StringParameterValue', name: 'branchHash', value: "${BRANCH_HASH}"],
+                    [$class: 'StringParameterValue', name: 'buildNumber', value: "${BUILD_NUMBER}"],
+                    [$class: 'BooleanParameterValue', name: 'dryRun', value: false]], wait: false)
+
+                }
+                
+            }
+        }
+        stage("Deploy bff prod") {
+            stages {
+                stage("Prepare secrets") {
+                    steps {
+                        sh """
+                            sed -i "s/<kv_dev_namespace_id>/$KV_DEV/g" apps/blog-bff/wrangler.toml
+                            sed -i "s/<kv_prod_namespace_id>/$KV_PROD/g" apps/blog-bff/wrangler.toml
+                            echo "{
+\\"WP_REST_API_BASE_URL\\":\\"$WP_REST_API_BASE_URL\\",
+\\"WP_REST_API_TOKEN\\":\\"$WP_REST_API_TOKEN\\",
+\\"TURSO_EU_CONNECTION_URL\\":\\"$TURSO_EU_CONNECTION_URL\\",
+\\"TURSO_EU_AUTH_TOKEN\\":\\"$TURSO_EU_AUTH_TOKEN\\",
+\\"TURSO_US_EAST_CONNECTION_URL\\":\\"$TURSO_US_EAST_CONNECTION_URL\\",
+\\"TURSO_US_EAST_AUTH_TOKEN\\":\\"$TURSO_US_EAST_AUTH_TOKEN\\",
+\\"TURSO_US_WEST_CONNECTION_URL\\":\\"$TURSO_US_WEST_CONNECTION_URL\\",
+\\"TURSO_US_WEST_AUTH_TOKEN\\":\\"$TURSO_US_WEST_AUTH_TOKEN\\"}" > new-secrets-bff
+                        """
+                    }
+                }
+                stage ("Wrangler upload new version") {
+                    steps {
+                        withCredentials([
+                            usernamePassword(credentialsId: 'cf-workers-creds', usernameVariable: 'CLOUDFLARE_ACCOUNT_ID', passwordVariable: 'CLOUDFLARE_API_TOKEN'),
+                        ]) {
+                            script {
+                                output = sh(returnStdout: true, script: """
+                                    npx wrangler versions upload --config apps/blog-bff/wrangler.toml --env $ENVIRONMENT
+                                """)
+                                echo "Output: $output"
+                            }
+                        }
+                    }
+                }
+                stage ("Wrangler upload new secrets") {
+                    steps {
+                        withCredentials([
+                            usernamePassword(credentialsId: 'cf-workers-creds', usernameVariable: 'CLOUDFLARE_ACCOUNT_ID', passwordVariable: 'CLOUDFLARE_API_TOKEN'),
+                        ]) {
+                            script {
+                                output = sh(returnStdout: true, script: """
+                                    npx wrangler versions secret bulk new-secrets-bff --config apps/blog-bff/wrangler.toml --env $ENVIRONMENT
+                                """)
+                                echo "Output: $output"
+                                def versionId = (output =~ /Created version ([^\s]+)/)[0][1]
+                                env.VERSION_ID = versionId
+                                echo "Version ID: $versionId"
+
+                                def previewUrl = versionId.substring(0, 8) + env.WORKER_DOMAIN_END
+                                env.PREVIEW_URL = "https://" + previewUrl
+                                env.AL_API_URL = "https://" + previewUrl
+                                echo "Preview URL: $PREVIEW_URL"
+                            }
+                        }   
+                    }
+                }
+                stage ("Wrangler deploy bff") {
+                    steps {
+                        withCredentials([
+                            usernamePassword(credentialsId: 'cf-workers-creds', usernameVariable: 'CLOUDFLARE_ACCOUNT_ID', passwordVariable: 'CLOUDFLARE_API_TOKEN'),
+                        ]) {
+                            sh """
+                                npx wrangler versions deploy --config apps/blog-bff/wrangler.toml --env $ENVIRONMENT $VERSION_ID@100 -y
+                            """   
+                        }
+                    }
+                }
+            }
+        }
+        stage("sleep") {
+            steps {
+                sleep 10
+            }
+        }
+        stage("Build blog") {
+            steps {
+                sh """
+                    pnpm run prerender
+                """
+            }
+        }
+        stage("Deploy blog prod") {
+            steps {
+                script {
+                    withCredentials([
+                        usernamePassword(credentialsId: 'cf-workers-creds', usernameVariable: 'CLOUDFLARE_ACCOUNT_ID', passwordVariable: 'CLOUDFLARE_API_TOKEN'),
+                    ]) {
+                        output = sh(returnStdout: true, script: """                                                
+                            npx wrangler pages deploy dist/apps/blog/browser --project-name angular-love-client --branch ${USE_BRANCH_NAME}
+                        """)
+                        echo "Output: $output"
+                        def deploy_url = (output =~ /Take a peek over at ([^\s]+)/)[0][1]
+                        echo "Deploy URL: $deploy_url"
+                        env.DEPLOY_URL = deploy_url
+                        env.ALIAS_URL = "No alias on main branch"
+                        if (env.IS_PR == "TRUE") {
+                            def alias_url = (output =~ /Deployment alias URL: ([^\s]+)/)[0][1]
+                            echo "Alias URL: $alias_url"
+                            env.ALIAS_URL = alias_url
+                        }
+                    }
+                }
+            }
+        }
+        stage("Comment on PR") {
+            when {
+                expression {
+                    return env.IS_PR == "TRUE"
+                }
+            }
+            steps {
+                script {
+                    pullRequest.comment("""
+Deployed to $ENVIRONMENT environment
+Branch: $USE_BRANCH_NAME
+BFF URL: $AL_API_URL
+Deploy URL: $DEPLOY_URL
+Alias URL: $ALIAS_URL
+""")
+                }
+            }
+        }
+    }
+    post {
+        always {
+            cleanWs()
+        }
+        failure {
+            script {
+                slackSend(channel: '#blog-deployments', message: "Deploy failed, please check the logs in jenkins for more details.")
+                if (env.IS_PR == "TRUE") {
+                    pullRequest.comment("""
+Deploy failed, please check the logs in jenkins for more details.
+""")            
+                }
+            }
+        }
+    }
+}

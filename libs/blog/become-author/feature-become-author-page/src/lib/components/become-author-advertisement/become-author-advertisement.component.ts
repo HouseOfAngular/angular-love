@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component, input } from '@angular/core';
 import { TranslocoDirective } from '@jsverse/transloco';
 
 import {
@@ -8,7 +8,6 @@ import {
 
 @Component({
   selector: 'al-become-author-advertisement',
-  standalone: true,
   templateUrl: './become-author-advertisement.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [DarkGradientCardDirective, CardComponent, TranslocoDirective],
@@ -16,4 +15,6 @@ import {
     'data-testid': 'become-author-advertisement',
   },
 })
-export class BecomeAuthorAdvertisementComponent {}
+export class BecomeAuthorAdvertisementComponent {
+  ariaLabel = input<string>();
+}

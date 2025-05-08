@@ -3,7 +3,6 @@ import { ChangeDetectionStrategy, Component, input } from '@angular/core';
 
 @Component({
   selector: 'al-footer-logo',
-  standalone: true,
   imports: [NgOptimizedImage],
   template: `
     <div class="flex flex-col justify-start">

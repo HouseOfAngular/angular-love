@@ -1,9 +1,6 @@
 import { EnvironmentProviders, makeEnvironmentProviders } from '@angular/core';
 
 import {
-  consentUpdateScript,
-  gtmScript,
-  initialConsentScript,
   metaPixel,
   metaScript,
   provideTracking,
@@ -33,15 +30,7 @@ export const provideAppTracking = (): EnvironmentProviders => {
         ],
       },
       cookieConsent: cookieConsentConfig,
-      scripts: [
-        initialConsentScript(),
-        gtmScript('GTM-5XNT5NS'),
-        consentUpdateScript('ads', 'ad_storage', 'granted'),
-        consentUpdateScript('ads', 'ad_storage', 'denied'),
-        consentUpdateScript('analytics', 'analytics_storage', 'granted'),
-        consentUpdateScript('analytics', 'analytics_storage', 'denied'),
-        metaScript('284876369340184'),
-      ],
+      scripts: [metaScript('284876369340184')],
       pixels: [metaPixel('284876369340184')],
     }),
   ]);

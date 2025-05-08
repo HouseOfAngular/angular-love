@@ -1,8 +1,11 @@
+import { CATEGORIES } from '../const';
 import { ScriptFactory } from '../scripts-loader';
 
 export const metaScript =
   (id: string): ScriptFactory =>
   (gtmScript) => {
+    gtmScript.setAttribute('type', 'text/plain');
+    gtmScript.setAttribute('data-category', CATEGORIES.ANALYTICS);
     gtmScript.textContent = `!function(f,b,e,v,n,t,s)
 {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
 n.callMethod.apply(n,arguments):n.queue.push(arguments)};

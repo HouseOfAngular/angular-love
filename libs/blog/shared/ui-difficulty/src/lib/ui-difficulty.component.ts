@@ -15,7 +15,6 @@ export type UiDifficulty = 'beginner' | 'intermediate' | 'advanced';
 
 @Component({
   selector: 'al-difficulty',
-  standalone: true,
   template: `
     <div
       alTooltip

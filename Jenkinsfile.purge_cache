@@ -1,0 +1,39 @@
+pipeline {
+    agent any
+    
+    environment {
+        CLOUDFLARE_ZONE_ID = credentials('cloudflare-angular-love-zone-id')
+    }
+    
+    stages {
+        stage('Purge Cache') {
+            steps {
+                withCredentials([
+                    usernamePassword(credentialsId: 'cf-workers-creds', usernameVariable: 'CLOUDFLARE_ACCOUNT_ID', passwordVariable: 'CLOUDFLARE_API_TOKEN'),
+                ]) {
+                    script {
+                        def response = sh(script: """
+                            curl -X POST "https://api.cloudflare.com/client/v4/zones/${env.CLOUDFLARE_ZONE_ID}/purge_cache" \
+                                -H "Authorization: Bearer ${env.CLOUDFLARE_API_TOKEN}" \
+                                -H "Content-Type: application/json" \
+                                -d '{"purge_everything": true}'
+                        """, returnStdout: true)
+                        
+                        // Check if purge was successful
+                        def jsonResponse = readJSON text: response
+                        if (!jsonResponse.success) {
+                            error "Failed to purge Cloudflare cache: ${jsonResponse.errors}"
+                        }
+                            echo "Successfully purged Cloudflare cache"
+                        }
+                }
+            }
+        }
+    }
+    
+    post {
+        failure {
+            echo "Failed to purge Cloudflare cache"
+        }
+    }
+}
