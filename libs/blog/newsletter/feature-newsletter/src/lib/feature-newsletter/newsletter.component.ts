@@ -18,14 +18,14 @@ import { AlLocalizeService } from '@angular-love/blog/i18n/util';
 import { ButtonComponent } from '@angular-love/blog/shared/ui-button';
 import {
   CardComponent,
-  DarkGradientCardDirective,
+  GradientCardDirective,
 } from '@angular-love/blog/shared/ui-card';
 import { NewsletterStore } from '@angular-love/data-access';
 
 @Component({
   selector: 'al-newsletter',
   imports: [
-    DarkGradientCardDirective,
+    GradientCardDirective,
     CardComponent,
     ReactiveFormsModule,
     TranslocoDirective,

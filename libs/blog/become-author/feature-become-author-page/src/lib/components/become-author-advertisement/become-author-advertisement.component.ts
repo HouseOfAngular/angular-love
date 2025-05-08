@@ -3,14 +3,14 @@ import { TranslocoDirective } from '@jsverse/transloco';
 
 import {
   CardComponent,
-  DarkGradientCardDirective,
+  GradientCardDirective,
 } from '@angular-love/blog/shared/ui-card';
 
 @Component({
   selector: 'al-become-author-advertisement',
   templateUrl: './become-author-advertisement.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [DarkGradientCardDirective, CardComponent, TranslocoDirective],
+  imports: [GradientCardDirective, CardComponent, TranslocoDirective],
   host: {
     'data-testid': 'become-author-advertisement',
   },

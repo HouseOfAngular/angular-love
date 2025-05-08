@@ -21,7 +21,7 @@ import {
   CardComponent,
   CardContentDirective,
   DarkCardDirective,
-  DarkGradientCardDirective,
+  GradientCardDirective,
 } from '@angular-love/blog/shared/ui-card';
 import { UiDifficultyComponent } from '@angular-love/blog/shared/ui-difficulty';
 import { Article } from '@angular-love/contracts/articles';
@@ -34,7 +34,7 @@ import { ArticleShareIconsComponent } from '../article-share-icons/article-share
   imports: [
     DatePipe,
     ArticleContentComponent,
-    DarkGradientCardDirective,
+    GradientCardDirective,
     NewsletterComponent,
     CardContentDirective,
     AuthorCardComponent,

@@ -3,7 +3,7 @@ import { Component } from '@angular/core';
 import {
   CardComponent,
   CardContentDirective,
-  DarkGradientCardDirective,
+  GradientCardDirective,
 } from '@angular-love/blog/shared/ui-card';
 
 @Component({
@@ -12,7 +12,7 @@ import {
   imports: [
     CardComponent,
     CardContentDirective,
-    DarkGradientCardDirective,
+    GradientCardDirective,
     CardComponent,
     CardContentDirective,
   ],
@@ -20,7 +20,7 @@ import {
     class: 'block @container',
   },
   template: `
-    <al-card alDarkGradientCard>
+    <al-card alGradientCard>
       <div alCardContent>
         <div
           class="@3xl:flex-row @3xl:border-none flex w-full flex-col items-center rounded-lg border"

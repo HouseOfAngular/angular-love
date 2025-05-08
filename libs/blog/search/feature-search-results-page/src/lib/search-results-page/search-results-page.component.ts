@@ -5,7 +5,7 @@ import { NewsletterComponent } from '@angular-love/blog/newsletter';
 import { SearchListStore } from '@angular-love/blog/search/data-access';
 import {
   CardComponent,
-  DarkGradientCardDirective,
+  GradientCardDirective,
 } from '@angular-love/blog/shared/ui-card';
 import {
   PaginationComponent,
@@ -24,7 +24,7 @@ import { SearchResultsPagePresenter } from './search-results-page.presenter';
     UiArticleCardComponent,
     NewsletterComponent,
     CardComponent,
-    DarkGradientCardDirective,
+    GradientCardDirective,
     PaginationComponent,
     QueryPaginationDirective,
   ],

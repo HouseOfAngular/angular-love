@@ -5,7 +5,7 @@ import { TranslocoDirective } from '@jsverse/transloco';
 import { AlLocalizePipe } from '@angular-love/blog/i18n/util';
 import {
   CardComponent,
-  DarkGradientCardDirective,
+  GradientCardDirective,
 } from '@angular-love/blog/shared/ui-card';
 
 import { BecomeAuthorAdvertisementComponent } from '../components/become-author-advertisement/become-author-advertisement.component';
@@ -17,7 +17,7 @@ import { BecomeAuthorImprovementsComponent } from '../components/become-author-i
   imports: [
     BecomeAuthorBenefitsComponent,
     BecomeAuthorImprovementsComponent,
-    DarkGradientCardDirective,
+    GradientCardDirective,
     CardComponent,
     BecomeAuthorAdvertisementComponent,
     TranslocoDirective,

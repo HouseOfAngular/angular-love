@@ -18,7 +18,7 @@ import { NewsletterComponent } from '@angular-love/blog/newsletter';
 import { ButtonComponent } from '@angular-love/blog/shared/ui-button';
 import {
   CardComponent,
-  DarkGradientCardDirective,
+  GradientCardDirective,
 } from '@angular-love/blog/shared/ui-card';
 import { PillDirective } from '@angular-love/blog/shared/ui-pill';
 import { ArticleCategory } from '@angular-love/contracts/articles';
@@ -34,11 +34,10 @@ import { CategoryListItem, injectCategories } from './categories.const';
     UiArticleCardComponent,
     NewsletterComponent,
     CardComponent,
-    DarkGradientCardDirective,
+    GradientCardDirective,
     NgClass,
     TranslocoDirective,
     ArticleRegularCardSkeletonComponent,
-    CardComponent,
     RepeatDirective,
     RouterLink,
     ButtonComponent,
