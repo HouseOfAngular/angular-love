@@ -19,9 +19,9 @@ import {
         <div
           class="@3xl:flex-row @3xl:border-none flex w-full flex-col items-center rounded-lg border"
         >
-          <al-card
+          <div
             alGradientCard
-            class="@3xl:border @3xl:min-w-[260px] min-w-fit rounded-lg pb-4 pt-6"
+            class="@3xl:border dark:@3xl:!bg-al-radial-gradient dark:@3xl:bg-al-background light:@3xl:bg-[#f2f2f2] @3xl:min-w-[260px] min-w-fit rounded-lg pb-4 pt-6"
           >
             <div
               alCardContent
@@ -29,7 +29,7 @@ import {
             >
               <ng-content select="[author-info-card]"></ng-content>
             </div>
-          </al-card>
+          </div>
 
           <div
             class="@3xl:pt-6 w-full flex-1 hyphens-auto break-words p-6 pt-0"

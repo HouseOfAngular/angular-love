@@ -1,5 +1,4 @@
 import { ChangeDetectionStrategy, Component, input } from '@angular/core';
-import { TranslocoDirective } from '@jsverse/transloco';
 
 import {
   CardComponent,
@@ -10,7 +9,7 @@ import {
   selector: 'al-become-author-advertisement',
   templateUrl: './become-author-advertisement.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [GradientCardDirective, CardComponent, TranslocoDirective],
+  imports: [GradientCardDirective, CardComponent],
   host: {
     'data-testid': 'become-author-advertisement',
   },
