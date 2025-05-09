@@ -2,16 +2,15 @@
   <div
     class="al-container mx-auto grid max-w-screen-xl gap-y-4 px-6 py-4 xl:px-0"
   >
-    <al-footer-logo class="self-center" [currentYear]="currentYear" />
+    <al-footer-logo class="self-center" />
     <al-navigation [whiteFont]="true" />
     <div
       class="social-media-container flex items-center justify-self-end md:max-lg:justify-self-center"
     >
       <al-footer-social-media-icons />
     </div>
-
-    <small class="copyright text-center text-xs text-[#6a798b] lg:hidden">
-      Copyright &#169; {{ currentYear }}
-    </small>
   </div>
+  <small class="block pb-4 text-center text-xs text-[#6a798b]">
+    Copyright &#169; {{ currentYear }}
+  </small>
 </footer>
