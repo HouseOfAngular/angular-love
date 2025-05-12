@@ -1,10 +1,17 @@
+const {
+  themeVariants,
+  prefersLight,
+  prefersDark,
+} = require('tailwindcss-theme-variants');
+
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-  darkMode: ['class'],
   theme: {
     extend: {
       colors: {
         'al-foreground': 'rgb(var(--foreground) / <alpha-value>)',
+        'al-primary-foreground':
+          'rgb(var(--primary-foreground) / <alpha-value>)',
         'al-card': 'rgb(var(--card) / <alpha-value>)',
         'al-background': 'rgba(var(--background) / <alpha-value>)',
         'al-border': 'rgb(var(--border) / <alpha-value>)',
@@ -12,6 +19,7 @@ module.exports = {
         'al-pink': 'rgba(var(--primary) / <alpha-value>)',
         'al-primary': 'rgba(var(--primary) / <alpha-value>)',
         'al-muted': 'rgba(var(--muted) / <alpha-value>)',
+        'al-grey': 'rgba(var(--grey) / <alpha-value>)',
       },
       backgroundImage: {
         'al-radial-gradient':
@@ -24,9 +32,21 @@ module.exports = {
       boxShadow: {
         'al-primary': '0 0 0 1px rgba(var(--primary) / <alpha-value>)',
         'al-full-background': '0px 0px 0px 999px rgba(var(--background) / 1)',
-        'al-full-border': '0px 0px 0px 999px rgba(var(--border) / 1)',
+        'al-full-border': '0px 0px 0px 999px rgba(var(--grey) / 1)',
       },
     },
   },
-  plugins: [require('@tailwindcss/container-queries')],
+  plugins: [
+    require('@tailwindcss/container-queries'),
+    themeVariants({
+      themes: {
+        light: {
+          mediaQuery: prefersLight /* "@media (prefers-color-scheme: light)" */,
+        },
+        dark: {
+          mediaQuery: prefersDark /* "@media (prefers-color-scheme: dark)" */,
+        },
+      },
+    }),
+  ],
 };
