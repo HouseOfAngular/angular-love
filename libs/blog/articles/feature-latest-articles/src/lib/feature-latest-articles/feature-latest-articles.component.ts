@@ -38,6 +38,7 @@ import { CategoryListItem, injectCategories } from './categories.const';
     NgClass,
     TranslocoDirective,
     ArticleRegularCardSkeletonComponent,
+    CardComponent,
     RepeatDirective,
     RouterLink,
     ButtonComponent,

@@ -1,6 +1,6 @@
 <a [routerLink]="['/', article().slug] | alLocalize">
   <article
-    class="bg-al-card md:hover:shadow-al-primary group relative h-full w-full rounded-lg border shadow-none transition-transform motion-reduce:transition-none lg:hover:scale-105 lg:motion-reduce:hover:scale-100 dark:border-transparent"
+    class="bg-al-card md:hover:shadow-al-primary group relative h-full w-full rounded-lg border border-transparent shadow-none transition-transform motion-reduce:transition-none lg:hover:scale-105 lg:motion-reduce:hover:scale-100"
     [attr.aria-labelledby]="article().slug"
   >
     <div
@@ -18,12 +18,8 @@
     <div class="rounded-b-lg">
       <div class="flex items-center justify-between px-4 pt-4">
         <div class="flex items-center gap-2">
-          <al-avatar
-            [imageSrc]="article().author.avatarUrl"
-            [priority]="imagePriority()"
-            size="32"
-          />
-          <span class="text-al-primary-foreground text-sm/[14px] font-medium">
+          <al-avatar [imageSrc]="article().author.avatarUrl" size="32" />
+          <span class="text-sm/[14px] font-medium">
             {{ article().author.name }}
           </span>
         </div>
@@ -38,14 +34,10 @@
         </div>
       </div>
       <div class="flex flex-col gap-3 px-4 pb-4 pt-3">
-        <h3
-          class="*:text-al-primary-foreground text-2xl font-bold *:not-italic"
-          [id]="article().slug"
-          style="word-break: break-word"
-        >
+        <h3 class="text-2xl font-bold" [id]="article().slug">
           {{ article().title }}
         </h3>
-        <p class="*:text-al-pink line-clamp-2 *:font-medium *:not-italic">
+        <p class="line-clamp-2">
           {{ article().excerpt }}
         </p>
       </div>
