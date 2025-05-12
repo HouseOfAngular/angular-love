@@ -9,7 +9,7 @@ const pillVariants = cva(
   {
     variants: {
       variant: <Record<AlPillVariant, string>>{
-        flat: 'bg-al-primary/90 text-white',
+        flat: 'bg-al-primary/90',
         outline: 'bg-al-background',
       },
       size: <Record<AlPillSize, string>>{

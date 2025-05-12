@@ -69,7 +69,7 @@ export class CardLinkableDirective {
 export class GradientCardDirective {
   @HostBinding('class')
   get hostClasses() {
-    return 'bg-al-radial-gradient dark:bg-al-background';
+    return 'border !bg-al-radial-gradient bg-al-background';
   }
 }
 
@@ -97,5 +97,5 @@ export class CardComponent {
   ref: ElementRef<HTMLElement> = inject(ElementRef);
 
   @HostBinding('class')
-  hostClasses = 'block rounded-lg border bg-al-card shadow-sm overflow-hidden';
+  hostClasses = 'block rounded-lg border shadow-sm overflow-hidden';
 }

@@ -1,4 +1,3 @@
-import { NgOptimizedImage } from '@angular/common';
 import { ChangeDetectionStrategy, Component, input } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { FastSvgComponent } from '@push-based/ngx-fast-svg';
@@ -10,17 +9,9 @@ import { AvatarComponent } from '@angular-love/blog/shared/ui-avatar';
 @Component({
   selector: 'al-article-compact-card',
   changeDetection: ChangeDetectionStrategy.OnPush,
-  standalone: true,
-  imports: [
-    AvatarComponent,
-    RouterLink,
-    AlLocalizePipe,
-    FastSvgComponent,
-    NgOptimizedImage,
-  ],
+  imports: [AvatarComponent, RouterLink, AlLocalizePipe, FastSvgComponent],
   templateUrl: './article-compact-card.component.html',
 })
 export class ArticleCompactCardComponent {
   readonly article = input.required<ArticleCard>();
-  readonly imagePriority = input<number | null>(null);
 }

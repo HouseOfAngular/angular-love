@@ -11,7 +11,7 @@
       <div
         class="bg-al-pink mx-4 mt-5 flex aspect-square h-6 items-center justify-center self-start rounded-full"
       >
-        <p class="text-base font-bold text-white">{{ index() + 1 }}</p>
+        <p class="text-base font-bold">{{ index() + 1 }}</p>
       </div>
       <div class="w-full lg:mr-[30px]">
         <p class="block pb-4 pt-5 md:py-5">{{ t(step().text) }}</p>
@@ -46,7 +46,7 @@
           @if (!last()) {
             <button
               type="button"
-              class="border-al-gray-200 bg-al-pink w-1/2 rounded border px-2 py-2 font-medium leading-4 text-white md:w-auto md:px-6"
+              class="border-al-gray-200 bg-al-pink w-1/2 rounded border px-2 py-2 font-medium leading-4 md:w-auto md:px-6"
               (click)="toggleStep.emit(index() + 1)"
             >
               {{ t('writingRules.nextButton') }}
