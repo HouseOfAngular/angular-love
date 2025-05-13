@@ -1,3 +1,4 @@
+import { NgClass } from '@angular/common';
 import {
   ChangeDetectionStrategy,
   Component,
@@ -27,6 +28,7 @@ export type NavItem = {
 })
 export class NavigationComponent {
   readonly layout = input<'vertical' | 'horizontal'>('horizontal');
+  readonly whiteFont = input<boolean>(false);
   showNewsletter = input(true);
 
   readonly filteredNavItems = computed(() => {
