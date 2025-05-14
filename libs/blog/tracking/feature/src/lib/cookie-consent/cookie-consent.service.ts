@@ -1,8 +1,4 @@
-import {
-  EnvironmentProviders,
-  Injectable,
-  makeEnvironmentProviders,
-} from '@angular/core';
+import { Injectable } from '@angular/core';
 import { defer, Observable, shareReplay } from 'rxjs';
 import type * as CookieConsent from 'vanilla-cookieconsent';
 

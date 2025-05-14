@@ -1,10 +1,10 @@
 <section
-  aria-labelledby="partners-title"
+  aria-labelledby="partners-heading"
   class="bg-al-card my-8 flex w-full flex-col justify-between rounded-lg lg:my-16"
 >
   <div class="py-8 pl-8">
-    <h2 id="partners-title" *transloco="let t" class="text-2xl font-bold">
-      {{ t(title()) }}
+    <h2 id="partners-heading" *transloco="let t" class="text-2xl font-bold">
+      {{ t(heading()) }}
     </h2>
   </div>
   <al-partners-list [partnersList]="partnerList()"></al-partners-list>

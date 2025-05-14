@@ -7,6 +7,7 @@ const BASE_URL = process.env.AL_BASE_URL;
 const SSG_ROUTES_FILE_PATH = 'apps/blog/routes.txt';
 const SITEMAP_FILE_PATH = 'apps/blog/src/sitemap.xml';
 const ROOT_PATHS_FILE_PREFIX = 'apps/blog/src/assets/root-paths';
+const BANNERS_FILE_PREFIX = 'apps/blog/src/assets/banners';
 
 const SUPPORTED_LANGUAGES = ['pl', 'en'];
 const DEFAULT_LANGUAGE = 'en';
@@ -101,6 +102,37 @@ async function fetchAuthorRoutes(lang, skip = 0, take = 50) {
 }
 
 /**
+ * Fetches banners.
+ * @returns {Promise<void>}
+ */
+async function fetchBannersAndWriteToFile() {
+  const url = `${API_BASE_URL}/banners`;
+  try {
+    const data = await fetch(url).then((resp) => resp.json());
+
+    const stream = createWriteStream(`${BANNERS_FILE_PREFIX}.json`, {
+      encoding: 'utf-8',
+    });
+
+    stream.on('error', (error) => {
+      console.error('Error writing paths to file:', error);
+    });
+
+    try {
+      stream.write(JSON.stringify({ banners: data }));
+    } catch (error) {
+      console.error('Error during write operation:', error);
+      throw error;
+    } finally {
+      stream.end();
+    }
+  } catch (error) {
+    console.error('Failed to fetch banners');
+    throw error;
+  }
+}
+
+/**
  * Appends static paths to the routes array for a given language.
  * @param {"pl" | "en"} lang
  */
@@ -182,6 +214,7 @@ async function main() {
     await Promise.all([
       ...SUPPORTED_LANGUAGES.map((lang) => fetchArticleRoutes(lang)),
       ...SUPPORTED_LANGUAGES.map((lang) => fetchAuthorRoutes(lang)),
+      fetchBannersAndWriteToFile(),
     ]);
 
     SUPPORTED_LANGUAGES.forEach((lang) => {

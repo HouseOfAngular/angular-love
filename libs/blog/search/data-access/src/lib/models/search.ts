@@ -1,6 +1,6 @@
 export interface SearchResponse {
   results: SearchResult[];
-  total: number;
+  total: number | undefined;
   query: string;
 }
 

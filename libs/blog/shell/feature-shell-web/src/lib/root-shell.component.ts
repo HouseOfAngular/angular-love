@@ -17,11 +17,13 @@ import {
   AdImageBanner,
   AdImageBannerComponent,
   AlBannerCarouselComponent,
+  TopBannerComponent,
 } from '@angular-love/blog/shared/ad-banner';
 
 @Component({
   selector: 'al-root-shell',
   template: `
+    <al-top-banner #topBannerRef />
     <div class="sticky top-0 z-10 w-full">
       @if (topBanner(); as topBanner) {
         <al-ad-image-banner
@@ -43,9 +45,13 @@ import {
         <al-search />
       </al-header>
     </div>
-    <al-layout>
-      @if (slides(); as slides) {
-        <al-banner-carousel [banners]="slides" [msPerSlide]="msPerSlide()!" />
+    <al-layout class="mt-0" [ngClass]="{ 'mt-20': adBannerVisible() }">
+      @if (slides()?.length && slides(); as slides) {
+        <al-banner-carousel
+          class="mb-4 inline-block"
+          [banners]="slides"
+          [msPerSlide]="msPerSlide()!"
+        />
       }
       <router-outlet />
     </al-layout>
@@ -60,6 +66,7 @@ import {
     NgClass,
     AlBannerCarouselComponent,
     AdImageBannerComponent,
+    TopBannerComponent,
   ],
 })
 export class RootShellComponent {
@@ -82,6 +89,9 @@ export class RootShellComponent {
   );
 
   readonly translocoService = inject(TranslocoService);
+
+  // todo: temporary solution to keep in mind how banner influence the layout
+  protected readonly adBannerVisible = computed(() => false);
 
   readonly language = toSignal(
     this.translocoService.langChanges$.pipe(

@@ -9,7 +9,7 @@ import { CardBanner } from '@angular-love/blog/contracts/banners';
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
     <a
-      class="relative flex h-full items-center"
+      class="relative flex h-full items-center justify-center"
       [href]="cardBanner().navigateTo!"
     >
       <aside class="absolute h-full w-full overflow-hidden rounded-lg">

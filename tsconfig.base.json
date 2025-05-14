@@ -27,6 +27,12 @@
       "@angular-love/blog-bff/newsletter/api": [
         "libs/blog-bff/newsletter/src/index.ts"
       ],
+      "@angular-love/blog-bff/shared/schema": [
+        "libs/blog-bff/shared/schema/src/index.ts"
+      ],
+      "@angular-love/blog-bff/shared/util-drizzle": [
+        "libs/blog-bff/shared/util-drizzle/src/index.ts"
+      ],
       "@angular-love/blog-bff/shared/util-middleware": [
         "libs/blog-bff/shared/util-middleware/src/index.ts"
       ],
@@ -88,6 +94,9 @@
       "@angular-love/blog/contracts/banners": [
         "libs/blog-contracts/banners/src/index.ts"
       ],
+      "@angular-love/blog/feature-writing-rules": [
+        "libs/blog/writing-rules/feature-writing-rules/src/index.ts"
+      ],
       "@angular-love/blog/home/feature-home": [
         "libs/blog/home/feature-home/src/index.ts"
       ],
@@ -148,6 +157,9 @@
       ],
       "@angular-love/blog/shared/ui-pagination": [
         "libs/blog/shared/ui-pagination/src/index.ts"
+      ],
+      "@angular-love/blog/shared/ui-pill": [
+        "libs/blog/shared/ui-pill/src/index.ts"
       ],
       "@angular-love/blog/shared/ui-social-media-icons": [
         "libs/blog/shared/ui-social-media-icons/src/index.ts"

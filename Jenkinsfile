@@ -28,8 +28,8 @@ pipeline {
                     steps {
                         script {
                             sh """
-                                corepack enable && corepack prepare pnpm@9.15.2 --activate
-                                pnpm install 
+                                corepack enable && corepack prepare pnpm@10.6.2 --activate
+                                pnpm install
                             """
                         }
                     }
@@ -44,7 +44,7 @@ pipeline {
                                 sed -i "s/<kv_prod_namespace_id>/$KV_PROD/g" apps/blog-bff/wrangler.toml
                                 npx wrangler deploy --config apps/blog-bff/wrangler.toml --env dev
                                 npx wrangler deploy --config apps/blog-bff/wrangler.toml --env prod
-                            """   
+                            """
                         }
                     }
                 }

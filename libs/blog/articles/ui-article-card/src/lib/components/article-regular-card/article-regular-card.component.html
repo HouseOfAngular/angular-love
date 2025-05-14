@@ -9,7 +9,7 @@
 
     <img
       alt="Post featured image"
-      class="w-full overflow-hidden rounded-t-lg object-cover"
+      class="hidden w-full overflow-hidden rounded-t-lg object-cover lg:block"
       [ngSrc]="article().featuredImageUrl || 'assets/article-placeholder.webp'"
       [priority]="imagePriority()"
       width="1215"
@@ -34,16 +34,12 @@
         </div>
       </div>
       <div class="flex flex-col gap-3 px-4 pb-4 pt-3">
-        <h3
-          class="*:text-al-pink text-2xl font-bold *:not-italic"
-          [id]="article().slug"
-          [innerHTML]="sanitizedArticle().title"
-          style="word-break: break-word"
-        ></h3>
-        <p
-          class="*:text-al-pink line-clamp-2 *:font-medium *:not-italic"
-          [innerHTML]="sanitizedArticle().excerpt"
-        ></p>
+        <h3 class="text-2xl font-bold" [id]="article().slug">
+          {{ article().title }}
+        </h3>
+        <p class="line-clamp-2">
+          {{ article().excerpt }}
+        </p>
       </div>
     </div>
   </article>

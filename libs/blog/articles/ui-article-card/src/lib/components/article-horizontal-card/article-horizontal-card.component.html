@@ -1,17 +1,17 @@
 <a [routerLink]="['/', article().slug] | alLocalize">
   <article
-    class="group relative flex h-full w-full flex-row rounded-lg shadow-none"
+    class="group relative flex h-full max-h-52 w-full flex-row rounded-lg shadow-none"
     [attr.aria-labelledby]="article().slug"
   >
     <img
       alt="Post featured image"
-      class="h-auto w-auto rounded-l-lg bg-contain"
+      class="hidden h-auto w-auto rounded-l-lg bg-contain lg:block"
       [ngSrc]="article().featuredImageUrl || 'assets/article-placeholder.webp'"
       [priority]="imagePriority()"
       width="1215"
       height="750"
     />
-    <div class="bg-al-card h-full w-full rounded-r-lg">
+    <div class="bg-al-card h-full w-full rounded-lg lg:rounded-r-lg">
       <div class="flex items-center justify-between px-6 pt-4">
         <div class="flex items-center gap-2">
           <al-avatar
@@ -24,7 +24,7 @@
           </span>
         </div>
         <div class="flex items-center gap-2">
-          <span class="text-sm/[14px]">
+          <span class="hidden text-sm/[14px] lg:block">
             {{ article().publishDate | date: 'dd MMM yyyy' }}
           </span>
           <fast-svg name="clock" size="16" />
@@ -36,14 +36,14 @@
           </time>
         </div>
       </div>
-      <div class="flex flex-col px-6 pt-8">
+      <div class="flex flex-col gap-3 px-6 py-3 lg:gap-6">
         <h3
           class="*:text-al-pink line-clamp-2 text-2xl font-bold *:not-italic"
           [id]="article().slug"
           [innerHTML]="sanitizedArticle().title"
         ></h3>
         <p
-          class="*:text-al-pink line-clamp-3 pt-5 *:font-medium *:not-italic"
+          class="*:text-al-pink line-clamp-3 *:font-medium *:not-italic"
           [innerHTML]="sanitizedArticle().excerpt"
         ></p>
       </div>

@@ -6,20 +6,21 @@ import {
   PLATFORM_ID,
   provideAppInitializer,
 } from '@angular/core';
-import type { CookieConsentConfig } from 'vanilla-cookieconsent';
 
+import { CreateCookieConsentConfigFn } from './cookie-consent';
 import { provideCookieConsent } from './cookie-consent/cookie-consent.provider';
 import {
   PartyTownConfig,
   PartyTownService,
   providePartyTown,
 } from './partytown';
+import { defaultGtagConsent } from './scripts';
 import { PixelFactory, ScriptFactory, ScriptsLoader } from './scripts-loader';
 import { ScriptsLoaderService } from './scripts-loader.service';
 
 export type TrackingConfig = {
   partyTown: PartyTownConfig;
-  cookieConsent: CookieConsentConfig;
+  cookieConsent: CreateCookieConsentConfigFn;
   scripts?: ScriptFactory[];
   pixels?: PixelFactory[];
 };
@@ -51,6 +52,12 @@ export const provideTracking = (
 
         return () => {
           if (isPlatformBrowser(platformId)) {
+            window.dataLayer = window.dataLayer || [];
+            window.gtag = function gtag() {
+              // eslint-disable-next-line prefer-rest-params
+              dataLayer.push(arguments);
+            };
+            defaultGtagConsent();
             scriptsLoader.init(config.scripts ?? [], config.pixels ?? []);
           }
         };

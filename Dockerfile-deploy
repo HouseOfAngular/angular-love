@@ -1,9 +1,16 @@
-FROM node:22.13-slim AS base
+FROM node:22.14.0-slim AS base
 ENV PNPM_HOME="/pnpm"
 ENV PATH="$PNPM_HOME:$PATH"
 RUN corepack enable
 
 RUN apt-get update && apt-get install -y jq && apt-get install -y curl
+
+COPY --from=golang:1.24.1-alpine /usr/local/go/ /usr/local/go/
+ENV PATH="/usr/local/go/bin:${PATH}"
+RUN mkdir -p /go
+ENV GOPATH="/go"
+ENV PATH="/go/bin:$PATH"
+RUN go install github.com/tursodatabase/turso-cli/cmd/turso@v1.0.3
 
 COPY . /app
 WORKDIR /app

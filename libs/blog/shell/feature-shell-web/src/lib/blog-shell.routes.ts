@@ -73,6 +73,12 @@ export const commonRoutes: Route[] = [
             .NewsletterPageComponent,
       },
       {
+        path: 'writing-rules',
+        loadComponent: async () =>
+          (await import('@angular-love/blog/feature-writing-rules'))
+            .WritingRulesComponent,
+      },
+      {
         path: '404',
         loadComponent: async () =>
           (await import('@angular-love/blog/shared/ui-not-found'))
