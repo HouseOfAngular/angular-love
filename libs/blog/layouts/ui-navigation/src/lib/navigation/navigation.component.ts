@@ -50,6 +50,11 @@ export class NavigationComponent {
       link: ['become-author'],
       dataTestId: 'navigation-become-author',
     },
+    {
+      translationPath: 'nav.newsletter',
+      link: ['newsletter'],
+      dataTestId: 'navigation-newsletter',
+    },
   ];
   protected navigated = output();
 }
