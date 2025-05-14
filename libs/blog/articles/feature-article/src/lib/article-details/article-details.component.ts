@@ -2,11 +2,12 @@ import { DatePipe, NgClass } from '@angular/common';
 import {
   ChangeDetectionStrategy,
   Component,
+  inject,
   input,
-  signal,
 } from '@angular/core';
 import { FastSvgComponent } from '@push-based/ngx-fast-svg';
 
+import { AdBannerStore } from '@angular-love/blog/ad-banner/data-access';
 import { GiscusCommentsComponent } from '@angular-love/blog/articles/feature-comments';
 import { RelatedArticlesComponent } from '@angular-love/blog/articles/feature-related-articles';
 import { ArticleCompactCardSkeletonComponent } from '@angular-love/blog/articles/ui-article-card';
@@ -57,5 +58,5 @@ import { ArticleShareIconsComponent } from '../article-share-icons/article-share
 })
 export class ArticleDetailsComponent {
   readonly articleDetails = input.required<Article>();
-  protected readonly adBannerStoreVisible = signal(false);
+  protected readonly bannerStore = inject(AdBannerStore);
 }

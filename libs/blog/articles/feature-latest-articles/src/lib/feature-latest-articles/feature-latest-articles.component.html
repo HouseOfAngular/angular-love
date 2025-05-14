@@ -28,12 +28,21 @@
     } @else {
       <al-article-regular-card-skeleton *alRepeat="take" />
     }
-    <al-card
-      alGradientCard
-      class="md:max-lg:col-span-2 lg:col-start-3 lg:row-start-1"
-    >
-      <al-newsletter alCardContent />
-    </al-card>
+
+    @if (cardBanner(); as cardBanner) {
+      <al-newsletter-banner
+        alCardContent
+        class="md:max-lg:col-span-2 lg:col-start-3 lg:row-start-1"
+        [cardBanner]="cardBanner"
+      />
+    } @else {
+      <al-card
+        alGradientCard
+        class="md:max-lg:col-span-2 lg:col-start-3 lg:row-start-1"
+      >
+        <al-newsletter alCardContent />
+      </al-card>
+    }
   </section>
 
   <div class="flex justify-center gap-3">

@@ -1,5 +1,5 @@
-import { NgClass, ViewportScroller } from '@angular/common';
-import { Component, computed, effect, inject } from '@angular/core';
+import { NgClass } from '@angular/common';
+import { Component, computed, inject } from '@angular/core';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { Router, RouterOutlet } from '@angular/router';
 import { TranslocoService } from '@jsverse/transloco';
@@ -15,6 +15,7 @@ import {
 import { SearchComponent } from '@angular-love/blog/search/feature-search';
 import {
   AdImageBanner,
+  AdImageBannerComponent,
   AlBannerCarouselComponent,
   TopBannerComponent,
 } from '@angular-love/blog/shared/ad-banner';
@@ -22,8 +23,20 @@ import {
 @Component({
   selector: 'al-root-shell',
   template: `
-    <al-top-banner #topBanner />
+    <al-top-banner #topBannerRef />
     <div class="sticky top-0 z-10 w-full">
+      @if (topBanner(); as topBanner) {
+        <al-ad-image-banner
+          [banner]="{
+            url: topBanner.url!,
+            alt: topBanner.alt!,
+            action: {
+              type: 'url',
+              url: topBanner.navigateTo!,
+            },
+          }"
+        />
+      }
       <al-header
         class="block w-full"
         [language]="language()"
@@ -52,15 +65,16 @@ import {
     SearchComponent,
     NgClass,
     AlBannerCarouselComponent,
+    AdImageBannerComponent,
     TopBannerComponent,
   ],
 })
 export class RootShellComponent {
-  protected readonly sliderStore = inject(AdBannerStore);
+  protected readonly bannerStore = inject(AdBannerStore);
   protected readonly slides = computed<AdImageBanner[] | undefined>(() =>
-    this.sliderStore.slider()?.slides.map((slide) => ({
-      url: slide.url,
-      alt: slide.alt,
+    this.bannerStore.banners()?.slider?.slides.map((slide) => ({
+      url: slide.url!,
+      alt: slide.alt!,
       action: {
         type: 'url',
         url: slide.navigateTo,
@@ -68,7 +82,10 @@ export class RootShellComponent {
     })),
   );
   protected readonly msPerSlide = computed(
-    () => this.sliderStore.slider()?.slideDisplayTimeMs,
+    () => this.bannerStore.banners()?.slider?.slideDisplayTimeMs,
+  );
+  protected readonly topBanner = computed(
+    () => this.bannerStore.banners()?.topBanner,
   );
 
   readonly translocoService = inject(TranslocoService);
@@ -94,13 +111,7 @@ export class RootShellComponent {
     );
   }
 
-  constructor(viewport: ViewportScroller) {
-    // todo: temporary solution to keep in mind how banner influence the layout
-    effect(() => {
-      this.adBannerVisible()
-        ? viewport.setOffset([0, 160])
-        : viewport.setOffset([0, 80]);
-    });
-    this.sliderStore.getData();
+  constructor() {
+    this.bannerStore.getData();
   }
 }

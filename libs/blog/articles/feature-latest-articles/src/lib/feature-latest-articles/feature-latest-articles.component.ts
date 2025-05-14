@@ -9,15 +9,18 @@ import {
 import { RouterLink } from '@angular/router';
 import { TranslocoDirective } from '@jsverse/transloco';
 
+import { AdBannerStore } from '@angular-love/blog/ad-banner/data-access';
 import { ArticleListStore } from '@angular-love/blog/articles/data-access';
 import {
   ArticleRegularCardSkeletonComponent,
   UiArticleCardComponent,
 } from '@angular-love/blog/articles/ui-article-card';
 import { NewsletterComponent } from '@angular-love/blog/newsletter';
+import { AlNewsletterBannerComponent } from '@angular-love/blog/shared/ad-banner';
 import { ButtonComponent } from '@angular-love/blog/shared/ui-button';
 import {
   CardComponent,
+  CardContentDirective,
   GradientCardDirective,
 } from '@angular-love/blog/shared/ui-card';
 import { PillDirective } from '@angular-love/blog/shared/ui-pill';
@@ -34,15 +37,16 @@ import { CategoryListItem, injectCategories } from './categories.const';
     UiArticleCardComponent,
     NewsletterComponent,
     CardComponent,
-    GradientCardDirective,
     NgClass,
     TranslocoDirective,
     ArticleRegularCardSkeletonComponent,
-    CardComponent,
     RepeatDirective,
+    CardContentDirective,
+    AlNewsletterBannerComponent,
     RouterLink,
     ButtonComponent,
     PillDirective,
+    GradientCardDirective,
   ],
   host: {
     'data-testid': 'latest-articles-container',
@@ -61,13 +65,19 @@ export class FeatureLatestArticlesComponent {
   readonly take = 8;
 
   private readonly _articleListStore = inject(ArticleListStore);
+  private readonly _bannerStore = inject(AdBannerStore);
 
+  // todo: remove this once the card banner is implemented
+  protected readonly cardBanner = computed(() => {
+    this._bannerStore.banners();
+    return {
+      url: 'https://img.freepik.com/free-psd/banner-template-black-friday-clearance_23-2148745448.jpg',
+      alt: 'Card Banner Example',
+      navigateTo: '/',
+    };
+  });
   readonly isFetchArticleListLoading =
     this._articleListStore.isFetchArticleListLoading;
-
-  readonly isFetchArticleListError =
-    this._articleListStore.isFetchArticleListError;
-
   readonly articles = this._articleListStore.articles;
 
   constructor() {
