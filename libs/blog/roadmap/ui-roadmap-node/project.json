@@ -1,16 +1,16 @@
 {
-  "name": "blog-roadmap-feature-roadmap",
+  "name": "blog-roadmap-ui-roadmap-node",
   "$schema": "../../../../node_modules/nx/schemas/project-schema.json",
-  "sourceRoot": "libs/blog/roadmap/feature-roadmap/src",
+  "sourceRoot": "libs/blog/roadmap/ui-roadmap-node/src",
   "prefix": "al",
   "projectType": "library",
-  "tags": ["scope:client", "type:feature"],
+  "tags": ["scope:client", "type:ui"],
   "targets": {
     "test": {
       "executor": "@nx/jest:jest",
       "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
       "options": {
-        "jestConfig": "libs/blog/roadmap/feature-roadmap/jest.config.ts"
+        "jestConfig": "libs/blog/roadmap/ui-roadmap-node/jest.config.ts"
       }
     },
     "lint": {

@@ -1,0 +1,71 @@
+:host {
+  $connector-container-height: 50px;
+  $connector-border-width: 4px;
+  $end-connector-border-radius: 20px;
+  $connector-line-border-style: $connector-border-width solid #fdf5fd;
+
+  display: block;
+  width: 100%;
+  height: $connector-container-height;
+  box-sizing: border-box;
+  position: relative;
+
+  &:after,
+  &:before {
+    content: ' ';
+    position: absolute;
+    bottom: 0;
+    height: $connector-container-height;
+    z-index: 1;
+  }
+
+  &.left-end {
+    // Smooth rounded left end
+    &:after {
+      right: 0;
+      width: 50%;
+      border-top: $connector-line-border-style;
+      border-left: $connector-line-border-style;
+      border-top-left-radius: $end-connector-border-radius;
+    }
+
+    &:before {
+      display: none;
+    }
+  }
+
+  &.right-end {
+    // Smooth rounded right end
+    &:before {
+      left: 0;
+      width: 50%;
+      border-top: $connector-line-border-style;
+      border-right: $connector-line-border-style;
+      border-top-right-radius: $end-connector-border-radius;
+    }
+
+    &:after {
+      display: none;
+    }
+  }
+
+  &.line,
+  &.intermediate {
+    // Simple line
+    &:before {
+      left: 0;
+      width: 100%;
+      border-top: $connector-line-border-style;
+    }
+  }
+
+  &.intermediate {
+    // Stack the after element into a T-shape
+    &:after {
+      left: 0;
+      width: 50%;
+      height: $connector-container-height - 0.5 * $connector-border-width;
+      border-right: $connector-line-border-style;
+    }
+  }
+}

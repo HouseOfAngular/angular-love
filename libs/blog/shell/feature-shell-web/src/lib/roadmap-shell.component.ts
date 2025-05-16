@@ -11,9 +11,9 @@ import {
   FooterComponent,
   HeaderComponent,
 } from '@angular-love/blog/layouts/ui-layouts';
+import { FeatureRoadmapComponent } from '@angular-love/blog/roadmap/feature-roadmap';
 import { SearchComponent } from '@angular-love/blog/search/feature-search';
 import { AdImageBanner } from '@angular-love/blog/shared/ad-banner';
-import { FeatureRoadmapComponent } from '@angular-love/feature-roadmap';
 
 @Component({
   selector: 'al-root-shell',

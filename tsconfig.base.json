@@ -119,6 +119,15 @@
       "@angular-love/blog/partners/ui-partners": [
         "libs/blog/partners/ui-partners/src/index.ts"
       ],
+      "@angular-love/blog/roadmap/feature-roadmap": [
+        "libs/blog/roadmap/feature-roadmap/src/index.ts"
+      ],
+      "@angular-love/blog/roadmap/ui-roadmap": [
+        "libs/blog/roadmap/ui-roadmap/src/index.ts"
+      ],
+      "@angular-love/blog/roadmap/ui-roadmap-node": [
+        "libs/blog/roadmap/ui-roadmap-node/src/index.ts"
+      ],
       "@angular-love/blog/search/data-access": [
         "libs/blog/search/data-access/src/index.ts"
       ],
@@ -187,9 +196,6 @@
       ],
       "@angular-love/feature-latest-articles": [
         "libs/blog/articles/feature-latest-articles/src/index.ts"
-      ],
-      "@angular-love/feature-roadmap": [
-        "libs/blog/roadmap/feature-roadmap/src/index.ts"
       ],
       "@angular-love/feature-search-results-page": [
         "libs/blog/search/feature-search-results-page/src/index.ts"

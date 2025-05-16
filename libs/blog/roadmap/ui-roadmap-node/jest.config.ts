@@ -1,8 +1,8 @@
 export default {
-  displayName: 'blog-roadmap-feature-roadmap',
+  displayName: 'blog-roadmap-ui-roadmap-node',
   preset: '../../../../jest.preset.js',
   setupFilesAfterEnv: ['<rootDir>/src/test-setup.ts'],
-  coverageDirectory: '../../../../coverage/libs/blog/roadmap/feature-roadmap',
+  coverageDirectory: '../../../../coverage/libs/blog/roadmap/ui-roadmap-node',
   transform: {
     '^.+\\.(ts|mjs|js|html)$': [
       'jest-preset-angular',

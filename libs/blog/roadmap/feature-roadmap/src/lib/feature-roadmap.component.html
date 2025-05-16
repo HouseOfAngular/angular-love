@@ -1,168 +1,24 @@
-<div class="relative h-full w-full">
-  <svg
-    #roadmap
-    height="100%"
-    width="100%"
-    xmlns:svg="http://www.w3.org/1999/html"
-  >
-    <svg:foreignObject
-      overflow="visible"
-      style="transform: translateX(calc(50% - {{
-        layoutEl.clientWidth / 2
-      }}px))"
-    >
-      <div
-        #layoutEl
-        class="relative flex h-fit w-fit translate-y-16 flex-col items-center gap-16"
-      >
-        @for (layer of roadmapLayers(); track layer.parentNode.id) {
-          <div #layerEl class="flex w-full flex-col items-center gap-16">
-            @if (!$last) {
-              @let layerHeightWithGap = layerEl.clientHeight + 64 - 24 || 0;
-              <svg
-                [attr.height]="layerHeightWithGap"
-                style="position: absolute"
-                overflow="visible"
-                width="100"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <defs>
-                  <marker
-                    id="arrowhead"
-                    markerWidth="6"
-                    markerHeight="8"
-                    refX="0"
-                    refY="4"
-                    orient="auto"
-                  >
-                    <polygon points="0 0, 6 4, 0 8" fill="#FDF5FD" />
-                  </marker>
-                </defs>
-                <line
-                  [attr.y2]="layerHeightWithGap"
-                  x1="50"
-                  y1="0"
-                  x2="50"
-                  stroke="white"
-                  stroke-width="4"
-                  marker-end="url(#arrowhead)"
-                />
-              </svg>
-            }
+<svg
+  #roadmap
+  height="100%"
+  width="100%"
+  xmlns:svg="http://www.w3.org/1999/html"
+>
+  <svg:foreignObject overflow="visible" height="100%" width="100%">
+    <!-- TODO - what if there was an error or there is no roadmap data? -->
+    <div class="w-100 flex h-fit translate-y-16 flex-col items-center">
+      @for (
+        layer of roadmapLayers();
+        track layer.parentNode.id;
+        let last = $last
+      ) {
+        <al-roadmap-layer [layer]="layer" [showLayerConnector]="!last" />
+      }
+    </div>
+  </svg:foreignObject>
+</svg>
 
-            <!-- layer parent node-->
-            @if (layer.parentNode.nodeType === 'primary') {
-              <al-ui-roadmap-primary-node [node]="layer.parentNode" />
-            } @else if (layer.parentNode.nodeType === 'angular-love') {
-              <al-ui-roadmap-angular-love-node
-                [node]="layer.parentNode"
-              ></al-ui-roadmap-angular-love-node>
-            }
-
-            <!-- layer child nodes-->
-            @if (layer.childNodes?.length) {
-              @let shift =
-                (allChildNodesEl.clientWidth / 2 -
-                  leftChildNodesEl.clientWidth || 0) - 32;
-              <div
-                #allChildNodesEl
-                class="flex justify-center gap-16"
-                style="transform: translate({{ shift }}px)"
-              >
-                <div
-                  #leftChildNodesEl
-                  class="flex w-[5000px] justify-end gap-12"
-                >
-                  @let centerShift = layerEl.clientWidth / 2 - shift;
-                  @for (node of layer.childNodes | leftSlice; track node.id) {
-                    @let arrowShift =
-                      secondaryNode.offsetLeft -
-                      centerShift +
-                      secondaryNode.clientWidth / 2;
-                    <svg
-                      [attr.height]="64"
-                      style="position: absolute; top: -64px; left: {{
-                        centerShift
-                      }}px"
-                      overflow="visible"
-                      width="1"
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
-                      <svg:path
-                        [attr.d]="arrowShift | secondaryArrow: $first"
-                        fill="none"
-                        stroke="#FDF5FD"
-                        stroke-width="2"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                      />
-                    </svg>
-                    <div #secondaryNode>
-                      @if (node.nodeType === 'secondary') {
-                        <al-ui-roadmap-secondary-node [node]="node" />
-                      } @else if (node.nodeType === 'cluster') {
-                        <al-ui-roadmap-cluster
-                          [cluster]="$any(node)"
-                        ></al-ui-roadmap-cluster>
-                      }
-                    </div>
-                  }
-                </div>
-                <div
-                  #leftChildNodesEl
-                  class="flex w-[5000px] justify-start gap-12"
-                >
-                  @for (node of layer.childNodes | rightSlice; track node.id) {
-                    @let arrowShift =
-                      secondaryNode.offsetLeft -
-                      centerShift +
-                      secondaryNode.clientWidth / 2;
-                    <svg
-                      [attr.height]="64"
-                      style="position: absolute; top: -64px; left: {{
-                        centerShift
-                      }}px"
-                      overflow="visible"
-                      width="1"
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
-                      <svg:path
-                        [attr.d]="arrowShift | secondaryArrow: $last"
-                        fill="none"
-                        stroke="#FDF5FD"
-                        stroke-width="2"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                      />
-                    </svg>
-                    <div #secondaryNode>
-                      @if (node.nodeType === 'secondary') {
-                        <al-ui-roadmap-secondary-node [node]="node" />
-                      } @else if (node.nodeType === 'cluster') {
-                        <al-ui-roadmap-cluster
-                          [cluster]="$any(node)"
-                        ></al-ui-roadmap-cluster>
-                      }
-                    </div>
-                  }
-                </div>
-              </div>
-            }
-          </div>
-        }
-      </div>
-    </svg:foreignObject>
-  </svg>
-  <div
-    class="absolute bottom-4 right-4 flex h-fit w-fit flex-col items-center gap-8"
-  >
-    @for (control of controls; track $index) {
-      <al-ui-roadmap-svg-control
-        [size]="control.size"
-        [event]="control.event"
-        [iconName]="control.name"
-        (resizeRoadmap)="resizeRoadmap($event)"
-      />
-    }
-  </div>
-</div>
+<al-roadmap-svg-controls
+  class="absolute bottom-4 right-4"
+  (resizeRoadmap)="resizeRoadmap($event)"
+/>

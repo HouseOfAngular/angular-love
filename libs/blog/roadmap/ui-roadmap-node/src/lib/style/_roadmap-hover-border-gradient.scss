@@ -16,7 +16,7 @@
     z-index: 1;
   }
 
-  &:not(.cluster-node):hover::before {
+  &:hover::before {
     opacity: 1;
     animation: rotate 1s linear infinite;
   }
