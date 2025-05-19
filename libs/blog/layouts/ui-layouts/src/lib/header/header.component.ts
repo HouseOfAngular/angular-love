@@ -1,10 +1,12 @@
 import {
   ChangeDetectionStrategy,
   Component,
+  computed,
   input,
   output,
   signal,
 } from '@angular/core';
+import { FastSvgComponent } from '@push-based/ngx-fast-svg';
 
 import {
   LanguagePickerComponent,
@@ -36,6 +38,19 @@ import {
             (languageChange)="languageChange.emit($event)"
           />
 
+          <button
+            aria-label="Toggle theme"
+            class="flex items-center bg-transparent p-1"
+            (click)="themeToggle.emit()"
+            date-testid="header-theme-switch"
+          >
+            <fast-svg
+              class="text-al-pink"
+              [name]="themeSwitchIcon()"
+              size="24"
+            />
+          </button>
+
           <ng-content />
 
           <al-header-hamburger
@@ -60,14 +75,22 @@ import {
     HeaderHamburgerComponent,
     HeaderMobileMenuComponent,
     LanguagePickerComponent,
+    FastSvgComponent,
   ],
 })
 export class HeaderComponent {
   readonly language = input.required<string>();
+  readonly theme = input.required<'light' | 'dark'>();
 
   protected languageChange = output<string>();
 
+  protected themeToggle = output<void>();
+
   protected showNav = signal<boolean>(false);
+
+  protected readonly themeSwitchIcon = computed(() =>
+    this.theme() === 'light' ? 'moon' : 'sun',
+  );
 
   protected toggleNav(): void {
     this.showNav.set(!this.showNav());
