@@ -14,7 +14,7 @@ import {
     class: 'block @container',
   },
   template: `
-    <al-card alGradientCard>
+    <al-card>
       <div alCardContent>
         <div
           class="@3xl:flex-row @3xl:border-none flex w-full flex-col items-center rounded-lg border"
