@@ -2,15 +2,12 @@ import { ChangeDetectionStrategy, Component, input } from '@angular/core';
 
 import {
   RoadmapAngularLoveNodeComponent,
-  RoadmapClusterComponent,
   RoadmapNode,
   RoadmapPrimaryNodeComponent,
-  RoadmapSecondaryNodeComponent,
   RoadmapStandardNode,
 } from '@angular-love/blog/roadmap/ui-roadmap-node';
 
-import { ConnectedNodeComponent } from '../connected-node/connected-node.component';
-import { NodeConnectorLineComponent } from '../node-connector-line/node-connector-line.component';
+import { ConnectedNodesComponent } from '../connected-nodes/connected-nodes.component';
 import { VerticalConnectorArrowComponent } from '../vertical-connector-arrow/vertical-connector-arrow.component';
 
 import { LeftSlicePipe } from './left-slice.pipe';
@@ -24,17 +21,13 @@ export interface RoadmapLayer {
 @Component({
   selector: 'al-roadmap-layer',
   templateUrl: 'roadmap-layer.component.html',
-  styleUrl: 'roadmap-layer.component.scss',
   imports: [
     LeftSlicePipe,
     RightSlicePipe,
-    RoadmapClusterComponent,
     RoadmapPrimaryNodeComponent,
     RoadmapAngularLoveNodeComponent,
-    RoadmapSecondaryNodeComponent,
-    ConnectedNodeComponent,
     VerticalConnectorArrowComponent,
-    NodeConnectorLineComponent,
+    ConnectedNodesComponent,
   ],
   host: {
     class: 'flex w-full flex-col items-center relative gap-12 pb-16',

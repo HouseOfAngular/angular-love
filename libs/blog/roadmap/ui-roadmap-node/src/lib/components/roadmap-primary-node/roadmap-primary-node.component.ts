@@ -15,10 +15,6 @@ import { RoadmapNode } from '../../types/roadmap-node';
       </div>
     </div>
   `,
-  host: {
-    class:
-      'roadmap-hover-border-gradient relative w-fit text-nowrap rounded-lg bg-[#FDF5FD] text-[#FDF5FD]',
-  },
   styleUrl: 'roadmap-primary-node.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })

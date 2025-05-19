@@ -1,0 +1,30 @@
+import { ChangeDetectionStrategy, Component, input } from '@angular/core';
+
+import {
+  RoadmapClusterComponent,
+  RoadmapNode,
+  RoadmapSecondaryNodeComponent,
+} from '@angular-love/blog/roadmap/ui-roadmap-node';
+
+import { NodeConnectionPointDirective } from './node-connection-point.directive';
+import { NodeConnectionsGroupDirective } from './node-connections-group.directive';
+
+@Component({
+  selector: 'al-connected-nodes',
+  templateUrl: 'connected-nodes.component.html',
+  imports: [
+    NodeConnectionPointDirective,
+    NodeConnectionsGroupDirective,
+    RoadmapClusterComponent,
+    RoadmapSecondaryNodeComponent,
+  ],
+  changeDetection: ChangeDetectionStrategy.OnPush,
+})
+export class ConnectedNodesComponent {
+  readonly connectedNodes = input<RoadmapNode[]>([]);
+
+  readonly nodesDrawingDirection = input<'to-left' | 'to-right'>('to-right');
+
+  protected readonly connectorHeight = 40;
+  protected readonly connectorStrokeWidth = 3;
+}

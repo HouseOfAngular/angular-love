@@ -11,41 +11,17 @@
 
 <!-- Layer child nodes-->
 @if ((layer().childNodes || []).length) {
-  <div class="layer-nodes">
+  <div class="grid grid-cols-2">
     <!-- Layer left side nodes -->
-    <div class="flex justify-end">
-      @for (
-        node of layer().childNodes | leftSlice;
-        track node.id;
-        let first = $first
-      ) {
-        <al-connected-node [isLeftSideFirst]="first">
-          @if (node.nodeType === 'secondary') {
-            <al-roadmap-secondary-node [node]="node" />
-          } @else if (node.nodeType === 'cluster') {
-            <al-roadmap-cluster [cluster]="node" />
-          }
-        </al-connected-node>
-      }
-    </div>
-
-    <al-node-connector-line />
+    <al-connected-nodes
+      [connectedNodes]="layer().childNodes | leftSlice"
+      [nodesDrawingDirection]="'to-left'"
+    />
 
     <!-- Layer right side nodes -->
-    <div class="flex">
-      @for (
-        node of layer().childNodes | rightSlice;
-        track node.id;
-        let last = $last
-      ) {
-        <al-connected-node [isRightSideLast]="last">
-          @if (node.nodeType === 'secondary') {
-            <al-roadmap-secondary-node [node]="node" />
-          } @else if (node.nodeType === 'cluster') {
-            <al-roadmap-cluster [cluster]="node" />
-          }
-        </al-connected-node>
-      }
-    </div>
+    <al-connected-nodes
+      [connectedNodes]="layer().childNodes | rightSlice"
+      [nodesDrawingDirection]="'to-right'"
+    />
   </div>
 }

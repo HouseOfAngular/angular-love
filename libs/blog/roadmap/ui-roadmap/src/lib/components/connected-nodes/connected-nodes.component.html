@@ -1,0 +1,40 @@
+<div
+  alNodeConnectionsGroup
+  #connectionsGroupR="alNodeConnectionsGroup"
+  class="flex flex-col"
+  [class.items-end]="nodesDrawingDirection() === 'to-left'"
+  [direction]="nodesDrawingDirection()"
+  [connectorHeight]="connectorHeight"
+>
+  <svg
+    [attr.height]="connectorHeight"
+    overflow="visible"
+    width="1"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <svg:path
+      [attr.d]="connectionsGroupR.groupConnectionPath()"
+      [attr.stroke-width]="connectorStrokeWidth"
+      fill="none"
+      stroke="#FDF5FD"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+    />
+  </svg>
+
+  <div
+    class="flex gap-[32px]"
+    [class]="{
+      'ms-[50px]': nodesDrawingDirection() === 'to-right',
+      'me-[50px]': nodesDrawingDirection() === 'to-left',
+    }"
+  >
+    @for (node of connectedNodes(); track node.id) {
+      @if (node.nodeType === 'secondary') {
+        <al-roadmap-secondary-node alNodeConnectionPoint [node]="node" />
+      } @else if (node.nodeType === 'cluster') {
+        <al-roadmap-cluster alNodeConnectionPoint [cluster]="node" />
+      }
+    }
+  </div>
+</div>

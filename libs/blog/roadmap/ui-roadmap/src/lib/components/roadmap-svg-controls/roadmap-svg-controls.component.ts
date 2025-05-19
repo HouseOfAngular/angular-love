@@ -1,26 +1,30 @@
 import { ChangeDetectionStrategy, Component, output } from '@angular/core';
+import { TranslocoDirective } from '@jsverse/transloco';
 import { FastSvgComponent } from '@push-based/ngx-fast-svg';
 
 export type EventType = 'increment' | 'decrement' | 'reset' | 'zoom-reset';
 
 interface Control {
-  size: string;
   name: string;
+  ariaLabelKey: string;
   event: EventType;
 }
 
 @Component({
   selector: 'al-roadmap-svg-controls',
-  imports: [FastSvgComponent],
+  imports: [FastSvgComponent, TranslocoDirective],
   template: `
-    @for (control of controls; track $index) {
-      <button
-        class="hover:text-al-primary"
-        (click)="resizeRoadmap.emit(control.event)"
-      >
-        <fast-svg [name]="control.name" [size]="control.size" />
-      </button>
-    }
+    <ng-container *transloco="let t; read: 'roadmapPage.roadmapControls'">
+      @for (control of controls; track $index) {
+        <button
+          class="hover:text-al-primary"
+          [attr.aria-label]="t(control.ariaLabelKey)"
+          (click)="resizeRoadmap.emit(control.event)"
+        >
+          <fast-svg [name]="control.name" size="24" />
+        </button>
+      }
+    </ng-container>
   `,
   host: {
     class: 'flex h-fit w-fit flex-col items-center gap-8',
@@ -32,24 +36,24 @@ export class RoadmapSvgControlsComponent {
 
   protected readonly controls: Control[] = [
     {
-      event: 'increment',
-      size: '24',
       name: 'zoom-in',
+      ariaLabelKey: 'zoomInRoadmapButton',
+      event: 'increment',
     },
     {
-      event: 'reset',
-      size: '24',
       name: 'circle-center',
+      ariaLabelKey: 'restoreRoadmapViewButton',
+      event: 'reset',
     },
     {
-      event: 'zoom-reset',
-      size: '24',
       name: 'zoom-reset',
+      ariaLabelKey: 'restoreRoadmapZoomButton',
+      event: 'zoom-reset',
     },
     {
-      event: 'decrement',
-      size: '24',
       name: 'zoom-out',
+      ariaLabelKey: 'zoomOutRoadmapButton',
+      event: 'decrement',
     },
   ];
 }
