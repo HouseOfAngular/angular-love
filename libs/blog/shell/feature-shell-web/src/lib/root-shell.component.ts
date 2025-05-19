@@ -18,6 +18,7 @@ import {
   AlBannerCarouselComponent,
   TopBannerComponent,
 } from '@angular-love/blog/shared/ad-banner';
+import { AppThemeStore } from '@angular-love/data-access-app-theme';
 
 @Component({
   selector: 'al-root-shell',
@@ -27,7 +28,9 @@ import {
       <al-header
         class="block w-full"
         [language]="language()"
+        [theme]="theme()"
         (languageChange)="onLanguageChange($event)"
+        (themeToggle)="onThemeToggle()"
       >
         <al-search />
       </al-header>
@@ -73,6 +76,10 @@ export class RootShellComponent {
 
   readonly translocoService = inject(TranslocoService);
 
+  private readonly _appThemeStore = inject(AppThemeStore);
+
+  protected readonly theme = computed(() => this._appThemeStore.theme());
+
   // todo: temporary solution to keep in mind how banner influence the layout
   protected readonly adBannerVisible = computed(() => false);
 
@@ -92,6 +99,10 @@ export class RootShellComponent {
     this._router.navigateByUrl(
       this._localizeService.localizeExplicitPath(this._router.url, lang),
     );
+  }
+
+  onThemeToggle() {
+    this._appThemeStore.toggleTheme();
   }
 
   constructor(viewport: ViewportScroller) {
