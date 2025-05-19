@@ -37,7 +37,7 @@ export class NodeConnectionPointDirective implements OnDestroy {
       const roadmapCenterPoint =
         (this._elementRef.nativeElement.offsetParent?.clientWidth || 0) / 2;
 
-      // Offset is calculated relative to the center of the parent element
+      // Offset is calculated relative to the center of the roadmap
       const offsetX =
         elementOffsetLeft + elementOffsetWidth / 2 - roadmapCenterPoint;
       this.nodeConnectionPoint.set({ offsetX });
