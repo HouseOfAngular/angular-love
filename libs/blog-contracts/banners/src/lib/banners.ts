@@ -8,9 +8,10 @@ export interface Slider {
 }
 
 export interface TopBanner {
-  url?: string;
-  alt?: string;
-  navigateTo: string;
+  navigateTo?: string;
+  buttonText?: string;
+  text: string;
+  buttonPosition: 'left' | 'right';
 }
 
 export interface CardBanner {
