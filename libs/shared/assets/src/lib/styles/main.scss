@@ -27,7 +27,7 @@
     :root {
       --primary: 213 1 89;
       --foreground: 20 21 27;
-      --primary-foreground: 106 121 139;
+      --primary-foreground: 0 0 0;
       --muted: 25 25 25;
       --border: 200 200 200;
       --card: 255 255 255;
@@ -91,6 +91,6 @@ html {
 
 @layer components {
   .al-link {
-    @apply text-blue-400 hover:underline;
+    @apply text-blue-600 hover:underline;
   }
 }
