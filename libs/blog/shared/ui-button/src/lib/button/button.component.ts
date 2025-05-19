@@ -17,11 +17,11 @@ export type AlButtonVariant =
 export type AlButtonSize = 'small' | 'medium' | 'large';
 
 const buttonVariants = cva(
-  `rounded-lg flex cursor-pointer items-center gap-2 no-underline disabled:cursor-[initial] disabled:opacity-50`,
+  `rounded-lg flex cursor-pointer items-center gap-2 justify-center no-underline disabled:cursor-[initial] disabled:opacity-50`,
   {
     variants: {
       variant: <Record<AlButtonVariant, string>>{
-        Primary: 'bg-al-primary/90',
+        Primary: 'bg-al-primary/90 text-white font-bold uppercase',
         Secondary: 'bg-al-background border',
         Outline: 'border border-al-primary/90 bg-white text-al-primary',
         Ghost: 'bg-transparent',
