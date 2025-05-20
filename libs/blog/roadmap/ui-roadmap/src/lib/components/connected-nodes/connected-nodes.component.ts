@@ -12,6 +12,7 @@ import { NodeConnectionsGroupDirective } from './node-connections-group.directiv
 @Component({
   selector: 'al-connected-nodes',
   templateUrl: 'connected-nodes.component.html',
+  styleUrl: 'connected-nodes.component.scss',
   imports: [
     NodeConnectionPointDirective,
     NodeConnectionsGroupDirective,

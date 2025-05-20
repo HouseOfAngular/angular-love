@@ -17,6 +17,9 @@ import { RoadmapStandardNode } from '../../types/roadmap-node';
   `,
   styleUrl: 'roadmap-angular-love-node.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
+  host: {
+    '[attr.node-id]': 'node().id',
+  },
 })
 export class RoadmapAngularLoveNodeComponent {
   readonly node = input.required<RoadmapStandardNode>();

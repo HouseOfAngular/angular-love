@@ -3,11 +3,8 @@ import {
   Directive,
   ElementRef,
   inject,
-  OnDestroy,
   signal,
 } from '@angular/core';
-
-import { NodeConnectionsGroupDirective } from './node-connections-group.directive';
 
 export interface NodeConnectionPoint {
   offsetX: number;
@@ -16,10 +13,7 @@ export interface NodeConnectionPoint {
 @Directive({
   selector: '[alNodeConnectionPoint]',
 })
-export class NodeConnectionPointDirective implements OnDestroy {
-  private readonly _nodesConnectionsGroupDirective = inject(
-    NodeConnectionsGroupDirective,
-  );
+export class NodeConnectionPointDirective {
   private readonly _elementRef = inject<ElementRef<HTMLElement>>(
     ElementRef<HTMLElement>,
   );
@@ -29,8 +23,6 @@ export class NodeConnectionPointDirective implements OnDestroy {
   );
 
   constructor() {
-    this._nodesConnectionsGroupDirective.registerConnectionPointDirective(this);
-
     afterNextRender(() => {
       const elementOffsetLeft = this._elementRef.nativeElement.offsetLeft;
       const elementOffsetWidth = this._elementRef.nativeElement.offsetWidth;
@@ -40,13 +32,7 @@ export class NodeConnectionPointDirective implements OnDestroy {
       // Offset is calculated relative to the center of the roadmap
       const offsetX =
         elementOffsetLeft + elementOffsetWidth / 2 - roadmapCenterPoint;
-      this.nodeConnectionPoint.set({ offsetX });
+      this.nodeConnectionPoint.set({ offsetX: Math.abs(offsetX) });
     });
-  }
-
-  ngOnDestroy(): void {
-    this._nodesConnectionsGroupDirective.unregisterConnectionPointDirective(
-      this,
-    );
   }
 }

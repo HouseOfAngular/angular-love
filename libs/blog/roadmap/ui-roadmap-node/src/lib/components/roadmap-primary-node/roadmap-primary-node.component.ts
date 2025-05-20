@@ -17,6 +17,9 @@ import { RoadmapNode } from '../../types/roadmap-node';
   `,
   styleUrl: 'roadmap-primary-node.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
+  host: {
+    '[attr.node-id]': 'node().id',
+  },
 })
 export class RoadmapPrimaryNodeComponent {
   readonly node = input.required<RoadmapNode>();

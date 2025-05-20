@@ -1,11 +1,4 @@
-import {
-  computed,
-  Directive,
-  input,
-  Signal,
-  signal,
-  WritableSignal,
-} from '@angular/core';
+import { computed, contentChildren, Directive, input } from '@angular/core';
 
 import {
   NodeConnectionPoint,
@@ -23,48 +16,29 @@ export class NodeConnectionsGroupDirective {
 
   readonly connectorHeight = input<number>(40);
 
-  private readonly _connectionPointDirectives: WritableSignal<
-    NodeConnectionPointDirective[]
-  > = signal([]);
+  private readonly _connectionPointDirectives =
+    contentChildren<NodeConnectionPointDirective>(
+      NodeConnectionPointDirective,
+      { descendants: true },
+    );
 
-  private readonly connectionPoints: Signal<NodeConnectionPoint[]> = computed(
-    () =>
-      this._connectionPointDirectives()
-        .map((cp) => cp.nodeConnectionPoint())
-        .filter((cp) => cp !== undefined),
+  private readonly connectionPoints = computed<NodeConnectionPoint[]>(() =>
+    this._connectionPointDirectives()
+      .map((cp) => cp.nodeConnectionPoint())
+      .filter((cp) => cp !== undefined),
   );
 
-  readonly groupConnectionPath: Signal<string> = computed(() =>
+  readonly groupConnectionPath = computed<string>(() =>
     this.getNodesConnectionPath(),
   );
-
-  registerConnectionPointDirective(
-    connectionPointDirective: NodeConnectionPointDirective,
-  ) {
-    this._connectionPointDirectives.set([
-      ...this._connectionPointDirectives(),
-      connectionPointDirective,
-    ]);
-  }
-
-  unregisterConnectionPointDirective(
-    connectionPointDirective: NodeConnectionPointDirective,
-  ) {
-    this._connectionPointDirectives.set(
-      this._connectionPointDirectives().filter(
-        (cpd) => cpd !== connectionPointDirective,
-      ),
-    );
-  }
 
   private getNodesConnectionPath(): string {
     if (!this.connectionPoints().length) {
       return '';
     }
 
-    const directionModifier = this.direction() === 'to-left' ? -1 : 1;
     const sortedPoints = this.connectionPoints().sort(
-      ({ offsetX: a }, { offsetX: b }) => directionModifier * (a - b),
+      ({ offsetX: a }, { offsetX: b }) => a - b,
     );
 
     // Start from the center
@@ -75,12 +49,11 @@ export class NodeConnectionsGroupDirective {
       const radius = isLastPoint ? ARC_RADIUS : 0;
 
       // Horizontal line to the connection point (with accounting for the eventual radius)
-      const radiusOffset = offsetX > 0 ? -radius : radius;
-      path += `L ${offsetX + radiusOffset} 0 `;
+      path += `L ${offsetX - radius} 0 `;
 
       if (isLastPoint) {
         // Add arc if the last element
-        path += `A ${radius} ${radius} 0 0 ${this.direction() === 'to-left' ? 0 : 1} ${offsetX} ${radius} `;
+        path += `A ${radius} ${radius} 0 0 1 ${offsetX} ${radius} `;
       }
 
       // Line up from the current connection point

@@ -7,6 +7,7 @@ import { RoadmapClusterNode } from '../../types/roadmap-node';
   template: `
     <div
       class="relative z-10 m-[-2px] rounded-lg border-2 border-[#FDF5FD] bg-[--secondary-color] px-6 py-4"
+      [attr.node-id]="cluster().id"
     >
       <div class="text-[20px]">{{ cluster().title }}</div>
     </div>
@@ -15,6 +16,7 @@ import { RoadmapClusterNode } from '../../types/roadmap-node';
       @for (clusterNode of cluster().clusteredNodes; track clusterNode.id) {
         <div
           class="roadmap-hover-border-gradient relative w-full text-nowrap rounded-lg bg-[#FDF5FD] text-[#FDF5FD]"
+          [attr.node-id]="clusterNode.id"
         >
           <div
             class="relative z-10 m-[1px] rounded-lg  bg-[--secondary-color] px-6 py-4"

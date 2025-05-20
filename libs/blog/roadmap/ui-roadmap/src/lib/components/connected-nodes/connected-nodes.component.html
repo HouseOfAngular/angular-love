@@ -1,19 +1,22 @@
+@let isLeftDrawingDirection = nodesDrawingDirection() === 'to-left';
+
 <div
   alNodeConnectionsGroup
-  #connectionsGroupR="alNodeConnectionsGroup"
+  #connectionsGroup="alNodeConnectionsGroup"
   class="flex flex-col"
-  [class.items-end]="nodesDrawingDirection() === 'to-left'"
-  [direction]="nodesDrawingDirection()"
+  [class.items-end]="isLeftDrawingDirection"
   [connectorHeight]="connectorHeight"
 >
   <svg
     [attr.height]="connectorHeight"
+    [class.flipped]="isLeftDrawingDirection"
     overflow="visible"
-    width="1"
+    width="100%"
     xmlns="http://www.w3.org/2000/svg"
+    xmlns:svg="http://www.w3.org/2000/svg"
   >
     <svg:path
-      [attr.d]="connectionsGroupR.groupConnectionPath()"
+      [attr.d]="connectionsGroup.groupConnectionPath()"
       [attr.stroke-width]="connectorStrokeWidth"
       fill="none"
       stroke="#FDF5FD"
@@ -22,13 +25,7 @@
     />
   </svg>
 
-  <div
-    class="flex gap-[32px]"
-    [class]="{
-      'ms-[50px]': nodesDrawingDirection() === 'to-right',
-      'me-[50px]': nodesDrawingDirection() === 'to-left',
-    }"
-  >
+  <div class="mx-16 flex gap-8">
     @for (node of connectedNodes(); track node.id) {
       @if (node.nodeType === 'secondary') {
         <al-roadmap-secondary-node alNodeConnectionPoint [node]="node" />
