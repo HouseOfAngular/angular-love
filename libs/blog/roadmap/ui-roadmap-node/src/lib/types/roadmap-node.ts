@@ -9,7 +9,7 @@ export interface RoadmapStandardNode extends RoadmapNodeBase {
 
 export interface RoadmapClusterNode extends RoadmapNodeBase {
   nodeType: 'cluster';
-  clusteredNodes?: RoadmapStandardNode[];
+  clusteredNodes: RoadmapStandardNode[];
 }
 
 export type RoadmapNode = RoadmapStandardNode | RoadmapClusterNode;
