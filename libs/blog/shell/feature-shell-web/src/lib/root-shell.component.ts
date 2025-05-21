@@ -16,13 +16,12 @@ import { SearchComponent } from '@angular-love/blog/search/feature-search';
 import {
   AdImageBanner,
   AlBannerCarouselComponent,
-  TopBannerComponent,
 } from '@angular-love/blog/shared/ad-banner';
 
 @Component({
   selector: 'al-root-shell',
   template: `
-    <al-top-banner #topBanner />
+    <!--    <al-top-banner #topBanner />-->
     <div class="sticky top-0 z-10 w-full">
       <al-header
         class="block w-full"
@@ -52,7 +51,6 @@ import {
     SearchComponent,
     NgClass,
     AlBannerCarouselComponent,
-    TopBannerComponent,
   ],
 })
 export class RootShellComponent {
