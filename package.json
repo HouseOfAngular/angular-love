@@ -63,6 +63,7 @@
     "sanitize-html": "^2.13.0",
     "shiki": "^2.4.2",
     "stylelint": "^16.3.1",
+    "svg-pan-zoom": "^3.6.2",
     "tailwind-merge": "^2.3.0",
     "tslib": "^2.6.1",
     "valibot": "1.0.0-rc.3",
