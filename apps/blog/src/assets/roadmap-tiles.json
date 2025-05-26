@@ -4,8 +4,7 @@
     "title": "Components",
     "articleSlugs": [
       "heres-what-you-should-know-when-creating-flexible-and-reusable-components-in-angular",
-      "compliant-components-declarative-approach-in-angular",
-      "building-a-custom-stepper-using-angular-cdk"
+      "compliant-components-declarative-approach-in-angular"
     ],
     "previousNodeId": null
   },
@@ -16,7 +15,6 @@
       "angular-material-theming-application-with-material-3",
       "theming-angular-app-its-libraries",
       "angular-styles-masterclass-2",
-      "reduce-your-bundle-size-through-this-component-styling-technique",
       "lets-implement-a-theme-switch-like-the-angular-material-site",
       "switch-themes-like-a-fox-based-on-ambient-light-in-your-angular-apps",
       "techniques-to-style-component-host-element-in-angular"
@@ -50,10 +48,7 @@
     "id": "view-encapsulation",
     "parentNodeId": "styling",
     "title": "View Encapsulation",
-    "articleSlugs": [
-      "techniques-to-style-component-host-element-in-angular",
-      "angular-css-modules"
-    ],
+    "articleSlugs": ["techniques-to-style-component-host-element-in-angular"],
     "previousNodeId": "angular-material"
   },
   {
@@ -92,14 +87,12 @@
       "change-detection-big-picture-overview",
       "change-detection-and-component-trees-in-angular-applications",
       "angular-ivy-change-detection-execution-are-you-prepared",
-      "do-you-really-know-what-unidirectional-data-flow-means-in-angular",
       "what-every-front-end-developer-should-know-about-change-detection-in-angular-and-react",
       "a-gentle-introduction-into-change-detection-in-angular",
       "the-difference-between-ngdocheck-and-asyncpipe-in-onpush-components",
       "deep-dive-into-the-onpush-change-detection-strategy-in-angular",
       "the-latest-in-angular-change-detection-zoneless-signals",
       "optimization-techniques-onpush-strategy",
-      "optimization-techniques-reusing-views",
       "from-zone-js-to-zoneless-angular-and-back-how-it-all-works",
       "everything-you-need-to-know-about-change-detection-in-angular",
       "do-you-still-think-that-ngzone-zone-js-is-required-for-change-detection-in-angular"
@@ -111,7 +104,6 @@
     "parentNodeId": "components",
     "title": "Component Interactions (input/output)",
     "articleSlugs": [
-      "making-hostbinding-work-with-observables",
       "how-to-cancel-a-component-event-from-output-properties-in-angular",
       "router-data-as-components-inputs-in-angular-v16",
       "required-inputs-in-angular-v16"
@@ -166,14 +158,13 @@
     "id": "content-projection",
     "parentNodeId": "templates",
     "title": "Content Projection",
-    "articleSlugs": ["ngtemplateoutlet-the-secret-to-customisation"],
+    "articleSlugs": [],
     "previousNodeId": "control-flow"
   },
   {
     "id": "modules",
     "title": "Modules",
     "articleSlugs": [
-      "angular-workspace-no-application-for-you",
       "avoiding-common-confusions-with-modules-in-angular",
       "asynchronous-modules-and-components-in-angular-ivy"
     ],
@@ -203,16 +194,14 @@
     "id": "attribute-directives",
     "parentNodeId": "directives",
     "title": "Attribute Directives",
-    "articleSlugs": ["angular-augmenting-native-elements"],
+    "articleSlugs": [],
     "previousNodeId": null
   },
   {
     "id": "structural-directives",
     "parentNodeId": "directives",
     "title": "Structural Directives",
-    "articleSlugs": [
-      "doing-a11y-easily-with-angular-cdk-keyboard-navigable-lists"
-    ],
+    "articleSlugs": [],
     "previousNodeId": "attribute-directives"
   },
   {
@@ -282,7 +271,6 @@
       "angular-di-getting-to-know-the-ivy-nodeinjector",
       "a-curious-case-of-the-host-decorator-and-element-injectors-in-angular",
       "what-you-always-wanted-to-know-about-angular-dependency-injection-tree",
-      "how-to-follow-the-dependency-inversion-principle-in-nestjs-and-angular",
       "leveraging-dependency-injection-to-reduce-duplicated-code-in-angular",
       "how-to-avoid-angular-injectable-instances-duplication",
       "what-is-forwardref-in-angular-and-why-we-need-it"
@@ -355,7 +343,6 @@
     "articleSlugs": [
       "finding-fine-grained-reactive-programming",
       "exploring-the-state-of-reactivity-patterns-in-2020",
-      "solidjs-reactivity-to-rendering",
       "declarative-reactive-data-and-action-streams-in-angular"
     ],
     "previousNodeId": "forms"
@@ -370,8 +357,7 @@
       "angular-signals-a-new-feature-in-angular-16",
       "the-latest-in-angular-change-detection-zoneless-signals",
       "why-angular-signals-wont-replace-rxjs",
-      "angular-signals-rxjs-interop-from-a-practical-example",
-      "the-angular-viewmodel-of-a-component-as-an-observable"
+      "angular-signals-rxjs-interop-from-a-practical-example"
     ],
     "previousNodeId": null
   },
@@ -437,19 +423,13 @@
     "id": "requests",
     "parentNodeId": "http",
     "title": "requests",
-    "articleSlugs": [
-      "parsing-and-mapping-api-response-using-zod-js",
-      "how-to-read-azure-dev-ops-logs-from-node-js-using-rest-api",
-      "building-an-api-with-firebase",
-      "building-a-backendless-application-with-angular-appwrite"
-    ],
+    "articleSlugs": ["parsing-and-mapping-api-response-using-zod-js"],
     "previousNodeId": "interceptors"
   },
   {
     "id": "testing",
     "title": "Testing",
     "articleSlugs": [
-      "catch-angular-template-errors-like-a-pro-or-how-i-create-angular-demo",
       "effective-rxjs-marble-testing",
       "angular-testing-with-headless-chrome"
     ],
@@ -464,8 +444,7 @@
       "create-your-angular-unit-test-spies-automagically",
       "spectator-when-testing-becomes-a-pleasure",
       "ng-mocks-what-is-it-all-about",
-      "learn-how-to-unit-test-the-deferrable-views",
-      "announcing-stryker-4-0-mutation-switching"
+      "learn-how-to-unit-test-the-deferrable-views"
     ],
     "previousNodeId": null
   },
@@ -503,9 +482,7 @@
       "ngrx-bad-practices",
       "ngrx-not-only-store",
       "how-to-manage-component-state-in-angular-using-ngrx-component-store",
-      "how-i-got-rid-of-state-observables-in-angular",
-      "an-overview-of-state-management-solutions-for-react-and-nextjs",
-      "state-machines-in-javascript-with-xstate"
+      "how-i-got-rid-of-state-observables-in-angular"
     ],
     "previousNodeId": "angular-cli"
   },
@@ -672,10 +649,7 @@
       "the-dark-side-of-server-side-rendering-part-1",
       "the-dark-side-of-server-side-rendering-part-2",
       "the-journey-to-isomorphic-rendering-performance",
-      "implementing-multi-language-angular-applications-rendered-on-a-server-ssr",
-      "angular-analog-and-vite",
-      "analog-a-meta-framework-for-angular",
-      "effortless-angular-deployment-with-vercel"
+      "implementing-multi-language-angular-applications-rendered-on-a-server-ssr"
     ],
     "previousNodeId": "security"
   },
@@ -711,7 +685,6 @@
     "articleSlugs": [
       "optimize-your-angular-bundle-size",
       "optimize-angular-bundle-size-in-4-steps",
-      "the-simple-way-to-reload-data-using-rxjs",
       "track-your-bundle-size-with-bundlemon",
       "a-gentle-introduction-into-tree-shaking-in-angular-ivy",
       "angular-tree-shaking-2",
@@ -730,10 +703,7 @@
       "the-angular-library-series-publishing",
       "creating-a-library-in-angular-6-using-angular-cli-and-ng-packagr",
       "complete-beginner-guide-to-publishing-an-angular-library-to-npm",
-      "create-your-standalone-angular-library-in-10-minutes",
-      "stop-using-shared-material-module",
-      "simplifying-web-components-usage-with-angular-elements",
-      "building-and-consuming-angular-elements-as-web-components"
+      "create-your-standalone-angular-library-in-10-minutes"
     ],
     "previousNodeId": "bundling-&-optimization"
   },
