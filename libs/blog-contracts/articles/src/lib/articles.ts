@@ -1,5 +1,7 @@
 import { AuthorTitle } from '@angular-love/blog/contracts/authors';
 
+import { DbLang, Lang } from './languages';
+
 export const articleCategories = [
   'news',
   'guides',
@@ -99,6 +101,8 @@ export const statusMap = {
   private: ArticleStatus.Private,
 } as const;
 
+export type ArticleLocale = 'en_GB' | 'pl_PL';
+
 export interface Article {
   id: number;
   title: string;
@@ -120,9 +124,29 @@ export interface Article {
   };
   anchors: Anchor[];
   otherTranslations: {
-    locale: string;
+    locale: ArticleLocale;
     slug: string;
   }[];
-  lang: string;
+  language: DbLang;
   seo: SeoData;
 }
+
+export const dbLocaleMap = {
+  en_GB: DbLang.English,
+  pl_PL: DbLang.Polish,
+} as const;
+
+export const dbLangMap = {
+  en: DbLang.English,
+  pl: DbLang.Polish,
+} as const;
+
+export const articleLangToLangMap = {
+  [DbLang.English]: 'en',
+  [DbLang.Polish]: 'pl',
+} as const satisfies Record<DbLang, Lang>;
+
+export const articleLangToLocaleMap = {
+  [DbLang.English]: 'en_GB',
+  [DbLang.Polish]: 'pl_PL',
+} as const satisfies Record<DbLang, ArticleLocale>;
