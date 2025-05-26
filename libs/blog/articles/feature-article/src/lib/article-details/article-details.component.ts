@@ -2,6 +2,7 @@ import { DatePipe, NgClass } from '@angular/common';
 import {
   ChangeDetectionStrategy,
   Component,
+  computed,
   input,
   signal,
 } from '@angular/core';
@@ -24,7 +25,10 @@ import {
   GradientCardDirective,
 } from '@angular-love/blog/shared/ui-card';
 import { UiDifficultyComponent } from '@angular-love/blog/shared/ui-difficulty';
-import { Article } from '@angular-love/contracts/articles';
+import {
+  Article,
+  articleLangToLocaleMap,
+} from '@angular-love/contracts/articles';
 import { RepeatDirective } from '@angular-love/utils';
 
 import { ArticleShareIconsComponent } from '../article-share-icons/article-share-icons.component';
@@ -58,4 +62,8 @@ import { ArticleShareIconsComponent } from '../article-share-icons/article-share
 export class ArticleDetailsComponent {
   readonly articleDetails = input.required<Article>();
   protected readonly adBannerStoreVisible = signal(false);
+
+  readonly locale = computed(
+    () => articleLangToLocaleMap[this.articleDetails().language],
+  );
 }

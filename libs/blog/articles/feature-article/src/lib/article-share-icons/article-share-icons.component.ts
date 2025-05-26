@@ -4,6 +4,7 @@ import { TranslocoDirective } from '@jsverse/transloco';
 import { FastSvgComponent } from '@push-based/ngx-fast-svg';
 
 import { IconType } from '@angular-love/blog/shared/ui-icon';
+import { ArticleLocale } from '@angular-love/contracts/articles';
 
 type ShareItem = {
   href: string;
@@ -59,12 +60,12 @@ type ShareItem = {
 export class ArticleShareIconsComponent {
   readonly slug = input.required<string>();
   readonly title = input.required<string>();
-  readonly language = input.required<string>();
+  readonly locale = input.required<ArticleLocale>();
 
   readonly animating = signal(false);
 
   readonly articleUrl = computed(() =>
-    this.language() === 'pl_PL'
+    this.locale() === 'pl_PL'
       ? `https://angular.love/pl/${this.slug()}`
       : `https://angular.love/${this.slug()}`,
   );

@@ -6,7 +6,6 @@ const API_BASE_URL = process.env.AL_API_URL;
 const BASE_URL = process.env.AL_BASE_URL;
 const SSG_ROUTES_FILE_PATH = 'apps/blog/routes.txt';
 const SITEMAP_FILE_PATH = 'apps/blog/src/sitemap.xml';
-const ROOT_PATHS_FILE_PREFIX = 'apps/blog/src/assets/root-paths';
 const BANNERS_FILE_PREFIX = 'apps/blog/src/assets/banners';
 
 const SUPPORTED_LANGUAGES = ['pl', 'en'];
@@ -182,33 +181,6 @@ function writeSSGRoutesToFile() {
   writeNextRoute();
 }
 
-/**
- * Creates a static JSON asset with allowed article paths for a given language.
- * @param {"pl" | "en"} lang
- */
-function writeArticlePathsToFile(lang) {
-  const stream = createWriteStream(`${ROOT_PATHS_FILE_PREFIX}-${lang}.json`, {
-    encoding: 'utf-8',
-  });
-
-  stream.on('error', (error) => {
-    console.error('Error writing paths to file:', error);
-  });
-
-  const filteredArticlePaths = articleRoutes
-    .filter((pathObj) => pathObj.url.startsWith(`/${lang}/`))
-    .map((pathObj) => pathObj.url.replace(`/${lang}/`, ''));
-
-  try {
-    stream.write(JSON.stringify({ articles: filteredArticlePaths }));
-  } catch (error) {
-    console.error('Error during write operation:', error);
-    throw error;
-  } finally {
-    stream.end();
-  }
-}
-
 async function main() {
   try {
     await Promise.all([
@@ -219,7 +191,6 @@ async function main() {
 
     SUPPORTED_LANGUAGES.forEach((lang) => {
       appendStaticRoutes(lang);
-      writeArticlePathsToFile(lang);
     });
 
     writeSSGRoutesToFile();
