@@ -98,6 +98,7 @@ app.get('/:slug', async (c) => {
       anchors: articles.anchors,
       seo: articles.seo,
       otherTranslations: articles.otherTranslations,
+      language: articles.language,
       author: {
         slug: authors.slug,
         name: authors.name,
