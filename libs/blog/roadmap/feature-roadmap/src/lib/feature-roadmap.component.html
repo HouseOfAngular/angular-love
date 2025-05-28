@@ -1,0 +1,24 @@
+<svg
+  #roadmap
+  height="100%"
+  width="100%"
+  xmlns:svg="http://www.w3.org/1999/html"
+>
+  <svg:foreignObject overflow="visible" height="100%" width="100%">
+    <!-- TODO - what if there was an error or there is no roadmap data? -->
+    <div class="w-100 flex h-fit translate-y-16 flex-col items-center">
+      @for (
+        layer of roadmapLayers();
+        track layer.parentNode.id;
+        let last = $last
+      ) {
+        <al-roadmap-layer [layer]="layer" [showLayerConnector]="!last" />
+      }
+    </div>
+  </svg:foreignObject>
+</svg>
+
+<al-roadmap-svg-controls
+  class="absolute bottom-4 right-4"
+  (resizeRoadmap)="resizeRoadmap($event)"
+/>
