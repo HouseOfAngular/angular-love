@@ -10,27 +10,13 @@ al-navigation {
   grid-area: social;
 }
 
-.copyright {
-  grid-area: copyright;
-}
-
 .al-container {
   grid-template-areas:
     'logo social'
-    'nav nav'
-    'copyright copyright';
+    'nav nav';
 }
 
-@screen md {
-  .al-container {
-    grid-template-areas:
-      'logo nav'
-      'social social'
-      'copyright copyright';
-  }
-}
-
-@screen xl {
+@screen lg {
   .al-container {
     grid-template-areas: 'logo nav social';
   }
