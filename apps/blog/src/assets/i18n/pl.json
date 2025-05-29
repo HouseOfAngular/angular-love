@@ -107,7 +107,12 @@
   },
   "newsletterPage": {
     "title": "Newsletter Angular.love",
-    "description": "Bycie na bieżąco z Angularem to spore wyzwanie. Wiemy, bo pracujemy z nim na co dzień. Właśnie dlatego powstał newsletter Angular.letter — krótka, starannie dobrana dawka najważniejszych newsów, tipów i wydarzeń. Zero lania wody, zero spamu. Tylko to, co naprawdę ma znaczenie — prosto na Twoją skrzynkę."
+    "description": "Bycie na bieżąco z Angularem to spore wyzwanie. Wiemy, bo pracujemy z nim na co dzień. Właśnie dlatego powstał newsletter Angular.letter — krótka, starannie dobrana dawka najważniejszych newsów, tipów i wydarzeń. Zero lania wody, zero spamu. Tylko to, co naprawdę ma znaczenie — prosto na Twoją skrzynkę.",
+    "success": {
+      "title": "Pomyślnie zapisałeś się na newsletter!",
+      "description": "Od teraz będziesz na bieżąco ze wszystkimi informacjami jakie będziemy udostępniać na blogu.",
+      "button": "Powrót na stronę główną"
+    }
   },
   "notFoundPage": {
     "title": "404",

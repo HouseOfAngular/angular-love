@@ -104,7 +104,12 @@
   },
   "newsletterPage": {
     "title": "Newsletter Angular.love",
-    "description": "Staying up to date with Angular takes time. We know, because we work with it every day. That's why we created Angular.letter - a short, curated update with the most important news, tips, and events. No fluff, no spam. Just what really matters - delivered straight to your inbox every month."
+    "description": "Staying up to date with Angular takes time. We know, because we work with it every day. That's why we created Angular.letter - a short, curated update with the most important news, tips, and events. No fluff, no spam. Just what really matters - delivered straight to your inbox every month.",
+    "success": {
+      "title": "Thank you for subscribing!",
+      "description": "You've successfully subscribed to our newsletter. We'll send you an email with the latest news and updates.",
+      "button": "Return to the home page"
+    }
   },
   "notFoundPage": {
     "title": "404",
