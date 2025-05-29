@@ -5,7 +5,7 @@
   margin-top: 1.6rem;
 }
 
-@media (prefers-color-scheme: dark) {
+:root[data-theme='dark'] {
   .shiki,
   .shiki span {
     color: var(--shiki-dark) !important;

@@ -10,7 +10,7 @@ interface AppThemeStore {
 
 export const AppThemeStore = signalStore(
   { providedIn: 'root' },
-  withState<AppThemeStore>({ theme: 'light' }),
+  withState<AppThemeStore>({ theme: 'dark' }),
   withMethods(
     (
       store,
@@ -19,15 +19,19 @@ export const AppThemeStore = signalStore(
     ) => ({
       syncWithSystemTheme: () => {
         if (isPlatformBrowser(platformId)) {
-          const theme = getSystemTheme();
+          const theme =
+            (localStorage.getItem('theme') as Theme) ?? getSystemTheme();
           ccConsumer.setThemeAttribute(theme);
           patchState(store, { theme: theme });
         }
       },
       toggleTheme: () => {
-        const theme = store.theme() === 'dark' ? 'light' : 'dark';
-        ccConsumer.setThemeAttribute(theme);
-        patchState(store, { theme: theme });
+        if (isPlatformBrowser(platformId)) {
+          const newTheme = store.theme() === 'dark' ? 'light' : 'dark';
+          ccConsumer.setThemeAttribute(newTheme);
+          localStorage.setItem('theme', newTheme);
+          patchState(store, { theme: newTheme });
+        }
       },
     }),
   ),
@@ -44,5 +48,13 @@ function getSystemTheme(): Theme {
 export class CCAppThemeConsumer {
   setThemeAttribute(theme: Theme): void {
     document.documentElement.setAttribute('data-theme', theme);
+
+    const classList = document.documentElement.classList;
+
+    if (theme === 'dark') {
+      classList.add('cc--darkmode');
+    } else {
+      classList.remove('cc--darkmode');
+    }
   }
 }

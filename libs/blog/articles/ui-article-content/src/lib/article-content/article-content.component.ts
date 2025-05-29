@@ -12,7 +12,6 @@ import { DomSanitizer } from '@angular/platform-browser';
   selector: 'al-article-content',
   templateUrl: './article-content.component.html',
   styleUrl: './article-content.component.scss',
-  imports: [],
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
