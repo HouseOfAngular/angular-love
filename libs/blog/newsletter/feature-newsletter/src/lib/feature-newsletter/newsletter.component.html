@@ -12,6 +12,16 @@
           <p class="py-4">{{ t('description') }}</p>
           <fieldset>
             <legend class="hidden">Newsletter sign up form</legend>
+
+            <input
+              aria-required="true"
+              type="text"
+              class="bg-al-background text-al-muted border-al-border my-2 h-[60px] w-full flex-grow rounded-md border p-6 text-sm focus:outline-none"
+              [attr.aria-label]="t('namePlaceholder')"
+              [placeholder]="t('namePlaceholder')"
+              formControlName="name"
+            />
+
             <div class="my-2 flex w-full flex-row">
               <input
                 aria-required="true"

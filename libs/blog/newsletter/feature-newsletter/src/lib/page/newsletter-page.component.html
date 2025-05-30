@@ -1,0 +1,26 @@
+@if (isConfirmationPage()) {
+  <al-newsletter-success />
+} @else {
+  <ng-container *transloco="let t; read: 'newsletterPage'">
+    <h2 class="py-4 text-[40px] font-bold">
+      {{ t('title') }}
+    </h2>
+
+    <al-card>
+      <section
+        alCardContent
+        aria-labelledby="angular-love"
+        class="flex flex-col p-2 lg:flex-row"
+      >
+        <div class="mr-14 flex w-full flex-col items-center justify-center">
+          <p class="text-xl md:px-12">{{ t('description') }}</p>
+        </div>
+        <al-newsletter class="hidden lg:block" />
+      </section>
+    </al-card>
+
+    <al-card alGradientCard class="mt-6 block md:mt-8 lg:hidden">
+      <al-newsletter alCardContent />
+    </al-card>
+  </ng-container>
+}
