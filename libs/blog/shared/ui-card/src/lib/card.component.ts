@@ -65,12 +65,15 @@ export class CardLinkableDirective {
 @Directive({
   standalone: true,
   selector: 'al-card[alGradientCard]',
+  host: {
+    '[class.bg-al-radial-gradient]': '!hideGradient()',
+  },
 })
 export class GradientCardDirective {
+  hideGradient = input<boolean>(false);
+
   @HostBinding('class')
-  get hostClasses() {
-    return 'bg-al-radial-gradient dark:bg-al-background';
-  }
+  hostClasses = 'dark:bg-al-background';
 }
 
 @Directive({

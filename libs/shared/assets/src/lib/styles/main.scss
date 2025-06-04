@@ -4,9 +4,6 @@
 @tailwind components;
 @tailwind utilities;
 
-@custom-variant dark (&:where([data-theme="dark"], [data-theme="dark"] *));
-@custom-variant light (&:where([data-theme="light"], [data-theme="light"] *));
-
 @layer base {
   :root[data-theme='dark'] {
     --primary: 255 0 106;

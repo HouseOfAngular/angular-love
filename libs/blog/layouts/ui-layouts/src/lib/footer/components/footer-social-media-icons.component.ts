@@ -13,7 +13,7 @@ import { SocialMediaIconsComponent } from '@angular-love/blog/shared/ui-social-m
       >
         Social media
       </h3>
-      <al-social-media-icons />
+      <al-social-media-icons variant="light" />
     </div>
   `,
   changeDetection: ChangeDetectionStrategy.OnPush,
