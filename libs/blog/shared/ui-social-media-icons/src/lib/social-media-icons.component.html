@@ -2,7 +2,7 @@
   @for (social of socials; track $index) {
     <li>
       <al-social-media-icon-item
-        class="text-[#fff]"
+        [class]="iconColorClass()"
         [socialMediaConfig]="social"
       />
     </li>

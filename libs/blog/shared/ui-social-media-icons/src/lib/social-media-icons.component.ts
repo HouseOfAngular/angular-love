@@ -1,10 +1,18 @@
-import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  computed,
+  inject,
+  input,
+} from '@angular/core';
 import { TranslocoService } from '@jsverse/transloco';
 
 import {
   SocialMediaIconItemComponent,
   SocialMediaIconItemUi,
 } from './social-media-icon-item.component';
+
+export type SocialMediaIconsVariant = 'light' | 'dark' | 'default';
 
 @Component({
   selector: 'al-social-media-icons',
@@ -15,6 +23,16 @@ import {
 })
 export class SocialMediaIconsComponent {
   private _transloco = inject(TranslocoService);
+
+  variant = input<SocialMediaIconsVariant>('default');
+
+  readonly iconColorClass = computed(() => {
+    return this.variant() === 'default'
+      ? 'ext-al-primary-foreground'
+      : this.variant() === 'light'
+        ? 'text-[#fff]'
+        : 'text-[#000]';
+  });
 
   readonly socials: SocialMediaIconItemUi[] = [
     {

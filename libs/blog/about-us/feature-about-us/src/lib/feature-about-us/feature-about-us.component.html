@@ -41,7 +41,12 @@
 </ng-container>
 
 @for (author of authorsCards(); track author.slug) {
-  <al-author-card class="mb-6 block" [author]="author" [linkable]="true" />
+  <al-author-card
+    class="mb-6 block"
+    [author]="author"
+    [linkable]="true"
+    [hideGradient]="hideGradientInAuthorCards()"
+  />
 
   @if ($index === noAuthorsInView() - 2) {
     @defer (on viewport) {

@@ -1,3 +1,5 @@
+const { themeVariants } = require('tailwindcss-theme-variants');
+
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   darkMode: 'selector',
@@ -46,4 +48,13 @@ module.exports = {
       },
     },
   },
+  plugins: [
+    function ({ addVariant }) {
+      addVariant(
+        'light',
+        '&:where([data-theme="light"], [data-theme="light"] *)',
+      );
+      addVariant('dark', '&:where([data-theme="dark"], [data-theme="dark"] *)');
+    },
+  ],
 };
