@@ -28,7 +28,7 @@ export class SocialMediaIconsComponent {
 
   readonly iconColorClass = computed(() => {
     return this.variant() === 'default'
-      ? 'ext-al-primary-foreground'
+      ? 'text-al-primary-foreground'
       : this.variant() === 'light'
         ? 'text-[#fff]'
         : 'text-[#000]';
