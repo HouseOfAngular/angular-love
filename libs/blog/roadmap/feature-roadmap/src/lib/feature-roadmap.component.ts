@@ -9,11 +9,11 @@ import {
   ElementRef,
   inject,
   PLATFORM_ID,
-  signal,
-  viewChild,
+  ViewChild,
 } from '@angular/core';
 import { rxResource, toSignal } from '@angular/core/rxjs-interop';
 import { ActivatedRoute } from '@angular/router';
+import panzoom, { PanZoom, PanZoomOptions } from 'panzoom';
 import { map } from 'rxjs';
 
 import { RoadmapNodeDTO } from '@angular-love/blog/contracts/roadmap';
@@ -21,22 +21,22 @@ import {
   EventType,
   RoadmapLayer,
   RoadmapLayerComponent,
-  RoadmapSvgControlsComponent,
+  RoadmapPanControlsComponent,
 } from '@angular-love/blog/roadmap/ui-roadmap';
 
 import { buildRoadmapLayersFromDto } from './build-roadmap-layers-from-dto';
 
-const svgPanZoomInitialConfig = {
-  fit: false,
-  center: false,
+const panZoomInitialConfig: PanZoomOptions = {
+  maxZoom: 2,
   minZoom: 0.5,
-  maxZoom: 2.5,
-  zoomScaleSensitivity: 0.1,
+  zoomSpeed: 0.1,
+  initialZoom: 1,
+  smoothScroll: true,
 };
 
 @Component({
   selector: 'al-feature-roadmap',
-  imports: [RoadmapLayerComponent, RoadmapSvgControlsComponent],
+  imports: [RoadmapLayerComponent, RoadmapPanControlsComponent],
   templateUrl: './feature-roadmap.component.html',
   styleUrl: './feature-roadmap.component.scss',
   host: {
@@ -45,23 +45,24 @@ const svgPanZoomInitialConfig = {
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class FeatureRoadmapComponent {
+  @ViewChild('roadmapWrapper', { static: true })
+  roadmapWrapper!: ElementRef<HTMLDivElement>;
+  private el = inject(ElementRef<HTMLElement>);
+
   private readonly _platform = inject(PLATFORM_ID);
-  private readonly route = inject(ActivatedRoute);
+  private readonly _panZoomInitialConfig = panZoomInitialConfig;
+  private readonly _scaleMultiplier = 0.5;
+  private readonly _route = inject(ActivatedRoute);
   private readonly elementRef = inject<ElementRef<HTMLElement>>(
     ElementRef<HTMLElement>,
   );
 
   private readonly selectedNodeId = toSignal(
-    this.route.queryParams.pipe(map((params) => params['nodeId'])),
+    this._route.queryParams.pipe(map((params) => params['nodeId'])),
     { initialValue: undefined },
   );
 
-  private readonly svgPanZoom = signal<SvgPanZoom.Instance | undefined>(
-    undefined,
-  );
-
-  private readonly _svgRoadmap =
-    viewChild.required<ElementRef<SVGElement>>('roadmap');
+  private panZoomInstance!: PanZoom;
 
   private readonly _http = inject(HttpClient);
   private readonly nodesDto = rxResource({
@@ -76,44 +77,55 @@ export class FeatureRoadmapComponent {
   );
 
   constructor() {
-    afterNextRender(async () => {
-      if (isPlatformBrowser(this._platform)) {
-        await this.initSvgPanZoom();
+    afterRenderEffect(async () => {
+      if (!isPlatformBrowser(this._platform)) return;
+      if (this.nodesDto()?.length) {
+        console.log('afterRenderEffect');
+        this.initPanZoom();
       }
     });
 
     afterRenderEffect(() => {
-      if (!isPlatformBrowser(this._platform)) {
-        return;
-      }
+      if (!isPlatformBrowser(this._platform)) return;
 
       const selectedNodeId = this.selectedNodeId();
 
-      if (selectedNodeId) {
-        this.focusSelectedNode(selectedNodeId);
-      }
+      if (selectedNodeId) this.focusSelectedNode(selectedNodeId);
     });
   }
 
   resizeRoadmap(event: EventType): void {
-    const svgPanZoom = this.svgPanZoom();
+    if (!this.panZoomInstance) return;
+    const currentTransform = this.panZoomInstance.getTransform();
+    const wrapper = this.roadmapWrapper.nativeElement;
 
-    if (!svgPanZoom) {
-      return;
+    if (event === 'increment') {
+      const centerX = this.el.nativeElement.clientWidth / 2;
+      const centerY = this.el.nativeElement.clientHeight / 2;
+
+      console.log('window Height', window.innerHeight);
+      console.log(centerY);
+
+      const currentScale = this.panZoomInstance.getTransform().scale;
+      const multiplier = currentScale + this._scaleMultiplier;
+
+      console.log(multiplier);
+
+      this.panZoomInstance.smoothZoom(centerX, centerY, multiplier);
     }
 
-    if (event === 'reset') svgPanZoom.reset();
-    if (event === 'decrement') svgPanZoom.zoomOut();
-    if (event === 'increment') svgPanZoom.zoomIn();
-    if (event === 'zoom-reset') svgPanZoom.resetZoom();
+    if (event === 'reset') {
+      this.panZoomInstance.moveTo(0, 0);
+      this.panZoomInstance.zoomAbs(0, 0, 1);
+    }
+    if (event === 'zoom-reset') {
+      this.panZoomInstance.zoomAbs(currentTransform.x, currentTransform.y, 1);
+    }
+    // if (event === 'decrement') svgPanZoom.zoomOut();
   }
 
   private focusSelectedNode(nodeId: string): void {
-    const svgPanZoom = this.svgPanZoom();
-
-    if (!svgPanZoom) {
-      return;
-    }
+    if (!this.panZoomInstance) return;
 
     const selectedNode = this.elementRef.nativeElement.querySelector(
       `[node-id="${nodeId}"]`,
@@ -126,20 +138,13 @@ export class FeatureRoadmapComponent {
       const centerX = x + width / 2 - windowWidth / 2;
       const centerY = y + height / 2 - windowHeight / 2;
 
-      svgPanZoom.pan({ x: -centerX, y: -centerY });
+      this.panZoomInstance.smoothMoveTo(-centerX, -centerY);
     }
   }
 
-  private async initSvgPanZoom() {
-    const svgPanZoomModule = await import('svg-pan-zoom');
-    const svgPanZoom: SvgPanZoom.Instance =
-      'default' in svgPanZoomModule
-        ? (svgPanZoomModule.default as SvgPanZoom.Instance)
-        : svgPanZoomModule;
-
-    const svgPanZoomInstance = svgPanZoom(this._svgRoadmap().nativeElement, {
-      ...svgPanZoomInitialConfig,
-    });
-    this.svgPanZoom.set(svgPanZoomInstance);
+  private initPanZoom() {
+    const roadmapWrapper = this.roadmapWrapper.nativeElement;
+    this.panZoomInstance = panzoom(roadmapWrapper, this._panZoomInitialConfig);
+    console.log(this.nodesDto());
   }
 }

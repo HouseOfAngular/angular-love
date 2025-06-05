@@ -25,7 +25,7 @@ import { AdImageBanner } from '@angular-love/blog/shared/ad-banner';
     >
       <al-search />
     </al-header>
-    <al-feature-roadmap class="flex-1 basis-0" />
+    <al-feature-roadmap class="flex-1 basis-0 overflow-hidden" />
     <al-footer />
   `,
   imports: [

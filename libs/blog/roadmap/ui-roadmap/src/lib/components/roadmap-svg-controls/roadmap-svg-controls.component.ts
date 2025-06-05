@@ -11,7 +11,7 @@ interface Control {
 }
 
 @Component({
-  selector: 'al-roadmap-svg-controls',
+  selector: 'al-roadmap-pan-controls',
   imports: [FastSvgComponent, TranslocoDirective],
   template: `
     <ng-container *transloco="let t; read: 'roadmapPage.roadmapControls'">
@@ -27,11 +27,11 @@ interface Control {
     </ng-container>
   `,
   host: {
-    class: 'flex h-fit w-fit flex-col items-center gap-8',
+    class: 'hidden lg:flex h-fit w-fit flex-col items-center gap-8',
   },
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class RoadmapSvgControlsComponent {
+export class RoadmapPanControlsComponent {
   readonly resizeRoadmap = output<EventType>();
 
   protected readonly controls: Control[] = [
