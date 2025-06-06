@@ -11,8 +11,11 @@ import { rxMethod } from '@ngrx/signals/rxjs-interop';
 import { filter, pipe, switchMap, tap } from 'rxjs';
 
 import { withLangState } from '@angular-love/blog/i18n/data-access';
-import { Article } from '@angular-love/contracts/articles';
-import { withSeo } from '@angular-love/seo';
+import {
+  Article,
+  articleLocaleToLangMap,
+} from '@angular-love/contracts/articles';
+import { HreflangEntry, withSeo } from '@angular-love/seo';
 import {
   LoadingState,
   withCallState,
@@ -72,6 +75,16 @@ export const ArticleDetailsStore = signalStore(
                 next: (articleDetails) => {
                   store.setMeta(articleDetails.seo);
                   store.setTitle(articleDetails.seo.title);
+
+                  const hreflangEntries =
+                    buildArticleHreflangEntries(articleDetails);
+
+                  if (hreflangEntries) {
+                    store.setHreflang(hreflangEntries);
+                  } else {
+                    store.clearHreflang();
+                  }
+
                   return patchState(store, {
                     articleDetails,
                     slug: slug,
@@ -93,3 +106,29 @@ export const ArticleDetailsStore = signalStore(
     }),
   })),
 );
+
+export function buildArticleHreflangEntries(
+  article: Article,
+): HreflangEntry[] | null {
+  if (!article.otherTranslations || article.otherTranslations.length < 2) {
+    return null;
+  }
+
+  return article.otherTranslations.map((translation) => {
+    const langCode = articleLocaleToLangMap[translation.locale];
+    const url = buildArticlePath(translation.slug, langCode);
+
+    return {
+      locale: langCode,
+      url: url,
+    } satisfies HreflangEntry;
+  });
+}
+
+function buildArticlePath(slug: string, langCode: string): string {
+  if (langCode === 'en') {
+    return `/${slug}`;
+  }
+
+  return `/${langCode}/${slug}`;
+}

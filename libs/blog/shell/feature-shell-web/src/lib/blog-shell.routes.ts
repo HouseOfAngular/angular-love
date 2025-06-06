@@ -31,7 +31,7 @@ export const commonRoutes: Route[] = [
           (await import('@angular-love/blog/home/feature-home'))
             .HomePageComponent,
         data: {
-          seo: { title: 'seo.home' },
+          seo: { title: 'seo.home', autoHrefLang: true },
         },
       },
       {
@@ -48,7 +48,7 @@ export const commonRoutes: Route[] = [
           (await import('@angular-love/feature-about-us'))
             .FeatureAboutUsComponent,
         data: {
-          seo: { title: 'seo.aboutUs' },
+          seo: { title: 'seo.aboutUs', autoHrefLang: true },
         },
       },
       {
@@ -56,6 +56,9 @@ export const commonRoutes: Route[] = [
         loadComponent: async () =>
           (await import('@angular-love/blog/authors/feature-author'))
             .FeatureAuthorComponent,
+        data: {
+          seo: { autoHrefLang: true },
+        },
       },
       {
         path: 'become-author',
@@ -63,7 +66,7 @@ export const commonRoutes: Route[] = [
           (await import('@angular-love/blog/become-author-page-feature'))
             .BecomeAuthorPageFeatureComponent,
         data: {
-          seo: { title: 'seo.becomeAuthor' },
+          seo: { title: 'seo.becomeAuthor', autoHrefLang: true },
         },
       },
       {
@@ -77,6 +80,9 @@ export const commonRoutes: Route[] = [
         loadComponent: async () =>
           (await import('@angular-love/blog/feature-writing-rules'))
             .WritingRulesComponent,
+        data: {
+          seo: { autoHrefLang: true },
+        },
       },
       {
         path: '404',

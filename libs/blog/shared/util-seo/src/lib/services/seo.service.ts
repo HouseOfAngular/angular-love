@@ -3,14 +3,20 @@ import { inject, Injectable } from '@angular/core';
 import { Meta, MetaDefinition, Title } from '@angular/platform-browser';
 import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 import { TranslocoService } from '@jsverse/transloco';
-import { filter, map, switchMap } from 'rxjs';
+import { filter, map, switchMap, take } from 'rxjs';
 
+import { AlLocalizeService } from '@angular-love/blog/i18n/util';
 import { SeoMetaData } from '@angular-love/contracts/articles';
 
 import { SEO_CONFIG } from '../tokens';
 
 import { SEO_META_KEYS, SeoMetaKeys } from './seo-meta-keys';
 import { SEO_TITLE_KEYS, SeoTitleKeys } from './seo-title-keys';
+
+export interface HreflangEntry {
+  locale: string;
+  url: string;
+}
 
 @Injectable()
 export class SeoService {
@@ -21,7 +27,9 @@ export class SeoService {
   private readonly _document = inject(DOCUMENT);
   private readonly _seoConfig = inject(SEO_CONFIG);
   private readonly _translocoService = inject(TranslocoService);
+  private readonly _localizeService = inject(AlLocalizeService);
   private _url = '';
+  private _baseUrl = '';
 
   init(): void {
     this._router.events
@@ -41,6 +49,7 @@ export class SeoService {
       )
       .subscribe(({ routeData, seoConfig }) => {
         this._url = this.getUrl(seoConfig.baseUrl, this._router.url);
+        this._baseUrl = seoConfig.baseUrl;
 
         this.removeSeo();
 
@@ -57,6 +66,10 @@ export class SeoService {
         }
 
         this.handleCanonicalUrl(this._url);
+
+        if (routeData && routeData['seo'] && routeData['seo']['autoHrefLang']) {
+          this.handleAutoHreflang(seoConfig.baseUrl, this._router.url);
+        }
       });
   }
 
@@ -123,6 +136,31 @@ export class SeoService {
     this.updateTag(title, 'ogTitle');
     this.updateTag(title, 'twitterTitle');
     this.updateTag(title, 'name');
+  }
+
+  setHreflang(hreflangEntries: HreflangEntry[]): void {
+    this.removeHreflangTags();
+
+    for (const entry of hreflangEntries) {
+      const fullUrl = entry.url.startsWith('http')
+        ? entry.url
+        : `${this._baseUrl}${entry.url}`;
+      this.appendHreflangLink(entry.locale, fullUrl);
+    }
+
+    const defaultEntry =
+      hreflangEntries.find((entry) => entry.locale === 'en') ||
+      hreflangEntries[0];
+    if (defaultEntry) {
+      const defaultUrl = defaultEntry.url.startsWith('http')
+        ? defaultEntry.url
+        : `${this._baseUrl}${defaultEntry.url}`;
+      this.appendHreflangLink('x-default', defaultUrl);
+    }
+  }
+
+  clearHreflang(): void {
+    this.removeHreflangTags();
   }
 
   private setMetaTwitterMisc(miscData: object): void {
@@ -204,6 +242,44 @@ export class SeoService {
         }
       },
     );
+
+    this.removeHreflangTags();
+  }
+
+  private handleAutoHreflang(baseUrl: string, currentPath: string): void {
+    const availableLanguages =
+      this._translocoService.getAvailableLangs() as string[];
+    const hreflangEntries: HreflangEntry[] = [];
+
+    for (const lang of availableLanguages) {
+      const localizedPath = this._localizeService.localizeExplicitPath(
+        currentPath,
+        lang,
+      );
+      const fullUrl = `${baseUrl}${localizedPath}`;
+
+      hreflangEntries.push({
+        locale: lang,
+        url: fullUrl,
+      });
+    }
+
+    this.setHreflang(hreflangEntries);
+  }
+
+  private appendHreflangLink(hreflang: string, href: string): void {
+    const link = this._document.createElement('link');
+    link.setAttribute('rel', 'alternate');
+    link.setAttribute('hreflang', hreflang);
+    link.setAttribute('href', href);
+    this._document.head.appendChild(link);
+  }
+
+  private removeHreflangTags(): void {
+    const hreflangLinks = this._document.head.querySelectorAll(
+      'link[rel="alternate"][hreflang]',
+    );
+    hreflangLinks.forEach((link) => link.remove());
   }
 
   private handleCanonicalUrl(url: string): void {

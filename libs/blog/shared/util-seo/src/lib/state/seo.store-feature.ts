@@ -3,7 +3,7 @@ import { signalStoreFeature, withMethods } from '@ngrx/signals';
 
 import { SeoMetaData } from '@angular-love/contracts/articles';
 
-import { SeoService } from '../services';
+import { HreflangEntry, SeoService } from '../services';
 
 export function withSeo() {
   return signalStoreFeature(
@@ -13,6 +13,12 @@ export function withSeo() {
       },
       setTitle(title: string | undefined): void {
         seoService.setTitle(title);
+      },
+      setHreflang(hreflangEntries: HreflangEntry[]): void {
+        seoService.setHreflang(hreflangEntries);
+      },
+      clearHreflang(): void {
+        seoService.clearHreflang();
       },
     })),
   );
