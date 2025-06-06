@@ -13,7 +13,7 @@ export const articleRoutes: Routes = [
       (await import('@angular-love/blog/articles/feature-category'))
         .CategoryArticlesComponent,
     data: {
-      seo: { title: 'News' },
+      seo: { title: 'News', autoHrefLang: true },
       category: 'news',
       title: 'Angular News',
       id: 'angular-news',
@@ -25,7 +25,7 @@ export const articleRoutes: Routes = [
       (await import('@angular-love/blog/articles/feature-category'))
         .CategoryArticlesComponent,
     data: {
-      seo: { title: 'Guides' },
+      seo: { title: 'Guides', autoHrefLang: true },
       category: 'guides',
       title: 'Angular Guides',
       id: 'angular-guides-title',
@@ -37,7 +37,7 @@ export const articleRoutes: Routes = [
       (await import('@angular-love/blog/articles/feature-category'))
         .CategoryArticlesComponent,
     data: {
-      seo: { title: 'Latest Articles' },
+      seo: { title: 'Latest Articles', autoHrefLang: true },
       excludeCategory: 'angular-in-depth-en',
       title: 'Latest Articles',
       id: 'latest-articles',
@@ -49,7 +49,7 @@ export const articleRoutes: Routes = [
       (await import('@angular-love/blog/articles/feature-category'))
         .CategoryArticlesComponent,
     data: {
-      seo: { title: 'Angular In Depth' },
+      seo: { title: 'Angular In Depth', autoHrefLang: true },
       category: 'angular-in-depth',
       title: 'Angular In Depth',
       id: 'angular-in-depth-title',
