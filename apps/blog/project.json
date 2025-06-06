@@ -105,6 +105,12 @@
       "options": {
         "command": "node apps/blog/scripts/build-routes.mjs"
       }
+    },
+    "post-prerender": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "node apps/blog/scripts/post-prerender.mjs"
+      }
     }
   }
 }
