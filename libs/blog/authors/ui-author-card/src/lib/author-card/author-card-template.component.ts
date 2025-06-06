@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, input } from '@angular/core';
 
 import {
   CardComponent,
@@ -13,24 +13,23 @@ import {
     class: 'block @container',
   },
   template: `
-    <al-card alGradientCard>
+    <al-card alGradientCard [hideGradient]="hideGradient()">
       <div alCardContent>
         <div
-          class="@3xl:flex-row @3xl:border-none flex w-full flex-col items-center rounded-lg border"
+          class="flex w-full flex-col items-center rounded-lg border md:flex-row md:border-none"
         >
           <div
-            class="@3xl:border @3xl:!bg-al-radial-gradient @3xl:bg-al-background @3xl:min-w-[260px] min-w-fit rounded-lg pb-4 pt-6"
+            class="dark:!bg-al-radial-gradient dark:bg-al-background md:light:bg-[#f2f2f2] min-w-fit rounded-lg pb-4 pt-6 md:min-w-[260px] md:border"
           >
             <div
-              class="@3xl:max-w-[360px] flex w-full flex-col items-center gap-4"
+              class="flex w-full flex-col items-center gap-4 md:max-w-[360px]"
+              Expand
+              Down
             >
               <ng-content select="[author-info-card]"></ng-content>
             </div>
           </div>
-
-          <div
-            class="@3xl:pt-6 w-full flex-1 hyphens-auto break-words p-6 pt-0"
-          >
+          <div class="w-full flex-1 hyphens-auto break-words p-6 pt-0 md:pt-6">
             <ng-content select="[author-info-description]"></ng-content>
           </div>
         </div>
@@ -38,4 +37,6 @@ import {
     </al-card>
   `,
 })
-export class AuthorCardTemplateComponent {}
+export class AuthorCardTemplateComponent {
+  hideGradient = input<boolean>(true);
+}

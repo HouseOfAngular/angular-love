@@ -15,7 +15,7 @@ import { Lang } from '@angular-love/contracts/articles';
   template: `
     <div class="flex h-full items-center text-sm">
       <label
-        class="relative block text-gray-400 focus-within:text-gray-600"
+        class="text-al-primary-foreground relative block focus-within:text-gray-600"
         for="language"
       >
         <span class="sr-only">Select language</span>

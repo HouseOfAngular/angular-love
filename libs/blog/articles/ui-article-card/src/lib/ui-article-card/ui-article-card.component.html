@@ -12,6 +12,9 @@
     />
   }
   @case ('compact') {
-    <al-article-compact-card [article]="article()" />
+    <al-article-compact-card
+      [article]="article()"
+      [imagePriority]="imagePriority()"
+    />
   }
 }
