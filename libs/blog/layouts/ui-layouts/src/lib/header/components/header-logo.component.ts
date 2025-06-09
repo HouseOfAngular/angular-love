@@ -10,6 +10,7 @@ import { AlLocalizePipe } from '@angular-love/blog/i18n/util';
   template: `
     <a
       data-testid="header-home"
+      aria-label="Home"
       class="flex items-center gap-2"
       [routerLink]="'/' | alLocalize"
     >
@@ -21,7 +22,7 @@ import { AlLocalizePipe } from '@angular-love/blog/i18n/util';
         priority="1"
         ngSrc="assets/angular-love-logo.webp"
       />
-      <h1 class="text-al-primary px-4 text-lg font-bold">angular.love</h1>
+      <div class="text-al-primary px-4 text-lg font-bold">angular.love</div>
     </a>
   `,
   changeDetection: ChangeDetectionStrategy.OnPush,
