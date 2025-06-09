@@ -150,3 +150,8 @@ export const articleLangToLocaleMap = {
   [DbLang.English]: 'en_GB',
   [DbLang.Polish]: 'pl_PL',
 } as const satisfies Record<DbLang, ArticleLocale>;
+
+export const articleLocaleToLangMap = {
+  en_GB: 'en',
+  pl_PL: 'pl',
+} as const satisfies Record<ArticleLocale, Lang>;
