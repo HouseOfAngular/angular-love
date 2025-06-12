@@ -6,7 +6,11 @@
       track layer.parentNode.id;
       let last = $last
     ) {
-      <al-roadmap-layer [layer]="layer" [showLayerConnector]="!last" />
+      <al-roadmap-layer
+        [layer]="layer"
+        [showLayerConnector]="!last"
+        (getBottomSheet)="getBottomSheet($event)"
+      />
     }
   </div>
 </div>
@@ -14,3 +18,4 @@
   class="absolute bottom-4 right-4"
   (resizeRoadmap)="resizeRoadmap($event)"
 />
+<al-roadmap-bottomsheet class="absolute bottom-0 left-0" />

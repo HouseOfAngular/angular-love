@@ -1,0 +1,75 @@
+:host {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+}
+
+.overlay {
+  position: absolute;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+}
+
+.bottomsheet {
+  background-color: #fff;
+  border-radius: 1rem 1rem 0 0;
+  width: 50%;
+  max-height: 70vh;
+  overflow-y: auto;
+  padding: 1rem;
+  color: #1f1f1f;
+  line-height: 1.6;
+  -webkit-overflow-scrolling: touch;
+  animation-duration: 1s;
+  animation-fill-mode: forwards;
+
+  &.visible {
+    animation-name: fadeInBottom;
+  }
+
+  h2,
+  h3 {
+    margin-top: 1.5rem;
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+  }
+
+  p,
+  li {
+    margin-bottom: 0.5rem;
+  }
+
+  ul {
+    padding-left: 1.25rem;
+  }
+
+  a {
+    color: #007acc;
+    text-decoration: none;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+
+  div {
+    margin-bottom: 1.25rem;
+  }
+}
+
+@keyframes fadeInBottom {
+  from {
+    opacity: 0;
+    transform: translateY(100%);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

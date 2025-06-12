@@ -1,4 +1,9 @@
-import { ChangeDetectionStrategy, Component, input } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  input,
+  output,
+} from '@angular/core';
 
 import {
   RoadmapAngularLoveNodeComponent,
@@ -38,4 +43,6 @@ export class RoadmapLayerComponent {
   readonly layer = input.required<RoadmapLayer>();
 
   readonly showLayerConnector = input<boolean>(false);
+
+  readonly getBottomSheet = output<string>();
 }

@@ -1,4 +1,9 @@
-import { ChangeDetectionStrategy, Component, input } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  input,
+  output,
+} from '@angular/core';
 
 import {
   RoadmapClusterComponent,
@@ -25,6 +30,8 @@ export class ConnectedNodesComponent {
   readonly connectedNodes = input<RoadmapNode[]>([]);
 
   readonly nodesDrawingDirection = input<'to-left' | 'to-right'>('to-right');
+
+  readonly getBottomsheet = output<string>();
 
   protected readonly connectorHeight = 40;
   protected readonly connectorStrokeWidth = 3;

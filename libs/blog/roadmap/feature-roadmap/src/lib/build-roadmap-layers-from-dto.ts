@@ -8,7 +8,7 @@ import {
 
 const roadmapTitleLayer: RoadmapLayer = {
   parentNode: {
-    id: '1',
+    id: 'angular-love',
     title: 'Angular.Love Roadmap Introduction',
     nodeType: 'angular-love',
   },

@@ -1,4 +1,9 @@
-import { ChangeDetectionStrategy, Component, input } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  input,
+  output,
+} from '@angular/core';
 
 import { RoadmapNode } from '../../types/roadmap-node';
 
@@ -7,6 +12,7 @@ import { RoadmapNode } from '../../types/roadmap-node';
   template: `
     <div
       class="roadmap-hover-border-gradient relative w-fit text-nowrap rounded-lg bg-[#FDF5FD] text-[#FDF5FD]"
+      (pointerup)="getBottomsheet.emit(node().id)"
     >
       <div
         class="relative z-10 m-[2px] rounded-lg bg-[--secondary-color] px-6 py-4 text-[20px]"
@@ -23,4 +29,5 @@ import { RoadmapNode } from '../../types/roadmap-node';
 })
 export class RoadmapSecondaryNodeComponent {
   readonly node = input.required<RoadmapNode>();
+  readonly getBottomsheet = output<string>();
 }
