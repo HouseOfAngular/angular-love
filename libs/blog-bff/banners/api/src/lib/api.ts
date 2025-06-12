@@ -26,7 +26,11 @@ app.get('/', async (c) => {
   try {
     const client = new WpBanners(c.var.createWPClient());
 
-    const banner = (await client.getBanners()).data[0];
+    const banner = (
+      await client.getBanners({
+        skip_cache: 1,
+      })
+    ).data[0];
     const media = await client.getMediaByBannerId(banner.id);
 
     return c.json(toBanner(banner, media.data));
