@@ -1,7 +1,7 @@
 @if (nodeDetails(); as nodeDetails) {
   <div class="overlay" (pointerup)="handleOverlayClick()">
     <div
-      class="bottomsheet"
+      class="bottomsheet w-4/5 rounded-2xl lg:w-3/5"
       [ngClass]="{
         visible: nodeDetails !== undefined,
         hidden: nodeDetails === undefined,
@@ -10,14 +10,13 @@
       (pointerup)="$event.stopPropagation()"
       (touchstart)="$event.stopPropagation()"
     >
-      <div>
-        <h2>{{ nodeDetails.title }}</h2>
-      </div>
-      <div>
-        <h3>Description</h3>
-        <p>{{ nodeDetails.description }}</p>
-      </div>
-
+      <al-roadmap-bottomsheet-header
+        [title]="nodeDetails.title"
+        [nodeType]="nodeDetails.nodeType"
+      />
+      <al-roadmap-bottomsheet-description
+        [description]="nodeDetails.description"
+      />
       @if (angularLoveNodeDetails(); as angularLoveNodeDetails) {
         <div>
           <h3>Before You Start</h3>

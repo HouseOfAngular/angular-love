@@ -11,10 +11,14 @@ import {
   PLATFORM_ID,
   ViewChild,
 } from '@angular/core';
-import { rxResource, toSignal } from '@angular/core/rxjs-interop';
+import {
+  rxResource,
+  takeUntilDestroyed,
+  toSignal,
+} from '@angular/core/rxjs-interop';
 import { ActivatedRoute } from '@angular/router';
 import panzoom, { PanZoom, PanZoomOptions } from 'panzoom';
-import { map } from 'rxjs';
+import { map, tap } from 'rxjs';
 
 import { RoadmapNodeDTO } from '@angular-love/blog/contracts/roadmap';
 import {
@@ -25,6 +29,7 @@ import {
   RoadmapPanControlsComponent,
 } from '@angular-love/blog/roadmap/ui-roadmap';
 import { RoadmapStore } from '@angular-love/roadmap-data-access';
+import { RoadmapBottomsheetManagerService } from '@angular-love/roadmap-utils';
 
 import { buildRoadmapLayersFromDto } from './build-roadmap-layers-from-dto';
 
@@ -63,6 +68,9 @@ export class FeatureRoadmapComponent {
   private readonly elementRef = inject<ElementRef<HTMLElement>>(
     ElementRef<HTMLElement>,
   );
+  private readonly _roadmapBottomsheetManagerService = inject(
+    RoadmapBottomsheetManagerService,
+  );
 
   private readonly selectedNodeId = toSignal(
     this._route.queryParams.pipe(map((params) => params['nodeId'])),
@@ -98,6 +106,15 @@ export class FeatureRoadmapComponent {
 
       if (selectedNodeId) this.focusSelectedNode(selectedNodeId);
     });
+
+    this._roadmapBottomsheetManagerService.bottomSheetOpen$
+      .pipe(
+        takeUntilDestroyed(),
+        tap((id) => {
+          this._roadmapStore.getNodeDetails(id);
+        }),
+      )
+      .subscribe();
   }
 
   resizeRoadmap(event: EventType): void {

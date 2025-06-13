@@ -28,17 +28,9 @@
   <div class="mx-16 flex gap-8">
     @for (node of connectedNodes(); track node.id) {
       @if (node.nodeType === 'secondary') {
-        <al-roadmap-secondary-node
-          alNodeConnectionPoint
-          [node]="node"
-          (getBottomsheet)="getBottomsheet.emit($event)"
-        />
+        <al-roadmap-secondary-node alNodeConnectionPoint [node]="node" />
       } @else if (node.nodeType === 'cluster') {
-        <al-roadmap-cluster
-          alNodeConnectionPoint
-          [cluster]="node"
-          (getBottomsheet)="getBottomsheet.emit($event)"
-        />
+        <al-roadmap-cluster alNodeConnectionPoint [cluster]="node" />
       }
     }
   </div>

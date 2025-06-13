@@ -3,8 +3,15 @@ import { Component, computed, inject } from '@angular/core';
 
 import { RoadmapBottomsheetService } from '@angular-love/roadmap-utils';
 
+import { RoadmapBottomsheetDescriptionComponent } from './roadmap-bottomsheet-description/roadmap-bottomsheet-description.component';
+import { RoadmapBottomsheetHeaderComponent } from './roadmap-bottomsheet-header/roadmap-bottomsheet-header.component';
+
 @Component({
-  imports: [NgClass],
+  imports: [
+    NgClass,
+    RoadmapBottomsheetHeaderComponent,
+    RoadmapBottomsheetDescriptionComponent,
+  ],
   selector: 'al-roadmap-bottomsheet',
   templateUrl: './roadmap-bottomsheet.component.html',
   styleUrl: 'roadmap-bottomsheet.component.scss',

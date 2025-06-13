@@ -1,14 +1,8 @@
 <!-- Layer parent node-->
 @if (layer().parentNode.nodeType === 'primary') {
-  <al-roadmap-primary-node
-    [node]="layer().parentNode"
-    (getBottomsheet)="getBottomSheet.emit($event)"
-  />
+  <al-roadmap-primary-node [node]="layer().parentNode" />
 } @else if (layer().parentNode.nodeType === 'angular-love') {
-  <al-roadmap-angular-love-node
-    [node]="layer().parentNode"
-    (getBottomsheet)="getBottomSheet.emit($event)"
-  />
+  <al-roadmap-angular-love-node [node]="layer().parentNode" />
 }
 
 @if (showLayerConnector()) {
@@ -22,14 +16,12 @@
     <al-connected-nodes
       [connectedNodes]="layer().childNodes | leftSlice"
       [nodesDrawingDirection]="'to-left'"
-      (getBottomsheet)="getBottomSheet.emit($event)"
     />
 
     <!-- Layer right side nodes -->
     <al-connected-nodes
       [connectedNodes]="layer().childNodes | rightSlice"
       [nodesDrawingDirection]="'to-right'"
-      (getBottomsheet)="getBottomSheet.emit($event)"
     />
   </div>
 }
