@@ -1,0 +1,21 @@
+<div #roadmapWrapper class="w-full">
+  <!-- TODO - what if there was an error or there is no roadmap data? -->
+  <div class="w-100 flex h-fit translate-y-16 flex-col items-center">
+    @for (
+      layer of roadmapLayers();
+      track layer.parentNode.id;
+      let last = $last
+    ) {
+      <al-roadmap-layer
+        [layer]="layer"
+        [showLayerConnector]="!last"
+        (getBottomSheet)="getBottomSheet($event)"
+      />
+    }
+  </div>
+</div>
+<al-roadmap-pan-controls
+  class="absolute bottom-4 right-4"
+  (resizeRoadmap)="resizeRoadmap($event)"
+/>
+<al-roadmap-bottomsheet class="absolute bottom-0 left-0" />

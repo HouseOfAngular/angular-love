@@ -52,6 +52,9 @@ import {
     NgClass,
     AlBannerCarouselComponent,
   ],
+  host: {
+    class: 'flex flex-col min-h-screen',
+  },
 })
 export class RootShellComponent {
   protected readonly sliderStore = inject(AdBannerStore);

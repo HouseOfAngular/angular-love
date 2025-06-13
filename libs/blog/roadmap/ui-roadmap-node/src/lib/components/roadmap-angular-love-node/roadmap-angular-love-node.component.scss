@@ -1,0 +1,9 @@
+@use '../../style/roadmap-hover-border-gradient';
+
+:host {
+  --primary-color: #b3004a;
+  --secondary-color: #66002b;
+  --gradient-color: #481cab;
+  --on-hover-border-1: #923cff;
+  --on-hover-border-2: #ff006a;
+}

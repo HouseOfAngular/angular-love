@@ -1,0 +1,78 @@
+@if (nodeDetails(); as nodeDetails) {
+  <div class="overlay" (pointerup)="handleOverlayClick()">
+    <div
+      class="bottomsheet w-4/5 rounded-2xl lg:w-3/5"
+      [ngClass]="{
+        visible: nodeDetails !== undefined,
+        hidden: nodeDetails === undefined,
+      }"
+      (wheel)="$event.stopPropagation()"
+      (pointerup)="$event.stopPropagation()"
+      (touchstart)="$event.stopPropagation()"
+    >
+      <al-roadmap-bottomsheet-header
+        [title]="nodeDetails.title"
+        [nodeType]="nodeDetails.nodeType"
+      />
+      <al-roadmap-bottomsheet-description
+        [description]="nodeDetails.description"
+      />
+      @if (angularLoveNodeDetails(); as angularLoveNodeDetails) {
+        <div>
+          <h3>Before You Start</h3>
+          <p>{{ angularLoveNodeDetails.additionalDescription }}</p>
+        </div>
+        <div>
+          <h3>Created by:</h3>
+          <ul>
+            @for (creator of angularLoveNodeDetails.creators; track $index) {
+              <li>
+                <a [href]="'author/' + creator.slug" target="_blank">
+                  {{ creator.name }}
+                </a>
+              </li>
+            }
+          </ul>
+        </div>
+      }
+
+      @if (regularNodeDetails(); as regularNodeDetails) {
+        @if (!isContentInRegularNodeDetails()) {
+          <!-- card-become-an-author -->
+        } @else {
+          <div>
+            <h3>Articles:</h3>
+            <ul>
+              @for (
+                article of regularNodeDetails.articles;
+                track article.title
+              ) {
+                <li>
+                  <a [href]="article.url" target="_blank">
+                    {{ article.title }}
+                  </a>
+                </li>
+              }
+            </ul>
+          </div>
+
+          <div>
+            <h3>Movies:</h3>
+            <ul>
+              @for (movie of regularNodeDetails.movies; track movie.title) {
+                <li>
+                  <a [href]="movie.url" target="_blank">
+                    {{ movie.title }}
+                  </a>
+                </li>
+              }
+            </ul>
+          </div>
+        }
+      }
+      <div>
+        <h3>Share this roadmap with others</h3>
+      </div>
+    </div>
+  </div>
+}
