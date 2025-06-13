@@ -87,7 +87,6 @@ export class FeatureRoadmapComponent {
     afterRenderEffect(async () => {
       if (!isPlatformBrowser(this._platform)) return;
       if (this.nodesDto()?.length) {
-        console.log(this.nodesDto());
         this.initPanZoom();
       }
     });

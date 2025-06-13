@@ -31,7 +31,6 @@ export class RoadmapBottomsheetService {
   });
 
   open(nodeDetails: NodeDetails) {
-    console.log('bottomSheetService data:', nodeDetails);
     this._nodeDetails.set(nodeDetails);
   }
 

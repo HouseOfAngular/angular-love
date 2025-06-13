@@ -34,9 +34,4 @@ export class RoadmapBottomsheetComponent {
   handleOverlayClick(): void {
     this._roadmapBottomsheetService.close();
   }
-
-  scroll($event: any) {
-    console.log($event);
-    $event.stopPropagation();
-  }
 }

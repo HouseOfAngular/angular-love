@@ -30,7 +30,6 @@ export const RoadmapStore = signalStore(
       getNodeDetails: rxMethod<string>(
         pipe(
           tap(() => {
-            console.log('Store, getNodeDetails');
             patchState(store, {
               loading: 'loading',
             });
@@ -40,7 +39,6 @@ export const RoadmapStore = signalStore(
             roadmapService.getNodeDetails(id).pipe(
               tapResponse({
                 next: (nodeDetails) => {
-                  console.log('Success data:', nodeDetails);
                   patchState(store, { loading: 'success' });
                   bottomsheetService.open(nodeDetails);
                 },
