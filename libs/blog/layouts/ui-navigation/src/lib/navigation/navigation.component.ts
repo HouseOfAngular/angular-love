@@ -41,7 +41,7 @@ export class NavigationComponent {
     },
     {
       translationPath: 'nav.meetups',
-      link: ['https://meetup.angular.love/spring-camp-2025/'],
+      link: ['https://meetup.angular.love/'],
       externalLink: true,
       dataTestId: 'navigation-meetups',
     },
