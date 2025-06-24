@@ -16,58 +16,33 @@
       />
       <al-roadmap-bottomsheet-description
         [description]="nodeDetails.description"
+        title="Descrption"
       />
+
       @if (angularLoveNodeDetails(); as angularLoveNodeDetails) {
-        <div>
-          <h3>Before You Start</h3>
-          <p>{{ angularLoveNodeDetails.additionalDescription }}</p>
-        </div>
-        <div>
-          <h3>Created by:</h3>
-          <ul>
-            @for (creator of angularLoveNodeDetails.creators; track $index) {
-              <li>
-                <a [href]="'author/' + creator.slug" target="_blank">
-                  {{ creator.name }}
-                </a>
-              </li>
-            }
-          </ul>
-        </div>
+        <al-roadmap-bottomsheet-description
+          [description]="angularLoveNodeDetails.additionalDescription"
+          [additional]="true"
+          title="Before you start"
+        />
+        <al-roadmap-bottomsheet-creators
+          [creators]="angularLoveNodeDetails.creators"
+          title="Description"
+        />
       }
 
       @if (regularNodeDetails(); as regularNodeDetails) {
         @if (!isContentInRegularNodeDetails()) {
-          <!-- card-become-an-author -->
+          <!--           TO-DOcard-become-an-author -->
         } @else {
-          <div>
-            <h3>Articles:</h3>
-            <ul>
-              @for (
-                article of regularNodeDetails.articles;
-                track article.title
-              ) {
-                <li>
-                  <a [href]="article.url" target="_blank">
-                    {{ article.title }}
-                  </a>
-                </li>
-              }
-            </ul>
-          </div>
-
-          <div>
-            <h3>Movies:</h3>
-            <ul>
-              @for (movie of regularNodeDetails.movies; track movie.title) {
-                <li>
-                  <a [href]="movie.url" target="_blank">
-                    {{ movie.title }}
-                  </a>
-                </li>
-              }
-            </ul>
-          </div>
+          <al-roadmap-bottomsheet-regular-content
+            [contentSlugs]="regularNodeDetails.articles"
+            title="Articles"
+          />
+          <al-roadmap-bottomsheet-regular-content
+            [contentSlugs]="regularNodeDetails.movies"
+            title="Movies"
+          />
         }
       }
       <div>
