@@ -7,8 +7,18 @@ import { RoadmapBottomsheetSubtitleComponent } from '../roadmap-bottomsheet-subt
 @Component({
   imports: [ListPipe, RoadmapBottomsheetSubtitleComponent],
   selector: 'al-roadmap-bottomsheet-description',
-  templateUrl: 'roadmap-bottomsheet-description.component.html',
-  standalone: true,
+  template: `
+    <div class="px-6 pt-6">
+      <al-roadmap-bottomsheet-subtitle [title]="title()" />
+      <div class="pt-4">
+        @if (!additional()) {
+          <p class="text-justify leading-8">{{ description() }}</p>
+        } @else {
+          <div [innerHTML]="description() | alListPipe"></div>
+        }
+      </div>
+    </div>
+  `,
 })
 export class RoadmapBottomsheetDescriptionComponent {
   title = input.required<string>();

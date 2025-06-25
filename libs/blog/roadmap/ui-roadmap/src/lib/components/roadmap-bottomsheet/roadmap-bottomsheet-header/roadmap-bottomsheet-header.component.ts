@@ -8,7 +8,6 @@ import { NodeDetails } from '@angular-love/roadmap-utils';
   imports: [TitleCasePipe, NgClass],
   templateUrl: './roadmap-bottomsheet-header.component.html',
   styleUrl: 'roadmap-bottomsheet-header.component.scss',
-  standalone: true,
 })
 export class RoadmapBottomsheetHeaderComponent {
   nodeType = input.required<NodeDetails['nodeType']>();

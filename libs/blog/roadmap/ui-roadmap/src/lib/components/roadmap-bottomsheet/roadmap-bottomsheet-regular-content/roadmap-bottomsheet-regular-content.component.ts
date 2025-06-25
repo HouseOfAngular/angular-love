@@ -7,8 +7,20 @@ import { RoadmapBottomsheetSubtitleComponent } from '../roadmap-bottomsheet-subt
 @Component({
   imports: [RoadmapBottomsheetSubtitleComponent],
   selector: 'al-roadmap-bottomsheet-regular-content',
-  templateUrl: 'roadmap-bottomsheet-regular-content.component.html',
-  standalone: true,
+  template: `
+    <div class="px-6 pt-6">
+      <al-roadmap-bottomsheet-subtitle [title]="title()" />
+      <ul class="list-disc px-6 pt-4">
+        @for (contentItem of contentSlugs(); track contentItem.title) {
+          <li class="py-1 underline">
+            <a [href]="contentItem.url" target="_blank">
+              {{ contentItem.title }}
+            </a>
+          </li>
+        }
+      </ul>
+    </div>
+  `,
 })
 export class RoadmapBottomsheetRegularContentComponent {
   title = input.required<string>();

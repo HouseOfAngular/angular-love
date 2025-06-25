@@ -51,14 +51,27 @@ const regularNodeMock: RegularNode = {
   ],
 };
 
+const regularNodeMockNoContent: RegularNode = {
+  id: 'lifecycle',
+  title: 'lifecycle',
+  nodeType: 'regular',
+  description:
+    'Change detection in Angular synchronizes the component state with the DOM by tracking and updating data changes. It uses a tree-based approach, where updates propagate from the root component down to child components. The framework provides two strategies: Default, which checks all components, and OnPush, which optimizes performance by only checking components when their inputs change.',
+  movies: [],
+  articles: [],
+};
+
 @Injectable({ providedIn: 'root' })
 export class RoadmapService {
   private readonly _http = inject(HttpClient);
   private readonly _apiBaseUrl = inject(ConfigService).get('apiBaseUrl');
 
   getNodeDetails(id: string): Observable<NodeDetails> {
+    console.log(id);
     if (id === 'angular-love') {
       return of(angularLoveNodeMock);
+    } else if (id === 'lifecycle') {
+      return of(regularNodeMockNoContent);
     } else {
       return of(regularNodeMock);
     }

@@ -8,6 +8,7 @@ import {
   computed,
   ElementRef,
   inject,
+  input,
   PLATFORM_ID,
   ViewChild,
 } from '@angular/core';
@@ -91,6 +92,8 @@ export class FeatureRoadmapComponent {
     buildRoadmapLayersFromDto(this.nodesDto()),
   );
 
+  language = input.required<string>();
+
   constructor() {
     afterRenderEffect(async () => {
       if (!isPlatformBrowser(this._platform)) return;
@@ -151,6 +154,7 @@ export class FeatureRoadmapComponent {
   private focusSelectedNode(nodeId: string): void {
     if (!this.panZoomInstance) return;
 
+    console.log(nodeId);
     const selectedNode = this.elementRef.nativeElement.querySelector(
       `[node-id="${nodeId}"]`,
     );

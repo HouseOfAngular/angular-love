@@ -1,7 +1,10 @@
 @if (nodeDetails(); as nodeDetails) {
-  <div class="overlay" (pointerup)="handleOverlayClick()">
+  <div
+    class="fixed inset-0 z-[1000] flex items-end justify-center bg-black/50"
+    (pointerup)="handleOverlayClick()"
+  >
     <div
-      class="bottomsheet w-4/5 rounded-2xl lg:w-3/5"
+      class="bottomsheet max-h-[70vh] w-4/5 overflow-y-auto rounded-t-2xl border-2 border-b-0 border-white bg-gradient-to-br from-[#100f15] to-[#3b0019] text-white lg:w-3/5"
       [ngClass]="{
         visible: nodeDetails !== undefined,
         hidden: nodeDetails === undefined,
@@ -16,7 +19,7 @@
       />
       <al-roadmap-bottomsheet-description
         [description]="nodeDetails.description"
-        title="Descrption"
+        title="Description"
       />
 
       @if (angularLoveNodeDetails(); as angularLoveNodeDetails) {
@@ -33,7 +36,9 @@
 
       @if (regularNodeDetails(); as regularNodeDetails) {
         @if (!isContentInRegularNodeDetails()) {
-          <!--           TO-DOcard-become-an-author -->
+          <div class="flex w-full justify-center pt-6">
+            <button al-button>Become an author</button>
+          </div>
         } @else {
           <al-roadmap-bottomsheet-regular-content
             [contentSlugs]="regularNodeDetails.articles"
@@ -45,9 +50,11 @@
           />
         }
       }
-      <div>
-        <h3>Share this roadmap with others</h3>
-      </div>
+      <al-roadmap-bottomsheet-footer
+        [nodeId]="nodeDetails.id"
+        [language]="language()"
+        title="Share this roadmap with others"
+      />
     </div>
   </div>
 }
