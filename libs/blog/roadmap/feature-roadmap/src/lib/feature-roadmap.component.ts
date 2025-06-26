@@ -52,7 +52,7 @@ const panZoomInitialConfig: PanZoomOptions = {
   templateUrl: './feature-roadmap.component.html',
   styleUrl: './feature-roadmap.component.scss',
   host: {
-    class: 'block h-full w-full relative',
+    class: 'block max-h-full overflow-hidden w-full relative',
   },
   changeDetection: ChangeDetectionStrategy.OnPush,
   providers: [RoadmapStore],
@@ -152,6 +152,7 @@ export class FeatureRoadmapComponent {
   }
 
   private focusSelectedNode(nodeId: string): void {
+    console.log(nodeId);
     if (!this.panZoomInstance) return;
 
     console.log(nodeId);

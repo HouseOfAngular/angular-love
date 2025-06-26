@@ -2,6 +2,7 @@ import { Route } from '@angular/router';
 
 import { articleRoutes } from '@angular-love/blog/articles/feature/shell';
 import { activeLanguageGuard } from '@angular-love/blog/i18n/data-access';
+import { LayoutConfig } from '@angular-love/blog/layouts/ui-layouts';
 
 import { RootShellComponent } from './root-shell.component';
 
@@ -21,13 +22,13 @@ export const blogShellRoutes: Route[] = [
 ];
 
 export const commonRoutes: Route[] = [
-  {
-    path: 'roadmap',
-    loadComponent: async () =>
-      await import('./roadmap-shell.component').then(
-        (m) => m.RoadmapShellComponent,
-      ),
-  },
+  // {
+  //   path: 'roadmap',
+  //   loadComponent: async () =>
+  //     await import('./roadmap-shell.component').then(
+  //       (m) => m.RoadmapShellComponent,
+  //     ),
+  // },
   {
     path: '',
     component: RootShellComponent,
@@ -84,6 +85,19 @@ export const commonRoutes: Route[] = [
         loadComponent: async () =>
           (await import('@angular-love/blog/feature-writing-rules'))
             .WritingRulesComponent,
+      },
+      {
+        path: 'roadmap',
+        loadComponent: async () =>
+          await import('@angular-love/blog/roadmap/feature-roadmap').then(
+            (m) => m.FeatureRoadmapComponent,
+          ),
+        data: {
+          layoutConfig: {
+            fullLayout: true,
+          },
+          seo: { title: 'seo.roadmap' },
+        },
       },
       {
         path: '404',
