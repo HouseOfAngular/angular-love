@@ -16,7 +16,7 @@ export interface LayoutConfig {
   styleUrls: ['./layout.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
   host: {
-    class: 'min-h-screen grid grid-rows-[auto_1fr_auto]',
+    class: 'grid grid-rows-[auto_1fr_auto]',
     '[class]': 'class()',
   },
 })
@@ -25,7 +25,6 @@ export class LayoutComponent {
 
   protected readonly class = computed(() => {
     const layoutConfig = this.layoutConfig();
-    console.log('---layoutConfig-----', layoutConfig);
     if (layoutConfig?.fullLayout) {
       return {
         'flex-1': true,
@@ -33,6 +32,9 @@ export class LayoutComponent {
         'overflow-hidden': true,
         'min-h-full': true,
       };
-    } else return {};
+    } else
+      return {
+        'min-h-screen': true,
+      };
   });
 }

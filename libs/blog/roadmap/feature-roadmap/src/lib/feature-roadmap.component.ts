@@ -10,6 +10,7 @@ import {
   inject,
   input,
   PLATFORM_ID,
+  signal,
   ViewChild,
 } from '@angular/core';
 import {
@@ -78,7 +79,7 @@ export class FeatureRoadmapComponent {
     { initialValue: undefined },
   );
 
-  private panZoomInstance!: PanZoom;
+  private panZoomInstance = signal<PanZoom | undefined>(undefined);
 
   private readonly _http = inject(HttpClient);
   private readonly nodesDto = rxResource({
@@ -121,8 +122,9 @@ export class FeatureRoadmapComponent {
   }
 
   resizeRoadmap(event: EventType): void {
-    if (!this.panZoomInstance) return;
-    const currentTransform = this.panZoomInstance.getTransform();
+    const panZoomInstance = this.panZoomInstance();
+    if (!panZoomInstance) return;
+    const currentTransform = panZoomInstance.getTransform();
     const centerX = this.elementRef.nativeElement.clientWidth / 2;
     const centerY = this.elementRef.nativeElement.clientHeight / 2;
 
@@ -131,7 +133,7 @@ export class FeatureRoadmapComponent {
       const multiplier =
         Math.round(currentScale * 2) / 2 - this._scaleMultiplier;
 
-      this.panZoomInstance.smoothZoom(centerX, centerY, multiplier);
+      panZoomInstance.smoothZoom(centerX, centerY, multiplier);
     }
 
     if (event === 'increment') {
@@ -139,21 +141,21 @@ export class FeatureRoadmapComponent {
       const multiplier =
         Math.round(currentScale * 2) / 2 + this._scaleMultiplier;
 
-      this.panZoomInstance.smoothZoom(centerX, centerY, multiplier);
+      panZoomInstance.smoothZoom(centerX, centerY, multiplier);
     }
 
     if (event === 'reset') {
-      this.panZoomInstance.moveTo(0, 0);
-      this.panZoomInstance.zoomAbs(0, 0, 1);
+      panZoomInstance.moveTo(0, 0);
+      panZoomInstance.zoomAbs(0, 0, 1);
     }
     if (event === 'zoom-reset') {
-      this.panZoomInstance.zoomAbs(currentTransform.x, currentTransform.y, 1);
+      panZoomInstance.zoomAbs(currentTransform.x, currentTransform.y, 1);
     }
   }
 
   private focusSelectedNode(nodeId: string): void {
-    console.log(nodeId);
-    if (!this.panZoomInstance) return;
+    const panZoomInstance = this.panZoomInstance();
+    if (!panZoomInstance) return;
 
     console.log(nodeId);
     const selectedNode = this.elementRef.nativeElement.querySelector(
@@ -167,13 +169,15 @@ export class FeatureRoadmapComponent {
       const centerX = x + width / 2 - windowWidth / 2;
       const centerY = y + height / 2 - windowHeight / 2;
 
-      this.panZoomInstance.smoothMoveTo(-centerX, -centerY);
+      panZoomInstance.smoothMoveTo(-centerX, -centerY);
     }
   }
 
   private initPanZoom() {
     const roadmapWrapper = this.roadmapWrapper.nativeElement;
-    this.panZoomInstance = panzoom(roadmapWrapper, this._panZoomInitialConfig);
+    this.panZoomInstance.set(
+      panzoom(roadmapWrapper, this._panZoomInitialConfig),
+    );
   }
 
   getBottomSheet(event: string) {
