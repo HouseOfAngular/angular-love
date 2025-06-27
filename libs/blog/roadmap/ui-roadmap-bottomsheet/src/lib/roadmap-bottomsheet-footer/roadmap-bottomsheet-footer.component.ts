@@ -1,5 +1,4 @@
 import { Component, computed, input } from '@angular/core';
-import { TranslocoDirective } from '@jsverse/transloco';
 import { FastSvgComponent } from '@push-based/ngx-fast-svg';
 
 import { IconType } from '@angular-love/blog/shared/ui-icon';

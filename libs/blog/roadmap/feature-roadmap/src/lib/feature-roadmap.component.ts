@@ -25,13 +25,13 @@ import { map, tap } from 'rxjs';
 import { RoadmapNodeDTO } from '@angular-love/blog/contracts/roadmap';
 import {
   EventType,
-  RoadmapBottomsheetComponent,
   RoadmapLayer,
   RoadmapLayerComponent,
   RoadmapPanControlsComponent,
 } from '@angular-love/blog/roadmap/ui-roadmap';
 import { RoadmapStore } from '@angular-love/roadmap-data-access';
 import { RoadmapBottomsheetManagerService } from '@angular-love/roadmap-utils';
+import { RoadmapBottomsheetComponent } from '@angular-love/ui-roadmap-bottomsheet';
 
 import { buildRoadmapLayersFromDto } from './build-roadmap-layers-from-dto';
 
