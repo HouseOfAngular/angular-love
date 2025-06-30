@@ -19,7 +19,7 @@ interface Control {
         <button
           class="hover:text-al-primary"
           [attr.aria-label]="t(control.ariaLabelKey)"
-          (click)="resizeRoadmap.emit(control.event)"
+          (click)="resizeRoadmap.emit(control.event); $event.stopPropagation()"
         >
           <fast-svg [name]="control.name" size="24" />
         </button>

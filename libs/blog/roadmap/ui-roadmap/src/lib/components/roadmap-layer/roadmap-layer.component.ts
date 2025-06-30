@@ -43,6 +43,4 @@ export class RoadmapLayerComponent {
   readonly layer = input.required<RoadmapLayer>();
 
   readonly showLayerConnector = input<boolean>(false);
-
-  readonly getBottomSheet = output<string>();
 }

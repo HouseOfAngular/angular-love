@@ -6,7 +6,7 @@ import {
   output,
 } from '@angular/core';
 
-import { RoadmapBottomsheetManagerService } from '@angular-love/roadmap-utils';
+import { RoadmapBottomSheetNotifierService } from '@angular-love/roadmap-utils';
 
 import { RoadmapClusterNode } from '../../types/roadmap-node';
 
@@ -26,7 +26,7 @@ import { RoadmapClusterNode } from '../../types/roadmap-node';
           class="roadmap-hover-border-gradient relative w-full text-nowrap rounded-lg bg-[#FDF5FD] text-[#FDF5FD]"
           [attr.node-id]="clusterNode.id"
           (pointerup)="
-            _roadmapBottomsheetManagerService.openBottomSheet(clusterNode.id)
+            _roadmapBottomSheetNotifierService.openBottomSheet(clusterNode.id)
           "
         >
           <div
@@ -46,8 +46,8 @@ import { RoadmapClusterNode } from '../../types/roadmap-node';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class RoadmapClusterComponent {
-  protected readonly _roadmapBottomsheetManagerService = inject(
-    RoadmapBottomsheetManagerService,
+  protected readonly _roadmapBottomSheetNotifierService = inject(
+    RoadmapBottomSheetNotifierService,
   );
   readonly cluster = input.required<RoadmapClusterNode>();
 }

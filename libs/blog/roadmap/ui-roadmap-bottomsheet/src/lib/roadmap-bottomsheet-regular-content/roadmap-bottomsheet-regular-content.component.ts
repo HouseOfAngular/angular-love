@@ -1,7 +1,7 @@
 import { Component, input } from '@angular/core';
 
-import { ContentSlug } from '@angular-love/roadmap-utils';
-
+// eslint-disable-next-line @nx/enforce-module-boundaries
+import { ContentSlug } from '../../../../utils/src/lib/models/content-slug.type';
 import { RoadmapBottomsheetSubtitleComponent } from '../roadmap-bottomsheet-subtitle/roadmap-bottomsheet-subtitle.component';
 
 @Component({

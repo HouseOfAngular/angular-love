@@ -1,56 +1,64 @@
-import { inject } from '@angular/core';
+import { computed, inject } from '@angular/core';
 import { tapResponse } from '@ngrx/operators';
-import { patchState, signalStore, withMethods, withState } from '@ngrx/signals';
+import {
+  patchState,
+  signalStore,
+  withComputed,
+  withMethods,
+  withState,
+} from '@ngrx/signals';
 import { rxMethod } from '@ngrx/signals/rxjs-interop';
 import { pipe, switchMap, tap } from 'rxjs';
 
-import { RoadmapBottomsheetService } from '@angular-love/roadmap-utils';
+import { RoadmapNodeDTO } from '@angular-love/blog/contracts/roadmap';
 
-import { RoadmapService } from '../infractructure/roadmap.service';
+import { RoadmapService } from '../infractructure';
+
+import { buildRoadmapLayersFromDto } from './build-roadmap-layers-from-dto';
 
 type RoadmapState = {
   loading: 'success' | 'error' | 'init' | 'loading';
+  nodesDto: RoadmapNodeDTO[];
 };
 
 const initialState: RoadmapState = {
   loading: 'init',
+  nodesDto: [],
 };
 
 export const RoadmapStore = signalStore(
   withState(initialState),
-  withMethods(
-    (
-      store,
-      roadmapService = inject(RoadmapService),
-      bottomsheetService = inject(RoadmapBottomsheetService),
-    ) => ({
-      resetToInit: () => {
-        patchState(store, { loading: 'init' });
-      },
-      getNodeDetails: rxMethod<string>(
-        pipe(
-          tap(() => {
-            patchState(store, {
-              loading: 'loading',
-            });
-            bottomsheetService.close();
-          }),
-          switchMap((id) =>
-            roadmapService.getNodeDetails(id).pipe(
-              tapResponse({
-                next: (nodeDetails) => {
-                  patchState(store, { loading: 'success' });
-                  bottomsheetService.open(nodeDetails);
-                },
-                error: () => {
-                  patchState(store, { loading: 'error' });
-                  bottomsheetService.close();
-                },
-              }),
-            ),
+  withComputed((store) => ({
+    roadmapLayers: computed(() =>
+      buildRoadmapLayersFromDto(store.nodesDto() ?? []),
+    ),
+  })),
+  withMethods((store, roadmapService = inject(RoadmapService)) => ({
+    resetToInit: () => {
+      patchState(store, { loading: 'init' });
+    },
+    getNodeById: (nodeId: string) =>
+      store.nodesDto()?.find((node) => node.id === nodeId),
+    getNodes: rxMethod<void>(
+      pipe(
+        tap(() => {
+          patchState(store, {
+            loading: 'loading',
+          });
+        }),
+        switchMap(() =>
+          roadmapService.getNodes().pipe(
+            tapResponse({
+              next: (nodesDto) => {
+                patchState(store, { loading: 'success', nodesDto });
+              },
+              error: () => {
+                patchState(store, { loading: 'error' });
+              },
+            }),
           ),
         ),
       ),
-    }),
-  ),
+    ),
+  })),
 );

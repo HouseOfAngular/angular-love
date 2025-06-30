@@ -1,7 +1,7 @@
 import { NgClass, TitleCasePipe } from '@angular/common';
 import { Component, input } from '@angular/core';
 
-import { NodeDetails } from '@angular-love/roadmap-utils';
+import { RoadmapNodeDTO } from '@angular-love/blog/contracts/roadmap';
 
 @Component({
   selector: 'al-roadmap-bottomsheet-header',
@@ -10,6 +10,6 @@ import { NodeDetails } from '@angular-love/roadmap-utils';
   styleUrl: 'roadmap-bottomsheet-header.component.scss',
 })
 export class RoadmapBottomsheetHeaderComponent {
-  nodeType = input.required<NodeDetails['nodeType']>();
+  nodeType = input.required<RoadmapNodeDTO['nodeType']>();
   title = input.required<string>();
 }

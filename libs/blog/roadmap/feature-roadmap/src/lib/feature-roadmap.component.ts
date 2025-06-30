@@ -1,5 +1,4 @@
 import { isPlatformBrowser } from '@angular/common';
-import { HttpClient } from '@angular/common/http';
 import {
   afterNextRender,
   afterRenderEffect,
@@ -9,6 +8,7 @@ import {
   ElementRef,
   inject,
   input,
+  OnInit,
   PLATFORM_ID,
   signal,
   ViewChild,
@@ -22,7 +22,6 @@ import { ActivatedRoute } from '@angular/router';
 import panzoom, { PanZoom, PanZoomOptions } from 'panzoom';
 import { map, tap } from 'rxjs';
 
-import { RoadmapNodeDTO } from '@angular-love/blog/contracts/roadmap';
 import {
   EventType,
   RoadmapLayer,
@@ -30,10 +29,9 @@ import {
   RoadmapPanControlsComponent,
 } from '@angular-love/blog/roadmap/ui-roadmap';
 import { RoadmapStore } from '@angular-love/roadmap-data-access';
-import { RoadmapBottomsheetManagerService } from '@angular-love/roadmap-utils';
-import { RoadmapBottomsheetComponent } from '@angular-love/ui-roadmap-bottomsheet';
+import { RoadmapBottomSheetNotifierService } from '@angular-love/roadmap-utils';
 
-import { buildRoadmapLayersFromDto } from './build-roadmap-layers-from-dto';
+import { RoadmapBottomsheetManagerService } from './roadmap-bottomsheet-menager.service';
 
 const panZoomInitialConfig: PanZoomOptions = {
   maxZoom: 2,
@@ -45,11 +43,7 @@ const panZoomInitialConfig: PanZoomOptions = {
 
 @Component({
   selector: 'al-feature-roadmap',
-  imports: [
-    RoadmapLayerComponent,
-    RoadmapPanControlsComponent,
-    RoadmapBottomsheetComponent,
-  ],
+  imports: [RoadmapLayerComponent, RoadmapPanControlsComponent],
   templateUrl: './feature-roadmap.component.html',
   styleUrl: './feature-roadmap.component.scss',
   host: {
@@ -73,6 +67,9 @@ export class FeatureRoadmapComponent {
   private readonly _roadmapBottomsheetManagerService = inject(
     RoadmapBottomsheetManagerService,
   );
+  private readonly _roadmapBottomSheetNotifierService = inject(
+    RoadmapBottomSheetNotifierService,
+  );
 
   private readonly selectedNodeId = toSignal(
     this._route.queryParams.pipe(map((params) => params['nodeId'])),
@@ -81,21 +78,36 @@ export class FeatureRoadmapComponent {
 
   private panZoomInstance = signal<PanZoom | undefined>(undefined);
 
-  private readonly _http = inject(HttpClient);
-  private readonly nodesDto = rxResource({
-    loader: () =>
-      this._http.get<RoadmapNodeDTO[]>('assets/roadmap-tiles.json', {
-        responseType: 'json',
-      }),
-  }).value.asReadonly();
+  // private readonly _http = inject(HttpClient);
+  // private readonly nodesDto = rxResource({
+  //   loader: () =>
+  //     this._http.get<RoadmapNodeDTO[]>('assets/roadmap-tiles.json', {
+  //       responseType: 'json',
+  //     }),
+  // }).value.asReadonly();
+  //
+  // protected readonly roadmapLayers = computed<RoadmapLayer[]>(() =>
+  //   buildRoadmapLayersFromDto(this.nodesDto()),
+  // );
 
-  protected readonly roadmapLayers = computed<RoadmapLayer[]>(() =>
-    buildRoadmapLayersFromDto(this.nodesDto()),
-  );
+  private readonly nodesDto = this._roadmapStore.nodesDto;
+  protected readonly roadmapLayers = this._roadmapStore.roadmapLayers;
 
   language = input.required<string>();
 
   constructor() {
+    this._roadmapStore.getNodes();
+
+    this._roadmapBottomSheetNotifierService.nodeIdAsObservable
+      .pipe(
+        tap((nodeId) => {
+          const nodeDetails = this._roadmapStore.getNodeById(nodeId);
+          if (nodeDetails)
+            this._roadmapBottomsheetManagerService.open(nodeDetails);
+        }),
+        takeUntilDestroyed(),
+      )
+      .subscribe();
     afterRenderEffect(async () => {
       if (!isPlatformBrowser(this._platform)) return;
       if (this.nodesDto()?.length) {
@@ -110,15 +122,6 @@ export class FeatureRoadmapComponent {
 
       if (selectedNodeId) this.focusSelectedNode(selectedNodeId);
     });
-
-    this._roadmapBottomsheetManagerService.bottomSheetOpen$
-      .pipe(
-        takeUntilDestroyed(),
-        tap((id) => {
-          this._roadmapStore.getNodeDetails(id);
-        }),
-      )
-      .subscribe();
   }
 
   resizeRoadmap(event: EventType): void {
@@ -157,7 +160,6 @@ export class FeatureRoadmapComponent {
     const panZoomInstance = this.panZoomInstance();
     if (!panZoomInstance) return;
 
-    console.log(nodeId);
     const selectedNode = this.elementRef.nativeElement.querySelector(
       `[node-id="${nodeId}"]`,
     );
@@ -178,9 +180,5 @@ export class FeatureRoadmapComponent {
     this.panZoomInstance.set(
       panzoom(roadmapWrapper, this._panZoomInitialConfig),
     );
-  }
-
-  getBottomSheet(event: string) {
-    this._roadmapStore.getNodeDetails(event);
   }
 }
