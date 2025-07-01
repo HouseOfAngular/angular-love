@@ -7,7 +7,7 @@
       "compliant-components-declarative-approach-in-angular"
     ],
     "previousNodeId": null,
-    "description": "This is the \"Components\"'s description."
+    "description": "Components are the building blocks of Angular applications, encapsulating the template, logic, and styles to define a self-contained unit of the user interface."
   },
   {
     "id": "styling",
@@ -21,7 +21,7 @@
       "techniques-to-style-component-host-element-in-angular"
     ],
     "parentNodeId": "components",
-    "description": "This is the \"Styling\"'s description."
+    "description": "Angular components support scoped styles, allowing developers to apply CSS that affects only the component it is defined in, preventing style leaks."
   },
   {
     "id": "sass",
@@ -31,7 +31,7 @@
       "migrate-from-css-to-scss-stylesheets-for-an-existing-angular-project"
     ],
     "previousNodeId": null,
-    "description": "This is the \"Sass\"'s description."
+    "description": "Sass is a CSS preprocessor supported by Angular CLI that offers features like variables, nesting, and mixins, improving the maintainability of complex styles."
   },
   {
     "id": "angular-material",
@@ -54,7 +54,7 @@
     "title": "View Encapsulation",
     "articleSlugs": ["techniques-to-style-component-host-element-in-angular"],
     "previousNodeId": "angular-material",
-    "description": "This is the \"View Encapsulation\"'s description."
+    "description": "View encapsulation determines how styles are applied to components, ensuring that styles are scoped appropriately using Shadow DOM, Emulated, or None strategies."
   },
   {
     "id": "lifecycle",
@@ -69,7 +69,7 @@
       "takeuntildestroy-in-angular-v16"
     ],
     "previousNodeId": "styling",
-    "description": "This is the \"Lifecycle\"'s description."
+    "description": "Angular components and directives have lifecycle hooks that let you tap into key moments of their existence, such as creation, updates, and destruction."
   },
   {
     "id": "animations",
@@ -81,7 +81,7 @@
       "add-support-for-reduced-motion-in-angular-animations"
     ],
     "previousNodeId": "lifecycle",
-    "description": "This is the \"Animations\"'s description."
+    "description": "Angular provides a powerful animation API that lets developers create complex transitions and visual effects using a declarative syntax."
   },
   {
     "id": "change-detection",
@@ -105,7 +105,7 @@
       "do-you-still-think-that-ngzone-zone-js-is-required-for-change-detection-in-angular"
     ],
     "previousNodeId": "animations",
-    "description": "This is the \"Change Detection\"'s description."
+    "description": "Change detection is the process Angular uses to track changes in the application state and update the DOM to reflect those changes efficiently."
   },
   {
     "id": "component-interactions",
@@ -117,7 +117,7 @@
       "required-inputs-in-angular-v16"
     ],
     "previousNodeId": "change-detection",
-    "description": "This is the \"Component Interactions (input/output)\"'s description."
+    "description": "Component interaction techniques such as Input/Output decorators, services, and local references allow data and events to flow between components."
   },
   {
     "id": "dynamic-components",
@@ -131,7 +131,7 @@
       "deferred-components-vs-dynamic-components-in-angular"
     ],
     "previousNodeId": "component-interactions",
-    "description": "This is the \"Dynamic Components\"'s description."
+    "description": "Dynamic components are created and inserted into the DOM programmatically at runtime, useful for building flexible and interactive UI patterns."
   },
   {
     "id": "templates",
@@ -142,7 +142,7 @@
       "angular-template-let-variable-hot-or-not"
     ],
     "previousNodeId": "dynamic-components",
-    "description": "This is the \"Templates\"'s description."
+    "description": "Templates define the component’s HTML structure and layout, combining standard HTML with Angular’s template syntax for dynamic rendering."
   },
   {
     "id": "data-binding",
@@ -153,7 +153,7 @@
       "the-mechanics-of-property-bindings-update-in-angular"
     ],
     "previousNodeId": null,
-    "description": "This is the \"Data Binding\"'s description."
+    "description": "Data binding allows synchronization between the component class and the template, enabling interactive and reactive UI updates."
   },
   {
     "id": "control-flow",
@@ -165,7 +165,7 @@
       "build-a-pokemon-gallery-with-new-control-flow-in-angular-17"
     ],
     "previousNodeId": "data-binding",
-    "description": "This is the \"Control Flow\"'s description."
+    "description": "Control flow syntax like @if, @for, and @switch helps manage rendering logic directly within Angular templates."
   },
   {
     "id": "content-projection",
@@ -173,7 +173,7 @@
     "title": "Content Projection",
     "articleSlugs": [],
     "previousNodeId": "control-flow",
-    "description": "This is the \"Content Projection\"'s description."
+    "description": "Content projection enables components to receive and display dynamic external content using <ng-content>, facilitating flexible component composition."
   },
   {
     "id": "modules",
@@ -183,7 +183,7 @@
       "asynchronous-modules-and-components-in-angular-ivy"
     ],
     "previousNodeId": "components",
-    "description": "This is the \"Modules\"'s description."
+    "description": "Modules organize Angular applications into cohesive blocks of functionality, making it easier to manage and reuse code across the app."
   },
   {
     "id": "pipes",
@@ -195,7 +195,7 @@
       "how-pure-and-impure-pipes-work-in-angular-ivy"
     ],
     "previousNodeId": "modules",
-    "description": "This is the \"Pipes\"'s description."
+    "description": "Pipes transform data in templates for display purposes, such as formatting dates, numbers, or filtering and sorting lists"
   },
   {
     "id": "directives",
@@ -205,7 +205,7 @@
       "create-a-directive-for-free-dragging-in-angular"
     ],
     "previousNodeId": "pipes",
-    "description": "This is the \"Directives\"'s description."
+    "description": "Directives are used to add custom behavior to elements and components, either by manipulating the DOM or by extending component functionality."
   },
   {
     "id": "attribute-directives",
@@ -213,7 +213,7 @@
     "title": "Attribute Directives",
     "articleSlugs": [],
     "previousNodeId": null,
-    "description": "This is the \"Attribute Directives\"'s description."
+    "description": "Attribute directives change the appearance or behavior of an element, component, or another directive by modifying its attributes."
   },
   {
     "id": "structural-directives",
@@ -221,7 +221,7 @@
     "title": "Structural Directives",
     "articleSlugs": [],
     "previousNodeId": "attribute-directives",
-    "description": "This is the \"Structural Directives\"'s description."
+    "description": "Structural directives shape the layout of the DOM by adding or removing elements dynamically, typically using * syntax like *ngIf and *ngFor."
   },
   {
     "id": "ng-template-ng-container",
@@ -229,7 +229,7 @@
     "title": "ng-template, ng-container",
     "articleSlugs": ["ngtemplateoutlet-the-secret-to-customisation"],
     "previousNodeId": "structural-directives",
-    "description": "This is the \"ng-template, ng-container\"'s description."
+    "description": "<ng-template> and <ng-container> are structural elements used to control rendering logic without adding extra elements to the DOM."
   },
   {
     "id": "directive-composition",
@@ -237,7 +237,7 @@
     "title": "Directive Composition",
     "articleSlugs": ["work-smart-not-hard-use-directive-composition-api"],
     "previousNodeId": "ng-template-ng-container",
-    "description": "This is the \"Directive Composition\"'s description."
+    "description": "Directive composition allows combining multiple directives on a single element to build rich, reusable UI behaviors and features."
   },
   {
     "id": "routing",
@@ -250,7 +250,7 @@
       "router-data-as-components-inputs-in-angular-v16"
     ],
     "previousNodeId": "directives",
-    "description": "This is the \"Routing\"'s description."
+    "description": "Routing in Angular allows users to navigate between different views or pages while staying in a single-page application context."
   },
   {
     "id": "configuration",
@@ -261,7 +261,7 @@
       "dynamic-configuration-leveraging-app-initializer"
     ],
     "previousNodeId": null,
-    "description": "This is the \"Configuration\"'s description."
+    "description": "Routing configuration defines the mapping between application URLs and components, supporting nested routes, redirects, and lazy loading."
   },
   {
     "id": "guards-resolvers",
@@ -269,7 +269,7 @@
     "title": "Guards, Resolvers",
     "articleSlugs": [],
     "previousNodeId": "configuration",
-    "description": "This is the \"Guards, Resolvers\"'s description."
+    "description": "Guards and resolvers control access and fetch data before a route is activated, helping protect routes and preload necessary information."
   },
   {
     "id": "routerlink",
@@ -277,7 +277,7 @@
     "title": "routerLink, routerLinkActive, ...",
     "articleSlugs": [],
     "previousNodeId": "guards-resolvers",
-    "description": "This is the \"routerLink, routerLinkActive, ...\"'s description."
+    "description": "Router directives like routerLink and routerLinkActive enable navigation and active link styling in Angular templates."
   },
   {
     "id": "router-outlets",
@@ -285,7 +285,7 @@
     "title": "Router Outlets",
     "articleSlugs": ["angular-router-series-secondary-outlets-primer"],
     "previousNodeId": "routerlink",
-    "description": "This is the \"Router Outlets\"'s description."
+    "description": "<router-outlet> is a directive that acts as a placeholder for rendering the component associated with the current route."
   },
   {
     "id": "dependency-injection",
@@ -302,7 +302,7 @@
       "what-is-forwardref-in-angular-and-why-we-need-it"
     ],
     "previousNodeId": "routing",
-    "description": "This is the \"Dependency Injection\"'s description."
+    "description": "Angular’s dependency injection system provides a powerful way to manage services and dependencies, improving modularity and testability."
   },
   {
     "id": "forms",
@@ -314,7 +314,7 @@
       "the-updateon-option-in-angular-forms"
     ],
     "previousNodeId": "dependency-injection",
-    "description": "This is the \"Forms\"'s description."
+    "description": "Angular provides two main approaches to building forms: Template-Driven and Reactive, both supporting validation and dynamic form controls."
   },
   {
     "id": "template-driven-forms",
@@ -322,7 +322,7 @@
     "title": "Template-Driven Forms",
     "articleSlugs": [],
     "previousNodeId": null,
-    "description": "This is the \"Template-Driven Forms\"'s description."
+    "description": "Template-driven forms rely on directives in the template to create and manage form controls, offering a simple and declarative way to build forms."
   },
   {
     "id": "control-value-accessor",
@@ -333,7 +333,7 @@
       "how-to-use-controlvalueaccessor-to-enhance-date-input-with-automatic-conversion-and-validation"
     ],
     "previousNodeId": "template-driven-forms",
-    "description": "This is the \"Control Value Accessor\"'s description."
+    "description": "Control Value Accessors are used to create custom form controls that integrate seamlessly with Angular forms and validation."
   },
   {
     "id": "signal-forms",
@@ -341,7 +341,7 @@
     "title": "Signal Forms",
     "articleSlugs": [],
     "previousNodeId": "control-value-accessor",
-    "description": "This is the \"Signal Forms\"'s description."
+    "description": "Signal Forms offer a reactive and fine-grained approach to form state and validation using Angular’s signal-based reactivity model."
   },
   {
     "id": "reactive-forms",
@@ -357,7 +357,7 @@
       "angular-forms-story-strong-types"
     ],
     "previousNodeId": "signal-forms",
-    "description": "This is the \"Reactive Forms\"'s description."
+    "description": "Reactive forms provide a model-driven way to manage form controls in code, giving more explicit control over validation and dynamic form logic."
   },
   {
     "id": "validation",
@@ -368,7 +368,7 @@
       "creating-elegant-reactive-forms-with-rxwebvalidators"
     ],
     "previousNodeId": "reactive-forms",
-    "description": "This is the \"Validation\"'s description."
+    "description": "Form validation in Angular ensures user input meets defined rules, supporting both built-in validators and custom validation logic."
   },
   {
     "id": "reactivity",
@@ -379,7 +379,7 @@
       "declarative-reactive-data-and-action-streams-in-angular"
     ],
     "previousNodeId": "forms",
-    "description": "This is the \"Reactivity\"'s description."
+    "description": "Reactivity in Angular refers to the automatic synchronization of data between the application state and the UI, enabling efficient, responsive updates through tools like signals and RxJS."
   },
   {
     "id": "signals",
@@ -394,7 +394,7 @@
       "angular-signals-rxjs-interop-from-a-practical-example"
     ],
     "previousNodeId": null,
-    "description": "This is the \"Signals\"'s description."
+    "description": "Signals in Angular is a reactive primitive for managing and tracking state changes in a straightforward and predictable way, enabling fine-grained reactivity without relying on observables."
   },
   {
     "id": "rxjs",
@@ -431,7 +431,7 @@
       "build-your-own-observable-part-4-map-filter-take-and-all-that-jazz"
     ],
     "previousNodeId": "signals",
-    "description": "This is the \"RXJS\"'s description."
+    "description": "RxJS is a powerful library for reactive programming in Angular, allowing developers to work with asynchronous data streams and events using observables, operators, and subscriptions."
   },
   {
     "id": "http",
@@ -443,7 +443,7 @@
       "how-to-use-ts-decorators-to-add-caching-logic-to-api-calls"
     ],
     "previousNodeId": "reactivity",
-    "description": "This is the \"HTTP\"'s description."
+    "description": "Angular's HttpClient provides a streamlined way to communicate with backend services via HTTP methods like GET, POST, PUT, and DELETE."
   },
   {
     "id": "interceptors",
@@ -455,7 +455,7 @@
       "insiders-guide-into-interceptors-and-httpclient-mechanics-in-angular"
     ],
     "previousNodeId": null,
-    "description": "This is the \"interceptors\"'s description."
+    "description": "HTTP interceptors in Angular allow you to intercept and modify HTTP requests or responses globally, useful for tasks like adding auth tokens or handling errors."
   },
   {
     "id": "requests",
@@ -463,7 +463,7 @@
     "title": "requests",
     "articleSlugs": ["parsing-and-mapping-api-response-using-zod-js"],
     "previousNodeId": "interceptors",
-    "description": "This is the \"requests\"'s description."
+    "description": "In Angular, HTTP requests are the primary way to interact with RESTful APIs, enabling the app to fetch, send, and manipulate remote data in a structured and asynchronous manner."
   },
   {
     "id": "testing",
@@ -473,7 +473,7 @@
       "angular-testing-with-headless-chrome"
     ],
     "previousNodeId": "http",
-    "description": "This is the \"Testing\"'s description."
+    "description": "Testing in Angular ensures code reliability and maintainability by verifying that components, services, and other parts of the app behave as expected."
   },
   {
     "id": "unit-tests",
@@ -487,7 +487,7 @@
       "learn-how-to-unit-test-the-deferrable-views"
     ],
     "previousNodeId": null,
-    "description": "This is the \"Unit Tests\"'s description."
+    "description": "Unit tests focus on testing individual pieces of logic, like functions or components, in isolation to validate their correctness."
   },
   {
     "id": "integration-tests",
@@ -500,7 +500,7 @@
       "cypress-introduction"
     ],
     "previousNodeId": "unit-tests",
-    "description": "This is the \"Integration Tests\"'s description."
+    "description": "Integration tests verify how different parts of the application work together, ensuring combined components or services interact as intended."
   },
   {
     "id": "angular-cli",
@@ -515,7 +515,7 @@
       "angular-compilation-restrictions-overview"
     ],
     "previousNodeId": "testing",
-    "description": "This is the \"Angular CLI\"'s description."
+    "description": "Angular CLI is a powerful command-line tool that simplifies Angular development by automating project setup, code generation, testing, and building processes."
   },
   {
     "id": "state-management",
@@ -528,7 +528,7 @@
       "how-i-got-rid-of-state-observables-in-angular"
     ],
     "previousNodeId": "angular-cli",
-    "description": "This is the \"State Management\"'s description."
+    "description": "State management in Angular involves handling application data in a predictable way to ensure consistency across components."
   },
   {
     "id": "ngrx",
@@ -552,7 +552,7 @@
       "ngrx-how-and-where-to-handle-loading-and-error-states-of-ajax-calls"
     ],
     "previousNodeId": null,
-    "description": "This is the \"NGRX\"'s description."
+    "description": "NgRx is a Redux-inspired state management library for Angular that uses actions, reducers, and effects to manage complex application state in a reactive and scalable manner."
   },
   {
     "id": "signal-store",
@@ -563,7 +563,7 @@
       "signal-store-ngxs-elevating-flexibility-in-state-management"
     ],
     "previousNodeId": "ngrx",
-    "description": "This is the \"NGRX Signal Store\"'s description."
+    "description": "Signal Store is a lightweight, reactive state management solution built around Angular signals, offering a simpler alternative to more complex libraries like NgRx."
   },
   {
     "id": "ngxs",
@@ -575,7 +575,7 @@
       "signal-store-ngxs-elevating-flexibility-in-state-management"
     ],
     "previousNodeId": "signal-store",
-    "description": "This is the \"NGXS\"'s description."
+    "description": "NGXS is a state management library for Angular that provides a more concise, decorator-based approach to handling state, aiming for simplicity while maintaining structure."
   },
   {
     "id": "developer-tools",
@@ -588,7 +588,7 @@
       "setting-up-efficient-workflows-with-eslint-prettier-and-typescript"
     ],
     "previousNodeId": "state-management",
-    "description": "This is the \"Developer Tools\"'s description."
+    "description": "Angular Developer Tools (DevTools) is a browser extension that helps inspect and debug Angular applications, offering insights into component trees, change detection cycles, and performance bottlenecks."
   },
   {
     "id": "internationalization",
@@ -599,7 +599,7 @@
       "implementing-multi-language-angular-applications-rendered-on-a-server-ssr"
     ],
     "previousNodeId": "developer-tools",
-    "description": "This is the \"Internationalization\"'s description."
+    "description": "Internationalization (i18n) in Angular enables applications to support multiple languages and regional formats by providing built-in tools for translating text, formatting dates, numbers, and handling locale-specific content."
   },
   {
     "id": "performance",
@@ -617,7 +617,7 @@
       "how-to-exclude-stylesheets-from-the-bundle-and-lazy-load-them-in-angular-angular-tutorials"
     ],
     "previousNodeId": "internationalization",
-    "description": "This is the \"Performance\"'s description."
+    "description": "Performance focuses on optimizing load times and runtime efficiency through techniques like code splitting, efficient change detection, and minimizing unnecessary rendering."
   },
   {
     "id": "ngoptimizeimage",
@@ -629,7 +629,7 @@
       "the-who-what-when-where-why-and-how-of-image-optimization-in-angular"
     ],
     "previousNodeId": null,
-    "description": "This is the \"ngOptimizeImage\"'s description."
+    "description": "NgOptimizeImage is a directive that automatically optimizes images for better performance by handling responsive sizing, lazy loading, and format selection."
   },
   {
     "id": "defer",
@@ -642,7 +642,7 @@
       "deferred-components-vs-dynamic-components-in-angular"
     ],
     "previousNodeId": "ngoptimizeimage",
-    "description": "This is the \"@defer\"'s description."
+    "description": "The @defer block allows parts of a component’s template to load lazily, improving initial render performance by delaying non-critical content."
   },
   {
     "id": "lazy-loading",
@@ -656,7 +656,7 @@
       "angular-lazy-load-common-styles-specific-to-a-feature-module"
     ],
     "previousNodeId": "defer",
-    "description": "This is the \"Lazy Loading\"'s description."
+    "description": "Lazy loading in Angular loads features only when needed, reducing the initial bundle size and speeding up application startup."
   },
   {
     "id": "architecture-design-patterns",
@@ -683,7 +683,7 @@
       "the-controllers-of-component-concept-in-angular-part-ii"
     ],
     "previousNodeId": "performance",
-    "description": "This is the \"Architecture / Design Patterns\"'s description."
+    "description": "Angular’s architecture follows a modular and component-based design, leveraging patterns like dependency injection, reactive programming, and separation of concerns to build scalable and maintainable applications."
   },
   {
     "id": "security",
@@ -694,7 +694,7 @@
       "implement-google-sign-inoauth-in-your-angular-app-in-under-15-minutes"
     ],
     "previousNodeId": "architecture-design-patterns",
-    "description": "This is the \"Security\"'s description."
+    "description": "Security in Angular involves protecting applications from common web vulnerabilities such as XSS and CSRF by using built-in safeguards like sanitization, strict typing, and secure HTTP practices."
   },
   {
     "id": "ssr",
@@ -707,7 +707,7 @@
       "implementing-multi-language-angular-applications-rendered-on-a-server-ssr"
     ],
     "previousNodeId": "security",
-    "description": "This is the \"SSR\"'s description."
+    "description": "SSR renders application pages on the server before sending them to the client, improving initial load speed, SEO, and user experience, especially on slower devices or networks."
   },
   {
     "id": "accessibility",
@@ -718,7 +718,7 @@
       "angular-for-everyone-how-to-adapt-applications-for-people-with-disabilities"
     ],
     "previousNodeId": "ssr",
-    "description": "This is the \"Accessibility\"'s description."
+    "description": "Accessibility ensures applications are usable by people with disabilities by following best practices like semantic HTML, ARIA roles, keyboard navigation, and screen reader support."
   },
   {
     "title": "Deployment & CI/CD",
@@ -735,7 +735,7 @@
       "how-to-automate-npm-package-publishing-with-azure-devops"
     ],
     "previousNodeId": "accessibility",
-    "description": "This is the \"Deployment & CI/CD\"'s description."
+    "description": "Deployment involves packaging and delivering the app to production environments, while CI/CD automates building, testing, and deploying code changes to ensure fast, reliable updates."
   },
   {
     "title": "Bundling & Optimization",
@@ -751,7 +751,7 @@
       "reduce-your-bundle-size-through-this-component-styling-technique"
     ],
     "previousNodeId": "deployment-&-ci/cd",
-    "description": "This is the \"Bundling & Optimization\"'s description."
+    "description": "Bundling in Angular combines multiple files into fewer bundles to reduce load times, while optimization techniques like minification, tree-shaking, and ahead-of-time (AOT) compilation improve performance and reduce application size."
   },
   {
     "title": "Libraries & Packages",
@@ -765,7 +765,7 @@
       "create-your-standalone-angular-library-in-10-minutes"
     ],
     "previousNodeId": "bundling-&-optimization",
-    "description": "This is the \"Libraries & Packages\"'s description."
+    "description": "Libraries and packages are reusable sets of code or features - often distributed via npm - that help developers add functionality, share components, or extend the framework efficiently."
   },
   {
     "title": "Micro Frontends",
@@ -777,7 +777,7 @@
       "how-to-deploy-a-run-time-micro-frontend-application-using-aws"
     ],
     "previousNodeId": "libraries-&-packages",
-    "description": "This is the \"Micro Frontends\"'s description."
+    "description": "Micro frontends break a large Angular application into smaller, independently deployable pieces, allowing teams to develop, test, and deploy features in isolation for better scalability and maintainability"
   },
   {
     "title": "Advanced Angular Features",
@@ -795,7 +795,7 @@
       "do-you-still-think-that-ngzone-zone-js-is-required-for-change-detection-in-angular"
     ],
     "previousNodeId": "micro-frontends",
-    "description": "This is the \"Advanced Angular Features\"'s description."
+    "description": "Advanced Angular features include techniques like dynamic component loading or custom directives enable building more flexible and high-performance applications."
   },
   {
     "title": "Angular Versions Updates",
@@ -814,7 +814,7 @@
       "brace-yourself-angular-8-is-coming"
     ],
     "previousNodeId": "advanced-angular-features",
-    "description": "This is the \"Angular Versions Updates\"'s description."
+    "description": "Angular version updates bring new features, performance improvements, and bug fixes, while often providing migration tools and guides to help developers smoothly upgrade their applications."
   },
   {
     "title": "Data Visualization",
@@ -825,7 +825,7 @@
       "inside-ag-grid-techniques-to-make-the-fastest-javascript-datagrid-in-the-world"
     ],
     "previousNodeId": "angular-versions-updates",
-    "description": "This is the \"Data Visualization\"'s description."
+    "description": "Data visualization in Angular involves integrating libraries and components to create interactive charts, graphs, and dashboards that help users understand complex data visually."
   },
   {
     "title": "Web Components",
@@ -837,7 +837,7 @@
       "angular-elements-2"
     ],
     "previousNodeId": "internationalization",
-    "description": "This is the \"Web Components\"'s description."
+    "description": "Web Components are a set of standardized web platform APIs that allow Angular apps to create reusable, encapsulated custom elements which can be used across different frameworks and projects."
   },
   {
     "title": "Monorepo & Workspace",
@@ -851,7 +851,7 @@
       "making-an-angular-project-mono-repo-with-ngrx-state-management-and-lazy-loading"
     ],
     "previousNodeId": "web-components",
-    "description": "This is the \"Monorepo & Workspace\"'s description."
+    "description": "A monorepo in Angular manages multiple related projects within a single repository. It provides tooling and structure to develop, build, and test these projects efficiently under one unified setup."
   },
   {
     "title": "Cross-Platform",
@@ -863,7 +863,7 @@
       "building-web-desktop-and-mobile-apps-from-a-single-codebase-using-angular"
     ],
     "previousNodeId": "monorepo-&-workspace",
-    "description": "This is the \"Cross-Platform\"'s description."
+    "description": "Cross-platform refers to building applications that can run seamlessly across different environments - such as web, mobile, and desktop - often using frameworks like Angular with Ionic or NativeScript."
   },
   {
     "title": "Rendering & DOM Manipulation",
@@ -875,6 +875,6 @@
       "exploring-angular-dom-manipulation-techniques-using-viewcontainerref"
     ],
     "previousNodeId": "cross-platform",
-    "description": "This is the \"Rendering & DOM Manipulation\"'s description."
+    "description": "Understand how Angular's rendering engine works, including component lifecycle management and change detection mechanisms that efficiently update the DOM. Learn safe DOM manipulation techniques and best practices for interacting with elements while maintaining Angular's reactive data flow."
   }
 ]

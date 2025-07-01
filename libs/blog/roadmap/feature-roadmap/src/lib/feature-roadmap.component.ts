@@ -150,17 +150,29 @@ export class FeatureRoadmapComponent {
       `[node-id="${nodeId}"]`,
     );
 
-    if (selectedNode) {
-      const { x, y, width, height } = selectedNode.getBoundingClientRect();
-      const { innerWidth: windowWidth, innerHeight: windowHeight } = window;
+    if (!selectedNode) return;
+    const nodeRect = selectedNode.getBoundingClientRect();
+    const containerRect = this.elementRef.nativeElement.getBoundingClientRect();
 
-      const centerX = x + width / 2 - windowWidth / 2;
-      const centerY = y + height / 2 - windowHeight / 2;
+    const nodeCenterX = nodeRect.left + nodeRect.width / 2;
+    const nodeCenterY = nodeRect.top + nodeRect.height / 2;
 
-      panZoomInstance.smoothMoveTo(-centerX, -centerY);
+    const containerCenterX = containerRect.left + containerRect.width / 2;
+    const containerCenterY = containerRect.top + containerRect.height / 2;
 
-      const nodeDetails = this._roadmapStore.getNodeById(nodeId);
-      if (nodeDetails) this._roadmapBottomsheetManagerService.open(nodeDetails);
+    const deltaX = nodeCenterX - containerCenterX;
+    const deltaY = nodeCenterY - containerCenterY;
+
+    const transform = panZoomInstance.getTransform();
+
+    const targetX = transform.x - deltaX;
+    const targetY = transform.y - deltaY;
+
+    panZoomInstance.smoothMoveTo(targetX, targetY);
+
+    const nodeDetails = this._roadmapStore.getNodeById(nodeId);
+    if (nodeDetails) {
+      this._roadmapBottomsheetManagerService.open(nodeDetails);
     }
   }
 
