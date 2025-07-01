@@ -9,8 +9,9 @@ export class RoadmapBottomsheetManagerService {
   private dialog = inject(Dialog);
 
   open(roadmapNode: RoadmapNodeDTO) {
-    this.dialog.open(RoadmapBottomsheetComponent, {
+    const dialogRef = this.dialog.open(RoadmapBottomsheetComponent, {
       data: roadmapNode,
+      disableClose: false,
     });
   }
 }

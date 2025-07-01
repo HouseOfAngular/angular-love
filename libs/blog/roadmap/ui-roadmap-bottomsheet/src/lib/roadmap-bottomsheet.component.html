@@ -1,5 +1,8 @@
 @if (nodeDetails(); as nodeDetails) {
-  <div class="fixed inset-0 z-[1000] flex items-end justify-center bg-black/50">
+  <div
+    class="fixed inset-0 z-[1000] flex items-end justify-center bg-black/50"
+    (click)="onClose()"
+  >
     <div
       class="bottomsheet max-h-[70vh] w-4/5 overflow-y-auto rounded-t-2xl border-2 border-b-0 border-white bg-gradient-to-br from-[#100f15] to-[#3b0019] text-white lg:w-3/5"
       [ngClass]="{

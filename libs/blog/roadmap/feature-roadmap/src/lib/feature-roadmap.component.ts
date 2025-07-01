@@ -78,18 +78,6 @@ export class FeatureRoadmapComponent {
 
   private panZoomInstance = signal<PanZoom | undefined>(undefined);
 
-  // private readonly _http = inject(HttpClient);
-  // private readonly nodesDto = rxResource({
-  //   loader: () =>
-  //     this._http.get<RoadmapNodeDTO[]>('assets/roadmap-tiles.json', {
-  //       responseType: 'json',
-  //     }),
-  // }).value.asReadonly();
-  //
-  // protected readonly roadmapLayers = computed<RoadmapLayer[]>(() =>
-  //   buildRoadmapLayersFromDto(this.nodesDto()),
-  // );
-
   private readonly nodesDto = this._roadmapStore.nodesDto;
   protected readonly roadmapLayers = this._roadmapStore.roadmapLayers;
 

@@ -1,4 +1,4 @@
-import { DIALOG_DATA } from '@angular/cdk/dialog';
+import { DIALOG_DATA, DialogRef } from '@angular/cdk/dialog';
 import { NgClass } from '@angular/common';
 import { Component, computed, inject, signal } from '@angular/core';
 
@@ -62,6 +62,7 @@ function isRegularNode(node: RoadmapNodeDTO): node is RegularNodeDTO {
 })
 export class RoadmapBottomsheetComponent {
   private matDialogData = inject<RoadmapNodeDTO>(DIALOG_DATA);
+  private dialogRef = inject(DialogRef<RoadmapBottomsheetComponent>);
   nodeDetails = signal<RoadmapNodeDTO>(this.matDialogData);
   language = signal<string>('');
 
@@ -78,4 +79,8 @@ export class RoadmapBottomsheetComponent {
   });
 
   readonly isContentInRegularNodeDetails = signal(true);
+
+  onClose() {
+    this.dialogRef.close();
+  }
 }
