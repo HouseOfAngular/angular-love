@@ -6,7 +6,8 @@
       "heres-what-you-should-know-when-creating-flexible-and-reusable-components-in-angular",
       "compliant-components-declarative-approach-in-angular"
     ],
-    "previousNodeId": null
+    "previousNodeId": null,
+    "description": "This is the \"Components\"'s description."
   },
   {
     "id": "styling",
@@ -19,7 +20,8 @@
       "switch-themes-like-a-fox-based-on-ambient-light-in-your-angular-apps",
       "techniques-to-style-component-host-element-in-angular"
     ],
-    "parentNodeId": "components"
+    "parentNodeId": "components",
+    "description": "This is the \"Styling\"'s description."
   },
   {
     "id": "sass",
@@ -28,7 +30,8 @@
     "articleSlugs": [
       "migrate-from-css-to-scss-stylesheets-for-an-existing-angular-project"
     ],
-    "previousNodeId": null
+    "previousNodeId": null,
+    "description": "This is the \"Sass\"'s description."
   },
   {
     "id": "angular-material",
@@ -42,14 +45,16 @@
       "faster-perceived-response-time-with-angular-material-to-tackle-need-for-speed",
       "stop-using-shared-material-module"
     ],
-    "previousNodeId": "sass"
+    "previousNodeId": "sass",
+    "description": "This is the \"Angular Material\"'s description."
   },
   {
     "id": "view-encapsulation",
     "parentNodeId": "styling",
     "title": "View Encapsulation",
     "articleSlugs": ["techniques-to-style-component-host-element-in-angular"],
-    "previousNodeId": "angular-material"
+    "previousNodeId": "angular-material",
+    "description": "This is the \"View Encapsulation\"'s description."
   },
   {
     "id": "lifecycle",
@@ -63,7 +68,8 @@
       "get-to-know-the-afterrendereffect",
       "takeuntildestroy-in-angular-v16"
     ],
-    "previousNodeId": "styling"
+    "previousNodeId": "styling",
+    "description": "This is the \"Lifecycle\"'s description."
   },
   {
     "id": "animations",
@@ -74,7 +80,8 @@
       "controlling-angular-animations-programmatically",
       "add-support-for-reduced-motion-in-angular-animations"
     ],
-    "previousNodeId": "lifecycle"
+    "previousNodeId": "lifecycle",
+    "description": "This is the \"Animations\"'s description."
   },
   {
     "id": "change-detection",
@@ -97,7 +104,8 @@
       "everything-you-need-to-know-about-change-detection-in-angular",
       "do-you-still-think-that-ngzone-zone-js-is-required-for-change-detection-in-angular"
     ],
-    "previousNodeId": "animations"
+    "previousNodeId": "animations",
+    "description": "This is the \"Change Detection\"'s description."
   },
   {
     "id": "component-interactions",
@@ -108,7 +116,8 @@
       "router-data-as-components-inputs-in-angular-v16",
       "required-inputs-in-angular-v16"
     ],
-    "previousNodeId": "change-detection"
+    "previousNodeId": "change-detection",
+    "description": "This is the \"Component Interactions (input/output)\"'s description."
   },
   {
     "id": "dynamic-components",
@@ -121,7 +130,8 @@
       "rendering-dynamic-components-by-selector-name-in-ivy",
       "deferred-components-vs-dynamic-components-in-angular"
     ],
-    "previousNodeId": "component-interactions"
+    "previousNodeId": "component-interactions",
+    "description": "This is the \"Dynamic Components\"'s description."
   },
   {
     "id": "templates",
@@ -131,7 +141,8 @@
       "using-angular-in-the-right-way-template-syntax",
       "angular-template-let-variable-hot-or-not"
     ],
-    "previousNodeId": "dynamic-components"
+    "previousNodeId": "dynamic-components",
+    "description": "This is the \"Templates\"'s description."
   },
   {
     "id": "data-binding",
@@ -141,7 +152,8 @@
       "bindon-lesser-known-angular-template-features",
       "the-mechanics-of-property-bindings-update-in-angular"
     ],
-    "previousNodeId": null
+    "previousNodeId": null,
+    "description": "This is the \"Data Binding\"'s description."
   },
   {
     "id": "control-flow",
@@ -152,14 +164,16 @@
       "new-syntax-for-control-flow-in-angular",
       "build-a-pokemon-gallery-with-new-control-flow-in-angular-17"
     ],
-    "previousNodeId": "data-binding"
+    "previousNodeId": "data-binding",
+    "description": "This is the \"Control Flow\"'s description."
   },
   {
     "id": "content-projection",
     "parentNodeId": "templates",
     "title": "Content Projection",
     "articleSlugs": [],
-    "previousNodeId": "control-flow"
+    "previousNodeId": "control-flow",
+    "description": "This is the \"Content Projection\"'s description."
   },
   {
     "id": "modules",
@@ -168,7 +182,8 @@
       "avoiding-common-confusions-with-modules-in-angular",
       "asynchronous-modules-and-components-in-angular-ivy"
     ],
-    "previousNodeId": "components"
+    "previousNodeId": "components",
+    "description": "This is the \"Modules\"'s description."
   },
   {
     "id": "pipes",
@@ -179,7 +194,8 @@
       "the-essential-difference-between-pure-and-impure-pipes-in-angular-and-why-that-matters",
       "how-pure-and-impure-pipes-work-in-angular-ivy"
     ],
-    "previousNodeId": "modules"
+    "previousNodeId": "modules",
+    "description": "This is the \"Pipes\"'s description."
   },
   {
     "id": "directives",
@@ -188,35 +204,40 @@
       "angular-self-saving-dropdowns-yet-another-directive",
       "create-a-directive-for-free-dragging-in-angular"
     ],
-    "previousNodeId": "pipes"
+    "previousNodeId": "pipes",
+    "description": "This is the \"Directives\"'s description."
   },
   {
     "id": "attribute-directives",
     "parentNodeId": "directives",
     "title": "Attribute Directives",
     "articleSlugs": [],
-    "previousNodeId": null
+    "previousNodeId": null,
+    "description": "This is the \"Attribute Directives\"'s description."
   },
   {
     "id": "structural-directives",
     "parentNodeId": "directives",
     "title": "Structural Directives",
     "articleSlugs": [],
-    "previousNodeId": "attribute-directives"
+    "previousNodeId": "attribute-directives",
+    "description": "This is the \"Structural Directives\"'s description."
   },
   {
     "id": "ng-template-ng-container",
     "parentNodeId": "directives",
     "title": "ng-template, ng-container",
     "articleSlugs": ["ngtemplateoutlet-the-secret-to-customisation"],
-    "previousNodeId": "structural-directives"
+    "previousNodeId": "structural-directives",
+    "description": "This is the \"ng-template, ng-container\"'s description."
   },
   {
     "id": "directive-composition",
     "parentNodeId": "directives",
     "title": "Directive Composition",
     "articleSlugs": ["work-smart-not-hard-use-directive-composition-api"],
-    "previousNodeId": "ng-template-ng-container"
+    "previousNodeId": "ng-template-ng-container",
+    "description": "This is the \"Directive Composition\"'s description."
   },
   {
     "id": "routing",
@@ -228,7 +249,8 @@
       "angular-scroll-position-restoration",
       "router-data-as-components-inputs-in-angular-v16"
     ],
-    "previousNodeId": "directives"
+    "previousNodeId": "directives",
+    "description": "This is the \"Routing\"'s description."
   },
   {
     "id": "configuration",
@@ -238,28 +260,32 @@
       "external-configurations-in-angular",
       "dynamic-configuration-leveraging-app-initializer"
     ],
-    "previousNodeId": null
+    "previousNodeId": null,
+    "description": "This is the \"Configuration\"'s description."
   },
   {
     "id": "guards-resolvers",
     "parentNodeId": "routing",
     "title": "Guards, Resolvers",
     "articleSlugs": [],
-    "previousNodeId": "configuration"
+    "previousNodeId": "configuration",
+    "description": "This is the \"Guards, Resolvers\"'s description."
   },
   {
     "id": "routerlink",
     "parentNodeId": "routing",
     "title": "routerLink, routerLinkActive, ...",
     "articleSlugs": [],
-    "previousNodeId": "guards-resolvers"
+    "previousNodeId": "guards-resolvers",
+    "description": "This is the \"routerLink, routerLinkActive, ...\"'s description."
   },
   {
     "id": "router-outlets",
     "parentNodeId": "routing",
     "title": "Router Outlets",
     "articleSlugs": ["angular-router-series-secondary-outlets-primer"],
-    "previousNodeId": "routerlink"
+    "previousNodeId": "routerlink",
+    "description": "This is the \"Router Outlets\"'s description."
   },
   {
     "id": "dependency-injection",
@@ -275,7 +301,8 @@
       "how-to-avoid-angular-injectable-instances-duplication",
       "what-is-forwardref-in-angular-and-why-we-need-it"
     ],
-    "previousNodeId": "routing"
+    "previousNodeId": "routing",
+    "description": "This is the \"Dependency Injection\"'s description."
   },
   {
     "id": "forms",
@@ -286,14 +313,16 @@
       "angular-forms-why-is-ngmodelchange-late-when-updating-ngmodel-value",
       "the-updateon-option-in-angular-forms"
     ],
-    "previousNodeId": "dependency-injection"
+    "previousNodeId": "dependency-injection",
+    "description": "This is the \"Forms\"'s description."
   },
   {
     "id": "template-driven-forms",
     "parentNodeId": "forms",
     "title": "Template-Driven Forms",
     "articleSlugs": [],
-    "previousNodeId": null
+    "previousNodeId": null,
+    "description": "This is the \"Template-Driven Forms\"'s description."
   },
   {
     "id": "control-value-accessor",
@@ -303,14 +332,16 @@
       "never-again-be-confused-when-implementing-controlvalueaccessor-in-angular-forms",
       "how-to-use-controlvalueaccessor-to-enhance-date-input-with-automatic-conversion-and-validation"
     ],
-    "previousNodeId": "template-driven-forms"
+    "previousNodeId": "template-driven-forms",
+    "description": "This is the \"Control Value Accessor\"'s description."
   },
   {
     "id": "signal-forms",
     "parentNodeId": "forms",
     "title": "Signal Forms",
     "articleSlugs": [],
-    "previousNodeId": "control-value-accessor"
+    "previousNodeId": "control-value-accessor",
+    "description": "This is the \"Signal Forms\"'s description."
   },
   {
     "id": "reactive-forms",
@@ -325,7 +356,8 @@
       "nested-forms-with-controlcontainer",
       "angular-forms-story-strong-types"
     ],
-    "previousNodeId": "signal-forms"
+    "previousNodeId": "signal-forms",
+    "description": "This is the \"Reactive Forms\"'s description."
   },
   {
     "id": "validation",
@@ -335,7 +367,8 @@
       "the-best-way-to-implement-custom-validators",
       "creating-elegant-reactive-forms-with-rxwebvalidators"
     ],
-    "previousNodeId": "reactive-forms"
+    "previousNodeId": "reactive-forms",
+    "description": "This is the \"Validation\"'s description."
   },
   {
     "id": "reactivity",
@@ -345,7 +378,8 @@
       "exploring-the-state-of-reactivity-patterns-in-2020",
       "declarative-reactive-data-and-action-streams-in-angular"
     ],
-    "previousNodeId": "forms"
+    "previousNodeId": "forms",
+    "description": "This is the \"Reactivity\"'s description."
   },
   {
     "id": "signals",
@@ -359,7 +393,8 @@
       "why-angular-signals-wont-replace-rxjs",
       "angular-signals-rxjs-interop-from-a-practical-example"
     ],
-    "previousNodeId": null
+    "previousNodeId": null,
+    "description": "This is the \"Signals\"'s description."
   },
   {
     "id": "rxjs",
@@ -395,7 +430,8 @@
       "building-your-own-observable-part-3-the-observer-pattern-and-creational-methods",
       "build-your-own-observable-part-4-map-filter-take-and-all-that-jazz"
     ],
-    "previousNodeId": "signals"
+    "previousNodeId": "signals",
+    "description": "This is the \"RXJS\"'s description."
   },
   {
     "id": "http",
@@ -406,7 +442,8 @@
       "how-to-use-the-environment-for-specific-http-services",
       "how-to-use-ts-decorators-to-add-caching-logic-to-api-calls"
     ],
-    "previousNodeId": "reactivity"
+    "previousNodeId": "reactivity",
+    "description": "This is the \"HTTP\"'s description."
   },
   {
     "id": "interceptors",
@@ -417,14 +454,16 @@
       "how-to-split-http-interceptors-between-multiple-backends",
       "insiders-guide-into-interceptors-and-httpclient-mechanics-in-angular"
     ],
-    "previousNodeId": null
+    "previousNodeId": null,
+    "description": "This is the \"interceptors\"'s description."
   },
   {
     "id": "requests",
     "parentNodeId": "http",
     "title": "requests",
     "articleSlugs": ["parsing-and-mapping-api-response-using-zod-js"],
-    "previousNodeId": "interceptors"
+    "previousNodeId": "interceptors",
+    "description": "This is the \"requests\"'s description."
   },
   {
     "id": "testing",
@@ -433,7 +472,8 @@
       "effective-rxjs-marble-testing",
       "angular-testing-with-headless-chrome"
     ],
-    "previousNodeId": "http"
+    "previousNodeId": "http",
+    "description": "This is the \"Testing\"'s description."
   },
   {
     "id": "unit-tests",
@@ -446,7 +486,8 @@
       "ng-mocks-what-is-it-all-about",
       "learn-how-to-unit-test-the-deferrable-views"
     ],
-    "previousNodeId": null
+    "previousNodeId": null,
+    "description": "This is the \"Unit Tests\"'s description."
   },
   {
     "id": "integration-tests",
@@ -458,7 +499,8 @@
       "visual-regression-testing-with-cypress-and-angular",
       "cypress-introduction"
     ],
-    "previousNodeId": "unit-tests"
+    "previousNodeId": "unit-tests",
+    "description": "This is the \"Integration Tests\"'s description."
   },
   {
     "id": "angular-cli",
@@ -472,7 +514,8 @@
       "how-to-stop-being-afraid-and-create-your-own-angular-cli-builder",
       "angular-compilation-restrictions-overview"
     ],
-    "previousNodeId": "testing"
+    "previousNodeId": "testing",
+    "description": "This is the \"Angular CLI\"'s description."
   },
   {
     "id": "state-management",
@@ -484,7 +527,8 @@
       "how-to-manage-component-state-in-angular-using-ngrx-component-store",
       "how-i-got-rid-of-state-observables-in-angular"
     ],
-    "previousNodeId": "angular-cli"
+    "previousNodeId": "angular-cli",
+    "description": "This is the \"State Management\"'s description."
   },
   {
     "id": "ngrx",
@@ -507,7 +551,8 @@
       "how-to-start-flying-with-angular-and-ngrx",
       "ngrx-how-and-where-to-handle-loading-and-error-states-of-ajax-calls"
     ],
-    "previousNodeId": null
+    "previousNodeId": null,
+    "description": "This is the \"NGRX\"'s description."
   },
   {
     "id": "signal-store",
@@ -517,7 +562,8 @@
       "breakthrough-in-state-management-discover-the-simplicity-of-signal-store-part-1",
       "signal-store-ngxs-elevating-flexibility-in-state-management"
     ],
-    "previousNodeId": "ngrx"
+    "previousNodeId": "ngrx",
+    "description": "This is the \"NGRX Signal Store\"'s description."
   },
   {
     "id": "ngxs",
@@ -528,7 +574,8 @@
       "all-you-need-to-know-to-jumpstart-with-ngxs",
       "signal-store-ngxs-elevating-flexibility-in-state-management"
     ],
-    "previousNodeId": "signal-store"
+    "previousNodeId": "signal-store",
+    "description": "This is the \"NGXS\"'s description."
   },
   {
     "id": "developer-tools",
@@ -540,7 +587,8 @@
       "debugging-techniques-angular-devtools",
       "setting-up-efficient-workflows-with-eslint-prettier-and-typescript"
     ],
-    "previousNodeId": "state-management"
+    "previousNodeId": "state-management",
+    "description": "This is the \"Developer Tools\"'s description."
   },
   {
     "id": "internationalization",
@@ -550,7 +598,8 @@
       "internationalization-how-to-open-an-application-to-the-world-part-2",
       "implementing-multi-language-angular-applications-rendered-on-a-server-ssr"
     ],
-    "previousNodeId": "developer-tools"
+    "previousNodeId": "developer-tools",
+    "description": "This is the \"Internationalization\"'s description."
   },
   {
     "id": "performance",
@@ -567,7 +616,8 @@
       "optimize-your-angular-bundle-size",
       "how-to-exclude-stylesheets-from-the-bundle-and-lazy-load-them-in-angular-angular-tutorials"
     ],
-    "previousNodeId": "internationalization"
+    "previousNodeId": "internationalization",
+    "description": "This is the \"Performance\"'s description."
   },
   {
     "id": "ngoptimizeimage",
@@ -578,7 +628,8 @@
       "improve-page-performance-and-lcp-with-ngoptimizedimage",
       "the-who-what-when-where-why-and-how-of-image-optimization-in-angular"
     ],
-    "previousNodeId": null
+    "previousNodeId": null,
+    "description": "This is the \"ngOptimizeImage\"'s description."
   },
   {
     "id": "defer",
@@ -590,7 +641,8 @@
       "bundle-size-improvements-from-deferred-views-in-angular",
       "deferred-components-vs-dynamic-components-in-angular"
     ],
-    "previousNodeId": "ngoptimizeimage"
+    "previousNodeId": "ngoptimizeimage",
+    "description": "This is the \"@defer\"'s description."
   },
   {
     "id": "lazy-loading",
@@ -603,7 +655,8 @@
       "lazy-loading-angular-components-from-non-angular-applications",
       "angular-lazy-load-common-styles-specific-to-a-feature-module"
     ],
-    "previousNodeId": "defer"
+    "previousNodeId": "defer",
+    "description": "This is the \"Lazy Loading\"'s description."
   },
   {
     "id": "architecture-design-patterns",
@@ -629,7 +682,8 @@
       "demystifying-taiga-ui-root-component-portals-pattern-in-angular",
       "the-controllers-of-component-concept-in-angular-part-ii"
     ],
-    "previousNodeId": "performance"
+    "previousNodeId": "performance",
+    "description": "This is the \"Architecture / Design Patterns\"'s description."
   },
   {
     "id": "security",
@@ -639,7 +693,8 @@
       "can-we-fully-trust-html-sanitizers-and-how-to-work-without-them",
       "implement-google-sign-inoauth-in-your-angular-app-in-under-15-minutes"
     ],
-    "previousNodeId": "architecture-design-patterns"
+    "previousNodeId": "architecture-design-patterns",
+    "description": "This is the \"Security\"'s description."
   },
   {
     "id": "ssr",
@@ -651,7 +706,8 @@
       "the-journey-to-isomorphic-rendering-performance",
       "implementing-multi-language-angular-applications-rendered-on-a-server-ssr"
     ],
-    "previousNodeId": "security"
+    "previousNodeId": "security",
+    "description": "This is the \"SSR\"'s description."
   },
   {
     "id": "accessibility",
@@ -661,7 +717,8 @@
       "doing-a11y-easily-with-angular-cdk-keyboard-navigable-lists",
       "angular-for-everyone-how-to-adapt-applications-for-people-with-disabilities"
     ],
-    "previousNodeId": "ssr"
+    "previousNodeId": "ssr",
+    "description": "This is the \"Accessibility\"'s description."
   },
   {
     "title": "Deployment & CI/CD",
@@ -677,7 +734,8 @@
       "automate-angular-application-deployment-via-aws-codepipeline",
       "how-to-automate-npm-package-publishing-with-azure-devops"
     ],
-    "previousNodeId": "accessibility"
+    "previousNodeId": "accessibility",
+    "description": "This is the \"Deployment & CI/CD\"'s description."
   },
   {
     "title": "Bundling & Optimization",
@@ -692,7 +750,8 @@
       "code-splitting-in-angular-or-how-to-share-components-between-lazy-modules",
       "reduce-your-bundle-size-through-this-component-styling-technique"
     ],
-    "previousNodeId": "deployment-&-ci/cd"
+    "previousNodeId": "deployment-&-ci/cd",
+    "description": "This is the \"Bundling & Optimization\"'s description."
   },
   {
     "title": "Libraries & Packages",
@@ -705,7 +764,8 @@
       "complete-beginner-guide-to-publishing-an-angular-library-to-npm",
       "create-your-standalone-angular-library-in-10-minutes"
     ],
-    "previousNodeId": "bundling-&-optimization"
+    "previousNodeId": "bundling-&-optimization",
+    "description": "This is the \"Libraries & Packages\"'s description."
   },
   {
     "title": "Micro Frontends",
@@ -716,7 +776,8 @@
       "taking-micro-frontends-to-the-next-level",
       "how-to-deploy-a-run-time-micro-frontend-application-using-aws"
     ],
-    "previousNodeId": "libraries-&-packages"
+    "previousNodeId": "libraries-&-packages",
+    "description": "This is the \"Micro Frontends\"'s description."
   },
   {
     "title": "Advanced Angular Features",
@@ -733,7 +794,8 @@
       "from-zone-js-to-zoneless-angular-and-back-how-it-all-works",
       "do-you-still-think-that-ngzone-zone-js-is-required-for-change-detection-in-angular"
     ],
-    "previousNodeId": "micro-frontends"
+    "previousNodeId": "micro-frontends",
+    "description": "This is the \"Advanced Angular Features\"'s description."
   },
   {
     "title": "Angular Versions Updates",
@@ -751,7 +813,8 @@
       "whats-new-after-angular-8",
       "brace-yourself-angular-8-is-coming"
     ],
-    "previousNodeId": "advanced-angular-features"
+    "previousNodeId": "advanced-angular-features",
+    "description": "This is the \"Angular Versions Updates\"'s description."
   },
   {
     "title": "Data Visualization",
@@ -761,7 +824,8 @@
       "creating-a-sketchpad-with-angular-and-p5js",
       "inside-ag-grid-techniques-to-make-the-fastest-javascript-datagrid-in-the-world"
     ],
-    "previousNodeId": "angular-versions-updates"
+    "previousNodeId": "angular-versions-updates",
+    "description": "This is the \"Data Visualization\"'s description."
   },
   {
     "title": "Web Components",
@@ -772,7 +836,8 @@
       "simplifying-web-components-usage-with-angular-elements",
       "angular-elements-2"
     ],
-    "previousNodeId": "internationalization"
+    "previousNodeId": "internationalization",
+    "description": "This is the \"Web Components\"'s description."
   },
   {
     "title": "Monorepo & Workspace",
@@ -785,7 +850,8 @@
       "nx-angular-elements-case-study",
       "making-an-angular-project-mono-repo-with-ngrx-state-management-and-lazy-loading"
     ],
-    "previousNodeId": "web-components"
+    "previousNodeId": "web-components",
+    "description": "This is the \"Monorepo & Workspace\"'s description."
   },
   {
     "title": "Cross-Platform",
@@ -796,7 +862,8 @@
       "angular-electron-part-2",
       "building-web-desktop-and-mobile-apps-from-a-single-codebase-using-angular"
     ],
-    "previousNodeId": "monorepo-&-workspace"
+    "previousNodeId": "monorepo-&-workspace",
+    "description": "This is the \"Cross-Platform\"'s description."
   },
   {
     "title": "Rendering & DOM Manipulation",
@@ -807,6 +874,7 @@
       "angular-platforms-in-depth-part-3-rendering-angular-applications-in-terminal",
       "exploring-angular-dom-manipulation-techniques-using-viewcontainerref"
     ],
-    "previousNodeId": "cross-platform"
+    "previousNodeId": "cross-platform",
+    "description": "This is the \"Rendering & DOM Manipulation\"'s description."
   }
 ]

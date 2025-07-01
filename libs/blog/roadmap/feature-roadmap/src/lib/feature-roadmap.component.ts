@@ -89,9 +89,7 @@ export class FeatureRoadmapComponent {
     this._roadmapBottomSheetNotifierService.nodeIdAsObservable
       .pipe(
         tap((nodeId) => {
-          const nodeDetails = this._roadmapStore.getNodeById(nodeId);
-          if (nodeDetails)
-            this._roadmapBottomsheetManagerService.open(nodeDetails);
+          this.focusSelectedNode(nodeId);
         }),
         takeUntilDestroyed(),
       )
@@ -160,6 +158,9 @@ export class FeatureRoadmapComponent {
       const centerY = y + height / 2 - windowHeight / 2;
 
       panZoomInstance.smoothMoveTo(-centerX, -centerY);
+
+      const nodeDetails = this._roadmapStore.getNodeById(nodeId);
+      if (nodeDetails) this._roadmapBottomsheetManagerService.open(nodeDetails);
     }
   }
 
