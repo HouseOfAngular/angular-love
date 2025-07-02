@@ -6,8 +6,7 @@ import {
   output,
 } from '@angular/core';
 
-import { RoadmapBottomSheetNotifierService } from '@angular-love/roadmap-utils';
-
+import { RoadmapBottomSheetNotifierService } from '../../services/roadmap-bottomsheet-notifier.service';
 import { RoadmapClusterNode } from '../../types/roadmap-node';
 
 @Component({
@@ -23,10 +22,10 @@ import { RoadmapClusterNode } from '../../types/roadmap-node';
     <div class="m-[2px] flex flex-col gap-[10px] p-3">
       @for (clusterNode of cluster().clusteredNodes; track clusterNode.id) {
         <div
-          class="roadmap-hover-border-gradient relative w-full text-nowrap rounded-lg bg-[#FDF5FD] text-[#FDF5FD]"
+          class="roadmap-hover-border-gradient relative w-full text-nowrap rounded-lg bg-[#FDF5FD] text-[#FDF5FD] hover:cursor-pointer"
           [attr.node-id]="clusterNode.id"
           (pointerup)="
-            _roadmapBottomSheetNotifierService.openBottomSheet(clusterNode.id)
+            _roadmapBottomSheetNotifierService.openBottomSheet(clusterNode)
           "
         >
           <div

@@ -94,15 +94,22 @@ export function buildRoadmapLayersFromDto(
   return [roadmapTitleLayer, ...layers];
 }
 
-function createPrimaryNode({ id, title }: RoadmapNodeDTO): RoadmapStandardNode {
-  return { id, nodeType: 'primary', title };
+function createPrimaryNode({
+  id,
+  title,
+  description,
+  resources,
+}: RoadmapNodeDTO): RoadmapStandardNode {
+  return { id, nodeType: 'primary', title, description, resources };
 }
 
 function createSecondaryNode({
   id,
   title,
+  description,
+  resources,
 }: RoadmapNodeDTO): RoadmapStandardNode {
-  return { id, nodeType: 'secondary', title };
+  return { id, nodeType: 'secondary', title, description, resources };
 }
 
 function createClusterNode({ id, title }: RoadmapNodeDTO): RoadmapClusterNode {

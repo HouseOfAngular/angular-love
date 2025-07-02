@@ -4,12 +4,18 @@ import { Component, computed, inject, signal } from '@angular/core';
 import { Router } from '@angular/router';
 
 import { RoadmapNodeDTO } from '@angular-love/blog/contracts/roadmap';
+import {
+  AngularLoveNode,
+  RoadmapNode,
+  RoadmapRegularNode,
+  RoadmapStandardNode,
+} from '@angular-love/blog/roadmap/ui-roadmap-node';
 import { ButtonComponent } from '@angular-love/blog/shared/ui-button';
 
-// eslint-disable-next-line @nx/enforce-module-boundaries
-import { AngularLoveNodeDTO } from '../../../../../blog-contracts/roadmap/src/lib/angular-love-node.interface';
-// eslint-disable-next-line @nx/enforce-module-boundaries
-import { RegularNodeDTO } from '../../../../../blog-contracts/roadmap/src/lib/regular-node.type';
+// // eslint-disable-next-line @nx/enforce-module-boundaries
+// import { AngularLoveNodeDTO } from '../../../../../blog-contracts/roadmap/src/lib/angular-love-node.interface';
+// // eslint-disable-next-line @nx/enforce-module-boundaries
+// import { RegularNodeDTO } from '../../../../../blog-contracts/roadmap/src/lib/regular-node.type';
 
 import { RoadmapBottomsheetCreatorsComponent } from './roadmap-bottomsheet-creators/roadmap-bottomsheet-creators.component';
 import { RoadmapBottomsheetDescriptionComponent } from './roadmap-bottomsheet-description/roadmap-bottomsheet-description.component';
@@ -17,11 +23,11 @@ import { RoadmapBottomsheetFooterComponent } from './roadmap-bottomsheet-footer/
 import { RoadmapBottomsheetHeaderComponent } from './roadmap-bottomsheet-header/roadmap-bottomsheet-header.component';
 import { RoadmapBottomsheetRegularContentComponent } from './roadmap-bottomsheet-regular-content/roadmap-bottomsheet-regular-content.component';
 
-function isAngularNode(node: RoadmapNodeDTO): node is AngularLoveNodeDTO {
+function isAngularNode(node: RoadmapStandardNode): node is AngularLoveNode {
   return node.nodeType === 'angular-love';
 }
 
-function isRegularNode(node: RoadmapNodeDTO): node is RegularNodeDTO {
+function isRegularNode(node: RoadmapStandardNode): node is RoadmapRegularNode {
   return node.nodeType !== 'angular-love';
 }
 
@@ -62,26 +68,26 @@ function isRegularNode(node: RoadmapNodeDTO): node is RegularNodeDTO {
   standalone: true,
 })
 export class RoadmapBottomsheetComponent {
-  private matDialogData = inject<RoadmapNodeDTO>(DIALOG_DATA);
+  private matDialogData = inject<RoadmapStandardNode>(DIALOG_DATA);
   private dialogRef = inject(DialogRef<RoadmapBottomsheetComponent>);
   private router = inject(Router);
 
-  nodeDetails = signal<RoadmapNodeDTO>(this.matDialogData);
+  nodeDetails = signal<RoadmapStandardNode>(this.matDialogData);
   language = signal<string>('');
 
   protected readonly angularLoveNodeDetails = computed<
-    AngularLoveNodeDTO | undefined
+    AngularLoveNode | undefined
   >(() => {
     const details = this.nodeDetails();
     return details && isAngularNode(details) ? details : undefined;
   });
 
-  protected readonly regularNodeDetails = computed<RegularNodeDTO | undefined>(
-    () => {
-      const details = this.nodeDetails();
-      return details && isRegularNode(details) ? details : undefined;
-    },
-  );
+  protected readonly regularNodeDetails = computed<
+    RoadmapRegularNode | undefined
+  >(() => {
+    const details = this.nodeDetails();
+    return details && isRegularNode(details) ? details : undefined;
+  });
 
   protected readonly regularNodeArticles = computed(() => {
     const regularNodeDetails = this.regularNodeDetails();

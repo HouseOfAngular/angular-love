@@ -28,8 +28,8 @@ import {
   RoadmapLayerComponent,
   RoadmapPanControlsComponent,
 } from '@angular-love/blog/roadmap/ui-roadmap';
+import { RoadmapBottomSheetNotifierService } from '@angular-love/blog/roadmap/ui-roadmap-node';
 import { RoadmapStore } from '@angular-love/roadmap-data-access';
-import { RoadmapBottomSheetNotifierService } from '@angular-love/roadmap-utils';
 
 import { RoadmapBottomsheetManagerService } from './roadmap-bottomsheet-menager.service';
 
@@ -88,8 +88,9 @@ export class FeatureRoadmapComponent {
 
     this._roadmapBottomSheetNotifierService.nodeIdAsObservable
       .pipe(
-        tap((nodeId) => {
-          this.focusSelectedNode(nodeId);
+        tap((node) => {
+          this.focusSelectedNode(node.id);
+          this._roadmapBottomsheetManagerService.open(node);
         }),
         takeUntilDestroyed(),
       )
@@ -106,8 +107,19 @@ export class FeatureRoadmapComponent {
 
       const selectedNodeId = this.selectedNodeId();
 
-      if (selectedNodeId) this.focusSelectedNode(selectedNodeId);
+      if (selectedNodeId) this.clickSelectedNode(selectedNodeId);
     });
+  }
+
+  clickSelectedNode(selectedNodeId: string) {
+    const selectedNode = this.elementRef.nativeElement.querySelector(
+      `[node-id="${selectedNodeId}"]`,
+    ) as HTMLElement | null;
+
+    console.log('SELECTED NODE', selectedNode, selectedNodeId);
+    setTimeout(() => {
+      selectedNode?.dispatchEvent(new PointerEvent('pointerup'));
+    }, 0);
   }
 
   resizeRoadmap(event: EventType): void {
@@ -150,7 +162,7 @@ export class FeatureRoadmapComponent {
 
     const selectedNode = this.elementRef.nativeElement.querySelector(
       `[node-id="${nodeId}"]`,
-    );
+    ) as HTMLElement | null;
 
     if (!selectedNode) return;
     const nodeRect = selectedNode.getBoundingClientRect();
@@ -172,10 +184,12 @@ export class FeatureRoadmapComponent {
 
     panZoomInstance.smoothMoveTo(targetX, targetY);
 
-    const nodeDetails = this._roadmapStore.getNodeById(nodeId);
-    if (nodeDetails) {
-      this._roadmapBottomsheetManagerService.open(nodeDetails);
-    }
+    // console.log(selectedNode);
+    // selectedNode.click();
+
+    // const nodeDetails = this._roadmapStore.getNodeById(nodeId);
+    // if (nodeDetails) {
+    // }
   }
 
   private initPanZoom() {

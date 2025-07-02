@@ -1,8 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Observable, Subject } from 'rxjs';
 
-// eslint-disable-next-line @nx/enforce-module-boundaries
-import { RoadmapStandardNode } from '@angular-love/blog/roadmap/ui-roadmap-node';
+import { RoadmapStandardNode } from '../types/roadmap-node';
 
 @Injectable({
   providedIn: 'root',
@@ -12,6 +11,7 @@ export class RoadmapBottomSheetNotifierService {
   public readonly nodeIdAsObservable = this.node.asObservable();
 
   openBottomSheet(node: RoadmapStandardNode) {
+    console.log('openBOttomsheet', node);
     this.node.next(node);
   }
 }

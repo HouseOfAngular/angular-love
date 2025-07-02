@@ -22,6 +22,9 @@ const roadmapTitleLayer: RoadmapLayer = {
     id: 'angular-love',
     title: 'Angular.Love Roadmap Introduction',
     nodeType: 'angular-love',
+    description: 'asadasdasd',
+    additionalDescription: 'Additional',
+    creators: [],
   },
   childNodes: [],
 };
@@ -47,8 +50,6 @@ export const RoadmapStore = signalStore(
     resetToInit: () => {
       patchState(store, { loading: 'init' });
     },
-    getNodeById: (nodeId: string) =>
-      store.nodesDto()?.find((node) => node.id === nodeId),
     getNodes: rxMethod<void>(
       pipe(
         tap(() => {
