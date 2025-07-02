@@ -113,33 +113,35 @@ export class FeatureRoadmapComponent {
   resizeRoadmap(event: EventType): void {
     const panZoomInstance = this.panZoomInstance();
     if (!panZoomInstance) return;
-    const currentTransform = panZoomInstance.getTransform();
+    const transform = panZoomInstance.getTransform();
     const centerX = this.elementRef.nativeElement.clientWidth / 2;
     const centerY = this.elementRef.nativeElement.clientHeight / 2;
 
-    if (event === 'decrement') {
-      const currentScale = currentTransform.scale;
-      const multiplier =
-        Math.round(currentScale * 2) / 2 - this._scaleMultiplier;
-
-      panZoomInstance.smoothZoom(centerX, centerY, multiplier);
-    }
+    const currentScale = transform.scale;
+    let targetScale = currentScale;
 
     if (event === 'increment') {
-      const currentScale = currentTransform.scale;
-      const multiplier =
-        Math.round(currentScale * 2) / 2 + this._scaleMultiplier;
-
-      panZoomInstance.smoothZoom(centerX, centerY, multiplier);
-    }
-
-    if (event === 'reset') {
+      targetScale = Math.min(
+        currentScale + this._scaleMultiplier,
+        this._panZoomInitialConfig.maxZoom ?? 2,
+      );
+    } else if (event === 'decrement') {
+      targetScale = Math.max(
+        currentScale - this._scaleMultiplier,
+        this._panZoomInitialConfig.minZoom ?? 0.5,
+      );
+    } else if (event === 'reset') {
       panZoomInstance.moveTo(0, 0);
       panZoomInstance.zoomAbs(0, 0, 1);
+      return;
+    } else if (event === 'zoom-reset') {
+      panZoomInstance.zoomAbs(centerX, centerY, 1);
+      return;
     }
-    if (event === 'zoom-reset') {
-      panZoomInstance.zoomAbs(currentTransform.x, currentTransform.y, 1);
-    }
+
+    const zoomFactor = targetScale / currentScale;
+
+    panZoomInstance.smoothZoom(centerX, centerY, zoomFactor);
   }
 
   private focusSelectedNode(nodeId: string): void {
@@ -181,5 +183,30 @@ export class FeatureRoadmapComponent {
     this.panZoomInstance.set(
       panzoom(roadmapWrapper, this._panZoomInitialConfig),
     );
+
+    // Find all buttons inside the custom control component
+    const controlButtons = document.querySelectorAll(
+      'al-roadmap-pan-controls button',
+    );
+
+    controlButtons.forEach((btn) => {
+      btn.addEventListener('pointerdown', () => {
+        this.panZoomInstance()?.pause();
+      });
+
+      btn.addEventListener('click', () => {
+        // Resume panzoom after the click finishes
+        setTimeout(() => this.panZoomInstance()?.resume(), 0);
+      });
+
+      btn.addEventListener(
+        'wheel',
+        (e) => {
+          e.preventDefault();
+          e.stopPropagation();
+        },
+        { passive: false },
+      );
+    });
   }
 }

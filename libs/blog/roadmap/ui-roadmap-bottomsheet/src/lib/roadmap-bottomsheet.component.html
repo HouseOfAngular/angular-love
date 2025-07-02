@@ -9,6 +9,7 @@
         visible: nodeDetails !== undefined,
         hidden: nodeDetails === undefined,
       }"
+      (click)="$event.stopPropagation()"
       (wheel)="$event.stopPropagation()"
       (pointerup)="$event.stopPropagation()"
       (touchstart)="$event.stopPropagation()"
