@@ -38,7 +38,9 @@
       @if (regularNodeDetails(); as regularNodeDetails) {
         @if (!regularNodeDetails.resources.length) {
           <div class="flex w-full justify-center pt-6">
-            <button al-button>Become an author</button>
+            <button al-button (pointerdown)="navigateToAuthor()">
+              Become an author
+            </button>
           </div>
         } @else {
           <al-roadmap-bottomsheet-regular-content

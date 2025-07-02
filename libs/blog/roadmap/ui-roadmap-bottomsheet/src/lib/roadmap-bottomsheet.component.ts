@@ -1,6 +1,7 @@
 import { DIALOG_DATA, DialogRef } from '@angular/cdk/dialog';
 import { NgClass } from '@angular/common';
 import { Component, computed, inject, signal } from '@angular/core';
+import { Router } from '@angular/router';
 
 import { RoadmapNodeDTO } from '@angular-love/blog/contracts/roadmap';
 import { ButtonComponent } from '@angular-love/blog/shared/ui-button';
@@ -63,6 +64,8 @@ function isRegularNode(node: RoadmapNodeDTO): node is RegularNodeDTO {
 export class RoadmapBottomsheetComponent {
   private matDialogData = inject<RoadmapNodeDTO>(DIALOG_DATA);
   private dialogRef = inject(DialogRef<RoadmapBottomsheetComponent>);
+  private router = inject(Router);
+
   nodeDetails = signal<RoadmapNodeDTO>(this.matDialogData);
   language = signal<string>('');
 
@@ -99,6 +102,11 @@ export class RoadmapBottomsheetComponent {
   });
 
   onClose() {
+    this.dialogRef.close();
+  }
+
+  navigateToAuthor() {
+    this.router.navigate(['/become-author']);
     this.dialogRef.close();
   }
 }

@@ -399,7 +399,8 @@
     "parentNodeId": "templates",
     "title": "Content Projection",
     "previousNodeId": "control-flow",
-    "description": "Content projection enables components to receive and display dynamic external content using <ng-content>, facilitating flexible component composition."
+    "description": "Content projection enables components to receive and display dynamic external content using <ng-content>, facilitating flexible component composition.",
+    "resources": []
   },
   {
     "id": "modules",
@@ -471,14 +472,16 @@
     "parentNodeId": "directives",
     "title": "Attribute Directives",
     "previousNodeId": null,
-    "description": "Attribute directives change the appearance or behavior of an element, component, or another directive by modifying its attributes."
+    "description": "Attribute directives change the appearance or behavior of an element, component, or another directive by modifying its attributes.",
+    "resources": []
   },
   {
     "id": "structural-directives",
     "parentNodeId": "directives",
     "title": "Structural Directives",
     "previousNodeId": "attribute-directives",
-    "description": "Structural directives shape the layout of the DOM by adding or removing elements dynamically, typically using * syntax like *ngIf and *ngFor."
+    "description": "Structural directives shape the layout of the DOM by adding or removing elements dynamically, typically using * syntax like *ngIf and *ngFor.",
+    "resources": []
   },
   {
     "id": "ng-template-ng-container",
@@ -565,14 +568,16 @@
     "parentNodeId": "routing",
     "title": "Guards, Resolvers",
     "previousNodeId": "configuration",
-    "description": "Guards and resolvers control access and fetch data before a route is activated, helping protect routes and preload necessary information."
+    "description": "Guards and resolvers control access and fetch data before a route is activated, helping protect routes and preload necessary information.",
+    "resources": []
   },
   {
     "id": "routerlink",
     "parentNodeId": "routing",
     "title": "routerLink, routerLinkActive, ...",
     "previousNodeId": "guards-resolvers",
-    "description": "Router directives like routerLink and routerLinkActive enable navigation and active link styling in Angular templates."
+    "description": "Router directives like routerLink and routerLinkActive enable navigation and active link styling in Angular templates.",
+    "resources": []
   },
   {
     "id": "router-outlets",
@@ -674,7 +679,8 @@
     "parentNodeId": "forms",
     "title": "Template-Driven Forms",
     "previousNodeId": null,
-    "description": "Template-driven forms rely on directives in the template to create and manage form controls, offering a simple and declarative way to build forms."
+    "description": "Template-driven forms rely on directives in the template to create and manage form controls, offering a simple and declarative way to build forms.",
+    "resources": []
   },
   {
     "id": "control-value-accessor",
@@ -701,7 +707,8 @@
     "label": "comingSoon",
     "title": "Signal Forms",
     "previousNodeId": "control-value-accessor",
-    "description": "Signal Forms offer a reactive and fine-grained approach to form state and validation using Angular’s signal-based reactivity model."
+    "description": "Signal Forms offer a reactive and fine-grained approach to form state and validation using Angular’s signal-based reactivity model.",
+    "resources": []
   },
   {
     "id": "reactive-forms",
