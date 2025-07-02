@@ -11,10 +11,20 @@ import { rxMethod } from '@ngrx/signals/rxjs-interop';
 import { pipe, switchMap, tap } from 'rxjs';
 
 import { RoadmapNodeDTO } from '@angular-love/blog/contracts/roadmap';
+import { RoadmapLayer } from '@angular-love/blog/roadmap/ui-roadmap';
 
 import { RoadmapService } from '../infractructure';
 
 import { buildRoadmapLayersFromDto } from './build-roadmap-layers-from-dto';
+
+const roadmapTitleLayer: RoadmapLayer = {
+  parentNode: {
+    id: 'angular-love',
+    title: 'Angular.Love Roadmap Introduction',
+    nodeType: 'angular-love',
+  },
+  childNodes: [],
+};
 
 type RoadmapState = {
   loading: 'success' | 'error' | 'init' | 'loading';
@@ -30,7 +40,7 @@ export const RoadmapStore = signalStore(
   withState(initialState),
   withComputed((store) => ({
     roadmapLayers: computed(() =>
-      buildRoadmapLayersFromDto(store.nodesDto() ?? []),
+      buildRoadmapLayersFromDto(store.nodesDto() ?? [], roadmapTitleLayer),
     ),
   })),
   withMethods((store, roadmapService = inject(RoadmapService)) => ({
@@ -50,7 +60,10 @@ export const RoadmapStore = signalStore(
           roadmapService.getNodes().pipe(
             tapResponse({
               next: (nodesDto) => {
-                patchState(store, { loading: 'success', nodesDto });
+                patchState(store, {
+                  loading: 'success',
+                  nodesDto,
+                });
               },
               error: () => {
                 patchState(store, { loading: 'error' });

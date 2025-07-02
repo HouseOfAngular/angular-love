@@ -1,7 +1,7 @@
 import { Component, input } from '@angular/core';
 
-// eslint-disable-next-line @nx/enforce-module-boundaries
-import { ContentSlug } from '../../../../utils/src/lib/models/content-slug.type';
+import { Resource } from '@angular-love/blog/contracts/roadmap';
+
 import { RoadmapBottomsheetSubtitleComponent } from '../roadmap-bottomsheet-subtitle/roadmap-bottomsheet-subtitle.component';
 
 @Component({
@@ -11,10 +11,10 @@ import { RoadmapBottomsheetSubtitleComponent } from '../roadmap-bottomsheet-subt
     <div class="px-6 pt-6">
       <al-roadmap-bottomsheet-subtitle [title]="title()" />
       <ul class="list-disc px-6 pt-4">
-        @for (contentItem of contentSlugs(); track contentItem.title) {
+        @for (resource of resources(); track resource.name) {
           <li class="py-1 underline">
-            <a [href]="contentItem.url" target="_blank">
-              {{ contentItem.title }}
+            <a [href]="resource.url" target="_blank">
+              {{ resource.name }}
             </a>
           </li>
         }
@@ -24,5 +24,5 @@ import { RoadmapBottomsheetSubtitleComponent } from '../roadmap-bottomsheet-subt
 })
 export class RoadmapBottomsheetRegularContentComponent {
   title = input.required<string>();
-  contentSlugs = input.required<ContentSlug[]>();
+  resources = input.required<Resource[]>();
 }

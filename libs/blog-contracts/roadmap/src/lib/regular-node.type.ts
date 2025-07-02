@@ -1,8 +1,7 @@
-import { BaseNodeDTO } from './base-node.type';
-import { ContentSlug } from './content-slug.type';
+import { BaseNodeDTO } from './base-node.interface';
+import { Resource } from './resource.interface';
 
 export interface RegularNodeDTO extends BaseNodeDTO {
   nodeType: 'regular';
-  articles: ContentSlug[];
-  movies: ContentSlug[];
+  resources: Resource[];
 }

@@ -6,7 +6,7 @@ import { RoadmapNodeDTO } from '@angular-love/blog/contracts/roadmap';
 import { ButtonComponent } from '@angular-love/blog/shared/ui-button';
 
 // eslint-disable-next-line @nx/enforce-module-boundaries
-import { AngularLoveNodeDTO } from '../../../../../blog-contracts/roadmap/src/lib/angular-love-node.type';
+import { AngularLoveNodeDTO } from '../../../../../blog-contracts/roadmap/src/lib/angular-love-node.interface';
 // eslint-disable-next-line @nx/enforce-module-boundaries
 import { RegularNodeDTO } from '../../../../../blog-contracts/roadmap/src/lib/regular-node.type';
 
@@ -66,19 +66,37 @@ export class RoadmapBottomsheetComponent {
   nodeDetails = signal<RoadmapNodeDTO>(this.matDialogData);
   language = signal<string>('');
 
-  readonly angularLoveNodeDetails = computed<AngularLoveNodeDTO | undefined>(
+  protected readonly angularLoveNodeDetails = computed<
+    AngularLoveNodeDTO | undefined
+  >(() => {
+    const details = this.nodeDetails();
+    return details && isAngularNode(details) ? details : undefined;
+  });
+
+  protected readonly regularNodeDetails = computed<RegularNodeDTO | undefined>(
     () => {
       const details = this.nodeDetails();
-      return details && isAngularNode(details) ? details : undefined;
+      return details && isRegularNode(details) ? details : undefined;
     },
   );
 
-  readonly regularNodeDetails = computed<RegularNodeDTO | undefined>(() => {
-    const details = this.nodeDetails();
-    return details && isRegularNode(details) ? details : undefined;
+  protected readonly regularNodeArticles = computed(() => {
+    const regularNodeDetails = this.regularNodeDetails();
+    return (
+      regularNodeDetails?.resources.filter(
+        (resource) => resource.type === 'article',
+      ) ?? []
+    );
   });
 
-  readonly isContentInRegularNodeDetails = signal(true);
+  protected readonly regularNodeVideos = computed(() => {
+    const regularNodeDetails = this.regularNodeDetails();
+    return (
+      regularNodeDetails?.resources.filter(
+        (resource) => resource.type === 'video',
+      ) ?? []
+    );
+  });
 
   onClose() {
     this.dialogRef.close();

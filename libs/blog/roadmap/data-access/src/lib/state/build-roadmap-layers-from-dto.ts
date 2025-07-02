@@ -6,17 +6,9 @@ import {
   RoadmapStandardNode,
 } from '@angular-love/blog/roadmap/ui-roadmap-node';
 
-const roadmapTitleLayer: RoadmapLayer = {
-  parentNode: {
-    id: 'angular-love',
-    title: 'Angular.Love Roadmap Introduction',
-    nodeType: 'angular-love',
-  },
-  childNodes: [],
-};
-
 export function buildRoadmapLayersFromDto(
   roadmapNodesDto: RoadmapNodeDTO[] | undefined,
+  roadmapTitleLayer: RoadmapLayer,
 ): RoadmapLayer[] {
   if (!roadmapNodesDto) {
     return [];

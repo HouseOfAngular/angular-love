@@ -1,5 +1,5 @@
-import { BaseNodeDTO } from './base-node.type';
-import { Creator } from './creator.type';
+import { BaseNodeDTO } from './base-node.interface';
+import { Creator } from './creator.interface';
 
 export interface AngularLoveNodeDTO extends BaseNodeDTO {
   nodeType: 'angular-love';

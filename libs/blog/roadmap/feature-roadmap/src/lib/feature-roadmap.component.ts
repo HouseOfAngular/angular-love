@@ -184,7 +184,6 @@ export class FeatureRoadmapComponent {
       panzoom(roadmapWrapper, this._panZoomInitialConfig),
     );
 
-    // Find all buttons inside the custom control component
     const controlButtons = document.querySelectorAll(
       'al-roadmap-pan-controls button',
     );
@@ -195,7 +194,6 @@ export class FeatureRoadmapComponent {
       });
 
       btn.addEventListener('click', () => {
-        // Resume panzoom after the click finishes
         setTimeout(() => this.panZoomInstance()?.resume(), 0);
       });
 

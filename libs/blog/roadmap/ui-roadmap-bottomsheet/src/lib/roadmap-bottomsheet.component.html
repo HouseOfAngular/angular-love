@@ -36,17 +36,17 @@
       }
 
       @if (regularNodeDetails(); as regularNodeDetails) {
-        @if (!isContentInRegularNodeDetails()) {
+        @if (!regularNodeDetails.resources.length) {
           <div class="flex w-full justify-center pt-6">
             <button al-button>Become an author</button>
           </div>
         } @else {
           <al-roadmap-bottomsheet-regular-content
-            [contentSlugs]="regularNodeDetails.articles"
+            [resources]="regularNodeArticles()"
             title="Articles"
           />
           <al-roadmap-bottomsheet-regular-content
-            [contentSlugs]="regularNodeDetails.movies"
+            [resources]="regularNodeVideos()"
             title="Movies"
           />
         }
