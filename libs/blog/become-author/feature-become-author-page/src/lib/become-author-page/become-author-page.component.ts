@@ -3,6 +3,7 @@ import { RouterLink } from '@angular/router';
 import { TranslocoDirective } from '@jsverse/transloco';
 
 import { AlLocalizePipe } from '@angular-love/blog/i18n/util';
+import { ButtonComponent } from '@angular-love/blog/shared/ui-button';
 import {
   CardComponent,
   GradientCardDirective,
@@ -23,6 +24,7 @@ import { BecomeAuthorImprovementsComponent } from '../components/become-author-i
     TranslocoDirective,
     RouterLink,
     AlLocalizePipe,
+    ButtonComponent,
   ],
   templateUrl: './become-author-page.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
