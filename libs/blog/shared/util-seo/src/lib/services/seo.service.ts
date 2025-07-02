@@ -148,15 +148,16 @@ export class SeoService {
       this.appendHreflangLink(entry.locale, fullUrl);
     }
 
-    const defaultEntry =
-      hreflangEntries.find((entry) => entry.locale === 'en') ||
-      hreflangEntries[0];
-    if (defaultEntry) {
-      const defaultUrl = defaultEntry.url.startsWith('http')
-        ? defaultEntry.url
-        : `${this._baseUrl}${defaultEntry.url}`;
-      this.appendHreflangLink('x-default', defaultUrl);
-    }
+    // TODO: validate if x-default impacts SEO
+    // const defaultEntry =
+    //   hreflangEntries.find((entry) => entry.locale === 'en') ||
+    //   hreflangEntries[0];
+    // if (defaultEntry) {
+    //   const defaultUrl = defaultEntry.url.startsWith('http')
+    //     ? defaultEntry.url
+    //     : `${this._baseUrl}${defaultEntry.url}`;
+    //   this.appendHreflangLink('x-default', defaultUrl);
+    // }
   }
 
   clearHreflang(): void {
