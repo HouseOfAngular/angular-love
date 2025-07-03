@@ -405,7 +405,7 @@
   {
     "id": "modules",
     "title": "Modules",
-    "label": "Optional",
+    "label": "optional",
     "previousNodeId": "components",
     "description": "Modules organize Angular applications into cohesive blocks of functionality, making it easier to manage and reuse code across the app.",
     "resources": [
@@ -715,6 +715,7 @@
     "parentNodeId": "forms",
     "title": "Reactive Forms",
     "previousNodeId": "signal-forms",
+    "label": "recommended",
     "description": "Reactive forms provide a model-driven way to manage form controls in code, giving more explicit control over validation and dynamic form logic.",
     "resources": [
       {

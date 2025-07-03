@@ -5,6 +5,8 @@ export interface Creator {
   slug: string;
 }
 
+export type Label = 'optional' | 'recommended' | 'comingSoon';
+
 export interface AdditionalDescription {
   introduction: string;
   toPrepareList: string[];
@@ -14,6 +16,7 @@ export interface AdditionalDescription {
 interface RoadmapNodeBase {
   id: string;
   title: string;
+  label?: Label;
 }
 
 export interface AngularLoveNode extends RoadmapNodeBase {

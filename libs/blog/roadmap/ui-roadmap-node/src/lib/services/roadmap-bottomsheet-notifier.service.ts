@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Observable, Subject } from 'rxjs';
+import { Subject } from 'rxjs';
 
 import { RoadmapStandardNode } from '../types/roadmap-node';
 
@@ -11,7 +11,6 @@ export class RoadmapBottomSheetNotifierService {
   public readonly nodeIdAsObservable = this.node.asObservable();
 
   openBottomSheet(node: RoadmapStandardNode) {
-    console.log('openBOttomsheet', node);
     this.node.next(node);
   }
 }

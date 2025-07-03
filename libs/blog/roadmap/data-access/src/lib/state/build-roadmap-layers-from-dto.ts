@@ -99,8 +99,9 @@ function createPrimaryNode({
   title,
   description,
   resources,
+  label,
 }: RoadmapNodeDTO): RoadmapStandardNode {
-  return { id, nodeType: 'primary', title, description, resources };
+  return { id, nodeType: 'primary', title, description, resources, label };
 }
 
 function createSecondaryNode({
@@ -108,8 +109,9 @@ function createSecondaryNode({
   title,
   description,
   resources,
+  label,
 }: RoadmapNodeDTO): RoadmapStandardNode {
-  return { id, nodeType: 'secondary', title, description, resources };
+  return { id, nodeType: 'secondary', title, description, resources, label };
 }
 
 function createClusterNode({ id, title }: RoadmapNodeDTO): RoadmapClusterNode {
