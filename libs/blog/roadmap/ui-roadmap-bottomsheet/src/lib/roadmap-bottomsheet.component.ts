@@ -1,6 +1,14 @@
 import { DIALOG_DATA, DialogRef } from '@angular/cdk/dialog';
 import { NgClass } from '@angular/common';
-import { Component, computed, inject, signal } from '@angular/core';
+import {
+  Component,
+  computed,
+  effect,
+  ElementRef,
+  inject,
+  signal,
+  viewChild,
+} from '@angular/core';
 import { Router } from '@angular/router';
 
 import {
@@ -65,9 +73,9 @@ export class RoadmapBottomsheetComponent {
   private matDialogData = inject<RoadmapStandardNode>(DIALOG_DATA);
   private dialogRef = inject(DialogRef<RoadmapBottomsheetComponent>);
   private router = inject(Router);
-
   nodeDetails = signal<RoadmapStandardNode>(this.matDialogData);
   language = signal<string>('');
+  bottomSheetRef = viewChild('bottomsheet', { read: ElementRef });
 
   protected readonly angularLoveNodeDetails = computed<
     AngularLoveNode | undefined
@@ -108,5 +116,14 @@ export class RoadmapBottomsheetComponent {
   navigateToAuthor() {
     this.router.navigate(['/become-author']);
     this.dialogRef.close();
+  }
+
+  constructor() {
+    effect(() => {
+      const el = this.bottomSheetRef();
+      if (el) {
+        queueMicrotask(() => el.nativeElement.scrollTo({ top: 0 }));
+      }
+    });
   }
 }
