@@ -1,30 +1,22 @@
 import { isPlatformBrowser } from '@angular/common';
 import {
-  afterNextRender,
   afterRenderEffect,
   ChangeDetectionStrategy,
   Component,
-  computed,
   ElementRef,
   inject,
   input,
-  OnInit,
   PLATFORM_ID,
   signal,
   ViewChild,
 } from '@angular/core';
-import {
-  rxResource,
-  takeUntilDestroyed,
-  toSignal,
-} from '@angular/core/rxjs-interop';
+import { takeUntilDestroyed, toSignal } from '@angular/core/rxjs-interop';
 import { ActivatedRoute } from '@angular/router';
 import panzoom, { PanZoom, PanZoomOptions } from 'panzoom';
 import { map, tap } from 'rxjs';
 
 import {
   EventType,
-  RoadmapLayer,
   RoadmapLayerComponent,
   RoadmapPanControlsComponent,
 } from '@angular-love/blog/roadmap/ui-roadmap';
@@ -116,10 +108,7 @@ export class FeatureRoadmapComponent {
       `[node-id="${selectedNodeId}"]`,
     ) as HTMLElement | null;
 
-    console.log('SELECTED NODE', selectedNode, selectedNodeId);
-    setTimeout(() => {
-      selectedNode?.dispatchEvent(new PointerEvent('pointerup'));
-    }, 0);
+    selectedNode?.dispatchEvent(new PointerEvent('pointerup'));
   }
 
   resizeRoadmap(event: EventType): void {
@@ -183,13 +172,6 @@ export class FeatureRoadmapComponent {
     const targetY = transform.y - deltaY;
 
     panZoomInstance.smoothMoveTo(targetX, targetY);
-
-    // console.log(selectedNode);
-    // selectedNode.click();
-
-    // const nodeDetails = this._roadmapStore.getNodeById(nodeId);
-    // if (nodeDetails) {
-    // }
   }
 
   private initPanZoom() {

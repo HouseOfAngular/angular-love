@@ -14,8 +14,6 @@ import { RoadmapNode, RoadmapStandardNode } from '../../types/roadmap-node';
   template: `
     <div
       class="roadmap-hover-border-gradient relative w-fit text-nowrap rounded-lg bg-[#FDF5FD] text-[#FDF5FD] hover:cursor-pointer"
-      [attr.node-id]="node().id"
-      (pointerup)="_roadmapBottomSheetNotifierService.openBottomSheet(node())"
     >
       <div
         class="relative z-10 m-[2px] rounded-lg bg-[--secondary-color] px-6 py-4 text-[20px]"
@@ -26,7 +24,10 @@ import { RoadmapNode, RoadmapStandardNode } from '../../types/roadmap-node';
   `,
   styleUrl: 'roadmap-secondary-node.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
-  host: {},
+  host: {
+    '[attr.node-id]': 'node().id',
+    '(pointerup)': '_roadmapBottomSheetNotifierService.openBottomSheet(node())',
+  },
 })
 export class RoadmapSecondaryNodeComponent {
   protected readonly _roadmapBottomSheetNotifierService = inject(

@@ -3,20 +3,14 @@ import { NgClass } from '@angular/common';
 import { Component, computed, inject, signal } from '@angular/core';
 import { Router } from '@angular/router';
 
-import { RoadmapNodeDTO } from '@angular-love/blog/contracts/roadmap';
 import {
   AngularLoveNode,
-  RoadmapNode,
   RoadmapRegularNode,
   RoadmapStandardNode,
 } from '@angular-love/blog/roadmap/ui-roadmap-node';
 import { ButtonComponent } from '@angular-love/blog/shared/ui-button';
 
-// // eslint-disable-next-line @nx/enforce-module-boundaries
-// import { AngularLoveNodeDTO } from '../../../../../blog-contracts/roadmap/src/lib/angular-love-node.interface';
-// // eslint-disable-next-line @nx/enforce-module-boundaries
-// import { RegularNodeDTO } from '../../../../../blog-contracts/roadmap/src/lib/regular-node.type';
-
+import { RoadmapBottomsheetAdditionalDescriptionComponent } from './roadmap-bottomsheet-additional-description/roadmap-bottomsheet-additional-description.component';
 import { RoadmapBottomsheetCreatorsComponent } from './roadmap-bottomsheet-creators/roadmap-bottomsheet-creators.component';
 import { RoadmapBottomsheetDescriptionComponent } from './roadmap-bottomsheet-description/roadmap-bottomsheet-description.component';
 import { RoadmapBottomsheetFooterComponent } from './roadmap-bottomsheet-footer/roadmap-bottomsheet-footer.component';
@@ -40,6 +34,7 @@ function isRegularNode(node: RoadmapStandardNode): node is RoadmapRegularNode {
     RoadmapBottomsheetCreatorsComponent,
     ButtonComponent,
     RoadmapBottomsheetFooterComponent,
+    RoadmapBottomsheetAdditionalDescriptionComponent,
   ],
   selector: 'al-roadmap-bottomsheet',
   templateUrl: './roadmap-bottomsheet.component.html',
@@ -49,7 +44,6 @@ function isRegularNode(node: RoadmapStandardNode): node is RoadmapRegularNode {
         animation: fadeInBottom 1s forwards;
       }
     }
-
     @keyframes fadeInBottom {
       from {
         opacity: 0;

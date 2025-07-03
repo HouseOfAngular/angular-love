@@ -154,7 +154,8 @@
     "home": "Blog dla sympatyków Angulara",
     "aboutUs": "O nas",
     "becomeAuthor": "Zostań autorem",
-    "notFound": "Nie znaleziono"
+    "notFound": "Nie znaleziono",
+    "roadmap": "Roadmap"
   },
   "adBanner": {
     "registerButton": "Pobierz za darmo",

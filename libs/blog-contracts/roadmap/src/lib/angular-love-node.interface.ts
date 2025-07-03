@@ -3,6 +3,10 @@ import { Creator } from './creator.interface';
 
 export interface AngularLoveNodeDTO extends BaseNodeDTO {
   nodeType: 'angular-love';
-  additionalDescription: string;
+  additionalDescription: {
+    introduction: string;
+    toPrepareList: string[];
+    ending: string;
+  };
   creators: Creator[];
 }

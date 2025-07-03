@@ -1,7 +1,15 @@
 import { Resource } from '@angular-love/blog/contracts/roadmap';
 
-// eslint-disable-next-line @nx/enforce-module-boundaries
-import { Creator } from '../../../../../../blog-contracts/roadmap/src/lib/creator.interface';
+export interface Creator {
+  name: string;
+  slug: string;
+}
+
+export interface AdditionalDescription {
+  introduction: string;
+  toPrepareList: string[];
+  ending: string;
+}
 
 interface RoadmapNodeBase {
   id: string;
@@ -9,7 +17,7 @@ interface RoadmapNodeBase {
 }
 
 export interface AngularLoveNode extends RoadmapNodeBase {
-  additionalDescription: string;
+  additionalDescription: AdditionalDescription;
   nodeType: 'angular-love';
   creators: Creator[];
   description: string;

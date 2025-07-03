@@ -24,14 +24,13 @@
       />
 
       @if (angularLoveNodeDetails(); as angularLoveNodeDetails) {
-        <al-roadmap-bottomsheet-description
-          [description]="angularLoveNodeDetails.additionalDescription"
-          [additional]="true"
+        <al-roadmap-bottomsheet-additional-description
+          [additionalDescription]="angularLoveNodeDetails.additionalDescription"
           title="Before you start"
         />
         <al-roadmap-bottomsheet-creators
           [creators]="angularLoveNodeDetails.creators"
-          title="Description"
+          title="Creators"
         />
       }
 
