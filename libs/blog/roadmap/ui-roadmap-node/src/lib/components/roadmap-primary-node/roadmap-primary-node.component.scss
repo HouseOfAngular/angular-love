@@ -1,4 +1,13 @@
-@use '../../style/roadmap-hover-border-gradient';
+@use '../../style/roadmap-hover-border-gradient' as r;
+
+.node {
+  @include r.roadmap-hover-border-gradient;
+}
+
+.label:hover + .node,
+.node:hover {
+  @include r.roadmap-hover-border-gradient-hover;
+}
 
 :host {
   --primary-color: #b3004a;

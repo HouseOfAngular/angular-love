@@ -22,13 +22,6 @@ export const blogShellRoutes: Route[] = [
 ];
 
 export const commonRoutes: Route[] = [
-  // {
-  //   path: 'roadmap',
-  //   loadComponent: async () =>
-  //     await import('./roadmap-shell.component').then(
-  //       (m) => m.RoadmapShellComponent,
-  //     ),
-  // },
   {
     path: '',
     component: RootShellComponent,

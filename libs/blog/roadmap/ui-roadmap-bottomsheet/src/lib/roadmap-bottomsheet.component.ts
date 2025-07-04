@@ -113,6 +113,7 @@ export class RoadmapBottomsheetComponent {
   }
 
   constructor() {
+    console.log('dialog ref', this.dialogRef);
     effect(() => {
       const el = this.bottomSheetRef();
       if (el) {
@@ -120,4 +121,6 @@ export class RoadmapBottomsheetComponent {
       }
     });
   }
+
+  protected readonly effect = effect;
 }

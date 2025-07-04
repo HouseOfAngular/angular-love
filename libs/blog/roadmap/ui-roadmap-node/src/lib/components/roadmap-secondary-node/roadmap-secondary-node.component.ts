@@ -14,14 +14,14 @@ import { RoadmapNodeLabelComponent } from '../roadmap-node-label/roadmap-node-la
   template: `
     @if (node().label; as label) {
       <al-roadmap-node-label
-        class="absolute z-[20] -translate-y-1/2 translate-x-full"
+        class="label absolute z-[20] -translate-y-1/2 translate-x-full"
         [label]="label"
       />
     }
     <div
-      class="roadmap-hover-border-gradient relative w-fit text-nowrap rounded-lg bg-[#FDF5FD] text-[#FDF5FD] hover:cursor-pointer"
+      class="node roadmap-hover-border-gradient relative w-fit text-nowrap rounded-lg bg-[#FDF5FD] text-[#FDF5FD] hover:cursor-pointer"
+      [attr.node-id]="node().id"
       (pointerup)="_roadmapBottomSheetNotifierService.openBottomSheet(node())"
-      data-click-target
     >
       <div
         class="relative z-10 m-[2px] rounded-lg bg-[--secondary-color] px-6 py-4 text-[20px]"
@@ -36,7 +36,6 @@ import { RoadmapNodeLabelComponent } from '../roadmap-node-label/roadmap-node-la
   changeDetection: ChangeDetectionStrategy.OnPush,
   host: {
     class: 'relative',
-    '[attr.node-id]': 'node().id',
   },
 })
 export class RoadmapSecondaryNodeComponent {

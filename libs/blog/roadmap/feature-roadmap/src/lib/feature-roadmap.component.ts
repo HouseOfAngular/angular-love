@@ -72,6 +72,7 @@ export class FeatureRoadmapComponent {
 
   private readonly nodesDto = this._roadmapStore.nodesDto;
   protected readonly roadmapLayers = this._roadmapStore.roadmapLayers;
+  protected readonly isPlatformBrowser = isPlatformBrowser(this._platform);
 
   language = input.required<string>();
 
@@ -81,7 +82,6 @@ export class FeatureRoadmapComponent {
     this._roadmapBottomSheetNotifierService.nodeIdAsObservable
       .pipe(
         tap((node) => {
-          console.log('Open contructor feature', node.id);
           this.focusSelectedNode(node.id);
           this._roadmapBottomsheetManagerService.open(node);
         }),
@@ -110,11 +110,7 @@ export class FeatureRoadmapComponent {
       `[node-id="${selectedNodeId}"]`,
     ) as HTMLElement | null;
 
-    const dataClickTarget = selectedNode?.querySelector(
-      '[data-click-target]',
-    ) as HTMLElement | null;
-
-    dataClickTarget?.dispatchEvent(new PointerEvent('pointerup'));
+    selectedNode?.dispatchEvent(new PointerEvent('pointerup'));
   }
 
   resizeRoadmap(event: EventType): void {

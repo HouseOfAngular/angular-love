@@ -15,14 +15,15 @@ import { RoadmapNodeLabelComponent } from '../roadmap-node-label/roadmap-node-la
   template: `
     @if (node().label; as label) {
       <al-roadmap-node-label
-        class="translate-x-1.5x absolute z-[20] -translate-y-1/2"
+        class="label translate-x-1.5x absolute z-[20] -translate-y-1/2 "
         [label]="label"
+        (pointerup)="_roadmapBottomSheetNotifierService.openBottomSheet(node())"
       />
     }
     <div
-      class="roadmap-hover-border-gradient relative w-fit text-nowrap rounded-lg bg-[#FDF5FD] text-[#FDF5FD] hover:cursor-pointer "
+      class="node relative w-fit text-nowrap rounded-lg bg-[#FDF5FD] text-[#FDF5FD]"
+      [attr.node-id]="node().id"
       (pointerup)="_roadmapBottomSheetNotifierService.openBottomSheet(node())"
-      data-click-target
     >
       <div
         class="relative z-10 m-[4px] rounded-lg bg-[--primary-color] px-6 py-4 text-[24px]"
@@ -36,8 +37,6 @@ import { RoadmapNodeLabelComponent } from '../roadmap-node-label/roadmap-node-la
   imports: [RoadmapNodeLabelComponent],
   host: {
     class: 'relative',
-    '(pointerup)': '_roadmapBottomSheetNotifierService.openBottomSheet(node())',
-    '[attr.node-id]': 'node().id',
   },
 })
 export class RoadmapPrimaryNodeComponent {

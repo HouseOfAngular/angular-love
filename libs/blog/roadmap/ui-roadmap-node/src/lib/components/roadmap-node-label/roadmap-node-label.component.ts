@@ -11,7 +11,7 @@ import { Label } from '../../types/roadmap-node';
   selector: 'al-roadmap-node-label',
   template: `
     <div
-      class="rounded-lg px-2 py-1 text-center text-white"
+      class="cursor-pointer rounded-lg px-2 py-1 text-center text-white"
       [class]="backgroundColorClass()"
     >
       {{ label() }}

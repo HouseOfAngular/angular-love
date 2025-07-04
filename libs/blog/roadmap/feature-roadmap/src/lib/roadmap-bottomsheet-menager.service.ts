@@ -7,20 +7,11 @@ import { RoadmapBottomsheetComponent } from '@angular-love/ui-roadmap-bottomshee
 @Injectable({ providedIn: 'root' })
 export class RoadmapBottomsheetManagerService {
   private dialog = inject(Dialog);
-  private dialogRef?:
-    | DialogRef<unknown, RoadmapBottomsheetComponent>
-    | undefined;
 
   open(node: RoadmapStandardNode) {
-    if (this.dialogRef) return;
-
-    this.dialogRef = this.dialog.open(RoadmapBottomsheetComponent, {
+    this.dialog.open(RoadmapBottomsheetComponent, {
       data: node,
       disableClose: false,
-    });
-
-    this.dialogRef?.closed.subscribe(() => {
-      this.dialogRef = undefined;
     });
   }
 }
