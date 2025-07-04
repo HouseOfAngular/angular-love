@@ -22,6 +22,7 @@ import { RoadmapNodeLabelComponent } from '../roadmap-node-label/roadmap-node-la
     <div
       class="roadmap-hover-border-gradient relative w-fit text-nowrap rounded-lg bg-[#FDF5FD] text-[#FDF5FD] hover:cursor-pointer "
       (pointerup)="_roadmapBottomSheetNotifierService.openBottomSheet(node())"
+      data-click-target
     >
       <div
         class="relative z-10 m-[4px] rounded-lg bg-[--primary-color] px-6 py-4 text-[24px]"

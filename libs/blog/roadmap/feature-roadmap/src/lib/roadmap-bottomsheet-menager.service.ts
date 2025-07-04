@@ -1,4 +1,4 @@
-import { Dialog } from '@angular/cdk/dialog';
+import { Dialog, DialogRef } from '@angular/cdk/dialog';
 import { inject, Injectable } from '@angular/core';
 
 import { RoadmapStandardNode } from '@angular-love/blog/roadmap/ui-roadmap-node';
@@ -7,11 +7,20 @@ import { RoadmapBottomsheetComponent } from '@angular-love/ui-roadmap-bottomshee
 @Injectable({ providedIn: 'root' })
 export class RoadmapBottomsheetManagerService {
   private dialog = inject(Dialog);
+  private dialogRef?:
+    | DialogRef<unknown, RoadmapBottomsheetComponent>
+    | undefined;
 
-  open(roadmapNode: RoadmapStandardNode) {
-    const dialogRef = this.dialog.open(RoadmapBottomsheetComponent, {
-      data: roadmapNode,
+  open(node: RoadmapStandardNode) {
+    if (this.dialogRef) return;
+
+    this.dialogRef = this.dialog.open(RoadmapBottomsheetComponent, {
+      data: node,
       disableClose: false,
+    });
+
+    this.dialogRef?.closed.subscribe(() => {
+      this.dialogRef = undefined;
     });
   }
 }

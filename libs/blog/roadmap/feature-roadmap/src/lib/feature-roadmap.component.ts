@@ -81,6 +81,7 @@ export class FeatureRoadmapComponent {
     this._roadmapBottomSheetNotifierService.nodeIdAsObservable
       .pipe(
         tap((node) => {
+          console.log('Open contructor feature', node.id);
           this.focusSelectedNode(node.id);
           this._roadmapBottomsheetManagerService.open(node);
         }),
@@ -97,8 +98,9 @@ export class FeatureRoadmapComponent {
     afterRenderEffect(() => {
       if (!isPlatformBrowser(this._platform)) return;
 
+      console.log('AfterRenderEffect with selected');
       const selectedNodeId = this.selectedNodeId();
-
+      console.log('AfterRenderEffect: SelectedNodeId', selectedNodeId);
       if (selectedNodeId) this.clickSelectedNode(selectedNodeId);
     });
   }
@@ -108,7 +110,11 @@ export class FeatureRoadmapComponent {
       `[node-id="${selectedNodeId}"]`,
     ) as HTMLElement | null;
 
-    selectedNode?.dispatchEvent(new PointerEvent('pointerup'));
+    const dataClickTarget = selectedNode?.querySelector(
+      '[data-click-target]',
+    ) as HTMLElement | null;
+
+    dataClickTarget?.dispatchEvent(new PointerEvent('pointerup'));
   }
 
   resizeRoadmap(event: EventType): void {

@@ -1,5 +1,4 @@
 import { DIALOG_DATA, DialogRef } from '@angular/cdk/dialog';
-import { NgClass } from '@angular/common';
 import {
   Component,
   computed,
@@ -35,7 +34,6 @@ function isRegularNode(node: RoadmapStandardNode): node is RoadmapRegularNode {
 
 @Component({
   imports: [
-    NgClass,
     RoadmapBottomsheetHeaderComponent,
     RoadmapBottomsheetDescriptionComponent,
     RoadmapBottomsheetRegularContentComponent,
@@ -48,10 +46,9 @@ function isRegularNode(node: RoadmapStandardNode): node is RoadmapRegularNode {
   templateUrl: './roadmap-bottomsheet.component.html',
   styles: `
     .bottomsheet {
-      &.visible {
-        animation: fadeInBottom 1s forwards;
-      }
+      animation: fadeInBottom 0.4s ease-out forwards;
     }
+
     @keyframes fadeInBottom {
       from {
         opacity: 0;
@@ -63,32 +60,29 @@ function isRegularNode(node: RoadmapStandardNode): node is RoadmapRegularNode {
       }
     }
   `,
-  host: {
-    '[style.display]': 'nodeDetails() ? "block" : "none"',
-    '[class.visible]': 'nodeDetails() !== undefined',
-  },
   standalone: true,
 })
 export class RoadmapBottomsheetComponent {
-  private matDialogData = inject<RoadmapStandardNode>(DIALOG_DATA);
-  private dialogRef = inject(DialogRef<RoadmapBottomsheetComponent>);
   private router = inject(Router);
-  nodeDetails = signal<RoadmapStandardNode>(this.matDialogData);
+  private dialogRef = inject(DialogRef<RoadmapBottomsheetComponent>);
+
+  protected nodeDetails = inject<RoadmapStandardNode>(DIALOG_DATA);
+  protected readonly bottomSheetRef = viewChild('bottomsheet', {
+    read: ElementRef,
+  });
+
   language = signal<string>('');
-  bottomSheetRef = viewChild('bottomsheet', { read: ElementRef });
 
   protected readonly angularLoveNodeDetails = computed<
     AngularLoveNode | undefined
   >(() => {
-    const details = this.nodeDetails();
-    return details && isAngularNode(details) ? details : undefined;
+    return isAngularNode(this.nodeDetails) ? this.nodeDetails : undefined;
   });
 
   protected readonly regularNodeDetails = computed<
     RoadmapRegularNode | undefined
   >(() => {
-    const details = this.nodeDetails();
-    return details && isRegularNode(details) ? details : undefined;
+    return isRegularNode(this.nodeDetails) ? this.nodeDetails : undefined;
   });
 
   protected readonly regularNodeArticles = computed(() => {
