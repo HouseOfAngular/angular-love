@@ -3,6 +3,9 @@ module.exports = {
   darkMode: ['class'],
   theme: {
     extend: {
+      translate: {
+        '1.5x': '150%',
+      },
       colors: {
         'al-foreground': 'rgb(var(--foreground) / <alpha-value>)',
         'al-card': 'rgb(var(--card) / <alpha-value>)',

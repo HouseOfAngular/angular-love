@@ -50,6 +50,11 @@ export class NavigationComponent {
       link: ['become-author'],
       dataTestId: 'navigation-become-author',
     },
+    {
+      translationPath: 'nav.roadmap',
+      link: ['roadmap'],
+      dataTestId: 'navigation-roadmap',
+    },
   ];
   protected navigated = output();
 }
