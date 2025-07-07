@@ -1,7 +1,7 @@
 import { Component, input } from '@angular/core';
 
-// eslint-disable-next-line @nx/enforce-module-boundaries
-import { Creator } from '../../../../utils/src/lib/models/creator.type';
+import { Creator } from '@angular-love/blog/roadmap/ui-roadmap-node';
+
 import { RoadmapBottomsheetSubtitleComponent } from '../roadmap-bottomsheet-subtitle/roadmap-bottomsheet-subtitle.component';
 
 @Component({

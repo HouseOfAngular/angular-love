@@ -98,9 +98,7 @@ export class FeatureRoadmapComponent {
     afterRenderEffect(() => {
       if (!isPlatformBrowser(this._platform)) return;
 
-      console.log('AfterRenderEffect with selected');
       const selectedNodeId = this.selectedNodeId();
-      console.log('AfterRenderEffect: SelectedNodeId', selectedNodeId);
       if (selectedNodeId) this.clickSelectedNode(selectedNodeId);
     });
   }

@@ -6,9 +6,9 @@ import {
 } from '@angular/core';
 
 import {
+  RoadmapBasicNodeComponent,
   RoadmapClusterComponent,
   RoadmapNode,
-  RoadmapSecondaryNodeComponent,
 } from '@angular-love/blog/roadmap/ui-roadmap-node';
 
 import { NodeConnectionPointDirective } from './node-connection-point.directive';
@@ -21,8 +21,8 @@ import { NodeConnectionsGroupDirective } from './node-connections-group.directiv
   imports: [
     NodeConnectionPointDirective,
     NodeConnectionsGroupDirective,
+    RoadmapBasicNodeComponent,
     RoadmapClusterComponent,
-    RoadmapSecondaryNodeComponent,
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
