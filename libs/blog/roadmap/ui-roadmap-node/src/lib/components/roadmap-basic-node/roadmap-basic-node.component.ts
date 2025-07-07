@@ -1,10 +1,10 @@
-import { NgClass } from '@angular/common';
 import {
   ChangeDetectionStrategy,
   Component,
   computed,
   inject,
   input,
+  signal,
 } from '@angular/core';
 
 import { RoadmapBottomSheetNotifierService } from '../../services/roadmap-bottomsheet-notifier.service';
@@ -24,12 +24,9 @@ import { RoadmapNodeLabelComponent } from '../roadmap-node-label/roadmap-node-la
 
     <div
       class="node relative w-fit text-nowrap rounded-lg bg-[#FDF5FD] text-[#FDF5FD]"
-      [ngClass]="{
-        'roadmap-hover-border-gradient hover:cursor-pointer':
-          variant() === 'secondary',
-      }"
       [attr.node-id]="node().id"
-      (pointerup)="_roadmapBottomSheetNotifierService.openBottomSheet(node())"
+      (pointerdown)="onPointerDown($event)"
+      (pointerup)="onPointerUp($event)"
     >
       <div class="relative z-10 rounded-lg px-6 py-4" [class]="tileClass()">
         {{ node().title }}
@@ -38,19 +35,23 @@ import { RoadmapNodeLabelComponent } from '../roadmap-node-label/roadmap-node-la
   `,
   styleUrl: 'roadmap-basic-node.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [RoadmapNodeLabelComponent, NgClass],
+  imports: [RoadmapNodeLabelComponent],
   host: {
     class: 'relative',
   },
-  standalone: true,
 })
 export class RoadmapBasicNodeComponent {
+  private readonly difference = 5;
   protected readonly _roadmapBottomSheetNotifierService = inject(
     RoadmapBottomSheetNotifierService,
   );
+  protected readonly pointerDown = signal<{ x: number; y: number }>({
+    x: 0,
+    y: 0,
+  });
 
   readonly node = input.required<RoadmapStandardNode>();
-  readonly variant = input.required<'primary' | 'secondary'>();
+  readonly variant = input.required<'primary' | 'secondary' | 'angular-love'>();
 
   protected readonly labelClass = computed(() => {
     const variant = this.variant();
@@ -67,8 +68,24 @@ export class RoadmapBasicNodeComponent {
         return 'm-[4px] bg-[--primary-color] text-[24px]';
       case 'secondary':
         return 'm-[2px] bg-[--secondary-color] text-[20px]';
+      case 'angular-love':
+        return 'm-[4px] bg-gradient-to-r from-[--secondary-color] to-[--gradient-color] text-[24px]';
       default:
         return '';
     }
   });
+
+  onPointerDown(event: PointerEvent) {
+    this.pointerDown.set({ x: event.clientX, y: event.clientY });
+  }
+
+  onPointerUp(event: PointerEvent) {
+    const dx = Math.abs(event.clientX - this.pointerDown().x);
+    const dy = Math.abs(event.clientY - this.pointerDown().y);
+
+    console.log(dx, dy);
+    if (dx < this.difference && dy < this.difference) {
+      this._roadmapBottomSheetNotifierService.openBottomSheet(this.node());
+    }
+  }
 }

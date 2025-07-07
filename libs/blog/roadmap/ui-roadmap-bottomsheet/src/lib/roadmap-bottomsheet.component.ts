@@ -60,11 +60,10 @@ function isRegularNode(node: RoadmapStandardNode): node is RoadmapRegularNode {
       }
     }
   `,
-  standalone: true,
 })
 export class RoadmapBottomsheetComponent {
-  private router = inject(Router);
-  private dialogRef = inject(DialogRef<RoadmapBottomsheetComponent>);
+  private _router = inject(Router);
+  private _dialogRef = inject(DialogRef<RoadmapBottomsheetComponent>);
 
   protected nodeDetails = inject<RoadmapStandardNode>(DIALOG_DATA);
   protected readonly bottomSheetRef = viewChild('bottomsheet', {
@@ -104,16 +103,15 @@ export class RoadmapBottomsheetComponent {
   });
 
   onClose() {
-    this.dialogRef.close();
+    this._dialogRef.close();
   }
 
   navigateToAuthor() {
-    this.router.navigate(['/become-author']);
-    this.dialogRef.close();
+    this._router.navigate(['/become-author']);
+    this._dialogRef.close();
   }
 
   constructor() {
-    console.log('dialog ref', this.dialogRef);
     effect(() => {
       const el = this.bottomSheetRef();
       if (el) {
@@ -121,6 +119,4 @@ export class RoadmapBottomsheetComponent {
       }
     });
   }
-
-  protected readonly effect = effect;
 }

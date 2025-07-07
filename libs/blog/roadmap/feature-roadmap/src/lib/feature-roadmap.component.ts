@@ -63,14 +63,14 @@ export class FeatureRoadmapComponent {
     RoadmapBottomSheetNotifierService,
   );
 
-  private readonly selectedNodeId = toSignal(
+  private readonly _selectedNodeId = toSignal(
     this._route.queryParams.pipe(map((params) => params['nodeId'])),
     { initialValue: undefined },
   );
 
-  private panZoomInstance = signal<PanZoom | undefined>(undefined);
+  private _panZoomInstance = signal<PanZoom | undefined>(undefined);
 
-  private readonly nodesDto = this._roadmapStore.nodesDto;
+  private readonly _nodesDto = this._roadmapStore.nodesDto;
   protected readonly roadmapLayers = this._roadmapStore.roadmapLayers;
   protected readonly isPlatformBrowser = isPlatformBrowser(this._platform);
 
@@ -79,7 +79,7 @@ export class FeatureRoadmapComponent {
   constructor() {
     this._roadmapStore.getNodes();
 
-    this._roadmapBottomSheetNotifierService.nodeIdAsObservable
+    this._roadmapBottomSheetNotifierService.nodeAsObservable
       .pipe(
         tap((node) => {
           this.focusSelectedNode(node.id);
@@ -90,7 +90,7 @@ export class FeatureRoadmapComponent {
       .subscribe();
     afterRenderEffect(async () => {
       if (!isPlatformBrowser(this._platform)) return;
-      if (this.nodesDto()?.length) {
+      if (this._nodesDto()?.length) {
         this.initPanZoom();
       }
     });
@@ -98,7 +98,7 @@ export class FeatureRoadmapComponent {
     afterRenderEffect(() => {
       if (!isPlatformBrowser(this._platform)) return;
 
-      const selectedNodeId = this.selectedNodeId();
+      const selectedNodeId = this._selectedNodeId();
       if (selectedNodeId) this.clickSelectedNode(selectedNodeId);
     });
   }
@@ -112,7 +112,7 @@ export class FeatureRoadmapComponent {
   }
 
   resizeRoadmap(event: EventType): void {
-    const panZoomInstance = this.panZoomInstance();
+    const panZoomInstance = this._panZoomInstance();
     if (!panZoomInstance) return;
     const transform = panZoomInstance.getTransform();
     const centerX = this.elementRef.nativeElement.clientWidth / 2;
@@ -146,7 +146,7 @@ export class FeatureRoadmapComponent {
   }
 
   private focusSelectedNode(nodeId: string): void {
-    const panZoomInstance = this.panZoomInstance();
+    const panZoomInstance = this._panZoomInstance();
     if (!panZoomInstance) return;
 
     const selectedNode = this.elementRef.nativeElement.querySelector(
@@ -176,7 +176,7 @@ export class FeatureRoadmapComponent {
 
   private initPanZoom() {
     const roadmapWrapper = this.roadmapWrapper.nativeElement;
-    this.panZoomInstance.set(
+    this._panZoomInstance.set(
       panzoom(roadmapWrapper, this._panZoomInitialConfig),
     );
 
@@ -186,11 +186,11 @@ export class FeatureRoadmapComponent {
 
     controlButtons.forEach((btn) => {
       btn.addEventListener('pointerdown', () => {
-        this.panZoomInstance()?.pause();
+        this._panZoomInstance()?.pause();
       });
 
       btn.addEventListener('click', () => {
-        setTimeout(() => this.panZoomInstance()?.resume(), 0);
+        setTimeout(() => this._panZoomInstance()?.resume(), 0);
       });
 
       btn.addEventListener(
