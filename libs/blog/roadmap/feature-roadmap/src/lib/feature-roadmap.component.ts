@@ -30,6 +30,8 @@ const panZoomInitialConfig: PanZoomOptions = {
   minZoom: 0.5,
   zoomSpeed: 0.1,
   initialZoom: 1,
+  bounds: true,
+  boundsPadding: 0.05,
   smoothScroll: true,
 };
 
