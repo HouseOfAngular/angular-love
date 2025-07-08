@@ -18,6 +18,7 @@ import { map, tap } from 'rxjs';
 import {
   EventType,
   RoadmapLayerComponent,
+  RoadmapLegendComponent,
   RoadmapPanControlsComponent,
 } from '@angular-love/blog/roadmap/ui-roadmap';
 import { RoadmapBottomSheetNotifierService } from '@angular-love/blog/roadmap/ui-roadmap-node';
@@ -37,7 +38,11 @@ const panZoomInitialConfig: PanZoomOptions = {
 
 @Component({
   selector: 'al-feature-roadmap',
-  imports: [RoadmapLayerComponent, RoadmapPanControlsComponent],
+  imports: [
+    RoadmapLayerComponent,
+    RoadmapPanControlsComponent,
+    RoadmapLegendComponent,
+  ],
   templateUrl: './feature-roadmap.component.html',
   styleUrl: './feature-roadmap.component.scss',
   host: {
@@ -179,7 +184,12 @@ export class FeatureRoadmapComponent {
   private initPanZoom() {
     const roadmapWrapper = this.roadmapWrapper.nativeElement;
     this._panZoomInstance.set(
-      panzoom(roadmapWrapper, this._panZoomInitialConfig),
+      panzoom(roadmapWrapper, {
+        ...this._panZoomInitialConfig,
+        boundsPadding: this.isMobileDevice()
+          ? -2
+          : this._panZoomInitialConfig.boundsPadding,
+      }),
     );
 
     const controlButtons = document.querySelectorAll(
@@ -204,5 +214,9 @@ export class FeatureRoadmapComponent {
         { passive: false },
       );
     });
+  }
+
+  private isMobileDevice(): boolean {
+    return /Mobi|Android/i.test(navigator.userAgent);
   }
 }
