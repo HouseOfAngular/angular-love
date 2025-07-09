@@ -66,7 +66,7 @@ export class RoadmapBottomsheetComponent {
   private _dialogRef = inject(DialogRef<RoadmapBottomsheetComponent>);
 
   protected nodeDetails = inject<RoadmapStandardNode>(DIALOG_DATA);
-  protected readonly bottomSheetRef = viewChild('bottomsheet', {
+  protected readonly bottomsheetBody = viewChild('bottomsheetBody', {
     read: ElementRef,
   });
 
@@ -113,7 +113,7 @@ export class RoadmapBottomsheetComponent {
 
   constructor() {
     effect(() => {
-      const el = this.bottomSheetRef();
+      const el = this.bottomsheetBody();
       if (el) {
         queueMicrotask(() => el.nativeElement.scrollTo({ top: 0 }));
       }

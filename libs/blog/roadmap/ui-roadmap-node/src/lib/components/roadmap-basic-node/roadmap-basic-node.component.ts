@@ -19,6 +19,9 @@ import { RoadmapNodeLabelComponent } from '../roadmap-node-label/roadmap-node-la
         class="label absolute z-[20] -translate-y-1/2"
         [class]="labelClass()"
         [label]="label"
+        (pointerup)="
+          this._roadmapBottomSheetNotifierService.openBottomSheet(this.node())
+        "
       />
     }
 
