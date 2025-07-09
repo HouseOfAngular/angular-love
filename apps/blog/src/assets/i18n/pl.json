@@ -107,7 +107,7 @@
   },
   "newsletterPage": {
     "title": "Newsletter Angular.love",
-    "description": "Bycie na bieżąco z Angularem to spore wyzwanie. Wiemy, bo pracujemy z nim na co dzień. Właśnie dlatego powstał newsletter Angular.letter — krótka, starannie dobrana dawka najważniejszych newsów, tipów i wydarzeń. Zero lania wody, zero spamu. Tylko to, co naprawdę ma znaczenie — prosto na Twoją skrzynkę.",
+    "description": "Bycie na bieżąco z Angularem wymaga czasu - wiemy o tym, ponieważ pracujemy z nim na co dzień. Dlatego stworzyliśmy Angular.letter - newsletter pisany przez programistów z community Angular.love dla programistów takich jak Ty. Jest on wysyłany maksymalnie raz na dwa tygodnie i zawiera tylko najważniejsze wiadomości, porady i zaproszenia na wydarzenia.",
     "success": {
       "title": "Pomyślnie zapisałeś się na newsletter!",
       "description": "Od teraz będziesz na bieżąco ze wszystkimi informacjami jakie będziemy udostępniać na blogu.",

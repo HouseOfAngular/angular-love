@@ -13,6 +13,7 @@ import { CardComponent } from '@angular-love/blog/shared/ui-card';
 
 import { NewsletterComponent } from '../feature-newsletter/newsletter.component';
 
+import { NewsletterExamplesComponent } from './newsletter-examples/newsletter-examples.component';
 import { NewsletterSuccesComponent } from './newsletter-succes/newsletter-succes.component';
 
 @Component({
@@ -23,6 +24,7 @@ import { NewsletterSuccesComponent } from './newsletter-succes/newsletter-succes
     CardComponent,
     NewsletterComponent,
     NewsletterSuccesComponent,
+    NewsletterExamplesComponent,
   ],
   templateUrl: './newsletter-page.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
