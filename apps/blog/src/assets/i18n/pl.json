@@ -25,6 +25,7 @@
     "about": "O nas",
     "meetups": "Angular Meetups",
     "become_author": "Zostań autorem",
+    "newsletter": "Angular.letter",
     "navLinks": "Menu",
     "languagePicker": {
       "pl": "Polski",
@@ -98,15 +99,20 @@
     "title": "Zapisz się na nasz newsletter",
     "description": "Dołącz do community Angular.love i bądź na bieżąco z trendami.",
     "emailPlaceholder": "Twój e-mail",
+    "namePlaceholder": "Twoje imię",
     "submitLabel": "Wyślij i zapisz się na newsletter",
     "label": "Zgoda na przetwarzanie adresu email do newslettera.",
     "consent": "Wyrażam zgodę na przetwarzanie mojego adresu e-mail przez Angular.love w celu wysyłki newslettera.",
     "error": "Ups... coś poszło nie tak. Spróbuj ponownie."
   },
   "newsletterPage": {
-    "title": "Pomyślnie zapisałeś się na newsletter!",
-    "description": "Od teraz będziesz na bieżąco ze wszystkimi informacjami jakie będziemy udostępniać na blogu.",
-    "button": "Powrót na stronę główną"
+    "title": "Newsletter Angular.love",
+    "description": "Bycie na bieżąco z Angularem wymaga czasu - wiemy o tym, ponieważ pracujemy z nim na co dzień. Dlatego stworzyliśmy Angular.letter - newsletter pisany przez programistów z community Angular.love dla programistów takich jak Ty. Jest on wysyłany maksymalnie raz na dwa tygodnie i zawiera tylko najważniejsze wiadomości, porady i zaproszenia na wydarzenia.",
+    "success": {
+      "title": "Pomyślnie zapisałeś się na newsletter!",
+      "description": "Od teraz będziesz na bieżąco ze wszystkimi informacjami jakie będziemy udostępniać na blogu.",
+      "button": "Powrót na stronę główną"
+    }
   },
   "notFoundPage": {
     "title": "404",
