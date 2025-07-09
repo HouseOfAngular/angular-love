@@ -68,11 +68,11 @@ export class RoadmapBasicNodeComponent {
 
     switch (variant) {
       case 'primary':
-        return 'm-[2px] bg-[--primary-color] text-[24px]';
+        return 'm-[2px] bg-al-roadmap-primary text-[24px]';
       case 'secondary':
-        return 'm-[2px] bg-[--secondary-color] text-[20px]';
+        return 'm-[2px] bg-al-roadmap-secondary text-[20px]';
       case 'angular-love':
-        return 'm-[4px] bg-gradient-to-r from-[--secondary-color] to-[--gradient-color] text-[24px]';
+        return 'm-[4px] bg-gradient-to-r from-al-roadmap-secondary to-al-roadmap-accent text-[24px]';
       default:
         return '';
     }

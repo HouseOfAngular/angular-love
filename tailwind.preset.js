@@ -15,6 +15,14 @@ module.exports = {
         'al-pink': 'rgba(var(--primary) / <alpha-value>)',
         'al-primary': 'rgba(var(--primary) / <alpha-value>)',
         'al-muted': 'rgba(var(--muted) / <alpha-value>)',
+        'al-roadmap-primary': 'rgba(var(--roadmap-primary) / <alpha-value>)',
+        'al-roadmap-secondary':
+          'rgba(var(--roadmap-secondary) / <alpha-value>)',
+        'al-roadmap-accent': 'rgba(var(--roadmap-accent) / <alpha-value>)',
+        'al-roadmap-hover-primary':
+          'rgba(var(--roadmap-hover-primary) / <alpha-value>)',
+        'al-roadmap-hover-secondary':
+          'rgba(var(--roadmap-hover-secondary) / <alpha-value>)',
       },
       backgroundImage: {
         'al-radial-gradient':

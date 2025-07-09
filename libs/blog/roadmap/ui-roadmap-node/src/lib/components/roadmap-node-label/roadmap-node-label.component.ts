@@ -31,7 +31,7 @@ export class RoadmapNodeLabelComponent {
       case 'comingSoon':
         return 'bg-[--comingSoon]';
       case 'recommended':
-        return 'bg-gradient-to-r from-[--secondary-color] to-[--gradient-color]';
+        return 'bg-gradient-to-r from-al-roadmap-secondary to-al-roadmap-accent';
       default:
         return '';
     }
