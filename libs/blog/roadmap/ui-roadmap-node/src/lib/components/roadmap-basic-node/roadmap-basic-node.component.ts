@@ -65,7 +65,7 @@ export class RoadmapBasicNodeComponent {
 
     switch (variant) {
       case 'primary':
-        return 'm-[4px] bg-[--primary-color] text-[24px]';
+        return 'm-[2px] bg-[--primary-color] text-[24px]';
       case 'secondary':
         return 'm-[2px] bg-[--secondary-color] text-[20px]';
       case 'angular-love':
@@ -83,7 +83,6 @@ export class RoadmapBasicNodeComponent {
     const dx = Math.abs(event.clientX - this.pointerDown().x);
     const dy = Math.abs(event.clientY - this.pointerDown().y);
 
-    console.log(dx, dy);
     if (dx < this.difference && dy < this.difference) {
       this._roadmapBottomSheetNotifierService.openBottomSheet(this.node());
     }
