@@ -19,22 +19,24 @@ import { RoadmapNodeLabelComponent } from '../roadmap-node-label/roadmap-node-la
         class="label absolute z-[20] -translate-y-1/2"
         [class]="labelClass()"
         [label]="label"
+        (keydown)="onKeyDown($event)"
         (pointerup)="
           this._roadmapBottomSheetNotifierService.openBottomSheet(this.node())
         "
       />
     }
 
-    <div
+    <button
       class="node relative w-fit text-nowrap rounded-lg bg-[#FDF5FD] text-[#FDF5FD]"
       [attr.node-id]="node().id"
+      (keydown)="onKeyDown($event)"
       (pointerdown)="onPointerDown($event)"
       (pointerup)="onPointerUp($event)"
     >
       <div class="relative z-10 rounded-lg px-6 py-4" [class]="tileClass()">
         {{ node().title }}
       </div>
-    </div>
+    </button>
   `,
   styleUrl: 'roadmap-basic-node.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -87,6 +89,12 @@ export class RoadmapBasicNodeComponent {
     const dy = Math.abs(event.clientY - this.pointerDown().y);
 
     if (dx < this.difference && dy < this.difference) {
+      this._roadmapBottomSheetNotifierService.openBottomSheet(this.node());
+    }
+  }
+
+  onKeyDown(event: KeyboardEvent): void {
+    if (event.code === 'Enter' || event.code === 'Space') {
       this._roadmapBottomSheetNotifierService.openBottomSheet(this.node());
     }
   }

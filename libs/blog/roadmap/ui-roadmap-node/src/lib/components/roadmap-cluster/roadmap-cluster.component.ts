@@ -7,7 +7,10 @@ import {
 } from '@angular/core';
 
 import { RoadmapBottomSheetNotifierService } from '../../services/roadmap-bottomsheet-notifier.service';
-import { RoadmapClusterNode } from '../../types/roadmap-node';
+import {
+  RoadmapClusterNode,
+  RoadmapStandardNode,
+} from '../../types/roadmap-node';
 
 @Component({
   selector: 'al-roadmap-cluster',
@@ -21,9 +24,10 @@ import { RoadmapClusterNode } from '../../types/roadmap-node';
 
     <div class="m-[2px] flex flex-col gap-[10px] p-3">
       @for (clusterNode of cluster().clusteredNodes; track clusterNode.id) {
-        <div
+        <button
           class="roadmap-hover-border-gradient relative w-full text-nowrap rounded-lg bg-[#FDF5FD] text-[#FDF5FD] hover:cursor-pointer"
           [attr.node-id]="clusterNode.id"
+          (keydown)="onKeyDown($event, clusterNode)"
           (pointerup)="
             _roadmapBottomSheetNotifierService.openBottomSheet(clusterNode)
           "
@@ -33,7 +37,7 @@ import { RoadmapClusterNode } from '../../types/roadmap-node';
           >
             <div class="text-[20px]">{{ clusterNode.title }}</div>
           </div>
-        </div>
+        </button>
       }
     </div>
   `,
@@ -49,4 +53,10 @@ export class RoadmapClusterComponent {
     RoadmapBottomSheetNotifierService,
   );
   readonly cluster = input.required<RoadmapClusterNode>();
+
+  onKeyDown(event: KeyboardEvent, node: RoadmapStandardNode): void {
+    if (event.code === 'Enter' || event.code === 'Space') {
+      this._roadmapBottomSheetNotifierService.openBottomSheet(node);
+    }
+  }
 }
