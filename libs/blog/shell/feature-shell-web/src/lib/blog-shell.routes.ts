@@ -2,6 +2,7 @@ import { Route } from '@angular/router';
 
 import { articleRoutes } from '@angular-love/blog/articles/feature/shell';
 import { activeLanguageGuard } from '@angular-love/blog/i18n/data-access';
+import { LayoutConfig } from '@angular-love/blog/layouts/ui-layouts';
 
 import { RootShellComponent } from './root-shell.component';
 
@@ -82,6 +83,19 @@ export const commonRoutes: Route[] = [
             .WritingRulesComponent,
         data: {
           seo: { autoHrefLang: true },
+        },
+      },
+      {
+        path: 'roadmap',
+        loadComponent: async () =>
+          await import('@angular-love/blog/roadmap/feature-roadmap').then(
+            (m) => m.FeatureRoadmapComponent,
+          ),
+        data: {
+          layoutConfig: {
+            fullLayout: true,
+          },
+          seo: { title: 'seo.roadmap' },
         },
       },
       {

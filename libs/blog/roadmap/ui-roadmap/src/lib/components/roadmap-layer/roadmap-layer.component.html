@@ -1,0 +1,27 @@
+<!-- Layer parent node-->
+@if (layer().parentNode.nodeType === 'primary') {
+  <al-roadmap-basic-node [node]="layer().parentNode" variant="primary" />
+} @else if (layer().parentNode.nodeType === 'angular-love') {
+  <al-roadmap-basic-node [node]="layer().parentNode" variant="angular-love" />
+}
+
+@if (showLayerConnector()) {
+  <al-vertical-connector-arrow class="absolute" />
+}
+
+<!-- Layer child nodes-->
+@if ((layer().childNodes || []).length) {
+  <div class="grid grid-cols-2">
+    <!-- Layer left side nodes -->
+    <al-connected-nodes
+      [connectedNodes]="layer().childNodes | leftSlice"
+      [nodesDrawingDirection]="'to-left'"
+    />
+
+    <!-- Layer right side nodes -->
+    <al-connected-nodes
+      [connectedNodes]="layer().childNodes | rightSlice"
+      [nodesDrawingDirection]="'to-right'"
+    />
+  </div>
+}

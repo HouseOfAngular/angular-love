@@ -26,6 +26,7 @@
     "meetups": "Angular Meetups",
     "become_author": "Zostań autorem",
     "navLinks": "Menu",
+    "roadmap": "Roadmap",
     "languagePicker": {
       "pl": "Polski",
       "en": "Angielski"
@@ -108,6 +109,14 @@
     "description": "Od teraz będziesz na bieżąco ze wszystkimi informacjami jakie będziemy udostępniać na blogu.",
     "button": "Powrót na stronę główną"
   },
+  "roadmapPage": {
+    "roadmapControls": {
+      "zoomInRoadmapButton": "Przybliż roadmapę",
+      "restoreRoadmapViewButton": "Przywróć domyślny widok roadmapy",
+      "restoreRoadmapZoomButton": "Przywróć domyślne powiększenie roadmapy",
+      "zoomOutRoadmapButton": "Oddal roadmapę"
+    }
+  },
   "notFoundPage": {
     "title": "404",
     "description": "Wygląda na to, że zgubiłeś drogę. Strona, której szukasz, nie istnieje lub link wygasł i jest już niedostępny.",
@@ -145,7 +154,8 @@
     "home": "Blog dla sympatyków Angulara",
     "aboutUs": "O nas",
     "becomeAuthor": "Zostań autorem",
-    "notFound": "Nie znaleziono"
+    "notFound": "Nie znaleziono",
+    "roadmap": "Roadmap"
   },
   "adBanner": {
     "registerButton": "Pobierz za darmo",
