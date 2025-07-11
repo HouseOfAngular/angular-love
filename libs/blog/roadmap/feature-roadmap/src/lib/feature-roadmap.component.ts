@@ -31,7 +31,6 @@ const panZoomInitialConfig: PanZoomOptions = {
   minZoom: 0.5,
   zoomSpeed: 0.1,
   initialZoom: 1,
-  bounds: true,
   boundsPadding: 0.05,
   smoothScroll: true,
 };
@@ -186,12 +185,118 @@ export class FeatureRoadmapComponent {
     this._panZoomInstance.set(
       panzoom(roadmapWrapper, {
         ...this._panZoomInitialConfig,
-        boundsPadding: this.isMobileDevice()
-          ? -2
-          : this._panZoomInitialConfig.boundsPadding,
       }),
     );
 
+    const _panZoomInstance = this._panZoomInstance();
+    const { bottommostNode, topmostNode, rightmostNode, leftmostNode } =
+      this.getRoadmapBounds();
+
+    _panZoomInstance?.on('panend', () => {
+      if (!bottommostNode || !topmostNode || !rightmostNode || !leftmostNode)
+        return;
+
+      const correctPosition = () => {
+        const lowerNodeRect = bottommostNode.getBoundingClientRect();
+        const topNodeRect = topmostNode.getBoundingClientRect();
+        const rightNodeRect = rightmostNode.getBoundingClientRect();
+        const leftNodeRect = leftmostNode?.getBoundingClientRect();
+
+        const viewportCenterY = window.innerHeight / 2;
+        const viewportCenterX = window.innerWidth / 2;
+
+        if (lowerNodeRect.top < 100) {
+          const nodeCenterY = lowerNodeRect.top + lowerNodeRect.height / 2;
+          const deltaY = viewportCenterY - nodeCenterY;
+
+          this.correctPanBy(_panZoomInstance, 0, deltaY);
+        }
+        if (topNodeRect.bottom > window.innerHeight - 100) {
+          const nodeCenterY = topNodeRect.bottom + topNodeRect.height / 2;
+          const deltaY = viewportCenterY - nodeCenterY;
+
+          this.correctPanBy(_panZoomInstance, 0, deltaY);
+        }
+
+        if (leftNodeRect.left > window.innerWidth - 100) {
+          const nodeCenterX = leftNodeRect.left + leftNodeRect.width / 2;
+          const deltaX = viewportCenterX - nodeCenterX;
+
+          this.correctPanBy(_panZoomInstance, deltaX, 0);
+        }
+
+        if (rightNodeRect.right < 100) {
+          const nodeCenterX = rightNodeRect.right + rightNodeRect.width / 2;
+          const deltaX = viewportCenterX - nodeCenterX;
+
+          this.correctPanBy(_panZoomInstance, deltaX, 0);
+        }
+      };
+
+      setTimeout(() => {
+        correctPosition();
+      }, 350);
+    });
+
+    this.setButtonEvents();
+  }
+
+  private getRoadmapBounds(): {
+    bottommostNode: HTMLElement | null;
+    topmostNode: HTMLElement | null;
+    leftmostNode: HTMLElement | null;
+    rightmostNode: HTMLElement | null;
+  } {
+    const nodes = this.elementRef.nativeElement.querySelectorAll(
+      '[node-id]',
+    ) as NodeListOf<HTMLElement>;
+
+    let topmostNode: HTMLElement | null = null;
+    let bottommostNode: HTMLElement | null = null;
+    let leftmostNode: HTMLElement | null = null;
+    let rightmostNode: HTMLElement | null = null;
+
+    let minX: number | null = null;
+    let maxX: number | null = null;
+    let minY: number | null = null;
+    let maxY: number | null = null;
+
+    nodes.forEach((node) => {
+      const rect = node.getBoundingClientRect();
+      const parentRect = this.elementRef.nativeElement.getBoundingClientRect();
+      const x = rect.left - parentRect.left;
+      const y = rect.top - parentRect.top;
+
+      if (minX === null || x < minX) {
+        minX = x;
+        leftmostNode = node;
+      }
+
+      if (maxX === null || x + rect.width > maxX) {
+        maxX = x + rect.width;
+        rightmostNode = node;
+      }
+
+      if (minY === null || y < minY) {
+        minY = y;
+        topmostNode = node;
+      }
+
+      if (maxY === null || y + rect.height > maxY) {
+        maxY = y + rect.height;
+        bottommostNode = node;
+      }
+    });
+
+    return {
+      topmostNode,
+      bottommostNode,
+      leftmostNode,
+      rightmostNode,
+    };
+  }
+
+  private setButtonEvents() {
     const controlButtons = document.querySelectorAll(
       'al-roadmap-pan-controls button',
     );
@@ -216,7 +321,13 @@ export class FeatureRoadmapComponent {
     });
   }
 
-  private isMobileDevice(): boolean {
-    return /Mobi|Android/i.test(navigator.userAgent);
+  private correctPanBy(
+    panZoomInstance: PanZoom,
+    deltaX: number,
+    deltaY: number,
+  ) {
+    panZoomInstance.pause();
+    panZoomInstance.moveBy(deltaX, deltaY, false);
+    panZoomInstance.resume();
   }
 }
