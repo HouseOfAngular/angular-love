@@ -1,1 +1,5 @@
-@use '../../style/roadmap-hover-border-gradient';
+@use '../../style/roadmap-hover-border-gradient' as r;
+
+.node {
+  @include r.roadmap-hover-border-gradient;
+}

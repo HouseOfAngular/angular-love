@@ -1,4 +1,4 @@
-import { Dialog, DialogRef } from '@angular/cdk/dialog';
+import { Dialog } from '@angular/cdk/dialog';
 import { inject, Injectable } from '@angular/core';
 
 import { RoadmapStandardNode } from '@angular-love/blog/roadmap/ui-roadmap-node';
