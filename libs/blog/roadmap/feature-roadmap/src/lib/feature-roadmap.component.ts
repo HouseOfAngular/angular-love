@@ -296,6 +296,7 @@ export class FeatureRoadmapComponent {
   }
 
   private setButtonEvents() {
+    const legendButton = document.querySelector('al-roadmap-legend button');
     const controlButtons = document.querySelectorAll(
       'al-roadmap-pan-controls button',
     );
@@ -318,6 +319,25 @@ export class FeatureRoadmapComponent {
         { passive: false },
       );
     });
+
+    if (legendButton) {
+      legendButton.addEventListener('pointerdown', () => {
+        this._panZoomInstance()?.pause();
+      });
+
+      legendButton.addEventListener('click', () => {
+        setTimeout(() => this._panZoomInstance()?.resume(), 0);
+      });
+
+      legendButton.addEventListener(
+        'wheel',
+        (e) => {
+          e.preventDefault();
+          e.stopPropagation();
+        },
+        { passive: false },
+      );
+    }
   }
 
   private correctPanBy(
