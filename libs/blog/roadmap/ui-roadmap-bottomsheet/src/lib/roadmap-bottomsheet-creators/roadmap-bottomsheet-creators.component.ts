@@ -23,6 +23,6 @@ import { RoadmapBottomsheetSubtitleComponent } from '../roadmap-bottomsheet-subt
   `,
 })
 export class RoadmapBottomsheetCreatorsComponent {
-  title = input.required<string>();
-  creators = input.required<Creator[]>();
+  readonly title = input.required<string>();
+  readonly creators = input.required<Creator[]>();
 }

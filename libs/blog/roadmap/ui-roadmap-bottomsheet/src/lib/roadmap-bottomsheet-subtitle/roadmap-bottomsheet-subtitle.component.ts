@@ -11,5 +11,5 @@ import { Component, input } from '@angular/core';
   },
 })
 export class RoadmapBottomsheetSubtitleComponent {
-  title = input.required<string>();
+  readonly title = input.required<string>();
 }

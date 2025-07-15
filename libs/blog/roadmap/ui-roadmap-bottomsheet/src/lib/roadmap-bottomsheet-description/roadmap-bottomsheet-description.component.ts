@@ -15,6 +15,6 @@ import { RoadmapBottomsheetSubtitleComponent } from '../roadmap-bottomsheet-subt
   `,
 })
 export class RoadmapBottomsheetDescriptionComponent {
-  title = input.required<string>();
-  description = input.required<string>();
+  readonly title = input.required<string>();
+  readonly description = input.required<string>();
 }

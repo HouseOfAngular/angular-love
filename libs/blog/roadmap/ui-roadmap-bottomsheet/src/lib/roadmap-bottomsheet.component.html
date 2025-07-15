@@ -29,23 +29,23 @@
         />
       }
 
-      @if (regularNodeDetails(); as regularNodeDetails) {
-        @if (!regularNodeDetails.resources.length) {
+      @if (regularNodeDetails()) {
+        @if (regularNodeArticles().length > 0) {
+          <al-roadmap-bottomsheet-regular-content
+            [resources]="regularNodeArticles()"
+            title="Articles"
+          />
+        } @else {
           <div class="flex w-full justify-center pt-6">
             <button al-button (pointerdown)="navigateToAuthor()">
               Become an author
             </button>
           </div>
-        } @else {
-          <al-roadmap-bottomsheet-regular-content
-            [resources]="regularNodeArticles()"
-            title="Articles"
-          />
-          <al-roadmap-bottomsheet-regular-content
-            [resources]="regularNodeVideos()"
-            title="Videos"
-          />
         }
+        <al-roadmap-bottomsheet-regular-content
+          [resources]="regularNodeVideos()"
+          title="Videos"
+        />
       }
       <al-roadmap-bottomsheet-footer
         [language]="language()"
