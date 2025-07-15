@@ -346,7 +346,7 @@ export class FeatureRoadmapComponent {
     deltaY: number,
   ) {
     panZoomInstance.pause();
-    panZoomInstance.moveBy(deltaX, deltaY, false);
+    panZoomInstance.moveBy(deltaX, deltaY, true);
     panZoomInstance.resume();
   }
 }

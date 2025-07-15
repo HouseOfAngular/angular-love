@@ -102,21 +102,20 @@ export class RoadmapBottomsheetComponent {
     );
   });
 
-  onClose() {
+  protected navigateToAuthor() {
+    this._router.navigate(['/become-author']);
     this._dialogRef.close();
   }
 
-  navigateToAuthor() {
-    this._router.navigate(['/become-author']);
+  onClose() {
     this._dialogRef.close();
   }
 
   constructor() {
     effect(() => {
-      const el = this.bottomsheetBody();
-      if (el) {
-        queueMicrotask(() => el.nativeElement.scrollTo({ top: 0 }));
-      }
+      queueMicrotask(() =>
+        this.bottomsheetBody()?.nativeElement.scrollTo({ top: 0 }),
+      );
     });
   }
 }
