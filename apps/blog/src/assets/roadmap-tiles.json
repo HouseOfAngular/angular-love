@@ -158,6 +158,11 @@
         "name": "takeuntildestroy-in-angular-v16",
         "type": "article",
         "url": "takeuntildestroy-in-angular-v16"
+      },
+      {
+        "name": "Why you don't need the ngOnInit",
+        "type": "video",
+        "url": "https://www.youtube.com/watch?v=aw0wMBnx3Hw"
       }
     ]
   },
@@ -268,9 +273,9 @@
         "url": "do-you-still-think-that-ngzone-zone-js-is-required-for-change-detection-in-angular"
       },
       {
-        "name": "Angular RxJS and Signals: Better Together",
+        "name": "Extending Angular with ngxtension",
         "type": "video",
-        "url": "https://www.youtube.com/watch?v=KSFPOIauEPU"
+        "url": "https://www.youtube.com/watch?v=GyPVKt0_2bY"
       }
     ]
   },
@@ -400,7 +405,13 @@
     "title": "Content Projection",
     "previousNodeId": "control-flow",
     "description": "Content projection enables components to receive and display dynamic external content using <ng-content>, facilitating flexible component composition.",
-    "resources": []
+    "resources": [
+      {
+        "name": "Journey into component depth - Content Projection",
+        "type": "video",
+        "url": "https://www.youtube.com/watch?v=2FhQlyWXJtQ"
+      }
+    ]
   },
   {
     "id": "modules",
@@ -713,9 +724,9 @@
   {
     "id": "reactive-forms",
     "parentNodeId": "forms",
+    "label": "recommended",
     "title": "Reactive Forms",
     "previousNodeId": "signal-forms",
-    "label": "recommended",
     "description": "Reactive forms provide a model-driven way to manage form controls in code, giving more explicit control over validation and dynamic form logic.",
     "resources": [
       {
@@ -752,6 +763,11 @@
         "name": "angular-forms-story-strong-types",
         "type": "article",
         "url": "angular-forms-story-strong-types"
+      },
+      {
+        "name": "Architecture of Angular Forms",
+        "type": "video",
+        "url": "https://www.youtube.com/watch?v=JGELp3e5NdM"
       }
     ]
   },
@@ -833,6 +849,26 @@
         "name": "angular-signals-rxjs-interop-from-a-practical-example",
         "type": "article",
         "url": "angular-signals-rxjs-interop-from-a-practical-example"
+      },
+      {
+        "name": "Angular RxJS and Signals: Better Together",
+        "type": "video",
+        "url": "https://www.youtube.com/watch?v=KSFPOIauEPU"
+      },
+      {
+        "name": "3 Effective Rules for Successfully Using Signals in Angular",
+        "type": "video",
+        "url": "https://www.youtube.com/watch?v=-ruWJKI7r7k"
+      },
+      {
+        "name": "All about Angular Signals and Why They Matter so Much",
+        "type": "video",
+        "url": "https://www.youtube.com/watch?v=olRdHJJfv04"
+      },
+      {
+        "name": "The bright future of Angular Signals",
+        "type": "video",
+        "url": "https://www.youtube.com/watch?v=m_h_WnoO8Ms"
       }
     ]
   },
@@ -1066,6 +1102,11 @@
         "name": "angular-testing-with-headless-chrome",
         "type": "article",
         "url": "angular-testing-with-headless-chrome"
+      },
+      {
+        "name": "Testing with component harnesses",
+        "type": "video",
+        "url": "https://www.youtube.com/watch?v=Egz6DWitDcM"
       }
     ]
   },
@@ -1205,6 +1246,11 @@
         "name": "how-i-got-rid-of-state-observables-in-angular",
         "type": "article",
         "url": "how-i-got-rid-of-state-observables-in-angular"
+      },
+      {
+        "name": "How smart is your component",
+        "type": "video",
+        "url": "https://www.youtube.com/watch?v=EBisR0Hl-eM"
       }
     ]
   },
@@ -1289,6 +1335,11 @@
         "name": "ngrx-how-and-where-to-handle-loading-and-error-states-of-ajax-calls",
         "type": "article",
         "url": "ngrx-how-and-where-to-handle-loading-and-error-states-of-ajax-calls"
+      },
+      {
+        "name": "Demystifying Advanced TypeScript Concepts behind NgRx APIs",
+        "type": "video",
+        "url": "https://www.youtube.com/watch?v=GHPdNbdM4FQ"
       }
     ]
   },
@@ -1308,6 +1359,21 @@
         "name": "signal-store-ngxs-elevating-flexibility-in-state-management",
         "type": "article",
         "url": "signal-store-ngxs-elevating-flexibility-in-state-management"
+      },
+      {
+        "name": "SignalStore overview",
+        "type": "video",
+        "url": "https://www.youtube.com/watch?v=QyGEToBSYX4"
+      },
+      {
+        "name": "Custom Store Features in NgRx Signal Store",
+        "type": "video",
+        "url": "https://www.youtube.com/watch?v=sRJl8OuvNys"
+      },
+      {
+        "name": "NgRx Signal Store",
+        "type": "video",
+        "url": "https://www.youtube.com/watch?v=CoQ0NjcZMtI"
       }
     ]
   },
@@ -1470,6 +1536,11 @@
         "name": "the-who-what-when-where-why-and-how-of-image-optimization-in-angular",
         "type": "article",
         "url": "the-who-what-when-where-why-and-how-of-image-optimization-in-angular"
+      },
+      {
+        "name": "Effortless Image Optimization with OptimizedImage",
+        "type": "video",
+        "url": "https://www.youtube.com/watch?v=dpR6WngPNzg"
       }
     ]
   },
@@ -1499,6 +1570,11 @@
         "name": "deferred-components-vs-dynamic-components-in-angular",
         "type": "article",
         "url": "deferred-components-vs-dynamic-components-in-angular"
+      },
+      {
+        "name": "Learn how to use Angular's defer block to improve performance",
+        "type": "video",
+        "url": "https://www.youtube.com/watch?v=w_F4ZmYMLrE"
       }
     ]
   },
@@ -1659,6 +1735,11 @@
         "name": "implement-google-sign-inoauth-in-your-angular-app-in-under-15-minutes",
         "type": "article",
         "url": "implement-google-sign-inoauth-in-your-angular-app-in-under-15-minutes"
+      },
+      {
+        "name": "There’s Safety in Angular",
+        "type": "video",
+        "url": "https://www.youtube.com/watch?v=yxBE6inxxug"
       }
     ]
   },
@@ -1816,6 +1897,16 @@
         "name": "reduce-your-bundle-size-through-this-component-styling-technique",
         "type": "article",
         "url": "reduce-your-bundle-size-through-this-component-styling-technique"
+      },
+      {
+        "name": "Why is my app Loading Slowly on 3G Internet?",
+        "type": "video",
+        "url": "https://www.youtube.com/watch?v=S9JUKCxEWkg"
+      },
+      {
+        "name": "Modular Monoliths with Nx",
+        "type": "video",
+        "url": "https://www.youtube.com/watch?v=SaNO6ubhYyg"
       }
     ]
   },
@@ -1940,6 +2031,41 @@
         "name": "do-you-still-think-that-ngzone-zone-js-is-required-for-change-detection-in-angular",
         "type": "article",
         "url": "do-you-still-think-that-ngzone-zone-js-is-required-for-change-detection-in-angular"
+      },
+      {
+        "name": "Breaking New Ground with Angular Query",
+        "type": "video",
+        "url": "https://www.youtube.com/watch?v=4dS0obsQztw"
+      },
+      {
+        "name": "State of Angular",
+        "type": "video",
+        "url": "https://www.youtube.com/watch?v=q8zJ4nrgoyU"
+      },
+      {
+        "name": "Vertical Architectures for Scalable Angular Applications",
+        "type": "video",
+        "url": "https://www.youtube.com/watch?v=0PXBWTXZa7o"
+      },
+      {
+        "name": "Angular in Depth & Angular.love blogs merge",
+        "type": "video",
+        "url": "https://www.youtube.com/watch?v=KuIfguIDRh8"
+      },
+      {
+        "name": "Angular Deep Dive with GDE Manfred Steyer",
+        "type": "video",
+        "url": "https://www.youtube.com/watch?v=o0ktaQTfu00"
+      },
+      {
+        "name": "Advanced Practical Angular Techniques - 2022 Edition",
+        "type": "video",
+        "url": "https://www.youtube.com/watch?v=cXFgFJATfVA"
+      },
+      {
+        "name": "How the backend knowledge can be used to build better Angular apps",
+        "type": "video",
+        "url": "https://www.youtube.com/watch?v=How8zLw5d1k"
       }
     ]
   },
@@ -2003,6 +2129,31 @@
         "name": "brace-yourself-angular-8-is-coming",
         "type": "article",
         "url": "brace-yourself-angular-8-is-coming"
+      },
+      {
+        "name": "What's New in Angular 18",
+        "type": "video",
+        "url": "https://www.youtube.com/watch?v=nQc74wAO94g"
+      },
+      {
+        "name": "What's New in Angular 18",
+        "type": "video",
+        "url": "https://www.youtube.com/watch?v=nQc74wAO94g"
+      },
+      {
+        "name": "Angular 18 | Interview with Aristeidis Bampakos",
+        "type": "video",
+        "url": "https://www.youtube.com/watch?v=XIraTN4ouWA"
+      },
+      {
+        "name": "Angular 18| Interview with Google Developer Expert Luca Del Puppo",
+        "type": "video",
+        "url": "https://www.youtube.com/watch?v=zwotukZCd9g"
+      },
+      {
+        "name": "Angular 18 and beyond - a look into the future",
+        "type": "video",
+        "url": "https://www.youtube.com/watch?v=zct1Jv2J8Ns"
       }
     ]
   },
@@ -2092,6 +2243,16 @@
         "name": "making-an-angular-project-mono-repo-with-ngrx-state-management-and-lazy-loading",
         "type": "article",
         "url": "making-an-angular-project-mono-repo-with-ngrx-state-management-and-lazy-loading"
+      },
+      {
+        "name": "Build a Planning Poker Game with Supabase",
+        "type": "video",
+        "url": "https://www.youtube.com/watch?v=OUfhpUUmUf4"
+      },
+      {
+        "name": "Organize your code using libraries in a mono-repo or in a poly-repo",
+        "type": "video",
+        "url": "https://www.youtube.com/watch?v=x2ARszKbD70"
       }
     ]
   },

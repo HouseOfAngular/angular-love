@@ -45,7 +45,7 @@ interface LegendSymbol {
   `,
   host: {
     class:
-      'hidden lg:flex h-fit w-fit flex-col items-center gap-8 border border-white rounded-lg bg-gradient-to-br from-[#100f15] to-[#3b0019] transition-transform duration-500 ease-in-out ',
+      'hidden lg:flex h-fit w-fit flex-col items-center gap-8 border border-white rounded-lg bg-gradient-to-br from-[#100f15] to-[#3b0019] transition-left duration-300 ease-in-out ',
     '[class]': 'hostClass()',
   },
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -58,12 +58,11 @@ export class RoadmapLegendComponent {
     const isOpen = this.isOpen();
     if (isOpen) {
       return 'left-4';
-    } else return '-left-[576px]';
+    } else return '-left-[22.30%]';
   });
 
   toggleLegend() {
     this.isOpen.set(!this.isOpen());
-    console.log('Invoked');
   }
 
   protected readonly legendSymbols: LegendSymbol[] = [
