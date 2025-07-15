@@ -51,20 +51,14 @@ interface LegendSymbol {
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class RoadmapLegendComponent {
-  private readonly isOpen = signal<boolean>(false);
+  private readonly isOpen = signal<boolean>(true);
   protected readonly legendOpened = computed(() => this.isOpen());
-
   protected readonly hostClass = computed(() => {
     const isOpen = this.isOpen();
     if (isOpen) {
       return 'left-4';
-    } else return '-left-[22.30%]';
+    } else return '-left-[576px]';
   });
-
-  toggleLegend() {
-    this.isOpen.set(!this.isOpen());
-  }
-
   protected readonly legendSymbols: LegendSymbol[] = [
     {
       symbol: 'recommended',
@@ -80,4 +74,8 @@ export class RoadmapLegendComponent {
         'Upcoming features – don’t hesitate to write your own article',
     },
   ];
+
+  toggleLegend() {
+    this.isOpen.set(!this.isOpen());
+  }
 }
