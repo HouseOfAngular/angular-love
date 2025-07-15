@@ -64,6 +64,7 @@
     "shiki": "^2.4.2",
     "stylelint": "^16.3.1",
     "tailwind-merge": "^2.3.0",
+    "tailwindcss-theme-variants": "2.0.0-beta.0",
     "tslib": "^2.6.1",
     "valibot": "1.0.0-rc.3",
     "vanilla-cookieconsent": "3.0.1",
