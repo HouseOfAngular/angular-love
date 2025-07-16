@@ -184,12 +184,50 @@ export class FeatureRoadmapComponent {
     this._panZoomInstance.set(
       panzoom(roadmapWrapper, {
         ...this._panZoomInitialConfig,
+        beforeWheel: function (e) {
+          return true;
+        },
       }),
     );
 
     const _panZoomInstance = this._panZoomInstance();
     const { bottommostNode, topmostNode, rightmostNode, leftmostNode } =
       this.getRoadmapBounds();
+
+    window.addEventListener(
+      'wheel',
+      (e) => {
+        const transforms = this._panZoomInstance()?.getTransform();
+        const lowerNodeRect = bottommostNode?.getBoundingClientRect();
+        const topNodeRect = topmostNode?.getBoundingClientRect();
+        const panZoomInstance = this._panZoomInstance();
+
+        const viewportCenterY = window.innerHeight / 2;
+        const viewportCenterX = window.innerWidth / 2;
+
+        if (transforms && panZoomInstance) {
+          if (lowerNodeRect && lowerNodeRect.top < 100) {
+            const nodeCenterY = lowerNodeRect.top + lowerNodeRect.height / 2;
+            const deltaY = viewportCenterY - nodeCenterY;
+
+            return this.correctPanBy(panZoomInstance, 0, deltaY);
+          }
+          if (topNodeRect && topNodeRect.bottom > window.innerHeight - 100) {
+            const nodeCenterY = topNodeRect.bottom + topNodeRect.height / 2;
+            const deltaY = viewportCenterY - nodeCenterY;
+
+            return this.correctPanBy(panZoomInstance, 0, deltaY);
+          }
+          this._panZoomInstance()?.moveTo(
+            transforms.x - e.deltaX,
+            transforms.y - e.deltaY,
+          );
+        }
+      },
+      {
+        passive: true,
+      },
+    );
 
     _panZoomInstance?.on('panend', () => {
       if (!bottommostNode || !topmostNode || !rightmostNode || !leftmostNode)
