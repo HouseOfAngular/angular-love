@@ -62,16 +62,13 @@ function isRegularNode(node: RoadmapStandardNode): node is RoadmapRegularNode {
   `,
 })
 export class RoadmapBottomsheetComponent {
-  private _router = inject(Router);
-  private _dialogRef = inject(DialogRef<RoadmapBottomsheetComponent>);
-
-  protected nodeDetails = inject<RoadmapStandardNode>(DIALOG_DATA);
-  protected readonly bottomsheetBody = viewChild('bottomsheetBody', {
+  private readonly _router = inject(Router);
+  private readonly _dialogRef = inject(DialogRef<RoadmapBottomsheetComponent>);
+  private readonly bottomsheetBody = viewChild('bottomsheetBody', {
     read: ElementRef,
   });
 
-  language = signal<string>('');
-
+  protected readonly nodeDetails = inject<RoadmapStandardNode>(DIALOG_DATA);
   protected readonly angularLoveNodeDetails = computed<
     AngularLoveNode | undefined
   >(() => {
@@ -102,12 +99,14 @@ export class RoadmapBottomsheetComponent {
     );
   });
 
+  readonly language = signal<string>('');
+
   protected navigateToAuthor() {
     this._router.navigate(['/become-author']);
     this._dialogRef.close();
   }
 
-  onClose() {
+  protected onClose() {
     this._dialogRef.close();
   }
 

@@ -34,10 +34,12 @@ interface LegendSymbol {
         @for (legendSymbol of legendSymbols; track legendSymbol.symbol) {
           <li class="flex items-center gap-1 px-2 py-2">
             <al-roadmap-node-label
-              class="max-w-3xs block "
+              class="max-w-3xs block"
               [label]="legendSymbol.symbol"
             />
-            <p>{{ legendSymbol.description }}</p>
+            @if (legendOpened()) {
+              <p>{{ legendSymbol.description }}</p>
+            }
           </li>
         }
       </ul>
@@ -46,19 +48,13 @@ interface LegendSymbol {
   host: {
     class:
       'hidden lg:flex h-fit w-fit flex-col items-center gap-8 border border-white rounded-lg bg-gradient-to-br from-[#100f15] to-[#3b0019] transition-left duration-300 ease-in-out ',
-    '[class]': 'hostClass()',
   },
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class RoadmapLegendComponent {
-  private readonly isOpen = signal<boolean>(true);
-  protected readonly legendOpened = computed(() => this.isOpen());
-  protected readonly hostClass = computed(() => {
-    const isOpen = this.isOpen();
-    if (isOpen) {
-      return 'left-4';
-    } else return '-left-[576px]';
-  });
+  private readonly _isOpen = signal<boolean>(true);
+  protected readonly legendOpened = computed(() => this._isOpen());
+
   protected readonly legendSymbols: LegendSymbol[] = [
     {
       symbol: 'recommended',
@@ -76,6 +72,6 @@ export class RoadmapLegendComponent {
   ];
 
   toggleLegend() {
-    this.isOpen.set(!this.isOpen());
+    this._isOpen.set(!this._isOpen());
   }
 }

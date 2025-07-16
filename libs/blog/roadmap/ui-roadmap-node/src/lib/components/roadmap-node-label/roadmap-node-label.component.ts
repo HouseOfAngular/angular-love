@@ -4,6 +4,7 @@ import {
   computed,
   input,
 } from '@angular/core';
+import { TranslocoDirective } from '@jsverse/transloco';
 
 import { Label } from '../../types/roadmap-node';
 
@@ -11,12 +12,14 @@ import { Label } from '../../types/roadmap-node';
   selector: 'al-roadmap-node-label',
   template: `
     <div
+      *transloco="let t; read: 'roadmapPage.label'"
       class="cursor-pointer rounded-lg px-2 py-1 text-center text-white"
       [class]="backgroundColorClass()"
     >
-      {{ label() }}
+      {{ t(label()) }}
     </div>
   `,
+  imports: [TranslocoDirective],
   styleUrl: 'roadmap-node-label.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })

@@ -16,8 +16,7 @@ import { RoadmapNodeLabelComponent } from '../roadmap-node-label/roadmap-node-la
   template: `
     @if (node().label; as label) {
       <al-roadmap-node-label
-        class="label absolute z-[20] -translate-y-1/2"
-        [class]="labelClass()"
+        class="absolute -top-4 right-0 z-[20] translate-x-1/2"
         [label]="label"
         (keydown)="onKeyDown($event)"
         (pointerup)="
@@ -47,23 +46,23 @@ import { RoadmapNodeLabelComponent } from '../roadmap-node-label/roadmap-node-la
 })
 export class RoadmapBasicNodeComponent {
   private readonly difference = 5;
-  protected readonly _roadmapBottomSheetNotifierService = inject(
-    RoadmapBottomSheetNotifierService,
-  );
-  protected readonly pointerDown = signal<{ x: number; y: number }>({
+  private readonly _pointerDown = signal<{ x: number; y: number }>({
     x: 0,
     y: 0,
   });
+  protected readonly _roadmapBottomSheetNotifierService = inject(
+    RoadmapBottomSheetNotifierService,
+  );
 
   readonly node = input.required<RoadmapStandardNode>();
   readonly variant = input.required<'primary' | 'secondary' | 'angular-love'>();
 
-  protected readonly labelClass = computed(() => {
-    const variant = this.variant();
-    if (variant === 'primary') {
-      return `translate-x-1.5x`;
-    } else return 'translate-x-full';
-  });
+  // protected readonly labelClass = computed(() => {
+  //   const variant = this.variant();
+  //   if (variant === 'primary') {
+  //     return `translate-x-1.5x`;
+  //   } else return 'translate-x-full';
+  // });
 
   protected readonly tileClass = computed(() => {
     const variant = this.variant();
@@ -81,12 +80,12 @@ export class RoadmapBasicNodeComponent {
   });
 
   onPointerDown(event: PointerEvent) {
-    this.pointerDown.set({ x: event.clientX, y: event.clientY });
+    this._pointerDown.set({ x: event.clientX, y: event.clientY });
   }
 
   onPointerUp(event: PointerEvent) {
-    const dx = Math.abs(event.clientX - this.pointerDown().x);
-    const dy = Math.abs(event.clientY - this.pointerDown().y);
+    const dx = Math.abs(event.clientX - this._pointerDown().x);
+    const dy = Math.abs(event.clientY - this._pointerDown().y);
 
     if (dx < this.difference && dy < this.difference) {
       this._roadmapBottomSheetNotifierService.openBottomSheet(this.node());

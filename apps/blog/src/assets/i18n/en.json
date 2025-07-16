@@ -107,6 +107,19 @@
     "button": "Return to the home page"
   },
   "roadmapPage": {
+    "label": {
+      "optional": "optional",
+      "comingSoon": "upcoming",
+      "recommended": "recommended"
+    },
+    "bottomsheet": {
+      "articles": "Articles",
+      "description": "Description",
+      "introductionDescription": "Before you start",
+      "videos": "Videos",
+      "creators": "Creators",
+      "share": "Share this roadmap with others"
+    },
     "roadmapControls": {
       "zoomInRoadmapButton": "Zoom in roadmap",
       "restoreRoadmapViewButton": "Restore roadmap default view",

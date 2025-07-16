@@ -7,10 +7,10 @@ import { RoadmapStandardNode } from '../types/roadmap-node';
   providedIn: 'root',
 })
 export class RoadmapBottomSheetNotifierService {
-  private node = new Subject<RoadmapStandardNode>();
-  public readonly nodeAsObservable = this.node.asObservable();
+  private readonly _node = new Subject<RoadmapStandardNode>();
+  public readonly nodeAsObservable = this._node.asObservable();
 
   openBottomSheet(node: RoadmapStandardNode) {
-    this.node.next(node);
+    this._node.next(node);
   }
 }

@@ -15,17 +15,17 @@
       />
       <al-roadmap-bottomsheet-description
         [description]="nodeDetails.description"
-        title="Description"
+        title="description"
       />
 
       @if (angularLoveNodeDetails(); as angularLoveNodeDetails) {
         <al-roadmap-bottomsheet-additional-description
           [additionalDescription]="angularLoveNodeDetails.additionalDescription"
-          title="Before you start"
+          title="introductionDescription"
         />
         <al-roadmap-bottomsheet-creators
           [creators]="angularLoveNodeDetails.creators"
-          title="Creators"
+          title="creators"
         />
       }
 
@@ -33,7 +33,7 @@
         @if (regularNodeArticles().length > 0) {
           <al-roadmap-bottomsheet-regular-content
             [resources]="regularNodeArticles()"
-            title="Articles"
+            title="articles"
           />
         } @else {
           <div class="flex w-full justify-center pt-6">
@@ -44,13 +44,13 @@
         }
         <al-roadmap-bottomsheet-regular-content
           [resources]="regularNodeVideos()"
-          title="Videos"
+          title="videos"
         />
       }
       <al-roadmap-bottomsheet-footer
         [language]="language()"
         [nodeId]="nodeDetails.id"
-        title="Share this roadmap with others"
+        title="share"
       />
     </div>
   </div>

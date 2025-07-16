@@ -110,6 +110,19 @@
     "button": "Powrót na stronę główną"
   },
   "roadmapPage": {
+    "label": {
+      "optional": "opcjonalne",
+      "comingSoon": "w przyszłości",
+      "recommended": "polecane"
+    },
+    "bottomsheet": {
+      "articles": "Artykuły",
+      "description": "Opis",
+      "introductionDescription": "Zanim zaczniesz",
+      "videos": "Materiały video",
+      "creators": "Twórcy",
+      "share": "Podziel się tą roadmapa z innymi"
+    },
     "roadmapControls": {
       "zoomInRoadmapButton": "Przybliż roadmapę",
       "restoreRoadmapViewButton": "Przywróć domyślny widok roadmapy",

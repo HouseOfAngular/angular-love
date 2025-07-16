@@ -31,8 +31,6 @@ export class ConnectedNodesComponent {
 
   readonly nodesDrawingDirection = input<'to-left' | 'to-right'>('to-right');
 
-  readonly getBottomsheet = output<string>();
-
   protected readonly connectorHeight = 40;
   protected readonly connectorStrokeWidth = 3;
 }
