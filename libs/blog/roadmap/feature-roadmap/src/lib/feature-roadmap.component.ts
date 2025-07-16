@@ -42,7 +42,20 @@ const panZoomInitialConfig: PanZoomOptions = {
     RoadmapLegendComponent,
   ],
   templateUrl: './feature-roadmap.component.html',
-  styleUrl: './feature-roadmap.component.scss',
+  styles: `
+    :host {
+      animation: fadeIn 0.35s ease-in-out;
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+      }
+      to {
+        opacity: 1;
+      }
+    }
+  `,
   host: {
     class: 'block max-h-full overflow-hidden w-full relative',
   },
@@ -51,14 +64,13 @@ const panZoomInitialConfig: PanZoomOptions = {
 })
 export class FeatureRoadmapComponent {
   @ViewChild('roadmapWrapper', { static: true })
-  roadmapWrapper!: ElementRef<HTMLDivElement>;
-
+  private readonly _roadmapWrapper!: ElementRef<HTMLDivElement>;
   private readonly _roadmapStore = inject(RoadmapStore);
   private readonly _platform = inject(PLATFORM_ID);
   private readonly _panZoomInitialConfig = panZoomInitialConfig;
   private readonly _scaleMultiplier = 0.5;
   private readonly _route = inject(ActivatedRoute);
-  private readonly elementRef = inject<ElementRef<HTMLElement>>(
+  private readonly _elementRef = inject<ElementRef<HTMLElement>>(
     ElementRef<HTMLElement>,
   );
   private readonly _roadmapBottomsheetManagerService = inject(
@@ -67,14 +79,12 @@ export class FeatureRoadmapComponent {
   private readonly _roadmapBottomSheetNotifierService = inject(
     RoadmapBottomSheetNotifierService,
   );
-
   private readonly _selectedNodeId = toSignal(
     this._route.queryParams.pipe(map((params) => params['nodeId'])),
     { initialValue: undefined },
   );
 
   private _panZoomInstance = signal<PanZoom | undefined>(undefined);
-
   private readonly _nodesDto = this._roadmapStore.nodesDto;
   protected readonly roadmapLayers = this._roadmapStore.roadmapLayers;
   protected readonly isPlatformBrowser = isPlatformBrowser(this._platform);
@@ -109,7 +119,7 @@ export class FeatureRoadmapComponent {
   }
 
   clickSelectedNode(selectedNodeId: string) {
-    const selectedNode = this.elementRef.nativeElement.querySelector(
+    const selectedNode = this._elementRef.nativeElement.querySelector(
       `[node-id="${selectedNodeId}"]`,
     ) as HTMLElement | null;
 
@@ -120,8 +130,8 @@ export class FeatureRoadmapComponent {
     const panZoomInstance = this._panZoomInstance();
     if (!panZoomInstance) return;
     const transform = panZoomInstance.getTransform();
-    const centerX = this.elementRef.nativeElement.clientWidth / 2;
-    const centerY = this.elementRef.nativeElement.clientHeight / 2;
+    const centerX = this._elementRef.nativeElement.clientWidth / 2;
+    const centerY = this._elementRef.nativeElement.clientHeight / 2;
 
     const currentScale = transform.scale;
     let targetScale = currentScale;
@@ -154,13 +164,14 @@ export class FeatureRoadmapComponent {
     const panZoomInstance = this._panZoomInstance();
     if (!panZoomInstance) return;
 
-    const selectedNode = this.elementRef.nativeElement.querySelector(
+    const selectedNode = this._elementRef.nativeElement.querySelector(
       `[node-id="${nodeId}"]`,
     ) as HTMLElement | null;
 
     if (!selectedNode) return;
     const nodeRect = selectedNode.getBoundingClientRect();
-    const containerRect = this.elementRef.nativeElement.getBoundingClientRect();
+    const containerRect =
+      this._elementRef.nativeElement.getBoundingClientRect();
 
     const nodeCenterX = nodeRect.left + nodeRect.width / 2;
     const nodeCenterY = nodeRect.top + nodeRect.height / 2;
@@ -180,7 +191,7 @@ export class FeatureRoadmapComponent {
   }
 
   private initPanZoom() {
-    const roadmapWrapper = this.roadmapWrapper.nativeElement;
+    const roadmapWrapper = this._roadmapWrapper.nativeElement;
     this._panZoomInstance.set(
       panzoom(roadmapWrapper, {
         ...this._panZoomInitialConfig,
@@ -201,9 +212,7 @@ export class FeatureRoadmapComponent {
         const lowerNodeRect = bottommostNode?.getBoundingClientRect();
         const topNodeRect = topmostNode?.getBoundingClientRect();
         const panZoomInstance = this._panZoomInstance();
-
         const viewportCenterY = window.innerHeight / 2;
-        const viewportCenterX = window.innerWidth / 2;
 
         if (transforms && panZoomInstance) {
           if (lowerNodeRect && lowerNodeRect.top < 100) {
@@ -284,7 +293,7 @@ export class FeatureRoadmapComponent {
     leftmostNode: HTMLElement | null;
     rightmostNode: HTMLElement | null;
   } {
-    const nodes = this.elementRef.nativeElement.querySelectorAll(
+    const nodes = this._elementRef.nativeElement.querySelectorAll(
       '[node-id]',
     ) as NodeListOf<HTMLElement>;
 
@@ -300,7 +309,7 @@ export class FeatureRoadmapComponent {
 
     nodes.forEach((node) => {
       const rect = node.getBoundingClientRect();
-      const parentRect = this.elementRef.nativeElement.getBoundingClientRect();
+      const parentRect = this._elementRef.nativeElement.getBoundingClientRect();
       const x = rect.left - parentRect.left;
       const y = rect.top - parentRect.top;
 

@@ -6,10 +6,10 @@ import { RoadmapBottomsheetComponent } from '@angular-love/ui-roadmap-bottomshee
 
 @Injectable({ providedIn: 'root' })
 export class RoadmapBottomsheetManagerService {
-  private dialog = inject(Dialog);
+  private readonly _dialog = inject(Dialog);
 
   open(node: RoadmapStandardNode) {
-    this.dialog.open(RoadmapBottomsheetComponent, {
+    this._dialog.open(RoadmapBottomsheetComponent, {
       data: node,
       disableClose: false,
     });
