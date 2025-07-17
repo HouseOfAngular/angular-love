@@ -111,7 +111,7 @@
       "title": "Angular.Love Roadmap Introduction",
       "description": "The Angular Roadmap on Angular.Love is your go-to guide for learning Angular the right way. It breaks down key concepts, best practices, and useful resources in a clear, structured way. Plus, it’s packed with valuable materials and constantly updated to keep up with the latest trends.",
       "additionalDescription": {
-        "introduction": "introduction",
+        "introduction": "Before diving into Angular, it's essential to have a solid understanding of the following concepts:",
         "toPrepareList": {
           "1": "HTML & CSS – Structure and styling of web pages, including Flexbox, Grid, and responsiveness.",
           "2": "JavaScript (ES6+) – Core concepts like variables, functions, promises, and async/await.",
@@ -120,7 +120,7 @@
           "5": "Git – Handling code versions, branches, and teamwork.",
           "6": "APIs & HTTP – Making requests and working with JSON data."
         },
-        "ending": "ending"
+        "ending": "Having a grasp of these topics will make your Angular learning journey much smoother and more effective."
       }
     },
     "label": {
