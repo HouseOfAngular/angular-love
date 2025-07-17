@@ -25,7 +25,7 @@ import {
     <div class="m-[2px] flex flex-col gap-[10px] p-3">
       @for (clusterNode of cluster().clusteredNodes; track clusterNode.id) {
         <button
-          class="roadmap-hover-border-gradient relative w-full text-nowrap rounded-lg bg-[#FDF5FD] text-[#FDF5FD] hover:cursor-pointer"
+          class="roadmap-hover-border-gradient clusterNode relative w-full text-nowrap rounded-lg bg-[#FDF5FD] text-[#FDF5FD] hover:cursor-pointer"
           [attr.node-id]="clusterNode.id"
           (keydown)="onKeyDown($event, clusterNode)"
           (focusin)="_roadmapBottomSheetNotifierService.focusNode(clusterNode)"
