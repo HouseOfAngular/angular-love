@@ -3,7 +3,6 @@ import {
   Component,
   inject,
   input,
-  output,
   signal,
 } from '@angular/core';
 
@@ -49,8 +48,7 @@ import {
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class RoadmapClusterComponent {
-  private readonly difference = 5;
-
+  private readonly _difference = 5;
   private readonly _pointerDown = signal<{ x: number; y: number }>({
     x: 0,
     y: 0,
@@ -60,21 +58,21 @@ export class RoadmapClusterComponent {
   );
   readonly cluster = input.required<RoadmapClusterNode>();
 
-  onKeyDown(event: KeyboardEvent, node: RoadmapStandardNode): void {
+  protected onKeyDown(event: KeyboardEvent, node: RoadmapStandardNode): void {
     if (event.code === 'Enter' || event.code === 'Space') {
       this._roadmapBottomSheetNotifierService.openBottomSheet(node);
     }
   }
 
-  onPointerDown(event: PointerEvent) {
+  protected onPointerDown(event: PointerEvent) {
     this._pointerDown.set({ x: event.clientX, y: event.clientY });
   }
 
-  onPointerUp(event: PointerEvent, node: RoadmapStandardNode): void {
+  protected onPointerUp(event: PointerEvent, node: RoadmapStandardNode): void {
     const dx = Math.abs(event.clientX - this._pointerDown().x);
     const dy = Math.abs(event.clientY - this._pointerDown().y);
 
-    if (dx < this.difference && dy < this.difference) {
+    if (dx < this._difference && dy < this._difference) {
       this._roadmapBottomSheetNotifierService.openBottomSheet(node);
     }
   }

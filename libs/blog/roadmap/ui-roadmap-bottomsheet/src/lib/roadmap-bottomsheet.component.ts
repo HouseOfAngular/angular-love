@@ -62,6 +62,8 @@ function isRegularNode(node: RoadmapStandardNode): node is RoadmapRegularNode {
   `,
 })
 export class RoadmapBottomsheetComponent {
+  readonly language = signal<string>('');
+
   private readonly _router = inject(Router);
   private readonly _dialogRef = inject(DialogRef<RoadmapBottomsheetComponent>);
   private readonly bottomsheetBody = viewChild('bottomsheetBody', {
@@ -74,13 +76,11 @@ export class RoadmapBottomsheetComponent {
   >(() => {
     return isAngularNode(this.nodeDetails) ? this.nodeDetails : undefined;
   });
-
   protected readonly regularNodeDetails = computed<
     RoadmapRegularNode | undefined
   >(() => {
     return isRegularNode(this.nodeDetails) ? this.nodeDetails : undefined;
   });
-
   protected readonly regularNodeArticles = computed(() => {
     const regularNodeDetails = this.regularNodeDetails();
     return (
@@ -89,7 +89,6 @@ export class RoadmapBottomsheetComponent {
       ) ?? []
     );
   });
-
   protected readonly regularNodeVideos = computed(() => {
     const regularNodeDetails = this.regularNodeDetails();
     return (
@@ -98,8 +97,6 @@ export class RoadmapBottomsheetComponent {
       ) ?? []
     );
   });
-
-  readonly language = signal<string>('');
 
   protected navigateToAuthor() {
     this._router.navigate(['/become-author']);

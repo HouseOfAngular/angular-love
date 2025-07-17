@@ -14,25 +14,23 @@ import { Label } from '../../types/roadmap-node';
     <div
       *transloco="let t; read: 'roadmapPage.label'"
       class="cursor-pointer rounded-lg px-2 py-1 text-center text-white"
-      [class]="backgroundColorClass()"
+      [class]="class()"
     >
       {{ t(label()) }}
     </div>
   `,
   imports: [TranslocoDirective],
-  styleUrl: 'roadmap-node-label.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class RoadmapNodeLabelComponent {
   readonly label = input.required<Label>();
 
-  protected readonly backgroundColorClass = computed(() => {
-    const label = this.label();
-    switch (label) {
+  protected readonly class = computed(() => {
+    switch (this.label()) {
       case 'optional':
-        return 'bg-[--optional]';
+        return 'bg-al-roadmap-label-optional';
       case 'comingSoon':
-        return 'bg-[--comingSoon]';
+        return 'bg-al-roadmap-label-comingSoon';
       case 'recommended':
         return 'bg-gradient-to-r from-al-roadmap-secondary to-al-roadmap-accent';
       default:

@@ -6,7 +6,7 @@ import {
 } from '@angular/core';
 
 export interface LayoutConfig {
-  fullLayout: boolean;
+  roadmap: boolean;
 }
 
 @Component({
@@ -25,7 +25,7 @@ export class LayoutComponent {
 
   protected readonly class = computed(() => {
     const layoutConfig = this.layoutConfig();
-    if (layoutConfig?.fullLayout) {
+    if (layoutConfig?.roadmap) {
       return {
         'flex-1': true,
         'basis-0': true,

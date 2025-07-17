@@ -2,7 +2,6 @@ import { Route } from '@angular/router';
 
 import { articleRoutes } from '@angular-love/blog/articles/feature/shell';
 import { activeLanguageGuard } from '@angular-love/blog/i18n/data-access';
-import { LayoutConfig } from '@angular-love/blog/layouts/ui-layouts';
 
 import { RootShellComponent } from './root-shell.component';
 
@@ -87,7 +86,7 @@ export const commonRoutes: Route[] = [
           ),
         data: {
           layoutConfig: {
-            fullLayout: true,
+            roadmap: true,
           },
           seo: { title: 'seo.roadmap' },
         },

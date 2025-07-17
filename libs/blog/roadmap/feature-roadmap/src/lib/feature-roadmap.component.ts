@@ -8,6 +8,7 @@ import {
   input,
   PLATFORM_ID,
   signal,
+  viewChild,
   ViewChild,
 } from '@angular/core';
 import { takeUntilDestroyed, toSignal } from '@angular/core/rxjs-interop';
@@ -63,8 +64,11 @@ const panZoomInitialConfig: PanZoomOptions = {
   providers: [RoadmapStore],
 })
 export class FeatureRoadmapComponent {
-  @ViewChild('roadmapWrapper', { static: true })
-  private readonly _roadmapWrapper!: ElementRef<HTMLDivElement>;
+  // @ViewChild('roadmapWrapper', { static: true })
+  // private readonly _roadmapWrapper!: ElementRef<HTMLDivElement>;
+
+  private readonly _roadmapWrapper =
+    viewChild.required<ElementRef<HTMLDivElement>>('roadmapWrapper');
   private readonly _roadmapStore = inject(RoadmapStore);
   private readonly _platform = inject(PLATFORM_ID);
   private readonly _panZoomInitialConfig = panZoomInitialConfig;
@@ -191,7 +195,7 @@ export class FeatureRoadmapComponent {
   }
 
   private initPanZoom() {
-    const roadmapWrapper = this._roadmapWrapper.nativeElement;
+    const roadmapWrapper = this._roadmapWrapper().nativeElement;
     this._panZoomInstance.set(
       panzoom(roadmapWrapper, {
         ...this._panZoomInitialConfig,

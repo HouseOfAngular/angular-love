@@ -5,10 +5,13 @@ import { TranslocoDirective } from '@jsverse/transloco';
   selector: 'al-roadmap-bottomsheet-subtitle',
   imports: [TranslocoDirective],
   template: `
-    <ng-container *transloco="let t; read: 'roadmapPage.bottomsheet'">
-      <h4 class="font-semibold">{{ t(title()) }}</h4>
-      <div class="h-px flex-grow bg-white"></div>
-    </ng-container>
+    <h4
+      *transloco="let t; read: 'roadmapPage.bottomsheet'"
+      class="font-semibold"
+    >
+      {{ t(title()) }}
+    </h4>
+    <div class="h-px flex-grow bg-white"></div>
   `,
   host: {
     class: 'flex items-center gap-4',

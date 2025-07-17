@@ -23,6 +23,10 @@ module.exports = {
           'rgba(var(--roadmap-hover-primary) / <alpha-value>)',
         'al-roadmap-hover-secondary':
           'rgba(var(--roadmap-hover-secondary) / <alpha-value>)',
+        'al-roadmap-label-optional':
+          'rgba(var(--roadmap-label-optional) / <alpha-value>)',
+        'al-roadmap-label-comingSoon':
+          'rgba(var(--roadmap-label-comingSoon) / <alpha-value>)',
       },
       backgroundImage: {
         'al-radial-gradient':
