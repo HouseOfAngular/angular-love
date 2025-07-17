@@ -28,10 +28,9 @@ import { RoadmapNodeLabelComponent } from '../roadmap-node-label/roadmap-node-la
     <button
       class="node relative w-fit text-nowrap rounded-lg bg-[#FDF5FD] text-[#FDF5FD]"
       [attr.node-id]="node().id"
+      (focus)="_roadmapBottomSheetNotifierService.focusNode(node())"
       (keydown)="onKeyDown($event)"
       (pointerdown)="onPointerDown($event)"
-      (pointerup)="onPointerUp($event)"
-      (focusin)="_roadmapBottomSheetNotifierService.focusNode(node())"
     >
       <div class="relative z-10 rounded-lg px-6 py-4" [class]="tileClass()">
         {{ node().title }}
@@ -49,7 +48,7 @@ export class RoadmapBasicNodeComponent {
   readonly node = input.required<RoadmapStandardNode>();
   readonly variant = input.required<'primary' | 'secondary' | 'angular-love'>();
 
-  private readonly _difference = 5;
+  private readonly _difference = 15;
   private readonly _pointerDown = signal<{ x: number; y: number }>({
     x: 0,
     y: 0,
@@ -57,6 +56,10 @@ export class RoadmapBasicNodeComponent {
   protected readonly _roadmapBottomSheetNotifierService = inject(
     RoadmapBottomSheetNotifierService,
   );
+  private eventListener = (event: PointerEvent) => {
+    this.onPointerUp(event);
+    document.removeEventListener('pointerup', this.eventListener);
+  };
 
   protected readonly tileClass = computed(() => {
     switch (this.variant()) {
@@ -73,6 +76,7 @@ export class RoadmapBasicNodeComponent {
 
   protected onPointerDown(event: PointerEvent) {
     this._pointerDown.set({ x: event.clientX, y: event.clientY });
+    document.addEventListener('pointerup', this.eventListener);
   }
 
   protected onPointerUp(event: PointerEvent) {

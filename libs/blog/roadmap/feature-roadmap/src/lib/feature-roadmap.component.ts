@@ -113,12 +113,14 @@ export class FeatureRoadmapComponent {
     this._roadmapBottomSheetNotifierService.nodeAsObservable
       .pipe(
         tap((node) => {
-          this.focusSelectedNode(node.id);
+          // this.focusSelectedNode(node.id);
+          console.log('CLICK');
           this._roadmapBottomsheetManagerService.open(node);
         }),
         takeUntilDestroyed(),
       )
       .subscribe();
+
     afterRenderEffect(async () => {
       if (!isPlatformBrowser(this._platform)) return;
       if (this._nodesDto()?.length) {
