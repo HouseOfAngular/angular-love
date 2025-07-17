@@ -5,6 +5,8 @@
 }
 
 .label:hover + .node,
-.node:hover {
+.node:hover,
+.node:focus {
   @include r.roadmap-hover-border-gradient-hover;
+  outline: none;
 }

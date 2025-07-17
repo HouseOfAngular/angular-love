@@ -31,6 +31,7 @@ import { RoadmapNodeLabelComponent } from '../roadmap-node-label/roadmap-node-la
       (keydown)="onKeyDown($event)"
       (pointerdown)="onPointerDown($event)"
       (pointerup)="onPointerUp($event)"
+      (focusin)="_roadmapBottomSheetNotifierService.focusNode(node())"
     >
       <div class="relative z-10 rounded-lg px-6 py-4" [class]="tileClass()">
         {{ node().title }}

@@ -22,7 +22,10 @@ import {
   RoadmapLegendComponent,
   RoadmapPanControlsComponent,
 } from '@angular-love/blog/roadmap/ui-roadmap';
-import { RoadmapBottomSheetNotifierService } from '@angular-love/blog/roadmap/ui-roadmap-node';
+import {
+  RoadmapBottomSheetNotifierService,
+  RoadmapStandardNode,
+} from '@angular-love/blog/roadmap/ui-roadmap-node';
 import { RoadmapStore } from '@angular-love/roadmap-data-access';
 
 import { RoadmapBottomsheetManagerService } from './roadmap-bottomsheet-menager.service';
@@ -97,6 +100,15 @@ export class FeatureRoadmapComponent {
 
   constructor() {
     this._roadmapStore.getNodes();
+
+    this._roadmapBottomSheetNotifierService.focusedNodeAsObservable
+      .pipe(
+        tap(({ id }: RoadmapStandardNode) => {
+          this.focusSelectedNode(id);
+        }),
+        takeUntilDestroyed(),
+      )
+      .subscribe();
 
     this._roadmapBottomSheetNotifierService.nodeAsObservable
       .pipe(
@@ -209,38 +221,7 @@ export class FeatureRoadmapComponent {
     const { bottommostNode, topmostNode, rightmostNode, leftmostNode } =
       this.getRoadmapBounds();
 
-    window.addEventListener(
-      'wheel',
-      (e) => {
-        const transforms = this._panZoomInstance()?.getTransform();
-        const lowerNodeRect = bottommostNode?.getBoundingClientRect();
-        const topNodeRect = topmostNode?.getBoundingClientRect();
-        const panZoomInstance = this._panZoomInstance();
-        const viewportCenterY = window.innerHeight / 2;
-
-        if (transforms && panZoomInstance) {
-          if (lowerNodeRect && lowerNodeRect.top < 100) {
-            const nodeCenterY = lowerNodeRect.top + lowerNodeRect.height / 2;
-            const deltaY = viewportCenterY - nodeCenterY;
-
-            return this.correctPanBy(panZoomInstance, 0, deltaY);
-          }
-          if (topNodeRect && topNodeRect.bottom > window.innerHeight - 100) {
-            const nodeCenterY = topNodeRect.bottom + topNodeRect.height / 2;
-            const deltaY = viewportCenterY - nodeCenterY;
-
-            return this.correctPanBy(panZoomInstance, 0, deltaY);
-          }
-          this._panZoomInstance()?.moveTo(
-            transforms.x - e.deltaX,
-            transforms.y - e.deltaY,
-          );
-        }
-      },
-      {
-        passive: true,
-      },
-    );
+    window.addEventListener('wheel', this.handleWheelEvent, { passive: true });
 
     _panZoomInstance?.on('panend', () => {
       if (!bottommostNode || !topmostNode || !rightmostNode || !leftmostNode)
@@ -288,7 +269,35 @@ export class FeatureRoadmapComponent {
       }, 350);
     });
 
-    this.setButtonEvents();
+    this.disableButtonsEventPropagation();
+  }
+
+  private disableDefaultScrollBehaviour(
+    e: WheelEvent,
+    panZoom: PanZoom,
+    bottommostNode: HTMLElement,
+    topmostNode: HTMLElement,
+  ) {
+    const transforms = panZoom.getTransform();
+    const lowerNodeRect = bottommostNode.getBoundingClientRect();
+    const topNodeRect = topmostNode.getBoundingClientRect();
+    const viewportCenterY = window.innerHeight / 2;
+
+    if (transforms) {
+      if (lowerNodeRect && lowerNodeRect.top < 100) {
+        const nodeCenterY = lowerNodeRect.top + lowerNodeRect.height / 2;
+        const deltaY = viewportCenterY - nodeCenterY;
+        return this.correctPanBy(panZoom, 0, deltaY);
+      }
+
+      if (topNodeRect && topNodeRect.bottom > window.innerHeight - 100) {
+        const nodeCenterY = topNodeRect.bottom + topNodeRect.height / 2;
+        const deltaY = viewportCenterY - nodeCenterY;
+        return this.correctPanBy(panZoom, 0, deltaY);
+      }
+
+      panZoom.moveTo(transforms.x - e.deltaX, transforms.y - e.deltaY);
+    }
   }
 
   private getRoadmapBounds(): {
@@ -346,7 +355,7 @@ export class FeatureRoadmapComponent {
     };
   }
 
-  private setButtonEvents() {
+  private disableButtonsEventPropagation() {
     const legendButton = document.querySelector('al-roadmap-legend button');
     const controlButtons = document.querySelectorAll(
       'al-roadmap-pan-controls button',
@@ -390,6 +399,19 @@ export class FeatureRoadmapComponent {
       );
     }
   }
+
+  private handleWheelEvent = (e: WheelEvent) => {
+    const panZoom = this._panZoomInstance();
+    const { topmostNode, bottommostNode } = this.getRoadmapBounds();
+    if (panZoom && bottommostNode && topmostNode) {
+      this.disableDefaultScrollBehaviour(
+        e,
+        panZoom,
+        bottommostNode,
+        topmostNode,
+      );
+    }
+  };
 
   private correctPanBy(
     panZoomInstance: PanZoom,
