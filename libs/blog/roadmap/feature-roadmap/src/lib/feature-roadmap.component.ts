@@ -9,12 +9,11 @@ import {
   PLATFORM_ID,
   signal,
   viewChild,
-  ViewChild,
 } from '@angular/core';
 import { takeUntilDestroyed, toSignal } from '@angular/core/rxjs-interop';
 import { ActivatedRoute } from '@angular/router';
 import panzoom, { PanZoom, PanZoomOptions } from 'panzoom';
-import { map, tap } from 'rxjs';
+import { map, switchMap, tap } from 'rxjs';
 
 import {
   EventType,
@@ -88,7 +87,6 @@ export class FeatureRoadmapComponent {
     this._route.queryParams.pipe(map((params) => params['nodeId'])),
     { initialValue: undefined },
   );
-
   private _panZoomInstance = signal<PanZoom | undefined>(undefined);
   private readonly _nodesDto = this._roadmapStore.nodesDto;
   protected readonly roadmapLayers = this._roadmapStore.roadmapLayers;
@@ -112,7 +110,11 @@ export class FeatureRoadmapComponent {
       .pipe(
         tap((node) => {
           this.focusSelectedNode(node.id);
-          this._roadmapBottomsheetManagerService.open(node);
+          this._removeWheelListener();
+        }),
+        switchMap((node) => this._roadmapBottomsheetManagerService.open(node)),
+        tap(() => {
+          this._appendWheelListener();
         }),
         takeUntilDestroyed(),
       )
@@ -222,7 +224,7 @@ export class FeatureRoadmapComponent {
     const { bottommostNode, topmostNode, rightmostNode, leftmostNode } =
       this.getRoadmapBounds();
 
-    window.addEventListener('wheel', this.handleWheelEvent, { passive: true });
+    this._appendWheelListener();
 
     _panZoomInstance?.on('panend', () => {
       if (!bottommostNode || !topmostNode || !rightmostNode || !leftmostNode)
@@ -401,6 +403,16 @@ export class FeatureRoadmapComponent {
     }
   }
 
+  private correctPanBy(
+    panZoomInstance: PanZoom,
+    deltaX: number,
+    deltaY: number,
+  ) {
+    panZoomInstance.pause();
+    panZoomInstance.moveBy(deltaX, deltaY, true);
+    panZoomInstance.resume();
+  }
+
   private handleWheelEvent = (e: WheelEvent) => {
     const panZoom = this._panZoomInstance();
     const { topmostNode, bottommostNode } = this.getRoadmapBounds();
@@ -414,13 +426,11 @@ export class FeatureRoadmapComponent {
     }
   };
 
-  private correctPanBy(
-    panZoomInstance: PanZoom,
-    deltaX: number,
-    deltaY: number,
-  ) {
-    panZoomInstance.pause();
-    panZoomInstance.moveBy(deltaX, deltaY, true);
-    panZoomInstance.resume();
+  private _appendWheelListener() {
+    window.addEventListener('wheel', this.handleWheelEvent, { passive: true });
+  }
+
+  private _removeWheelListener() {
+    window.removeEventListener('wheel', this.handleWheelEvent);
   }
 }

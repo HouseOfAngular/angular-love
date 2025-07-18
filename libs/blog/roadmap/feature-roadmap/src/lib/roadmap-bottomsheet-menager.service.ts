@@ -9,9 +9,9 @@ export class RoadmapBottomsheetManagerService {
   private readonly _dialog = inject(Dialog);
 
   open(node: RoadmapStandardNode) {
-    this._dialog.open(RoadmapBottomsheetComponent, {
+    return this._dialog.open(RoadmapBottomsheetComponent, {
       data: node,
       disableClose: false,
-    });
+    }).closed;
   }
 }
