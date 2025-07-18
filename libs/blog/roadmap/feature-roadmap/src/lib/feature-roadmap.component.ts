@@ -67,15 +67,13 @@ const panZoomInitialConfig: PanZoomOptions = {
   providers: [RoadmapStore],
 })
 export class FeatureRoadmapComponent {
-  // @ViewChild('roadmapWrapper', { static: true })
-  // private readonly _roadmapWrapper!: ElementRef<HTMLDivElement>;
-
   private readonly _roadmapWrapper =
     viewChild.required<ElementRef<HTMLDivElement>>('roadmapWrapper');
   private readonly _roadmapStore = inject(RoadmapStore);
   private readonly _platform = inject(PLATFORM_ID);
   private readonly _panZoomInitialConfig = panZoomInitialConfig;
   private readonly _scaleMultiplier = 0.5;
+  private readonly _correctionTime = 350;
   private readonly _route = inject(ActivatedRoute);
   private readonly _elementRef = inject<ElementRef<HTMLElement>>(
     ElementRef<HTMLElement>,
@@ -113,8 +111,7 @@ export class FeatureRoadmapComponent {
     this._roadmapBottomSheetNotifierService.nodeAsObservable
       .pipe(
         tap((node) => {
-          // this.focusSelectedNode(node.id);
-          console.log('CLICK');
+          this.focusSelectedNode(node.id);
           this._roadmapBottomsheetManagerService.open(node);
         }),
         takeUntilDestroyed(),
@@ -268,7 +265,7 @@ export class FeatureRoadmapComponent {
 
       setTimeout(() => {
         correctPosition();
-      }, 350);
+      }, this._correctionTime);
     });
 
     this.disableButtonsEventPropagation();

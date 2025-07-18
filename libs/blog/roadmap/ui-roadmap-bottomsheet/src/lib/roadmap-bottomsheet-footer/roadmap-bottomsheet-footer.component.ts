@@ -33,6 +33,7 @@ type ShareItem = {
 })
 export class RoadmapBottomsheetFooterComponent {
   readonly title = input.required<string>();
+  readonly nodeTitle = input.required<string>();
   readonly nodeId = input.required<string>();
   readonly language = input.required<string>();
 
@@ -44,7 +45,7 @@ export class RoadmapBottomsheetFooterComponent {
 
   readonly items = computed<ShareItem[]>(() => {
     const url = this.nodeUrl();
-    const text = encodeURIComponent(this.title());
+    const text = encodeURIComponent(this.nodeTitle());
 
     return [
       {
@@ -54,7 +55,7 @@ export class RoadmapBottomsheetFooterComponent {
       },
       {
         icon: 'linkedIn',
-        href: `https://www.linkedin.com/shareArticle?mini=true&url=${url}`,
+        href: `https://www.linkedin.com/shareArticle?url=${url}`,
         ariaLabel: 'articleShareIcons.linkedInAriaLabel',
       },
       {

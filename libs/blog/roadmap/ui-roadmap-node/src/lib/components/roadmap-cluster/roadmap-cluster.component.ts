@@ -11,9 +11,11 @@ import {
   RoadmapClusterNode,
   RoadmapStandardNode,
 } from '../../types/roadmap-node';
+import { RoadmapBasicNodeComponent } from '../roadmap-basic-node/roadmap-basic-node.component';
 
 @Component({
   selector: 'al-roadmap-cluster',
+  imports: [RoadmapBasicNodeComponent],
   template: `
     <div
       class="bg-al-roadmap-secondary relative z-10 m-[-2px] rounded-lg border-2 border-[#FDF5FD] px-6 py-4"
@@ -24,20 +26,7 @@ import {
 
     <div class="m-[2px] flex flex-col gap-[10px] p-3">
       @for (clusterNode of cluster().clusteredNodes; track clusterNode.id) {
-        <button
-          class="roadmap-hover-border-gradient clusterNode relative w-full text-nowrap rounded-lg bg-[#FDF5FD] text-[#FDF5FD] hover:cursor-pointer"
-          [attr.node-id]="clusterNode.id"
-          (keydown)="onKeyDown($event, clusterNode)"
-          (focusin)="_roadmapBottomSheetNotifierService.focusNode(clusterNode)"
-          (pointerdown)="onPointerDown($event)"
-          (pointerup)="onPointerUp($event, clusterNode)"
-        >
-          <div
-            class="bg-al-roadmap-secondary relative z-10 m-[1px]  rounded-lg px-6 py-4"
-          >
-            <div class="text-[20px]">{{ clusterNode.title }}</div>
-          </div>
-        </button>
+        <al-roadmap-basic-node [node]="clusterNode" variant="secondary" />
       }
     </div>
   `,
@@ -54,6 +43,10 @@ export class RoadmapClusterComponent {
     x: 0,
     y: 0,
   });
+  // private eventListener = (event: PointerEvent) => {
+  //   this.onPointerUp(event);
+  //   document.removeEventListener('pointerup', this.eventListener);
+  // };
   protected readonly _roadmapBottomSheetNotifierService = inject(
     RoadmapBottomSheetNotifierService,
   );

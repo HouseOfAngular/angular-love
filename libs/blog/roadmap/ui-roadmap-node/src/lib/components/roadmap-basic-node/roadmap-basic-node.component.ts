@@ -26,7 +26,7 @@ import { RoadmapNodeLabelComponent } from '../roadmap-node-label/roadmap-node-la
     }
 
     <button
-      class="node relative w-fit text-nowrap rounded-lg bg-[#FDF5FD] text-[#FDF5FD]"
+      class="node relative w-full text-nowrap rounded-lg bg-[#FDF5FD] text-[#FDF5FD]"
       [attr.node-id]="node().id"
       (focus)="_roadmapBottomSheetNotifierService.focusNode(node())"
       (keydown)="onKeyDown($event)"
@@ -58,6 +58,7 @@ export class RoadmapBasicNodeComponent {
   );
   private eventListener = (event: PointerEvent) => {
     this.onPointerUp(event);
+    console.log('Invoked');
     document.removeEventListener('pointerup', this.eventListener);
   };
 
