@@ -1,43 +1,48 @@
 import { A11yModule } from '@angular/cdk/a11y';
-import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { RouterLink } from '@angular/router';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  computed,
+  inject,
+} from '@angular/core';
+import { toSignal } from '@angular/core/rxjs-interop';
+import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
+import { ActivatedRoute } from '@angular/router';
 import { TranslocoDirective } from '@jsverse/transloco';
-import { FastSvgComponent } from '@push-based/ngx-fast-svg';
 
-import { AlLocalizePipe } from '@angular-love/blog/i18n/util';
-import { ButtonComponent } from '@angular-love/blog/shared/ui-button';
+import { CardComponent } from '@angular-love/blog/shared/ui-card';
+
+import { NewsletterComponent } from '../feature-newsletter/newsletter.component';
+
+import { newsletter1 } from './newsletter-example-1';
+import { newsletter2 } from './newsletter-example-2';
+import { NewsletterSuccesComponent } from './newsletter-succes/newsletter-succes.component';
 
 @Component({
   selector: 'al-newsletter-page',
   imports: [
-    RouterLink,
-    ButtonComponent,
     TranslocoDirective,
     A11yModule,
-    AlLocalizePipe,
-    FastSvgComponent,
+    CardComponent,
+    NewsletterComponent,
+    NewsletterSuccesComponent,
   ],
-  template: `
-    <div
-      *transloco="let t; read: 'newsletterPage'"
-      class="flex flex-col items-center justify-center py-5 text-center"
-      [cdkTrapFocusAutoCapture]="true"
-      cdkTrapFocus
-    >
-      <fast-svg name="circle-check" size="80" />
-      <h2 class="my-2 text-2xl font-bold">
-        {{ t('title') }}
-      </h2>
-      <p class="my-3">
-        {{ t('description') }}
-      </p>
-      <a [routerLink]="['/'] | alLocalize">
-        <button al-button type="button" cdkFocusInitial>
-          {{ t('button') }}
-        </button>
-      </a>
-    </div>
-  `,
+  templateUrl: './newsletter-page.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class NewsletterPageComponent {}
+export class NewsletterPageComponent {
+  private route = inject(ActivatedRoute);
+  private params = toSignal(this.route.queryParams);
+
+  protected readonly isConfirmationPage = computed(
+    () => this.params()?.['nm'] === 'confirmed',
+  );
+
+  newsletter1: SafeHtml;
+  newsletter2: SafeHtml;
+
+  constructor(private sanitizer: DomSanitizer) {
+    this.newsletter1 = this.sanitizer.bypassSecurityTrustHtml(newsletter1);
+    this.newsletter2 = this.sanitizer.bypassSecurityTrustHtml(newsletter2);
+  }
+}
