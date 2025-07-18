@@ -2,6 +2,7 @@ import { NgClass } from '@angular/common';
 import {
   ChangeDetectionStrategy,
   Component,
+  computed,
   input,
   output,
 } from '@angular/core';
@@ -15,6 +16,7 @@ export type NavItem = {
   link: string[];
   dataTestId: string;
   externalLink?: boolean;
+  showElement?: boolean;
 };
 
 @Component({
@@ -32,6 +34,14 @@ export type NavItem = {
 })
 export class NavigationComponent {
   readonly layout = input<'vertical' | 'horizontal'>('horizontal');
+  showNewsletter = input(true);
+
+  readonly filteredNavItems = computed(() => {
+    return this.navItems.filter(
+      (item) =>
+        item.translationPath !== 'nav.newsletter' || this.showNewsletter(),
+    );
+  });
 
   readonly navItems: NavItem[] = [
     {

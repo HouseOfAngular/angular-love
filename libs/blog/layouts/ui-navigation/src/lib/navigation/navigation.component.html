@@ -12,7 +12,7 @@
     }"
     [attr.aria-label]="t('nav.navLinks')"
   >
-    @for (item of navItems; track $index) {
+    @for (item of filteredNavItems(); track $index) {
       @if (!item.externalLink) {
         <li
           [ngClass]="{
