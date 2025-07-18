@@ -1,0 +1,41 @@
+@let isLeftDrawingDirection = nodesDrawingDirection() === 'to-left';
+
+<div
+  alNodeConnectionsGroup
+  #connectionsGroup="alNodeConnectionsGroup"
+  class="flex flex-col"
+  [class.items-end]="isLeftDrawingDirection"
+  [connectorHeight]="connectorHeight"
+>
+  <svg
+    [attr.height]="connectorHeight"
+    [class.flipped]="isLeftDrawingDirection"
+    overflow="visible"
+    width="100%"
+    xmlns="http://www.w3.org/2000/svg"
+    xmlns:svg="http://www.w3.org/2000/svg"
+  >
+    <svg:path
+      [attr.d]="connectionsGroup.groupConnectionPath()"
+      [attr.stroke-width]="connectorStrokeWidth"
+      fill="none"
+      stroke="#FDF5FD"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+    />
+  </svg>
+
+  <div class="mx-16 flex gap-16">
+    @for (node of connectedNodes(); track node.id) {
+      @if (node.nodeType === 'secondary') {
+        <al-roadmap-basic-node
+          alNodeConnectionPoint
+          [node]="node"
+          variant="secondary"
+        />
+      } @else if (node.nodeType === 'cluster') {
+        <al-roadmap-cluster alNodeConnectionPoint [cluster]="node" />
+      }
+    }
+  </div>
+</div>

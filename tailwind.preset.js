@@ -3,6 +3,9 @@ module.exports = {
   darkMode: ['class'],
   theme: {
     extend: {
+      translate: {
+        '1.5x': '150%',
+      },
       colors: {
         'al-foreground': 'rgb(var(--foreground) / <alpha-value>)',
         'al-card': 'rgb(var(--card) / <alpha-value>)',
@@ -12,6 +15,18 @@ module.exports = {
         'al-pink': 'rgba(var(--primary) / <alpha-value>)',
         'al-primary': 'rgba(var(--primary) / <alpha-value>)',
         'al-muted': 'rgba(var(--muted) / <alpha-value>)',
+        'al-roadmap-primary': 'rgba(var(--roadmap-primary) / <alpha-value>)',
+        'al-roadmap-secondary':
+          'rgba(var(--roadmap-secondary) / <alpha-value>)',
+        'al-roadmap-accent': 'rgba(var(--roadmap-accent) / <alpha-value>)',
+        'al-roadmap-hover-primary':
+          'rgba(var(--roadmap-hover-primary) / <alpha-value>)',
+        'al-roadmap-hover-secondary':
+          'rgba(var(--roadmap-hover-secondary) / <alpha-value>)',
+        'al-roadmap-label-optional':
+          'rgba(var(--roadmap-label-optional) / <alpha-value>)',
+        'al-roadmap-label-comingSoon':
+          'rgba(var(--roadmap-label-comingSoon) / <alpha-value>)',
       },
       backgroundImage: {
         'al-radial-gradient':

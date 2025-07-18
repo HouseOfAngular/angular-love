@@ -1,0 +1,6 @@
+@use '../../style/roadmap-hover-border-gradient' as r;
+
+.clusterNode:focus {
+  @include r.roadmap-hover-border-gradient-hover;
+  outline: none;
+}

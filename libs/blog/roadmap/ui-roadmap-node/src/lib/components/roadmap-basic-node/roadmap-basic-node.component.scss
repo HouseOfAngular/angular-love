@@ -1,0 +1,12 @@
+@use '../../style/roadmap-hover-border-gradient' as r;
+
+.node {
+  @include r.roadmap-hover-border-gradient;
+}
+
+.label:hover + .node,
+.node:hover,
+.node:focus {
+  @include r.roadmap-hover-border-gradient-hover;
+  outline: none;
+}
