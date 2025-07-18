@@ -58,7 +58,6 @@ export class RoadmapBasicNodeComponent {
   );
   private eventListener = (event: PointerEvent) => {
     this.onPointerUp(event);
-    console.log('Invoked');
     document.removeEventListener('pointerup', this.eventListener);
   };
 
@@ -90,6 +89,7 @@ export class RoadmapBasicNodeComponent {
   }
 
   protected onKeyDown(event: KeyboardEvent): void {
+    console.log('KeyDown');
     if (event.code === 'Enter' || event.code === 'Space') {
       this._roadmapBottomSheetNotifierService.openBottomSheet(this.node());
     }

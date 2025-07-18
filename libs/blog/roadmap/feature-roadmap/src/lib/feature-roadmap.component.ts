@@ -138,7 +138,9 @@ export class FeatureRoadmapComponent {
       `[node-id="${selectedNodeId}"]`,
     ) as HTMLElement | null;
 
-    selectedNode?.dispatchEvent(new PointerEvent('pointerup'));
+    selectedNode?.dispatchEvent(
+      new KeyboardEvent('keydown', { code: 'Enter' }),
+    );
   }
 
   resizeRoadmap(event: EventType): void {
