@@ -16,7 +16,7 @@
     "prepare": "husky install",
     "hooks:debugger-checker": "node hooks/debugger-checker.js",
     "lint-staged": "lint-staged",
-    "prerender": "nx run blog:build-routes && nx run blog:build && nx run blog:post-prerender",
+    "prerender": "nx run blog:build-routes && nx run blog:build",
     "e2e": "npx nx run blog-e2e:e2e",
     "e2e:ui": "npx nx run blog-e2e:e2e-ui"
   },
