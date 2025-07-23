@@ -6,17 +6,9 @@ import {
   RoadmapStandardNode,
 } from '@angular-love/blog/roadmap/ui-roadmap-node';
 
-const roadmapTitleLayer: RoadmapLayer = {
-  parentNode: {
-    id: '1',
-    title: 'Angular.Love Roadmap Introduction',
-    nodeType: 'angular-love',
-  },
-  childNodes: [],
-};
-
 export function buildRoadmapLayersFromDto(
   roadmapNodesDto: RoadmapNodeDTO[] | undefined,
+  roadmapTitleLayer: RoadmapLayer,
 ): RoadmapLayer[] {
   if (!roadmapNodesDto) {
     return [];
@@ -102,15 +94,24 @@ export function buildRoadmapLayersFromDto(
   return [roadmapTitleLayer, ...layers];
 }
 
-function createPrimaryNode({ id, title }: RoadmapNodeDTO): RoadmapStandardNode {
-  return { id, nodeType: 'primary', title };
+function createPrimaryNode({
+  id,
+  title,
+  description,
+  resources,
+  label,
+}: RoadmapNodeDTO): RoadmapStandardNode {
+  return { id, nodeType: 'primary', title, description, resources, label };
 }
 
 function createSecondaryNode({
   id,
   title,
+  description,
+  resources,
+  label,
 }: RoadmapNodeDTO): RoadmapStandardNode {
-  return { id, nodeType: 'secondary', title };
+  return { id, nodeType: 'secondary', title, description, resources, label };
 }
 
 function createClusterNode({ id, title }: RoadmapNodeDTO): RoadmapClusterNode {

@@ -1,8 +1,8 @@
 <!-- Layer parent node-->
 @if (layer().parentNode.nodeType === 'primary') {
-  <al-roadmap-primary-node [node]="layer().parentNode" />
+  <al-roadmap-basic-node [node]="layer().parentNode" variant="primary" />
 } @else if (layer().parentNode.nodeType === 'angular-love') {
-  <al-roadmap-angular-love-node [node]="layer().parentNode" />
+  <al-roadmap-basic-node [node]="layer().parentNode" variant="angular-love" />
 }
 
 @if (showLayerConnector()) {

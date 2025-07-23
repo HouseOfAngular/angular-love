@@ -1,0 +1,58 @@
+<div
+  class="fixed inset-0 z-[100] flex items-center justify-center bg-black/60"
+  (click)="onClose()"
+>
+  <div
+    class="bottomsheet max-h-[50vh] w-full overflow-hidden rounded-lg border-2 border-white bg-gradient-to-br from-[#100f15] to-[#3b0019] text-white lg:w-3/5 lg:w-4/6"
+    (click)="$event.stopPropagation()"
+    (pointerup)="$event.stopPropagation()"
+    (wheel)="$event.stopPropagation()"
+  >
+    <div #bottomsheetBody class="h-full max-h-[50vh] w-full overflow-y-auto">
+      <al-roadmap-bottomsheet-header
+        [nodeType]="nodeDetails.nodeType"
+        [title]="nodeDetails.title"
+      />
+      <al-roadmap-bottomsheet-description
+        [description]="nodeDetails.description"
+        title="description"
+      />
+
+      @if (angularLoveNodeDetails(); as angularLoveNodeDetails) {
+        <al-roadmap-bottomsheet-additional-description
+          [additionalDescription]="angularLoveNodeDetails.additionalDescription"
+          title="introductionDescription"
+        />
+        <al-roadmap-bottomsheet-creators
+          [creators]="angularLoveNodeDetails.creators"
+          title="creators"
+        />
+      }
+
+      @if (regularNodeDetails()) {
+        @if (regularNodeArticles().length > 0) {
+          <al-roadmap-bottomsheet-regular-content
+            [resources]="regularNodeArticles()"
+            title="articles"
+          />
+        } @else {
+          <div class="flex w-full justify-center pt-6">
+            <button al-button (pointerdown)="navigateToAuthor()">
+              Become an author
+            </button>
+          </div>
+        }
+        <al-roadmap-bottomsheet-regular-content
+          [resources]="regularNodeVideos()"
+          title="videos"
+        />
+      }
+      <al-roadmap-bottomsheet-footer
+        [language]="language()"
+        [nodeId]="nodeDetails.id"
+        [nodeTitle]="nodeDetails.title"
+        title="share"
+      />
+    </div>
+  </div>
+</div>

@@ -25,10 +25,14 @@
     />
   </svg>
 
-  <div class="mx-16 flex gap-8">
+  <div class="mx-16 flex gap-16">
     @for (node of connectedNodes(); track node.id) {
       @if (node.nodeType === 'secondary') {
-        <al-roadmap-secondary-node alNodeConnectionPoint [node]="node" />
+        <al-roadmap-basic-node
+          alNodeConnectionPoint
+          [node]="node"
+          variant="secondary"
+        />
       } @else if (node.nodeType === 'cluster') {
         <al-roadmap-cluster alNodeConnectionPoint [cluster]="node" />
       }

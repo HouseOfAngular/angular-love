@@ -1,9 +1,14 @@
 import { NgClass, ViewportScroller } from '@angular/common';
 import { Component, computed, effect, inject } from '@angular/core';
 import { toSignal } from '@angular/core/rxjs-interop';
-import { Router, RouterOutlet } from '@angular/router';
+import {
+  ActivatedRoute,
+  NavigationEnd,
+  Router,
+  RouterOutlet,
+} from '@angular/router';
 import { TranslocoService } from '@jsverse/transloco';
-import { startWith } from 'rxjs';
+import { filter, map, startWith, switchMap } from 'rxjs';
 
 import { AdBannerStore } from '@angular-love/blog/ad-banner/data-access';
 import { AlLocalizeService } from '@angular-love/blog/i18n/util';
@@ -11,6 +16,7 @@ import {
   FooterComponent,
   HeaderComponent,
   LayoutComponent,
+  LayoutConfig,
 } from '@angular-love/blog/layouts/ui-layouts';
 import { SearchComponent } from '@angular-love/blog/search/feature-search';
 import {
@@ -31,7 +37,11 @@ import {
         <al-search />
       </al-header>
     </div>
-    <al-layout class="mt-0" [ngClass]="{ 'mt-20': adBannerVisible() }">
+    <al-layout
+      class="mt-0"
+      [ngClass]="{ 'mt-20': adBannerVisible() }"
+      [layoutConfig]="layoutConfig()"
+    >
       @if (slides()?.length && slides(); as slides) {
         <al-banner-carousel
           class="mb-4 inline-block"
@@ -57,6 +67,8 @@ import {
   },
 })
 export class RootShellComponent {
+  private readonly _router = inject(Router);
+
   protected readonly sliderStore = inject(AdBannerStore);
   protected readonly slides = computed<AdImageBanner[] | undefined>(() =>
     this.sliderStore.slider()?.slides.map((slide) => ({
@@ -86,9 +98,22 @@ export class RootShellComponent {
     },
   );
 
-  private readonly _router = inject(Router);
-  private readonly _localizeService = inject(AlLocalizeService);
+  readonly layoutConfig = toSignal(
+    this._router.events.pipe(
+      filter((event) => event instanceof NavigationEnd),
+      map(() => this._activatedRoute),
 
+      map((route) => {
+        return route.firstChild;
+      }),
+      filter(Boolean),
+      switchMap((route) => route?.data),
+      map((data) => data?.['layoutConfig'] as LayoutConfig | undefined),
+    ),
+  );
+
+  private readonly _localizeService = inject(AlLocalizeService);
+  private readonly _activatedRoute = inject(ActivatedRoute);
   onLanguageChange(lang: string) {
     this._router.navigateByUrl(
       this._localizeService.localizeExplicitPath(this._router.url, lang),

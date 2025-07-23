@@ -1,9 +1,8 @@
 import { ChangeDetectionStrategy, Component, input } from '@angular/core';
 
 import {
-  RoadmapAngularLoveNodeComponent,
+  RoadmapBasicNodeComponent,
   RoadmapNode,
-  RoadmapPrimaryNodeComponent,
   RoadmapStandardNode,
 } from '@angular-love/blog/roadmap/ui-roadmap-node';
 
@@ -24,8 +23,7 @@ export interface RoadmapLayer {
   imports: [
     LeftSlicePipe,
     RightSlicePipe,
-    RoadmapPrimaryNodeComponent,
-    RoadmapAngularLoveNodeComponent,
+    RoadmapBasicNodeComponent,
     VerticalConnectorArrowComponent,
     ConnectedNodesComponent,
   ],

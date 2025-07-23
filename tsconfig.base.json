@@ -203,6 +203,9 @@
       "@angular-love/feature-search-results-page": [
         "libs/blog/search/feature-search-results-page/src/index.ts"
       ],
+      "@angular-love/roadmap-data-access": [
+        "libs/blog/roadmap/data-access/src/index.ts"
+      ],
       "@angular-love/search-result-item": [
         "libs/blog/search/ui-search-result/src/index.ts"
       ],
@@ -219,6 +222,9 @@
         "libs/shared/utils-signal-store/src/index.ts"
       ],
       "@angular-love/storybook": ["libs/shared/storybook/src/index.ts"],
+      "@angular-love/ui-roadmap-bottomsheet": [
+        "libs/blog/roadmap/ui-roadmap-bottomsheet/src/index.ts"
+      ],
       "@angular-love/ui-tooltip": ["libs/blog/shared/ui-tooltip/src/index.ts"],
       "@angular-love/util-wp": ["libs/blog-bff/shared/util-wp/src/index.ts"],
       "@angular-love/utils": ["libs/utils/src/index.ts"]

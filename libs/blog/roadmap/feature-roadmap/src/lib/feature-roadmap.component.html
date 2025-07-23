@@ -1,12 +1,7 @@
-<svg
-  #roadmap
-  height="100%"
-  width="100%"
-  xmlns:svg="http://www.w3.org/1999/html"
->
-  <svg:foreignObject overflow="visible" height="100%" width="100%">
-    <!-- TODO - what if there was an error or there is no roadmap data? -->
-    <div class="w-100 flex h-fit translate-y-16 flex-col items-center">
+<div #roadmapWrapper class="w-full">
+  <!-- TODO - what if there was an error or there is no roadmap data? -->
+  <div class="w-100 flex h-fit translate-y-16 flex-col items-center">
+    @if (isPlatformBrowser) {
       @for (
         layer of roadmapLayers();
         track layer.parentNode.id;
@@ -14,11 +9,11 @@
       ) {
         <al-roadmap-layer [layer]="layer" [showLayerConnector]="!last" />
       }
-    </div>
-  </svg:foreignObject>
-</svg>
-
-<al-roadmap-svg-controls
+    }
+  </div>
+</div>
+<al-roadmap-legend class="absolute left-4 top-4" />
+<al-roadmap-pan-controls
   class="absolute bottom-4 right-4"
   (resizeRoadmap)="resizeRoadmap($event)"
 />

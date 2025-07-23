@@ -22,13 +22,6 @@ export const blogShellRoutes: Route[] = [
 
 export const commonRoutes: Route[] = [
   {
-    path: 'roadmap',
-    loadComponent: async () =>
-      await import('./roadmap-shell.component').then(
-        (m) => m.RoadmapShellComponent,
-      ),
-  },
-  {
     path: '',
     component: RootShellComponent,
     children: [
@@ -84,6 +77,19 @@ export const commonRoutes: Route[] = [
         loadComponent: async () =>
           (await import('@angular-love/blog/feature-writing-rules'))
             .WritingRulesComponent,
+      },
+      {
+        path: 'roadmap',
+        loadComponent: async () =>
+          await import('@angular-love/blog/roadmap/feature-roadmap').then(
+            (m) => m.FeatureRoadmapComponent,
+          ),
+        data: {
+          layoutConfig: {
+            roadmap: true,
+          },
+          seo: { title: 'seo.roadmap' },
+        },
       },
       {
         path: '404',

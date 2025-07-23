@@ -1,6 +1,4 @@
-export interface RoadmapNodeDTO {
-  id: string;
-  previousNodeId?: string;
-  parentNodeId?: string;
-  title: string;
-}
+import { AngularLoveNodeDTO } from './angular-love-node.interface';
+import { RegularNodeDTO } from './regular-node.type';
+
+export type RoadmapNodeDTO = RegularNodeDTO;
