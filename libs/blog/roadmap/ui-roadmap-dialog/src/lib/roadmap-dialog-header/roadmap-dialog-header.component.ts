@@ -4,18 +4,18 @@ import { Component, computed, input } from '@angular/core';
 import { RoadmapStandardNode } from '@angular-love/blog/roadmap/ui-roadmap-node';
 
 @Component({
-  selector: 'al-roadmap-bottomsheet-header',
+  selector: 'al-roadmap-dialog-header',
   imports: [TitleCasePipe],
   template: `
-    <div
+    <section
       class="border-b border-current py-4 text-center"
       [class]="backgroundClass()"
     >
       <h3 class="text-2xl font-bold">{{ title() | titlecase }}</h3>
-    </div>
+    </section>
   `,
 })
-export class RoadmapBottomsheetHeaderComponent {
+export class RoadmapDialogHeaderComponent {
   readonly nodeType = input.required<RoadmapStandardNode['nodeType']>();
   readonly title = input.required<string>();
 

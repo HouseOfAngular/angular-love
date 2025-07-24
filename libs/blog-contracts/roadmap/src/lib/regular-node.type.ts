@@ -1,8 +1,12 @@
-import { BaseNodeDTO } from './base-node.interface';
 import { Resource } from './resource.interface';
 
-export interface RegularNodeDTO extends BaseNodeDTO {
-  nodeType: 'regular';
+export interface RoadmapNodeDTO {
   label?: 'optional' | 'recommended' | 'comingSoon';
   resources: Resource[];
+  id: string;
+  title: string;
+  description: string;
+  nodeType: 'angular-love' | 'regular';
+  previousNodeId?: string;
+  parentNodeId?: string;
 }

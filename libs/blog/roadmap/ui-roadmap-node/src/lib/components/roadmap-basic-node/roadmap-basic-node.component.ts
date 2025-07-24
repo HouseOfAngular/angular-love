@@ -20,7 +20,7 @@ import { RoadmapNodeLabelComponent } from '../roadmap-node-label/roadmap-node-la
         [label]="label"
         (keydown)="onKeyDown($event)"
         (pointerup)="
-          this._roadmapBottomSheetNotifierService.openBottomSheet(this.node())
+          this._roadmapBottomSheetNotifierService.notifyNodeClicked(this.node())
         "
       />
     }
@@ -28,7 +28,7 @@ import { RoadmapNodeLabelComponent } from '../roadmap-node-label/roadmap-node-la
     <button
       class="node relative w-full text-nowrap rounded-lg bg-[#FDF5FD] text-[#FDF5FD]"
       [attr.node-id]="node().id"
-      (focus)="_roadmapBottomSheetNotifierService.focusNode(node())"
+      (focus)="_roadmapBottomSheetNotifierService.notifyNodeFocused(node())"
       (keydown)="onKeyDown($event)"
       (pointerdown)="onPointerDown($event)"
     >
@@ -48,17 +48,17 @@ export class RoadmapBasicNodeComponent {
   readonly node = input.required<RoadmapStandardNode>();
   readonly variant = input.required<'primary' | 'secondary' | 'angular-love'>();
 
-  private readonly _difference = 15;
-  private readonly _pointerDown = signal<{ x: number; y: number }>({
+  private readonly _clickMaxPositionDifference = 15;
+  private readonly _pointerDownLastPosition = signal<{ x: number; y: number }>({
     x: 0,
     y: 0,
   });
   protected readonly _roadmapBottomSheetNotifierService = inject(
     RoadmapBottomSheetNotifierService,
   );
-  private eventListener = (event: PointerEvent) => {
+  private pointerUpEventListener = (event: PointerEvent) => {
     this.onPointerUp(event);
-    document.removeEventListener('pointerup', this.eventListener);
+    document.removeEventListener('pointerup', this.pointerUpEventListener);
   };
 
   protected readonly tileClass = computed(() => {
@@ -75,22 +75,25 @@ export class RoadmapBasicNodeComponent {
   });
 
   protected onPointerDown(event: PointerEvent) {
-    this._pointerDown.set({ x: event.clientX, y: event.clientY });
-    document.addEventListener('pointerup', this.eventListener);
+    this._pointerDownLastPosition.set({ x: event.clientX, y: event.clientY });
+    document.addEventListener('pointerup', this.pointerUpEventListener);
   }
 
   protected onPointerUp(event: PointerEvent) {
-    const dx = Math.abs(event.clientX - this._pointerDown().x);
-    const dy = Math.abs(event.clientY - this._pointerDown().y);
+    const dx = Math.abs(event.clientX - this._pointerDownLastPosition().x);
+    const dy = Math.abs(event.clientY - this._pointerDownLastPosition().y);
 
-    if (dx < this._difference && dy < this._difference) {
-      this._roadmapBottomSheetNotifierService.openBottomSheet(this.node());
+    if (
+      dx < this._clickMaxPositionDifference &&
+      dy < this._clickMaxPositionDifference
+    ) {
+      this._roadmapBottomSheetNotifierService.notifyNodeClicked(this.node());
     }
   }
 
   protected onKeyDown(event: KeyboardEvent): void {
     if (event.code === 'Enter' || event.code === 'Space') {
-      this._roadmapBottomSheetNotifierService.openBottomSheet(this.node());
+      this._roadmapBottomSheetNotifierService.notifyNodeClicked(this.node());
     }
   }
 }

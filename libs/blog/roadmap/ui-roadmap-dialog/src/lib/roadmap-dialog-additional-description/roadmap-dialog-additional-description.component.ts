@@ -2,14 +2,14 @@ import { Component, input } from '@angular/core';
 
 import { AdditionalDescription } from '@angular-love/blog/roadmap/ui-roadmap-node';
 
-import { RoadmapBottomsheetSubtitleComponent } from '../roadmap-bottomsheet-subtitle/roadmap-bottomsheet-subtitle.component';
+import { RoadmapDialogSubtitleComponent } from '../roadmap-dialog-subtitle/roadmap-dialog-subtitle.component';
 
 @Component({
-  imports: [RoadmapBottomsheetSubtitleComponent],
-  selector: 'al-roadmap-bottomsheet-additional-description',
+  imports: [RoadmapDialogSubtitleComponent],
+  selector: 'al-roadmap-dialog-additional-description',
   template: `
-    <div class="px-6 pt-6">
-      <al-roadmap-bottomsheet-subtitle [title]="title()" />
+    <section class="px-6 pt-6">
+      <al-roadmap-dialog-subtitle [title]="title()" />
       <div class="pt-4 leading-8">
         <p>
           {{ additionalDescription().introduction }}
@@ -26,10 +26,10 @@ import { RoadmapBottomsheetSubtitleComponent } from '../roadmap-bottomsheet-subt
           {{ additionalDescription().ending }}
         </p>
       </div>
-    </div>
+    </section>
   `,
 })
-export class RoadmapBottomsheetAdditionalDescriptionComponent {
+export class RoadmapDialogAdditionalDescriptionComponent {
   readonly title = input.required<string>();
   readonly additionalDescription = input.required<AdditionalDescription>();
 }

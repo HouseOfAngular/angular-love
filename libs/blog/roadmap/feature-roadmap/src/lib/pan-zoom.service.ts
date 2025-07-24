@@ -5,6 +5,8 @@ import { PanZoom } from 'panzoom';
   providedIn: 'root',
 })
 export class PanZoomService {
+  private readonly _transformMargin = 100;
+
   focusSelectedNode(
     nodeId: string,
     panZoomInstance: PanZoom,
@@ -15,6 +17,7 @@ export class PanZoomService {
     ) as HTMLElement | null;
 
     if (!selectedNode) return;
+
     const nodeRect = selectedNode.getBoundingClientRect();
     const containerRect = elementRef.nativeElement.getBoundingClientRect();
 
@@ -35,7 +38,7 @@ export class PanZoomService {
     panZoomInstance.smoothMoveTo(targetX, targetY);
   }
 
-  disableDefaultScrollBehaviour(
+  handleRoadmapScrollBounds(
     e: WheelEvent,
     panZoom: PanZoom,
     bottommostNode: HTMLElement,
@@ -46,21 +49,24 @@ export class PanZoomService {
     const topNodeRect = topmostNode.getBoundingClientRect();
     const viewportCenterY = window.innerHeight / 2;
 
-    if (transforms) {
-      if (lowerNodeRect && lowerNodeRect.top < 100) {
-        const nodeCenterY = lowerNodeRect.top + lowerNodeRect.height / 2;
-        const deltaY = viewportCenterY - nodeCenterY;
-        this.correctPanBy(panZoom, 0, deltaY);
-      }
+    if (!transforms) return;
 
-      if (topNodeRect && topNodeRect.bottom > window.innerHeight - 100) {
-        const nodeCenterY = topNodeRect.bottom + topNodeRect.height / 2;
-        const deltaY = viewportCenterY - nodeCenterY;
-        this.correctPanBy(panZoom, 0, deltaY);
-      }
-
-      panZoom.moveTo(transforms.x - e.deltaX, transforms.y - e.deltaY);
+    if (lowerNodeRect && lowerNodeRect.top < this._transformMargin) {
+      const nodeCenterY = lowerNodeRect.top + lowerNodeRect.height / 2;
+      const deltaY = viewportCenterY - nodeCenterY;
+      this.correctPanBy(panZoom, 0, deltaY);
     }
+
+    if (
+      topNodeRect &&
+      topNodeRect.bottom > window.innerHeight - this._transformMargin
+    ) {
+      const nodeCenterY = topNodeRect.bottom + topNodeRect.height / 2;
+      const deltaY = viewportCenterY - nodeCenterY;
+      this.correctPanBy(panZoom, 0, deltaY);
+    }
+
+    panZoom.moveTo(transforms.x - e.deltaX, transforms.y - e.deltaY);
   }
 
   correctPanBy(panZoomInstance: PanZoom, deltaX: number, deltaY: number) {
@@ -69,17 +75,21 @@ export class PanZoomService {
     panZoomInstance.resume();
   }
 
-  centerSelectedNode(
-    selectedNodeId: string,
-    elementRef: ElementRef<HTMLElement>,
-  ) {
-    const selectedNode = elementRef.nativeElement.querySelector(
-      `[node-id="${selectedNodeId}"]`,
-    ) as HTMLElement | null;
+  clickOnNode(selectedNodeId: string, elementRef: ElementRef<HTMLElement>) {
+    const selectedNode = this._findNode(selectedNodeId, elementRef);
 
     selectedNode?.dispatchEvent(
       new KeyboardEvent('keydown', { code: 'Enter' }),
     );
+  }
+
+  private _findNode(
+    selectedNodeId: string,
+    elementRef: ElementRef<HTMLElement>,
+  ) {
+    return elementRef.nativeElement.querySelector(
+      `[node-id="${selectedNodeId}"]`,
+    ) as HTMLElement | null;
   }
 
   getRoadmapBounds(elementRef: ElementRef<HTMLElement>): {
@@ -162,23 +172,22 @@ export class PanZoomService {
       );
     });
 
-    if (legendButton) {
-      legendButton.addEventListener('pointerdown', () => {
-        panZoomInstance.pause();
-      });
+    if (!legendButton) return;
+    legendButton.addEventListener('pointerdown', () => {
+      panZoomInstance.pause();
+    });
 
-      legendButton.addEventListener('click', () => {
-        setTimeout(() => panZoomInstance.resume(), 0);
-      });
+    legendButton.addEventListener('click', () => {
+      setTimeout(() => panZoomInstance.resume(), 0);
+    });
 
-      legendButton.addEventListener(
-        'wheel',
-        (e) => {
-          e.preventDefault();
-          e.stopPropagation();
-        },
-        { passive: false },
-      );
-    }
+    legendButton.addEventListener(
+      'wheel',
+      (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+      },
+      { passive: false },
+    );
   }
 }

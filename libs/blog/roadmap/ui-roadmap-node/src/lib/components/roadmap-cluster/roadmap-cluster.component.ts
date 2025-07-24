@@ -1,16 +1,6 @@
-import {
-  ChangeDetectionStrategy,
-  Component,
-  inject,
-  input,
-  signal,
-} from '@angular/core';
+import { ChangeDetectionStrategy, Component, input } from '@angular/core';
 
-import { RoadmapBottomSheetNotifierService } from '../../services/roadmap-bottomsheet-notifier.service';
-import {
-  RoadmapClusterNode,
-  RoadmapStandardNode,
-} from '../../types/roadmap-node';
+import { RoadmapClusterNode } from '../../types/roadmap-node';
 import { RoadmapBasicNodeComponent } from '../roadmap-basic-node/roadmap-basic-node.component';
 
 @Component({
@@ -38,36 +28,5 @@ import { RoadmapBasicNodeComponent } from '../roadmap-basic-node/roadmap-basic-n
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class RoadmapClusterComponent {
-  private readonly _difference = 5;
-  private readonly _pointerDown = signal<{ x: number; y: number }>({
-    x: 0,
-    y: 0,
-  });
-  // private eventListener = (event: PointerEvent) => {
-  //   this.onPointerUp(event);
-  //   document.removeEventListener('pointerup', this.eventListener);
-  // };
-  protected readonly _roadmapBottomSheetNotifierService = inject(
-    RoadmapBottomSheetNotifierService,
-  );
   readonly cluster = input.required<RoadmapClusterNode>();
-
-  protected onKeyDown(event: KeyboardEvent, node: RoadmapStandardNode): void {
-    if (event.code === 'Enter' || event.code === 'Space') {
-      this._roadmapBottomSheetNotifierService.openBottomSheet(node);
-    }
-  }
-
-  protected onPointerDown(event: PointerEvent) {
-    this._pointerDown.set({ x: event.clientX, y: event.clientY });
-  }
-
-  protected onPointerUp(event: PointerEvent, node: RoadmapStandardNode): void {
-    const dx = Math.abs(event.clientX - this._pointerDown().x);
-    const dy = Math.abs(event.clientY - this._pointerDown().y);
-
-    if (dx < this._difference && dy < this._difference) {
-      this._roadmapBottomSheetNotifierService.openBottomSheet(node);
-    }
-  }
 }

@@ -3,7 +3,7 @@ import { FastSvgComponent } from '@push-based/ngx-fast-svg';
 
 import { IconType } from '@angular-love/blog/shared/ui-icon';
 
-import { RoadmapBottomsheetSubtitleComponent } from '../roadmap-bottomsheet-subtitle/roadmap-bottomsheet-subtitle.component';
+import { RoadmapDialogSubtitleComponent } from '../roadmap-dialog-subtitle/roadmap-dialog-subtitle.component';
 
 type ShareItem = {
   href: string;
@@ -11,27 +11,33 @@ type ShareItem = {
   ariaLabel: string;
 };
 @Component({
-  imports: [RoadmapBottomsheetSubtitleComponent, FastSvgComponent],
-  selector: 'al-roadmap-bottomsheet-footer',
+  imports: [RoadmapDialogSubtitleComponent, FastSvgComponent],
+  selector: 'al-roadmap-dialog-footer',
   template: `
-    <div class="px-6 pt-6">
-      <al-roadmap-bottomsheet-subtitle [title]="title()" />
-      <div class="flex flex-row gap-4 py-4">
+    <section class="px-6 pt-6">
+      <al-roadmap-dialog-subtitle [title]="title()" />
+      <ul class="flex flex-row gap-4 py-4">
         @for (item of items(); track item.href) {
-          <a
-            role="button"
-            [attr.aria-label]="item.ariaLabel"
-            [href]="item.href"
-            target="_blank"
-          >
-            <fast-svg class="text-al-foreground" [name]="item.icon" size="30" />
-          </a>
+          <li>
+            <a
+              role="button"
+              [attr.aria-label]="item.ariaLabel"
+              [href]="item.href"
+              target="_blank"
+            >
+              <fast-svg
+                class="text-al-foreground"
+                [name]="item.icon"
+                size="30"
+              />
+            </a>
+          </li>
         }
-      </div>
-    </div>
+      </ul>
+    </section>
   `,
 })
-export class RoadmapBottomsheetFooterComponent {
+export class RoadmapDialogFooterComponent {
   readonly title = input.required<string>();
   readonly nodeTitle = input.required<string>();
   readonly nodeId = input.required<string>();

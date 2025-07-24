@@ -2,7 +2,7 @@ import { Component, input } from '@angular/core';
 import { TranslocoDirective } from '@jsverse/transloco';
 
 @Component({
-  selector: 'al-roadmap-bottomsheet-subtitle',
+  selector: 'al-roadmap-dialog-subtitle',
   imports: [TranslocoDirective],
   template: `
     <h4
@@ -17,6 +17,6 @@ import { TranslocoDirective } from '@jsverse/transloco';
     class: 'flex items-center gap-4',
   },
 })
-export class RoadmapBottomsheetSubtitleComponent {
+export class RoadmapDialogSubtitleComponent {
   readonly title = input.required<string>();
 }

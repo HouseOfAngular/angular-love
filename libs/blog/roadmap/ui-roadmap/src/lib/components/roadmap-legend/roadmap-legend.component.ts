@@ -1,9 +1,4 @@
-import {
-  ChangeDetectionStrategy,
-  Component,
-  computed,
-  signal,
-} from '@angular/core';
+import { ChangeDetectionStrategy, Component, signal } from '@angular/core';
 import { FastSvgComponent } from '@push-based/ngx-fast-svg';
 
 import {
@@ -20,30 +15,28 @@ interface LegendSymbol {
   imports: [RoadmapNodeLabelComponent, FastSvgComponent],
   selector: 'al-roadmap-legend',
   template: `
-    <ng-container>
-      <button
-        class="bg-al-roadmap-primary absolute right-0 top-1/2 -translate-y-[12px] translate-x-[18px] rounded-full"
-        (click)="toggleLegend()"
-      >
-        <fast-svg
-          [name]="legendOpened() ? 'arrow-left' : 'arrow-right'"
-          size="24"
-        />
-      </button>
-      <ul>
-        @for (legendSymbol of legendSymbols; track legendSymbol.symbol) {
-          <li class="flex items-center gap-1 px-2 py-2">
-            <al-roadmap-node-label
-              class="max-w-3xs block"
-              [label]="legendSymbol.symbol"
-            />
-            @if (legendOpened()) {
-              <p>{{ legendSymbol.description }}</p>
-            }
-          </li>
-        }
-      </ul>
-    </ng-container>
+    <button
+      class="bg-al-roadmap-primary absolute right-0 top-1/2 -translate-y-[12px] translate-x-[18px] rounded-full"
+      (click)="toggleLegend()"
+    >
+      <fast-svg
+        [name]="legendOpened() ? 'arrow-left' : 'arrow-right'"
+        size="24"
+      />
+    </button>
+    <ul>
+      @for (legendSymbol of legendSymbols; track legendSymbol.symbol) {
+        <li class="flex items-center gap-1 px-2 py-2">
+          <al-roadmap-node-label
+            class="max-w-3xs block"
+            [label]="legendSymbol.symbol"
+          />
+          @if (legendOpened()) {
+            <p>{{ legendSymbol.description }}</p>
+          }
+        </li>
+      }
+    </ul>
   `,
   host: {
     class:
@@ -53,7 +46,7 @@ interface LegendSymbol {
 })
 export class RoadmapLegendComponent {
   private readonly _isOpen = signal<boolean>(true);
-  protected readonly legendOpened = computed(() => this._isOpen());
+  protected readonly legendOpened = this._isOpen.asReadonly();
 
   protected readonly legendSymbols: LegendSymbol[] = [
     {

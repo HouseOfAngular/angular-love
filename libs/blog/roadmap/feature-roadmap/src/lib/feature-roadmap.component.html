@@ -1,5 +1,4 @@
 <div #roadmapWrapper class="w-full">
-  <!-- TODO - what if there was an error or there is no roadmap data? -->
   <div class="w-100 flex h-fit translate-y-16 flex-col items-center">
     @if (isPlatformBrowser) {
       @for (
@@ -15,5 +14,6 @@
 <al-roadmap-legend class="absolute left-4 top-4" />
 <al-roadmap-pan-controls
   class="absolute bottom-4 right-4"
+  (pointerdown)="pausePanZoom()"
   (resizeRoadmap)="resizeRoadmap($event)"
 />

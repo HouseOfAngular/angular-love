@@ -1,7 +1,7 @@
 {
-  "name": "ui-roadmap-bottomsheet",
+  "name": "ui-roadmap-dialog",
   "$schema": "../../../../node_modules/nx/schemas/project-schema.json",
-  "sourceRoot": "libs/blog/roadmap/ui-roadmap-bottomsheet/src",
+  "sourceRoot": "libs/blog/roadmap/ui-roadmap-dialog/src",
   "prefix": "al",
   "projectType": "library",
   "tags": ["scope:client", "type:ui"],

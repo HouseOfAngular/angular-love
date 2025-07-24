@@ -2,14 +2,14 @@ import { Component, input } from '@angular/core';
 
 import { Resource } from '@angular-love/blog/contracts/roadmap';
 
-import { RoadmapBottomsheetSubtitleComponent } from '../roadmap-bottomsheet-subtitle/roadmap-bottomsheet-subtitle.component';
+import { RoadmapDialogSubtitleComponent } from '../roadmap-dialog-subtitle/roadmap-dialog-subtitle.component';
 
 @Component({
-  imports: [RoadmapBottomsheetSubtitleComponent],
-  selector: 'al-roadmap-bottomsheet-regular-content',
+  imports: [RoadmapDialogSubtitleComponent],
+  selector: 'al-roadmap-dialog-regular-content',
   template: `
-    <div class="px-6 pt-6">
-      <al-roadmap-bottomsheet-subtitle [title]="title()" />
+    <section class="px-6 pt-6">
+      <al-roadmap-dialog-subtitle [title]="title()" />
       <ul class="list-disc px-6 pt-4">
         @for (resource of resources(); track resource.name) {
           <li class="py-1 underline">
@@ -19,10 +19,10 @@ import { RoadmapBottomsheetSubtitleComponent } from '../roadmap-bottomsheet-subt
           </li>
         }
       </ul>
-    </div>
+    </section>
   `,
 })
-export class RoadmapBottomsheetRegularContentComponent {
+export class RoadmapDialogRegularContentComponent {
   readonly title = input.required<string>();
   readonly resources = input.required<Resource[]>();
 }

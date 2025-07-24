@@ -1,9 +1,8 @@
 export default {
-  displayName: 'ui-roadmap-bottomsheet',
+  displayName: 'ui-roadmap-dialog',
   preset: '../../../../jest.preset.js',
   setupFilesAfterEnv: ['<rootDir>/src/test-setup.ts'],
-  coverageDirectory:
-    '../../../../coverage/libs/blog/roadmap/ui-roadmap-bottomsheet',
+  coverageDirectory: '../../../../coverage/libs/blog/roadmap/ui-roadmap-dialog',
   transform: {
     '^.+\\.(ts|mjs|js|html)$': [
       'jest-preset-angular',

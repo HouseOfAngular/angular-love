@@ -6,14 +6,14 @@ import {
   ElementRef,
   inject,
   input,
+  OnDestroy,
   PLATFORM_ID,
   signal,
   viewChild,
 } from '@angular/core';
-import { takeUntilDestroyed, toSignal } from '@angular/core/rxjs-interop';
-import { ActivatedRoute } from '@angular/router';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import panzoom, { PanZoom } from 'panzoom';
-import { map, switchMap, tap } from 'rxjs';
+import { switchMap, tap } from 'rxjs';
 
 import {
   EventType,
@@ -25,11 +25,11 @@ import {
   RoadmapBottomSheetNotifierService,
   RoadmapStandardNode,
 } from '@angular-love/blog/roadmap/ui-roadmap-node';
-import { RoadmapStore } from '@angular-love/roadmap-data-access';
+import { RoadmapStore } from '@angular-love/roadmap/data-access';
 
 import { panZoomInitialConfig } from './pan-zoom-initial-config';
 import { PanZoomService } from './pan-zoom.service';
-import { RoadmapBottomsheetManagerService } from './roadmap-bottomsheet-menager.service';
+import { RoadmapDialogManagerService } from './roadmap-dialog-menager.service';
 
 @Component({
   selector: 'al-feature-roadmap',
@@ -39,60 +39,42 @@ import { RoadmapBottomsheetManagerService } from './roadmap-bottomsheet-menager.
     RoadmapLegendComponent,
   ],
   templateUrl: './feature-roadmap.component.html',
-  styles: `
-    :host {
-      animation: fadeIn 0.35s ease-in-out;
-    }
-
-    @keyframes fadeIn {
-      from {
-        opacity: 0;
-      }
-      to {
-        opacity: 1;
-      }
-    }
-  `,
+  styleUrl: './feature-roadmap.component.scss',
   host: {
     class: 'block max-h-full overflow-hidden w-full relative',
   },
   changeDetection: ChangeDetectionStrategy.OnPush,
   providers: [RoadmapStore],
 })
-export class FeatureRoadmapComponent {
+export class FeatureRoadmapComponent implements OnDestroy {
   private readonly _roadmapWrapper =
     viewChild.required<ElementRef<HTMLDivElement>>('roadmapWrapper');
   private readonly _roadmapStore = inject(RoadmapStore);
   private readonly _platform = inject(PLATFORM_ID);
-  private readonly _panZoomInitialConfig = panZoomInitialConfig;
-  private readonly _scaleMultiplier = 0.5;
-  private readonly _correctionTime = 350;
-  private readonly _route = inject(ActivatedRoute);
-  private readonly _elementRef = inject<ElementRef<HTMLElement>>(
-    ElementRef<HTMLElement>,
-  );
-  private readonly _roadmapBottomsheetManagerService = inject(
-    RoadmapBottomsheetManagerService,
+  private readonly _panZoomService = inject(PanZoomService);
+  private readonly _roadmapDialogManagerService = inject(
+    RoadmapDialogManagerService,
   );
   private readonly _roadmapBottomSheetNotifierService = inject(
     RoadmapBottomSheetNotifierService,
   );
-  private readonly _selectedNodeId = toSignal(
-    this._route.queryParams.pipe(map((params) => params['nodeId'])),
-    { initialValue: undefined },
+  private readonly _elementRef = inject<ElementRef<HTMLElement>>(
+    ElementRef<HTMLElement>,
   );
+  private readonly _panZoomInitialConfig = panZoomInitialConfig;
+  private readonly _scaleMultiplier = 0.5;
+  private readonly _correctionTime = 350;
   private _panZoomInstance = signal<PanZoom | undefined>(undefined);
-  private readonly _panZoomService = inject(PanZoomService);
-  private readonly _nodesDto = this._roadmapStore.nodesDto;
+  private readonly _nodesDto = this._roadmapStore.nodesDtos;
+
   protected readonly roadmapLayers = this._roadmapStore.roadmapLayers;
   protected readonly isPlatformBrowser = isPlatformBrowser(this._platform);
-
-  readonly language = input.required<string>();
+  protected readonly nodeId = input<string | undefined>(undefined);
 
   constructor() {
     this._roadmapStore.getNodes();
 
-    this._roadmapBottomSheetNotifierService.focusedNodeAsObservable
+    this._roadmapBottomSheetNotifierService.nodeFocused$
       .pipe(
         tap(({ id }: RoadmapStandardNode) => {
           if (this._panZoomInstance()) {
@@ -107,7 +89,7 @@ export class FeatureRoadmapComponent {
       )
       .subscribe();
 
-    this._roadmapBottomSheetNotifierService.nodeAsObservable
+    this._roadmapBottomSheetNotifierService.nodeClicked$
       .pipe(
         tap(({ id }) => {
           if (this._panZoomInstance()) {
@@ -119,37 +101,38 @@ export class FeatureRoadmapComponent {
           }
           this.removeWheelListener();
         }),
-        switchMap((node) => this._roadmapBottomsheetManagerService.open(node)),
-        tap(() => {
-          this.appendWheelListener();
-        }),
+        switchMap((node) => this._roadmapDialogManagerService.open(node)),
+        tap(() => this.appendWheelListener()),
         takeUntilDestroyed(),
       )
       .subscribe();
 
     afterRenderEffect(async () => {
-      if (!isPlatformBrowser(this._platform)) return;
       if (this._nodesDto()?.length) {
         this.initPanZoom();
       }
     });
 
     afterRenderEffect(() => {
-      if (!isPlatformBrowser(this._platform)) return;
-
-      const selectedNodeId = this._selectedNodeId();
+      const nodeId = this.nodeId();
       const nodes = this._nodesDto();
-      if (selectedNodeId && nodes?.length)
-        this._panZoomService.centerSelectedNode(
-          selectedNodeId,
-          this._elementRef,
-        );
+      if (nodeId && nodes?.length)
+        this._panZoomService.clickOnNode(nodeId, this._elementRef);
     });
+  }
+
+  ngOnDestroy() {
+    if (this.isPlatformBrowser) this.removeWheelListener();
+  }
+
+  pausePanZoom() {
+    this._panZoomInstance()?.pause();
   }
 
   protected resizeRoadmap(event: EventType): void {
     const panZoomInstance = this._panZoomInstance();
     if (!panZoomInstance) return;
+
     const transform = panZoomInstance.getTransform();
     const centerX = this._elementRef.nativeElement.clientWidth / 2;
     const centerY = this._elementRef.nativeElement.clientHeight / 2;
@@ -178,6 +161,7 @@ export class FeatureRoadmapComponent {
 
     const zoomFactor = targetScale / currentScale;
     panZoomInstance.smoothZoom(centerX, centerY, zoomFactor);
+    panZoomInstance.resume();
   }
 
   private initPanZoom() {
@@ -241,9 +225,9 @@ export class FeatureRoadmapComponent {
       }, this._correctionTime);
     });
 
-    if (_panZoomInstance) {
-      this._panZoomService.disableButtonsEventPropagation(_panZoomInstance);
-    }
+    // if (_panZoomInstance) {
+    //   this._panZoomService.disableButtonsEventPropagation(_panZoomInstance);
+    // }
     this.appendWheelListener();
   }
 
@@ -252,7 +236,7 @@ export class FeatureRoadmapComponent {
     const { topmostNode, bottommostNode } =
       this._panZoomService.getRoadmapBounds(this._elementRef);
     if (panZoom && bottommostNode && topmostNode) {
-      this._panZoomService.disableDefaultScrollBehaviour(
+      this._panZoomService.handleRoadmapScrollBounds(
         e,
         panZoom,
         bottommostNode,

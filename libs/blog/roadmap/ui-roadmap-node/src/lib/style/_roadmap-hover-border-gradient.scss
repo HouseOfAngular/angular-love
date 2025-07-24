@@ -28,34 +28,6 @@
   }
 }
 
-.roadmap-hover-border-gradient {
-  position: relative;
-  overflow: hidden;
-
-  &::before {
-    content: '';
-    display: block;
-    position: absolute;
-    width: 2000px;
-    height: 2000px;
-    top: calc(50% - 1000px);
-    left: calc(50% - 1000px);
-    background: conic-gradient(
-      rgb(var(--roadmap-hover-primary)),
-      rgb(var(--roadmap-hover-secondary)),
-      rgb(var(--roadmap-hover-primary))
-    );
-    opacity: 0;
-    transition: opacity 0.2s ease-in-out;
-    z-index: 1;
-  }
-
-  &:hover::before {
-    opacity: 1;
-    animation: rotate 1s linear infinite;
-  }
-}
-
 @keyframes rotate {
   from {
     transform: rotate(0);

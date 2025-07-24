@@ -1,15 +1,16 @@
 import { Dialog } from '@angular/cdk/dialog';
 import { inject, Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
 
 import { RoadmapStandardNode } from '@angular-love/blog/roadmap/ui-roadmap-node';
-import { RoadmapBottomsheetComponent } from '@angular-love/ui-roadmap-bottomsheet';
+import { RoadmapDialogComponent } from '@angular-love/roadmap/ui-roadmap-dialog';
 
 @Injectable({ providedIn: 'root' })
-export class RoadmapBottomsheetManagerService {
+export class RoadmapDialogManagerService {
   private readonly _dialog = inject(Dialog);
 
-  open(node: RoadmapStandardNode) {
-    return this._dialog.open(RoadmapBottomsheetComponent, {
+  open(node: RoadmapStandardNode): Observable<unknown> {
+    return this._dialog.open(RoadmapDialogComponent, {
       data: node,
       disableClose: false,
     }).closed;

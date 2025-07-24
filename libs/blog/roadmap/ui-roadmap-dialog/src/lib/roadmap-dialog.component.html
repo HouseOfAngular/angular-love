@@ -1,0 +1,50 @@
+<div
+  class="bottomsheet w-full overflow-hidden rounded-lg border-2 border-white bg-gradient-to-br from-[#100f15] to-[#3b0019] text-white"
+>
+  <div #bottomsheetBody class="h-full max-h-[50vh] w-full overflow-y-auto">
+    <al-roadmap-dialog-header
+      [nodeType]="nodeDetails.nodeType"
+      [title]="nodeDetails.title"
+    />
+    <al-roadmap-dialog-description
+      [description]="nodeDetails.description"
+      title="description"
+    />
+
+    @if (angularLoveNodeDetails) {
+      <al-roadmap-dialog-additional-description
+        [additionalDescription]="angularLoveNodeDetails.additionalDescription"
+        title="introductionDescription"
+      />
+      <al-roadmap-dialog-creators
+        [creators]="angularLoveNodeDetails.creators"
+        title="creators"
+      />
+    }
+
+    @if (regularNodeDetails) {
+      @if (regularNodeArticles.length > 0) {
+        <al-roadmap-dialog-regular-content
+          [resources]="regularNodeArticles"
+          title="articles"
+        />
+      } @else {
+        <div class="flex w-full justify-center pt-6">
+          <button al-button (pointerdown)="navigateToAuthor()">
+            Become an author
+          </button>
+        </div>
+      }
+      <al-roadmap-dialog-regular-content
+        [resources]="regularNodeVideos"
+        title="videos"
+      />
+    }
+    <al-roadmap-dialog-footer
+      [language]="language()"
+      [nodeId]="nodeDetails.id"
+      [nodeTitle]="nodeDetails.title"
+      title="share"
+    />
+  </div>
+</div>

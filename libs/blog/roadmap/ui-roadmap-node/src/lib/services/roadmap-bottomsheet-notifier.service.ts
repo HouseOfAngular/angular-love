@@ -7,16 +7,16 @@ import { RoadmapStandardNode } from '../types/roadmap-node';
   providedIn: 'root',
 })
 export class RoadmapBottomSheetNotifierService {
-  private readonly _node = new Subject<RoadmapStandardNode>();
-  private readonly _nodeFocused = new Subject<RoadmapStandardNode>();
-  public readonly nodeAsObservable = this._node.asObservable();
-  public readonly focusedNodeAsObservable = this._nodeFocused.asObservable();
+  private readonly _nodeClicked$ = new Subject<RoadmapStandardNode>();
+  private readonly _nodeFocused$ = new Subject<RoadmapStandardNode>();
+  public readonly nodeClicked$ = this._nodeClicked$.asObservable();
+  public readonly nodeFocused$ = this._nodeFocused$.asObservable();
 
-  openBottomSheet(node: RoadmapStandardNode) {
-    this._node.next(node);
+  notifyNodeClicked(node: RoadmapStandardNode) {
+    this._nodeClicked$.next(node);
   }
 
-  focusNode(node: RoadmapStandardNode) {
-    this._nodeFocused.next(node);
+  notifyNodeFocused(node: RoadmapStandardNode) {
+    this._nodeFocused$.next(node);
   }
 }

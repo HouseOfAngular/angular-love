@@ -32,9 +32,9 @@ export class LayoutComponent {
         'overflow-hidden': true,
         'min-h-full': true,
       };
-    } else
-      return {
-        'min-h-screen': true,
-      };
+    }
+    return {
+      'min-h-screen': true,
+    };
   });
 }
