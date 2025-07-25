@@ -14,10 +14,7 @@ export function buildRoadmapLayersFromDto(
     return [];
   }
 
-  const allNodeDtosMap = roadmapNodesDto.reduce(
-    (acc, node) => ({ ...acc, [node.id]: node }),
-    {} as { [nodeId: string]: RoadmapNodeDTO },
-  );
+  const allNodeDtosMap = createAllNodeDtosMap(roadmapNodesDto);
   const layerChildNodeIdsMap: { [parentNodeId: string]: string[] } = {};
   const clusterChildNodeIdsMap: { [clusterNodeId: string]: string[] } = {};
   const allNodesMap: { [nodeId: string]: RoadmapNode } = {};
@@ -140,4 +137,14 @@ function getOrderedNodeIdsList(
   }
 
   return orderedNodeIds;
+}
+
+function createAllNodeDtosMap(roadmapNodesDto: RoadmapNodeDTO[]) {
+  return roadmapNodesDto.reduce(
+    (acc, node) => {
+      acc[node.id] = node;
+      return acc;
+    },
+    {} as { [nodeId: string]: RoadmapNodeDTO },
+  );
 }
