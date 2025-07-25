@@ -1,9 +1,14 @@
-import { NgClass, ViewportScroller } from '@angular/common';
+import { ViewportScroller } from '@angular/common';
 import { Component, computed, effect, inject } from '@angular/core';
 import { toSignal } from '@angular/core/rxjs-interop';
-import { Router, RouterOutlet } from '@angular/router';
+import {
+  ActivatedRoute,
+  NavigationEnd,
+  Router,
+  RouterOutlet,
+} from '@angular/router';
 import { TranslocoService } from '@jsverse/transloco';
-import { startWith } from 'rxjs';
+import { filter, map, startWith, switchMap } from 'rxjs';
 
 import { AdBannerStore } from '@angular-love/blog/ad-banner/data-access';
 import { AlLocalizeService } from '@angular-love/blog/i18n/util';
@@ -11,6 +16,7 @@ import {
   FooterComponent,
   HeaderComponent,
   LayoutComponent,
+  LayoutConfig,
 } from '@angular-love/blog/layouts/ui-layouts';
 import { SearchComponent } from '@angular-love/blog/search/feature-search';
 import {
@@ -31,7 +37,11 @@ import {
         <al-search />
       </al-header>
     </div>
-    <al-layout class="mt-0" [ngClass]="{ 'mt-20': adBannerVisible() }">
+    <al-layout
+      class="mt-0"
+      [class.mt-20]="adBannerVisible()"
+      [layoutConfig]="layoutConfig()"
+    >
       @if (slides()?.length && slides(); as slides) {
         <al-banner-carousel
           class="mb-4 inline-block"
@@ -49,11 +59,17 @@ import {
     FooterComponent,
     LayoutComponent,
     SearchComponent,
-    NgClass,
     AlBannerCarouselComponent,
   ],
+  host: {
+    class: 'flex flex-col min-h-screen',
+  },
 })
 export class RootShellComponent {
+  private readonly _router = inject(Router);
+  private readonly _localizeService = inject(AlLocalizeService);
+  private readonly _activatedRoute = inject(ActivatedRoute);
+
   protected readonly sliderStore = inject(AdBannerStore);
   protected readonly slides = computed<AdImageBanner[] | undefined>(() =>
     this.sliderStore.slider()?.slides.map((slide) => ({
@@ -68,12 +84,9 @@ export class RootShellComponent {
   protected readonly msPerSlide = computed(
     () => this.sliderStore.slider()?.slideDisplayTimeMs,
   );
-
   readonly translocoService = inject(TranslocoService);
-
   // todo: temporary solution to keep in mind how banner influence the layout
   protected readonly adBannerVisible = computed(() => false);
-
   readonly language = toSignal(
     this.translocoService.langChanges$.pipe(
       startWith(this.translocoService.getActiveLang()),
@@ -82,9 +95,16 @@ export class RootShellComponent {
       initialValue: 'en',
     },
   );
-
-  private readonly _router = inject(Router);
-  private readonly _localizeService = inject(AlLocalizeService);
+  readonly layoutConfig = toSignal(
+    this._router.events.pipe(
+      filter((event) => event instanceof NavigationEnd),
+      map(() => this._activatedRoute),
+      map((route) => route.firstChild),
+      filter(Boolean),
+      switchMap((route) => route?.data),
+      map((data) => data?.['layoutConfig'] as LayoutConfig | undefined),
+    ),
+  );
 
   onLanguageChange(lang: string) {
     this._router.navigateByUrl(
