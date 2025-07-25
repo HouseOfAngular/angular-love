@@ -38,6 +38,9 @@ import { NewsletterStore } from '@angular-love/data-access';
 })
 export class NewsletterComponent {
   protected readonly form = new FormGroup({
+    name: new FormControl<string>('', {
+      validators: [Validators.required],
+    }),
     email: new FormControl<string>('', {
       validators: [
         Validators.required,

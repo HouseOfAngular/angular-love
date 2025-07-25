@@ -25,6 +25,7 @@
     "about": "O nas",
     "meetups": "Angular Meetups",
     "become_author": "Zostań autorem",
+    "newsletter": "Angular.letter",
     "navLinks": "Menu",
     "languagePicker": {
       "pl": "Polski",
@@ -98,15 +99,28 @@
     "title": "Zapisz się na nasz newsletter",
     "description": "Dołącz do community Angular.love i bądź na bieżąco z trendami.",
     "emailPlaceholder": "Twój e-mail",
+    "namePlaceholder": "Twoje imię",
     "submitLabel": "Wyślij i zapisz się na newsletter",
     "label": "Zgoda na przetwarzanie adresu email do newslettera.",
     "consent": "Wyrażam zgodę na przetwarzanie mojego adresu e-mail przez Angular.love w celu wysyłki newslettera.",
     "error": "Ups... coś poszło nie tak. Spróbuj ponownie."
   },
   "newsletterPage": {
-    "title": "Pomyślnie zapisałeś się na newsletter!",
-    "description": "Od teraz będziesz na bieżąco ze wszystkimi informacjami jakie będziemy udostępniać na blogu.",
-    "button": "Powrót na stronę główną"
+    "title": "Newsletter Angular.love",
+    "subtitle": "Dołącz do Angular.letter i co dwa tygodnie otrzymuj solidną dawkę wiedzy o Angularze",
+    "description1": "Bycie na bieżąco z Angularem wymaga czasu - wiemy o tym, ponieważ pracujemy z nim na co dzień.",
+    "description2": "Dlatego stworzyliśmy <b>Angular.letter</b> - newsletter <b>pisany przez programistów z community Angular.love</b> dla programistów takich jak Ty.",
+    "description3": "Newsletter wysyłany jest maksymalnie raz na dwa tygodnie i zawiera tylko najciekawsze informacje:",
+    "subsection1": "Najważniejsze wiadomości,",
+    "subsection2": "Praktyczne wskazówki dotyczące Angulara,",
+    "subsection3": "Zaproszenia na wydarzenia: spotkania, konferencje, Angular Camps",
+    "subsection4": "Zniżki na bilety konferencyjne dla członków społeczności.",
+    "sampleNewsletters": "Zobacz nasze przykładowe newslettery:",
+    "success": {
+      "title": "Pomyślnie zapisałeś się na newsletter!",
+      "description": "Od teraz będziesz na bieżąco ze wszystkimi informacjami jakie będziemy udostępniać na blogu.",
+      "button": "Powrót na stronę główną"
+    }
   },
   "notFoundPage": {
     "title": "404",

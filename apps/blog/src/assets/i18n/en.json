@@ -25,6 +25,7 @@
     "about": "About us",
     "meetups": "Angular Meetups",
     "become_author": "Become an author",
+    "newsletter": "Angular.letter",
     "navLinks": "Navigation links",
     "languagePicker": {
       "pl": "Polish",
@@ -95,15 +96,28 @@
     "title": "Sign up for our newsletter",
     "description": "Stay up-to-date with the trends and be a part of a thriving community.",
     "emailPlaceholder": "Your E-mail",
+    "namePlaceholder": "Your Name",
     "submitLabel": "Submit and sign up for a newsletter",
     "label": "Consent to process email for newsletter.",
     "consent": "I consent to Angular.love processing my email address for the purpose of sending the newsletter.",
     "error": "Something went wrong. Please try again."
   },
   "newsletterPage": {
-    "title": "You have correctly signed up for the newsletter",
-    "description": "From now on you will be up to date with all the information we will make available on the blog.",
-    "button": "Return to the home page"
+    "title": "Newsletter Angular.love",
+    "subtitle": "Join Angular.letter and get insights every 2 weeks",
+    "description1": "Staying up to date with Angular takes time - we know this because we work with it every day.",
+    "description2": "That’s why we created <b>Angular.letter</b> - a short, curated update <b>written by developers from Angular.love community</b> for developers like you.",
+    "description3": "It’s sent once every two weeks at most and is packed with only the essentials:",
+    "subsection1": "top news,",
+    "subsection2": "Angular practical tips, ",
+    "subsection3": "event invitations: meetups, conferences, Angular Camps",
+    "subsection4": "Conference ticket discounts for community members.",
+    "sampleNewsletters": "Check out sample newsletters:",
+    "success": {
+      "title": "Thank you for subscribing!",
+      "description": "You've successfully subscribed to our newsletter. We'll send you an email with the latest news and updates.",
+      "button": "Return to the home page"
+    }
   },
   "notFoundPage": {
     "title": "404",
