@@ -15,8 +15,9 @@
     @for (item of navItems; track $index) {
       @if (!item.externalLink) {
         <li
-          [ngClass]="{
-            'py-10 text-center': layout() === 'vertical',
+          [class]="{
+            'py-10': layout() === 'vertical',
+            'text-center': layout() === 'vertical',
           }"
         >
           <a
@@ -30,7 +31,12 @@
           </a>
         </li>
       } @else {
-        <li>
+        <li
+          [class]="{
+            'py-10': layout() === 'vertical',
+            'text-center': layout() === 'vertical',
+          }"
+        >
           <a
             [attr.data-testid]="item.dataTestId"
             class="text-al-foreground p-2 font-medium md:p-6"

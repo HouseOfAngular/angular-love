@@ -83,15 +83,6 @@ export class PanZoomService {
     );
   }
 
-  private _findNode(
-    selectedNodeId: string,
-    elementRef: ElementRef<HTMLElement>,
-  ) {
-    return elementRef.nativeElement.querySelector(
-      `[node-id="${selectedNodeId}"]`,
-    ) as HTMLElement | null;
-  }
-
   getRoadmapBounds(elementRef: ElementRef<HTMLElement>): {
     bottommostNode: HTMLElement | null;
     topmostNode: HTMLElement | null;
@@ -147,47 +138,12 @@ export class PanZoomService {
     };
   }
 
-  disableButtonsEventPropagation(panZoomInstance: PanZoom) {
-    const legendButton = document.querySelector('al-roadmap-legend button');
-    const controlButtons = document.querySelectorAll(
-      'al-roadmap-pan-controls button',
-    );
-
-    controlButtons.forEach((btn) => {
-      btn.addEventListener('pointerdown', () => {
-        panZoomInstance.pause();
-      });
-
-      btn.addEventListener('click', () => {
-        setTimeout(() => panZoomInstance.resume(), 0);
-      });
-
-      btn.addEventListener(
-        'wheel',
-        (e) => {
-          e.preventDefault();
-          e.stopPropagation();
-        },
-        { passive: false },
-      );
-    });
-
-    if (!legendButton) return;
-    legendButton.addEventListener('pointerdown', () => {
-      panZoomInstance.pause();
-    });
-
-    legendButton.addEventListener('click', () => {
-      setTimeout(() => panZoomInstance.resume(), 0);
-    });
-
-    legendButton.addEventListener(
-      'wheel',
-      (e) => {
-        e.preventDefault();
-        e.stopPropagation();
-      },
-      { passive: false },
-    );
+  private _findNode(
+    selectedNodeId: string,
+    elementRef: ElementRef<HTMLElement>,
+  ) {
+    return elementRef.nativeElement.querySelector(
+      `[node-id="${selectedNodeId}"]`,
+    ) as HTMLElement | null;
   }
 }

@@ -18,7 +18,6 @@ import { switchMap, tap } from 'rxjs';
 import {
   EventType,
   RoadmapLayerComponent,
-  RoadmapLegendComponent,
   RoadmapPanControlsComponent,
 } from '@angular-love/blog/roadmap/ui-roadmap';
 import {
@@ -33,11 +32,7 @@ import { RoadmapDialogManagerService } from './roadmap-dialog-menager.service';
 
 @Component({
   selector: 'al-feature-roadmap',
-  imports: [
-    RoadmapLayerComponent,
-    RoadmapPanControlsComponent,
-    RoadmapLegendComponent,
-  ],
+  imports: [RoadmapLayerComponent, RoadmapPanControlsComponent],
   templateUrl: './feature-roadmap.component.html',
   styleUrl: './feature-roadmap.component.scss',
   host: {

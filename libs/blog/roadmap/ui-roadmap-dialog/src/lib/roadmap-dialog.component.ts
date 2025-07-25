@@ -1,7 +1,6 @@
 import { DIALOG_DATA, DialogRef } from '@angular/cdk/dialog';
 import {
   Component,
-  computed,
   effect,
   ElementRef,
   inject,
@@ -60,14 +59,12 @@ export class RoadmapDialogComponent {
   protected readonly nodeDetails = inject<RoadmapStandardNode>(DIALOG_DATA);
   protected readonly angularLoveNodeDetails: AngularLoveNode | undefined =
     isAngularNode(this.nodeDetails) ? this.nodeDetails : undefined;
-
   protected readonly regularNodeDetails: RoadmapRegularNode | undefined =
     isRegularNode(this.nodeDetails) ? this.nodeDetails : undefined;
   protected readonly regularNodeArticles =
     this.regularNodeDetails?.resources.filter(
       (resource) => resource.type === 'article',
     ) ?? [];
-
   protected readonly regularNodeVideos =
     this.regularNodeDetails?.resources.filter(
       (resource) => resource.type === 'video',
@@ -75,10 +72,6 @@ export class RoadmapDialogComponent {
 
   protected navigateToAuthor() {
     this._router.navigate(['/become-author']);
-    this._dialogRef.close();
-  }
-
-  protected onClose() {
     this._dialogRef.close();
   }
 
