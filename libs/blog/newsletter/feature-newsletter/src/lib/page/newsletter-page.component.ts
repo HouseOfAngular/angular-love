@@ -6,6 +6,7 @@ import {
   inject,
 } from '@angular/core';
 import { toSignal } from '@angular/core/rxjs-interop';
+import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 import { ActivatedRoute } from '@angular/router';
 import { TranslocoDirective } from '@jsverse/transloco';
 
@@ -13,6 +14,8 @@ import { CardComponent } from '@angular-love/blog/shared/ui-card';
 
 import { NewsletterComponent } from '../feature-newsletter/newsletter.component';
 
+import { newsletter1 } from './newsletter-example-1';
+import { newsletter2 } from './newsletter-example-2';
 import { NewsletterSuccesComponent } from './newsletter-succes/newsletter-succes.component';
 
 @Component({
@@ -34,4 +37,12 @@ export class NewsletterPageComponent {
   protected readonly isConfirmationPage = computed(
     () => this.params()?.['nm'] === 'confirmed',
   );
+
+  newsletter1: SafeHtml;
+  newsletter2: SafeHtml;
+
+  constructor(private sanitizer: DomSanitizer) {
+    this.newsletter1 = this.sanitizer.bypassSecurityTrustHtml(newsletter1);
+    this.newsletter2 = this.sanitizer.bypassSecurityTrustHtml(newsletter2);
+  }
 }

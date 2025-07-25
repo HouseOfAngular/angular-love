@@ -104,7 +104,15 @@
   },
   "newsletterPage": {
     "title": "Newsletter Angular.love",
-    "description": "Staying up to date with Angular takes time. We know, because we work with it every day. That's why we created Angular.letter - a short, curated update with the most important news, tips, and events. No fluff, no spam. Just what really matters - delivered straight to your inbox every month.",
+    "subtitle": "Join Angular.letter and get insights every 2 weeks",
+    "description1": "Staying up to date with Angular takes time - we know this because we work with it every day.",
+    "description2": "That’s why we created <b>Angular.letter</b> - a short, curated update <b>written by developers from Angular.love community</b> for developers like you.",
+    "description3": "It’s sent once every two weeks at most and is packed with only the essentials:",
+    "subsection1": "top news,",
+    "subsection2": "Angular practical tips, ",
+    "subsection3": "event invitations: meetups, conferences, Angular Camps",
+    "subsection4": "Conference ticket discounts for community members.",
+    "sampleNewsletters": "Check out sample newsletters:",
     "success": {
       "title": "Thank you for subscribing!",
       "description": "You've successfully subscribed to our newsletter. We'll send you an email with the latest news and updates.",
