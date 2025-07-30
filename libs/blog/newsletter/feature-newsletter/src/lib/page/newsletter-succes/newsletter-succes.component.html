@@ -1,0 +1,19 @@
+<div
+  *transloco="let t; read: 'newsletterPage'"
+  class="flex flex-col items-center justify-center py-5 text-center"
+  [cdkTrapFocusAutoCapture]="true"
+  cdkTrapFocus
+>
+  <fast-svg name="circle-check" size="80" />
+  <h2 class="my-2 text-2xl font-bold">
+    {{ t('success.title') }}
+  </h2>
+  <p class="my-3">
+    {{ t('success.description') }}
+  </p>
+  <a class="mt-4" [routerLink]="['/'] | alLocalize">
+    <button al-button type="button" cdkFocusInitial>
+      {{ t('success.button') }}
+    </button>
+  </a>
+</div>

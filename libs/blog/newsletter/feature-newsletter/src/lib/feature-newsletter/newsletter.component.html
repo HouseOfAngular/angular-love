@@ -12,6 +12,16 @@
           <p class="py-4">{{ t('description') }}</p>
           <fieldset>
             <legend class="hidden">Newsletter sign up form</legend>
+
+            <input
+              aria-required="true"
+              type="text"
+              class="bg-al-background text-al-muted border-al-border my-2 h-[60px] w-full flex-grow rounded-md border p-6 text-sm focus:outline-none"
+              [attr.aria-label]="t('namePlaceholder')"
+              [placeholder]="t('namePlaceholder')"
+              formControlName="name"
+            />
+
             <div class="my-2 flex w-full flex-row">
               <input
                 aria-required="true"
@@ -58,6 +68,11 @@
                     class="border-al-muted mr-2 mt-1 flex aspect-square h-[14px] items-center justify-center rounded border"
                     [attr.aria-label]="t('label')"
                     [attr.aria-checked]="form.controls.checkbox.value"
+                    (click)="
+                      form.controls['checkbox'].setValue(
+                        !form.controls['checkbox'].value
+                      )
+                    "
                     (keydown.enter)="
                       form.controls['checkbox'].setValue(
                         !form.controls['checkbox'].value
