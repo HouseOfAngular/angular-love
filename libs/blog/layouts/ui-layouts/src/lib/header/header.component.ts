@@ -27,7 +27,7 @@ import {
       >
         <al-header-logo />
 
-        <al-navigation class="hidden lg:block" />
+        <al-navigation class="hidden lg:block" [showNewsletter]="false" />
 
         <div class="flex flex-row items-center">
           <al-language-picker

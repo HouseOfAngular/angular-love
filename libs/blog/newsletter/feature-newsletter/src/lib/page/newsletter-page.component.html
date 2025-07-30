@@ -1,0 +1,87 @@
+<ng-container *transloco="let t; read: 'newsletterPage'">
+  @if (isConfirmationPage()) {
+    <al-newsletter-success />
+  } @else {
+    <h2 class="py-4 text-[40px] font-bold">
+      {{ t('title') }}
+    </h2>
+
+    <div class="flex flex-col-reverse lg:flex-col">
+      <al-card>
+        <section
+          alCardContent
+          aria-labelledby="angular-love"
+          class="flex flex-col p-2 lg:flex-row"
+        >
+          <div class="flex flex-col justify-center md:px-12">
+            <div class="mb-5 flex self-start">
+              <p class="text-2xl font-bold">{{ t('subtitle') }}</p>
+            </div>
+            <div class=" ">
+              <p class="text-xl">{{ t('description1') }}</p>
+            </div>
+            <div class="my-4">
+              <p class="text-xl" [innerHTML]="t('description2')"></p>
+            </div>
+            <div class=" ">
+              <p class="text-xl">{{ t('description3') }}</p>
+            </div>
+            <ul class="mt-2 list-disc pl-9 text-xl">
+              <li>{{ t('subsection1') }}</li>
+              <li>{{ t('subsection2') }}</li>
+              <li>{{ t('subsection3') }}</li>
+              <li>{{ t('subsection4') }}</li>
+            </ul>
+          </div>
+
+          <al-newsletter class="hidden lg:block" />
+        </section>
+      </al-card>
+
+      <al-card alGradientCard class="mt-6 block md:mt-8 lg:hidden">
+        <al-newsletter alCardContent />
+      </al-card>
+    </div>
+  }
+  <p class="mb-3 mt-7 flex justify-center text-lg lg:justify-start">
+    {{ t('sampleNewsletters') }}
+  </p>
+
+  <div class="mb-20 flex flex-col items-center gap-10 lg:flex-row lg:gap-7">
+    <div class="w-full lg:w-1/2">
+      <div class="my-2 flex justify-center font-bold">
+        <p>ANGULAR RECAP #5</p>
+      </div>
+      <al-card
+        class="max-h-[450px] overflow-y-auto"
+        style="scrollbar-width: none"
+      >
+        <section
+          alCardContent
+          aria-labelledby="angular-love"
+          class="flex flex-col p-2 lg:flex-row"
+        >
+          <div [innerHTML]="newsletter1"></div>
+        </section>
+      </al-card>
+    </div>
+
+    <div class="w-full lg:w-1/2">
+      <div class="my-2 flex justify-center font-bold">
+        <p>ANGULAR RECAP #3</p>
+      </div>
+      <al-card
+        class="max-h-[450px] overflow-y-auto"
+        style="scrollbar-width: none"
+      >
+        <section
+          alCardContent
+          aria-labelledby="angular-love"
+          class="flex flex-col p-2 lg:flex-row"
+        >
+          <div [innerHTML]="newsletter2"></div>
+        </section>
+      </al-card>
+    </div>
+  </div>
+</ng-container>
