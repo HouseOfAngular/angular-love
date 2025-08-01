@@ -85,7 +85,8 @@
     },
     "@nx/angular:component": {
       "style": "scss",
-      "prefix": "al"
+      "prefix": "al",
+      "changeDetection": "OnPush"
     }
   },
   "workspaceLayout": {

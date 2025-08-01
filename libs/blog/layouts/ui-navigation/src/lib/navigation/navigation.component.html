@@ -1,24 +1,13 @@
-<nav
-  *transloco="let t"
-  [ngClass]="{
-    'flex-row': layout() === 'horizontal',
-    'flex-col': layout() === 'vertical',
-  }"
->
+@let isVerticalLayout = layout() === 'vertical';
+<nav *transloco="let t" [class]="isVerticalLayout ? 'flex-col' : 'flex-row'">
   <ul
     class="flex flex-wrap"
-    [ngClass]="{
-      'flex-col justify-between': layout() === 'vertical',
-    }"
     [attr.aria-label]="t('nav.navLinks')"
+    [class]="isVerticalLayout ? 'flex-col justify-between' : ''"
   >
     @for (item of filteredNavItems(); track $index) {
       @if (!item.externalLink) {
-        <li
-          [ngClass]="{
-            'py-10 text-center': layout() === 'vertical',
-          }"
-        >
+        <li [class]="isVerticalLayout ? 'py-10 text-center' : ''">
           <a
             [attr.data-testid]="item.dataTestId"
             class="text-al-foreground p-2 font-medium md:p-6"
@@ -30,7 +19,7 @@
           </a>
         </li>
       } @else {
-        <li>
+        <li [class]="isVerticalLayout ? 'py-10 text-center' : ''">
           <a
             [attr.data-testid]="item.dataTestId"
             class="text-al-foreground p-2 font-medium md:p-6"
@@ -42,7 +31,6 @@
         </li>
       }
     }
-
     <ng-content />
   </ul>
 </nav>

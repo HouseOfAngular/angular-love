@@ -27,6 +27,7 @@
     "become_author": "Zostań autorem",
     "newsletter": "Angular.letter",
     "navLinks": "Menu",
+    "roadmap": "Roadmap",
     "languagePicker": {
       "pl": "Polski",
       "en": "Angielski"
@@ -122,6 +123,44 @@
       "button": "Powrót na stronę główną"
     }
   },
+  "roadmapPage": {
+    "introductionNode": {
+      "title": "Angular.Love Roadmap Wprowadzenie",
+      "description": "Roadmapa Angulara na Angular.Love to Twoje niezastąpione źródło wiedzy, jeśli chcesz uczyć się Angulara we właściwy sposób. Przedstawia kluczowe koncepcje, dobre praktyki i przydatne materiały w przejrzystej, uporządkowanej formie. Co więcej, zawiera mnóstwo wartościowych zasobów i jest stale aktualizowana, aby nadążać za najnowszymi trendami",
+      "additionalDescription": {
+        "introduction": "Zanim zagłębisz się w Angulara, warto mieć solidne podstawy w następujących zagadnieniach:",
+        "toPrepareList": {
+          "1": "HTML i CSS – Struktura i stylowanie stron internetowych, w tym Flexbox, Grid i responsywność.",
+          "2": "JavaScript (ES6+) – Podstawowe pojęcia, takie jak zmienne, funkcje, obietnice (promises) oraz async/await.",
+          "3": "TypeScript – Typowana wersja JavaScriptu z interfejsami, generykami i dekoratorami.",
+          "4": "Node.js i npm – Uruchamianie JavaScriptu poza przeglądarką i zarządzanie paczkami.",
+          "5": "Git – Zarządzanie wersjami kodu, gałęziami i pracą zespołową.",
+          "6": "API i HTTP – Wysyłanie zapytań i praca z danymi w formacie JSON."
+        },
+        "ending": "Opanowanie tych zagadnień sprawi, że nauka Angulara będzie znacznie płynniejsza i bardziej efektywna."
+      }
+    },
+    "label": {
+      "optional": "opcjonalne",
+      "comingSoon": "w przyszłości",
+      "recommended": "polecane"
+    },
+    "dialog": {
+      "becomeAuthor": "Become an author",
+      "articles": "Artykuły",
+      "description": "Opis",
+      "introductionDescription": "Zanim zaczniesz",
+      "videos": "Materiały video",
+      "creators": "Twórcy",
+      "share": "Podziel się tą roadmapą z innymi"
+    },
+    "controls": {
+      "zoomInRoadmapButton": "Przybliż roadmapę",
+      "restoreRoadmapViewButton": "Przywróć domyślny widok roadmapy",
+      "restoreRoadmapZoomButton": "Przywróć domyślne powiększenie roadmapy",
+      "zoomOutRoadmapButton": "Oddal roadmapę"
+    }
+  },
   "notFoundPage": {
     "title": "404",
     "description": "Wygląda na to, że zgubiłeś drogę. Strona, której szukasz, nie istnieje lub link wygasł i jest już niedostępny.",
@@ -159,7 +198,8 @@
     "home": "Blog dla sympatyków Angulara",
     "aboutUs": "O nas",
     "becomeAuthor": "Zostań autorem",
-    "notFound": "Nie znaleziono"
+    "notFound": "Nie znaleziono",
+    "roadmap": "Roadmap"
   },
   "adBanner": {
     "registerButton": "Pobierz za darmo",

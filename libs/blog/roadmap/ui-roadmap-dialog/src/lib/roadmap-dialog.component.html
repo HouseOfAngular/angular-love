@@ -1,0 +1,53 @@
+<div
+  class="dialog w-full overflow-hidden rounded-lg border-2 border-white bg-gradient-to-br from-[#100f15] to-[#3b0019] text-white"
+>
+  <div
+    *transloco="let t; read: 'roadmapPage.dialog'"
+    class="h-full max-h-[50vh] w-full overflow-y-auto"
+  >
+    <al-roadmap-dialog-header
+      [nodeType]="nodeDetails.nodeType"
+      [headerTitle]="nodeDetails.title"
+    />
+    <al-roadmap-dialog-description
+      [description]="nodeDetails.description"
+      [subtitle]="t('description')"
+    />
+
+    @if (angularLoveNodeDetails) {
+      <al-roadmap-dialog-additional-description
+        [additionalDescription]="angularLoveNodeDetails.additionalDescription"
+        [subtitle]="t('introductionDescription')"
+      />
+      <al-roadmap-dialog-creators
+        [creators]="angularLoveNodeDetails.creators"
+        [subtitle]="t('creators')"
+      />
+    }
+
+    @if (regularNodeDetails) {
+      @if (regularNodeArticles.length > 0) {
+        <al-roadmap-dialog-regular-content
+          [resources]="regularNodeArticles"
+          [subtitle]="t('articles')"
+        />
+      } @else {
+        <div class="flex w-full justify-center pt-6">
+          <button al-button (pointerdown)="navigateToAuthor()">
+            {{ t('becomeAuthor') }}
+          </button>
+        </div>
+      }
+      <al-roadmap-dialog-regular-content
+        [resources]="regularNodeVideos"
+        [subtitle]="t('videos')"
+      />
+    }
+    <al-roadmap-dialog-footer
+      [language]="language()"
+      [nodeId]="nodeDetails.id"
+      [nodeTitle]="nodeDetails.title"
+      [subtitle]="t('share')"
+    />
+  </div>
+</div>

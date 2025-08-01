@@ -1,4 +1,3 @@
-import { NgClass } from '@angular/common';
 import {
   ChangeDetectionStrategy,
   Component,
@@ -21,16 +20,10 @@ export type NavItem = {
 
 @Component({
   selector: 'al-navigation',
-  imports: [
-    RouterLink,
-    RouterLinkActive,
-    NgClass,
-    TranslocoDirective,
-    AlLocalizePipe,
-  ],
   templateUrl: './navigation.component.html',
   styleUrl: './navigation.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
+  imports: [RouterLink, RouterLinkActive, TranslocoDirective, AlLocalizePipe],
 })
 export class NavigationComponent {
   readonly layout = input<'vertical' | 'horizontal'>('horizontal');
@@ -59,6 +52,11 @@ export class NavigationComponent {
       translationPath: 'nav.become_author',
       link: ['become-author'],
       dataTestId: 'navigation-become-author',
+    },
+    {
+      translationPath: 'nav.roadmap',
+      link: ['roadmap'],
+      dataTestId: 'navigation-roadmap',
     },
     {
       translationPath: 'nav.newsletter',

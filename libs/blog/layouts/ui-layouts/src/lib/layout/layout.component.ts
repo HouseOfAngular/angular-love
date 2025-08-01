@@ -1,4 +1,13 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  computed,
+  input,
+} from '@angular/core';
+
+export interface LayoutConfig {
+  roadmap: boolean;
+}
 
 @Component({
   selector: 'al-layout',
@@ -7,7 +16,25 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
   styleUrls: ['./layout.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
   host: {
-    class: 'min-h-screen grid grid-rows-[auto_1fr_auto]',
+    class: 'grid grid-rows-[auto_1fr_auto]',
+    '[class]': 'class()',
   },
 })
-export class LayoutComponent {}
+export class LayoutComponent {
+  readonly layoutConfig = input<LayoutConfig>();
+
+  protected readonly class = computed(() => {
+    const layoutConfig = this.layoutConfig();
+    if (layoutConfig?.roadmap) {
+      return {
+        'flex-1': true,
+        'basis-0': true,
+        'overflow-hidden': true,
+        'min-h-full': true,
+      };
+    }
+    return {
+      'min-h-screen': true,
+    };
+  });
+}
