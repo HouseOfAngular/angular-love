@@ -46,6 +46,7 @@ import {
         <al-banner-carousel
           class="mb-4 inline-block"
           [banners]="slides"
+          [class]="layoutConfig() ? 'hidden' : ''"
           [msPerSlide]="msPerSlide()!"
         />
       }
