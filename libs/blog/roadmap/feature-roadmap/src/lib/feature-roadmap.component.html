@@ -1,0 +1,18 @@
+<div #roadmapWrapper class="w-full">
+  <div class="w-100 flex h-fit translate-y-16 flex-col items-center">
+    @if (isPlatformBrowser) {
+      @for (
+        layer of roadmapLayers();
+        track layer.parentNode.id;
+        let last = $last
+      ) {
+        <al-roadmap-layer [layer]="layer" [showLayerConnector]="!last" />
+      }
+    }
+  </div>
+</div>
+<al-roadmap-pan-controls
+  class="absolute bottom-4 right-4"
+  (pointerdown)="pausePanZoom()"
+  (resizeRoadmap)="resizeRoadmap($event)"
+/>

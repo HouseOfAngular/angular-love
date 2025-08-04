@@ -58,6 +58,7 @@
     "hono": "^4.7.5",
     "lint-staged": "^15.0.2",
     "ngx-skeleton-loader": "^8.1.0",
+    "panzoom": "^9.4.3",
     "prettier-plugin-organize-attributes": "^1.0.0",
     "rxjs": "~7.8.1",
     "sanitize-html": "^2.13.0",

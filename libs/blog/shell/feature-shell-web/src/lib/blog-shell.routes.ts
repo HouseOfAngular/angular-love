@@ -85,6 +85,19 @@ export const commonRoutes: Route[] = [
         },
       },
       {
+        path: 'roadmap',
+        loadComponent: async () =>
+          await import('@angular-love/blog/roadmap/feature-roadmap').then(
+            (m) => m.FeatureRoadmapComponent,
+          ),
+        data: {
+          layoutConfig: {
+            roadmap: true,
+          },
+          seo: { title: 'seo.roadmap' },
+        },
+      },
+      {
         path: '404',
         loadComponent: async () =>
           (await import('@angular-love/blog/shared/ui-not-found'))
