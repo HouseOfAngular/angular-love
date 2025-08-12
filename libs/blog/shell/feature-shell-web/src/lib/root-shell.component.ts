@@ -89,14 +89,9 @@ export class RootShellComponent {
     () => this.sliderStore.slider()?.slideDisplayTimeMs,
   );
   readonly translocoService = inject(TranslocoService);
-<<<<<<< HEAD
-=======
-
   private readonly _appThemeStore = inject(AppThemeStore);
 
   protected readonly theme = computed(() => this._appThemeStore.theme());
-
->>>>>>> 31a555a8 (feat: added theme switcher - wip)
   // todo: temporary solution to keep in mind how banner influence the layout
   protected readonly adBannerVisible = computed(() => false);
   readonly language = toSignal(

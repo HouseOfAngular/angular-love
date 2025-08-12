@@ -24,7 +24,13 @@ export type NavItem = {
   templateUrl: './navigation.component.html',
   styleUrl: './navigation.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [RouterLink, RouterLinkActive, TranslocoDirective, AlLocalizePipe],
+  imports: [
+    RouterLink,
+    RouterLinkActive,
+    TranslocoDirective,
+    AlLocalizePipe,
+    NgClass,
+  ],
 })
 export class NavigationComponent {
   readonly layout = input<'vertical' | 'horizontal'>('horizontal');
