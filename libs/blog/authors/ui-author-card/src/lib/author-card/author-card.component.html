@@ -1,5 +1,8 @@
 <article [attr.aria-labelledby]="'author-title-' + author().slug">
-  <al-author-card-template [hideGradient]="hideGradient()">
+  <al-author-card-template
+    [articleCard]="articleCard()"
+    [hideGradient]="hideGradient()"
+  >
     <ng-container author-info-card>
       @if (linkable()) {
         <a [routerLink]="['/', 'author', author().slug] | alLocalize">
