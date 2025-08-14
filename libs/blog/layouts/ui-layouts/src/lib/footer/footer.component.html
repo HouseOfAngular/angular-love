@@ -1,17 +1,16 @@
-<footer class="bg-al-card w-full">
+<footer class="w-full bg-[#191a22]">
   <div
     class="al-container mx-auto grid max-w-screen-xl gap-y-4 px-6 py-4 xl:px-0"
   >
-    <al-footer-logo class="self-center" [currentYear]="currentYear" />
-    <al-navigation />
+    <al-footer-logo class="self-center" />
+    <al-navigation [whiteFont]="true" />
     <div
       class="social-media-container flex items-center justify-self-end md:max-lg:justify-self-center"
     >
       <al-footer-social-media-icons />
     </div>
-
-    <small class="copyright text-al-muted text-center text-xs lg:hidden">
-      Copyright &#169; {{ currentYear }}
-    </small>
   </div>
+  <small class="block pb-4 text-center text-xs text-[#6a798b]">
+    Copyright &#169; {{ currentYear }}
+  </small>
 </footer>

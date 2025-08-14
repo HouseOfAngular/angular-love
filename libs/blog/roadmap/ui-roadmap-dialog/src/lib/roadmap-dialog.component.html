@@ -1,5 +1,5 @@
 <div
-  class="dialog w-full overflow-hidden rounded-lg border-2 border-white bg-gradient-to-br from-[#100f15] to-[#3b0019] text-white"
+  class="dialog light:border-al-primary-foreground w-full overflow-hidden rounded-lg border-2 border-white bg-gradient-to-br from-[#100f15] to-[#3b0019] text-white"
 >
   <div
     *transloco="let t; read: 'roadmapPage.dialog'"
@@ -13,7 +13,6 @@
       [description]="nodeDetails.description"
       [subtitle]="t('description')"
     />
-
     @if (angularLoveNodeDetails) {
       <al-roadmap-dialog-additional-description
         [additionalDescription]="angularLoveNodeDetails.additionalDescription"

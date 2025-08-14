@@ -14,7 +14,7 @@ export class RoadmapDialogManagerService {
       autoFocus: '.dialog',
       data: node,
       disableClose: false,
-      panelClass: 'lg:w-4/6',
+      panelClass: ['lg:w-4/6'],
     }).closed;
   }
 }

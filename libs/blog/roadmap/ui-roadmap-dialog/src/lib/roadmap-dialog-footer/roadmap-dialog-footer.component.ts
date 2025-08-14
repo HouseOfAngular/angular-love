@@ -25,7 +25,7 @@ type ShareItem = {
               target="_blank"
             >
               <fast-svg
-                class="text-al-foreground"
+                class="text-al-foreground light:text-al-background"
                 [name]="item.icon"
                 size="30"
               />

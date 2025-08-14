@@ -58,7 +58,7 @@ const content =
 export const regular: Story = {
   render: () => ({
     template: wrapper(`
-      <al-card>
+      <al-card class="bg-transparent">
         <div alCardHeader>Header</div>
         <div alCardContent>${content}</div>
         <div alCardFooter>Footer</div>
