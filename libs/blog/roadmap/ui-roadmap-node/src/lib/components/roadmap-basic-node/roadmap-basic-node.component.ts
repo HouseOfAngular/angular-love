@@ -24,7 +24,7 @@ import { RoadmapNodeLabelComponent } from '../roadmap-node-label/roadmap-node-la
     }
 
     <button
-      class="node relative w-full text-nowrap rounded-lg bg-[#FDF5FD] text-[#FDF5FD]"
+      class="node light:bg-al-primary-foreground relative w-full text-nowrap rounded-lg bg-[#fff] text-[#FDF5FD]"
       [attr.node-id]="node().id"
       (focus)="_roadmapDialogNotifierService.notifyNodeFocused(node())"
       (keydown)="onKeyDown($event)"
