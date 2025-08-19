@@ -7,10 +7,12 @@ import { RoadmapBasicNodeComponent } from '../roadmap-basic-node/roadmap-basic-n
   selector: 'al-roadmap-cluster',
   template: `
     <div
-      class="bg-al-roadmap-secondary  light:border-[--primary-foreground] relative z-10 m-[-2px] rounded-lg border-2 border-[#FDF5FD]  px-6 py-4"
+      class="bg-al-roadmap-secondary light:bg-al-card light:bg-al-radial-gradient  light:border-[--primary-foreground] relative z-10 m-[-2px] rounded-lg border-2 border-[#FDF5FD]  px-6 py-4"
       [attr.node-id]="cluster().id"
     >
-      <div class="text-[20px] text-[#FDF5FD]">{{ cluster().title }}</div>
+      <div class="text-al-primary-foreground text-[20px]">
+        {{ cluster().title }}
+      </div>
     </div>
 
     <div class="m-[2px] flex flex-col gap-[10px] p-3">
