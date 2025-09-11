@@ -50,7 +50,7 @@ export class CategorySectionContainerComponent {
   readonly cardType = input<CardType>('regular');
   readonly take = input(6);
   readonly hasCategoryPage = input(true);
-  readonly skeleonLoaders = computed(() => [...Array(this.take()).keys()]);
+  readonly skeletonLoaders = computed(() => [...Array(this.take()).keys()]);
 
   protected displayName = computed(() => displayNameDict[this.category()]);
 
