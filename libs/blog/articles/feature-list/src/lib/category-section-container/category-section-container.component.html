@@ -5,7 +5,7 @@
     hasCategoryPage()
       ? {
           displayName: t('homePage.seeAll'),
-          href: category()
+          href: category(),
         }
       : null
   "
@@ -22,7 +22,7 @@
       <al-article-card [article]="article" [cardType]="cardType()" />
     }
   } @else {
-    @for (skeleton of skeleonLoaders(); track $index) {
+    @for (skeleton of skeletonLoaders(); track $index) {
       @if (cardType() === 'regular') {
         <al-article-regular-card-skeleton />
       } @else {
