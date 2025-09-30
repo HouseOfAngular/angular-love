@@ -12,6 +12,12 @@ pipeline {
         timestamps()
     }
 
+    parameters {
+        string(name: 'DB_MAIN_EU', defaultValue: '', description: 'The EU database to use for the main branch')
+        string(name: 'DB_MAIN_US_WEST', defaultValue: '', description: 'The US West database to use for the main branch')
+        string(name: 'DB_MAIN_US_EAST', defaultValue: '', description: 'The US East database to use for the main branch')
+    }
+
     environment {
         KV_DEV = credentials('cf-kv-dev')
         KV_PROD = credentials('cf-kv-prod')
@@ -74,6 +80,29 @@ pipeline {
 
                     if (env.IS_PR == "TRUE") {
                         pullRequest.comment("PR is detected, will deploy to dev environment")
+                    }
+                }
+            }
+        }
+        stage("Select master db") {
+            steps {
+                script {
+                    def setCount = 0
+                    if (params.DB_MAIN_EU != "") setCount++
+                    if (params.DB_MAIN_US_WEST != "") setCount++
+                    if (params.DB_MAIN_US_EAST != "") setCount++
+                    if (setCount > 0 && setCount < 3) {
+                        error("Only some main db params are set. Please set all or none.")
+                    }
+
+                    if (params.DB_MAIN_EU != "") {
+                        env.TURSO_EU_DB = params.DB_MAIN_EU
+                    }
+                    if (params.DB_MAIN_US_WEST != "") {
+                        env.TURSO_US_WEST_DB = params.DB_MAIN_US_WEST
+                    }
+                    if (params.DB_MAIN_US_EAST != "") {
+                        env.TURSO_US_EAST_DB = params.DB_MAIN_US_EAST
                     }
                 }
             }
