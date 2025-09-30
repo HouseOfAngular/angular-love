@@ -74,6 +74,7 @@ export const articles = sqliteTable(
       .$type<ArticleTranslation[]>()
       .notNull(),
     seo: text('seo', { mode: 'json' }).$type<SeoData>(),
+    isHidden: integer('is_hidden', { mode: 'boolean' }).notNull(),
     categories: text('categories', { mode: 'json' })
       .notNull()
       .$type<string[]>(),
@@ -100,36 +101,42 @@ export const articles = sqliteTable(
     uniqueIndex('article_slug_idx').on(table.slug),
     index('article_guide_covering_idx').on(
       table.status,
+      table.isHidden,
       table.language,
       table.isGuide,
       table.publishDate,
     ),
     index('article_recommended_covering_idx').on(
       table.status,
+      table.isHidden,
       table.language,
       table.isRecommended,
       table.publishDate,
     ),
     index('article_news_covering_idx').on(
       table.status,
+      table.isHidden,
       table.language,
       table.isNews,
       table.publishDate,
     ),
     index('article_in_depth_covering_idx').on(
       table.status,
+      table.isHidden,
       table.language,
       table.isInDepth,
       table.publishDate,
     ),
     index('article_covering_idx').on(
       table.status,
+      table.isHidden,
       table.language,
       table.publishDate,
     ),
     index('article_author_covering_idx').on(
       table.authorId,
       table.status,
+      table.isHidden,
       table.language,
       table.publishDate,
     ),
