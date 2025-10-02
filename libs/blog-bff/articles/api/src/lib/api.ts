@@ -38,6 +38,7 @@ app.get('/', async (c) => {
       featuredImageUrl: articles.imageUrl,
       readingTime: articles.readingTime,
       publishDate: articles.publishDate,
+      hidden: articles.publishDate,
       author: {
         slug: authors.slug,
         name: authors.name,
@@ -50,6 +51,7 @@ app.get('/', async (c) => {
       and(
         eq(articles.status, ArticleStatus.Publish),
         eq(articles.language, dbLangMap[c.var.lang]),
+        ...showHiddenFilter(articles, queryParams.showHidden),
         ...withCategoryFilters(articles, queryParams.category),
       ),
     )
@@ -64,6 +66,7 @@ app.get('/', async (c) => {
       and(
         eq(articleCounts.lang, dbLangMap[c.var.lang]),
         eq(articleCounts.status, ArticleStatus.Publish),
+        ...showHiddenFilter(articleCounts, queryParams.showHidden),
         ...withCategoryFilters(articleCounts, queryParams.category),
       ),
     )
@@ -139,6 +142,13 @@ app.get('/:id/related', async (c) => {
 });
 
 export default app;
+
+function showHiddenFilter(
+  table: typeof articles | typeof articleCounts,
+  showHidden?: string,
+) {
+  return showHidden !== undefined ? [] : [eq(table.isHidden, false)];
+}
 
 function withCategoryFilters(
   table: typeof articles | typeof articleCounts,

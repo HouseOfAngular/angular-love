@@ -12,6 +12,12 @@ pipeline {
         timestamps()
     }
 
+    parameters {
+        string(name: 'DB_MAIN_EU', defaultValue: '', description: 'The EU database to use for the main branch')
+        string(name: 'DB_MAIN_US_WEST', defaultValue: '', description: 'The US West database to use for the main branch')
+        string(name: 'DB_MAIN_US_EAST', defaultValue: '', description: 'The US East database to use for the main branch')
+    }
+
     environment {
         KV_DEV = credentials('cf-kv-dev')
         KV_PROD = credentials('cf-kv-prod')
@@ -78,6 +84,27 @@ pipeline {
                 }
             }
         }
+        stage("Select master db") {
+            steps {
+                script {
+                    env.USE_PARAMS_DB="false"                    
+                    def setCount = 0
+                    if (params.DB_MAIN_EU != "") setCount++
+                    if (params.DB_MAIN_US_WEST != "") setCount++
+                    if (params.DB_MAIN_US_EAST != "") setCount++
+                    if (setCount > 0 && setCount < 3) {
+                        error("Only some main db params are set. Please set all or none.")
+                    }
+                    
+                    
+                    if (setCount == 3) { 
+                        echo "Using params db"
+                        env.USE_PARAMS_DB = "true"
+                    }
+
+                }
+            }
+        }
         stage("Branch db") {
             steps {
                 script {
@@ -103,12 +130,29 @@ pipeline {
                         error("DB branch name is too long")
                     }
                 withCredentials([string(credentialsId: 'tursor_api_token', variable: 'TURSO_API_TOKEN')]) {                    
+                    echo "prams status $USE_PARAMS_DB"
+                    if (env.USE_PARAMS_DB == "true") {
+                        echo "Using params db"
+                        sh """
+                            turso org switch angular-love
+                            turso db create eu-${DB_BRANCH_NAME} --from-db $DB_MAIN_EU --group blog-eu
+                            turso db create usw-${DB_BRANCH_NAME} --from-db $DB_MAIN_US_WEST --group blog-us-west
+                            turso db create use-${DB_BRANCH_NAME} --from-db $DB_MAIN_US_EAST --group blog-us-east
+                        """
+                    } else {
+                        echo "Using normal db"
+                        sh """
+                            turso org switch angular-love
+                            turso db create eu-${DB_BRANCH_NAME} --from-db $TURSO_EU_DB --group blog-eu
+                            turso db create usw-${DB_BRANCH_NAME} --from-db $TURSO_US_WEST_DB --group blog-us-west
+                            turso db create use-${DB_BRANCH_NAME} --from-db $TURSO_US_EAST_DB --group blog-us-east
+                        """
+                        
+                    }
+                    
+                    
                     sh """
                         turso org switch angular-love
-                        turso db create eu-${DB_BRANCH_NAME} --from-db $TURSO_EU_DB --group blog-eu
-                        turso db create usw-${DB_BRANCH_NAME} --from-db $TURSO_US_WEST_DB --group blog-us-west
-                        turso db create use-${DB_BRANCH_NAME} --from-db $TURSO_US_EAST_DB --group blog-us-east
-
                         turso db list -g blog-eu | grep -q "eu-${DB_BRANCH_NAME}" || { echo "EU database not found after creation"; exit 1; }
                         turso db list -g blog-us-west | grep -q "usw-${DB_BRANCH_NAME}" || { echo "US West database not found after creation"; exit 1; }
                         turso db list -g blog-us-east | grep -q "use-${DB_BRANCH_NAME}" || { echo "US East database not found after creation"; exit 1; }
