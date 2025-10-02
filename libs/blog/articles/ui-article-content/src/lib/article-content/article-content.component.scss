@@ -16,6 +16,13 @@
   }
 }
 
+:root[data-theme='light'] {
+  .shiki,
+  .shiki span {
+    background-color: rgb(var(--grey)) !important;
+  }
+}
+
 .blog-article-content {
   pre.shiki {
     @apply mb-4 overflow-x-auto rounded-2xl p-4;
