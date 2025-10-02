@@ -87,12 +87,7 @@ pipeline {
         stage("Select master db") {
             steps {
                 script {
-                    echo "DB_MAIN_EU: ${DB_MAIN_EU}"
-                    echo "DB_MAIN_US_WEST: ${DB_MAIN_US_WEST}"
-                    echo "DB_MAIN_US_EAST: ${DB_MAIN_US_EAST}"
-                    env.USE_PARAMS_DB="false"
-                    
-                    
+                    env.USE_PARAMS_DB="false"                    
                     def setCount = 0
                     if (params.DB_MAIN_EU != "") setCount++
                     if (params.DB_MAIN_US_WEST != "") setCount++
@@ -105,7 +100,6 @@ pipeline {
                     if (setCount == 3) { 
                         echo "Using params db"
                         env.USE_PARAMS_DB = "true"
-                        echo "Params after update $USE_PARAMS_DB"
                     }
 
                 }
