@@ -32,6 +32,8 @@ module.exports = {
         'al-roadmap-label-comingSoon':
           'rgba(var(--roadmap-label-comingSoon) / <alpha-value>)',
         'al-grey': 'rgba(var(--grey) / <alpha-value>)',
+        'al-footer-background':
+          'rgba(var(--footer-background) / <alpha-value>)',
       },
       backgroundImage: {
         'al-radial-gradient':

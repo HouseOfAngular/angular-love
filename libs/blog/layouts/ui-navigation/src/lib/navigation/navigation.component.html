@@ -2,10 +2,10 @@
 <nav *transloco="let t" [class]="isVerticalLayout ? 'flex-col' : 'flex-row'">
   <ul
     class="flex flex-wrap justify-center"
+    class="flex flex-wrap"
     [ngClass]="{
       'flex-col justify-between': layout() === 'vertical',
     }"
-    class="flex flex-wrap"
     [attr.aria-label]="t('nav.navLinks')"
     [class]="isVerticalLayout ? 'flex-col justify-between' : ''"
   >
@@ -14,8 +14,7 @@
         <li [class]="isVerticalLayout ? 'py-10 text-center' : ''">
           <a
             [attr.data-testid]="item.dataTestId"
-            class="p-2 font-medium md:p-6"
-            [ngClass]="whiteFont() ? 'text-white' : 'text-al-foreground'"
+            class="text-al-foreground p-2 font-medium md:p-6"
             [routerLinkActive]="'text-al-pink'"
             [routerLink]="item.link | alLocalize"
             (click)="navigated.emit()"
@@ -27,8 +26,7 @@
         <li [class]="isVerticalLayout ? 'py-10 text-center' : ''">
           <a
             [attr.data-testid]="item.dataTestId"
-            class="p-2 font-medium md:p-6"
-            [ngClass]="whiteFont() ? 'text-white' : 'text-al-foreground'"
+            class="text-al-foreground p-2 font-medium md:p-6"
             [href]="item.link"
             target="_blank"
           >

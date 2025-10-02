@@ -9,11 +9,11 @@ import { SocialMediaIconsComponent } from '@angular-love/blog/shared/ui-social-m
     <div class="flex flex-col items-start">
       <h3
         id="social-media-title"
-        class="mb-4 hidden text-sm font-bold text-[#fff] lg:block"
+        class="text-al-foreground mb-4 hidden text-sm font-bold lg:block"
       >
         Social media
       </h3>
-      <al-social-media-icons variant="light" />
+      <al-social-media-icons variant="default" />
     </div>
   `,
   changeDetection: ChangeDetectionStrategy.OnPush,
