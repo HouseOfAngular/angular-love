@@ -47,7 +47,7 @@ const constructUrl = (path, lang) => `/${lang}/${path}`;
  * @returns {Promise<void>}
  */
 async function fetchArticleRoutes(lang, skip = 0, take = 50) {
-  const url = `${API_BASE_URL}/articles?skip=${skip}&take=${take}`;
+  const url = `${API_BASE_URL}/articles?skip=${skip}&take=${take}&showHidden`;
   try {
     const { data, total } = await fetch(url, {
       headers: {
