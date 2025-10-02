@@ -43,20 +43,16 @@ app.post('/subscribe', async (c) => {
   const { BREVO_API_KEY, BREVO_API_URL } = env(c);
 
   let listIds: number[];
-  let templateId: number;
 
   if (lang === 'pl') {
     listIds = [NewsletterList.PL, NewsletterList.PLNew];
-    templateId = NewsletterTemplate.PL;
   } else {
     listIds = [NewsletterList.EN];
-    templateId = NewsletterTemplate.EN;
   }
 
   try {
     const parsedEmail = v.parse(EmailSchema, newSubscriber);
     const client = new NewsletterClient(BREVO_API_URL, BREVO_API_KEY);
-    let sendTemplate = true;
 
     try {
       const existingContact = await client.getContact(parsedEmail);
@@ -75,9 +71,6 @@ app.post('/subscribe', async (c) => {
           listIds: mergedListIds,
         });
       }
-
-      // Contact is already on the list, we should not send a welcoming template
-      sendTemplate = !alreadySubscribed;
     } catch (err) {
       if (
         typeof err === 'object' &&
@@ -92,23 +85,6 @@ app.post('/subscribe', async (c) => {
           listIds,
         });
       }
-    }
-
-    if (sendTemplate) {
-      const template = await client.getTemplate(templateId);
-
-      await client.sendEmail({
-        sender: {
-          id: template.sender.id,
-        },
-        subject: template.subject,
-        htmlContent: template.htmlContent,
-        to: [
-          {
-            email: parsedEmail,
-          },
-        ],
-      });
     }
 
     return c.json({ success: true }, 200);
