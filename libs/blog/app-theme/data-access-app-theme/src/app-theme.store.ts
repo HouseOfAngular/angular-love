@@ -38,9 +38,8 @@ export const AppThemeStore = signalStore(
 );
 
 function getSystemTheme(): Theme {
-  return window.matchMedia('(prefers-color-scheme: dark)').matches
-    ? 'dark'
-    : 'light';
+  // Hardcoded to 'dark' for now, as per decision.
+  return 'dark';
 }
 
 /* todo: create consumer interface and decouple AppThemeStore from CCAppThemeConsumer*/
