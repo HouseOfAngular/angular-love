@@ -5,7 +5,7 @@
   margin-top: 1.6rem;
 }
 
-@media (prefers-color-scheme: dark) {
+:root[data-theme='dark'] {
   .shiki,
   .shiki span {
     color: var(--shiki-dark) !important;
@@ -13,6 +13,13 @@
     font-style: var(--shiki-dark-font-style) !important;
     font-weight: var(--shiki-dark-font-weight) !important;
     text-decoration: var(--shiki-dark-text-decoration) !important;
+  }
+}
+
+:root[data-theme='light'] {
+  .shiki,
+  .shiki span {
+    background-color: rgb(var(--grey)) !important;
   }
 }
 
@@ -53,6 +60,7 @@
   code:not(pre code) {
     padding: 0.2em 0.4em;
     background: #2e2f3b;
+    color: white;
     border-radius: 4px;
     font-size: 0.85rem;
     font-weight: 600;

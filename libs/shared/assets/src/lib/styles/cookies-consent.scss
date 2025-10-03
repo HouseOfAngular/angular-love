@@ -17,7 +17,7 @@
   /** Also make toggles the same color as the button **/
   --cc-toggle-on-bg: var(--cc-btn-primary-bg);
 
-  @media (prefers-color-scheme: light) {
+  :root[data-theme='light'] {
     --cc-btn-secondary-color: rgba(44, 47, 49, 1);
   }
 }

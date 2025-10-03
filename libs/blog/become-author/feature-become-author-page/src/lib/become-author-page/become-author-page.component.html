@@ -27,13 +27,13 @@
             class="@xl:justify-end my-2 flex w-full flex-row items-center justify-center"
           >
             <a
-              class="bg-al-pink flex h-[46px] w-full items-center justify-center rounded-lg md:w-4/5 lg:w-full"
+              al-button
+              class="h-[46px] w-full"
+              [size]="'small'"
               href="https://form.typeform.com/to/Zzf1Girt?typeform-source=angular.love"
               target="_blank"
             >
-              <p class="text-sm font-bold">
-                {{ t('becomeAuthorCard.buttonText') }}
-              </p>
+              {{ t('becomeAuthorCard.buttonText') }}
             </a>
           </div>
         </al-become-author-advertisement>
@@ -58,12 +58,12 @@
             class="@xl:justify-end my-2 flex w-full flex-row items-center justify-center"
           >
             <a
-              class="bg-al-pink flex h-[46px] w-full items-center justify-center rounded-lg md:w-4/5 lg:w-full"
+              al-button
+              class="h-[46px] w-full"
+              [size]="'small'"
               [routerLink]="'/writing-rules' | alLocalize"
             >
-              <p class="text-center text-sm font-bold">
-                {{ t('articleWritingRules.buttonText') }}
-              </p>
+              {{ t('articleWritingRules.buttonText') }}
             </a>
           </div>
         </al-become-author-advertisement>

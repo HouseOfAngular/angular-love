@@ -18,7 +18,9 @@ export type IconType =
   | 'send'
   | 'tick'
   | 'twitter-x'
-  | 'youtube';
+  | 'youtube'
+  | 'sun'
+  | 'moon';
 
 @Component({
   selector: 'al-icon',
