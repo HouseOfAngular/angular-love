@@ -38,7 +38,8 @@ module.exports = {
       backgroundImage: {
         'al-radial-gradient':
           'radial-gradient(58.54% 100% at 0% 100%, rgba(var(--primary) / 0.2) 0%, transparent)',
-
+        'al-roadmap-gradient':
+          'radial-gradient(58.54% 100% at 0% 100%, #E8A4B8, #FDEBF0 100%)',
         'al-background-gradient':
           'linear-gradient(180deg, rgba(var(--background) / 1) 0%, rgba(var(--background) / 0.6) 100%)',
         'al-bottom-radial-gradient':

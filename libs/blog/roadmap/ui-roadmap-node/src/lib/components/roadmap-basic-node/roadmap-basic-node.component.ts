@@ -62,9 +62,9 @@ export class RoadmapBasicNodeComponent {
   protected readonly class = computed(() => {
     switch (this.variant()) {
       case 'primary':
-        return 'm-[2px] bg-al-roadmap-primary light:bg-[#FAE0EB] text-[24px]';
+        return 'm-[2px] bg-al-roadmap-primary light:bg-[#edcafa] text-[24px]';
       case 'secondary':
-        return 'm-[2px] bg-al-roadmap-secondary light:bg-al-card light:bg-al-radial-gradient text-[20px]';
+        return 'm-[2px] bg-al-roadmap-secondary light:bg-al-card light:bg-al-roadmap-gradient text-[20px]';
       case 'angular-love':
         return 'm-[4px] bg-gradient-to-r from-al-roadmap-secondary to-al-roadmap-accent text-[#fff] text-[24px]';
       default:
