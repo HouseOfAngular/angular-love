@@ -28,6 +28,7 @@
     "newsletter": "Angular.letter",
     "navLinks": "Menu",
     "roadmap": "Roadmap",
+    "toggle_theme": "Przełącz motyw",
     "languagePicker": {
       "pl": "Polski",
       "en": "Angielski"

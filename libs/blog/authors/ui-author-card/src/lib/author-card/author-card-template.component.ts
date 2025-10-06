@@ -25,8 +25,6 @@ import {
           >
             <div
               class="flex w-full flex-col items-center gap-4 md:max-w-[360px]"
-              Expand
-              Down
             >
               <ng-content select="[author-info-card]"></ng-content>
             </div>

@@ -33,7 +33,6 @@ import { AuthorCardTemplateComponent } from './author-card-template.component';
     AlLocalizePipe,
   ],
   templateUrl: './author-card.component.html',
-  styleUrl: './author-card.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
   host: {
     'data-testid': 'author-card',

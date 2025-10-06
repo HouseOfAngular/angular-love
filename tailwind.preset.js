@@ -1,5 +1,3 @@
-const { themeVariants } = require('tailwindcss-theme-variants');
-
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   darkMode: 'selector',

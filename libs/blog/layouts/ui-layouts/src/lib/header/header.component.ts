@@ -6,6 +6,7 @@ import {
   output,
   signal,
 } from '@angular/core';
+import { TranslocoDirective } from '@jsverse/transloco';
 import { FastSvgComponent } from '@push-based/ngx-fast-svg';
 
 import {
@@ -23,7 +24,10 @@ import {
   standalone: true,
   selector: 'al-header',
   template: `
-    <header class="bg-al-background/95 z-30 h-20 w-full border-b shadow-xl">
+    <header
+      *transloco="let t; read: 'nav'"
+      class="bg-al-background/95 z-30 h-20 w-full border-b shadow-xl"
+    >
       <div
         class="mx-auto flex h-full w-full max-w-screen-xl items-center justify-between px-6 py-4 xl:px-0"
       >
@@ -39,10 +43,10 @@ import {
           />
 
           <button
-            aria-label="Toggle theme"
+            data-testid="header-theme-switch"
             class="flex items-center bg-transparent p-1"
+            [attr.aria-label]="t('toggle_theme')"
             (click)="themeToggle.emit()"
-            date-testid="header-theme-switch"
           >
             <fast-svg
               class="text-al-pink"
@@ -76,6 +80,7 @@ import {
     HeaderMobileMenuComponent,
     LanguagePickerComponent,
     FastSvgComponent,
+    TranslocoDirective,
   ],
 })
 export class HeaderComponent {

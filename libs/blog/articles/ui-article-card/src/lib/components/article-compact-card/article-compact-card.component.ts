@@ -10,7 +10,6 @@ import { AvatarComponent } from '@angular-love/blog/shared/ui-avatar';
 @Component({
   selector: 'al-article-compact-card',
   changeDetection: ChangeDetectionStrategy.OnPush,
-  standalone: true,
   imports: [
     AvatarComponent,
     RouterLink,

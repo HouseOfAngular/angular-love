@@ -13,7 +13,7 @@ import { RoadmapDialogSubtitleComponent } from '../roadmap-dialog-subtitle/roadm
         <p>
           {{ additionalDescription().introduction }}
         </p>
-        <ul class="px-6 ">
+        <ul class="px-6">
           @for (
             listElement of additionalDescription().toPrepareList;
             track $index

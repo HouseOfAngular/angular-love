@@ -2,10 +2,6 @@
 <nav *transloco="let t" [class]="isVerticalLayout ? 'flex-col' : 'flex-row'">
   <ul
     class="flex flex-wrap justify-center"
-    class="flex flex-wrap"
-    [ngClass]="{
-      'flex-col justify-between': layout() === 'vertical',
-    }"
     [attr.aria-label]="t('nav.navLinks')"
     [class]="isVerticalLayout ? 'flex-col justify-between' : ''"
   >
