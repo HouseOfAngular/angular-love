@@ -1,13 +1,15 @@
-al-footer-logo {
+.logo-container {
   grid-area: logo;
+  display: flex;
+  flex-direction: column;
 }
 
-al-navigation {
+.navigation-component {
   grid-area: nav;
 }
 
-.social-media-container {
-  grid-area: social;
+.partners-container {
+  grid-area: partners;
 }
 
 .copyright {
@@ -18,20 +20,29 @@ al-navigation {
   grid-template-areas:
     'logo social'
     'nav nav'
+    'partners partners'
     'copyright copyright';
+
+  align-items: start;
 }
 
-@screen md {
+@media (min-width: 640px) {
   .al-container {
     grid-template-areas:
-      'logo nav'
-      'social social'
+      'logo partners'
+      'nav nav'
       'copyright copyright';
+  }
+
+  .logo-container {
+    justify-self: center;
   }
 }
 
 @screen xl {
   .al-container {
-    grid-template-areas: 'logo nav social';
+    grid-template-areas:
+      'logo nav partners'
+      'copyright copyright copyright';
   }
 }

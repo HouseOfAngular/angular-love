@@ -9,6 +9,7 @@ import {
 import {
   LanguagePickerComponent,
   NavigationComponent,
+  NavItem,
 } from '@angular-love/blog/layouts/ui-navigation';
 
 import {
@@ -27,7 +28,7 @@ import {
       >
         <al-header-logo />
 
-        <al-navigation class="hidden lg:block" [showNewsletter]="false" />
+        <al-navigation class="hidden lg:block" [navItems]="navItems" />
 
         <div class="flex flex-row items-center">
           <al-language-picker
@@ -63,6 +64,25 @@ import {
   ],
 })
 export class HeaderComponent {
+  readonly navItems: NavItem[] = [
+    {
+      translationPath: 'nav.guides',
+      link: ['guides'],
+      dataTestId: 'navigation-guides',
+    },
+    {
+      translationPath: 'nav.news',
+      link: ['news'],
+      dataTestId: 'navigation-news',
+    },
+    {
+      translationPath: 'nav.meetups',
+      link: ['https://meetup.angular.love/'],
+      externalLink: true,
+      dataTestId: 'navigation-meetups',
+    },
+  ];
+
   readonly language = input.required<string>();
 
   protected languageChange = output<string>();

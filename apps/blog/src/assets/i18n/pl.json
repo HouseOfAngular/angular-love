@@ -9,8 +9,6 @@
     "recommended": "Polecane Artykuły",
     "angularNews": "Wiadomości ze świata Angulara",
     "guides": "Poradniki",
-    "partners": "Community partnerzy",
-    "mainPartner": "Główny partner",
     "angularInDepth": "Angular In Depth",
     "categories": {
       "all": "Najnowsze",
@@ -24,6 +22,10 @@
     "home": "Strona Główna",
     "about": "O nas",
     "meetups": "Angular Meetups",
+    "guides": "Angular Guides",
+    "news": "Angular News",
+    "in_depth": "Artykuły In-Depth",
+    "partnership": "Porozmawiajmy o partnerstwie",
     "become_author": "Zostań autorem",
     "newsletter": "Angular.letter",
     "navLinks": "Menu",
@@ -32,6 +34,10 @@
       "pl": "Polski",
       "en": "Angielski"
     }
+  },
+  "footer": {
+    "partners": "Community partnerzy",
+    "mainPartner": "Główny partner"
   },
   "home": {
     "latest": "Latest articles"

@@ -9,6 +9,7 @@ import {
 import {
   LanguagePickerComponent,
   NavigationComponent,
+  NavItem,
 } from '@angular-love/blog/layouts/ui-navigation';
 
 @Component({
@@ -20,7 +21,11 @@ import {
       [ngClass]="{ 'translate-y-[100%]': isOpened() }"
       [attr.aria-hidden]="isOpened()"
     >
-      <al-navigation (navigated)="closed.emit()" layout="vertical">
+      <al-navigation
+        [navItems]="navItems"
+        (navigated)="closed.emit()"
+        layout="vertical"
+      >
         <li class="flex justify-center">
           <al-language-picker
             [language]="language()"
@@ -34,6 +39,25 @@ import {
   imports: [NavigationComponent, NgClass, LanguagePickerComponent],
 })
 export class HeaderMobileMenuComponent {
+  readonly navItems: NavItem[] = [
+    {
+      translationPath: 'nav.guides',
+      link: ['guides'],
+      dataTestId: 'navigation-guides',
+    },
+    {
+      translationPath: 'nav.news',
+      link: ['news'],
+      dataTestId: 'navigation-news',
+    },
+    {
+      translationPath: 'nav.meetups',
+      link: ['https://meetup.angular.love/'],
+      externalLink: true,
+      dataTestId: 'navigation-meetups',
+    },
+  ];
+
   readonly isOpened = input.required<boolean>();
   readonly language = input.required<string>();
 

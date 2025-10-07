@@ -9,8 +9,6 @@
     "recommended": "Recommended Articles",
     "angularNews": "Angular News",
     "guides": "Guides",
-    "partners": "Community partners",
-    "mainPartner": "Main partner",
     "angularInDepth": "Angular In Depth",
     "categories": {
       "all": "Latest",
@@ -24,6 +22,10 @@
     "home": "Home Page",
     "about": "About us",
     "meetups": "Angular Meetups",
+    "guides": "Angular Guides",
+    "news": "Angular News",
+    "in_depth": "In-Depth articles",
+    "partnership": "Let's discuss partnership",
     "become_author": "Become an author",
     "newsletter": "Angular.letter",
     "navLinks": "Navigation links",
@@ -32,6 +34,10 @@
       "pl": "Polish",
       "en": "English"
     }
+  },
+  "footer": {
+    "mainPartner": "Main partner",
+    "partners": "Community partners"
   },
   "authorPage": {
     "posted_by": "Posted by {{name}}"

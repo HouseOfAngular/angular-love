@@ -26,43 +26,28 @@ export type NavItem = {
   imports: [RouterLink, RouterLinkActive, TranslocoDirective, AlLocalizePipe],
 })
 export class NavigationComponent {
-  readonly layout = input<'vertical' | 'horizontal'>('horizontal');
-  showNewsletter = input(true);
+  readonly navItems = input.required<NavItem[]>();
+  readonly whiteFont = input<boolean>(false);
+  readonly cols = input<number>();
+  readonly rows = input<number>();
 
-  readonly filteredNavItems = computed(() => {
-    return this.navItems.filter(
-      (item) =>
-        item.translationPath !== 'nav.newsletter' || this.showNewsletter(),
-    );
+  protected readonly gridClasses = computed(() => {
+    if (!this.cols() && !this.rows()) {
+      return 'flex flex-wrap justify-center';
+    }
+
+    const classes: string[] = ['grid'];
+
+    if (this.cols()) {
+      classes.push(`grid-cols-${this.cols()}`);
+    }
+
+    if (this.rows()) {
+      classes.push(`grid-rows-${this.rows()}`);
+    }
+
+    return classes.join(' ');
   });
 
-  readonly navItems: NavItem[] = [
-    {
-      translationPath: 'nav.about',
-      link: ['about-us'],
-      dataTestId: 'navigation-about-us',
-    },
-    {
-      translationPath: 'nav.meetups',
-      link: ['https://meetup.angular.love/'],
-      externalLink: true,
-      dataTestId: 'navigation-meetups',
-    },
-    {
-      translationPath: 'nav.become_author',
-      link: ['become-author'],
-      dataTestId: 'navigation-become-author',
-    },
-    {
-      translationPath: 'nav.roadmap',
-      link: ['roadmap'],
-      dataTestId: 'navigation-roadmap',
-    },
-    {
-      translationPath: 'nav.newsletter',
-      link: ['newsletter'],
-      dataTestId: 'navigation-newsletter',
-    },
-  ];
   protected navigated = output();
 }

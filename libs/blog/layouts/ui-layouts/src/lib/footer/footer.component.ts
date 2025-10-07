@@ -1,9 +1,19 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { BreakpointObserver } from '@angular/cdk/layout';
+import { NgOptimizedImage } from '@angular/common';
+import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
+import { toSignal } from '@angular/core/rxjs-interop';
+import { TranslocoDirective } from '@jsverse/transloco';
+import { map } from 'rxjs';
 
-import { NavigationComponent } from '@angular-love/blog/layouts/ui-navigation';
+import {
+  NavigationComponent,
+  NavItem,
+} from '@angular-love/blog/layouts/ui-navigation';
+import { PartnersComponent } from '@angular-love/blog/partners/ui-partners';
 
 import { FooterLogoComponent } from './components/footer-logo.component';
 import { FooterSocialMediaIconsComponent } from './components/footer-social-media-icons.component';
+import { hoaHireUs, partnersList } from './partners';
 
 @Component({
   selector: 'al-footer',
@@ -11,6 +21,9 @@ import { FooterSocialMediaIconsComponent } from './components/footer-social-medi
     NavigationComponent,
     FooterLogoComponent,
     FooterSocialMediaIconsComponent,
+    PartnersComponent,
+    NgOptimizedImage,
+    TranslocoDirective,
   ],
   templateUrl: './footer.component.html',
   styleUrl: './footer.component.scss',
@@ -18,4 +31,59 @@ import { FooterSocialMediaIconsComponent } from './components/footer-social-medi
 })
 export class FooterComponent {
   currentYear = new Date().getFullYear();
+  readonly partnersList = partnersList;
+  readonly hoaHireUs = hoaHireUs;
+
+  private readonly _breakpointObserver = inject(BreakpointObserver);
+
+  readonly isDesktop = toSignal(
+    this._breakpointObserver
+      .observe('(min-width: 1024px)')
+      .pipe(map(({ matches }) => matches)),
+  );
+
+  readonly navItems: NavItem[] = [
+    {
+      translationPath: 'nav.guides',
+      link: ['guides'],
+      dataTestId: 'navigation-guides',
+    },
+    {
+      translationPath: 'nav.about',
+      link: ['about'],
+      dataTestId: 'navigation-about',
+    },
+    {
+      translationPath: 'nav.news',
+      link: ['news'],
+      dataTestId: 'navigation-news',
+    },
+    {
+      translationPath: 'nav.become_author',
+      link: ['become-author'],
+      dataTestId: 'navigation-become-author',
+    },
+    {
+      translationPath: 'nav.meetups',
+      link: ['https://meetup.angular.love/'],
+      externalLink: true,
+      dataTestId: 'navigation-meetups',
+    },
+    {
+      translationPath: 'nav.newsletter',
+      link: ['newsletter'],
+      dataTestId: 'navigation-newsletter',
+    },
+    {
+      translationPath: 'nav.in_depth',
+      link: ['angular-in-depth'],
+      dataTestId: 'navigation-in-depth',
+    },
+    {
+      translationPath: 'nav.partnership',
+      link: ['mailto:angular@angular.love'],
+      externalLink: true,
+      dataTestId: 'navigation-partnership',
+    },
+  ];
 }
