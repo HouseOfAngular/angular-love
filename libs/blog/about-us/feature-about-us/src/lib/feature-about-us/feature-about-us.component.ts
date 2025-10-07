@@ -42,9 +42,11 @@ export class FeatureAboutUsComponent implements OnInit {
     return this.authorsCards()?.length || 0;
   });
 
-  readonly theme = inject(AppThemeStore).theme;
+  private readonly _theme = inject(AppThemeStore).theme;
 
-  readonly hideGradientInAuthorCards = computed(() => this.theme() === 'light');
+  readonly hideGradientInAuthorCards = computed(
+    () => this._theme() === 'light',
+  );
 
   private readonly _skip = this._authorListStore.skip;
   private readonly _total = this._authorListStore.total;
