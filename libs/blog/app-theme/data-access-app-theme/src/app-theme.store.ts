@@ -1,8 +1,8 @@
 import { isPlatformBrowser } from '@angular/common';
 import { inject, Injectable, PLATFORM_ID } from '@angular/core';
-import { signalStore, withMethods, withState } from '@ngrx/signals';
+import { patchState, signalStore, withMethods, withState } from '@ngrx/signals';
 
-type Theme = 'dark' | 'light';
+export type Theme = 'dark' | 'light';
 
 interface AppThemeStore {
   theme: Theme;
@@ -10,7 +10,7 @@ interface AppThemeStore {
 
 export const AppThemeStore = signalStore(
   { providedIn: 'root' },
-  withState<AppThemeStore>({ theme: 'light' }),
+  withState<AppThemeStore>({ theme: 'dark' }),
   withMethods(
     (
       store,
@@ -19,7 +19,18 @@ export const AppThemeStore = signalStore(
     ) => ({
       syncWithSystemTheme: () => {
         if (isPlatformBrowser(platformId)) {
-          ccConsumer.setThemeClass(getSystemTheme());
+          const theme =
+            (localStorage.getItem('theme') as Theme) ?? getSystemTheme();
+          ccConsumer.setThemeAttribute(theme);
+          patchState(store, { theme: theme });
+        }
+      },
+      toggleTheme: () => {
+        if (isPlatformBrowser(platformId)) {
+          const newTheme = store.theme() === 'dark' ? 'light' : 'dark';
+          ccConsumer.setThemeAttribute(newTheme);
+          localStorage.setItem('theme', newTheme);
+          patchState(store, { theme: newTheme });
         }
       },
     }),
@@ -27,23 +38,22 @@ export const AppThemeStore = signalStore(
 );
 
 function getSystemTheme(): Theme {
-  return window.matchMedia('(prefers-color-scheme: dark)').matches
-    ? 'dark'
-    : 'light';
+  // Hardcoded to 'dark' for now, as per decision.
+  return 'dark';
 }
 
 /* todo: create consumer interface and decouple AppThemeStore from CCAppThemeConsumer*/
 @Injectable({ providedIn: 'root' })
 export class CCAppThemeConsumer {
-  setThemeClass(theme: Theme): void {
-    const htmlElement = document.documentElement;
-    switch (theme) {
-      case 'dark':
-        htmlElement.classList.add('cc--darkmode');
-        break;
-      case 'light':
-        htmlElement.classList.remove('cc--darkmode');
-        break;
+  setThemeAttribute(theme: Theme): void {
+    document.documentElement.setAttribute('data-theme', theme);
+
+    const classList = document.documentElement.classList;
+
+    if (theme === 'dark') {
+      classList.add('cc--darkmode');
+    } else {
+      classList.remove('cc--darkmode');
     }
   }
 }

@@ -1,7 +1,7 @@
 @let isVerticalLayout = layout() === 'vertical';
 <nav *transloco="let t" [class]="isVerticalLayout ? 'flex-col' : 'flex-row'">
   <ul
-    class="flex flex-wrap"
+    class="flex flex-wrap justify-center"
     [attr.aria-label]="t('nav.navLinks')"
     [class]="isVerticalLayout ? 'flex-col justify-between' : ''"
   >

@@ -7,10 +7,12 @@ import { RoadmapBasicNodeComponent } from '../roadmap-basic-node/roadmap-basic-n
   selector: 'al-roadmap-cluster',
   template: `
     <div
-      class="bg-al-roadmap-secondary relative z-10 m-[-2px] rounded-lg border-2 border-[#FDF5FD] px-6 py-4"
+      class="bg-al-roadmap-secondary light:bg-al-card light:bg-al-radial-gradient  light:border-[--primary-foreground] relative z-10 m-[-2px] rounded-lg border-2 border-[#FDF5FD]  px-6 py-4"
       [attr.node-id]="cluster().id"
     >
-      <div class="text-[20px]">{{ cluster().title }}</div>
+      <div class="text-al-primary-foreground text-[20px]">
+        {{ cluster().title }}
+      </div>
     </div>
 
     <div class="m-[2px] flex flex-col gap-[10px] p-3">
@@ -23,7 +25,7 @@ import { RoadmapBasicNodeComponent } from '../roadmap-basic-node/roadmap-basic-n
   imports: [RoadmapBasicNodeComponent],
   host: {
     class:
-      'block bg-gradient-to-br from-[#100F15] to-[#3B0019] rounded-lg text-center border-2 border-[#FDF5FD]',
+      'block bg-gradient-to-br from-[#100F15] to-[#3B0019] light:from-[al-primary] light:to-[al-primary] rounded-lg text-center border-2 light:border-[--primary-foreground] border-[#FDF5FD]',
   },
 })
 export class RoadmapClusterComponent {

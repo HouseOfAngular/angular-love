@@ -9,7 +9,7 @@ import { RoadmapDialogSubtitleComponent } from '../roadmap-dialog-subtitle/roadm
   template: `
     <section class="px-6 pt-6">
       <al-roadmap-dialog-subtitle [subtitle]="subtitle()" />
-      <div class="pt-4 leading-8">
+      <div class="text-al-primary-foreground pt-4 leading-8">
         <p>
           {{ additionalDescription().introduction }}
         </p>

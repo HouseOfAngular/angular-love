@@ -27,6 +27,7 @@ export type NavItem = {
 })
 export class NavigationComponent {
   readonly layout = input<'vertical' | 'horizontal'>('horizontal');
+  readonly whiteFont = input<boolean>(false);
   showNewsletter = input(true);
 
   readonly filteredNavItems = computed(() => {

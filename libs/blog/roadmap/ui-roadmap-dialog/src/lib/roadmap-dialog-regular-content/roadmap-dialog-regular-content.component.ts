@@ -9,7 +9,7 @@ import { RoadmapDialogSubtitleComponent } from '../roadmap-dialog-subtitle/roadm
   template: `
     <section class="px-6 pt-6">
       <al-roadmap-dialog-subtitle [subtitle]="subtitle()" />
-      <ul class="list-disc px-6 pt-4">
+      <ul class="text-al-primary-foreground list-disc px-6 pt-4">
         @for (resource of resources(); track resource.name) {
           <li class="py-1 underline">
             <a [href]="resource.url" target="_blank">

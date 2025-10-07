@@ -11,7 +11,7 @@
     [attr.strict]="config.strict ? '1' : '0'"
     [attr.emitmetadata]="config.emitMetadata ? '1' : '0'"
     [attr.inputposition]="config.inputPosition"
-    [attr.theme]="config.theme"
+    [attr.theme]="theme()"
     src="https://giscus.app/client.js"
     crossorigin="anonymous"
     async

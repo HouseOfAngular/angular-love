@@ -14,10 +14,10 @@ import {
   GISCUS_CONFIG,
   provideComments,
 } from '@angular-love/blog/articles/data-access';
+import { AppThemeStore } from '@angular-love/data-access-app-theme';
 
 @Component({
   selector: 'al-giscus-comments',
-  imports: [],
   templateUrl: './giscus-comments.component.html',
   styleUrl: './giscus-comments.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -30,6 +30,7 @@ import {
 export class GiscusCommentsComponent {
   readonly config = inject(GISCUS_CONFIG);
   readonly translocoService = inject(TranslocoService);
+  readonly theme = inject(AppThemeStore).theme;
 
   readonly lang = toSignal(this.translocoService.langChanges$, {
     initialValue: this.translocoService.getActiveLang(),

@@ -3,10 +3,10 @@ import { Component, input } from '@angular/core';
 @Component({
   selector: 'al-roadmap-dialog-subtitle',
   template: `
-    <h4 class="font-semibold">
+    <h4 class="text-al-primary-foreground font-semibold">
       {{ subtitle() }}
     </h4>
-    <div class="h-px flex-grow bg-white"></div>
+    <div class="bg-al-primary-foreground h-px flex-grow"></div>
   `,
   host: {
     class: 'flex items-center gap-4',

@@ -14,10 +14,10 @@ import { SearchDialogComponent } from './search-dialog';
   imports: [SearchDialogComponent, FastSvgComponent],
   template: `
     <button
+      data-testid="header-search"
       aria-label="Open a search dialog"
       class="flex items-center bg-transparent p-1"
       (click)="service.showSearchDialog()"
-      date-testid="header-search"
     >
       <fast-svg name="magnifier-glass" class="text-al-pink" size="24" />
     </button>
