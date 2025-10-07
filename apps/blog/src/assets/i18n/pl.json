@@ -32,9 +32,11 @@
     "navLinks": "Menu",
     "roadmap": "Roadmap",
     "toggle_theme": "Przełącz motyw",
+    "open_search_dialog": "Otwórz okno wyszukiwania",
     "languagePicker": {
       "pl": "Polski",
-      "en": "Angielski"
+      "en": "Angielski",
+      "select_lang": "Wybierz język"
     }
   },
   "footer": {

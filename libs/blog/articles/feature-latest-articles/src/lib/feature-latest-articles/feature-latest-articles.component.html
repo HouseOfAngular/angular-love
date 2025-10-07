@@ -7,9 +7,12 @@
     @for (category of categories(); track $index) {
       <button
         alPill
+        alFocusableItem
+        [tabindex]="selected().name === category.name ? 0 : -1"
         role="tab"
         [variant]="category.name === selected().name ? 'flat' : 'outline'"
         (click)="selected.set(category)"
+        (keydown)="onPillKeydown($event)"
       >
         {{ t(category.translationPath) }}
       </button>

@@ -4,6 +4,7 @@ import {
   HostListener,
   inject,
 } from '@angular/core';
+import { TranslocoDirective } from '@jsverse/transloco';
 import { FastSvgComponent } from '@push-based/ngx-fast-svg';
 
 import { GlobalSearchService } from './global-search.service';
@@ -11,12 +12,13 @@ import { SearchDialogComponent } from './search-dialog';
 
 @Component({
   selector: 'al-search',
-  imports: [SearchDialogComponent, FastSvgComponent],
+  imports: [SearchDialogComponent, FastSvgComponent, TranslocoDirective],
   template: `
     <button
+      *transloco="let t; read: 'nav'"
       data-testid="header-search"
-      aria-label="Open a search dialog"
       class="flex items-center bg-transparent p-1"
+      [attr.aria-label]="t('open_search_dialog')"
       (click)="service.showSearchDialog()"
     >
       <fast-svg name="magnifier-glass" class="text-al-pink" size="24" />

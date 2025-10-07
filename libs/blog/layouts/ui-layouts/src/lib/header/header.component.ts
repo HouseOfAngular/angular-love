@@ -22,7 +22,6 @@ import {
 import { headerNavItems } from './header-nav-items';
 
 @Component({
-  standalone: true,
   selector: 'al-header',
   template: `
     <header
