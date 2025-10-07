@@ -29,9 +29,11 @@
     "newsletter": "Angular.letter",
     "navLinks": "Navigation links",
     "roadmap": "Roadmap",
+    "open_search_dialog": "Open search dialog",
     "languagePicker": {
       "pl": "Polish",
-      "en": "English"
+      "en": "English",
+      "select_lang": "Select language"
     }
   },
   "authorPage": {

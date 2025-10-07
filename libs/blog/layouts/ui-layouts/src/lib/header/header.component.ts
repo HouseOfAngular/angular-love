@@ -18,7 +18,6 @@ import {
 } from './components';
 
 @Component({
-  standalone: true,
   selector: 'al-header',
   template: `
     <header class="bg-al-background/95 z-30 h-20 w-full border-b shadow-xl">

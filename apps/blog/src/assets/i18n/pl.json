@@ -29,9 +29,11 @@
     "newsletter": "Angular.letter",
     "navLinks": "Menu",
     "roadmap": "Roadmap",
+    "open_search_dialog": "Otwórz okno wyszukiwania",
     "languagePicker": {
       "pl": "Polski",
-      "en": "Angielski"
+      "en": "Angielski",
+      "select_lang": "Wybierz język"
     }
   },
   "home": {

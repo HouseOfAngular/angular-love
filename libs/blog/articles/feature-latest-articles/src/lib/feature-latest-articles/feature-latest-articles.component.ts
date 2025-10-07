@@ -1,10 +1,14 @@
+import { FocusKeyManager } from '@angular/cdk/a11y';
 import { NgClass } from '@angular/common';
 import {
+  AfterViewInit,
   ChangeDetectionStrategy,
   Component,
   computed,
   inject,
   linkedSignal,
+  QueryList,
+  ViewChildren,
 } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { TranslocoDirective } from '@jsverse/transloco';
@@ -22,6 +26,7 @@ import {
 } from '@angular-love/blog/shared/ui-card';
 import { PillDirective } from '@angular-love/blog/shared/ui-pill';
 import { ArticleCategory } from '@angular-love/contracts/articles';
+import { FocusableItemDirective } from '@angular-love/ui-focusable';
 import { RepeatDirective } from '@angular-love/utils';
 
 import { CategoryListItem, injectCategories } from './categories.const';
@@ -43,13 +48,14 @@ import { CategoryListItem, injectCategories } from './categories.const';
     RouterLink,
     ButtonComponent,
     PillDirective,
+    FocusableItemDirective,
   ],
   host: {
     'data-testid': 'latest-articles-container',
   },
   providers: [ArticleListStore],
 })
-export class FeatureLatestArticlesComponent {
+export class FeatureLatestArticlesComponent implements AfterViewInit {
   readonly selectedCategorySlug = computed<ArticleCategory | null>(
     () => this.selected().slug,
   );
@@ -57,6 +63,11 @@ export class FeatureLatestArticlesComponent {
   readonly selected = linkedSignal<CategoryListItem>(
     () => this.categories()[0],
   );
+
+  @ViewChildren(FocusableItemDirective)
+  private readonly _focusableItems!: QueryList<FocusableItemDirective>;
+
+  private _keyManager!: FocusKeyManager<FocusableItemDirective>;
 
   readonly take = 8;
 
@@ -80,5 +91,18 @@ export class FeatureLatestArticlesComponent {
     });
 
     this._articleListStore.fetchArticleList(query);
+  }
+
+  ngAfterViewInit(): void {
+    this._keyManager = new FocusKeyManager(this._focusableItems)
+      .withWrap()
+      .withHorizontalOrientation('ltr');
+
+    // Set initial active item
+    this._keyManager.setActiveItem(0);
+  }
+
+  onPillKeydown(event: KeyboardEvent) {
+    this._keyManager.onKeydown(event);
   }
 }
