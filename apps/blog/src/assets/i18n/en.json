@@ -10,6 +10,7 @@
     "angularNews": "Angular News",
     "guides": "Guides",
     "angularInDepth": "Angular In Depth",
+    "articleTypes": "Article types",
     "categories": {
       "all": "Latest",
       "news": "News",
