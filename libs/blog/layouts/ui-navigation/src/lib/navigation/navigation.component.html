@@ -1,13 +1,8 @@
-@let isVerticalLayout = layout() === 'vertical';
-<nav *transloco="let t" [class]="isVerticalLayout ? 'flex-col' : 'flex-row'">
-  <ul
-    class="flex flex-wrap justify-center"
-    [attr.aria-label]="t('nav.navLinks')"
-    [class]="isVerticalLayout ? 'flex-col justify-between' : ''"
-  >
-    @for (item of filteredNavItems(); track $index) {
+<nav *transloco="let t">
+  <ul [attr.aria-label]="t('nav.navLinks')" [class]="gridClasses()">
+    @for (item of navItems(); track $index) {
       @if (!item.externalLink) {
-        <li [class]="isVerticalLayout ? 'py-10 text-center' : ''">
+        <li>
           <a
             [attr.data-testid]="item.dataTestId"
             class="text-al-foreground p-2 font-medium md:p-6"
@@ -19,7 +14,7 @@
           </a>
         </li>
       } @else {
-        <li [class]="isVerticalLayout ? 'py-10 text-center' : ''">
+        <li>
           <a
             [attr.data-testid]="item.dataTestId"
             class="text-al-foreground p-2 font-medium md:p-6"

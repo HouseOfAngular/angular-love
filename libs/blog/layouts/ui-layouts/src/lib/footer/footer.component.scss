@@ -1,23 +1,43 @@
-al-footer-logo {
+.logo-container {
   grid-area: logo;
+  display: flex;
+  flex-direction: column;
 }
 
-al-navigation {
+.navigation-component {
   grid-area: nav;
 }
 
-.social-media-container {
-  grid-area: social;
+.partners-container {
+  grid-area: partners;
 }
 
 .al-container {
+  justify-items: center;
+  row-gap: 1rem;
   grid-template-areas:
-    'logo social'
-    'nav nav';
+    'logo'
+    'partners'
+    'nav';
+
+  align-items: start;
 }
 
-@screen lg {
+@media (min-width: 640px) {
   .al-container {
-    grid-template-areas: 'logo nav social';
+    justify-items: stretch;
+    grid-template-areas:
+      'logo partners'
+      'nav nav';
+  }
+
+  .logo-container {
+    justify-self: center;
+  }
+}
+
+@screen xl {
+  .al-container {
+    grid-template-areas: 'logo nav partners';
   }
 }
