@@ -21,11 +21,7 @@ import {
       [ngClass]="{ 'translate-y-[100%]': isOpened() }"
       [attr.aria-hidden]="isOpened()"
     >
-      <al-navigation
-        [navItems]="navItems"
-        (navigated)="closed.emit()"
-        layout="vertical"
-      >
+      <al-navigation [navItems]="navItems" (navigated)="closed.emit()">
         <li class="flex justify-center">
           <al-language-picker
             [language]="language()"
