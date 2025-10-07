@@ -1,13 +1,32 @@
-<footer class="bg-al-footer-background w-full">
+<footer
+  *transloco="let t; read: 'footer'"
+  class="bg-al-footer-background w-full"
+>
   <div
     class="al-container mx-auto grid max-w-screen-xl gap-y-4 px-6 py-4 xl:px-0"
   >
-    <al-footer-logo class="self-center" />
-    <al-navigation [whiteFont]="true" />
-    <div
-      class="social-media-container flex items-center justify-self-end md:max-lg:justify-self-center"
-    >
-      <al-footer-social-media-icons />
+    <div class="logo-container">
+      <div>
+        <al-footer-logo class="mb-1 block" />
+        <div class="text-al-muted mb-4 inline-block max-w-48 text-xs">
+          This is the place where you can learn Angular, discover best
+          practices, and stay updated with the latest news and trends.
+        </div>
+      </div>
+      <al-footer-social-media-icons class="block lg:ml-2" />
+    </div>
+    <al-navigation
+      class="navigation-component"
+      [whiteFont]="true"
+      [cols]="isXlScreen() ? 2 : undefined"
+      [navItems]="navItems"
+    />
+    <div class="partners-container">
+      <div class="mb-5 flex gap-2">
+        <h2>{{ t('mainPartner') }}</h2>
+        <img class="ml-4" [ngSrc]="hoaLogoSrc()" width="100" height="30" />
+      </div>
+      <al-partners [partnerList]="partnersList" heading="footer.partners" />
     </div>
   </div>
   <small class="text-al-muted block pb-4 text-center text-xs">

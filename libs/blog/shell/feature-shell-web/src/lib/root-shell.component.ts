@@ -55,7 +55,7 @@ import { AppThemeStore } from '@angular-love/data-access-app-theme';
       }
       <router-outlet />
     </al-layout>
-    <al-footer class="mt-auto block" />
+    <al-footer class="mt-auto block" [theme]="theme()" />
   `,
   imports: [
     RouterOutlet,
