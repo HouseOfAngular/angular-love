@@ -70,7 +70,7 @@ export class CardLinkableDirective {
   },
 })
 export class GradientCardDirective {
-  hideGradient = input<boolean>(false);
+  readonly hideGradient = input<boolean>(false);
 
   @HostBinding('class')
   hostClasses = 'dark:bg-al-background';
