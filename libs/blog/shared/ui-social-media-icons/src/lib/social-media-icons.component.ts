@@ -2,10 +2,9 @@ import {
   ChangeDetectionStrategy,
   Component,
   computed,
-  inject,
   input,
 } from '@angular/core';
-import { TranslocoService } from '@jsverse/transloco';
+import { TranslocoDirective } from '@jsverse/transloco';
 
 import {
   SocialMediaIconItemComponent,
@@ -19,11 +18,9 @@ export type SocialMediaIconsVariant = 'light' | 'dark' | 'default';
   templateUrl: './social-media-icons.component.html',
   styleUrls: ['./social-media-icons.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [SocialMediaIconItemComponent],
+  imports: [SocialMediaIconItemComponent, TranslocoDirective],
 })
 export class SocialMediaIconsComponent {
-  private _transloco = inject(TranslocoService);
-
   variant = input<SocialMediaIconsVariant>('default');
 
   readonly iconColorClass = computed(() => {

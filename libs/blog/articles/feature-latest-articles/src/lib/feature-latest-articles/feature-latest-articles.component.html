@@ -32,16 +32,25 @@
           [imagePriority]="i < 2 ? 1 : null"
           cardType="regular"
         />
+        @if (i === 1) {
+          <al-card
+            alGradientCard
+            class="md:max-lg:col-span-2 lg:col-start-3 lg:row-start-1"
+          >
+            <al-newsletter alCardContent />
+          </al-card>
+        }
       }
     } @else {
       <al-article-regular-card-skeleton *alRepeat="take" />
+
+      <al-card
+        alGradientCard
+        class="md:max-lg:col-span-2 lg:col-start-3 lg:row-start-1"
+      >
+        <al-newsletter alCardContent />
+      </al-card>
     }
-    <al-card
-      alGradientCard
-      class="md:max-lg:col-span-2 lg:col-start-3 lg:row-start-1"
-    >
-      <al-newsletter alCardContent />
-    </al-card>
   </section>
 
   <div class="flex justify-center gap-3">
