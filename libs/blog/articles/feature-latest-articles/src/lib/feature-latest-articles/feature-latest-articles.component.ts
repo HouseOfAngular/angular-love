@@ -1,5 +1,5 @@
 import { FocusKeyManager } from '@angular/cdk/a11y';
-import { NgClass } from '@angular/common';
+import { NgClass, NgTemplateOutlet } from '@angular/common';
 import {
   AfterViewInit,
   ChangeDetectionStrategy,
@@ -41,6 +41,7 @@ import { CategoryListItem, injectCategories } from './categories.const';
     CardComponent,
     GradientCardDirective,
     NgClass,
+    NgTemplateOutlet,
     TranslocoDirective,
     ArticleRegularCardSkeletonComponent,
     RepeatDirective,
