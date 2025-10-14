@@ -38,7 +38,8 @@
   },
   "footer": {
     "mainPartner": "Main partner",
-    "partners": "Community partners"
+    "partners": "Community partners",
+    "al-description": "This is the place where you can learn Angular, discover best practices, and stay updated with the latest news and trends"
   },
   "authorPage": {
     "posted_by": "Posted by {{name}}"

@@ -38,7 +38,8 @@
   },
   "footer": {
     "partners": "Community partnerzy",
-    "mainPartner": "Główny partner"
+    "mainPartner": "Główny partner",
+    "al-description": "To jest miejsce, w którym możesz nauczyć się Angulara, odkrywać najlepsze praktyki i być na bieżąco z najnowszymi wiadomościami i trendami"
   },
   "home": {
     "latest": "Latest articles"

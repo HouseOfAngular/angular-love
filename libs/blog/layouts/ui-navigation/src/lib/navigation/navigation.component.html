@@ -2,7 +2,7 @@
   <ul
     class="h-full"
     [attr.aria-label]="t('nav.navLinks')"
-    [class]="gridClasses()"
+    [class]="listClasses()"
   >
     @for (item of navItems(); track $index) {
       @if (!item.externalLink) {

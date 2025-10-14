@@ -31,7 +31,7 @@ export class NavigationComponent {
   readonly cols = input<number>();
   readonly layout = input<'vertical' | 'horizontal'>('horizontal');
 
-  protected readonly gridClasses = computed(() => {
+  protected readonly listClasses = computed(() => {
     if (this.layout() === 'vertical') {
       return 'flex flex-col justify-between';
     }
