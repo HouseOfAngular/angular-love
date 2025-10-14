@@ -32,8 +32,7 @@ type ShareItem = {
           <fast-svg class="text-al-foreground" [name]="item.icon" size="28" />
         </a>
       }
-      <a
-        role="button"
+      <button
         [attr.aria-label]="t('articleShareIcons.urlAriaLabel')"
         [class.url-icon-animated]="animating()"
         [cdkCopyToClipboard]="articleUrl()"
@@ -53,7 +52,7 @@ type ShareItem = {
           [class.!hidden]="!animating()"
           size="28"
         />
-      </a>
+      </button>
     </div>
   `,
 })

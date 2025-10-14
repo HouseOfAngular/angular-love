@@ -1,4 +1,7 @@
-<a [routerLink]="['/', article().slug] | alLocalize">
+<a
+  [attr.aria-label]="article().title"
+  [routerLink]="['/', article().slug] | alLocalize"
+>
   <article
     class="relative h-full overflow-hidden rounded-lg bg-black bg-cover bg-no-repeat transition-transform hover:scale-105 motion-reduce:transition-none motion-reduce:hover:scale-100"
     [attr.aria-labelledby]="article().slug"
