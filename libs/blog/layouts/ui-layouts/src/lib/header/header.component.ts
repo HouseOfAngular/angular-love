@@ -12,7 +12,6 @@ import { FastSvgComponent } from '@push-based/ngx-fast-svg';
 import {
   LanguagePickerComponent,
   NavigationComponent,
-  NavItem,
 } from '@angular-love/blog/layouts/ui-navigation';
 
 import {
@@ -20,6 +19,7 @@ import {
   HeaderLogoComponent,
   HeaderMobileMenuComponent,
 } from './components';
+import { headerNavItems } from './header-nav-items';
 
 @Component({
   standalone: true,
@@ -85,24 +85,7 @@ import {
   ],
 })
 export class HeaderComponent {
-  readonly navItems: NavItem[] = [
-    {
-      translationPath: 'nav.guides',
-      link: ['guides'],
-      dataTestId: 'navigation-guides',
-    },
-    {
-      translationPath: 'nav.news',
-      link: ['news'],
-      dataTestId: 'navigation-news',
-    },
-    {
-      translationPath: 'nav.meetups',
-      link: ['https://meetup.angular.love/'],
-      externalLink: true,
-      dataTestId: 'navigation-meetups',
-    },
-  ];
+  readonly navItems = headerNavItems;
 
   readonly language = input.required<string>();
   readonly theme = input.required<'light' | 'dark'>();

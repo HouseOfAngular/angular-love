@@ -29,24 +29,18 @@ export class NavigationComponent {
   readonly navItems = input.required<NavItem[]>();
   readonly whiteFont = input<boolean>(false);
   readonly cols = input<number>();
-  readonly rows = input<number>();
+  readonly layout = input<'vertical' | 'horizontal'>('horizontal');
 
   protected readonly gridClasses = computed(() => {
-    if (!this.cols() && !this.rows()) {
+    if (this.layout() === 'vertical') {
+      return 'flex flex-col justify-between';
+    }
+
+    if (!this.cols()) {
       return 'flex flex-wrap justify-center';
     }
 
-    const classes: string[] = ['grid'];
-
-    if (this.cols()) {
-      classes.push(`grid-cols-${this.cols()}`);
-    }
-
-    if (this.rows()) {
-      classes.push(`grid-rows-${this.rows()}`);
-    }
-
-    return classes.join(' ');
+    return `grid gap-2 grid-cols-${this.cols()}`;
   });
 
   protected navigated = output();

@@ -39,5 +39,7 @@
 @screen xl {
   .al-container {
     grid-template-areas: 'logo nav partners';
+    grid-template-columns: auto 1fr auto;
+    justify-items: center;
   }
 }

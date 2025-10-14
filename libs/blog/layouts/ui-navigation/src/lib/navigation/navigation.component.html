@@ -1,11 +1,16 @@
-<nav *transloco="let t">
-  <ul [attr.aria-label]="t('nav.navLinks')" [class]="gridClasses()">
+<nav *transloco="let t" class="h-full">
+  <ul
+    class="h-full"
+    [attr.aria-label]="t('nav.navLinks')"
+    [class]="gridClasses()"
+  >
     @for (item of navItems(); track $index) {
       @if (!item.externalLink) {
         <li>
           <a
             [attr.data-testid]="item.dataTestId"
             class="text-al-foreground p-2 font-medium md:p-6"
+            [class.md:p-6]="!cols() && layout() === 'horizontal'"
             [routerLinkActive]="'text-al-pink'"
             [routerLink]="item.link | alLocalize"
             (click)="navigated.emit()"
@@ -17,7 +22,8 @@
         <li>
           <a
             [attr.data-testid]="item.dataTestId"
-            class="text-al-foreground p-2 font-medium md:p-6"
+            class="text-al-foreground p-2 font-medium"
+            [class.md:p-6]="!cols() && layout() === 'horizontal'"
             [href]="item.link"
             target="_blank"
           >
