@@ -30,7 +30,7 @@
           </span>
           <al-difficulty [difficulty]="article().difficulty" />
           <span class="flex w-full flex-row items-center justify-end gap-2">
-            <fast-svg name="clock" size="16" />
+            <fast-svg name="clock" aria-hidden="true" size="16" />
             <time
               class="text-sm/[14px]"
               [attr.datetime]="'PT' + article().readingTime + 'M'"

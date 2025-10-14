@@ -29,7 +29,12 @@ type ShareItem = {
           [href]="item.href"
           target="_blank"
         >
-          <fast-svg class="text-al-foreground" [name]="item.icon" size="28" />
+          <fast-svg
+            aria-hidden="true"
+            class="text-al-foreground"
+            [name]="item.icon"
+            size="28"
+          />
         </a>
       }
       <button
@@ -42,12 +47,14 @@ type ShareItem = {
       >
         <fast-svg
           name="link"
+          aria-hidden="true"
           class="text-al-foreground"
           [class.!hidden]="animating()"
           size="28"
         />
         <fast-svg
           name="circle-check"
+          aria-hidden="true"
           class="text-al-foreground"
           [class.!hidden]="!animating()"
           size="28"

@@ -1,10 +1,15 @@
-<a
-  [attr.aria-label]="article().title"
-  [routerLink]="['/', article().slug] | alLocalize"
+<article
+  class="h-full rounded-lg bg-cover bg-no-repeat transition-transform hover:scale-105 motion-reduce:transition-none motion-reduce:hover:scale-100"
+  [style.background-image]="
+    'url(' +
+    (article().featuredImageUrl || 'assets/article-placeholder.webp') +
+    ')'
+  "
+  [attr.aria-labelledby]="article().slug"
 >
-  <article
-    class="relative h-full overflow-hidden rounded-lg bg-black bg-cover bg-no-repeat transition-transform hover:scale-105 motion-reduce:transition-none motion-reduce:hover:scale-100"
-    [attr.aria-labelledby]="article().slug"
+  <a
+    [attr.aria-label]="article().title"
+    [routerLink]="['/', article().slug] | alLocalize"
   >
     <img
       alt=""
@@ -31,7 +36,7 @@
           class="flex flex-col items-center justify-end gap-6 gap-y-4 md:flex-row"
         >
           <span class="flex w-full flex-row items-center justify-end gap-2">
-            <fast-svg name="clock" size="16" />
+            <fast-svg name="clock" aria-hidden="true" size="16" />
             <time
               class="text-sm/[14px]"
               [attr.datetime]="'PT' + article().readingTime + 'M'"
@@ -51,5 +56,5 @@
         </p>
       </div>
     </div>
-  </article>
-</a>
+  </a>
+</article>

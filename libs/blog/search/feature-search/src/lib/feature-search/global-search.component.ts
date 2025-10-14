@@ -21,7 +21,12 @@ import { SearchDialogComponent } from './search-dialog';
       [attr.aria-label]="t('open_search_dialog')"
       (click)="service.showSearchDialog()"
     >
-      <fast-svg name="magnifier-glass" class="text-al-pink" size="24" />
+      <fast-svg
+        name="magnifier-glass"
+        aria-hidden="true"
+        class="text-al-pink"
+        size="24"
+      />
     </button>
 
     @defer (when service.isSearchOpen()) {
