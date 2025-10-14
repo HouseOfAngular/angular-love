@@ -17,4 +17,9 @@ export const headerNavItems: NavItem[] = [
     externalLink: true,
     dataTestId: 'navigation-meetups',
   },
+  {
+    translationPath: 'nav.roadmap',
+    link: ['roadmap'],
+    dataTestId: 'navigation-roadmap',
+  },
 ] as const;
