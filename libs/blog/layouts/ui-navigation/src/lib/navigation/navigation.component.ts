@@ -33,7 +33,7 @@ export class NavigationComponent {
 
   protected readonly listClasses = computed(() => {
     if (this.layout() === 'vertical') {
-      return 'flex flex-col justify-between';
+      return 'flex flex-col justify-between text-center';
     }
 
     if (!this.cols()) {
