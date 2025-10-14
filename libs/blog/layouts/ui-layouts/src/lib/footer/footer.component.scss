@@ -23,7 +23,7 @@
   align-items: start;
 }
 
-@media (min-width: 640px) {
+@screen sm {
   .al-container {
     justify-items: stretch;
     grid-template-areas:
