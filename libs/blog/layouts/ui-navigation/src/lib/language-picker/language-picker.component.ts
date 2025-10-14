@@ -16,7 +16,7 @@ import { Lang } from '@angular-love/contracts/articles';
     <div class="flex h-full items-center text-sm">
       <label
         class="text-al-primary-foreground relative block focus-within:text-gray-600"
-        for="language"
+        for="language-picker"
       >
         <span class="sr-only">
           {{ baseTranslationPath + '.select_lang' | transloco }}
@@ -29,7 +29,7 @@ import { Lang } from '@angular-love/contracts/articles';
         />
 
         <select
-          id="language"
+          id="language-picker"
           #selectLang
           class="bg-al-background appearance-none rounded-md px-8 py-1"
           (change)="languageChange.emit(selectLang.value)"
