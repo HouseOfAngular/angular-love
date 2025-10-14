@@ -24,7 +24,9 @@
     <div class="partners-container">
       <div class="mb-5 flex gap-2">
         <h2>{{ t('mainPartner') }}</h2>
-        <img class="ml-4" [ngSrc]="hoaLogoSrc()" width="100" height="30" />
+        <a href="https://houseofangular.io/">
+          <img class="ml-4" [ngSrc]="hoaLogoSrc()" width="100" height="30" />
+        </a>
       </div>
       <al-partners [partnerList]="partnersList" heading="footer.partners" />
     </div>
