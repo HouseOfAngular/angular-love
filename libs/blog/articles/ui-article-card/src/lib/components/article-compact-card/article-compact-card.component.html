@@ -7,19 +7,10 @@
   "
   [attr.aria-labelledby]="article().slug"
 >
-  <a
-    [attr.aria-label]="article().title"
-    [routerLink]="['/', article().slug] | alLocalize"
-  >
-    <img
-      alt=""
-      class="absolute h-auto w-full bg-contain opacity-20"
-      [ngSrc]="article().featuredImageUrl || 'assets/article-placeholder.webp'"
-      [priority]="imagePriority()"
-      width="1215"
-      height="750"
-    />
-    <div class="relative flex h-full flex-col justify-between text-[#fff]">
+  <a [routerLink]="['/', article().slug] | alLocalize">
+    <div
+      class="bg-al-background relative flex h-full flex-col justify-between opacity-85"
+    >
       <div
         class="hover:bg-al-bottom-radial-gradient absolute h-full w-full"
       ></div>
@@ -36,7 +27,7 @@
           class="flex flex-col items-center justify-end gap-6 gap-y-4 md:flex-row"
         >
           <span class="flex w-full flex-row items-center justify-end gap-2">
-            <fast-svg name="clock" aria-hidden="true" size="16" />
+            <fast-svg name="clock" size="16" />
             <time
               class="text-sm/[14px]"
               [attr.datetime]="'PT' + article().readingTime + 'M'"
