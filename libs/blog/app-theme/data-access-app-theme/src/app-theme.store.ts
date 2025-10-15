@@ -21,7 +21,6 @@ export const AppThemeStore = signalStore(
         if (isPlatformBrowser(platformId)) {
           const theme =
             (localStorage.getItem('theme') as Theme) ?? getSystemTheme();
-          ccConsumer.setThemeAttribute(theme);
           patchState(store, { theme: theme });
         }
       },
