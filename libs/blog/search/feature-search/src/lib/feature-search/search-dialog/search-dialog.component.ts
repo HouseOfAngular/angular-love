@@ -44,7 +44,6 @@ import { GlobalSearchService } from '../global-search.service';
     SearchResultItemComponent,
     RouterLink,
     TranslocoDirective,
-    NgClass,
     FastSvgComponent,
     AlLocalizePipe,
   ],

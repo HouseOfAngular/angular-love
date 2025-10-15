@@ -17,7 +17,7 @@ import { FastSvgComponent } from '@push-based/ngx-fast-svg';
       (click)="toggleOpen.emit()"
     >
       @if (isOpened()) {
-        <fast-svg name="cross" />
+        <fast-svg name="cross" aria-hidden="true" />
       } @else {
         <div class="bg-al-primary-foreground h-1 w-full rounded"></div>
         <div class="bg-al-primary-foreground h-1 w-full rounded"></div>

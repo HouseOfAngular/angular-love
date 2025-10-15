@@ -16,7 +16,7 @@
             <input
               aria-required="true"
               type="text"
-              class="bg-al-background text-al-muted border-al-border my-2 h-[60px] w-full flex-grow rounded-md border p-6 text-sm focus:outline-none"
+              class="bg-al-background text-al-muted border-al-border my-2 h-[60px] w-full flex-grow rounded-md border p-6 text-sm"
               [attr.aria-label]="t('namePlaceholder')"
               [placeholder]="t('namePlaceholder')"
               formControlName="name"
@@ -26,7 +26,7 @@
               <input
                 aria-required="true"
                 type="email"
-                class="bg-al-background text-al-muted border-al-border h-[60px] w-full flex-grow rounded-l-md border border-r-0 p-6 text-sm focus:outline-none"
+                class="bg-al-background text-al-muted border-al-border h-[60px] w-full flex-grow rounded-l-md border border-r-0 p-6 text-sm"
                 [attr.aria-label]="t('emailPlaceholder')"
                 [placeholder]="t('emailPlaceholder')"
                 formControlName="email"
@@ -40,7 +40,7 @@
                 (click)="postEmailAddress()"
                 size="small"
               >
-                <fast-svg name="send" size="20" />
+                <fast-svg name="send" aria-hidden="true" size="20" />
               </button>
             </div>
             <div class="mt-2 lg:mt-4">
@@ -73,7 +73,9 @@
                         !form.controls['checkbox'].value
                       )
                     "
-                    (keydown.enter)="
+                    (keydown.space)="
+                      $event.stopPropagation();
+                      $event.preventDefault();
                       form.controls['checkbox'].setValue(
                         !form.controls['checkbox'].value
                       )

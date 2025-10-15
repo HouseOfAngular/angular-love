@@ -38,7 +38,11 @@ export type SocialMediaIconItemUi =
         [href]="href"
         target="_blank"
       >
-        <fast-svg [name]="socialMediaConfig().iconName" size="24" />
+        <fast-svg
+          aria-hidden="true"
+          [name]="socialMediaConfig().iconName"
+          size="24"
+        />
       </a>
     }
   `,

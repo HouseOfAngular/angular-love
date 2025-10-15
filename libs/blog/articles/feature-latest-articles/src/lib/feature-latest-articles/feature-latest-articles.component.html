@@ -1,15 +1,23 @@
 <ng-container *transloco="let t; read: 'homePage'">
-  <section class="flex justify-center gap-3">
+  <div
+    role="tablist"
+    class="flex justify-center gap-3"
+    [attr.aria-label]="t('articleTypes')"
+  >
     @for (category of categories(); track $index) {
       <button
         alPill
+        alFocusableItem
+        [tabindex]="selected().name === category.name ? 0 : -1"
+        role="tab"
         [variant]="category.name === selected().name ? 'flat' : 'outline'"
         (click)="selected.set(category)"
+        (keydown)="onPillKeydown($event)"
       >
         {{ t(category.translationPath) }}
       </button>
     }
-  </section>
+  </div>
 
   <section
     class="mb-6 mt-6 grid grid-cols-1 gap-x-4 gap-y-4 md:grid-cols-2 md:gap-x-8 lg:grid-cols-3 lg:gap-y-8"
@@ -24,16 +32,14 @@
           [imagePriority]="i < 2 ? 1 : null"
           cardType="regular"
         />
+        @if (i === 1) {
+          <ng-container *ngTemplateOutlet="newsletterCard" />
+        }
       }
     } @else {
       <al-article-regular-card-skeleton *alRepeat="take" />
+      <ng-container *ngTemplateOutlet="newsletterCard" />
     }
-    <al-card
-      alGradientCard
-      class="md:max-lg:col-span-2 lg:col-start-3 lg:row-start-1"
-    >
-      <al-newsletter alCardContent />
-    </al-card>
   </section>
 
   <div class="flex justify-center gap-3">
@@ -41,4 +47,13 @@
       {{ t('categories.showAll', { category: t(selected().translationPath) }) }}
     </button>
   </div>
+
+  <ng-template #newsletterCard>
+    <al-card
+      alGradientCard
+      class="md:max-lg:col-span-2 lg:col-start-3 lg:row-start-1"
+    >
+      <al-newsletter alCardContent />
+    </al-card>
+  </ng-template>
 </ng-container>

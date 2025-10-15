@@ -1,9 +1,10 @@
 <div
+  role="dialog"
   class="al-overlay fixed left-0 top-0 z-40 h-screen w-screen bg-black bg-opacity-60"
 >
   <div
     class="bg-al-card relative z-50 m-auto w-full max-w-screen-xl rounded-tl-lg rounded-tr-lg"
-    [ngClass]="adBannerStoreVisible() ? 'top-[168px]' : 'top-[84px]'"
+    [class]="adBannerStoreVisible() ? 'top-[168px]' : 'top-[84px]'"
   >
     <div class="w-full border-b p-4">
       <div
@@ -16,7 +17,7 @@
           [formControl]="searchForm"
         />
         <button class="flex flex-row items-center" (click)="goToAllResults()">
-          <fast-svg name="magnifier-glass" size="24" />
+          <fast-svg name="magnifier-glass" aria-hidden="true" size="24" />
         </button>
       </div>
     </div>

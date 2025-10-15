@@ -10,6 +10,7 @@
     "angularNews": "Wiadomości ze świata Angulara",
     "guides": "Poradniki",
     "angularInDepth": "Angular In Depth",
+    "articleTypes": "Typy artykułów",
     "categories": {
       "all": "Najnowsze",
       "news": "Nowości",
@@ -31,9 +32,11 @@
     "navLinks": "Menu",
     "roadmap": "Roadmap",
     "toggle_theme": "Przełącz motyw",
+    "open_search_dialog": "Otwórz okno wyszukiwania",
     "languagePicker": {
       "pl": "Polski",
-      "en": "Angielski"
+      "en": "Angielski",
+      "select_lang": "Wybierz język"
     }
   },
   "footer": {
@@ -229,6 +232,7 @@
     "changeLangToEnglish": "Zmień język na angielski"
   },
   "socialLinks": {
+    "title": "Media społecznościowe",
     "facebook": "Polub nas na Facebooku",
     "twitter-x": "Obserwuj nas na X (dawniej Twitter)",
     "linkedIn": "Obserwuj nas na LinkedInie",

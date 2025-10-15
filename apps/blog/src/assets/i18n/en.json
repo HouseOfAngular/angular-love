@@ -10,6 +10,7 @@
     "angularNews": "Angular News",
     "guides": "Guides",
     "angularInDepth": "Angular In Depth",
+    "articleTypes": "Article types",
     "categories": {
       "all": "Latest",
       "news": "News",
@@ -31,9 +32,11 @@
     "navLinks": "Navigation links",
     "roadmap": "Roadmap",
     "toggle_theme": "Toggle theme",
+    "open_search_dialog": "Open search dialog",
     "languagePicker": {
       "pl": "Polish",
-      "en": "English"
+      "en": "English",
+      "select_lang": "Select language"
     }
   },
   "footer": {
@@ -226,6 +229,7 @@
     "changeLangToEnglish": "Change language to English"
   },
   "socialLinks": {
+    "title": "Social media",
     "facebook": "Like our Facebook page",
     "twitter-x": "Follow us on X (formerly Twitter)",
     "linkedIn": "Follow us on LinkedIn",

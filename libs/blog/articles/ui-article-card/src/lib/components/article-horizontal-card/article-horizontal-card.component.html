@@ -1,10 +1,13 @@
-<a [routerLink]="['/', article().slug] | alLocalize">
+<a
+  [attr.aria-label]="article().title"
+  [routerLink]="['/', article().slug] | alLocalize"
+>
   <article
     class="light:border group relative flex h-full w-full flex-row rounded-lg shadow-none"
     [attr.aria-labelledby]="article().slug"
   >
     <img
-      alt="Post featured image"
+      alt=""
       class="hidden h-auto w-auto rounded-l-lg bg-contain lg:block"
       [ngSrc]="article().featuredImageUrl || 'assets/article-placeholder.webp'"
       [priority]="imagePriority()"
@@ -27,7 +30,7 @@
           <span class="hidden text-sm/[14px] lg:block">
             {{ article().publishDate | date: 'dd MMM yyyy' }}
           </span>
-          <fast-svg name="clock" size="16" />
+          <fast-svg name="clock" aria-hidden="true" size="16" />
           <time
             class="text-sm/[14px]"
             [attr.datetime]="'PT' + article().readingTime + 'M'"
