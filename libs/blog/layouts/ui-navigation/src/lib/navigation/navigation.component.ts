@@ -26,43 +26,22 @@ export type NavItem = {
   imports: [RouterLink, RouterLinkActive, TranslocoDirective, AlLocalizePipe],
 })
 export class NavigationComponent {
+  readonly navItems = input.required<NavItem[]>();
+  readonly whiteFont = input<boolean>(false);
+  readonly cols = input<number>();
   readonly layout = input<'vertical' | 'horizontal'>('horizontal');
-  showNewsletter = input(true);
 
-  readonly filteredNavItems = computed(() => {
-    return this.navItems.filter(
-      (item) =>
-        item.translationPath !== 'nav.newsletter' || this.showNewsletter(),
-    );
+  protected readonly listClasses = computed(() => {
+    if (this.layout() === 'vertical') {
+      return 'flex flex-col justify-between text-center';
+    }
+
+    if (!this.cols()) {
+      return 'flex flex-wrap justify-center';
+    }
+
+    return `grid gap-2 grid-cols-${this.cols()}`;
   });
 
-  readonly navItems: NavItem[] = [
-    {
-      translationPath: 'nav.about',
-      link: ['about-us'],
-      dataTestId: 'navigation-about-us',
-    },
-    {
-      translationPath: 'nav.meetups',
-      link: ['https://meetup.angular.love/'],
-      externalLink: true,
-      dataTestId: 'navigation-meetups',
-    },
-    {
-      translationPath: 'nav.become_author',
-      link: ['become-author'],
-      dataTestId: 'navigation-become-author',
-    },
-    {
-      translationPath: 'nav.roadmap',
-      link: ['roadmap'],
-      dataTestId: 'navigation-roadmap',
-    },
-    {
-      translationPath: 'nav.newsletter',
-      link: ['newsletter'],
-      dataTestId: 'navigation-newsletter',
-    },
-  ];
   protected navigated = output();
 }

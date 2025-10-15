@@ -33,7 +33,6 @@ import { AuthorCardTemplateComponent } from './author-card-template.component';
     AlLocalizePipe,
   ],
   templateUrl: './author-card.component.html',
-  styleUrl: './author-card.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
   host: {
     'data-testid': 'author-card',
@@ -45,6 +44,8 @@ export class AuthorCardComponent {
 
   clampText = input<boolean>();
   linkable = input<boolean>(false);
+  hideGradient = input<boolean>(false);
+  articleCard = input<boolean>(false);
 
   descriptionClass = computed(
     () => 'text-sm' + (this.clampText() ? ' line-clamp-3' : ''),

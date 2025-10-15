@@ -1,6 +1,6 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-  darkMode: ['class'],
+  darkMode: 'selector',
   theme: {
     extend: {
       translate: {
@@ -8,6 +8,8 @@ module.exports = {
       },
       colors: {
         'al-foreground': 'rgb(var(--foreground) / <alpha-value>)',
+        'al-primary-foreground':
+          'rgb(var(--primary-foreground) / <alpha-value>)',
         'al-card': 'rgb(var(--card) / <alpha-value>)',
         'al-background': 'rgba(var(--background) / <alpha-value>)',
         'al-border': 'rgb(var(--border) / <alpha-value>)',
@@ -27,10 +29,15 @@ module.exports = {
           'rgba(var(--roadmap-label-optional) / <alpha-value>)',
         'al-roadmap-label-comingSoon':
           'rgba(var(--roadmap-label-comingSoon) / <alpha-value>)',
+        'al-grey': 'rgba(var(--grey) / <alpha-value>)',
+        'al-footer-background':
+          'rgba(var(--footer-background) / <alpha-value>)',
       },
       backgroundImage: {
         'al-radial-gradient':
           'radial-gradient(58.54% 100% at 0% 100%, rgba(var(--primary) / 0.2) 0%, transparent)',
+        'al-roadmap-gradient':
+          'radial-gradient(58.54% 100% at 0% 100%, #E8A4B8, #FDEBF0 100%)',
         'al-background-gradient':
           'linear-gradient(180deg, rgba(var(--background) / 1) 0%, rgba(var(--background) / 0.6) 100%)',
         'al-bottom-radial-gradient':
@@ -39,9 +46,17 @@ module.exports = {
       boxShadow: {
         'al-primary': '0 0 0 1px rgba(var(--primary) / <alpha-value>)',
         'al-full-background': '0px 0px 0px 999px rgba(var(--background) / 1)',
-        'al-full-border': '0px 0px 0px 999px rgba(var(--border) / 1)',
+        'al-full-border': '0px 0px 0px 999px rgba(var(--grey) / 1)',
       },
     },
   },
-  plugins: [require('@tailwindcss/container-queries')],
+  plugins: [
+    function ({ addVariant }) {
+      addVariant(
+        'light',
+        '&:where([data-theme="light"], [data-theme="light"] *)',
+      );
+      addVariant('dark', '&:where([data-theme="dark"], [data-theme="dark"] *)');
+    },
+  ],
 };

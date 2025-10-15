@@ -11,7 +11,7 @@ import { RoadmapDialogSubtitleComponent } from '../roadmap-dialog-subtitle/roadm
       <al-roadmap-dialog-subtitle [subtitle]="subtitle()" />
       <ul class="list-disc px-6 pt-4">
         @for (creator of creators(); track creator.name) {
-          <li class="py-1 underline">
+          <li class="text-al-primary-foreground py-1 underline">
             <a [href]="'author/' + creator.slug" target="_blank">
               {{ creator.name }}
             </a>

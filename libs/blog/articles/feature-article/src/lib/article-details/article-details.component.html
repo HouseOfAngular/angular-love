@@ -15,7 +15,7 @@
       />
 
       <div class="flex items-center gap-1">
-        <fast-svg name="clock" size="16" />
+        <fast-svg name="clock" aria-hidden="true" size="16" />
         {{ articleDetails().readingTime }} min
       </div>
     </div>
@@ -53,6 +53,7 @@
   </section>
   <aside class="order-3 col-span-12 lg:col-span-4">
     <al-author-card
+      [articleCard]="true"
       [author]="articleDetails().author"
       [clampText]="true"
       [linkable]="true"

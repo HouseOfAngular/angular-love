@@ -15,18 +15,21 @@ import { Lang } from '@angular-love/contracts/articles';
   template: `
     <div class="flex h-full items-center text-sm">
       <label
-        class="relative block text-gray-400 focus-within:text-gray-600"
-        for="language"
+        class="text-al-primary-foreground relative block focus-within:text-gray-600"
+        for="language-picker"
       >
-        <span class="sr-only">Select language</span>
+        <span class="sr-only">
+          {{ baseTranslationPath + '.select_lang' | transloco }}
+        </span>
         <fast-svg
           name="translate"
+          aria-hidden="true"
           class="text-al-primary pointer-events-none absolute left-0 top-1/2 !block -translate-y-1/2"
           size="20"
         />
 
         <select
-          id="language"
+          id="language-picker"
           #selectLang
           class="bg-al-background appearance-none rounded-md px-8 py-1"
           (change)="languageChange.emit(selectLang.value)"
@@ -40,6 +43,7 @@ import { Lang } from '@angular-love/contracts/articles';
 
         <fast-svg
           name="arrow-down"
+          aria-hidden="true"
           class="pointer-events-none absolute right-0 top-1/2 !block -translate-y-1/2"
           size="20"
         />
@@ -54,8 +58,10 @@ export class LanguagePickerComponent {
 
   readonly languageChange = output<string>();
 
+  readonly baseTranslationPath = 'nav.languagePicker';
+
   readonly availableLangs = [
-    { value: 'pl', translationPath: 'nav.languagePicker.pl' },
-    { value: 'en', translationPath: 'nav.languagePicker.en' },
+    { value: 'pl', translationPath: `${this.baseTranslationPath}.pl` },
+    { value: 'en', translationPath: `${this.baseTranslationPath}.en` },
   ] satisfies { value: Lang; translationPath: string }[];
 }

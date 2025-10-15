@@ -1,37 +1,45 @@
-al-footer-logo {
+.logo-container {
   grid-area: logo;
+  display: flex;
+  flex-direction: column;
 }
 
-al-navigation {
+.navigation-component {
   grid-area: nav;
 }
 
-.social-media-container {
-  grid-area: social;
-}
-
-.copyright {
-  grid-area: copyright;
+.partners-container {
+  grid-area: partners;
 }
 
 .al-container {
+  justify-items: center;
+  row-gap: 1rem;
   grid-template-areas:
-    'logo social'
-    'nav nav'
-    'copyright copyright';
+    'logo'
+    'partners'
+    'nav';
+
+  align-items: start;
 }
 
-@screen md {
+@screen sm {
   .al-container {
+    justify-items: stretch;
     grid-template-areas:
-      'logo nav'
-      'social social'
-      'copyright copyright';
+      'logo partners'
+      'nav nav';
+  }
+
+  .logo-container {
+    justify-self: center;
   }
 }
 
 @screen xl {
   .al-container {
-    grid-template-areas: 'logo nav social';
+    grid-template-areas: 'logo nav partners';
+    grid-template-columns: auto 1fr auto;
+    justify-items: center;
   }
 }

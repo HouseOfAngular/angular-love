@@ -22,12 +22,6 @@ export const partnersList: Partner[] = [
     title: 'Turso',
   },
   {
-    asset_URL: 'assets/angular-js.png',
-    alt: 'Ng Poland Conference Logo',
-    link_URL: 'https://ng-poland.pl/',
-    title: 'Ng Poland',
-  },
-  {
     asset_URL: 'assets/angular-community.png',
     alt: 'Angular Community Logo',
     link_URL: 'https://angularcommunity.net/',

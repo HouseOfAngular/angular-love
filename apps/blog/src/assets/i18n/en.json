@@ -9,9 +9,8 @@
     "recommended": "Recommended Articles",
     "angularNews": "Angular News",
     "guides": "Guides",
-    "partners": "Community partners",
-    "mainPartner": "Main partner",
     "angularInDepth": "Angular In Depth",
+    "articleTypes": "Article types",
     "categories": {
       "all": "Latest",
       "news": "News",
@@ -24,14 +23,26 @@
     "home": "Home Page",
     "about": "About us",
     "meetups": "Angular Meetups",
+    "guides": "Angular Guides",
+    "news": "Angular News",
+    "in_depth": "In-Depth articles",
+    "partnership": "Let's discuss partnership",
     "become_author": "Become an author",
     "newsletter": "Angular.letter",
     "navLinks": "Navigation links",
     "roadmap": "Roadmap",
+    "toggle_theme": "Toggle theme",
+    "open_search_dialog": "Open search dialog",
     "languagePicker": {
       "pl": "Polish",
-      "en": "English"
+      "en": "English",
+      "select_lang": "Select language"
     }
+  },
+  "footer": {
+    "mainPartner": "Main partner",
+    "partners": "Community partners",
+    "al-description": "This is the place where you can learn Angular, discover best practices, and stay updated with the latest news and trends"
   },
   "authorPage": {
     "posted_by": "Posted by {{name}}"
@@ -203,6 +214,7 @@
     "registerButtonShortened": "Download"
   },
   "search": {
+    "title": "Search articles",
     "no-matches": "No recent matches",
     "results": "{{total}} results"
   },
@@ -218,6 +230,7 @@
     "changeLangToEnglish": "Change language to English"
   },
   "socialLinks": {
+    "title": "Social media",
     "facebook": "Like our Facebook page",
     "twitter-x": "Follow us on X (formerly Twitter)",
     "linkedIn": "Follow us on LinkedIn",

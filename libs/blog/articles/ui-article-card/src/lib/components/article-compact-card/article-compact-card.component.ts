@@ -14,4 +14,5 @@ import { AvatarComponent } from '@angular-love/blog/shared/ui-avatar';
 })
 export class ArticleCompactCardComponent {
   readonly article = input.required<ArticleCard>();
+  readonly imagePriority = input<number | null>(null);
 }

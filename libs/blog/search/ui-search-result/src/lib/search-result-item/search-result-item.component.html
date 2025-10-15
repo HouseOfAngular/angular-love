@@ -15,8 +15,13 @@
     </div>
 
     <div class="flex items-center gap-4">
-      <time class="mr-4">{{ item.publishDate | date: 'dd MMM yyyy' }}</time>
-      <fast-svg name="clock" size="16" />
+      <time
+        class="mr-4"
+        [attr.datetime]="item.publishDate | date: 'yyyy-MM-dd'"
+      >
+        {{ item.publishDate | date: 'dd MMM yyyy' }}
+      </time>
+      <fast-svg name="clock" aria-hidden="true" size="16" />
       <span>{{ item.readingTime }} min</span>
     </div>
   </article>

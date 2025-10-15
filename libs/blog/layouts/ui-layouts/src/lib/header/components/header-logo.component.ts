@@ -1,21 +1,22 @@
 import { NgOptimizedImage } from '@angular/common';
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { RouterLink } from '@angular/router';
+import { TranslocoDirective } from '@jsverse/transloco';
 
 import { AlLocalizePipe } from '@angular-love/blog/i18n/util';
 
 @Component({
-  standalone: true,
   selector: 'al-header-logo',
   template: `
     <a
+      *transloco="let t; read: 'nav'"
       data-testid="header-home"
-      aria-label="Home"
       class="flex items-center gap-2"
+      [attr.aria-label]="t('home')"
       [routerLink]="'/' | alLocalize"
     >
       <img
-        alt="Angular Love logo"
+        alt=""
         class="inline-block"
         height="40"
         width="36"
@@ -26,6 +27,6 @@ import { AlLocalizePipe } from '@angular-love/blog/i18n/util';
     </a>
   `,
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [AlLocalizePipe, NgOptimizedImage, RouterLink],
+  imports: [AlLocalizePipe, NgOptimizedImage, RouterLink, TranslocoDirective],
 })
 export class HeaderLogoComponent {}

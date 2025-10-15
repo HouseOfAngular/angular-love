@@ -1,13 +1,13 @@
-<a [routerLink]="['/', article().slug] | alLocalize">
-  <article
-    class="h-full rounded-lg bg-cover bg-no-repeat transition-transform hover:scale-105 motion-reduce:transition-none motion-reduce:hover:scale-100"
-    [style.background-image]="
-      'url(' +
-      (article().featuredImageUrl || 'assets/article-placeholder.webp') +
-      ')'
-    "
-    [attr.aria-labelledby]="article().slug"
-  >
+<article
+  class="h-full rounded-lg bg-cover bg-no-repeat transition-transform hover:scale-105 motion-reduce:transition-none motion-reduce:hover:scale-100"
+  [style.background-image]="
+    'url(' +
+    (article().featuredImageUrl || 'assets/article-placeholder.webp') +
+    ')'
+  "
+  [attr.aria-labelledby]="article().slug"
+>
+  <a [routerLink]="['/', article().slug] | alLocalize">
     <div
       class="bg-al-background relative flex h-full flex-col justify-between opacity-85"
     >
@@ -47,5 +47,5 @@
         </p>
       </div>
     </div>
-  </article>
-</a>
+  </a>
+</article>

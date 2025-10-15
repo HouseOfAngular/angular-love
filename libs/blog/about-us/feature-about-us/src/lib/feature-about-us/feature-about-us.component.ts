@@ -16,6 +16,7 @@ import {
 } from '@angular-love/blog/shared/ui-card';
 import { InfiniteScrollTriggerDirective } from '@angular-love/blog/shared/ui-pagination';
 import { SocialMediaIconsComponent } from '@angular-love/blog/shared/ui-social-media-icons';
+import { AppThemeStore } from '@angular-love/data-access-app-theme';
 
 @Component({
   selector: 'al-about-us',
@@ -40,6 +41,12 @@ export class FeatureAboutUsComponent implements OnInit {
   noAuthorsInView = computed(() => {
     return this.authorsCards()?.length || 0;
   });
+
+  private readonly _theme = inject(AppThemeStore).theme;
+
+  readonly hideGradientInAuthorCards = computed(
+    () => this._theme() === 'light',
+  );
 
   private readonly _skip = this._authorListStore.skip;
   private readonly _total = this._authorListStore.total;

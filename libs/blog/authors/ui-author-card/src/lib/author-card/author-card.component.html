@@ -1,5 +1,8 @@
 <article [attr.aria-labelledby]="'author-title-' + author().slug">
-  <al-author-card-template>
+  <al-author-card-template
+    [articleCard]="articleCard()"
+    [hideGradient]="hideGradient()"
+  >
     <ng-container author-info-card>
       @if (linkable()) {
         <a [routerLink]="['/', 'author', author().slug] | alLocalize">
@@ -42,7 +45,7 @@
     <div class="flex flex-col items-center gap-4">
       <al-avatar [imageSrc]="author().avatarUrl" size="96" />
       <span
-        class="line-clamp-2 font-bold leading-none"
+        class="text-al-foreground line-clamp-2 font-bold leading-none"
         [id]="'author-title-' + author().slug"
       >
         {{ author().name }}

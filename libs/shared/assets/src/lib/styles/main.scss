@@ -5,9 +5,10 @@
 @tailwind utilities;
 
 @layer base {
-  :root {
+  :root[data-theme='dark'] {
     --primary: 255 0 106;
     --foreground: 255 255 255;
+    --primary-foreground: 255 255 255;
     --muted: 190 196 202;
     --border: 46 47 59;
     --card: 25 26 34;
@@ -19,6 +20,27 @@
     --roadmap-hover-secondary: 255 0 106;
     --roadmap-label-optional: 199 151 1;
     --roadmap-label-comingSoon: 0 139 56;
+    --grey: 46 47 59;
+    --footer-background: 25 26 34;
+  }
+
+  :root[data-theme='light'] {
+    --primary: 213 1 89;
+    --foreground: 20 21 27;
+    --primary-foreground: 0 0 0;
+    --muted: 25 25 25;
+    --border: 229 231 235;
+    --card: 255 255 255;
+    --background: 255 255 255;
+    --grey: 241 241 241;
+    --roadmap-primary: 179 0 74;
+    --roadmap-secondary: 230 3 101;
+    --roadmap-accent: 144 23 238;
+    --roadmap-hover-primary: 146 60 255;
+    --roadmap-hover-secondary: 255 0 106;
+    --roadmap-label-optional: 25 26 34;
+    --roadmap-label-comingSoon: 25 26 34;
+    --footer-background: 245 245 244;
   }
 }
 
@@ -74,8 +96,8 @@ html {
   }
 }
 
-@layer components {
+@layer base {
   .al-link {
-    @apply text-blue-400 hover:underline;
+    @apply text-red-500 hover:underline dark:text-blue-400;
   }
 }

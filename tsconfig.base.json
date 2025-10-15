@@ -225,6 +225,9 @@
         "libs/shared/utils-signal-store/src/index.ts"
       ],
       "@angular-love/storybook": ["libs/shared/storybook/src/index.ts"],
+      "@angular-love/ui-focusable": [
+        "libs/blog/shared/ui-focusable/src/index.ts"
+      ],
       "@angular-love/ui-tooltip": ["libs/blog/shared/ui-tooltip/src/index.ts"],
       "@angular-love/util-wp": ["libs/blog-bff/shared/util-wp/src/index.ts"],
       "@angular-love/utils": ["libs/utils/src/index.ts"]
