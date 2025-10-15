@@ -9,9 +9,8 @@
     "recommended": "Polecane Artykuły",
     "angularNews": "Wiadomości ze świata Angulara",
     "guides": "Poradniki",
-    "partners": "Community partnerzy",
-    "mainPartner": "Główny partner",
     "angularInDepth": "Angular In Depth",
+    "articleTypes": "Typy artykułów",
     "categories": {
       "all": "Najnowsze",
       "news": "Nowości",
@@ -24,15 +23,26 @@
     "home": "Strona Główna",
     "about": "O nas",
     "meetups": "Angular Meetups",
+    "guides": "Angular Guides",
+    "news": "Angular News",
+    "in_depth": "Artykuły In-Depth",
+    "partnership": "Porozmawiajmy o partnerstwie",
     "become_author": "Zostań autorem",
     "newsletter": "Angular.letter",
     "navLinks": "Menu",
     "roadmap": "Roadmap",
     "toggle_theme": "Przełącz motyw",
+    "open_search_dialog": "Otwórz okno wyszukiwania",
     "languagePicker": {
       "pl": "Polski",
-      "en": "Angielski"
+      "en": "Angielski",
+      "select_lang": "Wybierz język"
     }
+  },
+  "footer": {
+    "partners": "Community partnerzy",
+    "mainPartner": "Główny partner",
+    "al-description": "To jest miejsce, w którym możesz nauczyć się Angulara, odkrywać najlepsze praktyki i być na bieżąco z najnowszymi wiadomościami i trendami"
   },
   "home": {
     "latest": "Latest articles"
@@ -222,6 +232,7 @@
     "changeLangToEnglish": "Zmień język na angielski"
   },
   "socialLinks": {
+    "title": "Media społecznościowe",
     "facebook": "Polub nas na Facebooku",
     "twitter-x": "Obserwuj nas na X (dawniej Twitter)",
     "linkedIn": "Obserwuj nas na LinkedInie",

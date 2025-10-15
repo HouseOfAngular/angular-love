@@ -1,17 +1,16 @@
-<a [routerLink]="['/', article().slug] | alLocalize">
-  <article
-    class="relative h-full overflow-hidden rounded-lg bg-black bg-cover bg-no-repeat transition-transform hover:scale-105 motion-reduce:transition-none motion-reduce:hover:scale-100"
-    [attr.aria-labelledby]="article().slug"
-  >
-    <img
-      alt=""
-      class="absolute h-auto w-full bg-contain opacity-20"
-      [ngSrc]="article().featuredImageUrl || 'assets/article-placeholder.webp'"
-      [priority]="imagePriority()"
-      width="1215"
-      height="750"
-    />
-    <div class="relative flex h-full flex-col justify-between text-[#fff]">
+<article
+  class="h-full rounded-lg bg-cover bg-no-repeat transition-transform hover:scale-105 motion-reduce:transition-none motion-reduce:hover:scale-100"
+  [style.background-image]="
+    'url(' +
+    (article().featuredImageUrl || 'assets/article-placeholder.webp') +
+    ')'
+  "
+  [attr.aria-labelledby]="article().slug"
+>
+  <a [routerLink]="['/', article().slug] | alLocalize">
+    <div
+      class="bg-al-background relative flex h-full flex-col justify-between opacity-85"
+    >
       <div
         class="hover:bg-al-bottom-radial-gradient absolute h-full w-full"
       ></div>
@@ -48,5 +47,5 @@
         </p>
       </div>
     </div>
-  </article>
-</a>
+  </a>
+</article>

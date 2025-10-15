@@ -1,4 +1,8 @@
-<ul aria-label="Social media" class="flex items-center justify-center">
+<ul
+  *transloco="let t; read: 'socialLinks'"
+  class="flex items-center justify-center"
+  [attr.aria-label]="t('title')"
+>
   @for (social of socials; track $index) {
     <li>
       <al-social-media-icon-item

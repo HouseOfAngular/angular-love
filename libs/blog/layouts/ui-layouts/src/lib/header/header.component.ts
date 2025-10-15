@@ -19,9 +19,9 @@ import {
   HeaderLogoComponent,
   HeaderMobileMenuComponent,
 } from './components';
+import { headerNavItems } from './header-nav-items';
 
 @Component({
-  standalone: true,
   selector: 'al-header',
   template: `
     <header
@@ -33,7 +33,7 @@ import {
       >
         <al-header-logo />
 
-        <al-navigation class="hidden lg:block" [showNewsletter]="false" />
+        <al-navigation class="hidden lg:block" [navItems]="navItems" />
 
         <div class="flex flex-row items-center">
           <al-language-picker
@@ -84,6 +84,8 @@ import {
   ],
 })
 export class HeaderComponent {
+  readonly navItems = headerNavItems;
+
   readonly language = input.required<string>();
   readonly theme = input.required<'light' | 'dark'>();
 

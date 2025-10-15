@@ -25,6 +25,7 @@ type ShareItem = {
               target="_blank"
             >
               <fast-svg
+                aria-hidden="true"
                 class="text-al-foreground"
                 [name]="item.icon"
                 size="30"
