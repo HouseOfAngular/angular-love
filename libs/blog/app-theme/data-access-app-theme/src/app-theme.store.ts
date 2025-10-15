@@ -17,6 +17,13 @@ export const AppThemeStore = signalStore(
       platformId = inject(PLATFORM_ID),
       ccConsumer = inject(CCAppThemeConsumer),
     ) => ({
+      syncWithSystemTheme: () => {
+        if (isPlatformBrowser(platformId)) {
+          const theme =
+            (localStorage.getItem('theme') as Theme) ?? getSystemTheme();
+          patchState(store, { theme: theme });
+        }
+      },
       toggleTheme: () => {
         if (isPlatformBrowser(platformId)) {
           const newTheme = store.theme() === 'dark' ? 'light' : 'dark';
@@ -28,6 +35,11 @@ export const AppThemeStore = signalStore(
     }),
   ),
 );
+
+function getSystemTheme(): Theme {
+  // Hardcoded to 'dark' for now, as per decision.
+  return 'dark';
+}
 
 /* todo: create consumer interface and decouple AppThemeStore from CCAppThemeConsumer*/
 @Injectable({ providedIn: 'root' })

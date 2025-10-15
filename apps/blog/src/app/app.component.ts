@@ -16,6 +16,7 @@ export class AppComponent {
 
   constructor(viewport: ViewportScroller) {
     viewport.setOffset([0, 80]);
+    this._appThemeStore.syncWithSystemTheme();
 
     // Our fonts are self-hosted.
     // https://fonts.google.com/knowledge/using_type/self_hosting_web_fonts
