@@ -1,4 +1,3 @@
-import { NgClass } from '@angular/common';
 import {
   ChangeDetectionStrategy,
   Component,
@@ -18,8 +17,8 @@ import { headerNavItems } from '../header-nav-items';
   template: `
     <div
       class="bg-al-background fixed -top-[100%] left-0 z-40 flex h-full w-full flex-row items-center justify-center transition-transform duration-300 lg:hidden"
-      [ngClass]="{ 'translate-y-[100%]': isOpened() }"
-      [attr.aria-hidden]="isOpened()"
+      [inert]="!isOpened()"
+      [class.translate-y-[100%]]="isOpened()"
     >
       <al-navigation
         class="mobile-menu__navigation"
@@ -38,7 +37,7 @@ import { headerNavItems } from '../header-nav-items';
   `,
   styleUrl: './header-mobile-menu.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [NavigationComponent, NgClass, LanguagePickerComponent],
+  imports: [NavigationComponent, LanguagePickerComponent],
 })
 export class HeaderMobileMenuComponent {
   readonly navItems = headerNavItems;

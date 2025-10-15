@@ -10,6 +10,7 @@
         alFocusableItem
         [tabindex]="selected().name === category.name ? 0 : -1"
         role="tab"
+        [attr.aria-selected]="selected().name === category.name"
         [variant]="category.name === selected().name ? 'flat' : 'outline'"
         (click)="selected.set(category)"
         (keydown)="onPillKeydown($event)"

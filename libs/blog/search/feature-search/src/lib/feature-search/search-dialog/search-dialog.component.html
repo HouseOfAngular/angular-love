@@ -1,6 +1,9 @@
 <div
+  *transloco="let t; read: 'search'"
+  aria-modal="true"
   role="dialog"
   class="al-overlay fixed left-0 top-0 z-40 h-screen w-screen bg-black bg-opacity-60"
+  [attr.aria-label]="t('title')"
 >
   <div
     class="bg-al-card relative z-50 m-auto w-full max-w-screen-xl rounded-tl-lg rounded-tr-lg"
@@ -21,7 +24,7 @@
         </button>
       </div>
     </div>
-    <div *transloco="let t; read: 'search'" class="p-4">
+    <div class="p-4">
       @if (!searchStore.total()) {
         <div class="flex items-center justify-center p-4">
           <p>{{ t('no-matches') }}</p>

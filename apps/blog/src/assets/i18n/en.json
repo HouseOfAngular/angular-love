@@ -214,6 +214,7 @@
     "registerButtonShortened": "Download"
   },
   "search": {
+    "title": "Search articles",
     "no-matches": "No recent matches",
     "results": "{{total}} results"
   },
