@@ -25,6 +25,8 @@ import {
 } from '@angular-love/blog/shared/ad-banner';
 import { AppThemeStore } from '@angular-love/data-access-app-theme';
 
+const FOOTERLESS_ROUTES = ['roadmap'];
+
 @Component({
   selector: 'al-root-shell',
   template: `
@@ -55,7 +57,9 @@ import { AppThemeStore } from '@angular-love/data-access-app-theme';
       }
       <router-outlet />
     </al-layout>
-    <al-footer class="mt-auto block" [theme]="theme()" />
+    @if (!hideFooter()) {
+      <al-footer class="mt-auto block" [theme]="theme()" />
+    }
   `,
   imports: [
     RouterOutlet,
@@ -110,6 +114,14 @@ export class RootShellComponent {
       filter(Boolean),
       switchMap((route) => route?.data),
       map((data) => data?.['layoutConfig'] as LayoutConfig | undefined),
+    ),
+  );
+
+  readonly hideFooter = toSignal(
+    this._router.events.pipe(
+      filter((event) => event instanceof NavigationEnd),
+      map(() => this._router.url.split('/').filter(Boolean).pop() ?? ''),
+      map((lastSegment) => FOOTERLESS_ROUTES.includes(lastSegment)),
     ),
   );
 
