@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html class="cc-darkmode" data-theme="dark" lang="en">
   <head>
     <meta charset="utf-8" />
     <title>Angular.love</title>
@@ -398,23 +398,6 @@
           U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
       }
     </style>
-    <!-- Theme initialization script - MUST run before any content renders -->
-    <script>
-      (function () {
-        try {
-          const savedTheme = localStorage.getItem('theme') || 'dark';
-          document.documentElement.setAttribute('data-theme', savedTheme);
-          if (savedTheme === 'dark') {
-            document.documentElement.classList.add('cc--darkmode');
-          }
-        } catch {
-          // localStorage unavailable (Safari private mode, disabled storage, etc.)
-          // Fall back to default theme
-          document.documentElement.setAttribute('data-theme', 'dark');
-          document.documentElement.classList.add('cc--darkmode');
-        }
-      })();
-    </script>
   </head>
   <body>
     <al-root></al-root>

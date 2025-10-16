@@ -1,5 +1,4 @@
-import { LiveAnnouncer } from '@angular/cdk/a11y';
-import { NgClass } from '@angular/common';
+import { CdkTrapFocus, LiveAnnouncer } from '@angular/cdk/a11y';
 import {
   ChangeDetectionStrategy,
   Component,
@@ -46,6 +45,7 @@ import { GlobalSearchService } from '../global-search.service';
     TranslocoDirective,
     FastSvgComponent,
     AlLocalizePipe,
+    CdkTrapFocus,
   ],
   templateUrl: './search-dialog.component.html',
   styleUrl: './search-dialog.component.scss',
@@ -61,8 +61,6 @@ export class SearchDialogComponent implements OnInit, OnDestroy {
   protected readonly adBannerStoreVisible = signal(false);
 
   private readonly _searchService = inject(GlobalSearchService);
-  private readonly _searchInput =
-    viewChild.required<ElementRef<HTMLInputElement>>('searchInput');
   private readonly _router = inject(Router);
   private readonly _destroyRef = inject(DestroyRef);
   private readonly _localizeService = inject(AlLocalizeService);
@@ -110,7 +108,6 @@ export class SearchDialogComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.listenToRouteChanges();
 
-    this._searchInput().nativeElement.focus();
     document.body.style.overflow = 'hidden';
 
     const value$ = this.searchForm.valueChanges.pipe(

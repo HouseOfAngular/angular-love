@@ -4,6 +4,8 @@
   role="dialog"
   class="al-overlay fixed left-0 top-0 z-40 h-screen w-screen bg-black bg-opacity-60"
   [attr.aria-label]="t('title')"
+  [cdkTrapFocusAutoCapture]="true"
+  cdkTrapFocus
 >
   <div
     class="bg-al-card relative z-50 m-auto w-full max-w-screen-xl rounded-tl-lg rounded-tr-lg"
@@ -14,10 +16,10 @@
         class="border-al-pink flex w-full flex-row items-center rounded border p-4"
       >
         <input
-          #searchInput
           type="text"
           class="h-full w-full border-none bg-transparent text-sm outline-none"
           [formControl]="searchForm"
+          cdkFocusInitial
         />
         <button class="flex flex-row items-center" (click)="goToAllResults()">
           <fast-svg name="magnifier-glass" aria-hidden="true" size="24" />
