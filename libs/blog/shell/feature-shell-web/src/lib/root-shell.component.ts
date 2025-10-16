@@ -120,8 +120,10 @@ export class RootShellComponent {
   readonly hideFooter = toSignal(
     this._router.events.pipe(
       filter((event) => event instanceof NavigationEnd),
-      map(() => this._router.url.split('/').filter(Boolean).pop() ?? ''),
-      map((lastSegment) => FOOTERLESS_ROUTES.includes(lastSegment)),
+      map(() => this._router.url),
+      map((url) =>
+        FOOTERLESS_ROUTES.some((route) => url.includes(`/${route}`)),
+      ),
     ),
   );
 
