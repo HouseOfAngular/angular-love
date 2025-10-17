@@ -22,6 +22,7 @@ export const AppThemeStore = signalStore(
           const theme =
             (localStorage.getItem('theme') as Theme) ?? getSystemTheme();
           patchState(store, { theme: theme });
+          ccConsumer.setThemeAttribute(theme);
         }
       },
       toggleTheme: () => {

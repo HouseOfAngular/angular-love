@@ -61,7 +61,7 @@ export class LanguagePickerComponent {
   readonly baseTranslationPath = 'nav.languagePicker';
 
   readonly availableLangs = [
-    { value: 'pl', translationPath: `${this.baseTranslationPath}.pl` },
     { value: 'en', translationPath: `${this.baseTranslationPath}.en` },
+    { value: 'pl', translationPath: `${this.baseTranslationPath}.pl` },
   ] satisfies { value: Lang; translationPath: string }[];
 }
