@@ -63,7 +63,7 @@ export class FooterComponent {
     },
     {
       translationPath: 'nav.about',
-      link: ['about'],
+      link: ['about-us'],
       dataTestId: 'navigation-about',
     },
     {
