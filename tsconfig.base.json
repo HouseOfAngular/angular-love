@@ -36,6 +36,9 @@
       "@angular-love/blog-bff/shared/util-middleware": [
         "libs/blog-bff/shared/util-middleware/src/index.ts"
       ],
+      "@angular-love/blog-contracts/presentations": [
+        "libs/blog-contracts/presentations/src/index.ts"
+      ],
       "@angular-love/blog-contracts/shared": [
         "libs/blog-contracts/shared/src/index.ts"
       ],
@@ -94,11 +97,11 @@
       "@angular-love/blog/contracts/banners": [
         "libs/blog-contracts/banners/src/index.ts"
       ],
+      "@angular-love/blog/contracts/presentations": [
+        "libs/blog-contracts/presentations/src/index.ts"
+      ],
       "@angular-love/blog/contracts/roadmap": [
         "libs/blog-contracts/roadmap/src/index.ts"
-      ],
-      "@angular-love/blog/contracts/videos": [
-        "libs/blog-contracts/videos/src/index.ts"
       ],
       "@angular-love/blog/feature-writing-rules": [
         "libs/blog/writing-rules/feature-writing-rules/src/index.ts"
@@ -124,6 +127,15 @@
       ],
       "@angular-love/blog/partners/ui-partners": [
         "libs/blog/partners/ui-partners/src/index.ts"
+      ],
+      "@angular-love/blog/presentations/data-access": [
+        "libs/blog/presentations/data-access/src/index.ts"
+      ],
+      "@angular-love/blog/presentations/presentations-page": [
+        "libs/blog/presentations/presentations-page/src/index.ts"
+      ],
+      "@angular-love/blog/presentations/ui-presentation-card": [
+        "libs/blog/presentations/ui-presentation-card/src/index.ts"
       ],
       "@angular-love/blog/roadmap/feature-roadmap": [
         "libs/blog/roadmap/feature-roadmap/src/index.ts"
@@ -187,15 +199,6 @@
       ],
       "@angular-love/blog/tracking/feature": [
         "libs/blog/tracking/feature/src/index.ts"
-      ],
-      "@angular-love/blog/videos/data-access": [
-        "libs/blog/videos/data-access/src/index.ts"
-      ],
-      "@angular-love/blog/videos/feature-list": [
-        "libs/blog/videos/feature-list/src/index.ts"
-      ],
-      "@angular-love/blog/videos/ui-video-card": [
-        "libs/blog/videos/ui-video-card/src/index.ts"
       ],
       "@angular-love/contracts/articles": [
         "libs/blog-contracts/articles/src/index.ts"
