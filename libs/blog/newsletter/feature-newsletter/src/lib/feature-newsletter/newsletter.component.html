@@ -68,11 +68,6 @@
                     class="border-al-muted mr-2 mt-1 flex aspect-square h-[14px] items-center justify-center rounded border"
                     [attr.aria-label]="t('label')"
                     [attr.aria-checked]="form.controls.checkbox.value"
-                    (click)="
-                      form.controls['checkbox'].setValue(
-                        !form.controls['checkbox'].value
-                      )
-                    "
                     (keydown.space)="
                       $event.stopPropagation();
                       $event.preventDefault();
