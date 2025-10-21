@@ -41,7 +41,9 @@ export class NewsletterClient {
 
     if (!res.ok) {
       const errorBody = await res.json();
-      throw new Error(errorBody);
+      const error = new Error(errorBody.message || 'API request failed');
+      Object.assign(error, errorBody);
+      throw error;
     }
 
     if (res.status === 204) {

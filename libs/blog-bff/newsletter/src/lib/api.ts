@@ -12,6 +12,7 @@ import { NewsletterClient } from './newsletter-client';
 type NewsletterBindings = {
   BREVO_API_KEY: string;
   BREVO_API_URL: string;
+  IS_PROD?: string;
 };
 
 const app = new Hono<{
@@ -84,18 +85,20 @@ app.post('/subscribe', async (c) => {
           smsBlacklisted: false,
           listIds,
         });
+      } else {
+        throw err;
       }
     }
 
     return c.json({ success: true }, 200);
   } catch (e) {
     if (e instanceof v.ValiError) {
-      return c.json('Email validation error', 400);
+      return c.json({ error: 'Email validation error' }, 400);
     }
     if (e instanceof HTTPException) {
-      return c.json('Post method fail', 400);
+      return c.json({ error: 'Post method fail' }, 400);
     }
-    return c.json('Unknown error', 400);
+    return c.json({ error: 'Unknown error' }, 400);
   }
 });
 
