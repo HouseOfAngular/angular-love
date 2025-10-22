@@ -1,0 +1,50 @@
+<section
+  *transloco="let t; read: 'presentations'"
+  aria-labelledby="presentation-details-page-title"
+  class="py-8"
+>
+  @if (presentation(); as presentation) {
+    <img
+      alt=""
+      class="m-auto mb-4 h-auto w-full object-cover md:w-1/3"
+      ngSrc="assets/article-placeholder.webp"
+      width="405"
+      height="250"
+      priority
+    />
+
+    <div class="mb-4 text-center">
+      <h1 id="presentation-details-page-title">{{ presentation.title }}</h1>
+      <div>{{ presentation.eventName }}</div>
+      <div>{{ t('authoredBy', { author: presentation.author.name }) }}</div>
+    </div>
+    <a
+      al-button
+      role="link"
+      class="mx-auto mb-16 !block max-w-fit"
+      routerLink="#"
+      size="medium"
+    >
+      {{ 'Watch recording' }}
+    </a>
+    <al-ebook class="mb-8 block" />
+    <div class="bg-al-footer-background mb-16 p-8 text-center">
+      <h2 class="mb-4 text-2xl">{{ t('workshopsTitle') }}</h2>
+      <p class="mx-auto mb-8 max-w-prose">
+        {{ t('workshopsDescription') }}
+      </p>
+      <a
+        al-button
+        role="link"
+        class="mx-auto !block max-w-fit"
+        routerLink="#"
+        size="medium"
+      >
+        {{ t('workshopsButton') }}
+      </a>
+    </div>
+    <al-newsletter />
+  } @else {
+    Something went wrong...
+  }
+</section>

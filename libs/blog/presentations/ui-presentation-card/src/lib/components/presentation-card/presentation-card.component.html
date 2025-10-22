@@ -4,7 +4,7 @@
 >
   <a
     [attr.aria-label]="presentation().title"
-    [routerLink]="['/', presentation().slug] | alLocalize"
+    [routerLink]="['/', 'presentation', presentation().slug] | alLocalize"
   >
     <div
       class="md:group-hover:bg-al-bottom-radial-gradient absolute bottom-0 z-0 h-1/2 w-full opacity-50"

@@ -1,5 +1,9 @@
-<h2 id="presentations-page-title" class="mb-8 text-4xl font-bold">
-  {{ title() }}
+<h2
+  id="presentations-page-title"
+  *transloco="let t; read: 'presentations'"
+  class="mb-8 text-4xl font-bold"
+>
+  {{ t('listTitle') }}
 </h2>
 
 <section
@@ -21,31 +25,7 @@
     />
   }
 </section>
-<al-card alGradientCard>
-  <section alCardContent class="presentations-page__ebook">
-    <img ngSrc="assets/al-ebook.png" priority width="300" height="200" />
-    <div class="grid gap-2">
-      <h3 class="text-al-primary-foreground font-bold">FREE EBOOK</h3>
-      <div class="mb-2">
-        The Angular Evolution Guide: ng20 + Summary for CTOs
-      </div>
-      <p class="presentations-page__ebook-description">
-        Download to discover how the latest Angular version improves
-        performance, DX, UX and overall app efficiency, and how it affects your
-        business.
-      </p>
-      <a
-        al-button
-        role="link"
-        class="justify-self-center md:justify-self-start"
-        routerLink="#"
-        size="medium"
-      >
-        {{ 'Download now' }}
-      </a>
-    </div>
-  </section>
-</al-card>
+<al-ebook />
 
 <footer class="bg-al-card mt-16 rounded-lg border px-1 py-5">
   <al-pagination

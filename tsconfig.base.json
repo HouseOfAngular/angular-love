@@ -131,6 +131,9 @@
       "@angular-love/blog/presentations/data-access": [
         "libs/blog/presentations/data-access/src/index.ts"
       ],
+      "@angular-love/blog/presentations/presentation-details-page": [
+        "libs/blog/presentations/presentation-details-page/src/index.ts"
+      ],
       "@angular-love/blog/presentations/presentations-page": [
         "libs/blog/presentations/presentations-page/src/index.ts"
       ],
@@ -175,6 +178,9 @@
       ],
       "@angular-love/blog/shared/ui-dynamic-text-clamp": [
         "libs/blog/shared/ui-dynamic-text-clamp/src/index.ts"
+      ],
+      "@angular-love/blog/shared/ui-ebook": [
+        "libs/blog/shared/ui-ebook/src/index.ts"
       ],
       "@angular-love/blog/shared/ui-icon": [
         "libs/blog/shared/ui-icon/src/index.ts"

@@ -1,4 +1,4 @@
-import { isPlatformBrowser, NgOptimizedImage } from '@angular/common';
+import { isPlatformBrowser } from '@angular/common';
 import {
   ChangeDetectionStrategy,
   Component,
@@ -8,18 +8,14 @@ import {
   PLATFORM_ID,
   signal,
 } from '@angular/core';
-import { RouterLink } from '@angular/router';
+import { TranslocoDirective } from '@jsverse/transloco';
 
 import { PresentationsListStore } from '@angular-love/blog/presentations/data-access';
 import {
   PresentationCardComponent,
   PresentationCardSkeletonComponent,
 } from '@angular-love/blog/presentations/ui-presentation-card';
-import { ButtonComponent } from '@angular-love/blog/shared/ui-button';
-import {
-  CardComponent,
-  GradientCardDirective,
-} from '@angular-love/blog/shared/ui-card';
+import { EbookComponent } from '@angular-love/blog/shared/ui-ebook';
 import {
   PageChangeEvent,
   PaginationComponent,
@@ -35,11 +31,8 @@ import { RepeatDirective } from '@angular-love/utils';
     PresentationCardComponent,
     PresentationCardSkeletonComponent,
     RepeatDirective,
-    NgOptimizedImage,
-    CardComponent,
-    GradientCardDirective,
-    RouterLink,
-    ButtonComponent,
+    EbookComponent,
+    TranslocoDirective,
   ],
   templateUrl: './presentations-page.component.html',
   styleUrl: './presentations-page.component.scss',

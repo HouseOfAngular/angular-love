@@ -317,5 +317,19 @@
       "section1": "Teraz my zajmiemy się przeniesieniem twojego artykułu do CMS’a i zaplanujemy jego opublikowanie",
       "section2": "Zajmiemy się również jego promowaniem w mediach społecznościowych, aby jak najwięcej osób mogło skorzystać z wiedzy, którą w nim zawarłeś!"
     }
+  },
+  "presentations": {
+    "listTitle": "Prezentacje Meetup",
+    "watchRecording": "OBEJRZYJ NAGRYWANIE",
+    "authoredBy": "autor: {{author}}",
+    "workshopsTitle": "Warsztaty Angular",
+    "workshopsDescription": "Niezależnie od tego, czy chcesz podnieść swoje umiejętności, czy przeszkolić cały zespół, nasze warsztaty to 100% praktyki z ekspertem, co bezpośrednio przekłada się na jakość twojego kodu i szybkość pracy z Mateuszem Stefańczykiem (Google Developer Expert).",
+    "workshopsButton": "SPRAWDŹ OTWARTE WARSZTATY"
+  },
+  "ebook": {
+    "title": "BEZPŁATNY EBOOK",
+    "subTitle": "Przewodnik po ewolucji Angulara: Podsumowanie ng20+ dla CTO",
+    "description": "Pobierz, aby odkryć, jak najnowsza wersja Angulara poprawia wydajność, DX, UX i ogólną efektywność aplikacji oraz jak wpływa na Twoją firmę.",
+    "downloadButton": "POBIERZ TERAZ"
   }
 }

@@ -24,12 +24,15 @@ export const articleRoutes: Routes = [
     loadComponent: async () =>
       (await import('@angular-love/blog/presentations/presentations-page'))
         .PresentationsPageComponent,
-    data: {
-      seo: { title: 'Presentations', autoHrefLang: true },
-      category: 'presentations',
-      title: 'Angular Presentations',
-      id: 'angular-presentations',
-    },
+  },
+  {
+    path: 'presentation/:presentationSlug',
+    loadComponent: async () =>
+      (
+        await import(
+          '@angular-love/blog/presentations/presentation-details-page'
+        )
+      ).PresentationDetailsPageComponent,
   },
   {
     path: 'guides',
