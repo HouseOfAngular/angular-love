@@ -1,4 +1,4 @@
-import { isPlatformBrowser } from '@angular/common';
+import { isPlatformBrowser, NgOptimizedImage } from '@angular/common';
 import {
   ChangeDetectionStrategy,
   Component,
@@ -8,12 +8,18 @@ import {
   PLATFORM_ID,
   signal,
 } from '@angular/core';
+import { RouterLink } from '@angular/router';
 
 import { PresentationsListStore } from '@angular-love/blog/presentations/data-access';
 import {
   PresentationCardComponent,
   PresentationCardSkeletonComponent,
 } from '@angular-love/blog/presentations/ui-presentation-card';
+import { ButtonComponent } from '@angular-love/blog/shared/ui-button';
+import {
+  CardComponent,
+  GradientCardDirective,
+} from '@angular-love/blog/shared/ui-card';
 import {
   PageChangeEvent,
   PaginationComponent,
@@ -29,6 +35,11 @@ import { RepeatDirective } from '@angular-love/utils';
     PresentationCardComponent,
     PresentationCardSkeletonComponent,
     RepeatDirective,
+    NgOptimizedImage,
+    CardComponent,
+    GradientCardDirective,
+    RouterLink,
+    ButtonComponent,
   ],
   templateUrl: './presentations-page.component.html',
   styleUrl: './presentations-page.component.scss',
@@ -39,7 +50,6 @@ import { RepeatDirective } from '@angular-love/utils';
 })
 export class PresentationsPageComponent {
   readonly title = input.required<string>();
-  readonly id = input.required<string>();
 
   readonly pagination = signal({ take: 12, skip: 0 });
 

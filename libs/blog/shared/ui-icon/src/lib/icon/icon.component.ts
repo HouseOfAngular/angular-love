@@ -21,7 +21,7 @@ export type IconType =
   | 'youtube'
   | 'sun'
   | 'moon'
-  | 'video-content';
+  | 'video';
 
 @Component({
   selector: 'al-icon',
