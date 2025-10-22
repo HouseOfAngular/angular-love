@@ -320,7 +320,7 @@
   },
   "presentations": {
     "listTitle": "Prezentacje Meetup",
-    "watchRecording": "OBEJRZYJ NAGRYWANIE",
+    "watchRecording": "OBEJRZYJ NAGRANIE",
     "authoredBy": "autor: {{author}}",
     "workshopsTitle": "Warsztaty Angular",
     "workshopsDescription": "Niezależnie od tego, czy chcesz podnieść swoje umiejętności, czy przeszkolić cały zespół, nasze warsztaty to 100% praktyki z ekspertem, co bezpośrednio przekłada się na jakość twojego kodu i szybkość pracy z Mateuszem Stefańczykiem (Google Developer Expert).",

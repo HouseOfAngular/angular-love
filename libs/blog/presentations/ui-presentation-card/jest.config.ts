@@ -1,8 +1,9 @@
 export default {
-  displayName: 'blog-videos-ui-video-card',
+  displayName: 'blog-presentations-ui-presentation-card',
   preset: '../../../../jest.preset.js',
   setupFilesAfterEnv: ['<rootDir>/src/test-setup.ts'],
-  coverageDirectory: '../../../../coverage/libs/blog/videos/ui-video-card',
+  coverageDirectory:
+    '../../../../coverage/libs/blog/presentations/ui-presentation-card',
   transform: {
     '^.+\\.(ts|mjs|js|html)$': [
       'jest-preset-angular',
