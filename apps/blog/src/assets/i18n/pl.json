@@ -315,5 +315,10 @@
       "section1": "Teraz my zajmiemy się przeniesieniem twojego artykułu do CMS’a i zaplanujemy jego opublikowanie",
       "section2": "Zajmiemy się również jego promowaniem w mediach społecznościowych, aby jak najwięcej osób mogło skorzystać z wiedzy, którą w nim zawarłeś!"
     }
+  },
+  "relatedArticles": {
+    "title": "Powiązane artykuły",
+    "previousSlide": "Poprzedni slajd",
+    "nextSlide": "Następny slajd"
   }
 }
