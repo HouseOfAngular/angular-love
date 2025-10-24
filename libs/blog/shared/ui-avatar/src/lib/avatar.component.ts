@@ -9,9 +9,6 @@ type AvatarSize = '32' | '96';
   styleUrls: ['./avatar.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [NgOptimizedImage],
-  host: {
-    class: 'block',
-  },
 })
 export class AvatarComponent {
   readonly imageSrc = input.required<string>();
