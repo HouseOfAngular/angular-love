@@ -20,6 +20,21 @@ export const articleRoutes: Routes = [
     },
   },
   {
+    path: 'presentations',
+    loadComponent: async () =>
+      (await import('@angular-love/blog/presentations/presentations-page'))
+        .PresentationsPageComponent,
+  },
+  {
+    path: 'presentation/:presentationSlug',
+    loadComponent: async () =>
+      (
+        await import(
+          '@angular-love/blog/presentations/presentation-details-page'
+        )
+      ).PresentationDetailsPageComponent,
+  },
+  {
     path: 'guides',
     loadComponent: async () =>
       (await import('@angular-love/blog/articles/feature-category'))
