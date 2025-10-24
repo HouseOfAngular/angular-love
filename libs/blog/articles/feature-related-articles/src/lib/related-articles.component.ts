@@ -68,7 +68,7 @@ import { ButtonComponent } from '@angular-love/blog/shared/ui-button';
 })
 export class RelatedArticlesComponent implements OnInit {
   readonly id = input.required<number>();
-  customOptions: OwlOptions = {
+  readonly customOptions: OwlOptions = {
     loop: true,
     mouseDrag: false,
     touchDrag: true,
