@@ -8,7 +8,7 @@ import {
   mergeApplicationConfig,
   PendingTasks,
 } from '@angular/core';
-import { provideServerRendering } from '@angular/platform-server';
+import { provideServerRendering } from '@angular/ssr';
 import { provideFastSVG, SvgLoadStrategy } from '@push-based/ngx-fast-svg';
 import { finalize, from, Observable, of, switchMap } from 'rxjs';
 

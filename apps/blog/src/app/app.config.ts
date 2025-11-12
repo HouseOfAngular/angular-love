@@ -6,7 +6,7 @@ import {
 import {
   ApplicationConfig,
   inject,
-  provideExperimentalZonelessChangeDetection,
+  provideZonelessChangeDetection,
 } from '@angular/core';
 import { provideClientHydration } from '@angular/platform-browser';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
@@ -38,7 +38,7 @@ export const appConfig: ApplicationConfig = {
       withViewTransitions({
         onViewTransitionCreated: ({ transition }) => {
           const router = inject(Router);
-          const targetUrl = router.getCurrentNavigation()!.finalUrl!;
+          const targetUrl = router.currentNavigation()!.finalUrl!;
           // Skip the transition if the only thing
           // changing is the fragment and queryParams
           const config: IsActiveMatchOptions = {
@@ -63,7 +63,7 @@ export const appConfig: ApplicationConfig = {
     ),
     provideI18n(),
     provideHttpClient(withFetch(), withInterceptorsFromDi()),
-    provideExperimentalZonelessChangeDetection(),
+    provideZonelessChangeDetection(),
     provideClientHydration(),
     provideAppSeo(),
     provideSkeletonConfig(),

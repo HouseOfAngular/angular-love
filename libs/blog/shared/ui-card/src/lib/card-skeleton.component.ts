@@ -1,4 +1,3 @@
-import { NgIf } from '@angular/common';
 import {
   ChangeDetectionStrategy,
   Component,
@@ -10,17 +9,19 @@ import { NgxSkeletonLoaderModule } from 'ngx-skeleton-loader';
 @Component({
   selector: 'al-card-skeleton',
   template: `
-    <div *ngIf="withImage">
-      <div class="aspect-video">
-        <ngx-skeleton-loader
-          class="h-full w-full"
-          [theme]="{
-            'margin-bottom': '0',
-            height: '100%',
-          }"
-        ></ngx-skeleton-loader>
+    @if (withImage) {
+      <div>
+        <div class="aspect-video">
+          <ngx-skeleton-loader
+            class="h-full w-full"
+            [theme]="{
+              'margin-bottom': '0',
+              height: '100%',
+            }"
+          ></ngx-skeleton-loader>
+        </div>
       </div>
-    </div>
+    }
     <div class="p-4">
       <ng-content select="[alCardHeader]"></ng-content>
       <ng-content select="[alCardContent]"></ng-content>
@@ -29,7 +30,7 @@ import { NgxSkeletonLoaderModule } from 'ngx-skeleton-loader';
   `,
   styleUrls: ['./card.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [NgIf, NgxSkeletonLoaderModule],
+  imports: [NgxSkeletonLoaderModule],
 })
 export class CardSkeletonComponent {
   @Input() withImage = true;
