@@ -4,19 +4,6 @@
   "sourceRoot": "libs/blog/i18n/data-access/src",
   "prefix": "al",
   "projectType": "library",
-  "tags": ["scope:client", "type:data-access"],
-  "targets": {
-    "test": {
-      "executor": "@nx/jest:jest",
-      "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
-      "options": {
-        "jestConfig": "libs/blog/i18n/data-access/jest.config.ts"
-      }
-    },
-    "lint": {
-      "executor": "@nx/eslint:lint"
-    }
-  },
   "nx-enforce-module-boundaries": [
     true,
     {
@@ -28,5 +15,19 @@
         }
       ]
     }
-  ]
+  ],
+  "tags": ["scope:client", "type:data-access"],
+  "targets": {
+    "test": {
+      "executor": "@nx/jest:jest",
+      "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
+      "options": {
+        "jestConfig": "libs/blog/i18n/data-access/jest.config.ts",
+        "tsConfig": "libs/blog/i18n/data-access/tsconfig.spec.json"
+      }
+    },
+    "lint": {
+      "executor": "@nx/eslint:lint"
+    }
+  }
 }

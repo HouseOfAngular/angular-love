@@ -45,3 +45,5 @@ Thumbs.db
 # secrets
 .dev.vars
 .env.*
+.cursor/rules/nx-rules.mdc
+.github/instructions/nx.instructions.md
