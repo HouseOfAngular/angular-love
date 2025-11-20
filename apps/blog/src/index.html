@@ -20,6 +20,21 @@
     />
     <link rel="apple-touch-icon" href="assets/favicon/apple-touch-icon.png" />
     <link rel="preconnect" href="https://www.angular.love" />
+    <script>
+      (function () {
+        try {
+          const localTheme = localStorage.getItem('theme');
+          const theme = localTheme ? localTheme : 'dark';
+
+          document.documentElement.setAttribute('data-theme', theme);
+          if (theme === 'dark') {
+            document.documentElement.classList.add('cc--darkmode');
+          } else {
+            document.documentElement.classList.remove('cc--darkmode');
+          }
+        } catch (e) {}
+      })();
+    </script>
     <!-- https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap -->
     <style>
       /* cyrillic-ext */
@@ -401,5 +416,14 @@
   </head>
   <body>
     <al-root></al-root>
+
+    <!--
+      WORKAROUND: Prevent Critical CSS Purging Critters tree-shakes CSS rules that appear unused in the static HTML.
+      Since the theme is applied dynamically at runtime, the Dark Mode variables are mistakenly removed during the build because the server
+      renders the default (Light) theme.
+      These hidden elements force the optimizer to detect these selectors as "used", ensuring the dark theme styles are preserved in the inline Critical CSS payload.
+    -->
+    <div data-theme="dark" style="display: none"></div>
+    <div data-theme="light" style="display: none"></div>
   </body>
 </html>
