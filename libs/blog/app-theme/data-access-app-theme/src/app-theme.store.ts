@@ -1,11 +1,29 @@
 import { isPlatformBrowser } from '@angular/common';
 import { inject, Injectable, PLATFORM_ID } from '@angular/core';
-import { patchState, signalStore, withMethods, withState } from '@ngrx/signals';
+import {
+  patchState,
+  signalStore,
+  withHooks,
+  withMethods,
+  withState,
+} from '@ngrx/signals';
 
 export type Theme = 'dark' | 'light';
 
 interface AppThemeStore {
   theme: Theme;
+}
+
+function getSafeStoredTheme(): Theme | null {
+  try {
+    const stored = localStorage.getItem('theme');
+    if (stored === 'dark' || stored === 'light') {
+      return stored;
+    }
+  } catch {
+    void 0;
+  }
+  return null;
 }
 
 export const AppThemeStore = signalStore(
@@ -19,28 +37,41 @@ export const AppThemeStore = signalStore(
     ) => ({
       syncWithSystemTheme: () => {
         if (isPlatformBrowser(platformId)) {
-          const theme =
-            (localStorage.getItem('theme') as Theme) ?? getSystemTheme();
-          patchState(store, { theme: theme });
-          ccConsumer.setThemeAttribute(theme);
+          const stored = getSafeStoredTheme();
+
+          const current: Theme = stored ?? 'dark';
+
+          patchState(store, { theme: current });
+          ccConsumer.setThemeAttribute(current);
         }
       },
       toggleTheme: () => {
         if (isPlatformBrowser(platformId)) {
           const newTheme = store.theme() === 'dark' ? 'light' : 'dark';
+
           ccConsumer.setThemeAttribute(newTheme);
-          localStorage.setItem('theme', newTheme);
           patchState(store, { theme: newTheme });
+
+          try {
+            localStorage.setItem('theme', newTheme);
+          } catch {
+            void 0;
+          }
         }
       },
     }),
   ),
+  withHooks({
+    onInit: (store, platformId = inject(PLATFORM_ID)) => {
+      if (isPlatformBrowser(platformId)) {
+        const stored = getSafeStoredTheme();
+        if (stored) {
+          patchState(store, { theme: stored });
+        }
+      }
+    },
+  }),
 );
-
-function getSystemTheme(): Theme {
-  // Hardcoded to 'dark' for now, as per decision.
-  return 'dark';
-}
 
 /* todo: create consumer interface and decouple AppThemeStore from CCAppThemeConsumer*/
 @Injectable({ providedIn: 'root' })
