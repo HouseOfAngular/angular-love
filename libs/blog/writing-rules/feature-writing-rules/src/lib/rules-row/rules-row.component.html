@@ -14,11 +14,11 @@
         <p class="text-base font-bold text-white">{{ index() + 1 }}</p>
       </div>
       <div class="w-full lg:mr-[30px]">
-        <p class="block pb-4 pt-5 md:py-5">{{ t(step().text) }}</p>
+        <p class="block pt-5 pb-4 md:py-5">{{ t(step().text) }}</p>
       </div>
     </div>
     <div
-      class="mr-5 mt-5 self-start transition-transform duration-300"
+      class="mt-5 mr-5 self-start transition-transform duration-300"
       [class.rotate-180]="isOpen()"
     >
       <fast-svg name="down-arrow" aria-hidden="true" size="16" />
@@ -37,7 +37,7 @@
           @if (!first()) {
             <button
               type="button"
-              class="border-al-gray-200 mr-1 w-1/2 rounded border bg-transparent px-1 py-2 font-medium leading-4 md:mr-2 md:w-auto md:px-4"
+              class="border-al-gray-200 mr-1 w-1/2 rounded-sm border bg-transparent px-1 py-2 leading-4 font-medium md:mr-2 md:w-auto md:px-4"
               (click)="toggleStep.emit(index() - 1)"
             >
               {{ t('writingRules.previousButton') }}
@@ -46,7 +46,7 @@
           @if (!last()) {
             <button
               type="button"
-              class="border-al-gray-200 bg-al-pink w-1/2 rounded border px-2 py-2 font-medium leading-4 text-white md:w-auto md:px-6"
+              class="border-al-gray-200 bg-al-pink w-1/2 rounded-sm border px-2 py-2 leading-4 font-medium text-white md:w-auto md:px-6"
               (click)="toggleStep.emit(index() + 1)"
             >
               {{ t('writingRules.nextButton') }}

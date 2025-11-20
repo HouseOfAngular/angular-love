@@ -29,7 +29,9 @@ import {
               <ng-content select="[author-info-card]"></ng-content>
             </div>
           </div>
-          <div class="w-full flex-1 hyphens-auto break-words p-6 pt-0 md:pt-6">
+          <div
+            class="w-full flex-1 p-6 pt-0 wrap-break-word hyphens-auto md:pt-6"
+          >
             <ng-content select="[author-info-description]"></ng-content>
           </div>
         </div>
@@ -47,7 +49,7 @@ export class AuthorCardTemplateComponent {
 
   protected readonly authorInfoCardClass = computed(() =>
     !this.articleCard()
-      ? 'md:border dark:!bg-al-radial-gradient dark:bg-al-background md:light:bg-[#f2f2f2] pb-6'
+      ? 'md:border dark:bg-al-radial-gradient! dark:bg-al-background md:light:bg-[#f2f2f2] pb-6'
       : '',
   );
 }

@@ -6,6 +6,7 @@ import {
   StoryObj,
 } from '@storybook/angular';
 
+// eslint-disable-next-line @nx/enforce-module-boundaries
 import { TranslocoHttpLoader } from '@angular-love/blog/i18n/data-access';
 
 import { TableOfContentsScrollSpyDirective } from './table-of-contents-scroll-spy.directive';
@@ -84,7 +85,7 @@ export const withScrollSpy: Story = {
   },
   render: (args) => ({
     template: `
-      <div #scrollContainer class="flex min-h-[400px] h-[70vh] gap-10 overflow-y-scroll p-10 border border-al-muted rounded">
+      <div #scrollContainer class="flex min-h-[400px] h-[70vh] gap-10 overflow-y-scroll p-10 border border-al-muted rounded-sm">
         <div class="flex flex-col gap-[250px]  p-10">
           <h1 id="Signals in Angular 16">Signals in Angular 16</h1>
           <h1 id="Server-side rendering">Server-side rendering</h1>

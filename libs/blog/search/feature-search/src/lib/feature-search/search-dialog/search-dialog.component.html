@@ -2,22 +2,22 @@
   *transloco="let t; read: 'search'"
   aria-modal="true"
   role="dialog"
-  class="al-overlay fixed left-0 top-0 z-40 h-screen w-screen bg-black bg-opacity-60"
+  class="al-overlay fixed top-0 left-0 z-40 h-screen w-screen bg-black/60"
   [attr.aria-label]="t('title')"
   [cdkTrapFocusAutoCapture]="true"
   cdkTrapFocus
 >
   <div
-    class="bg-al-card relative z-50 m-auto w-full max-w-screen-xl rounded-tl-lg rounded-tr-lg"
+    class="bg-al-card relative z-50 m-auto w-full max-w-(--breakpoint-xl) rounded-tl-lg rounded-tr-lg"
     [class]="adBannerStoreVisible() ? 'top-[168px]' : 'top-[84px]'"
   >
     <div class="w-full border-b p-4">
       <div
-        class="border-al-pink flex w-full flex-row items-center rounded border p-4"
+        class="border-al-pink flex w-full flex-row items-center rounded-sm border p-4"
       >
         <input
           type="text"
-          class="h-full w-full border-none bg-transparent text-sm outline-none"
+          class="h-full w-full border-none bg-transparent text-sm outline-hidden"
           [formControl]="searchForm"
           cdkFocusInitial
         />

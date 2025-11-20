@@ -52,7 +52,7 @@ import { AuthorCardSkeletonComponent } from '@angular-love/blog/authors/ui-autho
         <al-author-card-skeleton />
         <!-- table-of-contents -->
         <div
-          class="!mt-4 hidden h-[344px] flex-col items-start justify-between rounded-lg border lg:flex"
+          class="mt-4! hidden h-[344px] flex-col items-start justify-between rounded-lg border lg:flex"
         >
           <ngx-skeleton-loader
             class="w-1/4"
@@ -73,9 +73,9 @@ import { AuthorCardSkeletonComponent } from '@angular-love/blog/authors/ui-autho
         </div>
         <!-- share article section -->
         <div
-          class="!mt-4 hidden h-[138px] flex-row items-center justify-between rounded-lg border lg:flex"
+          class="mt-4! hidden h-[138px] flex-row items-center justify-between rounded-lg border lg:flex"
         >
-          <div class="ml-10 flex h-10 w-[100px] ">
+          <div class="ml-10 flex h-10 w-[100px]">
             <ngx-skeleton-loader
               class="w-full"
               [theme]="{

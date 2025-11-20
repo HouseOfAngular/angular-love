@@ -36,5 +36,5 @@ export class CardSkeletonComponent {
   @Input() withImage = true;
 
   @HostBinding('class')
-  hostClasses = 'block bg-white rounded-lg shadow-sm overflow-hidden';
+  hostClasses = 'block bg-white rounded-lg shadow-xs overflow-hidden';
 }

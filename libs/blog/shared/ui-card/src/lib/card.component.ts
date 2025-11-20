@@ -44,7 +44,7 @@ export class CardFooterDirective {
 export class CardHoverHighlightDirective {
   @HostBinding('class')
   hostClasses =
-    'hover:bg-red-50 outline outline-1 outline-transparent hover:outline-red-400 transition';
+    'hover:bg-red-50 outline-solid outline-1 outline-transparent hover:outline-red-400 transition';
 }
 
 @Directive({
@@ -83,7 +83,7 @@ export class GradientCardDirective {
 export class DarkCardDirective {
   @HostBinding('class')
   get hostClasses() {
-    return 'border !p-4 !bg-al-background block rounded-lg';
+    return 'border p-4! bg-al-background! block rounded-lg';
   }
 }
 
@@ -100,5 +100,5 @@ export class CardComponent {
   ref: ElementRef<HTMLElement> = inject(ElementRef);
 
   @HostBinding('class')
-  hostClasses = 'block rounded-lg border bg-al-card shadow-sm overflow-hidden';
+  hostClasses = 'block rounded-lg border bg-al-card shadow-xs overflow-hidden';
 }

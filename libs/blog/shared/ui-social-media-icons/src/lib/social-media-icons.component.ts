@@ -27,8 +27,8 @@ export class SocialMediaIconsComponent {
     return this.variant() === 'default'
       ? 'text-al-primary-foreground'
       : this.variant() === 'light'
-        ? 'text-[#fff]'
-        : 'text-[#000]';
+        ? 'text-white'
+        : 'text-black';
   });
 
   readonly socials: SocialMediaIconItemUi[] = [

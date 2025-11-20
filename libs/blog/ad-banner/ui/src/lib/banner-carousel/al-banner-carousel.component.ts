@@ -17,12 +17,12 @@ import { AlInfiniteSliderDirective } from '../infinite-slider-directive/al-infin
               let banner of banners();
               msPerSlide: msPerSlide()
             "
-            class="flex-shrink-0 flex-grow-0 basis-full"
+            class="shrink-0 grow-0 basis-full"
             [banner]="banner"
           />
         } @else if (banners().length === 1) {
           <al-ad-image-banner
-            class="flex-shrink-0 flex-grow-0 basis-full"
+            class="shrink-0 grow-0 basis-full"
             [banner]="banners()[0]"
           />
         }

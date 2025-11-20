@@ -16,9 +16,9 @@ import { headerNavItems } from '../header-nav-items';
   selector: 'al-header-mobile-menu',
   template: `
     <div
-      class="bg-al-background fixed -top-[100%] left-0 z-40 flex h-full w-full flex-row items-center justify-center transition-transform duration-300 lg:hidden"
+      class="bg-al-background fixed -top-full left-0 z-40 flex h-full w-full flex-row items-center justify-center transition-transform duration-300 lg:hidden"
       [inert]="!isOpened()"
-      [class.translate-y-[100%]]="isOpened()"
+      [class.translate-y-full]="isOpened()"
     >
       <al-navigation
         class="mobile-menu__navigation"

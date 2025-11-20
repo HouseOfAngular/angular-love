@@ -24,7 +24,7 @@ import { Lang } from '@angular-love/contracts/articles';
         <fast-svg
           name="translate"
           aria-hidden="true"
-          class="text-al-primary pointer-events-none absolute left-0 top-1/2 !block -translate-y-1/2"
+          class="text-al-primary pointer-events-none absolute top-1/2 left-0 block! -translate-y-1/2"
           size="20"
         />
 
@@ -44,7 +44,7 @@ import { Lang } from '@angular-love/contracts/articles';
         <fast-svg
           name="arrow-down"
           aria-hidden="true"
-          class="pointer-events-none absolute right-0 top-1/2 !block -translate-y-1/2"
+          class="pointer-events-none absolute top-1/2 right-0 block! -translate-y-1/2"
           size="20"
         />
       </label>

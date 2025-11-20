@@ -16,7 +16,7 @@
             <input
               aria-required="true"
               type="text"
-              class="bg-al-background text-al-muted border-al-border my-2 h-[60px] w-full flex-grow rounded-md border p-6 text-sm"
+              class="bg-al-background text-al-muted border-al-border my-2 h-[60px] w-full grow rounded-md border p-6 text-sm"
               [attr.aria-label]="t('namePlaceholder')"
               [placeholder]="t('namePlaceholder')"
               formControlName="name"
@@ -26,7 +26,7 @@
               <input
                 aria-required="true"
                 type="email"
-                class="bg-al-background text-al-muted border-al-border h-[60px] w-full flex-grow rounded-l-md border border-r-0 p-6 text-sm"
+                class="bg-al-background text-al-muted border-al-border h-[60px] w-full grow rounded-l-md border border-r-0 p-6 text-sm"
                 [attr.aria-label]="t('emailPlaceholder')"
                 [placeholder]="t('emailPlaceholder')"
                 formControlName="email"
@@ -54,7 +54,7 @@
               />
               <label
                 id="newsletter-label"
-                class="text-al-muted flex flex-col peer-checked:[&>div>div>div]:block"
+                class="text-al-muted flex flex-col [&>div>div>div]:peer-checked:block"
                 for="newsletter-checkbox"
               >
                 @if (newsletterStoreLoading() === 'error') {
@@ -65,7 +65,7 @@
                     tabindex="0"
                     aria-describedby="consent-text"
                     role="checkbox"
-                    class="border-al-muted mr-2 mt-1 flex aspect-square h-[14px] items-center justify-center rounded border"
+                    class="border-al-muted mt-1 mr-2 flex aspect-square h-[14px] items-center justify-center rounded-sm border"
                     [attr.aria-label]="t('label')"
                     [attr.aria-checked]="form.controls.checkbox.value"
                     (keydown.space)="
@@ -77,7 +77,7 @@
                     "
                   >
                     <div
-                      class="bg-al-pink hidden h-[6px] w-[6px] rounded-sm"
+                      class="bg-al-pink hidden h-[6px] w-[6px] rounded-xs"
                     ></div>
                   </div>
                   <span

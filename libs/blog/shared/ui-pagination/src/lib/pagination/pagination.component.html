@@ -8,7 +8,7 @@
       >
         <button
           al-button
-          class="!p-2"
+          class="p-2!"
           [attr.aria-disabled]="store.disabledPrevious()"
           [attr.aria-label]="t('previous')"
           [disabled]="store.disabledPrevious()"
@@ -28,7 +28,7 @@
         <li>
           <button
             al-button
-            class="flex justify-center !p-2 text-sm leading-none"
+            class="flex justify-center p-2! text-sm leading-none"
             [attr.aria-label]="
               t('navigateTo', { pageNo: isLast ? page.label : i + 1 })
             "
@@ -44,7 +44,7 @@
       <li>
         <button
           al-button
-          class="!p-2"
+          class="p-2!"
           [ngClass]="{
             invisible: store.disabledNext(),
           }"
