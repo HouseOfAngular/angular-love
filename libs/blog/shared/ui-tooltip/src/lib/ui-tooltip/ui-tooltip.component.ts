@@ -5,7 +5,7 @@ import { ChangeDetectionStrategy, Component, signal } from '@angular/core';
   selector: 'al-ui-tooltip',
   template: `
     <div
-      class="box-border max-w-[13rem] rounded-[0.25rem] bg-[#2e2f3a] p-[0.3rem] text-sm text-white"
+      class="box-border max-w-52 rounded-sm bg-[#2e2f3a] p-[0.3rem] text-sm text-white"
       [ngClass]="{ 'mt-2': 'bottom' }"
     >
       {{ tooltipText() }}

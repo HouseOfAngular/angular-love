@@ -25,7 +25,7 @@ const buttonVariants = cva(
         Secondary: 'bg-al-background border',
         Outline: 'border border-al-primary/90 bg-white text-al-primary',
         Ghost: 'bg-transparent',
-        link: 'bg-transparent !underline',
+        link: 'bg-transparent underline!',
       },
       size: <Record<AlButtonSize, string>>{
         small: 'py-2 px-4 text-xs',

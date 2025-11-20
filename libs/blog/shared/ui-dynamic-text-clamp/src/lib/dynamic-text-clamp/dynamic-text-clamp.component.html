@@ -13,9 +13,9 @@
 <p
   class="[&_a]:al-link"
   [ngClass]="{
-    '!hidden': !readMore(),
+    'hidden!': !readMore(),
   }"
-  [className]="textClasses() + ' !line-clamp-none'"
+  [className]="textClasses() + ' line-clamp-none!'"
   [innerHTML]="text()"
 ></p>
 

@@ -21,7 +21,7 @@ import { debounceTime, interval, tap } from 'rxjs';
  *   <div class="flex">
  *     <some-banner-component
  *        *alInfiniteSlider="let banner of banners()"
- *        class="flex-shrink-0 flex-grow-0 basis-full"
+ *        class="shrink-0 grow-0 basis-full"
  *        [banner]="banner"
  *     />
  *   </div>
@@ -34,7 +34,7 @@ import { debounceTime, interval, tap } from 'rxjs';
 })
 export class AlInfiniteSliderDirective {
   readonly slidesElements = input.required<unknown[]>({
-    alias: 'alInfiniteSliderOf',
+    alias: 'alInfiniteSliderOf', // eslint-disable-line
   });
   readonly msPerSlide = input<number>(7000, {
     alias: 'alInfiniteSliderMsPerSlide',

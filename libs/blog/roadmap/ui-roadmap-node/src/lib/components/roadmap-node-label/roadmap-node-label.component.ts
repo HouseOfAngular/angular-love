@@ -30,9 +30,9 @@ export class RoadmapNodeLabelComponent {
       case 'optional':
         return 'bg-al-roadmap-label-optional';
       case 'comingSoon':
-        return 'bg-al-roadmap-label-comingSoon';
+        return 'bg-al-roadmap-label-coming-soon';
       case 'recommended':
-        return 'bg-gradient-to-r from-al-roadmap-secondary to-al-roadmap-accent';
+        return 'bg-linear-to-r from-al-roadmap-secondary to-al-roadmap-accent';
       default:
         return '';
     }

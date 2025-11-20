@@ -19,7 +19,7 @@ import { ButtonComponent } from '@angular-love/blog/shared/ui-button';
       >
         <h2
           id="not-found-title"
-          class="flex justify-center break-words text-9xl font-extrabold lg:justify-normal"
+          class="flex justify-center text-9xl font-extrabold wrap-break-word lg:justify-normal"
           [attr.aria-label]="t('ariaLabels.title')"
         >
           {{ t('title') }}

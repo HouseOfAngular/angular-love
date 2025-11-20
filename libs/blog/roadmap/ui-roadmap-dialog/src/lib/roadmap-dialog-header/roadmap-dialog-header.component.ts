@@ -19,7 +19,7 @@ export class RoadmapDialogHeaderComponent {
   protected readonly class = computed(() => {
     switch (this.nodeType()) {
       case 'angular-love':
-        return 'from-al-roadmap-secondary to-al-roadmap-accent bg-gradient-to-r';
+        return 'from-al-roadmap-secondary to-al-roadmap-accent bg-linear-to-r';
       case 'primary':
         return 'bg-al-roadmap-primary light:bg-al-roadmap-primary/55 text-al-primary-foreground';
       case 'secondary':

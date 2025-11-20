@@ -7,7 +7,7 @@ import { CardComponent } from '@angular-love/blog/shared/ui-card';
   selector: 'al-article-regular-card-skeleton',
   imports: [NgxSkeletonLoaderModule, CardComponent],
   template: `
-    <al-card class="[&>*]:!p-0">
+    <al-card class="*:p-0!">
       <div alCardContent class="grid grid-rows-[220px_240px]">
         <div></div>
         <div class="p-4">

@@ -6,17 +6,17 @@
     <ul class="text- relative z-10 flex flex-col">
       @for (anchor of anchors(); track anchor.title) {
         <li
-          class="before:bg-al-muted relative py-2 before:absolute before:left-[5px] before:top-0 before:-z-10 before:h-full before:w-[1px] before:content-[''] before:first:!top-1/2 before:first:!h-1/2 before:last:!h-1/2"
+          class="before:bg-al-muted relative py-2 before:absolute before:top-0 before:left-[5px] before:-z-10 before:h-full before:w-px before:content-[''] first:before:top-1/2! first:before:h-1/2! last:before:h-1/2!"
         >
           <div class="flex items-center gap-4">
             <div class="flex w-[11px] shrink-0 items-center justify-center">
               <div
-                class="bg-al-muted outline-al-background rounded-full outline"
+                class="bg-al-muted outline-al-background rounded-full outline-solid"
                 [ngClass]="{
                   'size-[11px]': anchor.type === 'h2',
-                  'bg-al-border  size-[7px]': anchor.type === 'h3'
+                  'bg-al-border size-[7px]': anchor.type === 'h3',
                 }"
-                [class.!bg-al-primary]="activeAnchorTitle() === anchor.title"
+                [class.bg-al-primary!]="activeAnchorTitle() === anchor.title"
               ></div>
             </div>
 
@@ -24,7 +24,7 @@
               [ngClass]="{
                 'text-al-primary font-bold':
                   activeAnchorTitle() === anchor.title,
-                'ml-2 font-medium': anchor.type === 'h3'
+                'ml-2 font-medium': anchor.type === 'h3',
               }"
               [fragment]="anchor.title"
               [routerLink]="[]"

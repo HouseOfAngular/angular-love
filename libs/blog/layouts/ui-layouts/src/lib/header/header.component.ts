@@ -29,7 +29,7 @@ import { headerNavItems } from './header-nav-items';
       class="bg-al-background/95 z-30 h-20 w-full border-b shadow-xl"
     >
       <div
-        class="mx-auto flex h-full w-full max-w-screen-xl items-center justify-between px-6 py-4 xl:px-0"
+        class="mx-auto flex h-full w-full max-w-(--breakpoint-xl) items-center justify-between px-6 py-4 xl:px-0"
       >
         <al-header-logo />
 

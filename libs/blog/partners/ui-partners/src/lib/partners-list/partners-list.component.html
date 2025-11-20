@@ -1,7 +1,7 @@
 <div class="mb-8 flex flex-row gap-2 sm:gap-3">
   @for (partner of partnersList(); track partner.asset_URL) {
     <a
-      class="light:outline light:outline-1 light:outline-al-border aspect-[2/1] w-full max-w-[84px] rounded bg-white lg:transition-transform lg:hover:scale-105 lg:hover:cursor-pointer lg:motion-reduce:transition-none lg:motion-reduce:hover:scale-100"
+      class="light:outline-solid light:outline-1 light:outline-al-border aspect-2/1 w-full max-w-[84px] rounded-sm bg-white lg:transition-transform lg:hover:scale-105 lg:hover:cursor-pointer lg:motion-reduce:transition-none lg:motion-reduce:hover:scale-100"
       [href]="partner.link_URL"
       [title]="partner.title"
       target="_blank"
