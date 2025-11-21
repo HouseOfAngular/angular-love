@@ -1,13 +1,19 @@
 <article
-  class="h-full rounded-lg bg-cover bg-no-repeat transition-transform hover:scale-105 motion-reduce:transition-none motion-reduce:hover:scale-100"
-  [style.background-image]="
-    'url(' +
-    (article().featuredImageUrl || 'assets/article-placeholder.webp') +
-    ')'
-  "
+  class="relative h-full w-full overflow-hidden rounded-lg transition-transform hover:scale-105 motion-reduce:transition-none motion-reduce:hover:scale-100"
   [attr.aria-labelledby]="article().slug"
 >
-  <a [routerLink]="['/', article().slug] | alLocalize">
+  <img
+    alt=""
+    class="object-cover"
+    [ngSrc]="article().featuredImageUrl || 'assets/article-placeholder.webp'"
+    [priority]="false"
+    fill
+  />
+
+  <a
+    class="relative block h-full"
+    [routerLink]="['/', article().slug] | alLocalize"
+  >
     <div
       class="bg-al-background relative flex h-full flex-col justify-between opacity-85"
     >
@@ -38,7 +44,7 @@
         </div>
       </div>
 
-      <div class="flex flex-col px-6 pb-6 pt-8">
+      <div class="flex flex-col px-6 pt-8 pb-6">
         <h3 class="line-clamp-2 text-2xl font-bold" [id]="article().slug">
           {{ article().title }}
         </h3>
