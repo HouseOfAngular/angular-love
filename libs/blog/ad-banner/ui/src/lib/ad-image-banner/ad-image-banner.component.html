@@ -5,9 +5,10 @@
     [attr.aria-label]="banner().alt"
     [alt]="banner().alt"
     [ngSrc]="banner().url"
+    [width]="1280"
+    [height]="150"
     (click)="navigateFromBanner()"
     (keydown.enter)="navigateFromBanner()"
-    fill
     priority
   />
 </aside>
