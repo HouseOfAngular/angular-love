@@ -13,7 +13,7 @@ export const headerNavItems: NavItem[] = [
   },
   {
     translationPath: 'nav.meetups',
-    link: ['https://meetup.angular.love/autumn-camp-2025/'],
+    link: ['https://meetup.angular.love/'],
     externalLink: true,
     dataTestId: 'navigation-meetups',
   },
