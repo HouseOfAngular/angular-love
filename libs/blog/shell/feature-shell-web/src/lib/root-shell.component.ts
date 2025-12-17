@@ -47,13 +47,14 @@ const FOOTERLESS_ROUTES = ['roadmap'];
       [class.mt-20]="adBannerVisible()"
       [layoutConfig]="layoutConfig()"
     >
-      @if (slides()?.length && slides(); as slides) {
-        <al-banner-carousel
-          class="mb-4 inline-block"
-          [banners]="slides"
-          [class]="layoutConfig() ? 'hidden' : ''"
-          [msPerSlide]="msPerSlide()!"
-        />
+      @if (!layoutConfig()?.roadmap) {
+        @if (slides()?.length && slides(); as slides) {
+          <al-banner-carousel
+            class="mb-4 inline-block"
+            [banners]="slides"
+            [msPerSlide]="msPerSlide()!"
+          />
+        }
       }
       <router-outlet />
     </al-layout>
@@ -74,6 +75,7 @@ const FOOTERLESS_ROUTES = ['roadmap'];
   },
 })
 export class RootShellComponent {
+  private readonly _viewport = inject(ViewportScroller);
   private readonly _router = inject(Router);
   private readonly _localizeService = inject(AlLocalizeService);
   private readonly _activatedRoute = inject(ActivatedRoute);
@@ -137,12 +139,12 @@ export class RootShellComponent {
     this._appThemeStore.toggleTheme();
   }
 
-  constructor(viewport: ViewportScroller) {
+  constructor() {
     // todo: temporary solution to keep in mind how banner influence the layout
     effect(() => {
       this.adBannerVisible()
-        ? viewport.setOffset([0, 160])
-        : viewport.setOffset([0, 80]);
+        ? this._viewport.setOffset([0, 160])
+        : this._viewport.setOffset([0, 80]);
     });
     this.sliderStore.getData();
   }

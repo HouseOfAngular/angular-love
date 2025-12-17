@@ -1,5 +1,5 @@
 <div #roadmapWrapper class="w-full">
-  <div class="w-100 flex h-fit translate-y-16 flex-col items-center">
+  <div class="flex h-fit translate-y-16 flex-col items-center">
     @if (isPlatformBrowser) {
       @for (
         layer of roadmapLayers();
@@ -12,7 +12,7 @@
   </div>
 </div>
 <al-roadmap-pan-controls
-  class="absolute bottom-4 right-4"
+  class="absolute right-4 bottom-4"
   (pointerdown)="pausePanZoom()"
   (resizeRoadmap)="resizeRoadmap($event)"
 />
