@@ -20,7 +20,8 @@ export type IconType =
   | 'twitter-x'
   | 'youtube'
   | 'sun'
-  | 'moon';
+  | 'moon'
+  | 'video';
 
 @Component({
   selector: 'al-icon',

@@ -1,0 +1,14 @@
+.presentations-page__ebook {
+  display: grid;
+  align-items: center;
+  justify-content: center;
+
+  @screen md {
+    grid-template-columns: repeat(2, auto);
+  }
+
+  &-description {
+    max-width: 40ch;
+    margin-bottom: 0.5rem;
+  }
+}
