@@ -43,7 +43,7 @@
                 <fast-svg name="send" aria-hidden="true" size="20" />
               </button>
             </div>
-            <div class="mt-2 lg:mt-4">
+            <div class="group mt-2 lg:mt-4">
               <input
                 id="newsletter-checkbox"
                 aria-labelledby="newsletter-label"
@@ -65,7 +65,7 @@
                     tabindex="0"
                     aria-describedby="consent-text"
                     role="checkbox"
-                    class="border-al-muted mt-1 mr-2 flex aspect-square h-[14px] items-center justify-center rounded-sm border"
+                    class="border-al-muted group-has-checked:border-al-pink mt-1 mr-2 flex aspect-square h-[14px] items-center justify-center rounded-sm border"
                     [attr.aria-label]="t('label')"
                     [attr.aria-checked]="form.controls.checkbox.value"
                     (keydown.space)="
@@ -77,7 +77,7 @@
                     "
                   >
                     <div
-                      class="bg-al-pink hidden h-[6px] w-[6px] rounded-xs"
+                      class="bg-al-pink hidden h-[6px] w-[6px] rounded-xs group-has-checked:block"
                     ></div>
                   </div>
                   <span
