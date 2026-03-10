@@ -1,16 +1,19 @@
-import { createWriteStream } from 'node:fs';
+import { writeFile } from 'node:fs/promises';
 import { create } from 'xmlbuilder2';
 
-/**
- * Generates an XML sitemap and writes it to a file.
- * @param {{ ssgRoutes: Array<{url: string, publishDate: string}>; baseUrl: string; staticRoutePaths: Array<string>; sitemapFilePath: string }} options
- */
-export function generateSitemap({
+export interface SitemapOptions {
+  ssgRoutes: { url: string; publishDate: string }[];
+  baseUrl: string;
+  staticRoutePaths: string[];
+  sitemapFilePath: string;
+}
+
+export async function generateSitemap({
   ssgRoutes,
   baseUrl,
   staticRoutePaths,
   sitemapFilePath,
-}) {
+}: SitemapOptions): Promise<void> {
   const urlset = create({ version: '1.0' }).ele('urlset', {
     xmlns: 'http://www.sitemaps.org/schemas/sitemap/0.9',
   });
@@ -40,30 +43,16 @@ export function generateSitemap({
   });
 
   const xml = urlset.end({ prettyPrint: true });
-  const stream = createWriteStream(sitemapFilePath, {
-    encoding: 'utf-8',
-  });
-
-  stream.on('error', (error) => {
-    console.error('Error writing sitemap to file:', error);
-  });
 
   try {
-    stream.write(xml);
+    await writeFile(sitemapFilePath, xml, 'utf-8');
   } catch (error) {
-    console.error('Error during write operation:', error);
+    console.error('Error writing sitemap to file:', error);
     throw error;
-  } finally {
-    stream.end();
   }
 }
 
-/**
- * Determines the priority for a URL based on its publish date.
- * @param {string} publishDate
- * @returns {string}
- */
-function determinePriority(publishDate) {
+function determinePriority(publishDate: string): string {
   const publishDateTime = new Date(publishDate).getTime();
   const twoYearsAgo = new Date();
   twoYearsAgo.setFullYear(twoYearsAgo.getFullYear() - 2);
