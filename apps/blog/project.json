@@ -26,7 +26,9 @@
           "apps/blog/src/assets",
           "apps/blog/src/sitemap.xml",
           "apps/blog/src/_redirects",
-          "apps/blog/src/robots.txt"
+          "apps/blog/src/robots.txt",
+          "apps/blog/src/feed.xml",
+          "apps/blog/src/feed-pl.xml"
         ],
         "styles": [
           "apps/blog/src/styles.scss",
@@ -106,7 +108,7 @@
     "build-routes": {
       "executor": "nx:run-commands",
       "options": {
-        "command": "node apps/blog/scripts/build-routes.mjs"
+        "command": "node --experimental-strip-types apps/blog/scripts/build-routes.ts"
       }
     }
   }
