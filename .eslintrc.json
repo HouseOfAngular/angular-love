@@ -21,6 +21,10 @@
                 "onlyDependOnLibsWithTags": ["scope:bff", "scope:shared"]
               },
               {
+                "sourceTag": "scope:client-analog",
+                "onlyDependOnLibsWithTags": ["scope:client", "scope:bff", "scope:shared"]
+              },
+              {
                 "sourceTag": "scope:shared",
                 "onlyDependOnLibsWithTags": ["scope:shared"]
               },

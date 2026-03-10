@@ -1,0 +1,319 @@
+{
+  "homePage": {
+    "welcomeMessage": {
+      "description": "Miejsce, gdzie możesz nauczyć się Angulara, odkrywać najlepsze praktyki, eksplorować zaawansowane techniki i być na bieżąco z najnowszymi Angularowymi wiadomościami oraz trendami.",
+      "descriptionAriaLabel": "Sprawdź stronę House of Angular"
+    },
+    "seeAll": "Zobacz wszystkie",
+    "latest": "Najnowsze Artykuły",
+    "recommended": "Polecane Artykuły",
+    "angularNews": "Wiadomości ze świata Angulara",
+    "guides": "Poradniki",
+    "angularInDepth": "Angular In Depth",
+    "articleTypes": "Typy artykułów",
+    "categories": {
+      "all": "Najnowsze",
+      "news": "Nowości",
+      "guides": "Poradniki",
+      "inDepth": "In-Depth",
+      "showAll": "Pokaż Wszystkie {{category}}"
+    }
+  },
+  "nav": {
+    "home": "Strona Główna",
+    "about": "O nas",
+    "meetups": "Angular Meetups",
+    "guides": "Angular Guides",
+    "news": "Angular News",
+    "in_depth": "Artykuły In-Depth",
+    "partnership": "Porozmawiajmy o partnerstwie",
+    "become_author": "Zostań autorem",
+    "newsletter": "Angular.letter",
+    "navLinks": "Menu",
+    "roadmap": "Learn Angular",
+    "toggle_theme": "Przełącz motyw",
+    "open_search_dialog": "Otwórz okno wyszukiwania",
+    "languagePicker": {
+      "pl": "Polski",
+      "en": "Angielski",
+      "select_lang": "Wybierz język"
+    }
+  },
+  "footer": {
+    "partners": "Community partnerzy",
+    "mainPartner": "Główny partner",
+    "al-description": "To jest miejsce, w którym możesz nauczyć się Angulara, odkrywać najlepsze praktyki i być na bieżąco z najnowszymi wiadomościami i trendami"
+  },
+  "home": {
+    "latest": "Latest articles"
+  },
+  "authorPage": {
+    "posted_by": "Opublikowane przez {{name}}"
+  },
+  "authorCard": {
+    "titles": {
+      "blogger": "Blogger",
+      "key_contributor": "Key Contributor",
+      "contributor": "Contributor",
+      "gde": "Google Developer Expert"
+    }
+  },
+  "becomeAuthorPage": {
+    "title": "Zostań częścią angular.love!",
+    "improvements": {
+      "title": "Dlaczego warto?",
+      "description": "Angular.love to jeden z największych i najpopularniejszych polskich blogów o Angularze. Rozwijamy się i szybko rośniemy, co potwierdza fakt, że nasz blog ma ponad 4000 unikalnych odwiedzających każdego miesiąca (z Polski i zagranicy) oraz ponad 2100 obserwujących na Facebooku. Naszą misją jest inspirowanie, edukowanie, propagowanie dobrych praktyk i dzielenie się wiedzą wśród deweloperów. Co 2 miesiące organizujemy również Angular Meetups w Warszawie, podczas których prelegenci prezentują różne tematy związane z Angular i dzielą się swoją wiedzą z innymi. Nasze treści są darmowe i dostępne dla wszystkich - chcemy, aby społeczność Angulara rosła! Ok, ale co w tym dla Ciebie?",
+      "items": [
+        "Zwiększ swoją widoczność w mediach społecznościowych i prezentuj się jako ekspert od Angulara, pisząc artykuły.",
+        "Rozwijaj społeczność Angulara, a także siebie, dzieląc się swoją wiedzą. Praca nad artykułem wymaga badań i pełnego zrozumienia problemu.",
+        "A także... uzyskaj dostęp do korzyści, takich jak zniżki na kursy, gadżety i wiele więcej - staramy się wspierać blogerów z angular.love."
+      ]
+    },
+    "becomeAuthorCard": {
+      "title": "Jak zostać blogerem angular.love?",
+      "description": "Masz pomysł na artykuł? Chciałbyś zacząć przyczyniać się do tworzenia społeczności Angulara z nami?",
+      "buttonText": "WYPEŁNIJ FORMULARZ"
+    },
+    "articleWritingRules": {
+      "title": "Zasady pisania artykułów",
+      "description": "Cześć! Oto kilka praktycznych wskazówek, które ułatwią Ci start i sprawią, że Twoje teksty będą się wyróżniać.",
+      "buttonText": "PRZECZYTAJ WSKAZÓWKI PISANIA ARTYKUŁÓW"
+    },
+    "benefits": {
+      "title": "Jak się rozwijasz dzięki temu?",
+      "items": [
+        "Dzieląc się swoją wiedzą, inspirujesz innych deweloperów.",
+        "Ucząc kogoś, rozwijasz swoje własne umiejętności, nie tylko techniczne.",
+        "Nowe doświadczenia pozwalają Ci poszerzyć horyzonty.",
+        "Wzmocnisz swoją markę osobistą.",
+        "Otrzymasz zniżki na konferencje, kursy i darmowe gadżety."
+      ]
+    }
+  },
+  "aboutUsPage": {
+    "title": "O nas",
+    "card": {
+      "description1": "to miejsce dla wszystkich entuzjastów Angulara, stworzone, aby inspirować i edukować. To społeczność pełna pasji ludzi, którzy dzielą się swoją wiedzą i wspierają innych, dostarczając im najlepszych praktyk i wskazówek. To miejsce, w którym Angular żyje.",
+      "description2": "Z dumą możemy powiedzieć, że zdobyliśmy dwie nagrody Angular. W 2021 roku zdobyliśmy „Angular Hero of Community”, a w 2022 roku „Angular Hero of Education” na największej konferencji Angular w Polsce, NG Poland",
+      "description3": "Angular.love to miejsce, gdzie:",
+      "listItems": [
+        "znajdziesz interesujące przypadki, praktyczne wskazówki udostępniane przez entuzjastów Angulara i wiele więcej,",
+        "możesz dzielić się interesującymi myślami z społecznością,",
+        "razem czynimy Angular popularnym,",
+        "wspólnie organizujemy i uczestniczymy w spotkaniach na żywo (meetupy, warsztaty, konferencje) oraz online (webinary, czat na żywo),",
+        "znajdziesz interesujące projekty open source - angular i wiele więcej."
+      ],
+      "description4": "Chcesz być na bieżąco? Obserwuj nas:"
+    },
+    "authorsTitle": "Członkowie community Angular.Love"
+  },
+  "newsletter": {
+    "title": "Zapisz się na nasz newsletter",
+    "description": "Dołącz do community Angular.love i bądź na bieżąco z trendami.",
+    "emailPlaceholder": "Twój e-mail",
+    "namePlaceholder": "Twoje imię",
+    "submitLabel": "Wyślij i zapisz się na newsletter",
+    "label": "Zgoda na przetwarzanie adresu email do newslettera.",
+    "consent": "Wyrażam zgodę na przetwarzanie mojego adresu e-mail przez Angular.love w celu wysyłki newslettera.",
+    "error": "Ups... coś poszło nie tak. Spróbuj ponownie."
+  },
+  "newsletterPage": {
+    "title": "Newsletter Angular.love",
+    "subtitle": "Dołącz do Angular.letter i co dwa tygodnie otrzymuj solidną dawkę wiedzy o Angularze",
+    "description1": "Bycie na bieżąco z Angularem wymaga czasu - wiemy o tym, ponieważ pracujemy z nim na co dzień.",
+    "description2": "Dlatego stworzyliśmy <b>Angular.letter</b> - newsletter <b>pisany przez programistów z community Angular.love</b> dla programistów takich jak Ty.",
+    "description3": "Newsletter wysyłany jest maksymalnie raz na dwa tygodnie i zawiera tylko najciekawsze informacje:",
+    "subsection1": "Najważniejsze wiadomości,",
+    "subsection2": "Praktyczne wskazówki dotyczące Angulara,",
+    "subsection3": "Zaproszenia na wydarzenia: spotkania, konferencje, Angular Camps",
+    "subsection4": "Zniżki na bilety konferencyjne dla członków społeczności.",
+    "sampleNewsletters": "Zobacz nasze przykładowe newslettery:",
+    "success": {
+      "title": "Pomyślnie zapisałeś się na newsletter!",
+      "description": "Od teraz będziesz na bieżąco ze wszystkimi informacjami jakie będziemy udostępniać na blogu.",
+      "button": "Powrót na stronę główną"
+    }
+  },
+  "roadmapPage": {
+    "introductionNode": {
+      "title": "Angular.Love Roadmap Wprowadzenie",
+      "description": "Roadmapa Angulara na Angular.Love to Twoje niezastąpione źródło wiedzy, jeśli chcesz uczyć się Angulara we właściwy sposób. Przedstawia kluczowe koncepcje, dobre praktyki i przydatne materiały w przejrzystej, uporządkowanej formie. Co więcej, zawiera mnóstwo wartościowych zasobów i jest stale aktualizowana, aby nadążać za najnowszymi trendami",
+      "additionalDescription": {
+        "introduction": "Zanim zagłębisz się w Angulara, warto mieć solidne podstawy w następujących zagadnieniach:",
+        "toPrepareList": {
+          "1": "HTML i CSS – Struktura i stylowanie stron internetowych, w tym Flexbox, Grid i responsywność.",
+          "2": "JavaScript (ES6+) – Podstawowe pojęcia, takie jak zmienne, funkcje, obietnice (promises) oraz async/await.",
+          "3": "TypeScript – Typowana wersja JavaScriptu z interfejsami, generykami i dekoratorami.",
+          "4": "Node.js i npm – Uruchamianie JavaScriptu poza przeglądarką i zarządzanie paczkami.",
+          "5": "Git – Zarządzanie wersjami kodu, gałęziami i pracą zespołową.",
+          "6": "API i HTTP – Wysyłanie zapytań i praca z danymi w formacie JSON."
+        },
+        "ending": "Opanowanie tych zagadnień sprawi, że nauka Angulara będzie znacznie płynniejsza i bardziej efektywna."
+      }
+    },
+    "label": {
+      "optional": "opcjonalne",
+      "comingSoon": "w przyszłości",
+      "recommended": "polecane"
+    },
+    "dialog": {
+      "becomeAuthor": "Become an author",
+      "articles": "Artykuły",
+      "description": "Opis",
+      "introductionDescription": "Zanim zaczniesz",
+      "videos": "Materiały video",
+      "creators": "Twórcy",
+      "share": "Podziel się tą roadmapą z innymi"
+    },
+    "controls": {
+      "zoomInRoadmapButton": "Przybliż roadmapę",
+      "restoreRoadmapViewButton": "Przywróć domyślny widok roadmapy",
+      "restoreRoadmapZoomButton": "Przywróć domyślne powiększenie roadmapy",
+      "zoomOutRoadmapButton": "Oddal roadmapę"
+    }
+  },
+  "notFoundPage": {
+    "title": "404",
+    "description": "Wygląda na to, że zgubiłeś drogę. Strona, której szukasz, nie istnieje lub link wygasł i jest już niedostępny.",
+    "buttonText": "Wróć na stronę główną",
+    "ariaLabels": {
+      "title": "Tytuł strony 404",
+      "description": "Opis strony 404",
+      "buttonText": "Przycisk powrotu na stronę główną"
+    }
+  },
+  "difficulty": {
+    "beginner": "Początkujący",
+    "intermediate": "Średnio zaawansowany",
+    "advanced": "Zaawansowany",
+    "tooltipBeginner": "Podstawowe pojęcia, podstawowa składnia oraz proste projekty.",
+    "tooltipIntermediate": "Bardziej zaawansowane funkcje, performance oraz najlepsze praktyki.",
+    "tooltipAdvanced": "Jeżeli jest potrzebna jeszcze jakaś informacja czy design, proszę o znak"
+  },
+  "tableOfContents": {
+    "title": "Spis treści"
+  },
+  "articleShareIcons": {
+    "title": "Podziel się artykułem",
+    "twitterAriaLabel": "Udostępnij na Twitterze",
+    "facebookAriaLabel": "Udostępnij na Facebooku",
+    "linkedInAriaLabel": "Udostępnij na LinkedIn",
+    "urlAriaLabel": "Skopiuj URL"
+  },
+  "dynamicTextClamp": {
+    "readMore": "Czytaj więcej",
+    "readLess": "Czytaj mniej"
+  },
+  "seo": {
+    "metaDescription": "Angular.love - ciekawostki oraz rozwiązania dla średnio-zaawansowanych oraz zaawansowanych developerów Angulara.",
+    "home": "Blog dla sympatyków Angulara",
+    "aboutUs": "O nas",
+    "becomeAuthor": "Zostań autorem",
+    "notFound": "Nie znaleziono",
+    "roadmap": "Roadmap"
+  },
+  "adBanner": {
+    "registerButton": "Pobierz za darmo",
+    "registerButtonShortened": "Pobierz"
+  },
+  "search": {
+    "title": "Wyszukiwanie artykułów",
+    "no-matches": "Brak wyników",
+    "results": "{{total}} wyników"
+  },
+  "pagination": {
+    "title": "Wybór strony",
+    "previous": "Poprzednia strona",
+    "next": "Następna strona",
+    "navigateTo": "Przejdź do strony numer {{pageNo}}"
+  },
+  "iconButtons": {
+    "close": "Zamknij",
+    "changeLangToPolish": "Zmień język na polski",
+    "changeLangToEnglish": "Zmień język na angielski"
+  },
+  "socialLinks": {
+    "title": "Media społecznościowe",
+    "facebook": "Polub nas na Facebooku",
+    "twitter-x": "Obserwuj nas na X (dawniej Twitter)",
+    "linkedIn": "Obserwuj nas na LinkedInie",
+    "youtube": "Subskrybuj nasz kanał na YouTube"
+  },
+  "writingRules": {
+    "title": "Zasady pisania artykułów",
+    "description1": "Cześć! Jeśli tu trafiłeś oznacza to, że chcesz podzielić się wiedzą z angularowym community! Dowiesz się tutaj między innymi jak przebiega proces publikacji artykułu - od pomysłu, aż do udostępnienia gotowego artykułu.",
+    "description2": "W każdym kroku możesz zgłosić się do nas o wsparcie i konsultacje. Pierwszą rzeczą będzie dołączenie do naszej grupy na Discord <a class='text-al-primary' href='{{link}}' target='_blank'>angular.love bloggers</a> gdzie zrzeszamy wszystkich blogerów i wspólnie się komunikujemy",
+    "description3": "Tak wygląda proces pisania przez Ciebie artykułu :)",
+    "description4": "Masz jakieś pytania? Skontaktuj się z nami.",
+    "nextButton": "Następny",
+    "previousButton": "Poprzedni",
+    "ideaStep": {
+      "title": "Pomysł",
+      "section1": "Temat - jeśli nie masz jeszcze wizji na to co chcesz napisać, możesz skonsultować się z nami (na grupie na Discord)",
+      "section2": "Jeśli zastanawiasz się nad formą w jakiej ująć dany temat, oto kilka propozycji:",
+      "subsectionTitle1": "Wskazówki (co robić lub czego nie robić)",
+      "description1": "„5 sposobów na… ..”",
+      "description2": "Tego rodzaju artykuły są szybkie do przeczytania. Niektórzy czytają je tylko za pomocą nagłówków, a potem czytają, jeśli znajdą interesującą wskazówkę. Musi być dobrze zorganizowany, podzielony i zawierać wiele konkretnych faktów.",
+      "subsectionTitle2": "Poradniki",
+      "description3": "Coś w rodzaju N Tips, ale krok po kroku i bardziej precyzyjne instrukcje. Przykładowo jak krok po kroku użyć jakiejś biblioteki. ",
+      "subsectionTitle3": "Temat Kontrowersyjny",
+      "description4": "Ponieważ kontrowersje są bardzo emocjonalne, musisz być ostrożny i mądrze dobierać słowa. W tego typu postach tytuł powinien być kluczowym punktem zainteresowania odbiorców.",
+      "subsectionTitle4": "Listy Kontrolne",
+      "description5": "Czy masz wszystko, czego potrzebujesz do ____?",
+      "description6": "Coś w rodzaju poradników, ale utworzonych jako zawartość listy kontrolnej.",
+      "subsectionTitle5": "Opinie",
+      "description7": "Ludzie szukają recenzji przed użyciem czegoś. Możesz napisać np. recenzję jakiejś biblioteki, książki, produktu itd.",
+      "subsectionTitle6": "Aktualności",
+      "description8": "Wiadomości, zarówno oryginalne, jak i opiniotwórcze, są korzystne, ponieważ dostarczają czytelnikom nieprzetworzone, aktualne informacje. Mogą to być wiadomości dotyczące konferencji, udostępnienia technologii, ważnych kontaktów itp.",
+      "subsectionTitle7": "Wywiad",
+      "description9": "Odegrasz tutaj rolę dziennikarza, który zadaje jakieś pytania jednemu z ekspertów w swoim temacie. Wywiad musi być autoryzowany przez osobę przesłuchiwaną. Struktura powinna składać się z pytania, kilku zdań odpowiedzi, następnego pytania itd.",
+      "subsectionTitle8": "Krótka historia/studium przypadku",
+      "description10": "Ten typ artykułu powinien potwierdzać niektóre fakty lub wiedzę specjalistyczną w oparciu o pewne studium przypadku – prawdziwy projekt, który wykonałeś lub rzeczywistą sytuację, którą miałeś. Inną historią może być dzielenie się Twoim sukcesem, gdy zakończyłeś jakiś duży projekt, który znajduje się obecnie w fazie produkcji i jakie po drodze były wyzwania technologiczne i nie tylko.",
+      "subsectionTitle9": "Tips & Tricks",
+      "description11": "Ten typ artykułów jest osobny. Ma to na celu przekazanie czytelnikowi bardziej skondensowanej wiedzy na temat najpopularniejszych tematów w obszarze zainteresowania. Powinien koncentrować się na tematach, które potencjalnie mogą stanowić wyzwanie dla czytelników lub nawet nie wiedzą, że jest to wyzwanie, ale wiemy, że znamy tam naprawdę dobrą praktykę i chcemy się z nimi podzielić wiedzą na ten temat. Powinno to być coś w rodzaju artykułów na Stackoverlow, na przykład 2-3 najlepsze odpowiedzi razem."
+    },
+    "researchRules": {
+      "title": "Research Tematu",
+      "section1": "Sprawdź czy istnieją już inne artykuły na podobny temat na angular.love. Jeśli tak (a jest ich sporo, więc szansa jest duża), nic nie szkodzi - tak długo jak twój artykuł rzuca na dany temat nowe światło, wciąż warto go napisać! Ale pamiętaj! Bardzo ważne jest dla nas aby content na naszym blogu był możliwie oryginalny.",
+      "section2": "Nie możemy opublikować Twojego artykułu który został wcześniej opublikowany w innym miejscu"
+    },
+    "synopsisRules": {
+      "title": "Konspekt",
+      "section1": "Mając wiedzę o tym co już znajduje się na blogu, spróbuj naszkicować plan na artykuł - zaproponuj tytuł (w miarę możliwości chwytliwy), wstępnie wypisz z jakich akapitów będzie się składał, zastanów się do jakiej grupy zaawansowania jest kierowany (jakiej wiedzy potrzebuje czytelnik do jego zrozumienia, dlaczego temat może być ważny dla naszych czytelników)",
+      "section2": "Podziel się konspektem z innymi bloggerami na grupie angular.love bloggers. Dopracowanie konspektu bardzo pomoże ci w pisaniu i sprawi że efekt końcowy będzie wysokiej jakości! A wkład innych w tym procesie jest nieoceniony!",
+      "section3": "Po uwzględnieniu uwag innych autorów czas przejść do właściwego pisania."
+    },
+    "articleWorkRules": {
+      "title": "Praca nad artykułem",
+      "section1": "Pisząc artykuł, warto uwzględnić następujące zasady:",
+      "subsectionTitle1": "Przejrzysta struktura artykułu",
+      "description1": "Podziel artykuł na wstęp, rozwinięcie i podsumowanie",
+      "description2": "Stosuj nagłówki",
+      "description3": "Dziel tekst na akapity",
+      "subsectionTitle2": "W ramach możliwości użyj interaktywnego przykładu, np. na stackblitz",
+      "subsectionTitle3": "Snipetty kodu powinny być wstawiane jako code block",
+      "description4": "Żeby łatwo je dodawać należy włączyć formatowanie markdown (Use Markdown in Google Docs, Slides, & Drawings) i wpisać ``` + enter",
+      "subsectionTitle4": "Staraj się aby kod użyty w przykładach wykorzystywał najnowsze standardy w angularze, takie jak:",
+      "description5": "Standalone komponenty",
+      "description6": "Inject function",
+      "description7": "Sygnały",
+      "subsectionTitle5": "W miarę możliwości wzbogać swój artykuł o grafiki, uwzględniając to żeby były one czytelne i dobrej jakości",
+      "section2": "Pamiętaj, że na każdym etapie prac, społeczność bloggerów jest do twojej dyspozycji!"
+    },
+    "reviewRules": {
+      "title": "Review końcowe",
+      "section1": "Gdy jesteś usatysfakcjonowany treścią swojego artykułu, udostępnij go na grupie angular.love.bloggers, tak, żeby inni autorzy mogli poddać go recenzji",
+      "section2": "Odnieś się do uwag i daj znać w komentarzu gdy wprowadzisz poprawki"
+    },
+    "translateRules": {
+      "title": "Tłumaczenie artykułu",
+      "section1": "Jak zapewne wiesz nasz blog jest prowadzony w dwóch językach Polskim i Angielskim. Jeżeli napisałeś artykuł po Angielsku trzeba będzie go przetłumaczyć na język Polski. (Podobnie w drugą stronę :)) ",
+      "section2": "Jeżeli nie znasz języka polskiego - nic się nie martw przetłumaczymy go za Ciebie!"
+    },
+    "publicationRules": {
+      "title": "Publikacja",
+      "section1": "Teraz my zajmiemy się przeniesieniem twojego artykułu do CMS’a i zaplanujemy jego opublikowanie",
+      "section2": "Zajmiemy się również jego promowaniem w mediach społecznościowych, aby jak najwięcej osób mogło skorzystać z wiedzy, którą w nim zawarłeś!"
+    }
+  }
+}

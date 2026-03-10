@@ -116,6 +116,9 @@ importers:
       giscus:
         specifier: ^1.5.0
         version: 1.6.0
+      h3:
+        specifier: 1.15.6
+        version: 1.15.6
       highlight.js:
         specifier: ^11.9.0
         version: 11.11.1
@@ -396,6 +399,9 @@ importers:
       prettier-plugin-tailwindcss:
         specifier: ^0.7.1
         version: 0.7.1(@ianvs/prettier-plugin-sort-imports@4.4.1(prettier@3.5.3))(prettier-plugin-organize-attributes@1.0.0(prettier@3.5.3))(prettier@3.5.3)
+      rollup-plugin-typescript-paths:
+        specifier: ^1.5.0
+        version: 1.5.0(typescript@5.9.3)
       storybook:
         specifier: 9.1.9
         version: 9.1.9(@testing-library/dom@8.20.1)(prettier@3.5.3)(vite@7.1.11(@types/node@20.19.9)(jiti@2.4.2)(less@4.4.0)(lightningcss@1.30.2)(sass-embedded@1.87.0)(sass@1.90.0)(stylus@0.64.0)(terser@5.43.1)(yaml@2.7.1))
@@ -11115,6 +11121,11 @@ packages:
 
   rollup-plugin-node-polyfills@0.2.1:
     resolution: {integrity: sha512-4kCrKPTJ6sK4/gLL/U5QzVT8cxJcofO0OU74tnB19F40cmuAKSzH5/siithxlofFEjwvw1YAhPmbvGNA6jEroA==}
+
+  rollup-plugin-typescript-paths@1.5.0:
+    resolution: {integrity: sha512-zly2aiGNjYJNq5YUi6eyGrQnCYUQ8b5czOtHZIGriwG9U3Ba2F9hlSklafXCdsNulK/IlNmE0Kzj0h+fVV32pA==}
+    peerDependencies:
+      typescript: '>=3.4'
 
   rollup-plugin-visualizer@6.0.11:
     resolution: {integrity: sha512-TBwVHVY7buHjIKVLqr9scTVFwqZqMXINcCphPwIWKPDCOBIa+jCQfafvbjRJDZgXdq/A996Dy6yGJ/+/NtAXDQ==}
@@ -25756,6 +25767,10 @@ snapshots:
   rollup-plugin-node-polyfills@0.2.1:
     dependencies:
       rollup-plugin-inject: 3.0.2
+
+  rollup-plugin-typescript-paths@1.5.0(typescript@5.9.3):
+    dependencies:
+      typescript: 5.9.3
 
   rollup-plugin-visualizer@6.0.11(rollup@4.59.0):
     dependencies:

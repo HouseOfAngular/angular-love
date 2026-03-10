@@ -1,8 +1,29 @@
+;
+
 /// <reference types="vitest" />
 
+import { resolve } from 'path';
 import analog from '@analogjs/platform';
 import { nxViteTsPaths } from '@nx/vite/plugins/nx-tsconfig-paths.plugin';
+import { typescriptPaths } from 'rollup-plugin-typescript-paths';
 import { defineConfig } from 'vite';
+
+
+
+
+
+;
+
+
+
+
+
+
+
+
+
+
+
 
 // https://vitejs.dev/config/
 export default defineConfig(({ mode }) => {
@@ -19,7 +40,32 @@ export default defineConfig(({ mode }) => {
         allow: ['.'],
       },
     },
-    plugins: [analog(), nxViteTsPaths()],
+    resolve: {
+      alias: {
+        '@shared-styles': resolve(
+          __dirname,
+          '../../libs/shared/assets/src/lib/styles',
+        ),
+      },
+    },
+    plugins: [
+      analog({
+        nitro: {
+          rollupConfig: {
+            plugins: [
+              // this solves the "Cannot find package" issue while importing
+              // workspace libraries
+              // ref: https://github.com/analogjs/analog/pull/792
+              typescriptPaths({
+                tsConfigPath: 'tsconfig.base.json',
+                preserveExtensions: true,
+              }),
+            ],
+          },
+        },
+      }),
+      nxViteTsPaths(),
+    ],
     test: {
       globals: true,
       environment: 'jsdom',
