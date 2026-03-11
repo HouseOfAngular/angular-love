@@ -14,6 +14,7 @@
   --color-al-pink: rgb(var(--primary));
   --color-al-primary: rgb(var(--primary));
   --color-al-muted: rgb(var(--muted));
+  --color-al-dim: rgb(var(--dim));
 
   --color-al-roadmap-primary: rgb(var(--roadmap-primary));
   --color-al-roadmap-secondary: rgb(var(--roadmap-secondary));
@@ -89,6 +90,7 @@
     --roadmap-label-optional: 25 26 34;
     --roadmap-label-comingSoon: 25 26 34;
     --footer-background: 245 245 244;
+    --dim: 16 15 21;
 
     font-family: 'Inter', sans-serif;
     font-feature-settings:
@@ -114,6 +116,7 @@
     --roadmap-label-comingSoon: 0 139 56;
     --grey: 46 47 59;
     --footer-background: 25 26 34;
+    --dim: 16 15 21;
 
     color-scheme: dark;
   }
