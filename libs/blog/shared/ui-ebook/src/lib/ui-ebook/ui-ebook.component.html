@@ -1,0 +1,23 @@
+<al-card *transloco="let t; read: 'ebook'" alGradientCard>
+  <section alCardContent class="presentations-page__ebook">
+    <img alt="" ngSrc="assets/al-ebook.png" priority width="300" height="200" />
+    <div class="text-al-primary-foreground grid gap-2">
+      <h3 class="font-bold">{{ t('title') }}</h3>
+      <div class="mb-2">
+        {{ t('subTitle') }}
+      </div>
+      <p class="presentations-page__ebook-description">
+        {{ t('description') }}
+      </p>
+      <a
+        al-button
+        role="link"
+        class="justify-self-center md:justify-self-start"
+        routerLink="#"
+        size="medium"
+      >
+        {{ t('downloadButton') }}
+      </a>
+    </div>
+  </section>
+</al-card>
