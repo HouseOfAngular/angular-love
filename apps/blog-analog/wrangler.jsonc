@@ -1,0 +1,42 @@
+{
+  "$schema": "../../node_modules/wrangler/config-schema.json",
+  "main": "dist/apps/blog-analog/analog/server/index.mjs",
+  "compatibility_date": "2025-09-27",
+  "logpush": true,
+  "env": {
+    "prod": {
+      "name": "blog-analog",
+      "vars": {
+        "IS_PROD": "true"
+      },
+      "kv_namespaces": [
+        {
+          "binding": "CACHE_KV",
+          "id": "<kv_prod_namespace_id>"
+        }
+      ]
+    },
+    "dev": {
+      "name": "blog-analog-dev",
+      "vars": {
+        "IS_PROD": "false"
+      },
+      "kv_namespaces": [
+        {
+          "binding": "CACHE_KV",
+          "id": "<kv_dev_namespace_id>"
+        }
+      ]
+    }
+  },
+  "observability": {
+    "enabled": true,
+    "head_sampling_rate": 1,
+    "logs": {
+      "invocation_logs": true
+    }
+  },
+  "compatibility_flags": [
+    "nodejs_compat"
+  ]
+}

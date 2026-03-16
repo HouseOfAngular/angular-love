@@ -18,7 +18,8 @@
     "lint-staged": "lint-staged",
     "prerender": "nx run blog:build-routes && nx run blog:build",
     "e2e": "npx nx run blog-e2e:e2e",
-    "e2e:ui": "npx nx run blog-e2e:e2e-ui"
+    "e2e:ui": "npx nx run blog-e2e:e2e-ui",
+    "cf-typegen": "wrangler types apps/blog-analog/worker-configuration.d.ts --config apps/blog-analog/wrangler.jsonc"
   },
   "private": true,
   "dependencies": {
