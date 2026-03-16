@@ -1,28 +1,81 @@
-import { provideFileRouter, requestContextInterceptor } from '@analogjs/router';
-import { isPlatformServer } from '@angular/common';
-import { HttpInterceptorFn, provideHttpClient, withFetch, withInterceptors } from '@angular/common/http';
-import { ApplicationConfig, inject, PLATFORM_ID, provideBrowserGlobalErrorListeners, provideZonelessChangeDetection } from '@angular/core';
+import { requestContextInterceptor } from '@analogjs/router';
+import { API_PREFIX } from '@analogjs/router/tokens';
+import {
+  provideHttpClient,
+  withFetch,
+  withInterceptors,
+} from '@angular/common/http';
+import {
+  ApplicationConfig,
+  EnvironmentProviders,
+  inject,
+  makeEnvironmentProviders,
+  provideBrowserGlobalErrorListeners,
+  provideZonelessChangeDetection,
+} from '@angular/core';
 import { provideClientHydration } from '@angular/platform-browser';
-import { IsActiveMatchOptions, provideRouter, Router, withComponentInputBinding, withInMemoryScrolling, withRouterConfig, withViewTransitions } from '@angular/router';
+import {
+  IsActiveMatchOptions,
+  provideRouter,
+  Router,
+  withComponentInputBinding,
+  withInMemoryScrolling,
+  withRouterConfig,
+  withViewTransitions,
+} from '@angular/router';
+import { TranslocoService } from '@jsverse/transloco';
 import { provideFastSVG } from '@push-based/ngx-fast-svg';
-
-
+import { NGX_SKELETON_LOADER_CONFIG } from 'ngx-skeleton-loader';
+import { map, switchMap } from 'rxjs';
 
 import { provideI18n } from '@angular-love/blog/i18n/data-access';
 import { blogShellRoutes } from '@angular-love/blog/shell/feature';
-import { provideConfig } from '@angular-love/shared/config';
+import { provideSeo } from '@angular-love/seo';
+import { ConfigService, provideConfig } from '@angular-love/shared/config';
+import { convertLangToLocale } from '@angular-love/shared/utils-i18n';
 
+// import { provideAppTracking } from '../../../blog/src/app/providers/tracking';
 
+// apps/blog/src/app/providers/skeleton-config-provider.ts
+function provideSkeletonConfig(): EnvironmentProviders {
+  return makeEnvironmentProviders([
+    {
+      provide: NGX_SKELETON_LOADER_CONFIG,
+      useFactory: () => {
+        //todo adjust animation once light mode will be done
+        return {
+          animation: 'progress-dark',
+          theme: {
+            extendsFromRoot: true,
+            backgroundColor: 'rgba(var(--card))',
+          },
+        };
+      },
+    },
+  ]);
+}
 
-import { provideAppSeo } from '../../../blog/src/app/providers/seo-provider';
-import { provideSkeletonConfig } from '../../../blog/src/app/providers/skeleton-config-provider';
-import { provideAppTracking } from '../../../blog/src/app/providers/tracking';
-
-
-
-import HomeComponent from './pages/home.page';
-import { API_PREFIX } from '@analogjs/router/tokens';
-
+//  apps/blog/src/app/providers/seo-provider.ts
+function provideAppSeo(): EnvironmentProviders {
+  return makeEnvironmentProviders([
+    provideSeo({
+      useFactory: () => {
+        const transloco = inject(TranslocoService);
+        const baseUrl = inject(ConfigService).get<string>('baseUrl');
+        return transloco.langChanges$.pipe(
+          switchMap((lang) => transloco.load(lang)),
+          map(() => ({
+            title: 'Angular.love',
+            siteName: 'Angular.love',
+            baseUrl: baseUrl,
+            locale: convertLangToLocale(transloco.getActiveLang()),
+            description: transloco.translate('seo.metaDescription'),
+          })),
+        );
+      },
+    }),
+  ]);
+}
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -71,7 +124,7 @@ export const appConfig: ApplicationConfig = {
     // we do not use file router, so we have to provide prefix manually
     {
       provide: API_PREFIX,
-      useValue: 'api'
+      useValue: 'api',
     },
     provideHttpClient(
       withFetch(),

@@ -1,4 +1,4 @@
-import { NewContactDto, SendEmailDto, Template } from './models';
+import { NewContactDto } from './models';
 
 export class NewsletterClient {
   constructor(
