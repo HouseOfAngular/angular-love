@@ -1,5 +1,3 @@
-;
-
 /// <reference types="vitest" />
 
 import { resolve } from 'path';
@@ -7,23 +5,6 @@ import analog from '@analogjs/platform';
 import { nxViteTsPaths } from '@nx/vite/plugins/nx-tsconfig-paths.plugin';
 import { typescriptPaths } from 'rollup-plugin-typescript-paths';
 import { defineConfig } from 'vite';
-
-
-
-
-
-;
-
-
-
-
-
-
-
-
-
-
-
 
 // https://vitejs.dev/config/
 export default defineConfig(({ mode }) => {
@@ -50,7 +31,17 @@ export default defineConfig(({ mode }) => {
     },
     plugins: [
       analog({
+        prerender: {
+          routes: [],
+        },
         nitro: {
+          preset: 'cloudflare_module',
+          compatibilityDate: '2025-09-27',
+          cloudflare: {
+            dev: {
+              environment: mode === 'development' ? 'dev' : 'prod',
+            },
+          },
           rollupConfig: {
             plugins: [
               // this solves the "Cannot find package" issue while importing
