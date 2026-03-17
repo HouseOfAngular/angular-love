@@ -7,8 +7,6 @@ import tailwindcss from '@tailwindcss/vite';
 import { typescriptPaths } from 'rollup-plugin-typescript-paths';
 import { defineConfig } from 'vite';
 
-import { nitroRouteRules } from './route-rules';
-
 // https://vitejs.dev/config/
 export default defineConfig(({ mode }) => {
   return {
@@ -56,7 +54,6 @@ export default defineConfig(({ mode }) => {
               }),
             ],
           },
-          routeRules: nitroRouteRules,
         },
       }),
       nxViteTsPaths(),
