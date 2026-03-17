@@ -55,7 +55,7 @@ export default defineEventHandler(async (event) => {
       })
       .from(articles)
       .where(and(eq(articles.status, ArticleStatus.Publish))),
-    db.select({ slug: authors.slug }).from(authors).limit(10),
+    db.select({ slug: authors.slug }).from(authors),
   ]);
 
   const entries: SitemapEntry[] = [];
