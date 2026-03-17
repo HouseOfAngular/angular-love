@@ -4,7 +4,7 @@ import { createError, H3Event } from 'h3';
  * Safely extracts the Cloudflare environment from the H3 event.
  */
 export const getEnv = (event: H3Event): Env | undefined => {
-  return event.context.cloudflare?.env;
+  return event.context.cloudflare?.env ?? ((globalThis as any).__env__ as Env);
 };
 
 /**
