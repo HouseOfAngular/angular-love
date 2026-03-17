@@ -80,7 +80,7 @@ export function createDatabase(event: H3Event): LibSQLDatabase {
     });
   }
 
-  const cf = event.context.cloudflare.request.cf;
+  const cf = event.context.cloudflare?.request?.cf;
   if (
     cf &&
     typeof cf.longitude === 'string' &&
