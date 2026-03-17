@@ -1,35 +1,29 @@
-import { readFile } from 'node:fs/promises';
-import { join } from 'node:path';
-import { cwd } from 'node:process';
 import {
   ApplicationConfig,
-  inject,
   Injectable,
   mergeApplicationConfig,
-  PendingTasks,
 } from '@angular/core';
 import { provideServerRendering } from '@angular/platform-server';
 import { provideFastSVG, SvgLoadStrategy } from '@push-based/ngx-fast-svg';
-import { finalize, from, Observable, of, switchMap } from 'rxjs';
+import { map, Observable, of } from 'rxjs';
 
 import { appConfig } from './app.config';
 
+const svgCache = import.meta.glob('/public/assets/icons/*.svg', {
+  query: '?raw',
+  import: 'default',
+  eager: true,
+}) as Record<string, string>;
+
 @Injectable()
 export class SvgLoadStrategySsr implements SvgLoadStrategy {
-  private readonly _pendingTasks = inject(PendingTasks);
-
   config(url: string) {
-    return of(join(cwd(), 'apps', 'blog', 'src', url));
+    return of(url);
   }
 
   load(iconPath$: Observable<string>) {
     return iconPath$.pipe(
-      switchMap((iconPath) => {
-        const removeTask = this._pendingTasks.add();
-        return from(readFile(iconPath, { encoding: 'utf8' })).pipe(
-          finalize(removeTask),
-        );
-      }),
+      map((iconPath) => svgCache[`/public${iconPath}`] ?? ''),
     );
   }
 }
@@ -40,7 +34,7 @@ const serverConfig: ApplicationConfig = {
 
     provideFastSVG({
       svgLoadStrategy: SvgLoadStrategySsr,
-      url: (name: string) => `assets/icons/${name}.svg`,
+      url: (name: string) => `/assets/icons/${name}.svg`,
     }),
   ],
 };
