@@ -3,6 +3,7 @@
 import { resolve } from 'path';
 import analog from '@analogjs/platform';
 import { nxViteTsPaths } from '@nx/vite/plugins/nx-tsconfig-paths.plugin';
+import tailwindcss from '@tailwindcss/vite';
 import { typescriptPaths } from 'rollup-plugin-typescript-paths';
 import { defineConfig } from 'vite';
 
@@ -59,6 +60,7 @@ export default defineConfig(({ mode }) => {
         },
       }),
       nxViteTsPaths(),
+      tailwindcss(),
     ],
     test: {
       globals: true,
