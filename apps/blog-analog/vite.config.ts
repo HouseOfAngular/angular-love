@@ -36,6 +36,11 @@ export default defineConfig(({ mode }) => {
           routes: [],
         },
         nitro: {
+          routeRules: {
+            '/sitemap.xml': {
+              proxy: '/api/sitemap.xml',
+            },
+          },
           preset: 'cloudflare_module',
           compatibilityDate: '2025-09-27',
           cloudflare: {
