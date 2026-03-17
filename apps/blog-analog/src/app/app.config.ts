@@ -4,6 +4,7 @@ import {
   provideHttpClient,
   withFetch,
   withInterceptors,
+  withInterceptorsFromDi,
 } from '@angular/common/http';
 import {
   ApplicationConfig,
@@ -28,11 +29,12 @@ import { provideFastSVG } from '@push-based/ngx-fast-svg';
 import { NGX_SKELETON_LOADER_CONFIG } from 'ngx-skeleton-loader';
 import { map, switchMap } from 'rxjs';
 
-import { provideI18n } from '@angular-love/blog/i18n/data-access';
 import { blogShellRoutes } from '@angular-love/blog/shell/feature';
 import { provideSeo } from '@angular-love/seo';
 import { ConfigService, provideConfig } from '@angular-love/shared/config';
 import { convertLangToLocale } from '@angular-love/shared/utils-i18n';
+
+import { provideAnalogI18n } from './i18n/provider';
 
 // import { provideAppTracking } from '../../../blog/src/app/providers/tracking';
 
@@ -118,7 +120,7 @@ export const appConfig: ApplicationConfig = {
         onSameUrlNavigation: 'reload',
       }),
     ),
-    provideI18n(),
+    provideAnalogI18n(),
     provideClientHydration(),
 
     // we do not use file router, so we have to provide prefix manually
@@ -129,6 +131,7 @@ export const appConfig: ApplicationConfig = {
     provideHttpClient(
       withFetch(),
       withInterceptors([requestContextInterceptor]),
+      withInterceptorsFromDi(),
     ),
     provideAppSeo(),
     provideSkeletonConfig(),
