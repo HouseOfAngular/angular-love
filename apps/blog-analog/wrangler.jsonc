@@ -1,8 +1,12 @@
 {
   "$schema": "../../node_modules/wrangler/config-schema.json",
-  "main": "dist/apps/blog-analog/analog/server/index.mjs",
+  "main": "../../dist/apps/blog-analog/analog/server/index.mjs",
   "compatibility_date": "2025-09-27",
   "logpush": true,
+  "assets": {
+    "binding": "ASSETS",
+    "directory": "../../dist/apps/blog-analog/analog/public"
+  },
   "env": {
     "prod": {
       "name": "blog-analog",
