@@ -11,34 +11,45 @@ const bannersMock: Slider = {
   slides: [],
 };
 
+const CACHE_KEY = 'banners:json';
+const CACHE_TTL = 43_200;
+
 export default defineEventHandler(async (event) => {
-  const createWPClient = createWpClient(event);
+  const CACHE_KV = getRequiredEnv(event, 'CACHE_KV');
+
+  if (!CACHE_KV) {
+    return bannersMock;
+  }
 
   try {
+    const kvBanners = await CACHE_KV.get(CACHE_KEY);
+
+    if (kvBanners) {
+      return JSON.parse(kvBanners);
+    }
+
+    const createWPClient = createWpClient(event);
     const client = new WpBanners(createWPClient());
 
-    const banner = (
+    const bannerDto = (
       await client.getBanners({
         skip_cache: 1,
       })
     ).data[0];
-    const media = await client.getMediaByBannerId(banner.id);
 
-    return toBanner(banner, media.data);
-  } catch {
-    const cacheKv = getRequiredEnv(event, 'CACHE_KV');
-    const kvBanners = await cacheKv.get('banners');
-    let banners: Slider;
-    if (kvBanners) {
-      try {
-        banners = JSON.parse(kvBanners);
-      } catch (e) {
-        banners = bannersMock;
-      }
-    } else {
-      banners = bannersMock;
-    }
+    const media = await client.getMediaByBannerId(bannerDto.id);
+
+    const banners = toBanner(bannerDto, media.data);
+
+    event.waitUntil(
+      CACHE_KV.put(CACHE_KEY, JSON.stringify(banners), {
+        expirationTtl: CACHE_TTL,
+      }),
+    );
 
     return banners;
+  } catch (e) {
+    console.error(e);
+    return bannersMock;
   }
 });
