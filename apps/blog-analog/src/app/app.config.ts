@@ -34,6 +34,7 @@ import { provideSeo } from '@angular-love/seo';
 import { ConfigService, provideConfig } from '@angular-love/shared/config';
 import { convertLangToLocale } from '@angular-love/shared/utils-i18n';
 
+import { appRequestContextInterceptor } from './context-interceptor';
 import { provideAnalogI18n } from './i18n/provider';
 import { provideAppTracking } from './providers/tracking';
 
@@ -129,7 +130,7 @@ export const appConfig: ApplicationConfig = {
     },
     provideHttpClient(
       withFetch(),
-      withInterceptors([requestContextInterceptor]),
+      withInterceptors([appRequestContextInterceptor]),
       withInterceptorsFromDi(),
     ),
     provideAppSeo(),
