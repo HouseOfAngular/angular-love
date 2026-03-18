@@ -35,8 +35,7 @@ import { ConfigService, provideConfig } from '@angular-love/shared/config';
 import { convertLangToLocale } from '@angular-love/shared/utils-i18n';
 
 import { provideAnalogI18n } from './i18n/provider';
-
-// import { provideAppTracking } from '../../../blog/src/app/providers/tracking';
+import { provideAppTracking } from './providers/tracking';
 
 // apps/blog/src/app/providers/skeleton-config-provider.ts
 function provideSkeletonConfig(): EnvironmentProviders {
@@ -149,6 +148,6 @@ export const appConfig: ApplicationConfig = {
     provideFastSVG({
       url: (name: string) => `assets/icons/${name}.svg`,
     }),
-    // provideAppTracking(),
+    provideAppTracking(),
   ],
 };
