@@ -1,0 +1,9 @@
+@use '@shared-styles/global.css';
+@use '@shared-styles/main.scss';
+@use 'vanilla-cookieconsent/dist/cookieconsent.css';
+@use '@shared-styles/cookies-consent.scss';
+@use '@angular/cdk';
+@include cdk.a11y-visually-hidden();
+
+@import '@angular/cdk/overlay-prebuilt.css';
+

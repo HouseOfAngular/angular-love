@@ -1,0 +1,316 @@
+{
+  "homePage": {
+    "welcomeMessage": {
+      "description": "This is the place where you can learn Angular, discover best practices, explore advanced techniques, and stay updated with the latest news and trends.",
+      "descriptionAriaLabel": "Visit House of Angular website"
+    },
+    "seeAll": "See all the articles",
+    "latest": "Latest Articles",
+    "recommended": "Recommended Articles",
+    "angularNews": "Angular News",
+    "guides": "Guides",
+    "angularInDepth": "Angular In Depth",
+    "articleTypes": "Article types",
+    "categories": {
+      "all": "Latest",
+      "news": "News",
+      "guides": "Guides",
+      "inDepth": "In-Depth",
+      "showAll": "Show All {{category}}"
+    }
+  },
+  "nav": {
+    "home": "Home Page",
+    "about": "About us",
+    "meetups": "Angular Meetups",
+    "guides": "Angular Guides",
+    "news": "Angular News",
+    "in_depth": "In-Depth articles",
+    "partnership": "Let's discuss partnership",
+    "become_author": "Become an author",
+    "newsletter": "Angular.letter",
+    "navLinks": "Navigation links",
+    "roadmap": "Learn Angular",
+    "toggle_theme": "Toggle theme",
+    "open_search_dialog": "Open search dialog",
+    "languagePicker": {
+      "pl": "Polish",
+      "en": "English",
+      "select_lang": "Select language"
+    }
+  },
+  "footer": {
+    "mainPartner": "Main partner",
+    "partners": "Community partners",
+    "al-description": "This is the place where you can learn Angular, discover best practices, and stay updated with the latest news and trends"
+  },
+  "authorPage": {
+    "posted_by": "Posted by {{name}}"
+  },
+  "authorCard": {
+    "titles": {
+      "blogger": "Blogger",
+      "key_contributor": "Key Contributor",
+      "contributor": "Contributor",
+      "gde": "Google Developer Expert"
+    }
+  },
+  "becomeAuthorPage": {
+    "title": "Become a part of angular.love!",
+    "improvements": {
+      "title": "Why is it worth it?",
+      "description": "Angular.love is one of the biggest and most popular polish blogs about Angular. We are expanding and rapidly growing, which can be proved by the fact that our blog has over 4000 unique visitors every month (from Poland and abroad) and more than 2100 followers on Facebook.\n\n Our mission is to inspire, educate, spread good practices and share knowledge among Developers. Every 2 months we also organize Angular Meetups in Warsaw, during which the speakers present different, angular-related topics and share their knowledge among others. Our content is free and available for everyone – we want to make the Angular Community grow! Ok, but what’s in it for you?",
+      "items": [
+        "Increase your visibility in social media and present yourself as an Angular Expert by writing articles.",
+        "Develop the Angular Community, and yourself by sharing your knowledge. Working on an article requires research and a full understanding of the issue.",
+        "And also… get access to benefits such as discounts on courses, goodies, and much more – we try to support angular.love bloggers."
+      ]
+    },
+    "becomeAuthorCard": {
+      "title": "How to become an angular.love Blogger?",
+      "description": "Do you have an idea for an article? Would you like to start contributing and creating the Angular Community with us?",
+      "buttonText": "FILL OUT THE FORM"
+    },
+    "articleWritingRules": {
+      "title": "Article Writing Rules",
+      "description": "Hey! Here are some practical tips to help you get started and make your writing stand out",
+      "buttonText": "DISCOVER WRITING TIPS"
+    },
+    "benefits": {
+      "title": "How will you develop through this?",
+      "items": [
+        "By sharing your knowledge you inspire other Developers.",
+        "By teaching someone, you develop your own skills, not only technical ones.",
+        "New experiences allow you to broaden your horizons.",
+        "You will strengthen your personal brand.",
+        "You will get discounts on conferences, courses and free goodies."
+      ]
+    }
+  },
+  "aboutUsPage": {
+    "title": "About Us",
+    "card": {
+      "description1": "is a place for all Angular enthusiasts created to inspire and educate. It's a community of passionate people who share their knowledge and support others by providing them with the best practices and tips. This is the place where Angular lives.",
+      "description2": "We are proud to have won two Angular Awards. In 2021, we won “Angular Hero of Community” and in 2022, we won “Angular Hero of Education” at the largest Angular conference in Poland, NG Poland",
+      "description3": "Angular.love is a place where:",
+      "listItems": [
+        "you will find interesting cases, practical tips shared by Angular enthusiasts and more,",
+        "you can share interesting thoughts with the community,",
+        "together we are making Angular popular,",
+        "jointly we arrange and participate in live meetings (meetups, workshops, conferences) as well online (webinars, live chat),",
+        "you will find interesting open source projects - angular and more."
+      ],
+      "description4": "Want to stay up to date? Follow us:"
+    },
+    "authorsTitle": "Members of Angular.love community"
+  },
+  "newsletter": {
+    "title": "Sign up for our newsletter",
+    "description": "Stay up-to-date with the trends and be a part of a thriving community.",
+    "emailPlaceholder": "Your E-mail",
+    "namePlaceholder": "Your Name",
+    "submitLabel": "Submit and sign up for a newsletter",
+    "label": "Consent to process email for newsletter.",
+    "consent": "I consent to Angular.love processing my email address for the purpose of sending the newsletter.",
+    "error": "Something went wrong. Please try again."
+  },
+  "newsletterPage": {
+    "title": "Newsletter Angular.love",
+    "subtitle": "Join Angular.letter and get insights every 2 weeks",
+    "description1": "Staying up to date with Angular takes time - we know this because we work with it every day.",
+    "description2": "That’s why we created <b>Angular.letter</b> - a short, curated update <b>written by developers from Angular.love community</b> for developers like you.",
+    "description3": "It’s sent once every two weeks at most and is packed with only the essentials:",
+    "subsection1": "top news,",
+    "subsection2": "Angular practical tips, ",
+    "subsection3": "event invitations: meetups, conferences, Angular Camps",
+    "subsection4": "Conference ticket discounts for community members.",
+    "sampleNewsletters": "Check out sample newsletters:",
+    "success": {
+      "title": "Thank you for subscribing!",
+      "description": "You've successfully subscribed to our newsletter. We'll send you an email with the latest news and updates.",
+      "button": "Return to the home page"
+    }
+  },
+  "roadmapPage": {
+    "introductionNode": {
+      "title": "Angular.Love Roadmap Introduction",
+      "description": "The Angular Roadmap on Angular.Love is your go-to guide for learning Angular the right way. It breaks down key concepts, best practices, and useful resources in a clear, structured way. Plus, it’s packed with valuable materials and constantly updated to keep up with the latest trends.",
+      "additionalDescription": {
+        "introduction": "Before diving into Angular, it's essential to have a solid understanding of the following concepts:",
+        "toPrepareList": {
+          "1": "HTML & CSS – Structure and styling of web pages, including Flexbox, Grid, and responsiveness.",
+          "2": "JavaScript (ES6+) – Core concepts like variables, functions, promises, and async/await.",
+          "3": "TypeScript – A typed version of JavaScript with interfaces, generics, and decorators.",
+          "4": "Node.js & npm – Running JavaScript outside the browser and managing packages.",
+          "5": "Git – Handling code versions, branches, and teamwork.",
+          "6": "APIs & HTTP – Making requests and working with JSON data."
+        },
+        "ending": "Having a grasp of these topics will make your Angular learning journey much smoother and more effective."
+      }
+    },
+    "label": {
+      "optional": "optional",
+      "comingSoon": "upcoming",
+      "recommended": "recommended"
+    },
+    "dialog": {
+      "becomeAuthor": "Become an author",
+      "articles": "Articles",
+      "description": "Description",
+      "introductionDescription": "Before you start",
+      "videos": "Videos",
+      "creators": "Creators",
+      "share": "Share this roadmap with others"
+    },
+    "controls": {
+      "zoomInRoadmapButton": "Zoom in roadmap",
+      "restoreRoadmapViewButton": "Restore roadmap default view",
+      "restoreRoadmapZoomButton": "Restore roadmap original zoom",
+      "zoomOutRoadmapButton": "Zoom out roadmap"
+    }
+  },
+  "notFoundPage": {
+    "title": "404",
+    "description": "It seems like you've lost your way. The page you provided does not exist or the link has expired and is no longer available.",
+    "buttonText": "Return to the home page",
+    "ariaLabels": {
+      "title": "404 Page Title",
+      "description": "404 Page Description",
+      "buttonText": "Return to Home Page Button"
+    }
+  },
+  "difficulty": {
+    "beginner": "Beginner",
+    "intermediate": "Intermediate",
+    "advanced": "Advanced",
+    "tooltipBeginner": "Fundamental concepts, basic syntax, and simple projects.",
+    "tooltipIntermediate": "More complex features, intermediate concepts, performance, and best practices.",
+    "tooltipAdvanced": "Advanced topics, architecture, scalability, and professional development practices."
+  },
+  "tableOfContents": {
+    "title": "Table of Contents"
+  },
+  "articleShareIcons": {
+    "title": "Share this post",
+    "twitterAriaLabel": "Share on Twitter",
+    "facebookAriaLabel": "Share on Facebook",
+    "linkedInAriaLabel": "Share on LinkedIn",
+    "urlAriaLabel": "Copy URL"
+  },
+  "dynamicTextClamp": {
+    "readMore": "Read more",
+    "readLess": "Read less"
+  },
+  "seo": {
+    "metaDescription": "Angular.love - a place for all Angular enthusiasts created to inspire and educate.",
+    "home": "Blog and community for Angular fans",
+    "aboutUs": "About us",
+    "becomeAuthor": "Become an author",
+    "notFound": "Not found",
+    "roadmap": "Roadmap"
+  },
+  "adBanner": {
+    "registerButton": "Download for free",
+    "registerButtonShortened": "Download"
+  },
+  "search": {
+    "title": "Search articles",
+    "no-matches": "No recent matches",
+    "results": "{{total}} results"
+  },
+  "pagination": {
+    "title": "Pagination",
+    "previous": "Previous page",
+    "next": "Next page",
+    "navigateTo": "Navigate to page number {{pageNo}}"
+  },
+  "iconButtons": {
+    "close": "Close",
+    "changeLangToPolish": "Change language to Polish",
+    "changeLangToEnglish": "Change language to English"
+  },
+  "socialLinks": {
+    "title": "Social media",
+    "facebook": "Like our Facebook page",
+    "twitter-x": "Follow us on X (formerly Twitter)",
+    "linkedIn": "Follow us on LinkedIn",
+    "youtube": "Subscribe to our YouTube channel"
+  },
+  "writingRules": {
+    "title": "Article Writing Rules",
+    "description1": "If you’re here, it means you want to share your knowledge with the Angular community! Here, you’ll learn how the publication process works—from the idea to sharing the finished article.",
+    "description2": "You are welcome to contact us for support and consultation at any stage. The first step is to join our Discord group, <a class='text-al-primary' href='{{link}}' target='_blank'>angular.love bloggers</a> where we gather all bloggers and communicate together.",
+    "description3": "This is what the process of writing your article looks like :)",
+    "description4": "Let us know if you need further refinements!",
+    "nextButton": "Next",
+    "previousButton": "Previous",
+    "ideaStep": {
+      "title": "Idea",
+      "section1": "Topic – if you don’t yet have a vision of what you want to write about, you can consult with us (on the Discord group).",
+      "section2": "If you’re considering the format for your topic, here are some suggestions:",
+      "subsectionTitle1": "N Tips (What to do or avoid)",
+      "description1": "“5 ways to… ..”",
+      "description2": "Quick to read, well-organized, and full of concrete facts.",
+      "subsectionTitle2": "Guides",
+      "description3": "Step-by-step instructions, e.g., how to use a library.",
+      "subsectionTitle3": "Controversial Topic",
+      "description4": "Write cautiously; ensure the title sparks interest.",
+      "subsectionTitle4": "Checklists",
+      "description5": "For example, “Do you have everything you need for ____?”",
+      "description6": "These are similar to guides but structured as checklists.",
+      "subsectionTitle5": "Reviews",
+      "description7": "E.g., library, book, or product reviews.",
+      "subsectionTitle6": "News",
+      "description8": "Share updates on conferences, technology releases, or important contacts.",
+      "subsectionTitle7": "Interview",
+      "description9": "Act as a journalist interviewing an expert. Include questions and their answers in a structured way.",
+      "subsectionTitle8": "Short Story/Case Study",
+      "description10": "Share expertise based on real projects or experiences.",
+      "subsectionTitle9": "Tips & Tricks",
+      "description11": "Condensed knowledge focused on best practices and overcoming challenges."
+    },
+    "researchRules": {
+      "title": "Topic Research",
+      "section1": "Check if there are other articles on a similar topic on angular.love.",
+      "section2": "Originality is key. Articles previously published elsewhere can't be republished."
+    },
+    "synopsisRules": {
+      "title": "Synopsis",
+      "section1": "Sketch a plan for your article—propose a catchy title, outline-solid paragraphs, and identify the target audience.",
+      "section2": "Share your synopsis in the angular.love bloggers group for feedback.",
+      "section3": "After incorporating feedback, move on to writing."
+    },
+    "articleWorkRules": {
+      "title": "Working on the Article",
+      "section1": "While writing the article, keep these rules in mind:",
+      "subsectionTitle1": "Clear Structure",
+      "description1": "Divide into an introduction, body, and conclusion.",
+      "description2": "Use headings.",
+      "description3": " Use paragraphs.",
+      "subsectionTitle2": "Use interactive examples, such as on StackBlitz, if possible.",
+      "subsectionTitle3": "Code Snippets",
+      "description4": "Use code blocks and follow Angular standards (e.g., standalone components, Inject function, signals).",
+      "subsectionTitle4": "Use code blocks and follow Angular standards:",
+      "description5": "Standalone components.",
+      "description6": "Inject function.",
+      "description7": "Signals.",
+      "subsectionTitle5": "Add clear and high-quality graphics where possible.",
+      "section2": "Remember, the blogging community is here to support you at every stage!"
+    },
+    "reviewRules": {
+      "title": "Final Review",
+      "section1": "Share your completed article in the angular.love.bloggers group for review.",
+      "section2": "Address feedback and update the article as needed."
+    },
+    "translateRules": {
+      "title": "Article Translation",
+      "section1": "Our blog is available in both Polish and English.  If you wrote an article in one language, it must be translated into the other.",
+      "section2": " If you don’t know Polish, we’ll translate it for you!"
+    },
+    "publicationRules": {
+      "title": "Publication",
+      "section1": "We’ll transfer your article to the CMS and schedule its publication.",
+      "section2": "We’ll also promote it on social media to maximize its reach."
+    }
+  }
+}

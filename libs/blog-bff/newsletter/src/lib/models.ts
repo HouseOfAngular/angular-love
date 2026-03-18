@@ -1,3 +1,5 @@
+import * as v from 'valibot';
+
 export const enum NewsletterList {
   PL = 15,
   EN = 16,
@@ -34,3 +36,10 @@ export interface SendEmailDto {
     email: string;
   }[];
 }
+
+export const EmailSchema = v.pipe(
+  v.string(),
+  v.nonEmpty('Please enter your email.'),
+  v.email('Invalid email address'),
+  v.maxLength(254, 'Your email is too long.'),
+);

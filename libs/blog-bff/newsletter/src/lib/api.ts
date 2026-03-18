@@ -6,7 +6,7 @@ import * as v from 'valibot';
 
 import { langMw } from '@angular-love/blog-bff/shared/util-middleware';
 
-import { NewsletterList, NewsletterTemplate } from './models';
+import { EmailSchema, NewsletterList } from './models';
 import { NewsletterClient } from './newsletter-client';
 
 type NewsletterBindings = {
@@ -29,13 +29,6 @@ app.use(
           )
         : true,
   }),
-);
-
-const EmailSchema = v.pipe(
-  v.string(),
-  v.nonEmpty('Please enter your email.'),
-  v.email('Invalid email address'),
-  v.maxLength(254, 'Your email is too long.'),
 );
 
 app.post('/subscribe', async (c) => {
