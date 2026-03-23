@@ -57,10 +57,10 @@ pipeline {
                     env.USE_BRANCH_NAME = env.BRANCH_NAME
                     env.IS_PR = "FALSE"
                     env.ENVIRONMENT = 'dev'
-                    env.WORKER_DOMAIN_END = '-blog-bff-dev.contact-ef8.workers.dev' 
+                    env.WORKER_DOMAIN_END = '-blog-analog-dev.contact-ef8.workers.dev' 
                     if (env.BRANCH_NAME == 'main') {
                         env.ENVIRONMENT = 'prod'
-                        env.WORKER_DOMAIN_END = '-blog-bff.contact-ef8.workers.dev'
+                        env.WORKER_DOMAIN_END = '-blog-analog.contact-ef8.workers.dev'
                     }
 
                     if (env.CHANGE_ID) {
