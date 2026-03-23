@@ -249,7 +249,7 @@ pipeline {
                             usernamePassword(credentialsId: 'cf-workers-creds', usernameVariable: 'CLOUDFLARE_ACCOUNT_ID', passwordVariable: 'CLOUDFLARE_API_TOKEN'),
                         ]) {
                             sh """
-                                npx wrangler versions deploy --config apps/blog-bff/wrangler.toml --env $ENVIRONMENT $VERSION_ID@100 -y
+                                npx wrangler versions deploy --config apps/blog-analog/wrangler.jsonc --env $ENVIRONMENT $VERSION_ID@100 -y
                             """   
                         }
                     }
