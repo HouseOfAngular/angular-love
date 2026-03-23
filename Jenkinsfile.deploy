@@ -29,6 +29,7 @@ pipeline {
         TURSO_EU_AUTH_TOKEN=credentials('turso-eu-auth-token')
         TURSO_US_WEST_AUTH_TOKEN=credentials('turso-us-west-auth-token')
         TURSO_US_EAST_AUTH_TOKEN=credentials('turso-us-east-auth-token')
+        VITE_AL_API_URL="/api"
         VITE_WP_REST_API_BASE_URL="https://wp.angular.love"
         VITE_WP_REST_API_TOKEN=credentials('al-wp-token')
         VITE_AL_ALGOLIA_API_KEY=credentials('al_angolia_api_key')
@@ -46,7 +47,7 @@ pipeline {
                 script {
                     sh """
                         corepack enable && corepack prepare pnpm@10.6.2 --activate
-                        pnpm install 
+                        pnpm install
                     """
                 }
             }
@@ -57,7 +58,7 @@ pipeline {
                     env.USE_BRANCH_NAME = env.BRANCH_NAME
                     env.IS_PR = "FALSE"
                     env.ENVIRONMENT = 'dev'
-                    env.WORKER_DOMAIN_END = '-blog-analog-dev.contact-ef8.workers.dev' 
+                    env.WORKER_DOMAIN_END = '-blog-analog-dev.contact-ef8.workers.dev'
                     if (env.BRANCH_NAME == 'main') {
                         env.ENVIRONMENT = 'prod'
                         env.WORKER_DOMAIN_END = '-blog-analog.contact-ef8.workers.dev'
@@ -68,13 +69,13 @@ pipeline {
                         env.IS_PR = "TRUE"
                     }
 
-                    // DOn't rember how it worked so for safety for now , todo remove later 
+                    // DOn't rember how it worked so for safety for now , todo remove later
                     if (env.IS_PR == "TRUE" && env.CHANGE_BRANCH != env.BRANCH_NAME) {
                         echo "Banch missmatch in pr"
-                        echo "CHANGE_BRANCH: $CHANGE_BRANCH"    
+                        echo "CHANGE_BRANCH: $CHANGE_BRANCH"
                         echo "BRANCH_NAME: $BRANCH_NAME"
                         env.ENVIRONMENT = 'dev'
-                        env.WORKER_DOMAIN_END = '-blog-bff-dev.contact-ef8.workers.dev' 
+                        env.WORKER_DOMAIN_END = '-blog-bff-dev.contact-ef8.workers.dev'
                         env.USE_BRANCH_NAME = env.CHANGE_BRANCH
                     }
 
@@ -87,7 +88,7 @@ pipeline {
         stage("Select master db") {
             steps {
                 script {
-                    env.USE_PARAMS_DB="false"                    
+                    env.USE_PARAMS_DB="false"
                     def setCount = 0
                     if (params.DB_MAIN_EU != "") setCount++
                     if (params.DB_MAIN_US_WEST != "") setCount++
@@ -95,9 +96,9 @@ pipeline {
                     if (setCount > 0 && setCount < 3) {
                         error("Only some main db params are set. Please set all or none.")
                     }
-                    
-                    
-                    if (setCount == 3) { 
+
+
+                    if (setCount == 3) {
                         echo "Using params db"
                         env.USE_PARAMS_DB = "true"
                     }
@@ -115,7 +116,7 @@ pipeline {
                     if (env.BRANCH_HASH.length() > 5) {
                         env.BRANCH_HASH = env.BRANCH_HASH.substring(0, 5)
                     }
-                    
+
                     def branchNameForDB = env.USE_BRANCH_NAME
                     if (env.USE_BRANCH_NAME.length() > 30) {
                         echo "Branch name is too long, truncating to 30 characters"
@@ -129,7 +130,7 @@ pipeline {
                     if (env.DB_BRANCH_NAME.length() > 46) { // 46 since we will be adding the group name to the db name
                         error("DB branch name is too long")
                     }
-                withCredentials([string(credentialsId: 'tursor_api_token', variable: 'TURSO_API_TOKEN')]) {                    
+                withCredentials([string(credentialsId: 'tursor_api_token', variable: 'TURSO_API_TOKEN')]) {
                     echo "prams status $USE_PARAMS_DB"
                     if (env.USE_PARAMS_DB == "true") {
                         echo "Using params db"
@@ -147,10 +148,10 @@ pipeline {
                             turso db create usw-${DB_BRANCH_NAME} --from-db $TURSO_US_WEST_DB --group blog-us-west
                             turso db create use-${DB_BRANCH_NAME} --from-db $TURSO_US_EAST_DB --group blog-us-east
                         """
-                        
+
                     }
-                    
-                    
+
+
                     sh """
                         turso org switch angular-love
                         turso db list -g blog-eu | grep -q "eu-${DB_BRANCH_NAME}" || { echo "EU database not found after creation"; exit 1; }
@@ -171,7 +172,7 @@ pipeline {
                     [$class: 'BooleanParameterValue', name: 'dryRun', value: false]], wait: false)
 
                 }
-                
+
             }
         }
         stage("Build blog analog") {
@@ -240,7 +241,7 @@ pipeline {
                                 env.DEPLOY_URL = "https://" + previewUrl
                                 echo "Preview URL: $PREVIEW_URL"
                             }
-                        }   
+                        }
                     }
                 }
                 stage ("Wrangler deploy bff") {
@@ -250,7 +251,7 @@ pipeline {
                         ]) {
                             sh """
                                 npx wrangler versions deploy --config apps/blog-analog/wrangler.jsonc --env $ENVIRONMENT $VERSION_ID@100 -y
-                            """   
+                            """
                         }
                     }
                 }
@@ -283,7 +284,7 @@ Deploy URL: $DEPLOY_URL
                 if (env.IS_PR == "TRUE") {
                     pullRequest.comment("""
 Deploy failed, please check the logs in jenkins for more details.
-""")            
+""")
                 }
             }
         }
