@@ -97,9 +97,6 @@ export class FeatureLatestArticlesComponent implements AfterViewInit {
     this._keyManager = new FocusKeyManager(this._focusableItems)
       .withWrap()
       .withHorizontalOrientation('ltr');
-
-    // Set initial active item
-    this._keyManager.setActiveItem(0);
   }
 
   onPillKeydown(event: KeyboardEvent) {
