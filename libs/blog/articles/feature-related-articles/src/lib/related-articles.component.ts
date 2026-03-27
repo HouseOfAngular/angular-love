@@ -18,7 +18,7 @@ import { ButtonComponent } from '@angular-love/blog/shared/ui-button';
     @if (store.isFetchRelatedArticleListLoaded()) {
       <ng-container *transloco="let t; read: 'relatedArticles'">
         <h2 class="mb-4 text-3xl font-bold">{{ t('title') }}</h2>
-        <div class="relative lg:px-14">
+        <div class="relative lg:px-12">
           <owl-carousel-o #carousel role="list" [options]="customOptions">
             @for (article of store.relatedArticles(); track $index) {
               <ng-template carouselSlide>
@@ -30,7 +30,7 @@ import { ButtonComponent } from '@angular-love/blog/shared/ui-button';
             }
           </owl-carousel-o>
           <div
-            class="absolute left-0 top-1/2 hidden w-full -translate-y-1/2 justify-between lg:flex"
+            class="absolute top-1/2 left-0 hidden w-full -translate-y-1/2 justify-between lg:flex"
           >
             <button
               al-button
@@ -74,7 +74,8 @@ export class RelatedArticlesComponent implements OnInit {
     touchDrag: true,
     pullDrag: true,
     dots: true,
-    margin: 24,
+    margin: 12,
+    stagePadding: 8,
     navSpeed: 700,
     navText: ['', ''],
     responsive: {
