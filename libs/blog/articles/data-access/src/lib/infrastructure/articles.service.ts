@@ -36,9 +36,17 @@ export class ArticlesService {
     );
   }
 
-  getRelatedArticles(id: number): Observable<ArrayResponse<ArticlePreview>> {
+  getRelatedArticles(
+    id: number,
+    query?: {
+      limit?: number;
+    },
+  ): Observable<ArrayResponse<ArticlePreview>> {
     return this._http.get<ArrayResponse<ArticlePreview>>(
       `${this._apiBaseUrl}/articles/${id}/related`,
+      {
+        params: query || {},
+      },
     );
   }
 }

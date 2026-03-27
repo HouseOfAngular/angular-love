@@ -38,7 +38,7 @@ export const RelatedArticleListStore = signalStore(
             }),
           ),
           concatMap((articleId) =>
-            articlesService.getRelatedArticles(articleId).pipe(
+            articlesService.getRelatedArticles(articleId, { limit: 4 }).pipe(
               tap({
                 next: ({ data }) => {
                   patchState(store, {
