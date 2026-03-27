@@ -7,6 +7,8 @@
     "seeAll": "See all the articles",
     "latest": "Latest Articles",
     "recommended": "Recommended Articles",
+    "talks": "Angular talks",
+    "videoPlayer": "YouTube video player",
     "angularNews": "Angular News",
     "guides": "Guides",
     "angularInDepth": "Angular In Depth",
@@ -312,5 +314,19 @@
       "section1": "We’ll transfer your article to the CMS and schedule its publication.",
       "section2": "We’ll also promote it on social media to maximize its reach."
     }
+  },
+  "presentations": {
+    "listTitle": "Meetup presentations",
+    "watchRecording": "WATCH RECORDING",
+    "authoredBy": "by {{author}}",
+    "workshopsTitle": "Angular Workshops",
+    "workshopsDescription": "Whether you want to level up your individual skills or train your entire team, our workshops are 100% hands-on practice with an expert, directly translating into the quality of your code and work speed with Mateusz Stefańczyk (Google Developer Expert).",
+    "workshopsButton": "CHECK OPEN WORKSHOPS"
+  },
+  "ebook": {
+    "title": "FREE EBOOK",
+    "subTitle": "The Angular Evolution Guide: ng20+ Summary for CTOs",
+    "description": "Download to discover how the latest Angular version improves performance, DX, UX and overall app efficiency, and how it affects your business.",
+    "downloadButton": "DOWNLOAD NOW"
   }
 }

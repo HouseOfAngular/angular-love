@@ -1,0 +1,46 @@
+<article
+  class="bg-al-card md:hover:shadow-al-primary group relative h-full w-full rounded-lg border border-transparent shadow-none transition-transform motion-reduce:transition-none lg:hover:scale-105 lg:motion-reduce:hover:scale-100"
+  [attr.aria-labelledby]="presentation().slug"
+>
+  <a
+    [attr.aria-label]="presentation().title"
+    [routerLink]="['/', 'presentation', presentation().slug] | alLocalize"
+  >
+    <div
+      class="md:group-hover:bg-al-bottom-radial-gradient absolute bottom-0 z-0 h-1/2 w-full opacity-50"
+    ></div>
+
+    <img
+      alt=""
+      class="hidden w-full overflow-hidden rounded-t-lg object-cover lg:block"
+      [ngSrc]="
+        presentation().featuredImageUrl || 'assets/article-placeholder.webp'
+      "
+      width="1215"
+      height="750"
+    />
+    <div class="rounded-b-lg">
+      <div class="flex items-center justify-between px-4 pt-4">
+        <div class="flex items-center gap-2">
+          <al-avatar [imageSrc]="presentation().author.avatarUrl" size="32" />
+          <span class="text-al-primary-foreground text-sm/[14px] font-medium">
+            {{ presentation().author.name }}
+          </span>
+        </div>
+        <fast-svg name="video" aria-hidden="true" size="24" />
+      </div>
+      <div class="flex flex-col gap-3 px-4 pb-4 pt-3">
+        <h3
+          class="*:text-al-primary-foreground text-2xl font-bold *:not-italic"
+          [id]="presentation().slug"
+          style="word-break: break-word"
+        >
+          {{ presentation().title }}
+        </h3>
+        <p class="*:text-al-pink line-clamp-2 *:font-medium *:not-italic">
+          {{ presentation().excerpt }}
+        </p>
+      </div>
+    </div>
+  </a>
+</article>
