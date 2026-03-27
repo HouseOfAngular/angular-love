@@ -68,6 +68,7 @@
     "marked-highlight": "^2.2.1",
     "marked-mangle": "^1.1.10",
     "mermaid": "^10.2.4",
+    "ngx-owl-carousel-o": "^21.0.3",
     "ngx-skeleton-loader": "^8.1.0",
     "panzoom": "^9.4.3",
     "prettier-plugin-organize-attributes": "^1.0.0",
