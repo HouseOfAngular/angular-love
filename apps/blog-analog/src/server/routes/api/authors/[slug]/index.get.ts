@@ -1,9 +1,9 @@
-import { defineEventHandler, getRouterParam } from 'h3';
 import { eq } from 'drizzle-orm';
+import { defineEventHandler, getRouterParam } from 'h3';
 
 import { authors } from '@angular-love/blog-bff/shared/schema';
 
-import { createDatabase } from '../../../utils/database';
+import { createDatabase } from '../../../../utils/database';
 
 export default defineEventHandler(async (event) => {
   const db = createDatabase(event);

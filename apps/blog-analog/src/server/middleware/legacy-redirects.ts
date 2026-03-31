@@ -9,10 +9,10 @@ export default defineEventHandler((event) => {
   const path = url.pathname;
 
   // /en/:year/:month/:day/:slug → /:slug/
-  const enMatch = path.match(enDateSlugPattern);
-  if (enMatch) {
-    sendRedirect(event, `/${enMatch[4]}/`, 301);
-  }
+  // const enMatch = path.match(enDateSlugPattern);
+  // if (enMatch) {
+  //   sendRedirect(event, `/${enMatch[4]}/`, 301);
+  // }
 
   // /:year/:month/:day/:slug → /pl/:slug/
   // /pl/:year/:month/:day/:slug → /pl/:slug/
@@ -22,8 +22,8 @@ export default defineEventHandler((event) => {
   }
 
   // /en/* → /:splat/
-  const splatMatch = path.match(enSplatPattern);
-  if (splatMatch) {
-    sendRedirect(event, `/${splatMatch[1]}/`, 301);
-  }
+  // const splatMatch = path.match(enSplatPattern);
+  // if (splatMatch) {
+  //   sendRedirect(event, `/${splatMatch[1]}/`, 301);
+  // }
 });

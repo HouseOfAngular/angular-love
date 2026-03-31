@@ -291,8 +291,9 @@
 /en/:year/:month/:day/:slug/ /en/:slug/ 301
 
 # Polish articles (no language prefix)
-/:year/:month/:day/:slug /pl/:slug/ 301
-/:year/:month/:day/:slug/ /pl/:slug/ 301
+# `/:year/:month/:day/:slug /pl/:slug/` was matching our api routes, so we had to move middleware-based redirects
+#/:year/:month/:day/:slug /pl/:slug/ 301
+#/:year/:month/:day/:slug/ /pl/:slug/ 301
 /pl/:year/:month/:day/:slug /pl/:slug/ 301
 /pl/:year/:month/:day/:slug/ /pl/:slug/ 301
 
