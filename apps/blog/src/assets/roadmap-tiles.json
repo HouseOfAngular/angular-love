@@ -1,8 +1,32 @@
 [
   {
+    "id": "ai",
+    "title": "AI Guides",
+    "previousNodeId": null,
+    "label": "new",
+    "description": "Guides on using AI tools and agents to enhance Angular development workflows and productivity.",
+    "resources": [
+      {
+        "name": "Onboarding AI Agents into Your Angular Team",
+        "type": "article",
+        "url": "onboarding-ai-agents-into-your-angular-team"
+      },
+      {
+        "name": "Agent Skills in Claude – A Practical Guide for Angular Developers",
+        "type": "article",
+        "url": "agent-skills-in-claude-a-practical-guide-for-angular-developers"
+      },
+      {
+        "name": "Implementing the Official Angular Claude Skills",
+        "type": "article",
+        "url": "implementing-the-official-angular-claude-skills"
+      }
+    ]
+  },
+  {
     "id": "components",
     "title": "Components",
-    "previousNodeId": null,
+    "previousNodeId": "ai",
     "description": "Components are the building blocks of Angular applications, encapsulating the template, logic, and styles to define a self-contained unit of the user interface.",
     "resources": [
       {

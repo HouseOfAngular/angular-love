@@ -5,7 +5,7 @@ export interface Creator {
   slug: string;
 }
 
-export type Label = 'optional' | 'recommended' | 'comingSoon';
+export type Label = 'optional' | 'recommended' | 'comingSoon' | 'new';
 
 export interface AdditionalDescription {
   introduction: string;
