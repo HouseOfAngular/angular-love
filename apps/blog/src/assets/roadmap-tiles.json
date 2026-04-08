@@ -432,6 +432,7 @@
     "id": "templates-architecture",
     "parentNodeId": "templates",
     "title": "Templates Architecture",
+    "previousNodeId": "content-projection",
     "description": "Templates Architecture defines how templates are structured and organized within components, enabling better readability, maintainability, and consistency across the application.",
     "resources": [
       {
