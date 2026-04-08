@@ -14,6 +14,16 @@
         "name": "Compliant components declarative approach in angular",
         "type": "article",
         "url": "compliant-components-declarative-approach-in-angular"
+      },
+      {
+        "name": "The Basics of Angular Components: Their Purpose and Anatomy",
+        "type": "article",
+        "url": "the-basics-of-angular-components-their-purpose-and-anatomy"
+      },
+      {
+        "name": "Best practices of working with Angular components",
+        "type": "article",
+        "url": "best-practices-of-working-with-angular-components"
       }
     ]
   },
@@ -300,6 +310,11 @@
         "name": "Required inputs in angular v16",
         "type": "article",
         "url": "required-inputs-in-angular-v16"
+      },
+      {
+        "name": "Interaction of Angular components: the ways components communicate with each other",
+        "type": "article",
+        "url": "interaction-of-angular-components-the-ways-components-communicate-with-each-other"
       }
     ]
   },
@@ -410,6 +425,19 @@
         "name": "Journey into component depth   content projection",
         "type": "video",
         "url": "https://www.youtube.com/watch?v=2FhQlyWXJtQ"
+      }
+    ]
+  },
+  {
+    "id": "templates-architecture",
+    "parentNodeId": "templates",
+    "title": "Templates Architecture",
+    "description": "Templates Architecture defines how templates are structured and organized within components, enabling better readability, maintainability, and consistency across the application.",
+    "resources": [
+      {
+        "name": "Why inline templates are great",
+        "type": "article",
+        "url": "why-inline-templates-are-great"
       }
     ]
   },
@@ -588,7 +616,13 @@
     "title": "routerLink, routerLinkActive, ...",
     "previousNodeId": "guards-resolvers",
     "description": "Router directives like routerLink and routerLinkActive enable navigation and active link styling in Angular templates.",
-    "resources": []
+    "resources": [
+      {
+        "name": "RouterLink, RouterLinkActive – the basics in Angular",
+        "type": "article",
+        "url": "routerlink-routerlinkactive-the-basics-in-angular"
+      }
+    ]
   },
   {
     "id": "router-outlets",
@@ -654,6 +688,11 @@
         "name": "What is forwardref in angular and why we need it",
         "type": "article",
         "url": "what-is-forwardref-in-angular-and-why-we-need-it"
+      },
+      {
+        "name": "Cracking Angular DI: The Hidden Layers of Injectors",
+        "type": "article",
+        "url": "cracking-angular-di-the-hidden-layers-of-injectors"
       }
     ]
   },
@@ -682,6 +721,11 @@
         "name": "The updateon option in angular forms",
         "type": "article",
         "url": "the-updateon-option-in-angular-forms"
+      },
+      {
+        "name": "Building Dynamic Forms in Angular Using JSON Schema and Signals",
+        "type": "article",
+        "url": "building-dynamic-forms-in-angular-using-json-schema-and-signals"
       }
     ]
   },
@@ -715,11 +759,16 @@
   {
     "id": "signal-forms",
     "parentNodeId": "forms",
-    "label": "comingSoon",
     "title": "Signal Forms",
     "previousNodeId": "control-value-accessor",
     "description": "Signal Forms offer a reactive and fine-grained approach to form state and validation using Angular’s signal-based reactivity model.",
-    "resources": []
+    "resources": [
+      {
+        "name": "Signal Forms in Angular 21 – Complete Guide",
+        "type": "article",
+        "url": "signal-forms-in-angular-21-complete-guide"
+      }
+    ]
   },
   {
     "id": "reactive-forms",
@@ -1046,6 +1095,11 @@
         "name": "How to use ts decorators to add caching logic to api calls",
         "type": "article",
         "url": "how-to-use-ts-decorators-to-add-caching-logic-to-api-calls"
+      },
+      {
+        "name": "Building a Backendless Application with Angular & Appwrite",
+        "type": "article",
+        "url": "building-a-backendless-application-with-angular-appwrite"
       }
     ]
   },
@@ -1213,6 +1267,11 @@
         "name": "Angular compilation restrictions overview",
         "type": "article",
         "url": "angular-compilation-restrictions-overview"
+      },
+      {
+        "name": "Angular Schematics Deep Dive — Part 2 – ng generate",
+        "type": "article",
+        "url": "angular-schematics-deep-dive-part-2-ng-generate"
       }
     ]
   },
@@ -1740,6 +1799,11 @@
         "name": "There’s safety in angular",
         "type": "video",
         "url": "https://www.youtube.com/watch?v=yxBE6inxxug"
+      },
+      {
+        "name": "Security in Angular Applications – What Every Developer Should Know",
+        "type": "article",
+        "url": "security-in-angular-applications-what-every-developer-should-know"
       }
     ]
   },
@@ -1796,6 +1860,11 @@
         "name": "Angular for everyone how to adapt applications for people with disabilities",
         "type": "article",
         "url": "angular-for-everyone-how-to-adapt-applications-for-people-with-disabilities"
+      },
+      {
+        "name": "Angular Aria – A New Standard for Building Accessible Components",
+        "type": "article",
+        "url": "angular-aria-a-new-standard-for-building-accessible-components"
       }
     ]
   },
@@ -2075,6 +2144,11 @@
     "previousNodeId": "advanced-angular-features",
     "description": "Angular version updates bring new features, performance improvements, and bug fixes, while often providing migration tools and guides to help developers smoothly upgrade their applications.",
     "resources": [
+      {
+        "name": "Angular 21.1: Key Features and Improvements",
+        "type": "article",
+        "url": "angular-21-1-key-features-and-improvements"
+      },
       {
         "name": "Angular 19 2 whats new",
         "type": "article",
