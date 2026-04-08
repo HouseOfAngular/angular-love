@@ -33,6 +33,8 @@ export class RoadmapNodeLabelComponent {
         return 'bg-al-roadmap-label-coming-soon';
       case 'recommended':
         return 'bg-linear-to-r from-al-roadmap-secondary to-al-roadmap-accent';
+      case 'new':
+        return 'bg-linear-to-r from-al-roadmap-secondary to-al-roadmap-accent';
       default:
         return '';
     }

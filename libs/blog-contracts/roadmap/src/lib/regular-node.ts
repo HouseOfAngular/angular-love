@@ -1,7 +1,7 @@
 import { Resource } from './resource';
 
 export interface RoadmapNodeDTO {
-  label?: 'optional' | 'recommended' | 'comingSoon';
+  label?: 'optional' | 'recommended' | 'comingSoon' | 'new';
   resources: Resource[];
   id: string;
   title: string;
