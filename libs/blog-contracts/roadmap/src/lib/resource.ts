@@ -1,5 +1,5 @@
 export interface Resource {
   url: string;
   name: string;
-  type: 'article' | 'video';
+  type: 'article' | 'video' | 'short';
 }

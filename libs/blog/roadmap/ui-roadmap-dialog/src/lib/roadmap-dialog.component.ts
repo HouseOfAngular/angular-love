@@ -59,6 +59,10 @@ export class RoadmapDialogComponent {
     this.regularNodeDetails?.resources.filter(
       (resource) => resource.type === 'video',
     ) ?? [];
+  protected readonly regularNodeShorts =
+    this.regularNodeDetails?.resources.filter(
+      (resource) => resource.type === 'short',
+    ) ?? [];
 
   protected navigateToAuthor() {
     this._router.navigate(['/become-author']);
