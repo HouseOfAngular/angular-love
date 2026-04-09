@@ -48,6 +48,11 @@
         "name": "Best practices of working with Angular components",
         "type": "article",
         "url": "best-practices-of-working-with-angular-components"
+      },
+      {
+        "name": "The Role of Renderer2 in Modern Angular",
+        "type": "video",
+        "url": "https://www.youtube.com/watch?v=t0WvhimkM7Q"
       }
     ]
   },
@@ -86,6 +91,11 @@
         "name": "Techniques to style component host element in angular",
         "type": "article",
         "url": "techniques-to-style-component-host-element-in-angular"
+      },
+      {
+        "name": "Why Use SDK Styles to Hide Radio Buttons?",
+        "type": "short",
+        "url": "https://www.youtube.com/shorts/-tPFYbyx1lA"
       }
     ]
   },
@@ -792,6 +802,16 @@
         "name": "Signal Forms in Angular 21 – Complete Guide",
         "type": "article",
         "url": "signal-forms-in-angular-21-complete-guide"
+      },
+      {
+        "name": "Introduction to Signal Forms",
+        "type": "video",
+        "url": "https://www.youtube.com/watch?v=SWxxnvb5mfs"
+      },
+      {
+        "name": "3 useful facts about Signal Forms",
+        "type": "short",
+        "url": "https://www.youtube.com/shorts/MmUvpWgFs5c"
       }
     ]
   },
@@ -943,6 +963,26 @@
         "name": "The bright future of angular signals",
         "type": "video",
         "url": "https://www.youtube.com/watch?v=m_h_WnoO8Ms"
+      },
+      {
+        "name": "Angular Signals: A Look Under the Hood and Beyond",
+        "type": "video",
+        "url": "https://www.youtube.com/watch?v=QNB4C2vEY2U"
+      },
+      {
+        "name": "Signals in Modern Angular",
+        "type": "video",
+        "url": "https://www.youtube.com/watch?v=S-dnmJtOpKs"
+      },
+      {
+        "name": "5 facts about Angular Signals in Angular 16+",
+        "type": "short",
+        "url": "https://www.youtube.com/shorts/fStRd5bCpdA"
+      },
+      {
+        "name": "Computed vs Linked Signals in Angular",
+        "type": "short",
+        "url": "https://www.youtube.com/shorts/-TVZAbGEBZM"
       }
     ]
   },
@@ -1092,6 +1132,16 @@
         "name": "Build your own observable part 4 map filter take and all that jazz",
         "type": "article",
         "url": "build-your-own-observable-part-4-map-filter-take-and-all-that-jazz"
+      },
+      {
+        "name": "Managing subscriptions | Part 1",
+        "type": "short",
+        "url": "https://www.youtube.com/shorts/c2gUmi2o-2Q"
+      },
+      {
+        "name": "Managing subscriptions | Part 2",
+        "type": "short",
+        "url": "https://www.youtube.com/shorts/vQ6FuQOpqJ8"
       }
     ]
   },
@@ -1163,6 +1213,11 @@
         "name": "Parsing and mapping api response using zod js",
         "type": "article",
         "url": "parsing-and-mapping-api-response-using-zod-js"
+      },
+      {
+        "name": "Exploring Resource API",
+        "type": "video",
+        "url": "https://www.youtube.com/watch?v=KdZdHUWW8Vw"
       }
     ]
   },
@@ -1186,6 +1241,16 @@
         "name": "Testing with component harnesses",
         "type": "video",
         "url": "https://www.youtube.com/watch?v=Egz6DWitDcM"
+      },
+      {
+        "name": "How to develop your Angular components in Isolation? | Part 1",
+        "type": "short",
+        "url": "https://www.youtube.com/shorts/qlaSc5WL2qs"
+      },
+      {
+        "name": "How to develop your Angular components in Isolation? | Part 2",
+        "type": "short",
+        "url": "https://www.youtube.com/shorts/ihnZKihvmrQ"
       }
     ]
   },
@@ -1458,6 +1523,11 @@
         "name": "Ngrx signal store",
         "type": "video",
         "url": "https://www.youtube.com/watch?v=CoQ0NjcZMtI"
+      },
+      {
+        "name": "How to Extend a Generic Signal Store? (Pro Tip)",
+        "type": "short",
+        "url": "https://www.youtube.com/shorts/8YQwswx3RrE"
       }
     ]
   },
@@ -1515,6 +1585,11 @@
         "name": "Setting up efficient workflows with eslint prettier and typescript",
         "type": "article",
         "url": "setting-up-efficient-workflows-with-eslint-prettier-and-typescript"
+      },
+      {
+        "name": "Angular DevTools",
+        "type": "video",
+        "url": "https://www.youtube.com/watch?v=BTanGJU9iJc"
       }
     ]
   },
@@ -1596,6 +1671,11 @@
         "name": "How to exclude stylesheets from the bundle and lazy load them in angular angular tutorials",
         "type": "article",
         "url": "how-to-exclude-stylesheets-from-the-bundle-and-lazy-load-them-in-angular-angular-tutorials"
+      },
+      {
+        "name": "Signals vs Observables: The Performance Debate",
+        "type": "short",
+        "url": "https://www.youtube.com/shorts/NDGw5WVCXH0"
       }
     ]
   },
@@ -1625,6 +1705,11 @@
         "name": "Effortless image optimization with optimizedimage",
         "type": "video",
         "url": "https://www.youtube.com/watch?v=dpR6WngPNzg"
+      },
+      {
+        "name": "Introduction to NgOptimizedImage: Enhancing Performance and UX in Angular",
+        "type": "video",
+        "url": "https://www.youtube.com/watch?v=M_Rihr8zRnQ"
       }
     ]
   },
@@ -1659,6 +1744,11 @@
         "name": "Learn how to use angular's defer block to improve performance",
         "type": "video",
         "url": "https://www.youtube.com/watch?v=w_F4ZmYMLrE"
+      },
+      {
+        "name": "The missing intro of the defer block",
+        "type": "video",
+        "url": "https://www.youtube.com/watch?v=1WIOopcnM4s"
       }
     ]
   },
@@ -1693,6 +1783,11 @@
         "name": "Angular lazy load common styles specific to a feature module",
         "type": "article",
         "url": "angular-lazy-load-common-styles-specific-to-a-feature-module"
+      },
+      {
+        "name": "Lazy, but Fast: How Taking It Slow Can Speed Up Your App!",
+        "type": "video",
+        "url": "https://www.youtube.com/watch?v=PAXESli1Ztw"
       }
     ]
   },
@@ -1862,6 +1957,21 @@
         "name": "Implementing multi language angular applications rendered on a server ssr",
         "type": "article",
         "url": "implementing-multi-language-angular-applications-rendered-on-a-server-ssr"
+      },
+      {
+        "name": "SSR Challenges – Is Your App in Deep Water or on Solid Ground?",
+        "type": "video",
+        "url": "https://www.youtube.com/watch?v=zfF9_uo3vbk"
+      },
+      {
+        "name": "Let's explore server-side rendering (SSR)",
+        "type": "video",
+        "url": "https://www.youtube.com/watch?v=HRx3s3zu0hE"
+      },
+      {
+        "name": "SSR + PWA? Does It Make Sense?",
+        "type": "short",
+        "url": "https://www.youtube.com/shorts/E3mFdZX4yyE"
       }
     ]
   },
@@ -1890,6 +2000,11 @@
         "name": "Angular Aria – A New Standard for Building Accessible Components",
         "type": "article",
         "url": "angular-aria-a-new-standard-for-building-accessible-components"
+      },
+      {
+        "name": "Case Study - Building an Accessible Product Variant Selector",
+        "type": "video",
+        "url": "https://www.youtube.com/watch?v=fskxz4sZB_w"
       }
     ]
   },
@@ -1943,6 +2058,16 @@
         "name": "How to automate npm package publishing with azure devops",
         "type": "article",
         "url": "how-to-automate-npm-package-publishing-with-azure-devops"
+      },
+      {
+        "name": "Turning Your App into a Mobile Money Maker",
+        "type": "video",
+        "url": "https://www.youtube.com/watch?v=abTgmY183ko"
+      },
+      {
+        "name": "How to deploy an Angular app to Vercel?",
+        "type": "short",
+        "url": "https://www.youtube.com/shorts/E243hoINLO4"
       }
     ]
   },
@@ -2160,6 +2285,31 @@
         "name": "How the backend knowledge can be used to build better angular apps",
         "type": "video",
         "url": "https://www.youtube.com/watch?v=How8zLw5d1k"
+      },
+      {
+        "name": "What is Analog",
+        "type": "short",
+        "url": "https://www.youtube.com/shorts/ZuT_-QGl6MM"
+      },
+      {
+        "name": "What are Analog API Routes?",
+        "type": "short",
+        "url": "https://www.youtube.com/shorts/NjH6k46G078"
+      },
+      {
+        "name": "View Transitions API feature in Angular 17",
+        "type": "short",
+        "url": "https://www.youtube.com/shorts/UWgPxsZ48lI"
+      },
+      {
+        "name": "The Top Angular Feature | Fanis Prodromou",
+        "type": "short",
+        "url": "https://www.youtube.com/shorts/h4TY3XKvr68"
+      },
+      {
+        "name": "The Top Angular Feature | Enea Jahollari",
+        "type": "short",
+        "url": "https://www.youtube.com/shorts/qSoVNsJKx-c"
       }
     ]
   },
@@ -2173,6 +2323,16 @@
         "name": "Angular 21.1: Key Features and Improvements",
         "type": "article",
         "url": "angular-21-1-key-features-and-improvements"
+      },
+      {
+        "name": "What’s new in Angular 21",
+        "type": "video",
+        "url": "https://www.youtube.com/watch?v=buxmxBr9Rc4"
+      },
+      {
+        "name": "What's new in Angular 20?",
+        "type": "video",
+        "url": "https://www.youtube.com/watch?v=0B5okGUMsx8"
       },
       {
         "name": "Angular 19 2 whats new",
@@ -2235,11 +2395,6 @@
         "url": "https://www.youtube.com/watch?v=nQc74wAO94g"
       },
       {
-        "name": "What's new in angular 18",
-        "type": "video",
-        "url": "https://www.youtube.com/watch?v=nQc74wAO94g"
-      },
-      {
         "name": "Angular 18 | interview with aristeidis bampakos",
         "type": "video",
         "url": "https://www.youtube.com/watch?v=XIraTN4ouWA"
@@ -2250,9 +2405,74 @@
         "url": "https://www.youtube.com/watch?v=zwotukZCd9g"
       },
       {
-        "name": "Angular 18 and beyond   a look into the future",
+        "name": "Angular 18 and beyond a look into the future",
         "type": "video",
         "url": "https://www.youtube.com/watch?v=zct1Jv2J8Ns"
+      },
+      {
+        "name": "What's new in Angular v21?",
+        "type": "short",
+        "url": "https://www.youtube.com/shorts/El20cD0Wcvw"
+      },
+      {
+        "name": "3 updates in Angular 21.1 you need to know!",
+        "type": "short",
+        "url": "https://www.youtube.com/shorts/4TSlUnow0-c"
+      },
+      {
+        "name": "Angular 20 - Love It or Not? Alain Chautard Reacts",
+        "type": "short",
+        "url": "https://www.youtube.com/shorts/KlCT1660P0E"
+      },
+      {
+        "name": "Angular 20 The BIGGEST Feature GDE Sonu Kapoor is Excited About!",
+        "type": "short",
+        "url": "https://www.youtube.com/shorts/pAwgor8dl5k"
+      },
+      {
+        "name": "Angular 20 The Most Anticipated New Features, by Angular Expert Dawid Kostka",
+        "type": "short",
+        "url": "https://www.youtube.com/shorts/TmcKR58omx4"
+      },
+      {
+        "name": "Angular 20 the most awaited feature by Angular Expert Jarosław Żołnowski",
+        "type": "short",
+        "url": "https://www.youtube.com/shorts/1vl-wg6_aGk"
+      },
+      {
+        "name": "Alex Okrushko | Angular 19 the most awaited feature",
+        "type": "short",
+        "url": "https://www.youtube.com/shorts/C9Af3ZO18f8"
+      },
+      {
+        "name": "Angular 19 the most awaited feature by Gerome Grignon",
+        "type": "short",
+        "url": "https://www.youtube.com/shorts/vLLANki5sAM"
+      },
+      {
+        "name": " Stefan Haas | Angular 17 - the most awaited feature",
+        "type": "short",
+        "url": "https://www.youtube.com/shorts/TL4yNXTNA_o"
+      },
+      {
+        "name": "GDE | Alisa Duncan | Angular 17 - the most awaited feature",
+        "type": "short",
+        "url": "https://www.youtube.com/shorts/qFbp9kr66Ao"
+      },
+      {
+        "name": "Marko Stanimirović | Angular 17 - the most awaited feature",
+        "type": "short",
+        "url": "https://www.youtube.com/shorts/gnzFYcgXlWg"
+      },
+      {
+        "name": "What's new in Angular v17?",
+        "type": "short",
+        "url": "https://www.youtube.com/shorts/aAQJnJHo224"
+      },
+      {
+        "name": "5 features in Angular 16+",
+        "type": "short",
+        "url": "https://www.youtube.com/shorts/myCXz3Xz1EI"
       }
     ]
   },
