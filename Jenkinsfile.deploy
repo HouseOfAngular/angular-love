@@ -193,7 +193,7 @@ pipeline {
                             sed -i "s/<kv_prod_namespace_id>/$KV_PROD/g" apps/blog-analog/wrangler.jsonc
                             echo "{
 \\"VITE_WP_REST_API_BASE_URL\\":\\"$VITE_WP_REST_API_BASE_URL\\",
-\\"VITE_WP_REST_API_TOKEN\\":\\"$VITE_WP_REST_API_TOKEN\\",
+\\"WP_REST_API_TOKEN\\":\\"$WP_REST_API_TOKEN\\",
 \\"VITE_AL_ALGOLIA_API_KEY\\":\\"$VITE_AL_ALGOLIA_API_KEY\\",
 \\"VITE_AL_ALGOLIA_APPLICATION_ID\\":\\"$VITE_AL_ALGOLIA_APPLICATION_ID\\",
 \\"VITE_AL_ALGOLIA_INDEX_NAME\\":\\"$VITE_AL_ALGOLIA_INDEX_NAME\\",
