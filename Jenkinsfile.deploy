@@ -31,9 +31,9 @@ pipeline {
         TURSO_US_EAST_AUTH_TOKEN=credentials('turso-us-east-auth-token')
         BREVO_API_KEY=credentials('blog-brevo-api-key')
         BREVO_API_URL="https://api.brevo.com/v3/"
+        WP_REST_API_TOKEN=credentials('al-wp-token')
         VITE_AL_API_URL="/api"
         VITE_WP_REST_API_BASE_URL="https://wp.angular.love"
-        VITE_WP_REST_API_TOKEN=credentials('al-wp-token')
         VITE_AL_ALGOLIA_API_KEY=credentials('al_angolia_api_key')
         VITE_AL_ALGOLIA_APPLICATION_ID=credentials('al_angolia_app_id')
         VITE_AL_ALGOLIA_INDEX_NAME=credentials('al_angolia_index_name')
