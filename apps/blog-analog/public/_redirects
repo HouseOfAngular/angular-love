@@ -285,18 +285,3 @@
 /angular-2-bidrectional-service-komunikacja-komponentow-poprzez-serwis/ /pl/angular-2-bidrectional-service-komunikacja-komponentow-poprzez-serwis/ 301
 /angular-2-dynamic-component-tworzymy-dynamiczne-komponenty/ /pl/angular-2-dynamic-component-tworzymy-dynamiczne-komponenty/ 301
 /angular-2-resolver-dostarczamy-dane-przed-aktywacja-routa/ /pl/angular-2-resolver-dostarczamy-dane-przed-aktywacja-routa/ 301
-
-# English articles
-/en/:year/:month/:day/:slug /en/:slug/ 301
-/en/:year/:month/:day/:slug/ /en/:slug/ 301
-
-# Polish articles (no language prefix)
-# `/:year/:month/:day/:slug /pl/:slug/` was matching our api routes, so we had to move middleware-based redirects
-#/:year/:month/:day/:slug /pl/:slug/ 301
-#/:year/:month/:day/:slug/ /pl/:slug/ 301
-/pl/:year/:month/:day/:slug /pl/:slug/ 301
-/pl/:year/:month/:day/:slug/ /pl/:slug/ 301
-
-/en / 301
-/en/ / 301
-/en/* /:splat/ 301
