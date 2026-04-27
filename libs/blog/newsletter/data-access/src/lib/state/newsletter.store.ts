@@ -20,15 +20,15 @@ export const NewsletterStore = signalStore(
     resetToInit: () => {
       patchState(store, { loading: 'init' });
     },
-    postEmailAddress: rxMethod<string>(
+    postEmailAddress: rxMethod<{ name: string; email: string }>(
       pipe(
         tap(() => {
           patchState(store, {
             loading: 'loading',
           });
         }),
-        exhaustMap((email) =>
-          newsletterService.subscribe(email).pipe(
+        exhaustMap(({ name, email }) =>
+          newsletterService.subscribe(name, email).pipe(
             tapResponse({
               next: () => {
                 patchState(store, { loading: 'success' });

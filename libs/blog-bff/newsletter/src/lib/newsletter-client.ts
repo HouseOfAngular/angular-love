@@ -1,4 +1,4 @@
-import { NewContactDto, SendEmailDto, Template } from './models';
+import { NewContactDto } from './models';
 
 export class NewsletterClient {
   constructor(
@@ -13,16 +13,16 @@ export class NewsletterClient {
     });
   }
 
-  getContact(email: string): Promise<{ listIds: number[] }> {
-    return this.request<{ listIds: number[] }>(
+  getContact(email: string): Promise<{ listIds: number[]; id: number }> {
+    return this.request<{ listIds: number[]; id: number }>(
       `contacts/${encodeURIComponent(email)}`,
     );
   }
 
-  updateContact(contact: NewContactDto): Promise<void> {
-    return this.request<void>(`contacts/${encodeURIComponent(contact.email)}`, {
+  updateContact(id: number, contact: NewContactDto): Promise<void> {
+    return this.request<void>(`contacts/${id}`, {
       method: 'PUT',
-      body: contact,
+      body: { ...contact, identifierType: 'contact_id' },
     });
   }
 
