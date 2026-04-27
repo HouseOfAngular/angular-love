@@ -6,7 +6,7 @@ import * as v from 'valibot';
 
 import { langMw } from '@angular-love/blog-bff/shared/util-middleware';
 
-import { EmailSchema, NewsletterList } from './models';
+import { NewsletterList, SubscriberSchema } from './models';
 import { NewsletterClient } from './newsletter-client';
 
 type NewsletterBindings = {
@@ -32,7 +32,7 @@ app.use(
 );
 
 app.post('/subscribe', async (c) => {
-  const newSubscriber = await c.req.text();
+  const newSubscriber = await c.req.parseBody();
   const lang = c.var.lang;
   const { BREVO_API_KEY, BREVO_API_URL } = env(c);
 
@@ -45,11 +45,11 @@ app.post('/subscribe', async (c) => {
   }
 
   try {
-    const parsedEmail = v.parse(EmailSchema, newSubscriber);
+    const parsedSubscriber = v.parse(SubscriberSchema, newSubscriber);
     const client = new NewsletterClient(BREVO_API_URL, BREVO_API_KEY);
 
     try {
-      const existingContact = await client.getContact(parsedEmail);
+      const existingContact = await client.getContact(parsedSubscriber.email);
       const mergedListIds = Array.from(
         new Set([...existingContact.listIds, ...listIds]),
       );
@@ -58,8 +58,11 @@ app.post('/subscribe', async (c) => {
       );
 
       if (!alreadySubscribed) {
-        await client.updateContact({
-          email: parsedEmail,
+        await client.updateContact(existingContact.id, {
+          email: parsedSubscriber.email,
+          attributes: {
+            FIRSTNAME: parsedSubscriber.name,
+          },
           emailBlacklisted: false,
           smsBlacklisted: false,
           listIds: mergedListIds,
@@ -73,7 +76,10 @@ app.post('/subscribe', async (c) => {
         err.code === 'document_not_found'
       ) {
         await client.createContact({
-          email: parsedEmail,
+          email: parsedSubscriber.email,
+          attributes: {
+            FIRSTNAME: parsedSubscriber.name,
+          },
           emailBlacklisted: false,
           smsBlacklisted: false,
           listIds,
