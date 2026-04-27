@@ -1,10 +1,11 @@
-import { assertMethod, createError, defineEventHandler, readRawBody } from 'h3';
+import { assertMethod, createError, defineEventHandler, readBody } from 'h3';
 import * as v from 'valibot';
 
 import {
-  EmailSchema,
   NewsletterClient,
   NewsletterList,
+  Subscriber,
+  SubscriberSchema,
 } from '@angular-love/blog-bff/newsletter/api';
 
 import { getRequiredEnv } from '../../../utils/env';
@@ -17,11 +18,11 @@ export default defineEventHandler(async (event) => {
   const BREVO_API_KEY = getRequiredEnv(event, 'BREVO_API_KEY');
   const BREVO_API_URL = getRequiredEnv(event, 'BREVO_API_URL');
 
-  const rawBody = await readRawBody(event);
-  let parsedEmail: string;
+  const rawBody = await readBody(event);
+  let parsedSubscriber: Subscriber;
 
   try {
-    parsedEmail = v.parse(EmailSchema, rawBody);
+    parsedSubscriber = v.parse(SubscriberSchema, rawBody);
   } catch (err) {
     throw createError({
       statusCode: 400,
@@ -38,7 +39,7 @@ export default defineEventHandler(async (event) => {
   const client = new NewsletterClient(BREVO_API_URL, BREVO_API_KEY);
 
   try {
-    const existingContact = await client.getContact(parsedEmail);
+    const existingContact = await client.getContact(parsedSubscriber.email);
 
     const isMissingLists = listIds.some(
       (listId) => !existingContact.listIds.includes(listId),
@@ -49,8 +50,11 @@ export default defineEventHandler(async (event) => {
         new Set([...existingContact.listIds, ...listIds]),
       );
 
-      await client.updateContact({
-        email: parsedEmail,
+      await client.updateContact(existingContact.id, {
+        email: parsedSubscriber.email,
+        attributes: {
+          FIRSTNAME: parsedSubscriber.name,
+        },
         emailBlacklisted: false,
         smsBlacklisted: false,
         listIds: mergedListIds,
@@ -62,7 +66,10 @@ export default defineEventHandler(async (event) => {
     if (err?.code === 'document_not_found') {
       try {
         await client.createContact({
-          email: parsedEmail,
+          email: parsedSubscriber.email,
+          attributes: {
+            FIRSTNAME: parsedSubscriber.name,
+          },
           emailBlacklisted: false,
           smsBlacklisted: false,
           listIds,
