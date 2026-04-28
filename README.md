@@ -40,3 +40,11 @@ To generate stories for specific library (aka project) use the following command
 ```
 pnpm nx g @nx/angular:stories --project=<project-name>
 ```
+
+## Workspace commands
+
+Update analog
+
+```
+npx nx migrate @analogjs/platform@latest
+```
