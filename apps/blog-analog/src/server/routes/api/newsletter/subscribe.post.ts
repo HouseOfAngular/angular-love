@@ -3,97 +3,101 @@ import * as v from 'valibot';
 
 import {
   NewsletterClient,
+  NewsletterError,
   NewsletterList,
+  NewsletterTemplate,
   Subscriber,
   SubscriberSchema,
 } from '@angular-love/blog-bff/newsletter/api';
+import { Lang } from '@angular-love/contracts/articles';
 
 import { getRequiredEnv } from '../../../utils/env';
 import { getLang } from '../../../utils/lang';
 
+const MAX_BODY_BYTES = 4 * 1024;
+
+interface DoiConfig {
+  includeListIds: number[];
+  templateId: number;
+  redirectionUrl: string;
+}
+
 export default defineEventHandler(async (event) => {
   assertMethod(event, 'POST');
 
+  const subscriber = await parseSubscriber(event);
   const lang = getLang(event, true);
-  const BREVO_API_KEY = getRequiredEnv(event, 'BREVO_API_KEY');
-  const BREVO_API_URL = getRequiredEnv(event, 'BREVO_API_URL');
+  const doiConfig = doiConfigForLang(lang, event);
 
-  const rawBody = await readBody(event);
-  let parsedSubscriber: Subscriber;
+  const client = new NewsletterClient(
+    getRequiredEnv(event, 'BREVO_API_URL'),
+    getRequiredEnv(event, 'BREVO_API_KEY'),
+  );
 
   try {
-    parsedSubscriber = v.parse(SubscriberSchema, rawBody);
+    await client.requestDoubleOptIn({
+      email: subscriber.email,
+      attributes: { FIRSTNAME: subscriber.name },
+      includeListIds: doiConfig.includeListIds,
+      templateId: doiConfig.templateId,
+      redirectionUrl: doiConfig.redirectionUrl,
+    });
+    return { success: true };
   } catch (err) {
+    throw toHttpError(err);
+  }
+});
+
+async function parseSubscriber(
+  event: Parameters<typeof readBody>[0],
+): Promise<Subscriber> {
+  const rawBody = await readBody(event, { maxSize: MAX_BODY_BYTES } as never);
+  const result = v.safeParse(SubscriberSchema, rawBody);
+  if (!result.success) {
     throw createError({
       statusCode: 400,
       statusMessage: 'Bad Request',
-      message: 'Invalid email format provided.',
+      message: 'Invalid subscriber data.',
     });
   }
+  return result.output;
+}
 
-  const listIds: number[] =
-    lang === 'pl'
-      ? [NewsletterList.PL, NewsletterList.PLNew]
-      : [NewsletterList.EN];
+function doiConfigForLang(
+  lang: Lang,
+  event: Parameters<typeof readBody>[0],
+): DoiConfig {
+  if (lang === 'pl') {
+    return {
+      includeListIds: [NewsletterList.PLNew],
+      templateId: NewsletterTemplate.PL,
+      redirectionUrl: 'https://angular.love',
+    };
+  }
+  return {
+    includeListIds: [NewsletterList.EN],
+    templateId: NewsletterTemplate.EN,
+    redirectionUrl: 'https://angular.love',
+  };
+}
 
-  const client = new NewsletterClient(BREVO_API_URL, BREVO_API_KEY);
-
-  try {
-    const existingContact = await client.getContact(parsedSubscriber.email);
-
-    const isMissingLists = listIds.some(
-      (listId) => !existingContact.listIds.includes(listId),
-    );
-
-    if (isMissingLists) {
-      const mergedListIds = Array.from(
-        new Set([...existingContact.listIds, ...listIds]),
-      );
-
-      await client.updateContact(existingContact.id, {
-        email: parsedSubscriber.email,
-        attributes: {
-          FIRSTNAME: parsedSubscriber.name,
-        },
-        emailBlacklisted: false,
-        smsBlacklisted: false,
-        listIds: mergedListIds,
-      });
-    }
-
-    return { success: true };
-  } catch (err: any) {
-    if (err?.code === 'document_not_found') {
-      try {
-        await client.createContact({
-          email: parsedSubscriber.email,
-          attributes: {
-            FIRSTNAME: parsedSubscriber.name,
-          },
-          emailBlacklisted: false,
-          smsBlacklisted: false,
-          listIds,
-        });
-        return { success: true };
-      } catch (createErr) {
-        console.error(
-          '[Newsletter API] Failed to create new contact:',
-          createErr,
-        );
-        throw createError({
-          statusCode: 502,
-          statusMessage: 'Bad Gateway',
-          message:
-            'Failed to register subscriber with the newsletter provider.',
-        });
-      }
-    }
-
-    console.error('[Newsletter API] Failed to fetch or update contact:', err);
-    throw createError({
+function toHttpError(err: unknown) {
+  if (err instanceof NewsletterError) {
+    console.error('[Newsletter API]', {
+      kind: err.kind,
+      status: err.status,
+      message: err.message,
+    });
+    return createError({
       statusCode: 502,
       statusMessage: 'Bad Gateway',
       message: 'Newsletter service is currently unavailable.',
     });
   }
-});
+  console.error('[Newsletter API] Unexpected error');
+  return createError({
+    statusCode: 500,
+    statusMessage: 'Internal Server Error',
+    message: 'Unexpected error.',
+  });
+}
