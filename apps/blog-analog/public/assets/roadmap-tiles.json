@@ -1,0 +1,2315 @@
+[
+  {
+    "id": "components",
+    "title": "Components",
+    "previousNodeId": null,
+    "description": "Components are the building blocks of Angular applications, encapsulating the template, logic, and styles to define a self-contained unit of the user interface.",
+    "resources": [
+      {
+        "name": "Heres what you should know when creating flexible and reusable components in angular",
+        "type": "article",
+        "url": "heres-what-you-should-know-when-creating-flexible-and-reusable-components-in-angular"
+      },
+      {
+        "name": "Compliant components declarative approach in angular",
+        "type": "article",
+        "url": "compliant-components-declarative-approach-in-angular"
+      }
+    ]
+  },
+  {
+    "id": "styling",
+    "title": "Styling",
+    "parentNodeId": "components",
+    "description": "Angular components support scoped styles, allowing developers to apply CSS that affects only the component it is defined in, preventing style leaks.",
+    "resources": [
+      {
+        "name": "Angular material theming application with material 3",
+        "type": "article",
+        "url": "angular-material-theming-application-with-material-3"
+      },
+      {
+        "name": "Theming angular app its libraries",
+        "type": "article",
+        "url": "theming-angular-app-its-libraries"
+      },
+      {
+        "name": "Angular styles masterclass 2",
+        "type": "article",
+        "url": "angular-styles-masterclass-2"
+      },
+      {
+        "name": "Lets implement a theme switch like the angular material site",
+        "type": "article",
+        "url": "lets-implement-a-theme-switch-like-the-angular-material-site"
+      },
+      {
+        "name": "Switch themes like a fox based on ambient light in your angular apps",
+        "type": "article",
+        "url": "switch-themes-like-a-fox-based-on-ambient-light-in-your-angular-apps"
+      },
+      {
+        "name": "Techniques to style component host element in angular",
+        "type": "article",
+        "url": "techniques-to-style-component-host-element-in-angular"
+      }
+    ]
+  },
+  {
+    "id": "sass",
+    "parentNodeId": "styling",
+    "title": "Sass",
+    "previousNodeId": null,
+    "description": "Sass is a CSS preprocessor supported by Angular CLI that offers features like variables, nesting, and mixins, improving the maintainability of complex styles.",
+    "resources": [
+      {
+        "name": "Migrate from css to scss stylesheets for an existing angular project",
+        "type": "article",
+        "url": "migrate-from-css-to-scss-stylesheets-for-an-existing-angular-project"
+      }
+    ]
+  },
+  {
+    "id": "angular-material",
+    "parentNodeId": "styling",
+    "title": "Angular Material",
+    "previousNodeId": "sass",
+    "description": "This is the \"Angular Material\"'s description.",
+    "resources": [
+      {
+        "name": "Angular material theming application with material 3",
+        "type": "article",
+        "url": "angular-material-theming-application-with-material-3"
+      },
+      {
+        "name": "Custom theme for angular material components series part 1 create a theme",
+        "type": "article",
+        "url": "custom-theme-for-angular-material-components-series-part-1-create-a-theme"
+      },
+      {
+        "name": "Custom theme for angular material components series part 2 understand theme",
+        "type": "article",
+        "url": "custom-theme-for-angular-material-components-series-part-2-understand-theme"
+      },
+      {
+        "name": "Custom theme for angular material components series part 3 apply theme",
+        "type": "article",
+        "url": "custom-theme-for-angular-material-components-series-part-3-apply-theme"
+      },
+      {
+        "name": "Faster perceived response time with angular material to tackle need for speed",
+        "type": "article",
+        "url": "faster-perceived-response-time-with-angular-material-to-tackle-need-for-speed"
+      },
+      {
+        "name": "Stop using shared material module",
+        "type": "article",
+        "url": "stop-using-shared-material-module"
+      }
+    ]
+  },
+  {
+    "id": "view-encapsulation",
+    "parentNodeId": "styling",
+    "title": "View Encapsulation",
+    "previousNodeId": "angular-material",
+    "description": "View encapsulation determines how styles are applied to components, ensuring that styles are scoped appropriately using Shadow DOM, Emulated, or None strategies.",
+    "resources": [
+      {
+        "name": "Techniques to style component host element in angular",
+        "type": "article",
+        "url": "techniques-to-style-component-host-element-in-angular"
+      }
+    ]
+  },
+  {
+    "id": "lifecycle",
+    "parentNodeId": "components",
+    "title": "Lifecycle",
+    "previousNodeId": "styling",
+    "description": "Angular components and directives have lifecycle hooks that let you tap into key moments of their existence, such as creation, updates, and destruction.",
+    "resources": [
+      {
+        "name": "The essential difference between constructor and ngoninit in angular",
+        "type": "article",
+        "url": "the-essential-difference-between-constructor-and-ngoninit-in-angular"
+      },
+      {
+        "name": "Component initialization without ngoninit with async pipes for observables and ngonchanges",
+        "type": "article",
+        "url": "component-initialization-without-ngoninit-with-async-pipes-for-observables-and-ngonchanges"
+      },
+      {
+        "name": "Complete guide angular lifecycle hooks",
+        "type": "article",
+        "url": "complete-guide-angular-lifecycle-hooks"
+      },
+      {
+        "name": "Get to know the destroyref",
+        "type": "article",
+        "url": "get-to-know-the-destroyref"
+      },
+      {
+        "name": "Get to know the afterrendereffect",
+        "type": "article",
+        "url": "get-to-know-the-afterrendereffect"
+      },
+      {
+        "name": "Takeuntildestroy in angular v16",
+        "type": "article",
+        "url": "takeuntildestroy-in-angular-v16"
+      },
+      {
+        "name": "Why you don't need the ngoninit",
+        "type": "video",
+        "url": "https://www.youtube.com/watch?v=aw0wMBnx3Hw"
+      }
+    ]
+  },
+  {
+    "id": "animations",
+    "parentNodeId": "components",
+    "title": "Animations",
+    "previousNodeId": "lifecycle",
+    "description": "Angular provides a powerful animation API that lets developers create complex transitions and visual effects using a declarative syntax.",
+    "resources": [
+      {
+        "name": "In depth guide into animations in angular",
+        "type": "article",
+        "url": "in-depth-guide-into-animations-in-angular"
+      },
+      {
+        "name": "Controlling angular animations programmatically",
+        "type": "article",
+        "url": "controlling-angular-animations-programmatically"
+      },
+      {
+        "name": "Add support for reduced motion in angular animations",
+        "type": "article",
+        "url": "add-support-for-reduced-motion-in-angular-animations"
+      }
+    ]
+  },
+  {
+    "id": "change-detection",
+    "parentNodeId": "components",
+    "title": "Change Detection",
+    "previousNodeId": "animations",
+    "description": "Change detection is the process Angular uses to track changes in the application state and update the DOM to reflect those changes efficiently.",
+    "resources": [
+      {
+        "name": "Change detection big picture unidirectional data flow",
+        "type": "article",
+        "url": "change-detection-big-picture-unidirectional-data-flow"
+      },
+      {
+        "name": "Change detection big picture rendering cycle",
+        "type": "article",
+        "url": "change-detection-big-picture-rendering-cycle"
+      },
+      {
+        "name": "Change detection big picture operations",
+        "type": "article",
+        "url": "change-detection-big-picture-operations"
+      },
+      {
+        "name": "Change detection big picture overview",
+        "type": "article",
+        "url": "change-detection-big-picture-overview"
+      },
+      {
+        "name": "Change detection and component trees in angular applications",
+        "type": "article",
+        "url": "change-detection-and-component-trees-in-angular-applications"
+      },
+      {
+        "name": "Angular ivy change detection execution are you prepared",
+        "type": "article",
+        "url": "angular-ivy-change-detection-execution-are-you-prepared"
+      },
+      {
+        "name": "What every front end developer should know about change detection in angular and react",
+        "type": "article",
+        "url": "what-every-front-end-developer-should-know-about-change-detection-in-angular-and-react"
+      },
+      {
+        "name": "A gentle introduction into change detection in angular",
+        "type": "article",
+        "url": "a-gentle-introduction-into-change-detection-in-angular"
+      },
+      {
+        "name": "The difference between ngdocheck and asyncpipe in onpush components",
+        "type": "article",
+        "url": "the-difference-between-ngdocheck-and-asyncpipe-in-onpush-components"
+      },
+      {
+        "name": "Deep dive into the onpush change detection strategy in angular",
+        "type": "article",
+        "url": "deep-dive-into-the-onpush-change-detection-strategy-in-angular"
+      },
+      {
+        "name": "The latest in angular change detection zoneless signals",
+        "type": "article",
+        "url": "the-latest-in-angular-change-detection-zoneless-signals"
+      },
+      {
+        "name": "Optimization techniques onpush strategy",
+        "type": "article",
+        "url": "optimization-techniques-onpush-strategy"
+      },
+      {
+        "name": "From zone js to zoneless angular and back how it all works",
+        "type": "article",
+        "url": "from-zone-js-to-zoneless-angular-and-back-how-it-all-works"
+      },
+      {
+        "name": "Everything you need to know about change detection in angular",
+        "type": "article",
+        "url": "everything-you-need-to-know-about-change-detection-in-angular"
+      },
+      {
+        "name": "Do you still think that ngzone zone js is required for change detection in angular",
+        "type": "article",
+        "url": "do-you-still-think-that-ngzone-zone-js-is-required-for-change-detection-in-angular"
+      },
+      {
+        "name": "Extending angular with ngxtension",
+        "type": "video",
+        "url": "https://www.youtube.com/watch?v=GyPVKt0_2bY"
+      }
+    ]
+  },
+  {
+    "id": "component-interactions",
+    "parentNodeId": "components",
+    "title": "Component Interactions (input/output)",
+    "previousNodeId": "change-detection",
+    "description": "Component interaction techniques such as Input/Output decorators, services, and local references allow data and events to flow between components.",
+    "resources": [
+      {
+        "name": "How to cancel a component event from output properties in angular",
+        "type": "article",
+        "url": "how-to-cancel-a-component-event-from-output-properties-in-angular"
+      },
+      {
+        "name": "Router data as components inputs in angular v16",
+        "type": "article",
+        "url": "router-data-as-components-inputs-in-angular-v16"
+      },
+      {
+        "name": "Required inputs in angular v16",
+        "type": "article",
+        "url": "required-inputs-in-angular-v16"
+      }
+    ]
+  },
+  {
+    "id": "dynamic-components",
+    "parentNodeId": "components",
+    "title": "Dynamic Components",
+    "previousNodeId": "component-interactions",
+    "description": "Dynamic components are created and inserted into the DOM programmatically at runtime, useful for building flexible and interactive UI patterns.",
+    "resources": [
+      {
+        "name": "Dynamic components what they are part ii",
+        "type": "article",
+        "url": "dynamic-components-what-they-are-part-ii"
+      },
+      {
+        "name": "Here is what you need to know about dynamic components in angular",
+        "type": "article",
+        "url": "here-is-what-you-need-to-know-about-dynamic-components-in-angular"
+      },
+      {
+        "name": "Dynamically loading components with angular cli",
+        "type": "article",
+        "url": "dynamically-loading-components-with-angular-cli"
+      },
+      {
+        "name": "Rendering dynamic components by selector name in ivy",
+        "type": "article",
+        "url": "rendering-dynamic-components-by-selector-name-in-ivy"
+      },
+      {
+        "name": "Deferred components vs dynamic components in angular",
+        "type": "article",
+        "url": "deferred-components-vs-dynamic-components-in-angular"
+      }
+    ]
+  },
+  {
+    "id": "templates",
+    "title": "Templates",
+    "parentNodeId": "components",
+    "previousNodeId": "dynamic-components",
+    "description": "Templates define the component’s HTML structure and layout, combining standard HTML with Angular’s template syntax for dynamic rendering.",
+    "resources": [
+      {
+        "name": "Using angular in the right way template syntax",
+        "type": "article",
+        "url": "using-angular-in-the-right-way-template-syntax"
+      },
+      {
+        "name": "Angular template let variable hot or not",
+        "type": "article",
+        "url": "angular-template-let-variable-hot-or-not"
+      }
+    ]
+  },
+  {
+    "id": "data-binding",
+    "parentNodeId": "templates",
+    "title": "Data Binding",
+    "previousNodeId": null,
+    "description": "Data binding allows synchronization between the component class and the template, enabling interactive and reactive UI updates.",
+    "resources": [
+      {
+        "name": "Bindon lesser known angular template features",
+        "type": "article",
+        "url": "bindon-lesser-known-angular-template-features"
+      },
+      {
+        "name": "The mechanics of property bindings update in angular",
+        "type": "article",
+        "url": "the-mechanics-of-property-bindings-update-in-angular"
+      }
+    ]
+  },
+  {
+    "id": "control-flow",
+    "parentNodeId": "templates",
+    "title": "Control Flow",
+    "previousNodeId": "data-binding",
+    "description": "Control flow syntax like @if, @for, and @switch helps manage rendering logic directly within Angular templates.",
+    "resources": [
+      {
+        "name": "Diving into the new angular control flow internals",
+        "type": "article",
+        "url": "diving-into-the-new-angular-control-flow-internals"
+      },
+      {
+        "name": "New syntax for control flow in angular",
+        "type": "article",
+        "url": "new-syntax-for-control-flow-in-angular"
+      },
+      {
+        "name": "Build a pokemon gallery with new control flow in angular 17",
+        "type": "article",
+        "url": "build-a-pokemon-gallery-with-new-control-flow-in-angular-17"
+      }
+    ]
+  },
+  {
+    "id": "content-projection",
+    "parentNodeId": "templates",
+    "title": "Content Projection",
+    "previousNodeId": "control-flow",
+    "description": "Content projection enables components to receive and display dynamic external content using <ng-content>, facilitating flexible component composition.",
+    "resources": [
+      {
+        "name": "Journey into component depth   content projection",
+        "type": "video",
+        "url": "https://www.youtube.com/watch?v=2FhQlyWXJtQ"
+      }
+    ]
+  },
+  {
+    "id": "modules",
+    "title": "Modules",
+    "label": "optional",
+    "previousNodeId": "components",
+    "description": "Modules organize Angular applications into cohesive blocks of functionality, making it easier to manage and reuse code across the app.",
+    "resources": [
+      {
+        "name": "Avoiding common confusions with modules in angular",
+        "type": "article",
+        "url": "avoiding-common-confusions-with-modules-in-angular"
+      },
+      {
+        "name": "Asynchronous modules and components in angular ivy",
+        "type": "article",
+        "url": "asynchronous-modules-and-components-in-angular-ivy"
+      }
+    ]
+  },
+  {
+    "id": "pipes",
+    "title": "Pipes",
+    "previousNodeId": "modules",
+    "description": "Pipes transform data in templates for display purposes, such as formatting dates, numbers, or filtering and sorting lists",
+    "resources": [
+      {
+        "name": "New possibilities with angulars push pipe part 1",
+        "type": "article",
+        "url": "new-possibilities-with-angulars-push-pipe-part-1"
+      },
+      {
+        "name": "New possibilities with angulars push pipe part 2",
+        "type": "article",
+        "url": "new-possibilities-with-angulars-push-pipe-part-2"
+      },
+      {
+        "name": "The essential difference between pure and impure pipes in angular and why that matters",
+        "type": "article",
+        "url": "the-essential-difference-between-pure-and-impure-pipes-in-angular-and-why-that-matters"
+      },
+      {
+        "name": "How pure and impure pipes work in angular ivy",
+        "type": "article",
+        "url": "how-pure-and-impure-pipes-work-in-angular-ivy"
+      }
+    ]
+  },
+  {
+    "id": "directives",
+    "title": "Directives",
+    "previousNodeId": "pipes",
+    "description": "Directives are used to add custom behavior to elements and components, either by manipulating the DOM or by extending component functionality.",
+    "resources": [
+      {
+        "name": "Angular self saving dropdowns yet another directive",
+        "type": "article",
+        "url": "angular-self-saving-dropdowns-yet-another-directive"
+      },
+      {
+        "name": "Create a directive for free dragging in angular",
+        "type": "article",
+        "url": "create-a-directive-for-free-dragging-in-angular"
+      }
+    ]
+  },
+  {
+    "id": "attribute-directives",
+    "parentNodeId": "directives",
+    "title": "Attribute Directives",
+    "previousNodeId": null,
+    "description": "Attribute directives change the appearance or behavior of an element, component, or another directive by modifying its attributes.",
+    "resources": []
+  },
+  {
+    "id": "structural-directives",
+    "parentNodeId": "directives",
+    "title": "Structural Directives",
+    "previousNodeId": "attribute-directives",
+    "description": "Structural directives shape the layout of the DOM by adding or removing elements dynamically, typically using * syntax like *ngIf and *ngFor.",
+    "resources": []
+  },
+  {
+    "id": "ng-template-ng-container",
+    "parentNodeId": "directives",
+    "title": "ng-template, ng-container",
+    "previousNodeId": "structural-directives",
+    "description": "<ng-template> and <ng-container> are structural elements used to control rendering logic without adding extra elements to the DOM.",
+    "resources": [
+      {
+        "name": "Ngtemplateoutlet the secret to customisation",
+        "type": "article",
+        "url": "ngtemplateoutlet-the-secret-to-customisation"
+      }
+    ]
+  },
+  {
+    "id": "directive-composition",
+    "parentNodeId": "directives",
+    "title": "Directive Composition",
+    "previousNodeId": "ng-template-ng-container",
+    "description": "Directive composition allows combining multiple directives on a single element to build rich, reusable UI behaviors and features.",
+    "resources": [
+      {
+        "name": "Work smart not hard use directive composition api",
+        "type": "article",
+        "url": "work-smart-not-hard-use-directive-composition-api"
+      }
+    ]
+  },
+  {
+    "id": "routing",
+    "title": "Routing",
+    "previousNodeId": "directives",
+    "description": "Routing in Angular allows users to navigate between different views or pages while staying in a single-page application context.",
+    "resources": [
+      {
+        "name": "Angular router everything you need to know about",
+        "type": "article",
+        "url": "angular-router-everything-you-need-to-know-about"
+      },
+      {
+        "name": "How to reuse common layouts in angular using router",
+        "type": "article",
+        "url": "how-to-reuse-common-layouts-in-angular-using-router"
+      },
+      {
+        "name": "Improved navigation in angular 7 with switchmap",
+        "type": "article",
+        "url": "improved-navigation-in-angular-7-with-switchmap"
+      },
+      {
+        "name": "Angular scroll position restoration",
+        "type": "article",
+        "url": "angular-scroll-position-restoration"
+      },
+      {
+        "name": "Router data as components inputs in angular v16",
+        "type": "article",
+        "url": "router-data-as-components-inputs-in-angular-v16"
+      }
+    ]
+  },
+  {
+    "id": "configuration",
+    "parentNodeId": "routing",
+    "title": "Configuration",
+    "previousNodeId": null,
+    "description": "Routing configuration defines the mapping between application URLs and components, supporting nested routes, redirects, and lazy loading.",
+    "resources": [
+      {
+        "name": "External configurations in angular",
+        "type": "article",
+        "url": "external-configurations-in-angular"
+      },
+      {
+        "name": "Dynamic configuration leveraging app initializer",
+        "type": "article",
+        "url": "dynamic-configuration-leveraging-app-initializer"
+      }
+    ]
+  },
+  {
+    "id": "guards-resolvers",
+    "parentNodeId": "routing",
+    "title": "Guards, Resolvers",
+    "previousNodeId": "configuration",
+    "description": "Guards and resolvers control access and fetch data before a route is activated, helping protect routes and preload necessary information.",
+    "resources": []
+  },
+  {
+    "id": "routerlink",
+    "parentNodeId": "routing",
+    "title": "routerLink, routerLinkActive, ...",
+    "previousNodeId": "guards-resolvers",
+    "description": "Router directives like routerLink and routerLinkActive enable navigation and active link styling in Angular templates.",
+    "resources": []
+  },
+  {
+    "id": "router-outlets",
+    "parentNodeId": "routing",
+    "title": "Router Outlets",
+    "previousNodeId": "routerlink",
+    "description": "<router-outlet> is a directive that acts as a placeholder for rendering the component associated with the current route.",
+    "resources": [
+      {
+        "name": "Angular router series secondary outlets primer",
+        "type": "article",
+        "url": "angular-router-series-secondary-outlets-primer"
+      }
+    ]
+  },
+  {
+    "id": "dependency-injection",
+    "title": "Dependency Injection",
+    "previousNodeId": "routing",
+    "description": "Angular’s dependency injection system provides a powerful way to manage services and dependencies, improving modularity and testability.",
+    "resources": [
+      {
+        "name": "Dependency injection in angular everything you need to know",
+        "type": "article",
+        "url": "dependency-injection-in-angular-everything-you-need-to-know"
+      },
+      {
+        "name": "Make the most of angular di private providers concept",
+        "type": "article",
+        "url": "make-the-most-of-angular-di-private-providers-concept"
+      },
+      {
+        "name": "A deep dive into injectable and providedin in ivy",
+        "type": "article",
+        "url": "a-deep-dive-into-injectable-and-providedin-in-ivy"
+      },
+      {
+        "name": "Angular di getting to know the ivy nodeinjector",
+        "type": "article",
+        "url": "angular-di-getting-to-know-the-ivy-nodeinjector"
+      },
+      {
+        "name": "A curious case of the host decorator and element injectors in angular",
+        "type": "article",
+        "url": "a-curious-case-of-the-host-decorator-and-element-injectors-in-angular"
+      },
+      {
+        "name": "What you always wanted to know about angular dependency injection tree",
+        "type": "article",
+        "url": "what-you-always-wanted-to-know-about-angular-dependency-injection-tree"
+      },
+      {
+        "name": "Leveraging dependency injection to reduce duplicated code in angular",
+        "type": "article",
+        "url": "leveraging-dependency-injection-to-reduce-duplicated-code-in-angular"
+      },
+      {
+        "name": "How to avoid angular injectable instances duplication",
+        "type": "article",
+        "url": "how-to-avoid-angular-injectable-instances-duplication"
+      },
+      {
+        "name": "What is forwardref in angular and why we need it",
+        "type": "article",
+        "url": "what-is-forwardref-in-angular-and-why-we-need-it"
+      }
+    ]
+  },
+  {
+    "id": "forms",
+    "title": "Forms",
+    "previousNodeId": "dependency-injection",
+    "description": "Angular provides two main approaches to building forms: Template-Driven and Reactive, both supporting validation and dynamic form controls.",
+    "resources": [
+      {
+        "name": "A thorough exploration of angular forms",
+        "type": "article",
+        "url": "a-thorough-exploration-of-angular-forms"
+      },
+      {
+        "name": "Angular forms useful tips",
+        "type": "article",
+        "url": "angular-forms-useful-tips"
+      },
+      {
+        "name": "Angular forms why is ngmodelchange late when updating ngmodel value",
+        "type": "article",
+        "url": "angular-forms-why-is-ngmodelchange-late-when-updating-ngmodel-value"
+      },
+      {
+        "name": "The updateon option in angular forms",
+        "type": "article",
+        "url": "the-updateon-option-in-angular-forms"
+      }
+    ]
+  },
+  {
+    "id": "template-driven-forms",
+    "parentNodeId": "forms",
+    "title": "Template-Driven Forms",
+    "previousNodeId": null,
+    "description": "Template-driven forms rely on directives in the template to create and manage form controls, offering a simple and declarative way to build forms.",
+    "resources": []
+  },
+  {
+    "id": "control-value-accessor",
+    "parentNodeId": "forms",
+    "title": "Control Value Accessor",
+    "previousNodeId": "template-driven-forms",
+    "description": "Control Value Accessors are used to create custom form controls that integrate seamlessly with Angular forms and validation.",
+    "resources": [
+      {
+        "name": "Never again be confused when implementing controlvalueaccessor in angular forms",
+        "type": "article",
+        "url": "never-again-be-confused-when-implementing-controlvalueaccessor-in-angular-forms"
+      },
+      {
+        "name": "How to use controlvalueaccessor to enhance date input with automatic conversion and validation",
+        "type": "article",
+        "url": "how-to-use-controlvalueaccessor-to-enhance-date-input-with-automatic-conversion-and-validation"
+      }
+    ]
+  },
+  {
+    "id": "signal-forms",
+    "parentNodeId": "forms",
+    "label": "comingSoon",
+    "title": "Signal Forms",
+    "previousNodeId": "control-value-accessor",
+    "description": "Signal Forms offer a reactive and fine-grained approach to form state and validation using Angular’s signal-based reactivity model.",
+    "resources": []
+  },
+  {
+    "id": "reactive-forms",
+    "parentNodeId": "forms",
+    "label": "recommended",
+    "title": "Reactive Forms",
+    "previousNodeId": "signal-forms",
+    "description": "Reactive forms provide a model-driven way to manage form controls in code, giving more explicit control over validation and dynamic form logic.",
+    "resources": [
+      {
+        "name": "Strongly typed reactive forms in angular",
+        "type": "article",
+        "url": "strongly-typed-reactive-forms-in-angular"
+      },
+      {
+        "name": "Implementing reusable and reactive forms in angular",
+        "type": "article",
+        "url": "implementing-reusable-and-reactive-forms-in-angular"
+      },
+      {
+        "name": "Angular forms reactive design patterns catalog",
+        "type": "article",
+        "url": "angular-forms-reactive-design-patterns-catalog"
+      },
+      {
+        "name": "Convert into strongly typed angular forms in a minute",
+        "type": "article",
+        "url": "convert-into-strongly-typed-angular-forms-in-a-minute"
+      },
+      {
+        "name": "Exploring the difference between disabling a form control through reactive forms api and html attributes",
+        "type": "article",
+        "url": "exploring-the-difference-between-disabling-a-form-control-through-reactive-forms-api-and-html-attributes"
+      },
+      {
+        "name": "Nested forms with controlcontainer",
+        "type": "article",
+        "url": "nested-forms-with-controlcontainer"
+      },
+      {
+        "name": "Angular forms story strong types",
+        "type": "article",
+        "url": "angular-forms-story-strong-types"
+      },
+      {
+        "name": "Architecture of angular forms",
+        "type": "video",
+        "url": "https://www.youtube.com/watch?v=JGELp3e5NdM"
+      }
+    ]
+  },
+  {
+    "id": "validation",
+    "parentNodeId": "forms",
+    "title": "Validation",
+    "previousNodeId": "reactive-forms",
+    "description": "Form validation in Angular ensures user input meets defined rules, supporting both built-in validators and custom validation logic.",
+    "resources": [
+      {
+        "name": "The best way to implement custom validators",
+        "type": "article",
+        "url": "the-best-way-to-implement-custom-validators"
+      },
+      {
+        "name": "Creating elegant reactive forms with rxwebvalidators",
+        "type": "article",
+        "url": "creating-elegant-reactive-forms-with-rxwebvalidators"
+      }
+    ]
+  },
+  {
+    "id": "reactivity",
+    "title": "Reactivity",
+    "previousNodeId": "forms",
+    "description": "Reactivity in Angular refers to the automatic synchronization of data between the application state and the UI, enabling efficient, responsive updates through tools like signals and RxJS.",
+    "resources": [
+      {
+        "name": "Finding fine grained reactive programming",
+        "type": "article",
+        "url": "finding-fine-grained-reactive-programming"
+      },
+      {
+        "name": "Exploring the state of reactivity patterns in 2020",
+        "type": "article",
+        "url": "exploring-the-state-of-reactivity-patterns-in-2020"
+      },
+      {
+        "name": "Declarative reactive data and action streams in angular",
+        "type": "article",
+        "url": "declarative-reactive-data-and-action-streams-in-angular"
+      }
+    ]
+  },
+  {
+    "id": "signals",
+    "parentNodeId": "reactivity",
+    "title": "Signals",
+    "previousNodeId": null,
+    "description": "Signals in Angular is a reactive primitive for managing and tracking state changes in a straightforward and predictable way, enabling fine-grained reactivity without relying on observables.",
+    "resources": [
+      {
+        "name": "What linkedsignal is and how to use it",
+        "type": "article",
+        "url": "what-linkedsignal-is-and-how-to-use-it"
+      },
+      {
+        "name": "Signals in angular deep dive for busy developers",
+        "type": "article",
+        "url": "signals-in-angular-deep-dive-for-busy-developers"
+      },
+      {
+        "name": "Angular signals a new feature in angular 16",
+        "type": "article",
+        "url": "angular-signals-a-new-feature-in-angular-16"
+      },
+      {
+        "name": "The latest in angular change detection zoneless signals",
+        "type": "article",
+        "url": "the-latest-in-angular-change-detection-zoneless-signals"
+      },
+      {
+        "name": "Why angular signals wont replace rxjs",
+        "type": "article",
+        "url": "why-angular-signals-wont-replace-rxjs"
+      },
+      {
+        "name": "Angular signals rxjs interop from a practical example",
+        "type": "article",
+        "url": "angular-signals-rxjs-interop-from-a-practical-example"
+      },
+      {
+        "name": "Angular rxjs and signals: better together",
+        "type": "video",
+        "url": "https://www.youtube.com/watch?v=KSFPOIauEPU"
+      },
+      {
+        "name": "3 effective rules for successfully using signals in angular",
+        "type": "video",
+        "url": "https://www.youtube.com/watch?v=-ruWJKI7r7k"
+      },
+      {
+        "name": "All about angular signals and why they matter so much",
+        "type": "video",
+        "url": "https://www.youtube.com/watch?v=olRdHJJfv04"
+      },
+      {
+        "name": "The bright future of angular signals",
+        "type": "video",
+        "url": "https://www.youtube.com/watch?v=m_h_WnoO8Ms"
+      }
+    ]
+  },
+  {
+    "id": "rxjs",
+    "parentNodeId": "reactivity",
+    "title": "RXJS",
+    "previousNodeId": "signals",
+    "description": "RxJS is a powerful library for reactive programming in Angular, allowing developers to work with asynchronous data streams and events using observables, operators, and subscriptions.",
+    "resources": [
+      {
+        "name": "Rxjs recipes forkjoin with the progress of completion for bulk network requests in angular",
+        "type": "article",
+        "url": "rxjs-recipes-forkjoin-with-the-progress-of-completion-for-bulk-network-requests-in-angular"
+      },
+      {
+        "name": "Rxjs for await what",
+        "type": "article",
+        "url": "rxjs-for-await-what"
+      },
+      {
+        "name": "Rxjs why memory leaks occur when using a subject",
+        "type": "article",
+        "url": "rxjs-why-memory-leaks-occur-when-using-a-subject"
+      },
+      {
+        "name": "Rxjs custom operators",
+        "type": "article",
+        "url": "rxjs-custom-operators"
+      },
+      {
+        "name": "Create a taponce custom rxjs operator",
+        "type": "article",
+        "url": "create-a-taponce-custom-rxjs-operator"
+      },
+      {
+        "name": "Telegraph with rxjs the power of reactive systems",
+        "type": "article",
+        "url": "telegraph-with-rxjs-the-power-of-reactive-systems"
+      },
+      {
+        "name": "The state of rxjs rxjs 7 and beyond",
+        "type": "article",
+        "url": "the-state-of-rxjs-rxjs-7-and-beyond"
+      },
+      {
+        "name": "Rxjs7 whats new",
+        "type": "article",
+        "url": "rxjs7-whats-new"
+      },
+      {
+        "name": "Subtle difference between map and pluck rxjs operators that you should know",
+        "type": "article",
+        "url": "subtle-difference-between-map-and-pluck-rxjs-operators-that-you-should-know"
+      },
+      {
+        "name": "Rxjs applying asyncscheduler as an argument vs with observeon operator",
+        "type": "article",
+        "url": "rxjs-applying-asyncscheduler-as-an-argument-vs-with-observeon-operator"
+      },
+      {
+        "name": "Reading the rxjs 6 sources map and pipe",
+        "type": "article",
+        "url": "reading-the-rxjs-6-sources-map-and-pipe"
+      },
+      {
+        "name": "Rxjs in angular when to subscribe rarely",
+        "type": "article",
+        "url": "rxjs-in-angular-when-to-subscribe-rarely"
+      },
+      {
+        "name": "How to read the rxjs 6 sources part 1 understanding of and subscriptions",
+        "type": "article",
+        "url": "how-to-read-the-rxjs-6-sources-part-1-understanding-of-and-subscriptions"
+      },
+      {
+        "name": "Rxjs in angular part i",
+        "type": "article",
+        "url": "rxjs-in-angular-part-i"
+      },
+      {
+        "name": "Rxjs in angular part ii",
+        "type": "article",
+        "url": "rxjs-in-angular-part-ii"
+      },
+      {
+        "name": "Rxjs in angular part iii",
+        "type": "article",
+        "url": "rxjs-in-angular-part-iii"
+      },
+      {
+        "name": "Fastest way to cache for lazy developers angular with rxjs",
+        "type": "article",
+        "url": "fastest-way-to-cache-for-lazy-developers-angular-with-rxjs"
+      },
+      {
+        "name": "Rxjs repeat operator beginner necromancer guide",
+        "type": "article",
+        "url": "rxjs-repeat-operator-beginner-necromancer-guide"
+      },
+      {
+        "name": "How to debounce an input while skipping the first entry",
+        "type": "article",
+        "url": "how-to-debounce-an-input-while-skipping-the-first-entry"
+      },
+      {
+        "name": "Throttling notifications from multiple users with rxjs",
+        "type": "article",
+        "url": "throttling-notifications-from-multiple-users-with-rxjs"
+      },
+      {
+        "name": "Power of rxjs when using exponential backoff",
+        "type": "article",
+        "url": "power-of-rxjs-when-using-exponential-backoff"
+      },
+      {
+        "name": "Rxjs heads up topromise is being deprecated",
+        "type": "article",
+        "url": "rxjs-heads-up-topromise-is-being-deprecated"
+      },
+      {
+        "name": "The simple way to reload data using rxjs",
+        "type": "article",
+        "url": "the-simple-way-to-reload-data-using-rxjs"
+      },
+      {
+        "name": "Rxjs used in angular knowledge in a nutshell",
+        "type": "article",
+        "url": "rxjs-used-in-angular-knowledge-in-a-nutshell"
+      },
+      {
+        "name": "Build your own observable part 1 arrays",
+        "type": "article",
+        "url": "build-your-own-observable-part-1-arrays"
+      },
+      {
+        "name": "Build your own observable part 2 containers and intuition",
+        "type": "article",
+        "url": "build-your-own-observable-part-2-containers-and-intuition"
+      },
+      {
+        "name": "Building your own observable part 3 the observer pattern and creational methods",
+        "type": "article",
+        "url": "building-your-own-observable-part-3-the-observer-pattern-and-creational-methods"
+      },
+      {
+        "name": "Build your own observable part 4 map filter take and all that jazz",
+        "type": "article",
+        "url": "build-your-own-observable-part-4-map-filter-take-and-all-that-jazz"
+      }
+    ]
+  },
+  {
+    "id": "http",
+    "title": "HTTP",
+    "previousNodeId": "reactivity",
+    "description": "Angular's HttpClient provides a streamlined way to communicate with backend services via HTTP methods like GET, POST, PUT, and DELETE.",
+    "resources": [
+      {
+        "name": "The new angular httpclient api",
+        "type": "article",
+        "url": "the-new-angular-httpclient-api"
+      },
+      {
+        "name": "Exploring the httpclientmodule in angular",
+        "type": "article",
+        "url": "exploring-the-httpclientmodule-in-angular"
+      },
+      {
+        "name": "How to use the environment for specific http services",
+        "type": "article",
+        "url": "how-to-use-the-environment-for-specific-http-services"
+      },
+      {
+        "name": "How to use ts decorators to add caching logic to api calls",
+        "type": "article",
+        "url": "how-to-use-ts-decorators-to-add-caching-logic-to-api-calls"
+      }
+    ]
+  },
+  {
+    "id": "interceptors",
+    "parentNodeId": "http",
+    "title": "interceptors",
+    "previousNodeId": null,
+    "description": "HTTP interceptors in Angular allow you to intercept and modify HTTP requests or responses globally, useful for tasks like adding auth tokens or handling errors.",
+    "resources": [
+      {
+        "name": "How to implement automatic token insertion in requests using http interceptor angular tutorials",
+        "type": "article",
+        "url": "how-to-implement-automatic-token-insertion-in-requests-using-http-interceptor-angular-tutorials"
+      },
+      {
+        "name": "How to split http interceptors between multiple backends",
+        "type": "article",
+        "url": "how-to-split-http-interceptors-between-multiple-backends"
+      },
+      {
+        "name": "Insiders guide into interceptors and httpclient mechanics in angular",
+        "type": "article",
+        "url": "insiders-guide-into-interceptors-and-httpclient-mechanics-in-angular"
+      }
+    ]
+  },
+  {
+    "id": "requests",
+    "parentNodeId": "http",
+    "title": "requests",
+    "previousNodeId": "interceptors",
+    "description": "In Angular, HTTP requests are the primary way to interact with RESTful APIs, enabling the app to fetch, send, and manipulate remote data in a structured and asynchronous manner.",
+    "resources": [
+      {
+        "name": "Parsing and mapping api response using zod js",
+        "type": "article",
+        "url": "parsing-and-mapping-api-response-using-zod-js"
+      }
+    ]
+  },
+  {
+    "id": "testing",
+    "title": "Testing",
+    "previousNodeId": "http",
+    "description": "Testing in Angular ensures code reliability and maintainability by verifying that components, services, and other parts of the app behave as expected.",
+    "resources": [
+      {
+        "name": "Effective rxjs marble testing",
+        "type": "article",
+        "url": "effective-rxjs-marble-testing"
+      },
+      {
+        "name": "Angular testing with headless chrome",
+        "type": "article",
+        "url": "angular-testing-with-headless-chrome"
+      },
+      {
+        "name": "Testing with component harnesses",
+        "type": "video",
+        "url": "https://www.youtube.com/watch?v=Egz6DWitDcM"
+      }
+    ]
+  },
+  {
+    "id": "unit-tests",
+    "parentNodeId": "testing",
+    "title": "Unit Tests",
+    "previousNodeId": null,
+    "description": "Unit tests focus on testing individual pieces of logic, like functions or components, in isolation to validate their correctness.",
+    "resources": [
+      {
+        "name": "Angular unit testing viewchild",
+        "type": "article",
+        "url": "angular-unit-testing-viewchild"
+      },
+      {
+        "name": "Create your angular unit test spies automagically",
+        "type": "article",
+        "url": "create-your-angular-unit-test-spies-automagically"
+      },
+      {
+        "name": "Spectator when testing becomes a pleasure",
+        "type": "article",
+        "url": "spectator-when-testing-becomes-a-pleasure"
+      },
+      {
+        "name": "Ng mocks what is it all about",
+        "type": "article",
+        "url": "ng-mocks-what-is-it-all-about"
+      },
+      {
+        "name": "Learn how to unit test the deferrable views",
+        "type": "article",
+        "url": "learn-how-to-unit-test-the-deferrable-views"
+      }
+    ]
+  },
+  {
+    "id": "integration-tests",
+    "parentNodeId": "testing",
+    "title": "Integration Tests",
+    "previousNodeId": "unit-tests",
+    "description": "Integration tests verify how different parts of the application work together, ensuring combined components or services interact as intended.",
+    "resources": [
+      {
+        "name": "Write better automated tests with cypress in angular",
+        "type": "article",
+        "url": "write-better-automated-tests-with-cypress-in-angular"
+      },
+      {
+        "name": "How cypress makes testing fun",
+        "type": "article",
+        "url": "how-cypress-makes-testing-fun"
+      },
+      {
+        "name": "Visual regression testing with cypress and angular",
+        "type": "article",
+        "url": "visual-regression-testing-with-cypress-and-angular"
+      },
+      {
+        "name": "Cypress introduction",
+        "type": "article",
+        "url": "cypress-introduction"
+      }
+    ]
+  },
+  {
+    "id": "angular-cli",
+    "title": "Angular CLI",
+    "previousNodeId": "testing",
+    "description": "Angular CLI is a powerful command-line tool that simplifies Angular development by automating project setup, code generation, testing, and building processes.",
+    "resources": [
+      {
+        "name": "Angular cli flows big picture",
+        "type": "article",
+        "url": "angular-cli-flows-big-picture"
+      },
+      {
+        "name": "Angular cli builders",
+        "type": "article",
+        "url": "angular-cli-builders"
+      },
+      {
+        "name": "Angular cli camelcase or kebab case",
+        "type": "article",
+        "url": "angular-cli-camelcase-or-kebab-case"
+      },
+      {
+        "name": "Angular generators",
+        "type": "article",
+        "url": "angular-generators"
+      },
+      {
+        "name": "Hide boilerplate nx files in vscode webstorm",
+        "type": "article",
+        "url": "hide-boilerplate-nx-files-in-vscode-webstorm"
+      },
+      {
+        "name": "How to stop being afraid and create your own angular cli builder",
+        "type": "article",
+        "url": "how-to-stop-being-afraid-and-create-your-own-angular-cli-builder"
+      },
+      {
+        "name": "Angular compilation restrictions overview",
+        "type": "article",
+        "url": "angular-compilation-restrictions-overview"
+      }
+    ]
+  },
+  {
+    "id": "state-management",
+    "title": "State Management",
+    "previousNodeId": "angular-cli",
+    "description": "State management in Angular involves handling application data in a predictable way to ensure consistency across components.",
+    "resources": [
+      {
+        "name": "Ngrx best practices",
+        "type": "article",
+        "url": "ngrx-best-practices"
+      },
+      {
+        "name": "Ngrx bad practices",
+        "type": "article",
+        "url": "ngrx-bad-practices"
+      },
+      {
+        "name": "Ngrx not only store",
+        "type": "article",
+        "url": "ngrx-not-only-store"
+      },
+      {
+        "name": "How to manage component state in angular using ngrx component store",
+        "type": "article",
+        "url": "how-to-manage-component-state-in-angular-using-ngrx-component-store"
+      },
+      {
+        "name": "How i got rid of state observables in angular",
+        "type": "article",
+        "url": "how-i-got-rid-of-state-observables-in-angular"
+      },
+      {
+        "name": "How smart is your component",
+        "type": "video",
+        "url": "https://www.youtube.com/watch?v=EBisR0Hl-eM"
+      }
+    ]
+  },
+  {
+    "id": "ngrx",
+    "parentNodeId": "state-management",
+    "title": "NGRX",
+    "previousNodeId": null,
+    "description": "NgRx is a Redux-inspired state management library for Angular that uses actions, reducers, and effects to manage complex application state in a reactive and scalable manner.",
+    "resources": [
+      {
+        "name": "Ngrx tips tricks 2",
+        "type": "article",
+        "url": "ngrx-tips-tricks-2"
+      },
+      {
+        "name": "Adding ngrx to your existing applications",
+        "type": "article",
+        "url": "adding-ngrx-to-your-existing-applications"
+      },
+      {
+        "name": "Make ngrx hold business logic dumb components smart store",
+        "type": "article",
+        "url": "make-ngrx-hold-business-logic-dumb-components-smart-store"
+      },
+      {
+        "name": "Better action hygiene with events in ngrx",
+        "type": "article",
+        "url": "better-action-hygiene-with-events-in-ngrx"
+      },
+      {
+        "name": "Understanding the magic behind ngrx effects",
+        "type": "article",
+        "url": "understanding-the-magic-behind-ngrx-effects"
+      },
+      {
+        "name": "Understanding the magic behind storemodule of ngrx ngrx store",
+        "type": "article",
+        "url": "understanding-the-magic-behind-storemodule-of-ngrx-ngrx-store"
+      },
+      {
+        "name": "Typesafe code with immer and where it can help in ngrx",
+        "type": "article",
+        "url": "typesafe-code-with-immer-and-where-it-can-help-in-ngrx"
+      },
+      {
+        "name": "A journey into ngrx selectors",
+        "type": "article",
+        "url": "a-journey-into-ngrx-selectors"
+      },
+      {
+        "name": "Ngrx component",
+        "type": "article",
+        "url": "ngrx-component"
+      },
+      {
+        "name": "Understanding ngrx component store selector debouncing",
+        "type": "article",
+        "url": "understanding-ngrx-component-store-selector-debouncing"
+      },
+      {
+        "name": "Ngrx use effects and router store to isolate route related side effects",
+        "type": "article",
+        "url": "ngrx-use-effects-and-router-store-to-isolate-route-related-side-effects"
+      },
+      {
+        "name": "Whats new in ngrx changes overview tips and tricks",
+        "type": "article",
+        "url": "whats-new-in-ngrx-changes-overview-tips-and-tricks"
+      },
+      {
+        "name": "Making an angular project mono repo with ngrx state management and lazy loading",
+        "type": "article",
+        "url": "making-an-angular-project-mono-repo-with-ngrx-state-management-and-lazy-loading"
+      },
+      {
+        "name": "How to start flying with angular and ngrx",
+        "type": "article",
+        "url": "how-to-start-flying-with-angular-and-ngrx"
+      },
+      {
+        "name": "Ngrx how and where to handle loading and error states of ajax calls",
+        "type": "article",
+        "url": "ngrx-how-and-where-to-handle-loading-and-error-states-of-ajax-calls"
+      },
+      {
+        "name": "Demystifying advanced typescript concepts behind ngrx apis",
+        "type": "video",
+        "url": "https://www.youtube.com/watch?v=GHPdNbdM4FQ"
+      }
+    ]
+  },
+  {
+    "id": "signal-store",
+    "parentNodeId": "state-management",
+    "title": "NGRX Signal Store",
+    "previousNodeId": "ngrx",
+    "description": "Signal Store is a lightweight, reactive state management solution built around Angular signals, offering a simpler alternative to more complex libraries like NgRx.",
+    "resources": [
+      {
+        "name": "Breakthrough in state management discover the simplicity of signal store part 1",
+        "type": "article",
+        "url": "breakthrough-in-state-management-discover-the-simplicity-of-signal-store-part-1"
+      },
+      {
+        "name": "Signal store ngxs elevating flexibility in state management",
+        "type": "article",
+        "url": "signal-store-ngxs-elevating-flexibility-in-state-management"
+      },
+      {
+        "name": "Signalstore overview",
+        "type": "video",
+        "url": "https://www.youtube.com/watch?v=QyGEToBSYX4"
+      },
+      {
+        "name": "Custom store features in ngrx signal store",
+        "type": "video",
+        "url": "https://www.youtube.com/watch?v=sRJl8OuvNys"
+      },
+      {
+        "name": "Ngrx signal store",
+        "type": "video",
+        "url": "https://www.youtube.com/watch?v=CoQ0NjcZMtI"
+      }
+    ]
+  },
+  {
+    "id": "ngxs",
+    "parentNodeId": "state-management",
+    "title": "NGXS",
+    "previousNodeId": "signal-store",
+    "description": "NGXS is a state management library for Angular that provides a more concise, decorator-based approach to handling state, aiming for simplicity while maintaining structure.",
+    "resources": [
+      {
+        "name": "Firebase ngxs the perfect couple",
+        "type": "article",
+        "url": "firebase-ngxs-the-perfect-couple"
+      },
+      {
+        "name": "All you need to know to jumpstart with ngxs",
+        "type": "article",
+        "url": "all-you-need-to-know-to-jumpstart-with-ngxs"
+      },
+      {
+        "name": "Signal store ngxs elevating flexibility in state management",
+        "type": "article",
+        "url": "signal-store-ngxs-elevating-flexibility-in-state-management"
+      }
+    ]
+  },
+  {
+    "id": "developer-tools",
+    "title": "Developer Tools",
+    "previousNodeId": "state-management",
+    "description": "Angular Developer Tools (DevTools) is a browser extension that helps inspect and debug Angular applications, offering insights into component trees, change detection cycles, and performance bottlenecks.",
+    "resources": [
+      {
+        "name": "Debugging techniques chrome devtools",
+        "type": "article",
+        "url": "debugging-techniques-chrome-devtools"
+      },
+      {
+        "name": "Easier angular ivy debugging with a chrome extension",
+        "type": "article",
+        "url": "easier-angular-ivy-debugging-with-a-chrome-extension"
+      },
+      {
+        "name": "Useful chrome devtools techniques when debugging change detection in angular",
+        "type": "article",
+        "url": "useful-chrome-devtools-techniques-when-debugging-change-detection-in-angular"
+      },
+      {
+        "name": "Debugging techniques angular devtools",
+        "type": "article",
+        "url": "debugging-techniques-angular-devtools"
+      },
+      {
+        "name": "Setting up efficient workflows with eslint prettier and typescript",
+        "type": "article",
+        "url": "setting-up-efficient-workflows-with-eslint-prettier-and-typescript"
+      }
+    ]
+  },
+  {
+    "id": "internationalization",
+    "title": "Internationalization",
+    "previousNodeId": "developer-tools",
+    "description": "Internationalization (i18n) in Angular enables applications to support multiple languages and regional formats by providing built-in tools for translating text, formatting dates, numbers, and handling locale-specific content.",
+    "resources": [
+      {
+        "name": "Internationalization how to open an application to the world part 1",
+        "type": "article",
+        "url": "internationalization-how-to-open-an-application-to-the-world-part-1"
+      },
+      {
+        "name": "Internationalization how to open an application to the world part 2",
+        "type": "article",
+        "url": "internationalization-how-to-open-an-application-to-the-world-part-2"
+      },
+      {
+        "name": "Implementing multi language angular applications rendered on a server ssr",
+        "type": "article",
+        "url": "implementing-multi-language-angular-applications-rendered-on-a-server-ssr"
+      }
+    ]
+  },
+  {
+    "id": "performance",
+    "title": "Performance",
+    "previousNodeId": "internationalization",
+    "description": "Performance focuses on optimizing load times and runtime efficiency through techniques like code splitting, efficient change detection, and minimizing unnecessary rendering.",
+    "resources": [
+      {
+        "name": "How to use angulars defer block to improve performance",
+        "type": "article",
+        "url": "how-to-use-angulars-defer-block-to-improve-performance"
+      },
+      {
+        "name": "Bundle size improvements from deferred views in angular",
+        "type": "article",
+        "url": "bundle-size-improvements-from-deferred-views-in-angular"
+      },
+      {
+        "name": "Boost your applications performance with ngoptimizedimage",
+        "type": "article",
+        "url": "boost-your-applications-performance-with-ngoptimizedimage"
+      },
+      {
+        "name": "Improve page performance and lcp with ngoptimizedimage",
+        "type": "article",
+        "url": "improve-page-performance-and-lcp-with-ngoptimizedimage"
+      },
+      {
+        "name": "How in depth knowledge of change detection in angular helped me improve applications performance",
+        "type": "article",
+        "url": "how-in-depth-knowledge-of-change-detection-in-angular-helped-me-improve-applications-performance"
+      },
+      {
+        "name": "Simple angular context help component or how global event listener can affect your performance",
+        "type": "article",
+        "url": "simple-angular-context-help-component-or-how-global-event-listener-can-affect-your-performance"
+      },
+      {
+        "name": "Optimizing events handling in angular",
+        "type": "article",
+        "url": "optimizing-events-handling-in-angular"
+      },
+      {
+        "name": "Optimize angular bundle size in 4 steps",
+        "type": "article",
+        "url": "optimize-angular-bundle-size-in-4-steps"
+      },
+      {
+        "name": "Optimize your angular bundle size",
+        "type": "article",
+        "url": "optimize-your-angular-bundle-size"
+      },
+      {
+        "name": "How to exclude stylesheets from the bundle and lazy load them in angular angular tutorials",
+        "type": "article",
+        "url": "how-to-exclude-stylesheets-from-the-bundle-and-lazy-load-them-in-angular-angular-tutorials"
+      }
+    ]
+  },
+  {
+    "id": "ngoptimizeimage",
+    "parentNodeId": "performance",
+    "title": "ngOptimizeImage",
+    "previousNodeId": null,
+    "description": "NgOptimizeImage is a directive that automatically optimizes images for better performance by handling responsive sizing, lazy loading, and format selection.",
+    "resources": [
+      {
+        "name": "Boost your applications performance with ngoptimizedimage",
+        "type": "article",
+        "url": "boost-your-applications-performance-with-ngoptimizedimage"
+      },
+      {
+        "name": "Improve page performance and lcp with ngoptimizedimage",
+        "type": "article",
+        "url": "improve-page-performance-and-lcp-with-ngoptimizedimage"
+      },
+      {
+        "name": "The who what when where why and how of image optimization in angular",
+        "type": "article",
+        "url": "the-who-what-when-where-why-and-how-of-image-optimization-in-angular"
+      },
+      {
+        "name": "Effortless image optimization with optimizedimage",
+        "type": "video",
+        "url": "https://www.youtube.com/watch?v=dpR6WngPNzg"
+      }
+    ]
+  },
+  {
+    "id": "defer",
+    "parentNodeId": "performance",
+    "title": "@defer",
+    "previousNodeId": "ngoptimizeimage",
+    "description": "The @defer block allows parts of a component’s template to load lazily, improving initial render performance by delaying non-critical content.",
+    "resources": [
+      {
+        "name": "Learn how to unit test the deferrable views",
+        "type": "article",
+        "url": "learn-how-to-unit-test-the-deferrable-views"
+      },
+      {
+        "name": "How to use angulars defer block to improve performance",
+        "type": "article",
+        "url": "how-to-use-angulars-defer-block-to-improve-performance"
+      },
+      {
+        "name": "Bundle size improvements from deferred views in angular",
+        "type": "article",
+        "url": "bundle-size-improvements-from-deferred-views-in-angular"
+      },
+      {
+        "name": "Deferred components vs dynamic components in angular",
+        "type": "article",
+        "url": "deferred-components-vs-dynamic-components-in-angular"
+      },
+      {
+        "name": "Learn how to use angular's defer block to improve performance",
+        "type": "video",
+        "url": "https://www.youtube.com/watch?v=w_F4ZmYMLrE"
+      }
+    ]
+  },
+  {
+    "id": "lazy-loading",
+    "parentNodeId": "performance",
+    "title": "Lazy Loading",
+    "previousNodeId": "defer",
+    "description": "Lazy loading in Angular loads features only when needed, reducing the initial bundle size and speeding up application startup.",
+    "resources": [
+      {
+        "name": "Angular router series pillar 3 lazy loading aot and preloading",
+        "type": "article",
+        "url": "angular-router-series-pillar-3-lazy-loading-aot-and-preloading"
+      },
+      {
+        "name": "Lazy loading angular modules with ivy",
+        "type": "article",
+        "url": "lazy-loading-angular-modules-with-ivy"
+      },
+      {
+        "name": "Asynchronous modules and components in angular ivy",
+        "type": "article",
+        "url": "asynchronous-modules-and-components-in-angular-ivy"
+      },
+      {
+        "name": "Lazy loading angular components from non angular applications",
+        "type": "article",
+        "url": "lazy-loading-angular-components-from-non-angular-applications"
+      },
+      {
+        "name": "Angular lazy load common styles specific to a feature module",
+        "type": "article",
+        "url": "angular-lazy-load-common-styles-specific-to-a-feature-module"
+      }
+    ]
+  },
+  {
+    "id": "architecture-design-patterns",
+    "title": "Architecture / Design Patterns",
+    "previousNodeId": "performance",
+    "description": "Angular’s architecture follows a modular and component-based design, leveraging patterns like dependency injection, reactive programming, and separation of concerns to build scalable and maintainable applications.",
+    "resources": [
+      {
+        "name": "Ports and adapters vs hexagonal architecture is it the same pattern",
+        "type": "article",
+        "url": "ports-and-adapters-vs-hexagonal-architecture-is-it-the-same-pattern"
+      },
+      {
+        "name": "Angular facade pattern",
+        "type": "article",
+        "url": "angular-facade-pattern"
+      },
+      {
+        "name": "Designing angular architecture container presentation pattern",
+        "type": "article",
+        "url": "designing-angular-architecture-container-presentation-pattern"
+      },
+      {
+        "name": "View state selector angular design pattern",
+        "type": "article",
+        "url": "view-state-selector-angular-design-pattern"
+      },
+      {
+        "name": "Designing scalable angular applications",
+        "type": "article",
+        "url": "designing-scalable-angular-applications"
+      },
+      {
+        "name": "Angular and solid principles",
+        "type": "article",
+        "url": "angular-and-solid-principles"
+      },
+      {
+        "name": "Stop using services the importance of defining object responsibilities precisely",
+        "type": "article",
+        "url": "stop-using-services-the-importance-of-defining-object-responsibilities-precisely"
+      },
+      {
+        "name": "Angular dependency inversion principle 2",
+        "type": "article",
+        "url": "angular-dependency-inversion-principle-2"
+      },
+      {
+        "name": "Angular interface segregation principle 2",
+        "type": "article",
+        "url": "angular-interface-segregation-principle-2"
+      },
+      {
+        "name": "Angular liskov substitution principle 2",
+        "type": "article",
+        "url": "angular-liskov-substitution-principle-2"
+      },
+      {
+        "name": "Angular open closed principle 2",
+        "type": "article",
+        "url": "angular-open-closed-principle-2"
+      },
+      {
+        "name": "Angular single responsibility principle 2",
+        "type": "article",
+        "url": "angular-single-responsibility-principle-2"
+      },
+      {
+        "name": "Building an extensible dynamic pluggable enterprise application with angular",
+        "type": "article",
+        "url": "building-an-extensible-dynamic-pluggable-enterprise-application-with-angular"
+      },
+      {
+        "name": "Implementing shared logic for crud ui components in angular",
+        "type": "article",
+        "url": "implementing-shared-logic-for-crud-ui-components-in-angular"
+      },
+      {
+        "name": "Scalable modular angular application with nx",
+        "type": "article",
+        "url": "scalable-modular-angular-application-with-nx"
+      },
+      {
+        "name": "Building a type agnostic cache using generics in typescript",
+        "type": "article",
+        "url": "building-a-type-agnostic-cache-using-generics-in-typescript"
+      },
+      {
+        "name": "Overview of oop patterns implementation in javascript",
+        "type": "article",
+        "url": "overview-of-oop-patterns-implementation-in-javascript"
+      },
+      {
+        "name": "Demystifying taiga ui root component portals pattern in angular",
+        "type": "article",
+        "url": "demystifying-taiga-ui-root-component-portals-pattern-in-angular"
+      },
+      {
+        "name": "The controllers of component concept in angular part ii",
+        "type": "article",
+        "url": "the-controllers-of-component-concept-in-angular-part-ii"
+      }
+    ]
+  },
+  {
+    "id": "security",
+    "title": "Security",
+    "previousNodeId": "architecture-design-patterns",
+    "description": "Security in Angular involves protecting applications from common web vulnerabilities such as XSS and CSRF by using built-in safeguards like sanitization, strict typing, and secure HTTP practices.",
+    "resources": [
+      {
+        "name": "Localstorage vs cookies all you need to know about storing jwt tokens securely in the front end",
+        "type": "article",
+        "url": "localstorage-vs-cookies-all-you-need-to-know-about-storing-jwt-tokens-securely-in-the-front-end"
+      },
+      {
+        "name": "Can we fully trust html sanitizers and how to work without them",
+        "type": "article",
+        "url": "can-we-fully-trust-html-sanitizers-and-how-to-work-without-them"
+      },
+      {
+        "name": "Implement google sign inoauth in your angular app in under 15 minutes",
+        "type": "article",
+        "url": "implement-google-sign-inoauth-in-your-angular-app-in-under-15-minutes"
+      },
+      {
+        "name": "There’s safety in angular",
+        "type": "video",
+        "url": "https://www.youtube.com/watch?v=yxBE6inxxug"
+      }
+    ]
+  },
+  {
+    "id": "ssr",
+    "title": "SSR",
+    "previousNodeId": "security",
+    "description": "SSR renders application pages on the server before sending them to the client, improving initial load speed, SEO, and user experience, especially on slower devices or networks.",
+    "resources": [
+      {
+        "name": "Angular universal real app problems",
+        "type": "article",
+        "url": "angular-universal-real-app-problems"
+      },
+      {
+        "name": "The dark side of server side rendering part 1",
+        "type": "article",
+        "url": "the-dark-side-of-server-side-rendering-part-1"
+      },
+      {
+        "name": "The dark side of server side rendering part 2",
+        "type": "article",
+        "url": "the-dark-side-of-server-side-rendering-part-2"
+      },
+      {
+        "name": "The journey to isomorphic rendering performance",
+        "type": "article",
+        "url": "the-journey-to-isomorphic-rendering-performance"
+      },
+      {
+        "name": "Implementing multi language angular applications rendered on a server ssr",
+        "type": "article",
+        "url": "implementing-multi-language-angular-applications-rendered-on-a-server-ssr"
+      }
+    ]
+  },
+  {
+    "id": "accessibility",
+    "title": "Accessibility",
+    "previousNodeId": "ssr",
+    "description": "Accessibility ensures applications are usable by people with disabilities by following best practices like semantic HTML, ARIA roles, keyboard navigation, and screen reader support.",
+    "resources": [
+      {
+        "name": "Angular a11y 11 tips on how to make your apps more accessible",
+        "type": "article",
+        "url": "angular-a11y-11-tips-on-how-to-make-your-apps-more-accessible"
+      },
+      {
+        "name": "Doing a11y easily with angular cdk keyboard navigable lists",
+        "type": "article",
+        "url": "doing-a11y-easily-with-angular-cdk-keyboard-navigable-lists"
+      },
+      {
+        "name": "Angular for everyone how to adapt applications for people with disabilities",
+        "type": "article",
+        "url": "angular-for-everyone-how-to-adapt-applications-for-people-with-disabilities"
+      }
+    ]
+  },
+  {
+    "title": "Deployment & CI/CD",
+    "id": "deployment-&-ci/cd",
+    "previousNodeId": "accessibility",
+    "description": "Deployment involves packaging and delivering the app to production environments, while CI/CD automates building, testing, and deploying code changes to ensure fast, reliable updates.",
+    "resources": [
+      {
+        "name": "Build your angular app once deploy anywhere",
+        "type": "article",
+        "url": "build-your-angular-app-once-deploy-anywhere"
+      },
+      {
+        "name": "Effortless angular deployment with vercel",
+        "type": "article",
+        "url": "effortless-angular-deployment-with-vercel"
+      },
+      {
+        "name": "Craft a complete gitlab pipeline for angular part 1",
+        "type": "article",
+        "url": "craft-a-complete-gitlab-pipeline-for-angular-part-1"
+      },
+      {
+        "name": "Craft a complete gitlab pipeline for angular part 2",
+        "type": "article",
+        "url": "craft-a-complete-gitlab-pipeline-for-angular-part-2"
+      },
+      {
+        "name": "The angular devops series deploying to firebase with circleci",
+        "type": "article",
+        "url": "the-angular-devops-series-deploying-to-firebase-with-circleci"
+      },
+      {
+        "name": "Deploy an angular application to iis",
+        "type": "article",
+        "url": "deploy-an-angular-application-to-iis"
+      },
+      {
+        "name": "How to deploy a run time micro frontend application using aws",
+        "type": "article",
+        "url": "how-to-deploy-a-run-time-micro-frontend-application-using-aws"
+      },
+      {
+        "name": "Automate angular application deployment via aws codepipeline",
+        "type": "article",
+        "url": "automate-angular-application-deployment-via-aws-codepipeline"
+      },
+      {
+        "name": "How to automate npm package publishing with azure devops",
+        "type": "article",
+        "url": "how-to-automate-npm-package-publishing-with-azure-devops"
+      }
+    ]
+  },
+  {
+    "title": "Bundling & Optimization",
+    "id": "bundling-&-optimization",
+    "previousNodeId": "deployment-&-ci/cd",
+    "description": "Bundling in Angular combines multiple files into fewer bundles to reduce load times, while optimization techniques like minification, tree-shaking, and ahead-of-time (AOT) compilation improve performance and reduce application size.",
+    "resources": [
+      {
+        "name": "Optimize your angular bundle size",
+        "type": "article",
+        "url": "optimize-your-angular-bundle-size"
+      },
+      {
+        "name": "Optimize angular bundle size in 4 steps",
+        "type": "article",
+        "url": "optimize-angular-bundle-size-in-4-steps"
+      },
+      {
+        "name": "Track your bundle size with bundlemon",
+        "type": "article",
+        "url": "track-your-bundle-size-with-bundlemon"
+      },
+      {
+        "name": "A gentle introduction into tree shaking in angular ivy",
+        "type": "article",
+        "url": "a-gentle-introduction-into-tree-shaking-in-angular-ivy"
+      },
+      {
+        "name": "Angular tree shaking 2",
+        "type": "article",
+        "url": "angular-tree-shaking-2"
+      },
+      {
+        "name": "How to exclude stylesheets from the bundle and lazy load them in angular angular tutorials",
+        "type": "article",
+        "url": "how-to-exclude-stylesheets-from-the-bundle-and-lazy-load-them-in-angular-angular-tutorials"
+      },
+      {
+        "name": "Code splitting in angular or how to share components between lazy modules",
+        "type": "article",
+        "url": "code-splitting-in-angular-or-how-to-share-components-between-lazy-modules"
+      },
+      {
+        "name": "Reduce your bundle size through this component styling technique",
+        "type": "article",
+        "url": "reduce-your-bundle-size-through-this-component-styling-technique"
+      },
+      {
+        "name": "Why is my app loading slowly on 3g internet?",
+        "type": "video",
+        "url": "https://www.youtube.com/watch?v=S9JUKCxEWkg"
+      },
+      {
+        "name": "Modular monoliths with nx",
+        "type": "video",
+        "url": "https://www.youtube.com/watch?v=SaNO6ubhYyg"
+      }
+    ]
+  },
+  {
+    "title": "Libraries & Packages",
+    "id": "libraries-&-packages",
+    "previousNodeId": "bundling-&-optimization",
+    "description": "Libraries and packages are reusable sets of code or features - often distributed via npm - that help developers add functionality, share components, or extend the framework efficiently.",
+    "resources": [
+      {
+        "name": "What makes a good angular library",
+        "type": "article",
+        "url": "what-makes-a-good-angular-library"
+      },
+      {
+        "name": "The angular library series building and packaging",
+        "type": "article",
+        "url": "the-angular-library-series-building-and-packaging"
+      },
+      {
+        "name": "The angular library series publishing",
+        "type": "article",
+        "url": "the-angular-library-series-publishing"
+      },
+      {
+        "name": "Creating a library in angular 6 using angular cli and ng packagr",
+        "type": "article",
+        "url": "creating-a-library-in-angular-6-using-angular-cli-and-ng-packagr"
+      },
+      {
+        "name": "Complete beginner guide to publishing an angular library to npm",
+        "type": "article",
+        "url": "complete-beginner-guide-to-publishing-an-angular-library-to-npm"
+      },
+      {
+        "name": "Create your standalone angular library in 10 minutes",
+        "type": "article",
+        "url": "create-your-standalone-angular-library-in-10-minutes"
+      }
+    ]
+  },
+  {
+    "title": "Micro Frontends",
+    "id": "micro-frontends",
+    "previousNodeId": "libraries-&-packages",
+    "description": "Micro frontends break a large Angular application into smaller, independently deployable pieces, allowing teams to develop, test, and deploy features in isolation for better scalability and maintainability",
+    "resources": [
+      {
+        "name": "The micro frontend chaos and how to solve it",
+        "type": "article",
+        "url": "the-micro-frontend-chaos-and-how-to-solve-it"
+      },
+      {
+        "name": "Angular micro frontends a modern approach to complex app development",
+        "type": "article",
+        "url": "angular-micro-frontends-a-modern-approach-to-complex-app-development"
+      },
+      {
+        "name": "Taking micro frontends to the next level",
+        "type": "article",
+        "url": "taking-micro-frontends-to-the-next-level"
+      },
+      {
+        "name": "How to deploy a run time micro frontend application using aws",
+        "type": "article",
+        "url": "how-to-deploy-a-run-time-micro-frontend-application-using-aws"
+      }
+    ]
+  },
+  {
+    "title": "Advanced Angular Features",
+    "id": "advanced-angular-features",
+    "previousNodeId": "micro-frontends",
+    "description": "Advanced Angular features include techniques like dynamic component loading or custom directives enable building more flexible and high-performance applications.",
+    "resources": [
+      {
+        "name": "Teleportation in angular",
+        "type": "article",
+        "url": "teleportation-in-angular"
+      },
+      {
+        "name": "What is forwardref in angular and why we need it",
+        "type": "article",
+        "url": "what-is-forwardref-in-angular-and-why-we-need-it"
+      },
+      {
+        "name": "Angular tools you should be aware of",
+        "type": "article",
+        "url": "angular-tools-you-should-be-aware-of"
+      },
+      {
+        "name": "Headless angular components",
+        "type": "article",
+        "url": "headless-angular-components"
+      },
+      {
+        "name": "Global objects in angular",
+        "type": "article",
+        "url": "global-objects-in-angular"
+      },
+      {
+        "name": "Angular extended diagnostics 2",
+        "type": "article",
+        "url": "angular-extended-diagnostics-2"
+      },
+      {
+        "name": "Type checking templates in angular view engine and ivy",
+        "type": "article",
+        "url": "type-checking-templates-in-angular-view-engine-and-ivy"
+      },
+      {
+        "name": "Running event listeners outside of the ngzone",
+        "type": "article",
+        "url": "running-event-listeners-outside-of-the-ngzone"
+      },
+      {
+        "name": "From zone js to zoneless angular and back how it all works",
+        "type": "article",
+        "url": "from-zone-js-to-zoneless-angular-and-back-how-it-all-works"
+      },
+      {
+        "name": "Do you still think that ngzone zone js is required for change detection in angular",
+        "type": "article",
+        "url": "do-you-still-think-that-ngzone-zone-js-is-required-for-change-detection-in-angular"
+      },
+      {
+        "name": "Breaking new ground with angular query",
+        "type": "video",
+        "url": "https://www.youtube.com/watch?v=4dS0obsQztw"
+      },
+      {
+        "name": "State of angular",
+        "type": "video",
+        "url": "https://www.youtube.com/watch?v=q8zJ4nrgoyU"
+      },
+      {
+        "name": "Vertical architectures for scalable angular applications",
+        "type": "video",
+        "url": "https://www.youtube.com/watch?v=0PXBWTXZa7o"
+      },
+      {
+        "name": "Angular in depth & angular.love blogs merge",
+        "type": "video",
+        "url": "https://www.youtube.com/watch?v=KuIfguIDRh8"
+      },
+      {
+        "name": "Angular deep dive with gde manfred steyer",
+        "type": "video",
+        "url": "https://www.youtube.com/watch?v=o0ktaQTfu00"
+      },
+      {
+        "name": "Advanced practical angular techniques   2022 edition",
+        "type": "video",
+        "url": "https://www.youtube.com/watch?v=cXFgFJATfVA"
+      },
+      {
+        "name": "How the backend knowledge can be used to build better angular apps",
+        "type": "video",
+        "url": "https://www.youtube.com/watch?v=How8zLw5d1k"
+      }
+    ]
+  },
+  {
+    "title": "Angular Versions Updates",
+    "id": "angular-versions-updates",
+    "previousNodeId": "advanced-angular-features",
+    "description": "Angular version updates bring new features, performance improvements, and bug fixes, while often providing migration tools and guides to help developers smoothly upgrade their applications.",
+    "resources": [
+      {
+        "name": "Angular 19 2 whats new",
+        "type": "article",
+        "url": "angular-19-2-whats-new"
+      },
+      {
+        "name": "Angular 19 1",
+        "type": "article",
+        "url": "angular-19-1"
+      },
+      {
+        "name": "Angular 19 whats new",
+        "type": "article",
+        "url": "angular-19-whats-new"
+      },
+      {
+        "name": "Angular 18 whats new",
+        "type": "article",
+        "url": "angular-18-whats-new"
+      },
+      {
+        "name": "Angular 17 introduction to angular renaissance",
+        "type": "article",
+        "url": "angular-17-introduction-to-angular-renaissance"
+      },
+      {
+        "name": "Angular 16 whats new",
+        "type": "article",
+        "url": "angular-16-whats-new"
+      },
+      {
+        "name": "Angular 15 whats new",
+        "type": "article",
+        "url": "angular-15-whats-new"
+      },
+      {
+        "name": "Angular 14 what you should know",
+        "type": "article",
+        "url": "angular-14-what-you-should-know"
+      },
+      {
+        "name": "Angular 11 towards the type safety",
+        "type": "article",
+        "url": "angular-11-towards-the-type-safety"
+      },
+      {
+        "name": "Whats new after angular 8",
+        "type": "article",
+        "url": "whats-new-after-angular-8"
+      },
+      {
+        "name": "Brace yourself angular 8 is coming",
+        "type": "article",
+        "url": "brace-yourself-angular-8-is-coming"
+      },
+      {
+        "name": "What's new in angular 18",
+        "type": "video",
+        "url": "https://www.youtube.com/watch?v=nQc74wAO94g"
+      },
+      {
+        "name": "What's new in angular 18",
+        "type": "video",
+        "url": "https://www.youtube.com/watch?v=nQc74wAO94g"
+      },
+      {
+        "name": "Angular 18 | interview with aristeidis bampakos",
+        "type": "video",
+        "url": "https://www.youtube.com/watch?v=XIraTN4ouWA"
+      },
+      {
+        "name": "Angular 18| interview with google developer expert luca del puppo",
+        "type": "video",
+        "url": "https://www.youtube.com/watch?v=zwotukZCd9g"
+      },
+      {
+        "name": "Angular 18 and beyond   a look into the future",
+        "type": "video",
+        "url": "https://www.youtube.com/watch?v=zct1Jv2J8Ns"
+      }
+    ]
+  },
+  {
+    "title": "Data Visualization",
+    "id": "data-visualization",
+    "previousNodeId": "angular-versions-updates",
+    "description": "Data visualization in Angular involves integrating libraries and components to create interactive charts, graphs, and dashboards that help users understand complex data visually.",
+    "resources": [
+      {
+        "name": "Customization with ng2 charts an easy way to visualize data",
+        "type": "article",
+        "url": "customization-with-ng2-charts-an-easy-way-to-visualize-data"
+      },
+      {
+        "name": "Creating a sketchpad with angular and p5js",
+        "type": "article",
+        "url": "creating-a-sketchpad-with-angular-and-p5js"
+      },
+      {
+        "name": "Inside ag grid techniques to make the fastest javascript datagrid in the world",
+        "type": "article",
+        "url": "inside-ag-grid-techniques-to-make-the-fastest-javascript-datagrid-in-the-world"
+      }
+    ]
+  },
+  {
+    "title": "Web Components",
+    "id": "web-components",
+    "previousNodeId": "internationalization",
+    "description": "Web Components are a set of standardized web platform APIs that allow Angular apps to create reusable, encapsulated custom elements which can be used across different frameworks and projects.",
+    "resources": [
+      {
+        "name": "Angular web components a complete guide",
+        "type": "article",
+        "url": "angular-web-components-a-complete-guide"
+      },
+      {
+        "name": "Building and consuming angular elements as web components",
+        "type": "article",
+        "url": "building-and-consuming-angular-elements-as-web-components"
+      },
+      {
+        "name": "Simplifying web components usage with angular elements",
+        "type": "article",
+        "url": "simplifying-web-components-usage-with-angular-elements"
+      },
+      {
+        "name": "Angular elements 2",
+        "type": "article",
+        "url": "angular-elements-2"
+      }
+    ]
+  },
+  {
+    "title": "Monorepo & Workspace",
+    "id": "monorepo-&-workspace",
+    "previousNodeId": "web-components",
+    "description": "A monorepo in Angular manages multiple related projects within a single repository. It provides tooling and structure to develop, build, and test these projects efficiently under one unified setup.",
+    "resources": [
+      {
+        "name": "Scalable modular angular application with nx",
+        "type": "article",
+        "url": "scalable-modular-angular-application-with-nx"
+      },
+      {
+        "name": "Full stack apps with angular and nestjs in an nx monorepo",
+        "type": "article",
+        "url": "full-stack-apps-with-angular-and-nestjs-in-an-nx-monorepo"
+      },
+      {
+        "name": "Angular workspace no application for you",
+        "type": "article",
+        "url": "angular-workspace-no-application-for-you"
+      },
+      {
+        "name": "Shell library patterns with nx and monorepo architectures",
+        "type": "article",
+        "url": "shell-library-patterns-with-nx-and-monorepo-architectures"
+      },
+      {
+        "name": "Nx angular elements case study",
+        "type": "article",
+        "url": "nx-angular-elements-case-study"
+      },
+      {
+        "name": "Making an angular project mono repo with ngrx state management and lazy loading",
+        "type": "article",
+        "url": "making-an-angular-project-mono-repo-with-ngrx-state-management-and-lazy-loading"
+      },
+      {
+        "name": "Build a planning poker game with supabase",
+        "type": "video",
+        "url": "https://www.youtube.com/watch?v=OUfhpUUmUf4"
+      },
+      {
+        "name": "Organize your code using libraries in a mono repo or in a poly repo",
+        "type": "video",
+        "url": "https://www.youtube.com/watch?v=x2ARszKbD70"
+      }
+    ]
+  },
+  {
+    "title": "Cross-Platform",
+    "id": "cross-platform",
+    "previousNodeId": "monorepo-&-workspace",
+    "description": "Cross-platform refers to building applications that can run seamlessly across different environments - such as web, mobile, and desktop - often using frameworks like Angular with Ionic or NativeScript.",
+    "resources": [
+      {
+        "name": "Angular on mobile applications",
+        "type": "article",
+        "url": "angular-on-mobile-applications"
+      },
+      {
+        "name": "Angular electron 2",
+        "type": "article",
+        "url": "angular-electron-2"
+      },
+      {
+        "name": "Angular electron part 2",
+        "type": "article",
+        "url": "angular-electron-part-2"
+      },
+      {
+        "name": "Building web desktop and mobile apps from a single codebase using angular",
+        "type": "article",
+        "url": "building-web-desktop-and-mobile-apps-from-a-single-codebase-using-angular"
+      }
+    ]
+  },
+  {
+    "title": "Rendering & DOM Manipulation",
+    "id": "rendering-&-dom-manipulation",
+    "previousNodeId": "cross-platform",
+    "description": "Understand how Angular's rendering engine works, including component lifecycle management and change detection mechanisms that efficiently update the DOM. Learn safe DOM manipulation techniques and best practices for interacting with elements while maintaining Angular's reactive data flow.",
+    "resources": [
+      {
+        "name": "How to do dom manipulation properly in angular",
+        "type": "article",
+        "url": "how-to-do-dom-manipulation-properly-in-angular"
+      },
+      {
+        "name": "Working with dom in angular unexpected consequences and optimization techniques",
+        "type": "article",
+        "url": "working-with-dom-in-angular-unexpected-consequences-and-optimization-techniques"
+      },
+      {
+        "name": "Angular platforms in depth part 3 rendering angular applications in terminal",
+        "type": "article",
+        "url": "angular-platforms-in-depth-part-3-rendering-angular-applications-in-terminal"
+      },
+      {
+        "name": "Exploring angular dom manipulation techniques using viewcontainerref",
+        "type": "article",
+        "url": "exploring-angular-dom-manipulation-techniques-using-viewcontainerref"
+      }
+    ]
+  }
+]

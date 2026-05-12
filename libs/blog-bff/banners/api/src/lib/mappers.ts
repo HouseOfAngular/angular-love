@@ -9,13 +9,18 @@ export const toBanner = (
   return {
     slideDisplayTimeMs: +dto.acf.display_time,
     slides:
-      dto.acf.slides?.map((slide) => {
-        const media = mediaDto.find((media) => media.id === slide.slide_image)!;
-        return {
-          url: media.guid.rendered,
-          alt: media.alt_text,
-          navigateTo: slide.slide_url,
-        };
-      }) ?? [],
+      dto.acf.slides
+        ?.map((slide) => {
+          const media = mediaDto.find(
+            (media) => media.id === slide.slide_image,
+          );
+          if (!media) return null;
+          return {
+            url: media.guid.rendered,
+            alt: media.alt_text,
+            navigateTo: slide.slide_url,
+          };
+        })
+        .filter((x) => x !== null) ?? [],
   };
 };

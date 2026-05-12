@@ -26,7 +26,6 @@ const initialState: ArticleListState = {
 };
 
 export const ArticleListStore = signalStore(
-  { providedIn: 'root' },
   withState(initialState),
   withLangState(),
   withCallState('fetch article list'),

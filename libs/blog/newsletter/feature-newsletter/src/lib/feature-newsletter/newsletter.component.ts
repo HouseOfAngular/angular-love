@@ -71,8 +71,9 @@ export class NewsletterComponent {
     if (!this.form.valid || this._newsletterStore.loading() === 'loading') {
       return;
     }
-    this._newsletterStore.postEmailAddress(
-      this.form.controls['email'].getRawValue() as string,
-    );
+    this._newsletterStore.postEmailAddress({
+      name: this.form.controls['name'].getRawValue() as string,
+      email: this.form.controls['email'].getRawValue() as string,
+    });
   }
 }

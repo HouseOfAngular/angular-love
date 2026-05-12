@@ -31,6 +31,7 @@ import { RepeatDirective } from '@angular-love/utils';
     ArticleRegularCardSkeletonComponent,
     RepeatDirective,
   ],
+  providers: [ArticleListStore],
   templateUrl: './category-articles.component.html',
   styleUrl: './category-articles.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
