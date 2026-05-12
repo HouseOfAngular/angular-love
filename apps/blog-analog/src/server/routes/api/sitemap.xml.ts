@@ -63,8 +63,9 @@ export default defineEventHandler(async (event) => {
 
   for (const lang of ['en', 'pl'] as const) {
     for (const path of STATIC_PATHS) {
+      const suffix = path ? `/${path}` : '';
       const loc =
-        lang === 'en' ? `${BASE_URL}/${path}` : `${BASE_URL}/pl/${path}`;
+        lang === 'en' ? `${BASE_URL}${suffix}` : `${BASE_URL}/pl${suffix}`;
 
       entries.push({
         loc,
