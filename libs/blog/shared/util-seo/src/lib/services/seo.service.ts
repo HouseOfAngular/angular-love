@@ -77,6 +77,12 @@ export class SeoService {
       return;
     }
 
+    if (seoData.description) {
+      this.updateTag(seoData.description, 'description');
+      this.updateTag(seoData.description, 'ogDescription');
+      this.updateTag(seoData.description, 'twitterDescription');
+    }
+
     if (seoData.robots) {
       const content = Object.values(seoData.robots).join(', ');
       this.updateTag(content, 'robots');
