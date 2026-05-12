@@ -69,6 +69,8 @@ export interface SeoData {
 
 export type SeoMetaData = Pick<
   SeoData,
+  | 'description'
+  | 'og_description'
   | 'robots'
   | 'og_type'
   | 'og_url'
