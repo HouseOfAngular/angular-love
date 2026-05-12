@@ -311,6 +311,7 @@ export class SeoService {
 
   private getUrl(origin: string, path: string): string {
     const _url = new URL(`${origin}${path}`);
-    return `${_url.origin}${_url.pathname}`;
+    const pathname = _url.pathname.replace(/\/$/, '');
+    return `${_url.origin}${pathname}`;
   }
 }
