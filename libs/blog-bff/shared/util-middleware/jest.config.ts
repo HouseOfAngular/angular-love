@@ -1,5 +1,5 @@
 /* eslint-disable */
-export default {
+module.exports = {
   displayName: 'blog-bff-shared-util-middleware',
   preset: '../../../../jest.preset.js',
   testEnvironment: 'node',

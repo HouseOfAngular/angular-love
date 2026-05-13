@@ -1,4 +1,4 @@
-export default {
+module.exports = {
   displayName: 'blog-bff-shared-util-drizzle',
   preset: '../../../../jest.preset.js',
   testEnvironment: 'node',

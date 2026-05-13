@@ -41,10 +41,10 @@ import { SearchDialogComponent } from './search-dialog';
 export class SearchComponent {
   readonly service = inject(GlobalSearchService);
 
-  @HostListener('document:keydown.control.k', ['$event']) searchKeyHandler(
-    event: KeyboardEvent,
-  ) {
-    event.preventDefault();
-    this.service.showSearchDialog();
-  }
+  // @HostListener('document:keydown.control.k', ['$event']) searchKeyHandler(
+  //   event: KeyboardEvent,
+  // ) {
+  //   event.preventDefault();
+  //   this.service.showSearchDialog();
+  // }
 }

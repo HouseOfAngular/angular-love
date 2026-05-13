@@ -1,4 +1,4 @@
-export default {
+module.exports = {
   displayName: 'blog-bff-shared-schema',
   preset: '../../../../jest.preset.js',
   testEnvironment: 'node',
