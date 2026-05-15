@@ -5,6 +5,7 @@ declare module 'h3' {
     cloudflare: {
       env: Env;
       request: Request;
+      ctx: ExecutionContext;
     };
   }
 }

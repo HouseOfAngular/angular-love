@@ -1,5 +1,5 @@
 import { and, eq } from 'drizzle-orm';
-import { defineEventHandler, setHeader } from 'h3';
+import { createError, defineEventHandler, setHeader } from 'h3';
 import { create } from 'xmlbuilder2';
 
 import { articles, authors } from '@angular-love/blog-bff/shared/schema';
@@ -38,7 +38,16 @@ export default defineEventHandler(async (event) => {
   );
 
   const CACHE_KV = getRequiredEnv(event, 'CACHE_KV');
-  const cached = await CACHE_KV.get(CACHE_KEY);
+
+  let cached: string | null = null;
+  try {
+    cached = await CACHE_KV.get(CACHE_KEY);
+  } catch (err) {
+    console.error(
+      '[sitemap] KV cache read failed — continuing without cache:',
+      err,
+    );
+  }
 
   if (cached) {
     return cached;
@@ -46,17 +55,28 @@ export default defineEventHandler(async (event) => {
 
   const db = createDatabase(event);
 
-  const [articleRows, authorRows] = await Promise.all([
-    db
-      .select({
-        slug: articles.slug,
-        publishDate: articles.publishDate,
-        language: articles.language,
-      })
-      .from(articles)
-      .where(and(eq(articles.status, ArticleStatus.Publish))),
-    db.select({ slug: authors.slug }).from(authors),
-  ]);
+  let articleRows: { slug: string; publishDate: Date; language: DbLang }[];
+  let authorRows: { slug: string }[];
+
+  try {
+    [articleRows, authorRows] = await Promise.all([
+      db
+        .select({
+          slug: articles.slug,
+          publishDate: articles.publishDate,
+          language: articles.language,
+        })
+        .from(articles)
+        .where(and(eq(articles.status, ArticleStatus.Publish))),
+      db.select({ slug: authors.slug }).from(authors),
+    ]);
+  } catch (err) {
+    console.error('[sitemap] Database query failed:', err);
+    throw createError({
+      statusCode: 500,
+      statusMessage: 'Failed to fetch sitemap data from database',
+    });
+  }
 
   const entries: SitemapEntry[] = [];
   const now = new Date().toISOString();
@@ -77,36 +97,68 @@ export default defineEventHandler(async (event) => {
   }
 
   for (const article of articleRows) {
-    const prefix =
-      article.language === DbLang.Polish ? `${BASE_URL}/pl/` : `${BASE_URL}/`;
-    entries.push({
-      loc: `${prefix}${article.slug}`,
-      lastmod: article.publishDate.toISOString(),
-      priority: determinePriority(article.publishDate),
-      changefreq: 'monthly',
-    });
+    try {
+      const prefix =
+        article.language === DbLang.Polish ? `${BASE_URL}/pl/` : `${BASE_URL}/`;
+      entries.push({
+        loc: `${prefix}${article.slug}`,
+        lastmod: article.publishDate.toISOString(),
+        priority: determinePriority(article.publishDate),
+        changefreq: 'monthly',
+      });
+    } catch (err) {
+      console.error(
+        `[sitemap] Skipping article — failed to build entry for slug "${article.slug}":`,
+        err,
+      );
+    }
   }
 
   for (const author of authorRows) {
-    entries.push(
-      {
-        loc: `${BASE_URL}/author/${author.slug}`,
-        lastmod: now,
-        priority: '0.7',
-        changefreq: 'weekly',
-      },
-      {
-        loc: `${BASE_URL}/pl/author/${author.slug}`,
-        lastmod: now,
-        priority: '0.7',
-        changefreq: 'weekly',
-      },
-    );
+    try {
+      entries.push(
+        {
+          loc: `${BASE_URL}/author/${author.slug}`,
+          lastmod: now,
+          priority: '0.7',
+          changefreq: 'weekly',
+        },
+        {
+          loc: `${BASE_URL}/pl/author/${author.slug}`,
+          lastmod: now,
+          priority: '0.7',
+          changefreq: 'weekly',
+        },
+      );
+    } catch (err) {
+      console.error(
+        `[sitemap] Skipping author — failed to build entry for slug "${author.slug}":`,
+        err,
+      );
+    }
   }
 
-  const xml = buildXml(entries);
+  let xml: string;
+  try {
+    xml = buildXml(entries);
+  } catch (err) {
+    console.error('[sitemap] XML generation failed:', err);
+    throw createError({
+      statusCode: 500,
+      statusMessage: 'Failed to generate sitemap XML',
+    });
+  }
 
-  event.waitUntil(CACHE_KV.put(CACHE_KEY, xml, { expirationTtl: CACHE_TTL }));
+  try {
+    event.context.cloudflare.ctx?.waitUntil(
+      CACHE_KV.put(CACHE_KEY, xml, { expirationTtl: CACHE_TTL }),
+    );
+  } catch (err) {
+    console.error(
+      '[sitemap] KV cache write failed — sitemap was served but not cached:',
+      err,
+    );
+  }
 
   return xml;
 });
