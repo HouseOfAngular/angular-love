@@ -13,3 +13,8 @@ Disallow: /
 Host: bff.angular.love
 User-agent: *
 Disallow: /
+
+User-agent: *
+Allow: /sitemap.xml
+
+Sitemap: https://angular.love/sitemap.xml
