@@ -5,8 +5,8 @@ import { create } from 'xmlbuilder2';
 import { articles, authors } from '@angular-love/blog-bff/shared/schema';
 import { ArticleStatus, DbLang } from '@angular-love/contracts/articles';
 
-import { createDatabase } from '../../utils/database';
-import { getRequiredEnv } from '../../utils/env';
+import { createDatabase } from '../utils/database';
+import { getRequiredEnv } from '../utils/env';
 
 const CACHE_KEY = 'sitemap:xml';
 const CACHE_TTL = 3600;
