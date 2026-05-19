@@ -42,6 +42,7 @@ pipeline {
         VITE_AL_GISCUS_CATEGORY_ID=credentials('al_giscus_category_id')
         VITE_AL_GISCUS_REPO=credentials('al_giscus_repo')
         VITE_AL_GISCUS_REPO_ID=credentials('al_giscus_repo_id')
+        CACHE_PURGE_SECRET=credentials('al_cache_purge_secret')
     }
 
     stages {

@@ -5,10 +5,10 @@ import { create } from 'xmlbuilder2';
 import { articles, authors } from '@angular-love/blog-bff/shared/schema';
 import { ArticleStatus, DbLang } from '@angular-love/contracts/articles';
 
+import { CACHE_KEYS } from '../utils/cache-keys';
 import { createDatabase } from '../utils/database';
 import { getRequiredEnv } from '../utils/env';
 
-const CACHE_KEY = 'sitemap:xml';
 const CACHE_TTL = 3600;
 const BASE_URL = 'https://angular.love';
 
@@ -41,7 +41,7 @@ export default defineEventHandler(async (event) => {
 
   let cached: string | null = null;
   try {
-    cached = await CACHE_KV.get(CACHE_KEY);
+    cached = await CACHE_KV.get(CACHE_KEYS.sitemap);
   } catch (err) {
     console.error(
       '[sitemap] KV cache read failed — continuing without cache:',
@@ -150,8 +150,8 @@ export default defineEventHandler(async (event) => {
   }
 
   try {
-    event.context.cloudflare.ctx?.waitUntil(
-      CACHE_KV.put(CACHE_KEY, xml, { expirationTtl: CACHE_TTL }),
+    event.waitUntil(
+      CACHE_KV.put(CACHE_KEYS.sitemap, xml, { expirationTtl: CACHE_TTL }),
     );
   } catch (err) {
     console.error(
