@@ -1,18 +1,27 @@
 import { createHash, timingSafeEqual } from 'node:crypto';
 import { assertMethod, createError, defineEventHandler, getHeader } from 'h3';
+import * as v from 'valibot';
 
 import { CACHE_KEYS } from '../../../utils/cache-keys';
 import { getRequiredEnv } from '../../../utils/env';
 
+const HeaderSchema = v.pipe(v.string(), v.nonEmpty());
+
 export default defineEventHandler(async (event) => {
   assertMethod(event, 'POST');
 
-  const secret = getHeader(event, 'x-purge-secret');
   const expectedSecret = getRequiredEnv(event, 'CACHE_PURGE_SECRET');
 
-  if (typeof secret !== 'string' || typeof expectedSecret !== 'string') {
+  const secretHeader = v.safeParse(
+    HeaderSchema,
+    getHeader(event, 'x-purge-secret'),
+  );
+
+  if (!secretHeader.success) {
     throw createError({ statusCode: 401, statusMessage: 'Unauthorized' });
   }
+
+  const secret = secretHeader.output;
 
   const a = createHash('sha256').update(secret).digest();
   const b = createHash('sha256').update(expectedSecret).digest();
