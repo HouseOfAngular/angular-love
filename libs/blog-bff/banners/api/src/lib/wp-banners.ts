@@ -22,4 +22,13 @@ export class WpBanners {
       _fields: 'id,guid,alt_text',
     });
   }
+
+  async getMediaByIds(
+    mediaIds: number[],
+  ): Promise<WPResponse<WPBannerMediaDto[]>> {
+    return this._wpClient.get<WPBannerMediaDto[]>('media', {
+      include: mediaIds.join(','),
+      _fields: 'id,guid,alt_text',
+    });
+  }
 }

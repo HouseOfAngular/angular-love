@@ -37,7 +37,20 @@ export default defineEventHandler(async (event) => {
       })
     ).data[0];
 
-    const media = await client.getMediaByBannerId(bannerDto.id);
+    const slideImageIds = bannerDto.acf.slides?.map(
+      (slide) => slide.slide_image,
+    );
+
+    if (!slideImageIds) {
+      event.waitUntil(
+        CACHE_KV.put(CACHE_KEYS.banners, JSON.stringify(bannersMock), {
+          expirationTtl: CACHE_TTL,
+        }),
+      );
+      return bannersMock;
+    }
+
+    const media = await client.getMediaByIds(slideImageIds);
 
     const banners = toBanner(bannerDto, media.data);
 
