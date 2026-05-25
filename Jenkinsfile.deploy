@@ -110,73 +110,96 @@ pipeline {
                 }
             }
         }
-        stage("Branch db") {
+        stage("Prepare db") {
             steps {
                 script {
-                    def timestamp = new Date().getTime()
-                    def random = Math.abs(new Random().nextInt())
-                    env.BRANCH_HASH = "${random}"
+                    if (env.IS_PR == "TRUE") {
+                        def random = Math.abs(new Random().nextInt())
+                        env.BRANCH_HASH = "${random}"
 
-                    if (env.BRANCH_HASH.length() > 5) {
-                        env.BRANCH_HASH = env.BRANCH_HASH.substring(0, 5)
-                    }
+                        if (env.BRANCH_HASH.length() > 5) {
+                            env.BRANCH_HASH = env.BRANCH_HASH.substring(0, 5)
+                        }
 
-                    def branchNameForDB = env.USE_BRANCH_NAME
-                    if (env.USE_BRANCH_NAME.length() > 30) {
-                        echo "Branch name is too long, truncating to 30 characters"
-                        branchNameForDB = env.USE_BRANCH_NAME.substring(0, 30)
-                    }
-                    branchNameForDB = branchNameForDB.replace("_", "-")
-                    branchNameForDB = branchNameForDB.replace("/", "-")
-                    branchNameForDB = branchNameForDB.toLowerCase()
+                        def branchNameForDB = env.USE_BRANCH_NAME
+                        if (env.USE_BRANCH_NAME.length() > 30) {
+                            echo "Branch name is too long, truncating to 30 characters"
+                            branchNameForDB = env.USE_BRANCH_NAME.substring(0, 30)
+                        }
+                        branchNameForDB = branchNameForDB.replace("_", "-")
+                        branchNameForDB = branchNameForDB.replace("/", "-")
+                        branchNameForDB = branchNameForDB.toLowerCase()
 
-                    env.DB_BRANCH_NAME = "${ENVIRONMENT}-${branchNameForDB}-${BUILD_NUMBER}-${BRANCH_HASH}"
-                    if (env.DB_BRANCH_NAME.length() > 46) { // 46 since we will be adding the group name to the db name
-                        error("DB branch name is too long")
-                    }
-                withCredentials([string(credentialsId: 'tursor_api_token', variable: 'TURSO_API_TOKEN')]) {
-                    echo "prams status $USE_PARAMS_DB"
-                    if (env.USE_PARAMS_DB == "true") {
-                        echo "Using params db"
-                        sh """
-                            turso org switch angular-love
-                            turso db create eu-${DB_BRANCH_NAME} --from-db $DB_MAIN_EU --group blog-eu
-                            turso db create usw-${DB_BRANCH_NAME} --from-db $DB_MAIN_US_WEST --group blog-us-west
-                            turso db create use-${DB_BRANCH_NAME} --from-db $DB_MAIN_US_EAST --group blog-us-east
-                        """
+                        env.DB_BRANCH_NAME = "${ENVIRONMENT}-${branchNameForDB}-${BUILD_NUMBER}-${BRANCH_HASH}"
+                        if (env.DB_BRANCH_NAME.length() > 46) { // 46 since we will be adding the group name to the db name
+                            error("DB branch name is too long")
+                        }
+                        withCredentials([string(credentialsId: 'tursor_api_token', variable: 'TURSO_API_TOKEN')]) {
+                            echo "prams status $USE_PARAMS_DB"
+                            if (env.USE_PARAMS_DB == "true") {
+                                echo "Using params db"
+                                sh """
+                                    turso org switch angular-love
+                                    turso db create eu-${DB_BRANCH_NAME} --from-db $DB_MAIN_EU --group blog-eu
+                                    turso db create usw-${DB_BRANCH_NAME} --from-db $DB_MAIN_US_WEST --group blog-us-west
+                                    turso db create use-${DB_BRANCH_NAME} --from-db $DB_MAIN_US_EAST --group blog-us-east
+                                """
+                            } else {
+                                echo "Using normal db"
+                                sh """
+                                    turso org switch angular-love
+                                    turso db create eu-${DB_BRANCH_NAME} --from-db $TURSO_EU_DB --group blog-eu
+                                    turso db create usw-${DB_BRANCH_NAME} --from-db $TURSO_US_WEST_DB --group blog-us-west
+                                    turso db create use-${DB_BRANCH_NAME} --from-db $TURSO_US_EAST_DB --group blog-us-east
+                                """
+
+                            }
+
+
+                            sh """
+                                turso org switch angular-love
+                                turso db list -g blog-eu | grep -q "eu-${DB_BRANCH_NAME}" || { echo "EU database not found after creation"; exit 1; }
+                                turso db list -g blog-us-west | grep -q "usw-${DB_BRANCH_NAME}" || { echo "US West database not found after creation"; exit 1; }
+                                turso db list -g blog-us-east | grep -q "use-${DB_BRANCH_NAME}" || { echo "US East database not found after creation"; exit 1; }
+                            """
+                            env.TURSO_EU_CONNECTION_URL = "libsql://eu-${DB_BRANCH_NAME}-angular-love.aws-eu-west-1.turso.io"
+                            env.TURSO_US_WEST_CONNECTION_URL = "libsql://usw-${DB_BRANCH_NAME}-angular-love.aws-us-west-2.turso.io"
+                            env.TURSO_US_EAST_CONNECTION_URL = "libsql://use-${DB_BRANCH_NAME}-angular-love.aws-us-east-2.turso.io"
+                        }
+
+                        // clean old branches
+                        build(job: 'angular.love/clean_db_branches', parameters: [
+                            [$class: 'StringParameterValue', name: 'env', value: "${ENVIRONMENT}"],
+                            [$class: 'StringParameterValue', name: 'branchName', value: "${branchNameForDB}"],
+                            [$class: 'StringParameterValue', name: 'branchHash', value: "${BRANCH_HASH}"],
+                            [$class: 'StringParameterValue', name: 'buildNumber', value: "${BUILD_NUMBER}"],
+                            [$class: 'BooleanParameterValue', name: 'dryRun', value: false]], wait: false)
                     } else {
-                        echo "Using normal db"
-                        sh """
-                            turso org switch angular-love
-                            turso db create eu-${DB_BRANCH_NAME} --from-db $TURSO_EU_DB --group blog-eu
-                            turso db create usw-${DB_BRANCH_NAME} --from-db $TURSO_US_WEST_DB --group blog-us-west
-                            turso db create use-${DB_BRANCH_NAME} --from-db $TURSO_US_EAST_DB --group blog-us-east
-                        """
+                        def euDb = env.USE_PARAMS_DB == "true" ? params.DB_MAIN_EU : env.TURSO_EU_DB
+                        def usWestDb = env.USE_PARAMS_DB == "true" ? params.DB_MAIN_US_WEST : env.TURSO_US_WEST_DB
+                        def usEastDb = env.USE_PARAMS_DB == "true" ? params.DB_MAIN_US_EAST : env.TURSO_US_EAST_DB
 
+                        echo "Using main database URLs without creating database branches"
+                        env.TURSO_EU_CONNECTION_URL = "libsql://${euDb}-angular-love.aws-eu-west-1.turso.io"
+                        env.TURSO_US_WEST_CONNECTION_URL = "libsql://${usWestDb}-angular-love.aws-us-west-2.turso.io"
+                        env.TURSO_US_EAST_CONNECTION_URL = "libsql://${usEastDb}-angular-love.aws-us-east-2.turso.io"
                     }
 
-
-                    sh """
-                        turso org switch angular-love
-                        turso db list -g blog-eu | grep -q "eu-${DB_BRANCH_NAME}" || { echo "EU database not found after creation"; exit 1; }
-                        turso db list -g blog-us-west | grep -q "usw-${DB_BRANCH_NAME}" || { echo "US West database not found after creation"; exit 1; }
-                        turso db list -g blog-us-east | grep -q "use-${DB_BRANCH_NAME}" || { echo "US East database not found after creation"; exit 1; }
-                    """
-                    env.TURSO_EU_CONNECTION_URL = "libsql://eu-${DB_BRANCH_NAME}-angular-love.turso.io"
-                    env.TURSO_US_WEST_CONNECTION_URL = "libsql://usw-${DB_BRANCH_NAME}-angular-love.turso.io"
-                    env.TURSO_US_EAST_CONNECTION_URL = "libsql://use-${DB_BRANCH_NAME}-angular-love.turso.io"
                 }
 
-                // clean old branches
-                build(job: 'angular.love/clean_db_branches', parameters: [
-                    [$class: 'StringParameterValue', name: 'env', value: "${ENVIRONMENT}"],
-                    [$class: 'StringParameterValue', name: 'branchName', value: "${branchNameForDB}"],
-                    [$class: 'StringParameterValue', name: 'branchHash', value: "${BRANCH_HASH}"],
-                    [$class: 'StringParameterValue', name: 'buildNumber', value: "${BUILD_NUMBER}"],
-                    [$class: 'BooleanParameterValue', name: 'dryRun', value: false]], wait: false)
-
-                }
-
+            }
+        }
+        stage("Run Drizzle migrations") {
+            steps {
+                sh """
+                    if [ -d drizzle ]; then
+                        TURSO_CONNECTION_URL="$TURSO_EU_CONNECTION_URL" TURSO_AUTH_TOKEN="$TURSO_EU_AUTH_TOKEN" npx drizzle-kit migrate --config=drizzle.deploy.config.ts
+                        TURSO_CONNECTION_URL="$TURSO_US_WEST_CONNECTION_URL" TURSO_AUTH_TOKEN="$TURSO_US_WEST_AUTH_TOKEN" npx drizzle-kit migrate --config=drizzle.deploy.config.ts
+                        TURSO_CONNECTION_URL="$TURSO_US_EAST_CONNECTION_URL" TURSO_AUTH_TOKEN="$TURSO_US_EAST_AUTH_TOKEN" npx drizzle-kit migrate --config=drizzle.deploy.config.ts
+                    else
+                        echo "No Drizzle migrations directory found, skipping migrations"
+                    fi
+                """
             }
         }
         stage("Build blog analog") {
