@@ -69,7 +69,7 @@ export const ArticleDetailsStore = signalStore(
               tapResponse({
                 error: (error) =>
                   patchState(store, {
-                    slug: slug,
+                    slug: null,
                     fetchArticleDetailsCallState: { error },
                   }),
                 next: (articleDetails) => {

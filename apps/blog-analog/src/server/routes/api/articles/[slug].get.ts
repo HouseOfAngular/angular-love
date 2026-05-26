@@ -1,10 +1,8 @@
-import { eq } from 'drizzle-orm';
-import { defineEventHandler, getRouterParam } from 'h3';
+import { and, eq } from 'drizzle-orm';
+import { createError, defineEventHandler, getRouterParam } from 'h3';
 
-import {
-  articles,
-  authors,
-} from '@angular-love/blog-bff/shared/schema';
+import { articles, authors } from '@angular-love/blog-bff/shared/schema';
+import { dbLangMap } from '@angular-love/contracts/articles';
 
 import { createDatabase } from '../../../utils/database';
 import { getLang } from '../../../utils/lang';
@@ -42,7 +40,13 @@ export default defineEventHandler(async (event) => {
     })
     .from(articles)
     .innerJoin(authors, eq(articles.authorId, authors.id))
-    .where(eq(articles.slug, slug!));
+    .where(
+      and(eq(articles.slug, slug!), eq(articles.language, dbLangMap[lang])),
+    );
+
+  if (!article) {
+    throw createError({ statusCode: 404, statusMessage: 'Article not found' });
+  }
 
   return article;
 });
