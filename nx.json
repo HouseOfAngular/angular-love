@@ -32,9 +32,11 @@
       "cache": true,
       "inputs": [
         "default",
+        "^default",
         "{workspaceRoot}/.eslintrc.json",
         "{workspaceRoot}/.eslintignore",
-        "{workspaceRoot}/eslint.config.js"
+        "{workspaceRoot}/eslint.config.js",
+        "{workspaceRoot}/tools/eslint-rules/**/*"
       ]
     },
     "@nx/js:tsc": {
@@ -56,7 +58,7 @@
       "dependsOn": ["^build"],
       "inputs": ["production", "^production"]
     },
-    "@nx/vite:test": {
+    "@nx/vitest:test": {
       "cache": true,
       "inputs": ["default", "^production"]
     }
@@ -160,5 +162,6 @@
       }
     }
   },
-  "useInferencePlugins": false
+  "useInferencePlugins": false,
+  "analytics": false
 }
