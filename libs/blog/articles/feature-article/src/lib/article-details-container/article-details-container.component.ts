@@ -5,7 +5,10 @@ import {
   input,
 } from '@angular/core';
 
-import { ArticleDetailsStore } from '@angular-love/blog/articles/data-access';
+import {
+  ArticleDetailsStore,
+  IsArticlePreview,
+} from '@angular-love/blog/articles/data-access';
 import { NotFoundPageComponent } from '@angular-love/blog/shared/ui-not-found';
 
 import { ArticleDetailsSkeletonComponent } from '../article-details/article-details-skeleton.component';
@@ -39,6 +42,8 @@ export class ArticleDetailsContainerComponent {
     this.articleDetailsStore.isFetchArticleDetailsError;
 
   constructor() {
-    this.articleDetailsStore.fetchArticleDetails(this.articleSlug);
+    if (inject(IsArticlePreview)) {
+      this.articleDetailsStore.fetchArticleDetails(this.articleSlug);
+    }
   }
 }
