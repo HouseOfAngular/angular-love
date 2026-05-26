@@ -29,6 +29,7 @@ import { provideFastSVG } from '@push-based/ngx-fast-svg';
 import { NGX_SKELETON_LOADER_CONFIG } from 'ngx-skeleton-loader';
 import { map, switchMap } from 'rxjs';
 
+import { i18nHeadersInterceptor } from '@angular-love/blog/i18n/data-access';
 import { blogShellRoutes } from '@angular-love/blog/shell/feature';
 import { provideSeo } from '@angular-love/seo';
 import { ConfigService, provideConfig } from '@angular-love/shared/config';
@@ -130,7 +131,7 @@ export const appConfig: ApplicationConfig = {
     },
     provideHttpClient(
       withFetch(),
-      withInterceptors([appRequestContextInterceptor]),
+      withInterceptors([i18nHeadersInterceptor, appRequestContextInterceptor]),
       withInterceptorsFromDi(),
     ),
     provideAppSeo(),
