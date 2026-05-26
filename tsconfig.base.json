@@ -36,6 +36,9 @@
       "@angular-love/blog-bff/shared/util-middleware": [
         "libs/blog-bff/shared/util-middleware/src/index.ts"
       ],
+      "@angular-love/blog-contracts/presentations": [
+        "libs/blog-contracts/presentations/src/index.ts"
+      ],
       "@angular-love/blog-contracts/shared": [
         "libs/blog-contracts/shared/src/index.ts"
       ],
@@ -94,6 +97,9 @@
       "@angular-love/blog/contracts/banners": [
         "libs/blog-contracts/banners/src/index.ts"
       ],
+      "@angular-love/blog/contracts/presentations": [
+        "libs/blog-contracts/presentations/src/index.ts"
+      ],
       "@angular-love/blog/contracts/roadmap": [
         "libs/blog-contracts/roadmap/src/index.ts"
       ],
@@ -121,6 +127,18 @@
       ],
       "@angular-love/blog/partners/ui-partners": [
         "libs/blog/partners/ui-partners/src/index.ts"
+      ],
+      "@angular-love/blog/presentations/data-access": [
+        "libs/blog/presentations/data-access/src/index.ts"
+      ],
+      "@angular-love/blog/presentations/presentation-details-page": [
+        "libs/blog/presentations/presentation-details-page/src/index.ts"
+      ],
+      "@angular-love/blog/presentations/presentations-page": [
+        "libs/blog/presentations/presentations-page/src/index.ts"
+      ],
+      "@angular-love/blog/presentations/ui-presentation-card": [
+        "libs/blog/presentations/ui-presentation-card/src/index.ts"
       ],
       "@angular-love/blog/roadmap/feature-roadmap": [
         "libs/blog/roadmap/feature-roadmap/src/index.ts"
@@ -160,6 +178,9 @@
       ],
       "@angular-love/blog/shared/ui-dynamic-text-clamp": [
         "libs/blog/shared/ui-dynamic-text-clamp/src/index.ts"
+      ],
+      "@angular-love/blog/shared/ui-ebook": [
+        "libs/blog/shared/ui-ebook/src/index.ts"
       ],
       "@angular-love/blog/shared/ui-icon": [
         "libs/blog/shared/ui-icon/src/index.ts"
