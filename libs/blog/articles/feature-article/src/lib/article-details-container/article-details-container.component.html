@@ -3,6 +3,5 @@
 } @else if (articleDetails()) {
   <al-article-details [articleDetails]="articleDetails()!" />
 } @else if (isFetchArticleDetailsError()) {
-  <!-- @TODO - error handling -->
-  Something went wrong...
+  <al-not-found />
 }
