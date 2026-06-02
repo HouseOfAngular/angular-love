@@ -144,8 +144,8 @@ importers:
         specifier: ^10.2.4
         version: 10.9.5
       ngx-owl-carousel-o:
-        specifier: ^21.0.3
-        version: 21.0.3(@angular/common@20.3.10(@angular/core@20.3.10(@angular/compiler@20.3.10)(rxjs@7.8.2)(zone.js@0.14.4))(rxjs@7.8.2))(@angular/core@20.3.10(@angular/compiler@20.3.10)(rxjs@7.8.2)(zone.js@0.14.4))(rxjs@7.8.2)
+        specifier: ^20.1.1
+        version: 20.1.1(@angular/common@20.3.10(@angular/core@20.3.10(@angular/compiler@20.3.10)(rxjs@7.8.2)(zone.js@0.14.4))(rxjs@7.8.2))(@angular/core@20.3.10(@angular/compiler@20.3.10)(rxjs@7.8.2)(zone.js@0.14.4))(rxjs@7.8.2)
       ngx-skeleton-loader:
         specifier: ^8.1.0
         version: 8.1.0(@angular/common@20.3.10(@angular/core@20.3.10(@angular/compiler@20.3.10)(rxjs@7.8.2)(zone.js@0.14.4))(rxjs@7.8.2))(@angular/core@20.3.10(@angular/compiler@20.3.10)(rxjs@7.8.2)(zone.js@0.14.4))
@@ -10388,11 +10388,11 @@ packages:
   ngraph.events@1.2.2:
     resolution: {integrity: sha512-JsUbEOzANskax+WSYiAPETemLWYXmixuPAlmZmhIbIj6FH/WDgEGCGnRwUQBK0GjOnVm8Ui+e5IJ+5VZ4e32eQ==}
 
-  ngx-owl-carousel-o@21.0.3:
-    resolution: {integrity: sha512-3Er0VtaLgzb8yWvPDQhwqvGiKBFJbn3tqXHrmnRANUrB8GtyVcr29tE3XPowQyvNM1bQIn3CT+Km8h4LzJtDZg==}
+  ngx-owl-carousel-o@20.1.1:
+    resolution: {integrity: sha512-jyV3LYgeTPVQK+aZpPX8HgsflVfeNQUHLA/CPBc66UwYGRoVJMEwz/KnGRxgb2euxv2AFUmJ4THo7zS5UClQ6Q==}
     peerDependencies:
-      '@angular/common': ' ^21.0.0-rc.0 || ^21.0.0'
-      '@angular/core': ^21.0.0-rc.0 || ^21.0.0
+      '@angular/common': ' ^20.0.0-rc.0 || ^20.0.0'
+      '@angular/core': ^20.0.0-rc.0 || ^20.0.0
       rxjs: ^6.0.1 || ^7.0.0
 
   ngx-skeleton-loader@8.1.0:
@@ -25397,7 +25397,7 @@ snapshots:
 
   ngraph.events@1.2.2: {}
 
-  ngx-owl-carousel-o@21.0.3(@angular/common@20.3.10(@angular/core@20.3.10(@angular/compiler@20.3.10)(rxjs@7.8.2)(zone.js@0.14.4))(rxjs@7.8.2))(@angular/core@20.3.10(@angular/compiler@20.3.10)(rxjs@7.8.2)(zone.js@0.14.4))(rxjs@7.8.2):
+  ngx-owl-carousel-o@20.1.1(@angular/common@20.3.10(@angular/core@20.3.10(@angular/compiler@20.3.10)(rxjs@7.8.2)(zone.js@0.14.4))(rxjs@7.8.2))(@angular/core@20.3.10(@angular/compiler@20.3.10)(rxjs@7.8.2)(zone.js@0.14.4))(rxjs@7.8.2):
     dependencies:
       '@angular/common': 20.3.10(@angular/core@20.3.10(@angular/compiler@20.3.10)(rxjs@7.8.2)(zone.js@0.14.4))(rxjs@7.8.2)
       '@angular/core': 20.3.10(@angular/compiler@20.3.10)(rxjs@7.8.2)(zone.js@0.14.4)
