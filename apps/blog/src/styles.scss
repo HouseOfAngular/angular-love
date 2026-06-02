@@ -1,4 +1,7 @@
 @use '@angular/cdk';
+@use 'ngx-owl-carousel-o/lib/styles/scss/owl.carousel';
+@use 'ngx-owl-carousel-o/lib/styles/scss/owl.theme.default' as owl-theme;
+
 @include cdk.a11y-visually-hidden();
 
 @import '@angular/cdk/overlay-prebuilt.css';

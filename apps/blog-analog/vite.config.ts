@@ -66,5 +66,13 @@ export default defineConfig(({ mode }) => {
       include: ['**/*.spec.ts'],
       reporters: ['default'],
     },
+    css: {
+      preprocessorOptions: {
+        scss: {
+          // quiet ngx-owl-carousel-o warnings
+          quietDeps: true,
+        },
+      },
+    },
   };
 });

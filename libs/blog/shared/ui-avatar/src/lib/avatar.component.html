@@ -1,5 +1,7 @@
 <div
   class="flex items-center justify-center overflow-hidden rounded-full border border-white bg-gray-200"
+  [style.width.px]="size()"
+  [style.height.px]="size()"
 >
   @if (imageSrc()) {
     <img

@@ -312,5 +312,10 @@
       "section1": "We’ll transfer your article to the CMS and schedule its publication.",
       "section2": "We’ll also promote it on social media to maximize its reach."
     }
+  },
+  "relatedArticles": {
+    "title": "Related Articles",
+    "previousSlide": "Previous slide",
+    "nextSlide": "Next slide"
   }
 }
