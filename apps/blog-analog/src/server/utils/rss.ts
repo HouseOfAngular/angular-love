@@ -13,6 +13,7 @@ export type FeedArticle = {
 };
 
 export type FeedConfig = {
+  title: string;
   channelLink: string;
   feedUrl: string;
   alternateFeedUrl: string;
@@ -38,7 +39,7 @@ export function buildRssFeed(
 
   channel
     .ele('title')
-    .txt('angular.love')
+    .txt(config.title)
     .up()
     .ele('link')
     .txt(config.channelLink)
