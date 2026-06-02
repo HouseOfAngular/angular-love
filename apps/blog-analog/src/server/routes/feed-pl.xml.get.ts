@@ -72,6 +72,7 @@ export default defineEventHandler(async (event) => {
   let xml: string;
   try {
     xml = buildRssFeed(articleRows, {
+      title: 'Angular.love Blog (PL)',
       channelLink: BASE_URL_PL,
       feedUrl: `${BASE_URL}/feed-pl.xml`,
       alternateFeedUrl: `${BASE_URL}/feed.xml`,
