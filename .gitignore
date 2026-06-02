@@ -45,8 +45,14 @@ Thumbs.db
 # secrets
 .dev.vars
 .env.*
+!.env.example
 .cursor/rules/nx-rules.mdc
 .github/instructions/nx.instructions.md
 
 vite.config.*.timestamp*
 vitest.config.*.timestamp*
+# local sqlite databases built by the api-jobs scripts
+*.db
+*.db-journal
+*.db-wal
+*.db-shm

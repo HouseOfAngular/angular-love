@@ -1,0 +1,74 @@
+// Triggered by the GitHub pull request webhook. Removes every preview database
+// of a branch once its PR is closed.
+pipeline {
+    agent {
+        dockerfile {
+            filename 'Dockerfile-deploy'
+            reuseNode true
+        }
+    }
+
+    options {
+        quietPeriod(0)
+        disableConcurrentBuilds()
+        timestamps()
+    }
+
+    triggers {
+        GenericTrigger(
+            genericVariables: [
+                [key: 'action', value: '$.action'],
+                [key: 'head_branch', value: '$.pull_request.head.ref'],
+            ],
+            tokenCredentialId: 'blog-jobs-cleanup-webhook-token',
+            printContributedVariables: true,
+            printPostContent: false
+        )
+    }
+
+    environment {
+        TURSO_ORG = 'angular-love'
+    }
+
+    stages {
+        stage('Cleanup') {
+            when {
+                expression { env.action == 'closed' && env.head_branch != 'main' }
+            }
+            stages {
+                stage('Install dependencies') {
+                    steps {
+                        sh '''
+                            corepack enable && corepack prepare pnpm@10.6.2 --activate
+                            pnpm install --frozen-lockfile
+                        '''
+                    }
+                }
+                stage('Delete branch databases') {
+                    steps {
+                        script {
+                            // Same normalization as Jenkinsfile.deploy
+                            def branchNameForDB = env.head_branch
+                            if (branchNameForDB.length() > 30) {
+                                branchNameForDB = branchNameForDB.substring(0, 30)
+                            }
+                            env.DB_BRANCH = branchNameForDB.replace('_', '-').replace('/', '-').toLowerCase()
+
+                            // Give a running deploy time to finish
+                            sleep 500
+                        }
+                        withCredentials([string(credentialsId: 'tursor_api_token', variable: 'TURSO_API_TOKEN')]) {
+                            // A huge build number and a hash that never matches delete every build of the branch
+                            sh 'npx nx run api-jobs:cleanup --no-tui --env=dev --branch="$DB_BRANCH" --build=99999 --hash=0'
+                        }
+                    }
+                }
+            }
+        }
+    }
+    post {
+        always {
+            cleanWs()
+        }
+    }
+}

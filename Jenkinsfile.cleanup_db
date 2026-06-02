@@ -1,0 +1,61 @@
+// Removes older PR preview databases of a branch. Triggered by Jenkinsfile.deploy
+// (job `angular.love/clean_db_branches`).
+pipeline {
+    agent {
+        dockerfile {
+            filename 'Dockerfile-deploy'
+            reuseNode true
+        }
+    }
+
+    options {
+        quietPeriod(0)
+        disableConcurrentBuilds()
+        timestamps()
+    }
+
+    parameters {
+        string(name: 'env', description: 'Environment to cleanup')
+        string(name: 'branchName', description: 'Branch name to cleanup')
+        string(name: 'branchHash', description: 'Branch hash to keep')
+        string(name: 'buildNumber', description: 'Delete builds older than this one')
+        booleanParam(name: 'dryRun', defaultValue: true, description: 'Only list databases that would be deleted')
+    }
+
+    environment {
+        TURSO_ORG = 'angular-love'
+    }
+
+    stages {
+        stage('Install dependencies') {
+            steps {
+                sh '''
+                    corepack enable && corepack prepare pnpm@10.6.2 --activate
+                    pnpm install --frozen-lockfile
+                '''
+            }
+        }
+        stage('Cleanup') {
+            steps {
+                script {
+                    // Give the deploy that triggered this job time to finish
+                    sleep 500
+                    // `env` is also a Groovy global, so copy params to explicit names
+                    env.CLEANUP_ENV = params.env
+                    env.CLEANUP_BRANCH = params.branchName
+                    env.CLEANUP_BUILD = params.buildNumber
+                    env.CLEANUP_HASH = params.branchHash
+                    env.DRY_RUN_FLAG = params.dryRun ? '--dry-run' : ''
+                }
+                withCredentials([string(credentialsId: 'tursor_api_token', variable: 'TURSO_API_TOKEN')]) {
+                    sh 'npx nx run api-jobs:cleanup --no-tui --env="$CLEANUP_ENV" --branch="$CLEANUP_BRANCH" --build="$CLEANUP_BUILD" --hash="$CLEANUP_HASH" $DRY_RUN_FLAG'
+                }
+            }
+        }
+    }
+    post {
+        always {
+            cleanWs()
+        }
+    }
+}

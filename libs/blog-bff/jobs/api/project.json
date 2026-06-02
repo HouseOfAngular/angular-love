@@ -1,0 +1,42 @@
+{
+  "name": "api-jobs",
+  "$schema": "../../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/blog-bff/jobs/api/src",
+  "projectType": "library",
+  "tags": ["scope:bff", "type:api"],
+  "targets": {
+    "sync": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "tsx --tsconfig tsconfig.base.json libs/blog-bff/jobs/api/src/scripts/sync.ts"
+      }
+    },
+    "rebuild": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "tsx --tsconfig tsconfig.base.json libs/blog-bff/jobs/api/src/scripts/rebuild.ts"
+      }
+    },
+    "cleanup": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "tsx --tsconfig tsconfig.base.json libs/blog-bff/jobs/api/src/scripts/cleanup.ts"
+      }
+    },
+    "typecheck": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "tsc -p libs/blog-bff/jobs/api/tsconfig.lib.json --noEmit --declaration false"
+      }
+    },
+    "lint": {
+      "executor": "@nx/eslint:lint"
+    },
+    "test": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "tsx --tsconfig tsconfig.base.json --test 'libs/blog-bff/jobs/api/src/**/*.spec.ts'"
+      }
+    }
+  }
+}

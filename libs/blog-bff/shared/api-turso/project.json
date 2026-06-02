@@ -1,0 +1,18 @@
+{
+  "name": "api-turso",
+  "$schema": "../../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/blog-bff/shared/api-turso/src",
+  "projectType": "library",
+  "tags": ["scope:bff", "type:api"],
+  "targets": {
+    "lint": {
+      "executor": "@nx/eslint:lint"
+    },
+    "test": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "tsx --tsconfig tsconfig.base.json --test 'libs/blog-bff/shared/api-turso/src/**/*.spec.ts'"
+      }
+    }
+  }
+}

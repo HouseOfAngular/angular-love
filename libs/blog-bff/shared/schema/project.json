@@ -14,6 +14,27 @@
       "options": {
         "jestConfig": "libs/blog-bff/shared/schema/jest.config.ts"
       }
+    },
+    "db-generate": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "drizzle-kit generate",
+        "cwd": "libs/blog-bff/shared/schema"
+      }
+    },
+    "db-migrate": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "drizzle-kit migrate",
+        "cwd": "libs/blog-bff/shared/schema"
+      }
+    },
+    "db-check": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "drizzle-kit check",
+        "cwd": "libs/blog-bff/shared/schema"
+      }
     }
   }
 }

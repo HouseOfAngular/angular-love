@@ -1,0 +1,10 @@
+allowBuilds:
+  '@parcel/watcher': false
+  '@swc/core': false
+  esbuild: false
+  lmdb: false
+  msgpackr-extract: false
+  nx: false
+  sharp: false
+  unrs-resolver: false
+  workerd: false

@@ -1,0 +1,49 @@
+// Rebuilds the blog database (EU) from WordPress and replaces it in Turso.
+pipeline {
+    agent {
+        dockerfile {
+            filename 'Dockerfile-deploy'
+            reuseNode true
+        }
+    }
+
+    options {
+        quietPeriod(0)
+        disableConcurrentBuilds()
+        timestamps()
+    }
+
+    parameters {
+        booleanParam(name: 'LOCAL_ONLY', defaultValue: false, description: 'Only build the local database, do not replace anything in Turso')
+    }
+
+    environment {
+        TURSO_ORG = 'angular-love'
+        TURSO_DB_NAME = credentials('turso-eu-db')
+        WP_REST_API_BASE_URL = 'https://wp.angular.love'
+        WP_REST_API_TOKEN = credentials('al-wp-token')
+    }
+
+    stages {
+        stage('Install dependencies') {
+            steps {
+                sh '''
+                    corepack enable && corepack prepare pnpm@10.6.2 --activate
+                    pnpm install --frozen-lockfile
+                '''
+            }
+        }
+        stage('Rebuild') {
+            steps {
+                withCredentials([string(credentialsId: 'tursor_api_token', variable: 'TURSO_API_TOKEN')]) {
+                    sh "npx nx run api-jobs:rebuild --no-tui ${params.LOCAL_ONLY ? '--local-only' : ''}"
+                }
+            }
+        }
+    }
+    post {
+        always {
+            cleanWs()
+        }
+    }
+}
