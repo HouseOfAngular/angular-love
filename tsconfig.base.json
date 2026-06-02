@@ -230,7 +230,10 @@
       ],
       "@angular-love/ui-tooltip": ["libs/blog/shared/ui-tooltip/src/index.ts"],
       "@angular-love/util-wp": ["libs/blog-bff/shared/util-wp/src/index.ts"],
-      "@angular-love/utils": ["libs/utils/src/index.ts"]
+      "@angular-love/utils": ["libs/utils/src/index.ts"],
+      "@angular-love/blog-bff/shared/api-turso": [
+        "libs/blog-bff/shared/api-turso/src/index.ts"
+      ]
     }
   },
   "exclude": ["node_modules", "tmp"]

@@ -14,6 +14,13 @@
       "options": {
         "jestConfig": "libs/blog-bff/shared/schema/jest.config.ts"
       }
+    },
+    "db-generate": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "drizzle-kit generate",
+        "cwd": "libs/blog-bff/shared/schema"
+      }
     }
   }
 }

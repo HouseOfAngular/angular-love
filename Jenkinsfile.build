@@ -1,3 +1,4 @@
+// Jenkinsfile.build
 pipeline {
     agent {
         dockerfile {
@@ -15,7 +16,7 @@ pipeline {
             steps {
                 script {
                     // Sleeps are since we don't watch for end of the process, and jobs only start the process
-                    build(job: 'angular.love/clear-bff-cache', 
+                    build(job: 'angular.love/clear-bff-cache',
                         parameters: [
                             [$class: 'BooleanParameterValue', name: 'RUN_ON_DEV', value: true],
                             [$class: 'BooleanParameterValue', name: 'RUN_ON_PROD', value: true]
@@ -58,7 +59,7 @@ pipeline {
 
                     // Clear caches again to make sure they are cleared
                     build(job: 'angular.love/clear-site-cache', wait: true)
-                    build(job: 'angular.love/clear-bff-cache', 
+                    build(job: 'angular.love/clear-bff-cache',
                         parameters: [
                             [$class: 'BooleanParameterValue', name: 'RUN_ON_DEV', value: true],
                             [$class: 'BooleanParameterValue', name: 'RUN_ON_PROD', value: true]

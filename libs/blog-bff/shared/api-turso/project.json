@@ -1,0 +1,33 @@
+{
+  "name": "api-turso",
+  "$schema": "../../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/blog-bff/shared/api-turso/src",
+  "projectType": "library",
+  "tags": ["scope:bff", "type:api"],
+  "targets": {
+    "lint": {
+      "executor": "@nx/eslint:lint"
+    },
+    "test": {
+      "executor": "@nx/jest:jest",
+      "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
+      "options": {
+        "jestConfig": "libs/blog-bff/shared/api-turso/jest.config.ts"
+      }
+    },
+    "sync": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "npx tsx src/lib/insert.ts",
+        "cwd": "libs/blog-bff/shared/api-turso"
+      }
+    },
+    "asd": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "npx tsx src/lib/test.ts",
+        "cwd": "libs/blog-bff/shared/api-turso"
+      }
+    }
+  }
+}

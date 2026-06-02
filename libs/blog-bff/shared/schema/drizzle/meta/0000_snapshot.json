@@ -1,0 +1,463 @@
+{
+  "version": "6",
+  "dialect": "sqlite",
+  "id": "863f896e-d702-479e-a1de-9f41174f262d",
+  "prevId": "00000000-0000-0000-0000-000000000000",
+  "tables": {
+    "article_counts": {
+      "name": "article_counts",
+      "columns": {
+        "lang": {
+          "name": "lang",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "status": {
+          "name": "status",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "is_news": {
+          "name": "is_news",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "is_guide": {
+          "name": "is_guide",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "is_in_depth": {
+          "name": "is_in_depth",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "is_recommended": {
+          "name": "is_recommended",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "is_hidden": {
+          "name": "is_hidden",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "row_count": {
+          "name": "row_count",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        }
+      },
+      "indexes": {
+        "article_counts_lang_status_is_news_is_guide_is_in_depth_is_recommended_is_hidden_unique": {
+          "name": "article_counts_lang_status_is_news_is_guide_is_in_depth_is_recommended_is_hidden_unique",
+          "columns": [
+            "lang",
+            "status",
+            "is_news",
+            "is_guide",
+            "is_in_depth",
+            "is_recommended",
+            "is_hidden"
+          ],
+          "isUnique": true
+        }
+      },
+      "foreignKeys": {},
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {},
+      "checkConstraints": {}
+    },
+    "articles": {
+      "name": "articles",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "integer",
+          "primaryKey": true,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "slug": {
+          "name": "slug",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "title": {
+          "name": "title",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "content": {
+          "name": "content",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "publish_date": {
+          "name": "publish_date",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "modify_date": {
+          "name": "modify_date",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "reading_time": {
+          "name": "reading_time",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "image_url": {
+          "name": "image_url",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "difficulty": {
+          "name": "difficulty",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "status": {
+          "name": "status",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "excerpt": {
+          "name": "excerpt",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "language": {
+          "name": "language",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "author_id": {
+          "name": "author_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "anchors": {
+          "name": "anchors",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "other_translations": {
+          "name": "other_translations",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "seo": {
+          "name": "seo",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "is_hidden": {
+          "name": "is_hidden",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "categories": {
+          "name": "categories",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "is_news": {
+          "name": "is_news",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false,
+          "generated": {
+            "as": "((instr(categories, '\"news-en\"') > 0) OR (instr(categories, '\"news-pl\"') > 0))",
+            "type": "stored"
+          }
+        },
+        "is_guide": {
+          "name": "is_guide",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false,
+          "generated": {
+            "as": "((instr(categories, '\"guides-en\"') > 0) OR (instr(categories, '\"guides-pl\"') > 0))",
+            "type": "stored"
+          }
+        },
+        "is_in_depth": {
+          "name": "is_in_depth",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false,
+          "generated": {
+            "as": "((instr(categories, '\"angular-in-depth-en\"') > 0) OR (instr(categories, '\"angular-in-depth-pl\"') > 0))",
+            "type": "stored"
+          }
+        },
+        "is_recommended": {
+          "name": "is_recommended",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false,
+          "generated": {
+            "as": "((instr(categories, '\"recommended-en\"') > 0) OR (instr(categories, '\"recommended-pl\"') > 0))",
+            "type": "stored"
+          }
+        }
+      },
+      "indexes": {
+        "article_slug_idx": {
+          "name": "article_slug_idx",
+          "columns": ["slug"],
+          "isUnique": true
+        },
+        "article_guide_covering_idx": {
+          "name": "article_guide_covering_idx",
+          "columns": [
+            "status",
+            "is_hidden",
+            "language",
+            "is_guide",
+            "publish_date"
+          ],
+          "isUnique": false
+        },
+        "article_recommended_covering_idx": {
+          "name": "article_recommended_covering_idx",
+          "columns": [
+            "status",
+            "is_hidden",
+            "language",
+            "is_recommended",
+            "publish_date"
+          ],
+          "isUnique": false
+        },
+        "article_news_covering_idx": {
+          "name": "article_news_covering_idx",
+          "columns": [
+            "status",
+            "is_hidden",
+            "language",
+            "is_news",
+            "publish_date"
+          ],
+          "isUnique": false
+        },
+        "article_in_depth_covering_idx": {
+          "name": "article_in_depth_covering_idx",
+          "columns": [
+            "status",
+            "is_hidden",
+            "language",
+            "is_in_depth",
+            "publish_date"
+          ],
+          "isUnique": false
+        },
+        "article_covering_idx": {
+          "name": "article_covering_idx",
+          "columns": ["status", "is_hidden", "language", "publish_date"],
+          "isUnique": false
+        },
+        "article_author_covering_idx": {
+          "name": "article_author_covering_idx",
+          "columns": [
+            "author_id",
+            "status",
+            "is_hidden",
+            "language",
+            "publish_date"
+          ],
+          "isUnique": false
+        }
+      },
+      "foreignKeys": {
+        "articles_author_id_authors_id_fk": {
+          "name": "articles_author_id_authors_id_fk",
+          "tableFrom": "articles",
+          "tableTo": "authors",
+          "columnsFrom": ["author_id"],
+          "columnsTo": ["id"],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {},
+      "checkConstraints": {}
+    },
+    "authors": {
+      "name": "authors",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "integer",
+          "primaryKey": true,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "slug": {
+          "name": "slug",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "name": {
+          "name": "name",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "avatar_url": {
+          "name": "avatar_url",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "position": {
+          "name": "position",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "github": {
+          "name": "github",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "twitter": {
+          "name": "twitter",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "linkedin": {
+          "name": "linkedin",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "titles": {
+          "name": "titles",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "description_en": {
+          "name": "description_en",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "description_pl": {
+          "name": "description_pl",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "seq": {
+          "name": "seq",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false,
+          "generated": {
+            "as": "(\nCASE\nWHEN instr(titles, '\"key_contributor\"') > 1 THEN 1\n     WHEN instr(titles, '\"contributor\"') > 1 THEN 2\n     WHEN instr(titles, '\"gde\"') > 1 THEN 3\n     WHEN instr(titles, '\"hoa\"') > 1 THEN 4\n     WHEN instr(titles, '\"blogger\"') > 1 THEN 5\n     ELSE 0 END\n)",
+            "type": "stored"
+          }
+        }
+      },
+      "indexes": {
+        "slug_idx": {
+          "name": "slug_idx",
+          "columns": ["slug"],
+          "isUnique": true
+        },
+        "author_titles_seq_idx": {
+          "name": "author_titles_seq_idx",
+          "columns": ["seq"],
+          "isUnique": false
+        }
+      },
+      "foreignKeys": {},
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {},
+      "checkConstraints": {}
+    }
+  },
+  "views": {},
+  "enums": {},
+  "_meta": {
+    "schemas": {},
+    "tables": {},
+    "columns": {}
+  },
+  "internal": {
+    "indexes": {}
+  }
+}
