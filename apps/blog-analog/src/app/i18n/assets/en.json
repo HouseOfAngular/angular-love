@@ -151,7 +151,8 @@
     "label": {
       "optional": "optional",
       "comingSoon": "upcoming",
-      "recommended": "recommended"
+      "recommended": "recommended",
+      "new": "NEW"
     },
     "dialog": {
       "becomeAuthor": "Become an author",
