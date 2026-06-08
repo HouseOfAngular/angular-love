@@ -1,8 +1,10 @@
 import {
   ChangeDetectionStrategy,
   Component,
+  ElementRef,
   input,
   output,
+  viewChild,
 } from '@angular/core';
 import { TranslocoPipe } from '@jsverse/transloco';
 import { FastSvgComponent } from '@push-based/ngx-fast-svg';
@@ -30,9 +32,9 @@ import { Lang } from '@angular-love/contracts/articles';
 
         <select
           id="language-picker"
-          #selectLang
+          #selectEl
           class="bg-al-background appearance-none rounded-md px-8 py-1"
-          (change)="languageChange.emit(selectLang.value)"
+          (change)="onSelectionChange(selectEl.value)"
         >
           @for (lang of availableLangs; track $index) {
             <option [selected]="lang.value === language()" [value]="lang.value">
@@ -54,6 +56,9 @@ import { Lang } from '@angular-love/contracts/articles';
   imports: [FastSvgComponent, TranslocoPipe],
 })
 export class LanguagePickerComponent {
+  private readonly _selectEl =
+    viewChild.required<ElementRef<HTMLSelectElement>>('selectEl');
+
   readonly language = input.required<string>();
 
   readonly languageChange = output<string>();
@@ -64,4 +69,14 @@ export class LanguagePickerComponent {
     { value: 'en', translationPath: `${this.baseTranslationPath}.en` },
     { value: 'pl', translationPath: `${this.baseTranslationPath}.pl` },
   ] satisfies { value: Lang; translationPath: string }[];
+
+  protected onSelectionChange(value: string): void {
+    this.languageChange.emit(value);
+    // If the parent doesn't confirm the switch (e.g. shows a dialog instead of
+    // navigating), language() stays at the old value. Schedule a reset so the
+    // select snaps back after any parent-side effects have had a chance to run.
+    setTimeout(() => {
+      this._selectEl().nativeElement.value = this.language();
+    });
+  }
 }

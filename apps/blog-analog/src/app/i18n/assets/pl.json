@@ -36,7 +36,13 @@
     "languagePicker": {
       "pl": "Polski",
       "en": "Angielski",
-      "select_lang": "Wybierz język"
+      "select_lang": "Wybierz język",
+      "noTranslationDialog": {
+        "title": "Tłumaczenie niedostępne",
+        "description": "Ten artykuł nie jest jeszcze dostępny w tym języku.",
+        "stayButton": "Zostań na tej stronie",
+        "goHomeButton": "Strona główna"
+      }
     }
   },
   "footer": {
