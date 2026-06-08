@@ -154,7 +154,8 @@
     "label": {
       "optional": "opcjonalne",
       "comingSoon": "w przyszłości",
-      "recommended": "polecane"
+      "recommended": "polecane",
+      "new": "NOWE"
     },
     "dialog": {
       "becomeAuthor": "Become an author",
