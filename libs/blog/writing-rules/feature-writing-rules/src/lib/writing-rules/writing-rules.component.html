@@ -1,12 +1,12 @@
 <ng-container *transloco="let t">
-  <h2 class="lg:pt-15 py-4 text-4xl font-bold md:pb-6 md:text-[40px]/[56px]">
+  <h2 class="py-4 text-4xl font-bold md:pb-6 md:text-[40px]/[56px] lg:pt-15">
     {{ t('writingRules.title') }}
   </h2>
-  <p class="lg:pt-15 py-4 md:pb-6">
+  <p class="py-4 md:pb-6">
     {{ t('writingRules.description1') }}
   </p>
   <p
-    class="lg:pt-15 py-4 md:pb-6"
+    class="py-4 md:pb-6"
     [innerHTML]="
       t('writingRules.description2', {
         link: 'https://discord.com/invite/2K8GMmj5ns',
@@ -30,10 +30,10 @@
       (scrollToRule)="scrollIntoRule($event)"
     />
   }
-  <p class="lg:pt-15 py-4">
+  <p class="py-4">
     {{ t('writingRules.description3') }}
   </p>
-  <p class="lg:pt-15 py-4">
+  <p class="py-4">
     {{ t('writingRules.description4') }}
   </p>
   <p class="mb-10" [innerHTML]="'angular@angular.love'"></p>
