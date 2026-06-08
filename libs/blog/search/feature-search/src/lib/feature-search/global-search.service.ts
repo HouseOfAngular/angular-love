@@ -1,5 +1,7 @@
 import { Injectable, signal } from '@angular/core';
 
+import '@angular/cdk/dialog';
+
 @Injectable()
 export class GlobalSearchService {
   private readonly _isSearchOpen = signal<boolean>(false);

@@ -1,3 +1,4 @@
+import { Dialog } from '@angular/cdk/dialog';
 import { ViewportScroller } from '@angular/common';
 import { Component, computed, effect, inject } from '@angular/core';
 import { toSignal } from '@angular/core/rxjs-interop';
@@ -8,9 +9,10 @@ import {
   RouterOutlet,
 } from '@angular/router';
 import { TranslocoService } from '@jsverse/transloco';
-import { filter, map, startWith, switchMap } from 'rxjs';
+import { filter, map, startWith, switchMap, take } from 'rxjs';
 
 import { AdBannerStore } from '@angular-love/blog/ad-banner/data-access';
+import { ArticleDetailsStore } from '@angular-love/blog/articles/data-access';
 import { AlLocalizeService } from '@angular-love/blog/i18n/util';
 import {
   FooterComponent,
@@ -24,6 +26,11 @@ import {
   AlBannerCarouselComponent,
 } from '@angular-love/blog/shared/ad-banner';
 import { AppThemeStore } from '@angular-love/data-access-app-theme';
+
+import {
+  ArticleNoTranslationDialogComponent,
+  ArticleNoTranslationDialogResult,
+} from './article-no-translation-dialog.component';
 
 const FOOTERLESS_ROUTES = ['roadmap'];
 
@@ -79,6 +86,8 @@ export class RootShellComponent {
   private readonly _router = inject(Router);
   private readonly _localizeService = inject(AlLocalizeService);
   private readonly _activatedRoute = inject(ActivatedRoute);
+  private readonly _dialog = inject(Dialog);
+  private readonly _articleDetailsStore = inject(ArticleDetailsStore);
 
   protected readonly sliderStore = inject(AdBannerStore);
   protected readonly slides = computed<AdImageBanner[] | undefined>(() =>
@@ -129,7 +138,43 @@ export class RootShellComponent {
     ),
   );
 
-  onLanguageChange(lang: string) {
+  onLanguageChange(lang: string): void {
+    const article = this._articleDetailsStore.articleDetails();
+    const urlPath = this._router.url.split('?')[0];
+    const isOnArticlePage =
+      !!article &&
+      (urlPath === `/${article.slug}` || urlPath === `/pl/${article.slug}`);
+
+    if (isOnArticlePage) {
+      const hasTranslation = article.otherTranslations.some((t) =>
+        t.locale.includes(lang),
+      );
+
+      if (!hasTranslation) {
+        const targetLangName = this.translocoService.translate(
+          `nav.languagePicker.${lang}`,
+        );
+
+        const dialogRef = this._dialog.open<
+          ArticleNoTranslationDialogResult,
+          { targetLang: string; targetLangName: string },
+          ArticleNoTranslationDialogComponent
+        >(ArticleNoTranslationDialogComponent, {
+          data: { targetLang: lang, targetLangName },
+          backdropClass: ['backdrop-blur-sm'],
+        });
+
+        dialogRef.closed.pipe(take(1)).subscribe((result) => {
+          if (result === 'home') {
+            this._router.navigateByUrl(
+              this._localizeService.localizeExplicitPath('/', lang),
+            );
+          }
+        });
+        return;
+      }
+    }
+
     this._router.navigateByUrl(
       this._localizeService.localizeExplicitPath(this._router.url, lang),
     );

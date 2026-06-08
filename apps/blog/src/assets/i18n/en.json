@@ -36,7 +36,13 @@
     "languagePicker": {
       "pl": "Polish",
       "en": "English",
-      "select_lang": "Select language"
+      "select_lang": "Select language",
+      "noTranslationDialog": {
+        "title": "Translation not available",
+        "description": "This article hasn't been translated into {{lang}} yet.",
+        "stayButton": "Stay on this page",
+        "goHomeButton": "Go to homepage"
+      }
     }
   },
   "footer": {
