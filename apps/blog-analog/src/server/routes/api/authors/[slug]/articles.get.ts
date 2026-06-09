@@ -1,4 +1,4 @@
-import { and, desc, eq, sql } from 'drizzle-orm';
+import { and, desc, eq, isNotNull, sql } from 'drizzle-orm';
 import { defineEventHandler, getQuery, getRouterParam } from 'h3';
 
 import { articles, authors } from '@angular-love/blog-bff/shared/schema';
@@ -38,7 +38,7 @@ export default defineEventHandler(async (event) => {
         eq(articles.authorId, authors.id),
       ),
     )
-    .where(eq(authors.slug, slug))
+    .where(and(eq(authors.slug, slug), isNotNull(articles.slug)))
     .orderBy(desc(articles.publishDate));
 
   const sub = query.as('sub');
