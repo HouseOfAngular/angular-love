@@ -1,0 +1,21 @@
+{
+  "name": "blog-shared-ui-section-title",
+  "$schema": "../../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/blog/shared/ui-section-title/src",
+  "prefix": "al",
+  "projectType": "library",
+  "tags": ["scope:client", "type:ui"],
+  "targets": {
+    "test": {
+      "executor": "@nx/jest:jest",
+      "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
+      "options": {
+        "jestConfig": "libs/blog/shared/ui-section-title/jest.config.ts",
+        "tsConfig": "libs/blog/shared/ui-section-title/tsconfig.spec.json"
+      }
+    },
+    "lint": {
+      "executor": "@nx/eslint:lint"
+    }
+  }
+}
