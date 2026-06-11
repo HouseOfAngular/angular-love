@@ -24,6 +24,19 @@
       {{ articleDetails().title }}
     </h1>
 
+    <div>
+      <button
+        al-button
+        aria-label="Summarize this article"
+        (click)="openSummaryDialog()"
+        variant="AI"
+        size="small"
+      >
+        <fast-svg name="sparkle" aria-hidden="true" size="14" />
+        TL;DR
+      </button>
+    </div>
+
     <div class="flex w-full flex-col gap-10 overflow-hidden">
       <al-article-content [content]="articleDetails().content" />
 

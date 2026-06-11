@@ -6,6 +6,7 @@ import { ArrayResponse } from '@angular-love/blog-contracts/shared';
 import { Article, ArticlePreview } from '@angular-love/contracts/articles';
 import { ConfigService } from '@angular-love/shared/config';
 
+import { ArticleSummaryResponse } from '../dto/article-summary.dto';
 import { ArticlesQuery } from '../dto/articles.query';
 
 @Injectable({ providedIn: 'root' })
@@ -47,6 +48,12 @@ export class ArticlesService {
       {
         params: query || {},
       },
+    );
+  }
+
+  getSummary(slug: string): Observable<ArticleSummaryResponse> {
+    return this._http.get<ArticleSummaryResponse>(
+      `${this._apiBaseUrl}/articles/${slug}/summary`,
     );
   }
 }

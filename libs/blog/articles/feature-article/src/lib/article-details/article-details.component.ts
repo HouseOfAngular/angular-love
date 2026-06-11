@@ -3,6 +3,7 @@ import {
   ChangeDetectionStrategy,
   Component,
   computed,
+  inject,
   input,
   signal,
 } from '@angular/core';
@@ -18,6 +19,7 @@ import {
 } from '@angular-love/blog/articles/ui-table-of-contents';
 import { AuthorCardComponent } from '@angular-love/blog/authors/ui-author-card';
 import { NewsletterComponent } from '@angular-love/blog/newsletter';
+import { ButtonComponent } from '@angular-love/blog/shared/ui-button';
 import {
   CardComponent,
   CardContentDirective,
@@ -32,6 +34,7 @@ import {
 import { RepeatDirective } from '@angular-love/utils';
 
 import { ArticleShareIconsComponent } from '../article-share-icons/article-share-icons.component';
+import { ArticleSummaryDialogService } from '../article-summary-dialog/article-summary-dialog.service';
 
 @Component({
   selector: 'al-article-details',
@@ -54,6 +57,7 @@ import { ArticleShareIconsComponent } from '../article-share-icons/article-share
     RelatedArticlesComponent,
     ArticleCompactCardSkeletonComponent,
     RepeatDirective,
+    ButtonComponent,
   ],
   templateUrl: './article-details.component.html',
   styleUrls: ['./article-details.component.scss'],
@@ -63,7 +67,13 @@ export class ArticleDetailsComponent {
   readonly articleDetails = input.required<Article>();
   protected readonly adBannerStoreVisible = signal(false);
 
+  private readonly _summaryDialogService = inject(ArticleSummaryDialogService);
+
   readonly locale = computed(
     () => articleLangToLocaleMap[this.articleDetails().language],
   );
+
+  protected openSummaryDialog(): void {
+    this._summaryDialogService.open(this.articleDetails().slug);
+  }
 }
