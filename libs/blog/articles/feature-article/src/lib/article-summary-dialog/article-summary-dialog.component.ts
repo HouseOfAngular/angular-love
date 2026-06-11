@@ -1,4 +1,3 @@
-import { CdkTrapFocus } from '@angular/cdk/a11y';
 import { DIALOG_DATA, DialogRef } from '@angular/cdk/dialog';
 import { NgClass } from '@angular/common';
 import {
@@ -13,7 +12,6 @@ import {
   viewChildren,
 } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
-import { FastSvgComponent } from '@push-based/ngx-fast-svg';
 import { NgxSkeletonLoaderModule } from 'ngx-skeleton-loader';
 
 import {
@@ -22,6 +20,7 @@ import {
   PersonaId,
 } from '@angular-love/blog/articles/data-access';
 import { ButtonComponent } from '@angular-love/blog/shared/ui-button';
+import { DialogShellComponent } from '@angular-love/blog/shared/ui-dialog';
 
 import { ArticleSummaryDialogService } from './article-summary-dialog.service';
 
@@ -41,11 +40,10 @@ const PERSONA_IMAGE_MAP: Record<PersonaId, string> = {
   selector: 'al-article-summary-dialog',
   templateUrl: './article-summary-dialog.component.html',
   imports: [
-    CdkTrapFocus,
     NgClass,
     NgxSkeletonLoaderModule,
     ButtonComponent,
-    FastSvgComponent,
+    DialogShellComponent,
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })

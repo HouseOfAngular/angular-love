@@ -1,29 +1,9 @@
-<div
-  aria-modal="true"
-  aria-labelledby="summary-dialog-title"
-  aria-describedby="summary-dialog-panel"
-  role="dialog"
-  class="bg-al-card relative flex w-full flex-col gap-6 rounded-xl p-6 shadow-xl"
-  cdkTrapFocus
+<al-dialog-shell
+  (closed)="close()"
+  title="Article summary"
+  label="AI · TL;DR"
+  ariaDescribedBy="summary-dialog-panel"
 >
-  <!-- Close button — first in DOM so it is the first-tabbable element -->
-  <button
-    al-button
-    aria-label="Close article summary"
-    class="absolute top-4 right-4"
-    (click)="close()"
-    data-close
-    variant="Ghost"
-    size="small"
-  >
-    <fast-svg name="cross" aria-hidden="true" size="16" />
-  </button>
-
-  <!-- Title -->
-  <h2 id="summary-dialog-title" class="pr-12 text-xl font-bold">
-    Article summary
-  </h2>
-
   <!-- Loading state -->
   @if (state().status === 'loading') {
     <div
@@ -62,55 +42,56 @@
 
   <!-- Success state -->
   @if (successData(); as data) {
-    <section class="flex flex-col gap-2 md:gap-3">
-      <!-- Summary / persona content panel -->
-      <div>
-        @if (data.personas.length > 0) {
-          <div
-            aria-label="Choose summary perspective"
-            role="tablist"
-            class="grid grid-cols-2 gap-2 md:grid-cols-4"
-          >
-            @for (persona of data.personas; track persona.id; let i = $index) {
-              <button
-                #personaBtn
-                [attr.tabindex]="getPersonaTabindex(persona.id, i)"
-                role="tab"
-                class="focus-visible:ring-al-primary flex w-full min-w-24 items-center gap-2 rounded-xl border-2 p-3 text-center transition-colors focus-visible:ring-2 focus-visible:outline-none"
-                [ngClass]="
-                  selectedPersonaId() === persona.id
-                    ? 'border-al-primary bg-al-primary/5'
-                    : 'border-al-border hover:border-al-primary/40'
-                "
-                [attr.aria-selected]="selectedPersonaId() === persona.id"
-                (click)="selectPersona(persona.id)"
-                (keydown)="onPersonaKeydown($event, i)"
-              >
-                <img
-                  class="h-12 w-12 rounded-full object-cover"
-                  [src]="personaImageMap[persona.id]"
-                  [alt]="persona.name"
-                />
-                <div class="flex flex-col items-center justify-center gap-1">
-                  <span class="text-sm font-semibold">{{ persona.name }}</span>
-                  <span class="text-al-muted text-xs">
-                    {{ persona.tagline }}
-                  </span>
-                </div>
-              </button>
-            }
-          </div>
-        }
-      </div>
+    <section class="flex flex-col gap-4">
+      <!-- Persona selector — hidden when personas is empty -->
+      @if (data.personas.length > 0) {
+        <div
+          aria-label="Choose summary perspective"
+          role="tablist"
+          class="grid grid-cols-2 gap-2 md:grid-cols-4"
+        >
+          @for (persona of data.personas; track persona.id; let i = $index) {
+            <button
+              #personaBtn
+              [attr.tabindex]="getPersonaTabindex(persona.id, i)"
+              role="tab"
+              class="focus-visible:ring-al-primary flex w-full items-center gap-2 rounded-xl border-2 p-3 text-left transition-colors focus-visible:ring-2 focus-visible:outline-none"
+              [ngClass]="
+                selectedPersonaId() === persona.id
+                  ? 'border-al-primary bg-al-primary/10'
+                  : 'border-al-border hover:border-al-primary/40'
+              "
+              [attr.aria-selected]="selectedPersonaId() === persona.id"
+              (click)="selectPersona(persona.id)"
+              (keydown)="onPersonaKeydown($event, i)"
+            >
+              <img
+                class="h-12 w-12 flex-shrink-0 rounded-full object-cover"
+                [src]="personaImageMap[persona.id]"
+                [alt]="persona.name"
+              />
+              <div class="flex min-w-0 flex-col gap-0.5">
+                <span class="truncate text-sm font-semibold">
+                  {{ persona.name }}
+                </span>
+                <span class="text-al-muted line-clamp-2 text-xs leading-tight">
+                  {{ persona.tagline }}
+                </span>
+              </div>
+            </button>
+          }
+        </div>
+      }
 
+      <!-- Summary / persona content panel -->
       <div
         id="summary-dialog-panel"
         role="tabpanel"
-        class="al-scroll max-h-[35vh] overflow-y-auto"
+        class="al-scroll max-h-[40vh] overflow-y-auto"
       >
         @if (selectedPersona()?.bullets?.length) {
           <ul
-            class="text-al-foreground list-disc space-y-1 pl-5 leading-relaxed"
+            class="text-al-foreground list-disc space-y-1.5 pl-5 leading-relaxed"
           >
             @for (bullet of selectedPersona()!.bullets!; track $index) {
               <li>{{ bullet }}</li>
@@ -128,4 +109,4 @@
       </div>
     </section>
   }
-</div>
+</al-dialog-shell>

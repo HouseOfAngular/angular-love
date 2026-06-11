@@ -1,0 +1,107 @@
+/* ─────────────────────────────────────────────
+   Entrance animation
+   ───────────────────────────────────────────── */
+:host {
+  display: block;
+  animation: alDialogIn 0.28s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+@keyframes alDialogIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px) scale(0.97);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* ─────────────────────────────────────────────
+   Ambient glow — brand-pink radial in top-right
+   ───────────────────────────────────────────── */
+.al-dialog__glow {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  border-radius: inherit;
+  /* Light mode: very subtle pink blush */
+  background: radial-gradient(
+    ellipse 70% 45% at 95% -5%,
+    rgb(213 1 89 / 0.07) 0%,
+    transparent 70%
+  );
+}
+
+:root[data-theme='dark'] .al-dialog__glow {
+  /* Dark mode: more visible glow — the dark bg amplifies it */
+  background: radial-gradient(
+    ellipse 70% 45% at 95% -5%,
+    rgb(255 0 106 / 0.14) 0%,
+    transparent 70%
+  );
+}
+
+/* ─────────────────────────────────────────────
+   Top accent — a thin line of light at the crown
+   ───────────────────────────────────────────── */
+.al-dialog__accent {
+  position: absolute;
+  top: 0;
+  left: 8%;
+  right: 8%;
+  height: 1px;
+  /* Light mode: a warm pink shimmer */
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgb(213 1 89 / 0.45) 25%,
+    rgb(213 1 89 / 0.85) 50%,
+    rgb(213 1 89 / 0.45) 75%,
+    transparent 100%
+  );
+}
+
+:root[data-theme='dark'] .al-dialog__accent {
+  /* Dark mode: brighter — the line truly glows */
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgb(255 0 106 / 0.6) 25%,
+    rgb(255 0 106 / 1) 50%,
+    rgb(255 0 106 / 0.6) 75%,
+    transparent 100%
+  );
+}
+
+/* ─────────────────────────────────────────────
+   Gradient separator between header and content
+   ───────────────────────────────────────────── */
+.al-dialog__sep {
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgb(var(--border) / 0.8) 30%,
+    rgb(var(--border) / 0.8) 70%,
+    transparent
+  );
+}
+
+/* ─────────────────────────────────────────────
+   Close button micro-interaction
+   ───────────────────────────────────────────── */
+.al-dialog__close {
+  transition-property: transform, background-color, border-color, color;
+  transition-duration: 180ms;
+  transition-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
+
+  &:hover {
+    transform: scale(1.08);
+  }
+
+  &:active {
+    transform: scale(0.92);
+    transition-duration: 80ms;
+  }
+}
