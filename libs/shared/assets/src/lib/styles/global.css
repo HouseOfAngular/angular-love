@@ -157,3 +157,13 @@
 @utility al-link {
   @apply text-red-500 hover:underline dark:text-blue-400;
 }
+
+/* ─────────────────────────────────────────────
+   CDK Dialog backdrop — replaces the plain dark overlay
+   with a frosted-glass feel
+   ───────────────────────────────────────────── */
+.al-dialog-backdrop {
+  background: rgb(10 9 18 / 0.65);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}

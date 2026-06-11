@@ -24,6 +24,7 @@ export class ArticleSummaryDialogService {
       autoFocus: 'first-tabbable',
       restoreFocus: true,
       disableClose: false,
+      backdropClass: 'al-dialog-backdrop',
       panelClass: ['w-full', 'max-w-2xl'],
     });
   }
