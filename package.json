@@ -47,7 +47,6 @@
     "@ngrx/operators": "^17.2.0",
     "@ngrx/signals": "^17.0.1",
     "@nx/angular": "22.0.3",
-    "@openrouter/ai-sdk-provider": "^2.9.0",
     "@push-based/ngx-fast-svg": "^18.1.0",
     "@shikijs/langs-precompiled": "^2.4.2",
     "@tailwindcss/container-queries": "^0.1.1",
@@ -85,7 +84,6 @@
     "tslib": "^2.6.1",
     "valibot": "1.0.0-rc.3",
     "vanilla-cookieconsent": "3.0.1",
-    "workers-ai-provider": "^3.1.14",
     "xmlbuilder2": "^3.1.1",
     "zod": "^4.4.3",
     "zone.js": "0.14.4"

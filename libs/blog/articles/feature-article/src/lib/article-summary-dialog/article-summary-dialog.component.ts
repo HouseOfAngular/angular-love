@@ -1,33 +1,25 @@
 import { DIALOG_DATA, DialogRef } from '@angular/cdk/dialog';
-import { NgClass } from '@angular/common';
 import {
   ChangeDetectionStrategy,
   Component,
   computed,
-  DestroyRef,
   ElementRef,
   inject,
-  OnInit,
   signal,
   viewChildren,
 } from '@angular/core';
-import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { rxResource } from '@angular/core/rxjs-interop';
 import { NgxSkeletonLoaderModule } from 'ngx-skeleton-loader';
+import { of, tap } from 'rxjs';
 
 import {
   ArticlesService,
-  ArticleSummaryResponse,
   PersonaId,
 } from '@angular-love/blog/articles/data-access';
 import { ButtonComponent } from '@angular-love/blog/shared/ui-button';
 import { DialogShellComponent } from '@angular-love/blog/shared/ui-dialog';
 
 import { ArticleSummaryDialogService } from './article-summary-dialog.service';
-
-type SummaryState =
-  | { status: 'loading' }
-  | { status: 'error' }
-  | { status: 'success'; data: ArticleSummaryResponse };
 
 const PERSONA_IMAGE_MAP: Record<PersonaId, string> = {
   coach: '/assets/Subject.webp',
@@ -39,25 +31,28 @@ const PERSONA_IMAGE_MAP: Record<PersonaId, string> = {
 @Component({
   selector: 'al-article-summary-dialog',
   templateUrl: './article-summary-dialog.component.html',
-  imports: [
-    NgClass,
-    NgxSkeletonLoaderModule,
-    ButtonComponent,
-    DialogShellComponent,
-  ],
+  styleUrl: './article-summary-dialog.component.scss',
+  imports: [NgxSkeletonLoaderModule, ButtonComponent, DialogShellComponent],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class ArticleSummaryDialogComponent implements OnInit {
+export class ArticleSummaryDialogComponent {
   private readonly _dialogRef = inject(DialogRef<void>);
   private readonly _slug = inject<string>(DIALOG_DATA);
   private readonly _articlesService = inject(ArticlesService);
   private readonly _summaryDialogService = inject(ArticleSummaryDialogService);
-  private readonly _destroyRef = inject(DestroyRef);
 
   protected readonly personaImageMap = PERSONA_IMAGE_MAP;
 
-  private readonly _state = signal<SummaryState>({ status: 'loading' });
-  readonly state = this._state.asReadonly();
+  readonly summaryResource = rxResource({
+    params: () => this._slug,
+    stream: ({ params: slug }) => {
+      const cached = this._summaryDialogService.getCached(slug);
+      if (cached) return of(cached);
+      return this._articlesService
+        .getSummary(slug)
+        .pipe(tap((data) => this._summaryDialogService.setCached(slug, data)));
+    },
+  });
 
   private readonly _selectedPersonaId = signal<PersonaId | null>(null);
   readonly selectedPersonaId = this._selectedPersonaId.asReadonly();
@@ -65,10 +60,7 @@ export class ArticleSummaryDialogComponent implements OnInit {
   readonly personaBtns =
     viewChildren<ElementRef<HTMLButtonElement>>('personaBtn');
 
-  readonly successData = computed(() => {
-    const s = this.state();
-    return s.status === 'success' ? s.data : null;
-  });
+  readonly successData = computed(() => this.summaryResource.value() ?? null);
 
   readonly personas = computed(() => this.successData()?.personas ?? []);
 
@@ -77,32 +69,6 @@ export class ArticleSummaryDialogComponent implements OnInit {
     if (!id) return null;
     return this.personas().find((p) => p.id === id) ?? null;
   });
-
-  ngOnInit(): void {
-    this.loadSummary();
-  }
-
-  protected loadSummary(): void {
-    const cached = this._summaryDialogService.getCached(this._slug);
-    if (cached) {
-      this._state.set({ status: 'success', data: cached });
-      return;
-    }
-
-    this._state.set({ status: 'loading' });
-    this._articlesService
-      .getSummary(this._slug)
-      .pipe(takeUntilDestroyed(this._destroyRef))
-      .subscribe({
-        next: (data) => {
-          this._summaryDialogService.setCached(this._slug, data);
-          this._state.set({ status: 'success', data });
-        },
-        error: () => {
-          this._state.set({ status: 'error' });
-        },
-      });
-  }
 
   protected close(): void {
     this._dialogRef.close();

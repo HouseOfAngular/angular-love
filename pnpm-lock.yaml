@@ -80,9 +80,6 @@ importers:
       '@nx/angular':
         specifier: 22.0.3
         version: 22.0.3(0f06f862c405b30e15d8d49beea9b8e4)
-      '@openrouter/ai-sdk-provider':
-        specifier: ^2.9.0
-        version: 2.9.0(ai@6.0.199(zod@4.4.3))(zod@4.4.3)
       '@push-based/ngx-fast-svg':
         specifier: ^18.1.0
         version: 18.1.0(@angular/common@20.3.10(@angular/core@20.3.10(@angular/compiler@20.3.10)(rxjs@7.8.2)(zone.js@0.14.4))(rxjs@7.8.2))(@angular/core@20.3.10(@angular/compiler@20.3.10)(rxjs@7.8.2)(zone.js@0.14.4))(rxjs@7.8.2)
@@ -194,9 +191,6 @@ importers:
       vanilla-cookieconsent:
         specifier: 3.0.1
         version: 3.0.1
-      workers-ai-provider:
-        specifier: ^3.1.14
-        version: 3.1.14(@ai-sdk/provider@3.0.10)(ai@6.0.199(zod@4.4.3))
       xmlbuilder2:
         specifier: ^3.1.1
         version: 3.1.1
@@ -13727,12 +13721,6 @@ packages:
     engines: {node: '>=16'}
     hasBin: true
 
-  workers-ai-provider@3.1.14:
-    resolution: {integrity: sha512-/umrajFP6OkZVbDAxwkrO9NPdNFG4c+i0fiVqdf4PGsLN+CiDsLJCI6xW0WXDLDR1ZZyjE4T6Xp6O/IKBIWGHQ==}
-    peerDependencies:
-      '@ai-sdk/provider': ^3.0.0
-      ai: ^6.0.0
-
   wrangler@4.99.0:
     resolution: {integrity: sha512-i7GA2mZETTyq3ljWdEzM908FjLaMWZ1AaAHKaOJ8pFA/tonf2VqIWDyBGzKleIVBbNQxOTIY2wnbv0iaK3rC6g==}
     engines: {node: '>=22.0.0'}
@@ -18850,6 +18838,7 @@ snapshots:
     dependencies:
       ai: 6.0.199(zod@4.4.3)
       zod: 4.4.3
+    optional: true
 
   '@opentelemetry/api@1.9.1': {}
 
@@ -29680,11 +29669,6 @@ snapshots:
       '@cloudflare/workerd-linux-64': 1.20260609.1
       '@cloudflare/workerd-linux-arm64': 1.20260609.1
       '@cloudflare/workerd-windows-64': 1.20260609.1
-
-  workers-ai-provider@3.1.14(@ai-sdk/provider@3.0.10)(ai@6.0.199(zod@4.4.3)):
-    dependencies:
-      '@ai-sdk/provider': 3.0.10
-      ai: 6.0.199(zod@4.4.3)
 
   wrangler@4.99.0(@cloudflare/workers-types@4.20250508.0):
     dependencies:

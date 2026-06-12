@@ -25,7 +25,9 @@ export class ArticleSummaryDialogService {
       restoreFocus: true,
       disableClose: false,
       backdropClass: 'al-dialog-backdrop',
-      panelClass: ['w-full', 'max-w-2xl'],
+      panelClass: ['w-full'],
+      width: '100%',
+      maxWidth: '42rem',
     });
   }
 }

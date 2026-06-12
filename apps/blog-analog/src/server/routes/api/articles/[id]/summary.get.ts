@@ -1,6 +1,6 @@
 import { generateText, Output } from 'ai';
 import { createAiGateway } from 'ai-gateway-provider';
-import { unified } from 'ai-gateway-provider/providers/unified';
+import { createOpenRouter } from 'ai-gateway-provider/providers/openrouter';
 import { eq } from 'drizzle-orm';
 import {
   createError,
@@ -15,7 +15,7 @@ import { articles } from '@angular-love/blog-bff/shared/schema';
 import { createDatabase } from '../../../../utils/database';
 import { getRequiredEnv } from '../../../../utils/env';
 
-const MODEL = 'openrouter/google/gemini-3.1-flash-lite';
+const MODEL = 'google/gemini-3.1-flash-lite';
 
 interface PersonaSummary {
   id: PersonaId;
@@ -203,7 +203,8 @@ export default defineEventHandler(
     const aigateway = createAiGateway({
       binding: ai.gateway('zwiedzai-gateway'),
     });
-    const model = aigateway([unified(MODEL)]);
+    const openrouter = createOpenRouter();
+    const model = aigateway([openrouter(MODEL)]);
 
     try {
       const { output } = await generateText({
