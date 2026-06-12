@@ -16,10 +16,9 @@
       "kv_namespaces": [
         {
           "binding": "CACHE_KV",
-          "id": "8e7c99b76c1448a38a80a58dd344f8b8"
+          "id": "<kv_prod_namespace_id>"
         }
       ],
-
       "ai": {
         "binding": "AI"
       }
@@ -32,10 +31,9 @@
       "kv_namespaces": [
         {
           "binding": "CACHE_KV",
-          "id": "8e7c99b76c1448a38a80a58dd344f8b8"
+          "id": "<kv_prod_namespace_id>"
         }
       ],
-
       "ai": {
         "binding": "AI"
       }
