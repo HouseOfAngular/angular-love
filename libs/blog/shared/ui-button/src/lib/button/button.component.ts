@@ -13,7 +13,8 @@ export type AlButtonVariant =
   | 'Outline'
   | 'Ghost'
   | 'link'
-  | 'Secondary';
+  | 'Secondary'
+  | 'AI';
 export type AlButtonSize = 'small' | 'medium' | 'large';
 
 const buttonVariants = cva(
@@ -26,6 +27,7 @@ const buttonVariants = cva(
         Outline: 'border border-al-primary/90 bg-white text-al-primary',
         Ghost: 'bg-transparent',
         link: 'bg-transparent underline!',
+        AI: 'al-btn-ai font-semibold tracking-[0.12em] uppercase',
       },
       size: <Record<AlButtonSize, string>>{
         small: 'py-2 px-4 text-xs',

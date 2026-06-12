@@ -1,3 +1,7 @@
+// dto
+export * from './lib/dto/article-summary.dto';
+// infrastructure
+export * from './lib/infrastructure/articles.service';
 // state
 export * from './lib/state/article-details.store';
 export * from './lib/state/article-list.store';
