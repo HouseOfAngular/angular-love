@@ -1,0 +1,21 @@
+<div
+  *transloco="let t"
+  class="dialog border-al-border flex max-h-[90svh] w-[80vw] flex-col overflow-hidden rounded-lg border bg-black max-lg:portrait:w-[95vw]"
+>
+  <div class="flex shrink-0 justify-end p-2">
+    <button
+      type="button"
+      class="cursor-pointer rounded-full p-2 text-white hover:bg-white/10"
+      [attr.aria-label]="t('iconButtons.close')"
+      (click)="close()"
+    >
+      <fast-svg name="cross" aria-hidden="true" size="20" />
+    </button>
+  </div>
+
+  <al-youtube-video-player
+    class="min-h-0"
+    [videoId]="videoData.videoId"
+    [title]="videoData.videoPlayerTitle"
+  />
+</div>
