@@ -13,9 +13,11 @@ import { filter, pipe, switchMap, tap } from 'rxjs';
 import { withLangState } from '@angular-love/blog/i18n/data-access';
 import {
   Article,
+  articleLangToLangMap,
   articleLocaleToLangMap,
 } from '@angular-love/contracts/articles';
 import { HreflangEntry, withSeo } from '@angular-love/seo';
+import { ConfigService } from '@angular-love/shared/config';
 import {
   LoadingState,
   withCallState,
@@ -49,6 +51,30 @@ export const ArticleDetailsStore = signalStore(
   withMethods(({ ...store }) => {
     const articlesService = inject(ArticlesService);
     const isPreview = inject(IsArticlePreview);
+    const baseUrl = inject(ConfigService).get<string>('baseUrl');
+
+    /**
+     * Apply all article SEO with correct absolute URLs.
+     * Shared by tapResponse.next (fetch) and applyArticleSeo (constructor
+     * re-apply for non-preview routes where SeoService.init() may have
+     * wiped the tags set during the guard).
+     */
+    function applyArticleSeoFor(article: Article): void {
+      const lang = articleLangToLangMap[article.language];
+      const pageUrl = `${baseUrl}${buildArticlePath(article.slug, lang)}`;
+
+      store.setMeta(article.seo, pageUrl);
+      store.setTitle(article.seo.title);
+
+      const hreflangEntries = buildArticleHreflangEntries(article, baseUrl);
+      if (hreflangEntries) {
+        store.setHreflang(hreflangEntries);
+      } else {
+        store.clearHreflang();
+      }
+
+      store.setArticleJsonLd(article, lang, pageUrl, baseUrl);
+    }
 
     return {
       fetchArticleDetails: rxMethod<string | undefined>(
@@ -73,17 +99,7 @@ export const ArticleDetailsStore = signalStore(
                     fetchArticleDetailsCallState: { error },
                   }),
                 next: (articleDetails) => {
-                  store.setMeta(articleDetails.seo);
-                  store.setTitle(articleDetails.seo.title);
-
-                  const hreflangEntries =
-                    buildArticleHreflangEntries(articleDetails);
-
-                  if (hreflangEntries) {
-                    store.setHreflang(hreflangEntries);
-                  } else {
-                    store.clearHreflang();
-                  }
+                  applyArticleSeoFor(articleDetails);
 
                   return patchState(store, {
                     articleDetails,
@@ -109,6 +125,7 @@ export const ArticleDetailsStore = signalStore(
 
 export function buildArticleHreflangEntries(
   article: Article,
+  baseUrl: string,
 ): HreflangEntry[] | null {
   if (!article.otherTranslations || article.otherTranslations.length < 2) {
     return null;
@@ -116,11 +133,11 @@ export function buildArticleHreflangEntries(
 
   return article.otherTranslations.map((translation) => {
     const langCode = articleLocaleToLangMap[translation.locale];
-    const url = buildArticlePath(translation.slug, langCode);
+    const path = buildArticlePath(translation.slug, langCode);
 
     return {
       locale: langCode,
-      url: url,
+      url: `${baseUrl}${path}`,
     } satisfies HreflangEntry;
   });
 }

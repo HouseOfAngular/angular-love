@@ -1,12 +1,28 @@
+// libs/blog/shared/util-seo/src/lib/services/seo.service.ts
 import { DOCUMENT, inject, Injectable } from '@angular/core';
 import { Meta, MetaDefinition, Title } from '@angular/platform-browser';
-import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
+import { ActivatedRoute, Data, NavigationEnd, Router } from '@angular/router';
 import { TranslocoService } from '@jsverse/transloco';
-import { filter, map, switchMap, take } from 'rxjs';
+import { filter, map, switchMap } from 'rxjs';
 
 import { AlLocalizeService } from '@angular-love/blog/i18n/util';
-import { SeoMetaData } from '@angular-love/contracts/articles';
+import { Article, SeoMetaData } from '@angular-love/contracts/articles';
 
+import {
+  buildBlogPosting,
+  buildBreadcrumbList,
+  buildOrganization,
+  buildPerson,
+  buildWebPage,
+  buildWebSite,
+  serializeJsonLd,
+} from '../json-ld/json-ld.builders';
+import {
+  isWebPageType,
+  SchemaGraphEntity,
+  WebPageType,
+} from '../json-ld/json-ld.types';
+import { rewriteImageUrl } from '../json-ld/url-rewrite';
 import { SEO_CONFIG } from '../tokens';
 
 import { SEO_META_KEYS, SeoMetaKeys } from './seo-meta-keys';
@@ -29,6 +45,7 @@ export class SeoService {
   private readonly _localizeService = inject(AlLocalizeService);
   private _url = '';
   private _baseUrl = '';
+  private _siteName = '';
 
   init(): void {
     this._router.events
@@ -49,6 +66,15 @@ export class SeoService {
       .subscribe(({ routeData, seoConfig }) => {
         this._url = this.getUrl(seoConfig.baseUrl, this._router.url);
         this._baseUrl = seoConfig.baseUrl;
+        this._siteName = seoConfig.siteName;
+
+        // Article routes manage their own meta/title/hreflang/JSON-LD via the
+        // store during the awaited guard fetch.  Canonical stays centralised
+        // here because it is per-URL and _url is correct at NavigationEnd.
+        if (routeData?.['seo'] === false) {
+          this.handleCanonicalUrl(this._url);
+          return;
+        }
 
         this.removeSeo();
 
@@ -69,10 +95,25 @@ export class SeoService {
         if (routeData && routeData['seo'] && routeData['seo']['autoHrefLang']) {
           this.handleAutoHreflang(seoConfig.baseUrl, this._router.url);
         }
+
+        // JSON-LD: inject for indexable pages; skip for pages with jsonLd:false or no data.seo.
+        // Pages with no data.seo (/:articleSlug, /preview/:slug, /newsletter) are handled
+        // by stores or intentionally excluded.
+        const seoRouteData = routeData?.['seo'];
+        const jsonLdFlag = seoRouteData?.['jsonLd'];
+
+        if (seoRouteData !== undefined && jsonLdFlag !== false) {
+          const inLanguage = seoConfig.locale.split('_')[0];
+          const pageEntities = this._buildStaticPageEntities(
+            routeData,
+            inLanguage,
+          );
+          this.setJsonLd(pageEntities);
+        }
       });
   }
 
-  setMeta(seoData: SeoMetaData | undefined): void {
+  setMeta(seoData: SeoMetaData | undefined, pageUrl?: string): void {
     if (!seoData) {
       return;
     }
@@ -93,22 +134,18 @@ export class SeoService {
     }
 
     if (seoData.og_url) {
-      this.updateTag(this._url, 'ogURL');
-      this.updateTag(this._url, 'twitterURL');
+      const url = pageUrl ?? this._url;
+      this.updateTag(url, 'ogURL');
+      this.updateTag(url, 'twitterURL');
     }
 
     if (seoData.og_image) {
       this.setMetaImage(
-        seoData.og_image.map((i) => {
-          const updatedUrl = i.url.startsWith('https://angular.love/wp-content')
-            ? i.url.replace(
-                'https://angular.love/wp-content',
-                'https://wp.angular.love/wp-content',
-              )
-            : i.url;
-
-          return { url: updatedUrl, height: i.height, width: i.width };
-        }),
+        seoData.og_image.map((i) => ({
+          url: rewriteImageUrl(i.url),
+          height: i.height,
+          width: i.width,
+        })),
       );
     }
 
@@ -167,6 +204,128 @@ export class SeoService {
 
   clearHreflang(): void {
     this.removeHreflangTags();
+  }
+
+  /**
+   * Serialize and inject a JSON-LD @graph into <head>.
+   * Always prepends the global Organization + WebSite entities so callers
+   * only pass page-specific entities.
+   * Replaces any previously injected script (no stale graphs across navigations).
+   */
+  setJsonLd(
+    pageEntities: SchemaGraphEntity[],
+    inLanguage: string[] = ['en', 'pl'],
+  ): void {
+    const ctx = {
+      baseUrl: this._baseUrl,
+      siteName: this._siteName,
+      inLanguage,
+    };
+    const graph: SchemaGraphEntity[] = [
+      buildOrganization(ctx),
+      buildWebSite(ctx),
+      ...pageEntities,
+    ];
+    this._injectJsonLd(graph);
+  }
+
+  /**
+   * Build and inject the full article JSON-LD graph (BlogPosting + Person +
+   * BreadcrumbList).  pageUrl and baseUrl are passed explicitly so callers
+   * are not gated behind NavigationEnd timing.
+   */
+  setArticleJsonLd(
+    article: Article,
+    inLanguage: string,
+    pageUrl: string,
+    baseUrl: string,
+  ): void {
+    const blogPosting = buildBlogPosting(article, {
+      pageUrl,
+      baseUrl,
+      inLanguage,
+    });
+
+    const person = buildPerson(article.author, { baseUrl });
+
+    // TODO: Article contract has no category field; breadcrumb is (Home → Article).
+    //       Extend Article type with category info to add a middle Category item.
+    const breadcrumb = buildBreadcrumbList(`${pageUrl}#breadcrumb`, [
+      { name: 'Home', url: `${baseUrl}/` },
+      { name: article.title, url: pageUrl },
+    ]);
+
+    this.setJsonLd([blogPosting, person, breadcrumb]);
+  }
+
+  removeJsonLd(): void {
+    const el = this._document.head.querySelector('script[data-seo-jsonld]');
+    if (el) el.remove();
+  }
+
+  private _injectJsonLd(graph: SchemaGraphEntity[]): void {
+    const serialized = serializeJsonLd(graph);
+    const existing = this._document.head.querySelector<HTMLScriptElement>(
+      'script[data-seo-jsonld]',
+    );
+    const script = existing ?? this._document.createElement('script');
+    script.setAttribute('type', 'application/ld+json');
+    script.setAttribute('data-seo-jsonld', '');
+    script.textContent = serialized;
+    if (!existing) {
+      this._document.head.appendChild(script);
+    }
+  }
+
+  private _buildStaticPageEntities(
+    routeData: Data,
+    inLanguage: string,
+  ): SchemaGraphEntity[] {
+    const jsonLdType = routeData?.['seo']?.['jsonLd'];
+
+    if (!jsonLdType || typeof jsonLdType !== 'string') {
+      return []; // base graph only (Organization + WebSite)
+    }
+
+    if (!isWebPageType(jsonLdType)) {
+      return []; // unknown type, skip
+    }
+
+    const pageId = `${this._url}#webpage`;
+
+    if (jsonLdType === 'CollectionPage') {
+      const categoryName =
+        (routeData['title'] as string | undefined) ?? this._siteName;
+      const webPage = buildWebPage(
+        'CollectionPage',
+        pageId,
+        this._url,
+        categoryName,
+        inLanguage,
+        this._baseUrl,
+      );
+      const breadcrumb = buildBreadcrumbList(`${this._url}#breadcrumb`, [
+        { name: 'Home', url: `${this._baseUrl}/` },
+        { name: categoryName, url: this._url },
+      ]);
+      return [webPage, breadcrumb];
+    }
+
+    const seoBTitle = routeData?.['seo']?.['title'] as string | undefined;
+    const pageName = seoBTitle
+      ? this._translocoService.translate(seoBTitle)
+      : this._siteName;
+
+    return [
+      buildWebPage(
+        jsonLdType,
+        pageId,
+        this._url,
+        pageName,
+        inLanguage,
+        this._baseUrl,
+      ),
+    ];
   }
 
   private setMetaTwitterMisc(miscData: object): void {
@@ -241,6 +400,8 @@ export class SeoService {
           // twitter:data1, twitter:data2, twitter:label1 and twitter:label2 hack
           this._meta.removeTag(`name="${key}1"`);
           this._meta.removeTag(`name="${key}2"`);
+          this._meta.removeTag(`property="${key}1"`);
+          this._meta.removeTag(`property="${key}2"`);
         } else {
           this._meta.removeTag(`name="${key}"`);
           this._meta.removeTag(`itemprop="${key}"`);
@@ -250,6 +411,7 @@ export class SeoService {
     );
 
     this.removeHreflangTags();
+    this.removeJsonLd();
   }
 
   private handleAutoHreflang(baseUrl: string, currentPath: string): void {

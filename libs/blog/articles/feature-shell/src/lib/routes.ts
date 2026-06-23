@@ -1,3 +1,4 @@
+// libs/blog/articles/feature-shell/src/lib/routes.ts
 import { Routes } from '@angular/router';
 
 import {
@@ -13,7 +14,7 @@ export const articleRoutes: Routes = [
       (await import('@angular-love/blog/articles/feature-category'))
         .CategoryArticlesComponent,
     data: {
-      seo: { title: 'News', autoHrefLang: true },
+      seo: { title: 'News', autoHrefLang: true, jsonLd: 'CollectionPage' },
       category: 'news',
       title: 'Angular News',
       id: 'angular-news',
@@ -25,7 +26,7 @@ export const articleRoutes: Routes = [
       (await import('@angular-love/blog/articles/feature-category'))
         .CategoryArticlesComponent,
     data: {
-      seo: { title: 'Guides', autoHrefLang: true },
+      seo: { title: 'Guides', autoHrefLang: true, jsonLd: 'CollectionPage' },
       category: 'guides',
       title: 'Angular Guides',
       id: 'angular-guides-title',
@@ -37,7 +38,11 @@ export const articleRoutes: Routes = [
       (await import('@angular-love/blog/articles/feature-category'))
         .CategoryArticlesComponent,
     data: {
-      seo: { title: 'Latest Articles', autoHrefLang: true },
+      seo: {
+        title: 'Latest Articles',
+        autoHrefLang: true,
+        jsonLd: 'CollectionPage',
+      },
       excludeCategory: 'angular-in-depth-en',
       title: 'Latest Articles',
       id: 'latest-articles',
@@ -49,7 +54,11 @@ export const articleRoutes: Routes = [
       (await import('@angular-love/blog/articles/feature-category'))
         .CategoryArticlesComponent,
     data: {
-      seo: { title: 'Angular In Depth', autoHrefLang: true },
+      seo: {
+        title: 'Angular In Depth',
+        autoHrefLang: true,
+        jsonLd: 'CollectionPage',
+      },
       category: 'angular-in-depth',
       title: 'Angular In Depth',
       id: 'angular-in-depth-title',
@@ -61,6 +70,7 @@ export const articleRoutes: Routes = [
       { provide: IsArticlePreview, useValue: true },
       ArticleDetailsStore,
     ],
+    data: { seo: false },
     loadComponent: async () =>
       (await import('@angular-love/blog/articles/feature-article'))
         .ArticleDetailsContainerComponent,
@@ -69,6 +79,7 @@ export const articleRoutes: Routes = [
     path: ':articleSlug',
     pathMatch: 'full',
     canActivate: [articleExistsGuard],
+    data: { seo: false },
     loadComponent: async () =>
       (await import('@angular-love/blog/articles/feature-article'))
         .ArticleDetailsContainerComponent,

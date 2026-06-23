@@ -1,3 +1,4 @@
+// libs/blog/shell/feature-shell-web/src/lib/blog-shell.routes.ts
 import { Route } from '@angular/router';
 
 import { articleRoutes } from '@angular-love/blog/articles/feature/shell';
@@ -48,7 +49,11 @@ export const commonRoutes: Route[] = [
           (await import('@angular-love/feature-about-us'))
             .FeatureAboutUsComponent,
         data: {
-          seo: { title: 'seo.aboutUs', autoHrefLang: true },
+          seo: {
+            title: 'seo.aboutUs',
+            autoHrefLang: true,
+            jsonLd: 'AboutPage',
+          },
         },
       },
       {
@@ -57,7 +62,8 @@ export const commonRoutes: Route[] = [
           (await import('@angular-love/blog/authors/feature-author'))
             .FeatureAuthorComponent,
         data: {
-          seo: { autoHrefLang: true },
+          // TODO: emit a full Person entity once AuthorDetailsStore exposes withSeo()
+          seo: { autoHrefLang: true, jsonLd: 'ProfilePage' },
         },
       },
       {
@@ -66,7 +72,11 @@ export const commonRoutes: Route[] = [
           (await import('@angular-love/blog/become-author-page-feature'))
             .BecomeAuthorPageFeatureComponent,
         data: {
-          seo: { title: 'seo.becomeAuthor', autoHrefLang: true },
+          seo: {
+            title: 'seo.becomeAuthor',
+            autoHrefLang: true,
+            jsonLd: 'WebPage',
+          },
         },
       },
       {
@@ -81,7 +91,7 @@ export const commonRoutes: Route[] = [
           (await import('@angular-love/blog/feature-writing-rules'))
             .WritingRulesComponent,
         data: {
-          seo: { autoHrefLang: true },
+          seo: { autoHrefLang: true, jsonLd: 'WebPage' },
         },
       },
       {
@@ -103,7 +113,7 @@ export const commonRoutes: Route[] = [
           (await import('@angular-love/blog/shared/ui-not-found'))
             .NotFoundPageComponent,
         data: {
-          seo: { title: 'seo.notFound' },
+          seo: { title: 'seo.notFound', jsonLd: false },
         },
       },
       ...articleRoutes,

@@ -10,7 +10,7 @@ export const searchRoutes: Route[] = [
         .SearchResultsPageComponent,
     providers: [provideSearch()],
     data: {
-      seo: { title: 'Search Results' },
+      seo: { title: 'Search Results', jsonLd: false },
     },
   },
 ];
