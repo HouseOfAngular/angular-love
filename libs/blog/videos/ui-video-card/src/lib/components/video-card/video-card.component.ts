@@ -26,7 +26,7 @@ export class VideoCardComponent {
   private readonly thumbnailFailed = signal(false);
 
   protected readonly thumbnailSrc = computed(() => {
-    const videoId = this.video().videoId;
+    const videoId = encodeURIComponent(this.video().videoId);
     return this.thumbnailFailed()
       ? `https://i.ytimg.com/vi/${videoId}/hqdefault.jpg`
       : `https://i.ytimg.com/vi_webp/${videoId}/sddefault.webp`;

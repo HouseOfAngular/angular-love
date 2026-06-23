@@ -30,8 +30,9 @@ export class YoutubeVideoPlayerComponent {
 
   protected readonly videoSrc = computed(() => {
     const lang = this.lang();
+    const videoId = encodeURIComponent(this.videoId());
     return this.domSanitizer.bypassSecurityTrustResourceUrl(
-      `https://www.youtube-nocookie.com/embed/${this.videoId()}?rel=0&autoplay=1&hl=${lang}&cc_lang_pref=${lang}`,
+      `https://www.youtube-nocookie.com/embed/${videoId}?rel=0&autoplay=1&hl=${lang}&cc_lang_pref=${lang}`,
     );
   });
 }
