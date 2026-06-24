@@ -1,5 +1,5 @@
 export const SEO_META_KEYS = {
-  articleModifiedTime: 'article:modifiedd_time',
+  articleModifiedTime: 'article:modified_time',
   articlePublishedTime: 'article:published_time',
   articlePublisher: 'article:publisher',
   description: 'description',
@@ -22,3 +22,26 @@ export const SEO_META_KEYS = {
 } as const;
 
 export type SeoMetaKeys = keyof typeof SEO_META_KEYS;
+
+/**
+ * Site-wide BASE tags. Applied on every navigation (including store-managed
+ * article routes), with constant keys + values, so `Meta.updateTag` overwrites
+ * them idempotently. They are NEVER removed during a navigation — page seo only
+ * overwrites the shared ones (description trio + og:type).
+ */
+export const BASE_META_KEYS: SeoMetaKeys[] = [
+  'ogLocale',
+  'ogSiteName',
+  'ogType',
+  'description',
+  'ogDescription',
+  'twitterDescription',
+];
+
+/**
+ * Page-specific tags removed by `resetPageSeo()` before a new page's seo is
+ * applied. Everything in SEO_META_KEYS that is not part of the BASE layer.
+ */
+export const PAGE_REMOVABLE_META_KEYS: SeoMetaKeys[] = (
+  Object.keys(SEO_META_KEYS) as SeoMetaKeys[]
+).filter((key) => !BASE_META_KEYS.includes(key));

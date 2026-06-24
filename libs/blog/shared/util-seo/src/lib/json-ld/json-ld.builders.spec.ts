@@ -3,7 +3,9 @@ import { DbLang } from '@angular-love/contracts/articles';
 import {
   buildBlogPosting,
   buildBreadcrumbList,
+  buildHomeBreadcrumb,
   buildOrganization,
+  buildPageGraph,
   buildPerson,
   buildPersonId,
   buildWebPage,
@@ -399,5 +401,158 @@ describe('serializeJsonLd', () => {
     const output = serializeJsonLd([evil]);
     expect(output).not.toContain('</script>');
     expect(output).toContain('\\u003c');
+  });
+});
+
+describe('buildHomeBreadcrumb', () => {
+  const crumb = buildHomeBreadcrumb(
+    `${BASE_URL}/news#breadcrumb`,
+    { name: 'News', url: `${BASE_URL}/news` },
+    BASE_URL,
+  );
+
+  it('prepends a Home item pointing at baseUrl/', () => {
+    expect(crumb.itemListElement[0]).toEqual({
+      '@type': 'ListItem',
+      position: 1,
+      name: 'Home',
+      item: `${BASE_URL}/`,
+    });
+  });
+
+  it('places the leaf as the second item', () => {
+    expect(crumb.itemListElement[1]).toMatchObject({
+      position: 2,
+      name: 'News',
+      item: `${BASE_URL}/news`,
+    });
+  });
+});
+
+describe('Author profile graph (ProfilePage + Person + BreadcrumbList)', () => {
+  const PAGE_URL = `${BASE_URL}/author/jane-dev`;
+  const makeAuthorFull = (
+    overrides: Partial<{
+      github: string | null;
+      twitter: string | null;
+      linkedin: string | null;
+    }> = {},
+  ) => ({
+    slug: 'jane-dev',
+    name: 'Jane Dev',
+    avatarUrl: 'https://wp.angular.love/avatar.jpg',
+    description: { en: 'Angular expert', pl: 'Ekspert Angular' },
+    position: 'Developer',
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    titles: [] as any[],
+    github: null,
+    twitter: null,
+    linkedin: null,
+    ...overrides,
+  });
+
+  it('buildPerson accepts Author contract shape (bilingual description)', () => {
+    const person = buildPerson(makeAuthorFull(), { baseUrl: BASE_URL });
+    expect(person['@id']).toBe(`${BASE_URL}/author/jane-dev#person`);
+    expect(person.name).toBe('Jane Dev');
+    expect(person.sameAs).toBeUndefined();
+  });
+
+  it('profile graph has correct entity types and @ids', () => {
+    const author = makeAuthorFull({ github: 'janedev' });
+    const profilePage = buildWebPage(
+      'ProfilePage',
+      `${PAGE_URL}#webpage`,
+      PAGE_URL,
+      author.name,
+      'en',
+      BASE_URL,
+    );
+    const person = buildPerson(author, { baseUrl: BASE_URL });
+    const breadcrumb = buildHomeBreadcrumb(
+      `${PAGE_URL}#breadcrumb`,
+      { name: author.name, url: PAGE_URL },
+      BASE_URL,
+    );
+    const graph = [profilePage, person, breadcrumb];
+
+    expect(graph).toHaveLength(3);
+    expect(graph[0]['@type']).toBe('ProfilePage');
+    expect(graph[1]['@type']).toBe('Person');
+    expect(graph[2]['@type']).toBe('BreadcrumbList');
+    expect(graph[0]['@id']).toBe(`${PAGE_URL}#webpage`);
+    expect(graph[1]['@id']).toBe(`${PAGE_URL}#person`);
+    expect(graph[2]['@id']).toBe(`${PAGE_URL}#breadcrumb`);
+    expect((graph[1] as ReturnType<typeof buildPerson>).sameAs).toContain(
+      'https://github.com/janedev',
+    );
+  });
+
+  it('pl profile page uses /pl/author/:slug URL', () => {
+    const plPageUrl = `${BASE_URL}/pl/author/jane-dev`;
+    const page = buildWebPage(
+      'ProfilePage',
+      `${plPageUrl}#webpage`,
+      plPageUrl,
+      'Jane Dev',
+      'pl',
+      BASE_URL,
+    );
+    expect(page['@id']).toBe(`${plPageUrl}#webpage`);
+    expect(page.inLanguage).toBe('pl');
+    expect(page.url).toBe(plPageUrl);
+  });
+
+  it('breadcrumb first item is Home pointing at baseUrl/', () => {
+    const breadcrumb = buildHomeBreadcrumb(
+      `${PAGE_URL}#breadcrumb`,
+      { name: 'Jane Dev', url: PAGE_URL },
+      BASE_URL,
+    );
+    expect(breadcrumb.itemListElement[0]).toMatchObject({
+      '@type': 'ListItem',
+      position: 1,
+      name: 'Home',
+      item: `${BASE_URL}/`,
+    });
+    expect(breadcrumb.itemListElement[1]).toMatchObject({
+      position: 2,
+      name: 'Jane Dev',
+      item: PAGE_URL,
+    });
+  });
+});
+
+describe('buildPageGraph', () => {
+  it('returns only a WebPage for non-collection types', () => {
+    const graph = buildPageGraph({
+      jsonLdType: 'AboutPage',
+      url: `${BASE_URL}/about-us`,
+      baseUrl: BASE_URL,
+      name: 'About us',
+      inLanguage: 'en',
+    });
+    expect(graph).toHaveLength(1);
+    expect(graph[0]).toMatchObject({
+      '@type': 'AboutPage',
+      '@id': `${BASE_URL}/about-us#webpage`,
+      name: 'About us',
+    });
+  });
+
+  it('appends a (Home → collection) breadcrumb for CollectionPage', () => {
+    const graph = buildPageGraph({
+      jsonLdType: 'CollectionPage',
+      url: `${BASE_URL}/news`,
+      baseUrl: BASE_URL,
+      name: 'Angular News',
+      inLanguage: 'pl',
+    });
+    expect(graph).toHaveLength(2);
+    expect(graph[0]['@type']).toBe('CollectionPage');
+    expect(graph[1]).toMatchObject({
+      '@type': 'BreadcrumbList',
+      '@id': `${BASE_URL}/news#breadcrumb`,
+    });
   });
 });

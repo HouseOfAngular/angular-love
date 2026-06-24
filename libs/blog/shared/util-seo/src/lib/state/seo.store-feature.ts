@@ -1,32 +1,31 @@
 import { inject } from '@angular/core';
 import { signalStoreFeature, withMethods } from '@ngrx/signals';
 
-import { Article, SeoMetaData } from '@angular-love/contracts/articles';
+import { Author } from '@angular-love/blog/contracts/authors';
+import { Article } from '@angular-love/contracts/articles';
 
-import { HreflangEntry, SeoService } from '../services';
+import { SeoService } from '../services';
 
 export function withSeo() {
   return signalStoreFeature(
     withMethods((_, seoService = inject(SeoService)) => ({
-      setMeta(meta: SeoMetaData, pageUrl?: string): void {
-        seoService.setMeta(meta, pageUrl);
-      },
-      setTitle(title: string | undefined): void {
-        seoService.setTitle(title);
-      },
-      setHreflang(hreflangEntries: HreflangEntry[]): void {
-        seoService.setHreflang(hreflangEntries);
-      },
-      clearHreflang(): void {
-        seoService.clearHreflang();
-      },
-      setArticleJsonLd(
+      /** Apply the full article SEO layer (meta + title + hreflang + JSON-LD). */
+      setArticleSeo(
         article: Article,
-        inLanguage: string,
-        pageUrl: string,
-        baseUrl: string,
+        opts: { baseUrl: string; lang: string },
       ): void {
-        seoService.setArticleJsonLd(article, inLanguage, pageUrl, baseUrl);
+        seoService.setArticleSeo(article, opts);
+      },
+      /** Apply the full author profile SEO layer (meta + title + hreflang + JSON-LD). */
+      setProfileSeo(
+        author: Author,
+        opts: { baseUrl: string; lang: string },
+      ): void {
+        seoService.setProfileSeo(author, opts);
+      },
+      /** Clear page-level seo (e.g. on a failed or in-flight fetch). */
+      resetPageSeo(): void {
+        seoService.resetPageSeo();
       },
     })),
   );

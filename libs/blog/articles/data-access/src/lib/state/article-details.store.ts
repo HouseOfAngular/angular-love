@@ -14,9 +14,8 @@ import { withLangState } from '@angular-love/blog/i18n/data-access';
 import {
   Article,
   articleLangToLangMap,
-  articleLocaleToLangMap,
 } from '@angular-love/contracts/articles';
-import { HreflangEntry, withSeo } from '@angular-love/seo';
+import { withSeo } from '@angular-love/seo';
 import { ConfigService } from '@angular-love/shared/config';
 import {
   LoadingState,
@@ -53,53 +52,36 @@ export const ArticleDetailsStore = signalStore(
     const isPreview = inject(IsArticlePreview);
     const baseUrl = inject(ConfigService).get<string>('baseUrl');
 
-    /**
-     * Apply all article SEO with correct absolute URLs.
-     * Shared by tapResponse.next (fetch) and applyArticleSeo (constructor
-     * re-apply for non-preview routes where SeoService.init() may have
-     * wiped the tags set during the guard).
-     */
-    function applyArticleSeoFor(article: Article): void {
-      const lang = articleLangToLangMap[article.language];
-      const pageUrl = `${baseUrl}${buildArticlePath(article.slug, lang)}`;
-
-      store.setMeta(article.seo, pageUrl);
-      store.setTitle(article.seo.title);
-
-      const hreflangEntries = buildArticleHreflangEntries(article, baseUrl);
-      if (hreflangEntries) {
-        store.setHreflang(hreflangEntries);
-      } else {
-        store.clearHreflang();
-      }
-
-      store.setArticleJsonLd(article, lang, pageUrl, baseUrl);
-    }
-
     return {
       fetchArticleDetails: rxMethod<string | undefined>(
         pipe(
           filter((slug): slug is string => !!slug && slug !== store.slug()),
-          tap((slug) =>
+          tap((slug) => {
+            store.resetPageSeo();
             patchState(store, {
               slug: slug,
               fetchArticleDetailsCallState: LoadingState.LOADING,
               articleDetails: null,
-            }),
-          ),
+            });
+          }),
           switchMap((slug) =>
             (isPreview
               ? articlesService.getArticlePreviewBySlug(slug)
               : articlesService.getArticleBySlug(slug)
             ).pipe(
               tapResponse({
-                error: (error) =>
+                error: (error) => {
+                  store.resetPageSeo();
                   patchState(store, {
                     slug: null,
                     fetchArticleDetailsCallState: { error },
-                  }),
+                  });
+                },
                 next: (articleDetails) => {
-                  applyArticleSeoFor(articleDetails);
+                  store.setArticleSeo(articleDetails, {
+                    baseUrl,
+                    lang: articleLangToLangMap[articleDetails.language],
+                  });
 
                   return patchState(store, {
                     articleDetails,
@@ -122,30 +104,3 @@ export const ArticleDetailsStore = signalStore(
     }),
   })),
 );
-
-export function buildArticleHreflangEntries(
-  article: Article,
-  baseUrl: string,
-): HreflangEntry[] | null {
-  if (!article.otherTranslations || article.otherTranslations.length < 2) {
-    return null;
-  }
-
-  return article.otherTranslations.map((translation) => {
-    const langCode = articleLocaleToLangMap[translation.locale];
-    const path = buildArticlePath(translation.slug, langCode);
-
-    return {
-      locale: langCode,
-      url: `${baseUrl}${path}`,
-    } satisfies HreflangEntry;
-  });
-}
-
-function buildArticlePath(slug: string, langCode: string): string {
-  if (langCode === 'en') {
-    return `/${slug}`;
-  }
-
-  return `/${langCode}/${slug}`;
-}

@@ -110,8 +110,16 @@ export function buildPersonId(authorSlug: string, baseUrl: string): string {
   return `${baseUrl}/author/${authorSlug}#person`;
 }
 
+export interface PersonAuthorInput {
+  slug: string;
+  name: string;
+  github: string | null;
+  twitter: string | null;
+  linkedin: string | null;
+}
+
 export function buildPerson(
-  author: Article['author'],
+  author: PersonAuthorInput,
   ctx: { baseUrl: string },
 ): SchemaPerson {
   const sameAs: string[] = [];
@@ -174,6 +182,54 @@ export function buildWebPage(
     inLanguage,
     isPartOf: { '@id': `${baseUrl}/#website` },
   };
+}
+
+/** (Home → leaf) breadcrumb shared by article and collection page graphs. */
+export function buildHomeBreadcrumb(
+  id: string,
+  leaf: BreadcrumbItem,
+  baseUrl: string,
+): SchemaBreadcrumbList {
+  return buildBreadcrumbList(id, [{ name: 'Home', url: `${baseUrl}/` }, leaf]);
+}
+
+export interface PageGraphContext {
+  jsonLdType: WebPageType;
+  url: string;
+  baseUrl: string;
+  name: string;
+  inLanguage: string;
+}
+
+/**
+ * Page-specific entities for a centrally-managed static route. The base
+ * Organization + WebSite entities are prepended by `SeoService.setJsonLd`.
+ * CollectionPage gets a (Home → collection) breadcrumb; other page types stand
+ * alone.
+ */
+export function buildPageGraph(ctx: PageGraphContext): SchemaGraphEntity[] {
+  const pageId = `${ctx.url}#webpage`;
+  const webPage = buildWebPage(
+    ctx.jsonLdType,
+    pageId,
+    ctx.url,
+    ctx.name,
+    ctx.inLanguage,
+    ctx.baseUrl,
+  );
+
+  if (ctx.jsonLdType === 'CollectionPage') {
+    return [
+      webPage,
+      buildHomeBreadcrumb(
+        `${ctx.url}#breadcrumb`,
+        { name: ctx.name, url: ctx.url },
+        ctx.baseUrl,
+      ),
+    ];
+  }
+
+  return [webPage];
 }
 
 export function serializeJsonLd(graph: SchemaGraphEntity[]): string {
