@@ -1,4 +1,5 @@
 import { computed, inject } from '@angular/core';
+import { tapResponse } from '@ngrx/operators';
 import {
   patchState,
   signalStore,
@@ -68,7 +69,7 @@ export const AuthorDetailsStore = signalStore(
           }),
           switchMap((slug) =>
             authorsService.getAuthor(slug).pipe(
-              tap({
+              tapResponse({
                 next: (authorDetails) => {
                   store.setProfileSeo(authorDetails, {
                     baseUrl,
@@ -83,7 +84,7 @@ export const AuthorDetailsStore = signalStore(
                 error: (error) => {
                   store.resetPageSeo();
                   patchState(store, {
-                    slug: slug,
+                    slug: null,
                     fetchAuthorDetailsCallState: { error },
                   });
                 },

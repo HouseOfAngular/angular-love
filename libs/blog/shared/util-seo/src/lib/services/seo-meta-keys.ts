@@ -24,19 +24,15 @@ export const SEO_META_KEYS = {
 export type SeoMetaKeys = keyof typeof SEO_META_KEYS;
 
 /**
- * Site-wide BASE tags. Applied on every navigation (including store-managed
- * article routes), with constant keys + values, so `Meta.updateTag` overwrites
- * them idempotently. They are NEVER removed during a navigation — page seo only
- * overwrites the shared ones (description trio + og:type).
+ * Truly site-wide BASE tags — exactly the keys `SeoService.applyBaseSeo()`
+ * reapplies (with constant values) on every navigation, including store-managed
+ * routes. They are NEVER removed by `resetPageSeo()`. Page-level tags such as
+ * the description trio and og:type are NOT listed here: they are page-specific
+ * (central pages reapply them after reset; stores set their own), so leaving
+ * them out lets `resetPageSeo()` clear them and prevents stale leakage between
+ * navigations.
  */
-export const BASE_META_KEYS: SeoMetaKeys[] = [
-  'ogLocale',
-  'ogSiteName',
-  'ogType',
-  'description',
-  'ogDescription',
-  'twitterDescription',
-];
+export const BASE_META_KEYS: SeoMetaKeys[] = ['ogLocale', 'ogSiteName'];
 
 /**
  * Page-specific tags removed by `resetPageSeo()` before a new page's seo is

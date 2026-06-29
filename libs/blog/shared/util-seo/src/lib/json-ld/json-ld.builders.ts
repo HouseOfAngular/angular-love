@@ -132,10 +132,15 @@ export function buildPerson(
     const handle = author.twitter.replace(/^@/, '');
     sameAs.push(`https://x.com/${handle}`);
   }
-  if (author.linkedin) {
-    // TODO: verify stored format — skipping non-URL values to avoid malformed sameAs
-    if (author.linkedin.startsWith('http')) {
-      sameAs.push(author.linkedin);
+  if (author.linkedin?.startsWith('http')) {
+    // Only emit genuine LinkedIn URLs in the LinkedIn sameAs slot
+    try {
+      const { hostname } = new URL(author.linkedin);
+      if (hostname === 'linkedin.com' || hostname.endsWith('.linkedin.com')) {
+        sameAs.push(author.linkedin);
+      }
+    } catch {
+      // ignore malformed URL
     }
   }
 

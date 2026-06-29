@@ -282,6 +282,22 @@ describe('buildPerson', () => {
     );
   });
 
+  it('skips linkedin when the URL is not a LinkedIn host', () => {
+    const person = buildPerson(
+      makeAuthor({ linkedin: 'https://example.com/profile' }),
+      { baseUrl: BASE_URL },
+    );
+    expect(person.sameAs).toBeUndefined();
+  });
+
+  it('accepts www.linkedin.com subdomain URLs', () => {
+    const person = buildPerson(
+      makeAuthor({ linkedin: 'https://www.linkedin.com/in/jane-dev' }),
+      { baseUrl: BASE_URL },
+    );
+    expect(person.sameAs).toContain('https://www.linkedin.com/in/jane-dev');
+  });
+
   it('includes all three social links when all are provided', () => {
     const person = buildPerson(
       makeAuthor({

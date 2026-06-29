@@ -89,6 +89,7 @@ export const commonRoutes: Route[] = [
             .WritingRulesComponent,
         data: {
           seo: {
+            title: 'writingRules.title',
             autoHrefLang: true,
             jsonLd: 'WebPage',
           } satisfies RouteSeoData,

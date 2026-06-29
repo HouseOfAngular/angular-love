@@ -17,6 +17,11 @@ describe('rewriteImageUrl', () => {
       expected: 'https://wp.angular.love/wp-content/uploads/cover.jpg',
       label: 'leaves already-rewritten URLs unchanged',
     },
+    {
+      input: 'https://angular.love/wp-content2/uploads/cover.jpg',
+      expected: 'https://angular.love/wp-content2/uploads/cover.jpg',
+      label: 'leaves lookalike /wp-content2 paths unchanged',
+    },
   ])('$label', ({ input, expected }) => {
     expect(rewriteImageUrl(input)).toBe(expected);
   });

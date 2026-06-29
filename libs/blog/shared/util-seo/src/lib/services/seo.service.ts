@@ -453,10 +453,11 @@ export class SeoService {
   }
 
   /**
-   * Clear only PAGE-level seo (title, images, urls, article:*, robots, twitter
-   * card/misc, hreflang, JSON-LD) before a new page's seo is applied. The BASE
-   * layer (og:locale / og:site_name) and the shared keys (description trio,
-   * og:type) are left untouched — see seo-meta-keys partition.
+   * Clear all PAGE-level seo (title, description trio, og:type, images, urls,
+   * article:*, robots, twitter card/misc, hreflang, JSON-LD) before a new
+   * page's seo is applied, and reset the document title to the site name. Only
+   * the BASE layer (og:locale / og:site_name) is left untouched — see
+   * seo-meta-keys partition.
    */
   resetPageSeo(): void {
     const pageMetaValues = PAGE_REMOVABLE_META_KEYS.map(
@@ -482,6 +483,10 @@ export class SeoService {
 
     this.removeHreflangTags();
     this.removeJsonLd();
+    // The title meta tags are removed above, but Title.setTitle isn't covered by
+    // Meta — reset the document <title> too so it can't stay stuck on the
+    // previous page (e.g. after a store fetch error or on an untitled route).
+    this._title.setTitle(this._siteName);
   }
 
   private handleAutoHreflang(baseUrl: string, currentPath: string): void {
