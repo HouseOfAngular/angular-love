@@ -1,4 +1,5 @@
 import { computed, inject } from '@angular/core';
+import { tapResponse } from '@ngrx/operators';
 import {
   patchState,
   signalStore,
@@ -13,6 +14,8 @@ import { UiAuthorCard } from '@angular-love/blog/authors/ui-author-card';
 import { Author } from '@angular-love/blog/contracts/authors';
 import { withLangState } from '@angular-love/blog/i18n/data-access';
 import { ArticlePreview } from '@angular-love/contracts/articles';
+import { withSeo } from '@angular-love/seo';
+import { ConfigService } from '@angular-love/shared/config';
 import {
   LoadingState,
   withCallState,
@@ -43,36 +46,48 @@ const initialState: AuthorDetailsState = {
 
 export const AuthorDetailsStore = signalStore(
   { providedIn: 'root' },
+  withSeo(),
   withState(initialState),
   withCallState('fetch author details'),
   withCallState('fetch author articles'),
   withLangState(),
-  withMethods(({ ...store }, authorsService = inject(AuthorService)) => {
+  withMethods(({ ...store }) => {
+    const authorsService = inject(AuthorService);
+    const baseUrl = inject(ConfigService).get<string>('baseUrl');
+
     return {
       fetchAuthorDetails: rxMethod<string>(
         pipe(
           filter((slug) => slug !== store.slug()),
-          tap((slug) =>
+          tap((slug) => {
+            store.resetPageSeo();
             patchState(store, {
               slug: slug,
               fetchAuthorDetailsCallState: LoadingState.LOADING,
               authorDetails: null,
-            }),
-          ),
+            });
+          }),
           switchMap((slug) =>
             authorsService.getAuthor(slug).pipe(
-              tap({
-                next: (authorDetails) =>
+              tapResponse({
+                next: (authorDetails) => {
+                  store.setProfileSeo(authorDetails, {
+                    baseUrl,
+                    lang: store.lang(),
+                  });
                   patchState(store, {
                     authorDetails,
                     slug: slug,
                     fetchAuthorDetailsCallState: LoadingState.LOADED,
-                  }),
-                error: (error) =>
+                  });
+                },
+                error: (error) => {
+                  store.resetPageSeo();
                   patchState(store, {
-                    slug: slug,
+                    slug: null,
                     fetchAuthorDetailsCallState: { error },
-                  }),
+                  });
+                },
               }),
             ),
           ),

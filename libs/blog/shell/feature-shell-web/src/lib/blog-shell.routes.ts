@@ -2,6 +2,7 @@ import { Route } from '@angular/router';
 
 import { articleRoutes } from '@angular-love/blog/articles/feature/shell';
 import { activeLanguageGuard } from '@angular-love/blog/i18n/data-access';
+import { RouteSeoData } from '@angular-love/seo';
 
 import { RootShellComponent } from './root-shell.component';
 
@@ -31,7 +32,7 @@ export const commonRoutes: Route[] = [
           (await import('@angular-love/blog/home/feature-home'))
             .HomePageComponent,
         data: {
-          seo: { title: 'seo.home', autoHrefLang: true },
+          seo: { title: 'seo.home', autoHrefLang: true } satisfies RouteSeoData,
         },
       },
       {
@@ -48,7 +49,11 @@ export const commonRoutes: Route[] = [
           (await import('@angular-love/feature-about-us'))
             .FeatureAboutUsComponent,
         data: {
-          seo: { title: 'seo.aboutUs', autoHrefLang: true },
+          seo: {
+            title: 'seo.aboutUs',
+            autoHrefLang: true,
+            jsonLd: 'AboutPage',
+          } satisfies RouteSeoData,
         },
       },
       {
@@ -56,9 +61,7 @@ export const commonRoutes: Route[] = [
         loadComponent: async () =>
           (await import('@angular-love/blog/authors/feature-author'))
             .FeatureAuthorComponent,
-        data: {
-          seo: { autoHrefLang: true },
-        },
+        data: { seo: false satisfies RouteSeoData },
       },
       {
         path: 'become-author',
@@ -66,7 +69,11 @@ export const commonRoutes: Route[] = [
           (await import('@angular-love/blog/become-author-page-feature'))
             .BecomeAuthorPageFeatureComponent,
         data: {
-          seo: { title: 'seo.becomeAuthor', autoHrefLang: true },
+          seo: {
+            title: 'seo.becomeAuthor',
+            autoHrefLang: true,
+            jsonLd: 'WebPage',
+          } satisfies RouteSeoData,
         },
       },
       {
@@ -81,7 +88,11 @@ export const commonRoutes: Route[] = [
           (await import('@angular-love/blog/feature-writing-rules'))
             .WritingRulesComponent,
         data: {
-          seo: { autoHrefLang: true },
+          seo: {
+            title: 'writingRules.title',
+            autoHrefLang: true,
+            jsonLd: 'WebPage',
+          } satisfies RouteSeoData,
         },
       },
       {
@@ -94,7 +105,7 @@ export const commonRoutes: Route[] = [
           layoutConfig: {
             roadmap: true,
           },
-          seo: { title: 'seo.roadmap' },
+          seo: { title: 'seo.roadmap' } satisfies RouteSeoData,
         },
       },
       {
@@ -103,7 +114,7 @@ export const commonRoutes: Route[] = [
           (await import('@angular-love/blog/shared/ui-not-found'))
             .NotFoundPageComponent,
         data: {
-          seo: { title: 'seo.notFound' },
+          seo: { title: 'seo.notFound', jsonLd: false } satisfies RouteSeoData,
         },
       },
       ...articleRoutes,

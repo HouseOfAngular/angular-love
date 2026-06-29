@@ -2,14 +2,36 @@ import { DOCUMENT, inject, Injectable } from '@angular/core';
 import { Meta, MetaDefinition, Title } from '@angular/platform-browser';
 import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 import { TranslocoService } from '@jsverse/transloco';
-import { filter, map, switchMap, take } from 'rxjs';
+import { filter, map, switchMap } from 'rxjs';
 
+import { Author } from '@angular-love/blog/contracts/authors';
 import { AlLocalizeService } from '@angular-love/blog/i18n/util';
-import { SeoMetaData } from '@angular-love/contracts/articles';
+import {
+  Article,
+  articleLocaleToLangMap,
+  SeoMetaData,
+} from '@angular-love/contracts/articles';
 
-import { SEO_CONFIG } from '../tokens';
+import {
+  buildBlogPosting,
+  buildHomeBreadcrumb,
+  buildOrganization,
+  buildPageGraph,
+  buildPerson,
+  buildWebPage,
+  buildWebSite,
+  rewriteImageUrl,
+  SchemaGraphEntity,
+  serializeJsonLd,
+} from '../json-ld';
+import { SEO_CONFIG, SeoConfig } from '../tokens';
 
-import { SEO_META_KEYS, SeoMetaKeys } from './seo-meta-keys';
+import { interpretRouteSeo, SeoRouteInterpretation } from './route-seo-data';
+import {
+  PAGE_REMOVABLE_META_KEYS,
+  SEO_META_KEYS,
+  SeoMetaKeys,
+} from './seo-meta-keys';
 import { SEO_TITLE_KEYS, SeoTitleKeys } from './seo-title-keys';
 
 export interface HreflangEntry {
@@ -29,6 +51,7 @@ export class SeoService {
   private readonly _localizeService = inject(AlLocalizeService);
   private _url = '';
   private _baseUrl = '';
+  private _siteName = '';
 
   init(): void {
     this._router.events
@@ -49,30 +72,61 @@ export class SeoService {
       .subscribe(({ routeData, seoConfig }) => {
         this._url = this.getUrl(seoConfig.baseUrl, this._router.url);
         this._baseUrl = seoConfig.baseUrl;
+        this._siteName = seoConfig.siteName;
 
-        this.removeSeo();
+        // BASE layer: site-wide tags + canonical, applied on EVERY navigation
+        // (including store-managed article routes) so og:locale / og:site_name
+        // / canonical are always present and deterministic.
+        this.applyBaseSeo(seoConfig);
+        this.handleCanonicalUrl(this._url);
 
-        this.updateTag(seoConfig.locale, 'ogLocale');
+        const seo = interpretRouteSeo(routeData);
+
+        // Store-managed routes own their PAGE seo (meta/title/hreflang/JSON-LD)
+        // and reset it themselves on error. SeoService must not touch the page
+        // layer here or it would clobber the tags the store set during the
+        // awaited guard fetch (which runs before NavigationEnd).
+        if (seo.managedExternally) {
+          return;
+        }
+
+        // PAGE layer: central, route-data-driven static pages.
+        this.resetPageSeo();
         this.setMetaDescription(seoConfig.description);
-        this.updateTag(seoConfig.siteName, 'ogSiteName');
+        this.updateTag('website', 'ogType');
 
-        if (routeData && routeData['seo'] && routeData['seo']['title']) {
+        if (seo.titleKey) {
           this.setTitle(
-            `${seoConfig.title} - ${this._translocoService.translate(routeData['seo']['title'])}`,
+            `${seoConfig.title} - ${this._translocoService.translate(seo.titleKey)}`,
           );
         } else {
           this.setTitle('');
         }
 
-        this.handleCanonicalUrl(this._url);
-
-        if (routeData && routeData['seo'] && routeData['seo']['autoHrefLang']) {
+        if (seo.autoHrefLang) {
           this.handleAutoHreflang(seoConfig.baseUrl, this._router.url);
+        }
+
+        if (seo.applyJsonLd) {
+          const inLanguage = seoConfig.locale.split('_')[0];
+          this.setJsonLd(this._buildPageEntities(seo, inLanguage));
         }
       });
   }
 
-  setMeta(seoData: SeoMetaData | undefined): void {
+  /**
+   * Truly site-wide tags applied on EVERY navigation, including store-managed
+   * routes. Limited to the keys no page/store ever overrides (og:locale /
+   * og:site_name) so it cannot clobber meta a store set before NavigationEnd.
+   * Page-level defaults (description, og:type) live on the central-page branch
+   * of init(); the store sets its own for article routes.
+   */
+  private applyBaseSeo(seoConfig: SeoConfig): void {
+    this.updateTag(seoConfig.locale, 'ogLocale');
+    this.updateTag(seoConfig.siteName, 'ogSiteName');
+  }
+
+  setMeta(seoData: SeoMetaData | undefined, pageUrl?: string): void {
     if (!seoData) {
       return;
     }
@@ -93,22 +147,18 @@ export class SeoService {
     }
 
     if (seoData.og_url) {
-      this.updateTag(this._url, 'ogURL');
-      this.updateTag(this._url, 'twitterURL');
+      const url = pageUrl ?? this._url;
+      this.updateTag(url, 'ogURL');
+      this.updateTag(url, 'twitterURL');
     }
 
     if (seoData.og_image) {
       this.setMetaImage(
-        seoData.og_image.map((i) => {
-          const updatedUrl = i.url.startsWith('https://angular.love/wp-content')
-            ? i.url.replace(
-                'https://angular.love/wp-content',
-                'https://wp.angular.love/wp-content',
-              )
-            : i.url;
-
-          return { url: updatedUrl, height: i.height, width: i.width };
-        }),
+        seoData.og_image.map((i) => ({
+          url: rewriteImageUrl(i.url),
+          height: i.height,
+          width: i.width,
+        })),
       );
     }
 
@@ -167,6 +217,177 @@ export class SeoService {
 
   clearHreflang(): void {
     this.removeHreflangTags();
+  }
+
+  /**
+   * Serialize and inject a JSON-LD @graph into <head>.
+   * Always prepends the global Organization + WebSite entities so callers
+   * only pass page-specific entities.
+   * Replaces any previously injected script (no stale graphs across navigations).
+   */
+  setJsonLd(
+    pageEntities: SchemaGraphEntity[],
+    inLanguage: string[] = ['en', 'pl'],
+  ): void {
+    const ctx = {
+      baseUrl: this._baseUrl,
+      siteName: this._siteName,
+      inLanguage,
+    };
+    const graph: SchemaGraphEntity[] = [
+      buildOrganization(ctx),
+      buildWebSite(ctx),
+      ...pageEntities,
+    ];
+    this._injectJsonLd(graph);
+  }
+
+  /**
+   * Apply the full article SEO layer (meta + title + hreflang + JSON-LD) with
+   * absolute URLs. `baseUrl` and `lang` are passed explicitly so the store can
+   * call this during the awaited guard fetch — before NavigationEnd has
+   * populated the cached `_url` / `_baseUrl`.
+   */
+  setArticleSeo(
+    article: Article,
+    opts: { baseUrl: string; lang: string },
+  ): void {
+    const { baseUrl, lang } = opts;
+    const pageUrl = `${baseUrl}${buildArticlePath(article.slug, lang)}`;
+
+    this.setMeta(article.seo, pageUrl);
+    this.setTitle(article.seo.title);
+
+    const hreflangEntries = buildArticleHreflangEntries(article, baseUrl);
+    if (hreflangEntries) {
+      this.setHreflang(hreflangEntries);
+    } else {
+      this.clearHreflang();
+    }
+
+    this.setArticleJsonLd(article, lang, pageUrl, baseUrl);
+  }
+
+  /**
+   * Build and inject the full article JSON-LD graph (BlogPosting + Person +
+   * BreadcrumbList).  pageUrl and baseUrl are passed explicitly so callers
+   * are not gated behind NavigationEnd timing.
+   */
+  setArticleJsonLd(
+    article: Article,
+    inLanguage: string,
+    pageUrl: string,
+    baseUrl: string,
+  ): void {
+    const blogPosting = buildBlogPosting(article, {
+      pageUrl,
+      baseUrl,
+      inLanguage,
+    });
+
+    const person = buildPerson(article.author, { baseUrl });
+
+    // TODO: Article contract has no category field; breadcrumb is (Home → Article).
+    //       Extend Article type with category info to add a middle Category item.
+    const breadcrumb = buildHomeBreadcrumb(
+      `${pageUrl}#breadcrumb`,
+      { name: article.title, url: pageUrl },
+      baseUrl,
+    );
+
+    this.setJsonLd([blogPosting, person, breadcrumb]);
+  }
+
+  /**
+   * Apply the full author profile SEO layer (meta + title + hreflang + JSON-LD).
+   * `baseUrl` and `lang` are passed explicitly, consistent with `setArticleSeo`.
+   */
+  setProfileSeo(author: Author, opts: { baseUrl: string; lang: string }): void {
+    const { baseUrl, lang } = opts;
+    const pageUrl = `${baseUrl}${buildAuthorPath(author.slug, lang)}`;
+    const bio =
+      author.description[lang as 'pl' | 'en'] ?? author.description.en;
+
+    this.setTitle(author.name);
+    this.setMeta(
+      { description: bio, og_type: 'profile', og_url: pageUrl },
+      pageUrl,
+    );
+
+    const authorBasePath = `/author/${author.slug}`;
+    const hreflangEntries = (
+      this._translocoService.getAvailableLangs() as string[]
+    ).map((l) => ({
+      locale: l,
+      url: `${baseUrl}${this._localizeService.localizeExplicitPath(authorBasePath, l)}`,
+    }));
+    this.setHreflang(hreflangEntries);
+
+    const profilePage = buildWebPage(
+      'ProfilePage',
+      `${pageUrl}#webpage`,
+      pageUrl,
+      author.name,
+      lang,
+      baseUrl,
+    );
+    const person = buildPerson(author, { baseUrl });
+    const breadcrumb = buildHomeBreadcrumb(
+      `${pageUrl}#breadcrumb`,
+      { name: author.name, url: pageUrl },
+      baseUrl,
+    );
+    this.setJsonLd([profilePage, person, breadcrumb]);
+  }
+
+  removeJsonLd(): void {
+    const el = this._document.head.querySelector('script[data-seo-jsonld]');
+    if (el) el.remove();
+  }
+
+  private _injectJsonLd(graph: SchemaGraphEntity[]): void {
+    const serialized = serializeJsonLd(graph);
+    const existing = this._document.head.querySelector<HTMLScriptElement>(
+      'script[data-seo-jsonld]',
+    );
+    const script = existing ?? this._document.createElement('script');
+    script.setAttribute('type', 'application/ld+json');
+    script.setAttribute('data-seo-jsonld', '');
+    script.textContent = serialized;
+    if (!existing) {
+      this._document.head.appendChild(script);
+    }
+  }
+
+  /**
+   * Page-specific JSON-LD entities for a centrally-managed static route.
+   * Returns [] (base Organization + WebSite graph only) when no valid page type
+   * is declared (e.g. the roadmap route).
+   */
+  private _buildPageEntities(
+    seo: SeoRouteInterpretation,
+    inLanguage: string,
+  ): SchemaGraphEntity[] {
+    if (!seo.jsonLdType) {
+      return [];
+    }
+
+    return buildPageGraph({
+      jsonLdType: seo.jsonLdType,
+      url: this._url,
+      baseUrl: this._baseUrl,
+      name: this._resolvePageName(seo),
+      inLanguage,
+    });
+  }
+
+  private _resolvePageName(seo: SeoRouteInterpretation): string {
+    if (seo.jsonLdType === 'CollectionPage') {
+      return seo.collectionTitle ?? this._siteName;
+    }
+    return seo.titleKey
+      ? this._translocoService.translate(seo.titleKey)
+      : this._siteName;
   }
 
   private setMetaTwitterMisc(miscData: object): void {
@@ -231,25 +452,41 @@ export class SeoService {
     this._meta.updateTag(meta);
   }
 
-  private removeSeo(): void {
-    [...Object.values(SEO_META_KEYS), ...Object.values(SEO_TITLE_KEYS)].forEach(
-      (key) => {
-        if (
-          key === SEO_META_KEYS.twitterMiscData ||
-          key === SEO_META_KEYS.twitterMiscLabel
-        ) {
-          // twitter:data1, twitter:data2, twitter:label1 and twitter:label2 hack
-          this._meta.removeTag(`name="${key}1"`);
-          this._meta.removeTag(`name="${key}2"`);
-        } else {
-          this._meta.removeTag(`name="${key}"`);
-          this._meta.removeTag(`itemprop="${key}"`);
-          this._meta.removeTag(`property="${key}"`);
-        }
-      },
+  /**
+   * Clear all PAGE-level seo (title, description trio, og:type, images, urls,
+   * article:*, robots, twitter card/misc, hreflang, JSON-LD) before a new
+   * page's seo is applied, and reset the document title to the site name. Only
+   * the BASE layer (og:locale / og:site_name) is left untouched — see
+   * seo-meta-keys partition.
+   */
+  resetPageSeo(): void {
+    const pageMetaValues = PAGE_REMOVABLE_META_KEYS.map(
+      (key) => SEO_META_KEYS[key],
     );
 
+    [...pageMetaValues, ...Object.values(SEO_TITLE_KEYS)].forEach((key) => {
+      if (
+        key === SEO_META_KEYS.twitterMiscData ||
+        key === SEO_META_KEYS.twitterMiscLabel
+      ) {
+        // twitter:data1, twitter:data2, twitter:label1 and twitter:label2 hack
+        this._meta.removeTag(`name="${key}1"`);
+        this._meta.removeTag(`name="${key}2"`);
+        this._meta.removeTag(`property="${key}1"`);
+        this._meta.removeTag(`property="${key}2"`);
+      } else {
+        this._meta.removeTag(`name="${key}"`);
+        this._meta.removeTag(`itemprop="${key}"`);
+        this._meta.removeTag(`property="${key}"`);
+      }
+    });
+
     this.removeHreflangTags();
+    this.removeJsonLd();
+    // The title meta tags are removed above, but Title.setTitle isn't covered by
+    // Meta — reset the document <title> too so it can't stay stuck on the
+    // previous page (e.g. after a store fetch error or on an untitled route).
+    this._title.setTitle(this._siteName);
   }
 
   private handleAutoHreflang(baseUrl: string, currentPath: string): void {
@@ -320,4 +557,31 @@ export class SeoService {
     const pathname = _url.pathname.replace(/\/$/, '');
     return `${_url.origin}${pathname}`;
   }
+}
+
+export function buildArticlePath(slug: string, langCode: string): string {
+  return langCode === 'en' ? `/${slug}` : `/${langCode}/${slug}`;
+}
+
+export function buildAuthorPath(slug: string, langCode: string): string {
+  return langCode === 'en' ? `/author/${slug}` : `/${langCode}/author/${slug}`;
+}
+
+export function buildArticleHreflangEntries(
+  article: Article,
+  baseUrl: string,
+): HreflangEntry[] | null {
+  if (!article.otherTranslations || article.otherTranslations.length < 2) {
+    return null;
+  }
+
+  return article.otherTranslations.map((translation) => {
+    const langCode = articleLocaleToLangMap[translation.locale];
+    const path = buildArticlePath(translation.slug, langCode);
+
+    return {
+      locale: langCode,
+      url: `${baseUrl}${path}`,
+    } satisfies HreflangEntry;
+  });
 }

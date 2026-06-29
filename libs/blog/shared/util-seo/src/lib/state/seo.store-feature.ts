@@ -1,24 +1,31 @@
 import { inject } from '@angular/core';
 import { signalStoreFeature, withMethods } from '@ngrx/signals';
 
-import { SeoMetaData } from '@angular-love/contracts/articles';
+import { Author } from '@angular-love/blog/contracts/authors';
+import { Article } from '@angular-love/contracts/articles';
 
-import { HreflangEntry, SeoService } from '../services';
+import { SeoService } from '../services';
 
 export function withSeo() {
   return signalStoreFeature(
     withMethods((_, seoService = inject(SeoService)) => ({
-      setMeta(meta: SeoMetaData): void {
-        seoService.setMeta(meta);
+      /** Apply the full article SEO layer (meta + title + hreflang + JSON-LD). */
+      setArticleSeo(
+        article: Article,
+        opts: { baseUrl: string; lang: string },
+      ): void {
+        seoService.setArticleSeo(article, opts);
       },
-      setTitle(title: string | undefined): void {
-        seoService.setTitle(title);
+      /** Apply the full author profile SEO layer (meta + title + hreflang + JSON-LD). */
+      setProfileSeo(
+        author: Author,
+        opts: { baseUrl: string; lang: string },
+      ): void {
+        seoService.setProfileSeo(author, opts);
       },
-      setHreflang(hreflangEntries: HreflangEntry[]): void {
-        seoService.setHreflang(hreflangEntries);
-      },
-      clearHreflang(): void {
-        seoService.clearHreflang();
+      /** Clear page-level seo (e.g. on a failed or in-flight fetch). */
+      resetPageSeo(): void {
+        seoService.resetPageSeo();
       },
     })),
   );

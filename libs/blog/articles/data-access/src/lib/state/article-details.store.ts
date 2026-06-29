@@ -13,9 +13,10 @@ import { filter, pipe, switchMap, tap } from 'rxjs';
 import { withLangState } from '@angular-love/blog/i18n/data-access';
 import {
   Article,
-  articleLocaleToLangMap,
+  articleLangToLangMap,
 } from '@angular-love/contracts/articles';
-import { HreflangEntry, withSeo } from '@angular-love/seo';
+import { withSeo } from '@angular-love/seo';
+import { ConfigService } from '@angular-love/shared/config';
 import {
   LoadingState,
   withCallState,
@@ -49,41 +50,38 @@ export const ArticleDetailsStore = signalStore(
   withMethods(({ ...store }) => {
     const articlesService = inject(ArticlesService);
     const isPreview = inject(IsArticlePreview);
+    const baseUrl = inject(ConfigService).get<string>('baseUrl');
 
     return {
       fetchArticleDetails: rxMethod<string | undefined>(
         pipe(
           filter((slug): slug is string => !!slug && slug !== store.slug()),
-          tap((slug) =>
+          tap((slug) => {
+            store.resetPageSeo();
             patchState(store, {
               slug: slug,
               fetchArticleDetailsCallState: LoadingState.LOADING,
               articleDetails: null,
-            }),
-          ),
+            });
+          }),
           switchMap((slug) =>
             (isPreview
               ? articlesService.getArticlePreviewBySlug(slug)
               : articlesService.getArticleBySlug(slug)
             ).pipe(
               tapResponse({
-                error: (error) =>
+                error: (error) => {
+                  store.resetPageSeo();
                   patchState(store, {
                     slug: null,
                     fetchArticleDetailsCallState: { error },
-                  }),
+                  });
+                },
                 next: (articleDetails) => {
-                  store.setMeta(articleDetails.seo);
-                  store.setTitle(articleDetails.seo.title);
-
-                  const hreflangEntries =
-                    buildArticleHreflangEntries(articleDetails);
-
-                  if (hreflangEntries) {
-                    store.setHreflang(hreflangEntries);
-                  } else {
-                    store.clearHreflang();
-                  }
+                  store.setArticleSeo(articleDetails, {
+                    baseUrl,
+                    lang: articleLangToLangMap[articleDetails.language],
+                  });
 
                   return patchState(store, {
                     articleDetails,
@@ -106,29 +104,3 @@ export const ArticleDetailsStore = signalStore(
     }),
   })),
 );
-
-export function buildArticleHreflangEntries(
-  article: Article,
-): HreflangEntry[] | null {
-  if (!article.otherTranslations || article.otherTranslations.length < 2) {
-    return null;
-  }
-
-  return article.otherTranslations.map((translation) => {
-    const langCode = articleLocaleToLangMap[translation.locale];
-    const url = buildArticlePath(translation.slug, langCode);
-
-    return {
-      locale: langCode,
-      url: url,
-    } satisfies HreflangEntry;
-  });
-}
-
-function buildArticlePath(slug: string, langCode: string): string {
-  if (langCode === 'en') {
-    return `/${slug}`;
-  }
-
-  return `/${langCode}/${slug}`;
-}
