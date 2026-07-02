@@ -42,6 +42,7 @@ export class LatestVideosListContainerComponent {
 
   protected openVideo(video: VideoPreview, videoPlayerTitle: string): void {
     this.dialog.open(VideoDialogComponent, {
+      ariaLabel: video.title,
       data: {
         videoId: video.videoId,
         title: video.title,
