@@ -1,3 +1,4 @@
+import { Dialog } from '@angular/cdk/dialog';
 import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { TranslocoDirective } from '@jsverse/transloco';
 
@@ -8,8 +9,7 @@ import {
   VideoCardComponent,
   VideoCardSkeletonComponent,
 } from '@angular-love/blog/videos/ui-video-card';
-
-import { VideoDialogManagerService } from '../../services/video-dialog-manager.service';
+import { VideoDialogComponent } from '@angular-love/blog/videos/ui-video-dialog';
 
 const LATEST_VIDEOS_LIMIT = 3;
 
@@ -27,7 +27,7 @@ const LATEST_VIDEOS_LIMIT = 3;
 })
 export class LatestVideosListContainerComponent {
   private readonly videosListStore = inject(VideosListStore);
-  private readonly videoDialogManager = inject(VideoDialogManagerService);
+  private readonly dialog = inject(Dialog);
 
   protected readonly skeletonLoaders = [...Array(LATEST_VIDEOS_LIMIT).keys()];
   protected readonly videos = this.videosListStore.videos;
@@ -41,12 +41,12 @@ export class LatestVideosListContainerComponent {
   }
 
   protected openVideo(video: VideoPreview, videoPlayerTitle: string): void {
-    this.videoDialogManager
-      .open({
+    this.dialog.open(VideoDialogComponent, {
+      data: {
         videoId: video.videoId,
         title: video.title,
         videoPlayerTitle,
-      })
-      .subscribe();
+      },
+    });
   }
 }

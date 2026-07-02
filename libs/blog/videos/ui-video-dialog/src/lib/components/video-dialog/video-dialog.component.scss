@@ -1,8 +1,8 @@
 .dialog {
-  animation: fadeInBottom 0.4s ease-out forwards;
+  animation: fade-in-bottom 0.4s ease-out forwards;
 }
 
-@keyframes fadeInBottom {
+@keyframes fade-in-bottom {
   from {
     opacity: 0;
     transform: translateY(100%);
