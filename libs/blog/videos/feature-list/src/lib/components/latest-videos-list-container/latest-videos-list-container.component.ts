@@ -45,7 +45,6 @@ export class LatestVideosListContainerComponent {
       ariaLabel: video.title,
       data: {
         videoId: video.videoId,
-        title: video.title,
         videoPlayerTitle,
       },
     });
