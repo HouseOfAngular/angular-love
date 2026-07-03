@@ -1,6 +1,7 @@
 import { Route } from '@angular/router';
 
 import { articleRoutes } from '@angular-love/blog/articles/feature/shell';
+import { authorExistsGuard } from '@angular-love/blog/authors/data-access';
 import { activeLanguageGuard } from '@angular-love/blog/i18n/data-access';
 import { RouteSeoData } from '@angular-love/seo';
 
@@ -58,6 +59,7 @@ export const commonRoutes: Route[] = [
       },
       {
         path: 'author/:authorSlug',
+        canActivate: [authorExistsGuard],
         loadComponent: async () =>
           (await import('@angular-love/blog/authors/feature-author'))
             .FeatureAuthorComponent,
