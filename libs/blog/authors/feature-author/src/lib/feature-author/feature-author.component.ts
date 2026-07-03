@@ -14,6 +14,7 @@ import {
   AuthorCardComponent,
   AuthorCardSkeletonComponent,
 } from '@angular-love/blog/authors/ui-author-card';
+import { NotFoundPageComponent } from '@angular-love/blog/shared/ui-not-found';
 import {
   PaginationComponent,
   QueryPaginationDirective,
@@ -28,6 +29,7 @@ import {
     PaginationComponent,
     QueryPaginationDirective,
     TranslocoDirective,
+    NotFoundPageComponent,
   ],
   templateUrl: './feature-author.component.html',
   styleUrl: './feature-author.component.scss',
@@ -56,6 +58,5 @@ export class FeatureAuthorComponent {
     }));
 
     this.authorDetailsStore.fetchArticleList(fetchArticlesQuery);
-    this.authorDetailsStore.fetchAuthorDetails(this.authorSlug);
   }
 }

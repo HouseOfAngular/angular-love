@@ -1,4 +1,4 @@
-import { and, eq } from 'drizzle-orm';
+import { and, eq, not } from 'drizzle-orm';
 import { createError, defineEventHandler, setHeader } from 'h3';
 import { create } from 'xmlbuilder2';
 
@@ -68,7 +68,11 @@ export default defineEventHandler(async (event) => {
         })
         .from(articles)
         .where(and(eq(articles.status, ArticleStatus.Publish))),
-      db.select({ slug: authors.slug }).from(authors),
+      db
+        .select({ slug: authors.slug })
+        .from(authors)
+        // only authors with at least 'blogger' position
+        .where(not(eq(authors.seq, 0))),
     ]);
   } catch (err) {
     console.error('[sitemap] Database query failed:', err);
