@@ -12,7 +12,7 @@ import {
   buildWebSite,
   serializeJsonLd,
 } from './json-ld.builders';
-import { SchemaGraphEntity } from './json-ld.types';
+import { SchemaGraphEntity, SchemaWebPage } from './json-ld.types';
 
 const BASE_URL = 'https://angular.love';
 const SITE_NAME = 'Angular.love';
@@ -483,6 +483,7 @@ describe('Author profile graph (ProfilePage + Person + BreadcrumbList)', () => {
       author.name,
       'en',
       BASE_URL,
+      { '@id': `${PAGE_URL}#person` },
     );
     const person = buildPerson(author, { baseUrl: BASE_URL });
     const breadcrumb = buildHomeBreadcrumb(
@@ -499,6 +500,9 @@ describe('Author profile graph (ProfilePage + Person + BreadcrumbList)', () => {
     expect(graph[0]['@id']).toBe(`${PAGE_URL}#webpage`);
     expect(graph[1]['@id']).toBe(`${PAGE_URL}#person`);
     expect(graph[2]['@id']).toBe(`${PAGE_URL}#breadcrumb`);
+    expect((profilePage as SchemaWebPage).mainEntity).toEqual({
+      '@id': `${PAGE_URL}#person`,
+    });
     expect((graph[1] as ReturnType<typeof buildPerson>).sameAs).toContain(
       'https://github.com/janedev',
     );
@@ -517,6 +521,7 @@ describe('Author profile graph (ProfilePage + Person + BreadcrumbList)', () => {
     expect(page['@id']).toBe(`${plPageUrl}#webpage`);
     expect(page.inLanguage).toBe('pl');
     expect(page.url).toBe(plPageUrl);
+    expect((page as SchemaWebPage).mainEntity).toBeUndefined();
   });
 
   it('breadcrumb first item is Home pointing at baseUrl/', () => {
@@ -554,6 +559,7 @@ describe('buildPageGraph', () => {
       '@id': `${BASE_URL}/about-us#webpage`,
       name: 'About us',
     });
+    expect((graph[0] as SchemaWebPage).mainEntity).toBeUndefined();
   });
 
   it('appends a (Home → collection) breadcrumb for CollectionPage', () => {
