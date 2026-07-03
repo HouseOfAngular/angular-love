@@ -7,6 +7,7 @@ import {
   SchemaListItem,
   SchemaOrganization,
   SchemaPerson,
+  SchemaRef,
   SchemaWebPage,
   SchemaWebSite,
   WebPageType,
@@ -178,6 +179,7 @@ export function buildWebPage(
   name: string,
   inLanguage: string,
   baseUrl: string,
+  mainEntity?: SchemaRef,
 ): SchemaWebPage {
   return {
     '@type': type,
@@ -186,6 +188,7 @@ export function buildWebPage(
     name,
     inLanguage,
     isPartOf: { '@id': `${baseUrl}/#website` },
+    ...(mainEntity ? { mainEntity } : {}),
   };
 }
 
