@@ -10,7 +10,7 @@ export class WpVideos {
   ): Promise<WPResponse<WPVideoDto[]>> {
     return this._wpClient.get<WPVideoDto[]>('yt-video', {
       ...query,
-      _fields: 'id,acf,title',
+      _fields: 'id,type,acf,title',
     });
   }
 }
