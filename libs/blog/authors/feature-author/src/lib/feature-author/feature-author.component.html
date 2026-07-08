@@ -1,41 +1,45 @@
-<h2 class="mb-8 h-10 text-4xl font-bold">{{ authorName() }}</h2>
-
-@if (
-  !authorDetailsStore.isFetchAuthorDetailsLoading() &&
-    authorDetailsStore.author();
-  as author
-) {
-  <al-author-card [author]="author" />
+@if (authorDetailsStore.isFetchAuthorDetailsError()) {
+  <al-not-found />
 } @else {
-  <al-author-card-skeleton />
-}
+  <h2 class="mb-8 h-10 text-4xl font-bold">{{ authorName() }}</h2>
 
-<span
-  *transloco="let t; read: 'authorPage'"
-  class="mb-6 mt-10 text-2xl font-bold"
->
-  {{ t('posted_by', { name: authorName() }) }}
-</span>
-
-<div aria-live="polite" class="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
-  @if (authorDetailsStore.isFetchAuthorArticlesLoading()) {
-    <!--    TODO: add article skleteon when ready-->
-    <!--    <al-article-card-skeleton *alRepeat="6" class="h-[438px]" />-->
+  @if (
+    !authorDetailsStore.isFetchAuthorDetailsLoading() &&
+      authorDetailsStore.author();
+    as author
+  ) {
+    <al-author-card [author]="author" />
   } @else {
-    @for (article of authorDetailsStore.articles(); track article.slug) {
-      <al-article-card [article]="article" cardType="regular" />
-    }
+    <al-author-card-skeleton />
   }
-</div>
 
-@if (authorDetailsStore.total() > pageSize) {
-  <footer class="bg-al-card mt-16 rounded-lg border px-1 py-5">
-    <al-pagination
-      alQueryPagination
-      [pageSize]="pagination().take"
-      [skip]="pagination().skip"
-      [total]="authorDetailsStore.total()"
-      (pageChange)="pagination.set($event)"
-    />
-  </footer>
+  <span
+    *transloco="let t; read: 'authorPage'"
+    class="mt-10 mb-6 text-2xl font-bold"
+  >
+    {{ t('posted_by', { name: authorName() }) }}
+  </span>
+
+  <div aria-live="polite" class="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+    @if (authorDetailsStore.isFetchAuthorArticlesLoading()) {
+      <!--    TODO: add article skleteon when ready-->
+      <!--    <al-article-card-skeleton *alRepeat="6" class="h-[438px]" />-->
+    } @else {
+      @for (article of authorDetailsStore.articles(); track article.slug) {
+        <al-article-card [article]="article" cardType="regular" />
+      }
+    }
+  </div>
+
+  @if (authorDetailsStore.total() > pageSize) {
+    <footer class="bg-al-card mt-16 rounded-lg border px-1 py-5">
+      <al-pagination
+        alQueryPagination
+        [pageSize]="pagination().take"
+        [skip]="pagination().skip"
+        [total]="authorDetailsStore.total()"
+        (pageChange)="pagination.set($event)"
+      />
+    </footer>
+  }
 }

@@ -18,6 +18,7 @@ import {
   buildOrganization,
   buildPageGraph,
   buildPerson,
+  buildPersonId,
   buildWebPage,
   buildWebSite,
   rewriteImageUrl,
@@ -330,6 +331,7 @@ export class SeoService {
       author.name,
       lang,
       baseUrl,
+      { '@id': buildPersonId(author.slug, baseUrl) },
     );
     const person = buildPerson(author, { baseUrl });
     const breadcrumb = buildHomeBreadcrumb(

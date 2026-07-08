@@ -1,5 +1,5 @@
-import { eq } from 'drizzle-orm';
-import { defineEventHandler, getRouterParam } from 'h3';
+import { and, eq, not } from 'drizzle-orm';
+import { createError, defineEventHandler, getRouterParam } from 'h3';
 
 import { authors } from '@angular-love/blog-bff/shared/schema';
 
@@ -25,7 +25,11 @@ export default defineEventHandler(async (event) => {
       titles: authors.titles,
     })
     .from(authors)
-    .where(eq(authors.slug, slug!));
+    .where(and(eq(authors.slug, slug!), not(eq(authors.seq, 0))));
+
+  if (!author) {
+    throw createError({ statusCode: 404, statusMessage: 'Author not found' });
+  }
 
   return author;
 });

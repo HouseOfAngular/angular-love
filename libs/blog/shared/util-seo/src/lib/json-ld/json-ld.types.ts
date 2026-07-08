@@ -94,6 +94,7 @@ export interface SchemaWebPage {
   name: string;
   inLanguage: string;
   isPartOf: SchemaRef;
+  mainEntity?: SchemaRef;
 }
 
 export type SchemaGraphEntity =
