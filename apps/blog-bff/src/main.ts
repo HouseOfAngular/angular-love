@@ -6,6 +6,7 @@ import { articles } from '@angular-love/blog-bff/articles/api';
 import { authors } from '@angular-love/blog-bff/authors/api';
 import { banners } from '@angular-love/blog-bff/banners/api';
 import { newsletter } from '@angular-love/blog-bff/newsletter/api';
+import { videos } from '@angular-love/blog-bff/videos/api';
 
 const app = new Hono();
 
@@ -15,6 +16,7 @@ app.route('/articles', articles);
 app.route('/authors', authors);
 app.route('/newsletter', newsletter);
 app.route('/banners', banners);
+app.route('/videos', videos);
 
 app.get('/robots.txt', (c) => {
   const robotsTxt = `User-agent: *

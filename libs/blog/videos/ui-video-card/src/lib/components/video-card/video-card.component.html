@@ -1,0 +1,43 @@
+<article
+  class="bg-al-card md:hover:shadow-al-primary group relative h-full w-full rounded-lg border shadow-none transition-transform motion-reduce:transition-none lg:hover:scale-105 lg:motion-reduce:hover:scale-100 dark:border-transparent"
+>
+  <button
+    type="button"
+    class="absolute inset-0 z-20 cursor-pointer rounded-lg"
+    [attr.aria-label]="videoPlayerTitle() + ': ' + video().title"
+    (click)="playVideo.emit()"
+  ></button>
+
+  <div
+    class="md:group-hover:bg-al-bottom-radial-gradient absolute bottom-0 z-0 h-1/2 w-full opacity-50"
+  ></div>
+
+  <div class="relative overflow-hidden rounded-t-lg">
+    <img
+      alt=""
+      class="aspect-video w-full object-cover object-center"
+      [ngSrc]="thumbnailSrc()"
+      (error)="onThumbnailError()"
+      width="405"
+      height="228"
+    />
+
+    <span class="absolute inset-0 flex items-center justify-center bg-black/20">
+      <fast-svg
+        name="play"
+        aria-hidden="true"
+        class="text-white drop-shadow-lg"
+        size="64"
+      />
+    </span>
+  </div>
+
+  <div class="relative flex flex-col px-4 pt-4 pb-4">
+    <h3 class="line-clamp-2 text-2xl font-bold" [id]="video().videoId">
+      {{ video().title }}
+    </h3>
+    <p class="line-clamp-2 text-base">
+      {{ video().eventName }}
+    </p>
+  </div>
+</article>
