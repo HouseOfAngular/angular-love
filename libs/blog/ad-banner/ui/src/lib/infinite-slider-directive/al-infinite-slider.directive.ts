@@ -1,4 +1,3 @@
-import { animate, AnimationBuilder, style } from '@angular/animations';
 import {
   afterNextRender,
   DestroyRef,
@@ -11,7 +10,7 @@ import {
   ViewContainerRef,
 } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
-import { debounceTime, interval, tap } from 'rxjs';
+import { delay, interval, tap } from 'rxjs';
 
 /**
  * This directive creates an infinite slider from a collection of items (e.g. banners).
@@ -45,7 +44,6 @@ export class AlInfiniteSliderDirective {
 
   private readonly _templateRef = inject(TemplateRef);
   private readonly _viewContainerRef = inject(ViewContainerRef);
-  private readonly _builder = inject(AnimationBuilder);
   private readonly _element = inject(ElementRef);
   private readonly _destroyRef = inject(DestroyRef);
 
@@ -56,11 +54,11 @@ export class AlInfiniteSliderDirective {
 
   private _initView() {
     effect(() => {
+      this._viewContainerRef.clear();
       this.slidesElements()?.forEach((item, index) => {
-        // Create a new embedded view for each item in the collection
         this._viewContainerRef.createEmbeddedView(this._templateRef, {
-          $implicit: item, // Pass the current item as the context
-          index: index, // Pass the current index as part of the context
+          $implicit: item,
+          index: index,
         });
       });
     });
@@ -68,25 +66,34 @@ export class AlInfiniteSliderDirective {
 
   private _startSlider() {
     afterNextRender(() => {
-      const animationPlayer = this._builder
-        .build([
-          style({ transform: `translateX(0%)` }),
-          animate(
-            `${this.msPerAnimation()}ms ease-in-out`,
-            style({ transform: `translateX(-100%)` }),
-          ),
-        ])
-        .create(this._element.nativeElement.parentElement);
+      const parentElement = this._element.nativeElement
+        .parentElement as HTMLElement;
+      if (!parentElement) return;
+
+      // 1. Define the animation using the native browser Web Animations API (WAAPI)
+      const animation = parentElement.animate(
+        [{ transform: 'translateX(0%)' }, { transform: 'translateX(-100%)' }],
+        {
+          duration: this.msPerAnimation(),
+          easing: 'ease-in-out',
+          fill: 'forwards', // Retains the -100% position when finished
+        },
+      );
+
+      // Pause it immediately so it doesn't play on load
+      animation.pause();
 
       interval(this.msPerSlide())
         .pipe(
-          tap(() => animationPlayer.play()),
-          debounceTime(this.msPerSlide() / 2),
+          tap(() => animation.play()),
+          // 2. Swapped debounceTime for delay. Semantically cleaner for timed triggers.
+          delay(this.msPerSlide() / 2),
           tap(() => {
-            // rearrange the slides so 1 | 2 | 3 becomes 2 | 3 | 1
+            // Rearrange slides: 1 | 2 | 3 -> 2 | 3 | 1
             this._moveFirstSlideAtTheEnd();
-            // reset the animation to compensate rearranging the slides
-            animationPlayer.reset();
+            // 3. Cancelling the WAAPI animation clears the inline "fill" styles,
+            // resetting the visual layout back to 0% offset instantly.
+            animation.cancel();
           }),
           takeUntilDestroyed(this._destroyRef),
         )
@@ -95,10 +102,11 @@ export class AlInfiniteSliderDirective {
   }
 
   private _moveFirstSlideAtTheEnd() {
-    // Detach the first view and append it to the end
-    this._viewContainerRef.move(
-      this._viewContainerRef.get(0)!,
-      this._viewContainerRef.length - 1,
-    );
+    if (this._viewContainerRef.length > 1) {
+      this._viewContainerRef.move(
+        this._viewContainerRef.get(0)!,
+        this._viewContainerRef.length - 1,
+      );
+    }
   }
 }
