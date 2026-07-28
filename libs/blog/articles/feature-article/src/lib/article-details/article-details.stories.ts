@@ -3,7 +3,7 @@ import { applicationConfig, Meta, StoryObj } from '@storybook/angular';
 
 import { TranslocoHttpLoader } from '@angular-love/blog/i18n/data-access';
 import { AlLocalizeService } from '@angular-love/blog/i18n/util';
-import { Article, SeoData } from '@angular-love/contracts/articles';
+import { Article, DbLang, SeoData } from '@angular-love/contracts/articles';
 import { ConfigService } from '@angular-love/shared/config';
 
 import { ArticleDetailsComponent } from './article-details.component';
@@ -35,9 +35,11 @@ const articleDetails: Article = {
   slug: '',
   seo: {} as SeoData,
   otherTranslations: {} as any,
-  lang: 'en',
+  language: DbLang.English,
   readingTime: '3',
   title: "Why Angular signals won't replace RxJs",
+  excerpt:
+    'Signals will not replace RxJs — they cover the synchronous half of the problem.',
   difficulty: 'beginner',
   author: {
     slug: '',

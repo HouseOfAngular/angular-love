@@ -24,6 +24,21 @@ export const SEO_META_KEYS = {
 export type SeoMetaKeys = keyof typeof SEO_META_KEYS;
 
 /**
+ * Tags that live in the `name` attribute rather than `property`.
+ *
+ * `property` is the OpenGraph/RDFa attribute — correct for `og:*` and the
+ * `article:*` OpenGraph namespace. Everything else here is `name`-scoped by its
+ * own spec, and crawlers ignore it under `property`: Google reads only
+ * `<meta name="description">` and `<meta name="robots">`, and the Twitter card
+ * spec defines `name="twitter:*"`.
+ */
+const NAME_SCOPED_TAGS: readonly string[] = ['description', 'robots'];
+
+export function isNameScopedMetaTag(tag: string): boolean {
+  return NAME_SCOPED_TAGS.includes(tag) || tag.startsWith('twitter:');
+}
+
+/**
  * Truly site-wide BASE tags — exactly the keys `SeoService.applyBaseSeo()`
  * reapplies (with constant values) on every navigation, including store-managed
  * routes. They are NEVER removed by `resetPageSeo()`. Page-level tags such as

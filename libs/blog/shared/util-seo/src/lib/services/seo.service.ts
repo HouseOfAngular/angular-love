@@ -2,7 +2,7 @@ import { DOCUMENT, inject, Injectable } from '@angular/core';
 import { Meta, MetaDefinition, Title } from '@angular/platform-browser';
 import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 import { TranslocoService } from '@jsverse/transloco';
-import { filter, map, switchMap } from 'rxjs';
+import { filter, firstValueFrom, map, switchMap } from 'rxjs';
 
 import { Author } from '@angular-love/blog/contracts/authors';
 import { AlLocalizeService } from '@angular-love/blog/i18n/util';
@@ -13,14 +13,18 @@ import {
 } from '@angular-love/contracts/articles';
 
 import {
+  BreadcrumbItem,
   buildBlogPosting,
+  buildBreadcrumbId,
   buildHomeBreadcrumb,
   buildOrganization,
   buildPageGraph,
   buildPerson,
   buildPersonId,
   buildWebPage,
+  buildWebPageId,
   buildWebSite,
+  normalizeSeoDescription,
   rewriteImageUrl,
   SchemaGraphEntity,
   serializeJsonLd,
@@ -29,6 +33,7 @@ import { SEO_CONFIG, SeoConfig } from '../tokens';
 
 import { interpretRouteSeo, SeoRouteInterpretation } from './route-seo-data';
 import {
+  isNameScopedMetaTag,
   PAGE_REMOVABLE_META_KEYS,
   SEO_META_KEYS,
   SeoMetaKeys,
@@ -54,7 +59,11 @@ export class SeoService {
   private _baseUrl = '';
   private _siteName = '';
 
-  init(): void {
+  /**
+   * Returns a promise the app initializer awaits, so the cached base config is
+   * in place before routing starts.
+   */
+  init(): Promise<void> {
     this._router.events
       .pipe(
         filter((event) => event instanceof NavigationEnd),
@@ -110,8 +119,30 @@ export class SeoService {
 
         if (seo.applyJsonLd) {
           const inLanguage = seoConfig.locale.split('_')[0];
-          this.setJsonLd(this._buildPageEntities(seo, inLanguage));
+          this.setJsonLd(
+            this._buildPageEntities(seo, {
+              inLanguage,
+              description: seoConfig.description,
+            }),
+          );
         }
+      });
+
+    // Store-managed routes apply their seo (including JSON-LD) during the
+    // awaited route guard, which runs BEFORE the first NavigationEnd — so the
+    // subscription above has not cached baseUrl/siteName yet. The graph's
+    // Organization + WebSite entities are built from those two fields, so
+    // without priming them here they serialize with an empty name and url on
+    // any direct load of an article or author page. Both values are
+    // language-independent, so the first emission is enough.
+    return firstValueFrom(this._seoConfig)
+      .then(({ baseUrl, siteName }) => {
+        this._baseUrl = baseUrl;
+        this._siteName = siteName;
+      })
+      .catch(() => {
+        // Never fail app bootstrap over seo config; NavigationEnd still
+        // populates these for centrally-managed routes.
       });
   }
 
@@ -256,7 +287,19 @@ export class SeoService {
     const { baseUrl, lang } = opts;
     const pageUrl = `${baseUrl}${buildArticlePath(article.slug, lang)}`;
 
-    this.setMeta(article.seo, pageUrl);
+    this.setMeta(
+      {
+        ...article.seo,
+        // Yoast's per-post description is never filled in, so seo.description is
+        // the site-wide default (and in the site's language, not the article's).
+        // The article's own excerpt is the only per-article summary we have.
+        description: normalizeSeoDescription(article.excerpt),
+        // Same fallback as the JSON-LD datePublished — see buildBlogPosting.
+        article_published_time:
+          article.seo.article_published_time || article.publishDate,
+      },
+      pageUrl,
+    );
     this.setTitle(article.seo.title);
 
     const hreflangEntries = buildArticleHreflangEntries(article, baseUrl);
@@ -270,9 +313,9 @@ export class SeoService {
   }
 
   /**
-   * Build and inject the full article JSON-LD graph (BlogPosting + Person +
-   * BreadcrumbList).  pageUrl and baseUrl are passed explicitly so callers
-   * are not gated behind NavigationEnd timing.
+   * Build and inject the full article JSON-LD graph (WebPage + BlogPosting +
+   * Person + BreadcrumbList).  pageUrl and baseUrl are passed explicitly so
+   * callers are not gated behind NavigationEnd timing.
    */
   setArticleJsonLd(
     article: Article,
@@ -290,13 +333,30 @@ export class SeoService {
 
     // TODO: Article contract has no category field; breadcrumb is (Home → Article).
     //       Extend Article type with category info to add a middle Category item.
+    const breadcrumbId = buildBreadcrumbId(pageUrl);
     const breadcrumb = buildHomeBreadcrumb(
-      `${pageUrl}#breadcrumb`,
+      breadcrumbId,
       { name: article.title, url: pageUrl },
-      baseUrl,
+      this._homeCrumb(baseUrl, inLanguage),
     );
 
-    this.setJsonLd([blogPosting, person, breadcrumb]);
+    // The page entity the BlogPosting's mainEntityOfPage resolves to, and the
+    // owner of the breadcrumb — without it both would be dangling references.
+    const webPage = buildWebPage(
+      'WebPage',
+      buildWebPageId(pageUrl),
+      pageUrl,
+      article.title,
+      inLanguage,
+      baseUrl,
+      {
+        description: normalizeSeoDescription(article.excerpt),
+        mainEntity: { '@id': blogPosting['@id'] },
+        breadcrumb: { '@id': breadcrumbId },
+      },
+    );
+
+    this.setJsonLd([webPage, blogPosting, person, breadcrumb]);
   }
 
   /**
@@ -324,20 +384,25 @@ export class SeoService {
     }));
     this.setHreflang(hreflangEntries);
 
+    const breadcrumbId = buildBreadcrumbId(pageUrl);
     const profilePage = buildWebPage(
       'ProfilePage',
-      `${pageUrl}#webpage`,
+      buildWebPageId(pageUrl),
       pageUrl,
       author.name,
       lang,
       baseUrl,
-      { '@id': buildPersonId(author.slug, baseUrl) },
+      {
+        mainEntity: { '@id': buildPersonId(author.slug, baseUrl) },
+        description: bio,
+        breadcrumb: { '@id': breadcrumbId },
+      },
     );
     const person = buildPerson(author, { baseUrl });
     const breadcrumb = buildHomeBreadcrumb(
-      `${pageUrl}#breadcrumb`,
+      breadcrumbId,
       { name: author.name, url: pageUrl },
-      baseUrl,
+      this._homeCrumb(baseUrl, lang),
     );
     this.setJsonLd([profilePage, person, breadcrumb]);
   }
@@ -368,7 +433,7 @@ export class SeoService {
    */
   private _buildPageEntities(
     seo: SeoRouteInterpretation,
-    inLanguage: string,
+    ctx: { inLanguage: string; description: string },
   ): SchemaGraphEntity[] {
     if (!seo.jsonLdType) {
       return [];
@@ -379,8 +444,26 @@ export class SeoService {
       url: this._url,
       baseUrl: this._baseUrl,
       name: this._resolvePageName(seo),
-      inLanguage,
+      inLanguage: ctx.inLanguage,
+      // Mirrors the meta description applied for this page above.
+      description: ctx.description,
+      aboutOrganization: seo.aboutOrganization,
+      home: this._homeCrumb(this._baseUrl, ctx.inLanguage),
     });
+  }
+
+  /**
+   * Root breadcrumb crumb for the given language. `localizeExplicitPath` is the
+   * same helper that builds hreflang, so the url matches that language's
+   * homepage canonical exactly ('/' for en, '/pl' for pl).
+   */
+  private _homeCrumb(baseUrl: string, lang: string): BreadcrumbItem {
+    return {
+      // Translated in `lang` explicitly rather than the active language: this
+      // runs during the route guard, where the two can still differ.
+      name: this._translocoService.translate('seo.breadcrumbHome', {}, lang),
+      url: `${baseUrl}${this._localizeService.localizeExplicitPath('/', lang)}`,
+    };
   }
 
   private _resolvePageName(seo: SeoRouteInterpretation): string {
@@ -396,18 +479,18 @@ export class SeoService {
     const entries = Object.entries(miscData);
 
     for (const [index, entry] of entries.entries()) {
-      const label: MetaDefinition = {
-        property: `${SEO_META_KEYS.twitterMiscLabel}${index + 1}`,
-        content: entry[0],
-      };
-
-      const data: MetaDefinition = {
-        property: `${SEO_META_KEYS.twitterMiscData}${index + 1}`,
-        content: entry[1],
-      };
-
-      this._meta.updateTag(label);
-      this._meta.updateTag(data);
+      this._meta.updateTag(
+        buildMetaDefinition(
+          `${SEO_META_KEYS.twitterMiscLabel}${index + 1}`,
+          entry[0],
+        ),
+      );
+      this._meta.updateTag(
+        buildMetaDefinition(
+          `${SEO_META_KEYS.twitterMiscData}${index + 1}`,
+          entry[1],
+        ),
+      );
     }
   }
 
@@ -444,14 +527,11 @@ export class SeoService {
   }
 
   private updateTag(content: string, name: SeoMetaKeys | SeoTitleKeys): void {
-    const meta: MetaDefinition = {
-      property:
-        SEO_META_KEYS[name as SeoMetaKeys] ||
-        SEO_TITLE_KEYS[name as SeoTitleKeys],
-      content: content,
-    };
+    const tag =
+      SEO_META_KEYS[name as SeoMetaKeys] ||
+      SEO_TITLE_KEYS[name as SeoTitleKeys];
 
-    this._meta.updateTag(meta);
+    this._meta.updateTag(buildMetaDefinition(tag, content));
   }
 
   /**
@@ -559,6 +639,20 @@ export class SeoService {
     const pathname = _url.pathname.replace(/\/$/, '');
     return `${_url.origin}${pathname}`;
   }
+}
+
+/**
+ * Put the tag in the attribute its spec actually defines. Angular's `Meta`
+ * derives its lookup selector from whichever of `name`/`property` is set, so
+ * this also keeps updates and removals matching the tag that was written.
+ */
+export function buildMetaDefinition(
+  tag: string,
+  content: string,
+): MetaDefinition {
+  return isNameScopedMetaTag(tag)
+    ? { name: tag, content }
+    : { property: tag, content };
 }
 
 export function buildArticlePath(slug: string, langCode: string): string {

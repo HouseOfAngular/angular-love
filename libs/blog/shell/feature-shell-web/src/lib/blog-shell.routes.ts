@@ -33,7 +33,12 @@ export const commonRoutes: Route[] = [
           (await import('@angular-love/blog/home/feature-home'))
             .HomePageComponent,
         data: {
-          seo: { title: 'seo.home', autoHrefLang: true } satisfies RouteSeoData,
+          seo: {
+            title: 'seo.home',
+            autoHrefLang: true,
+            jsonLd: 'WebPage',
+            aboutOrganization: true,
+          } satisfies RouteSeoData,
         },
       },
       {

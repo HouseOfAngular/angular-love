@@ -18,6 +18,12 @@ export type RouteSeoData =
       autoHrefLang?: boolean;
       /** schema.org page type, or `false` to suppress JSON-LD entirely. */
       jsonLd?: WebPageType | false;
+      /**
+       * Bind the page entity to the Organization via schema.org `about`.
+       * Only meaningful for the homepage, which is the page *about* the
+       * organization; other pages are about their own topic.
+       */
+      aboutOrganization?: boolean;
     }
   | false;
 
@@ -34,6 +40,8 @@ export interface SeoRouteInterpretation {
   collectionTitle?: string;
   /** Emit hreflang alternates. */
   autoHrefLang: boolean;
+  /** Emit `about: { @id: …#organization }` on the page entity. */
+  aboutOrganization: boolean;
 }
 
 /**
@@ -45,7 +53,12 @@ export function interpretRouteSeo(routeData: Data): SeoRouteInterpretation {
   const seo = routeData?.['seo'] as RouteSeoData | undefined;
 
   if (seo === false) {
-    return { managedExternally: true, applyJsonLd: false, autoHrefLang: false };
+    return {
+      managedExternally: true,
+      applyJsonLd: false,
+      autoHrefLang: false,
+      aboutOrganization: false,
+    };
   }
 
   if (!seo) {
@@ -54,6 +67,7 @@ export function interpretRouteSeo(routeData: Data): SeoRouteInterpretation {
       managedExternally: false,
       applyJsonLd: false,
       autoHrefLang: false,
+      aboutOrganization: false,
     };
   }
 
@@ -69,5 +83,6 @@ export function interpretRouteSeo(routeData: Data): SeoRouteInterpretation {
     titleKey: seo.title,
     collectionTitle: routeData?.['title'] as string | undefined,
     autoHrefLang: !!seo.autoHrefLang,
+    aboutOrganization: !!seo.aboutOrganization,
   };
 }

@@ -110,6 +110,11 @@ export interface Article {
   title: string;
   slug: string;
   content: string;
+  /**
+   * Per-article summary from WP. Preferred over `seo.description`, which holds
+   * the site-wide Yoast default because per-post descriptions are not maintained.
+   */
+  excerpt: string;
   publishDate: string;
   readingTime: string;
   difficulty: 'beginner' | 'intermediate' | 'advanced';

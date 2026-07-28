@@ -5,10 +5,12 @@ import {
   buildBreadcrumbList,
   buildHomeBreadcrumb,
   buildOrganization,
+  buildOrganizationId,
   buildPageGraph,
   buildPerson,
   buildPersonId,
   buildWebPage,
+  buildWebPageId,
   buildWebSite,
   serializeJsonLd,
 } from './json-ld.builders';
@@ -17,6 +19,8 @@ import { SchemaGraphEntity, SchemaWebPage } from './json-ld.types';
 const BASE_URL = 'https://angular.love';
 const SITE_NAME = 'Angular.love';
 const IN_LANGUAGE = ['en', 'pl'];
+const HOME = { name: 'Home', url: `${BASE_URL}/` };
+const HOME_PL = { name: 'Strona główna', url: `${BASE_URL}/pl` };
 
 const makeAuthor = (
   overrides: Partial<{
@@ -43,6 +47,8 @@ const makeArticle = (
     title: string;
     slug: string;
     language: DbLang;
+    publishDate: string;
+    excerpt: string;
     seo: Record<string, unknown>;
     author: ReturnType<typeof makeAuthor>;
   }> = {},
@@ -51,6 +57,7 @@ const makeArticle = (
   title: 'Understanding Signals',
   slug: 'understanding-signals',
   content: '<p>content</p>',
+  excerpt: 'A deep dive into Angular signals.',
   publishDate: '2025-01-01',
   readingTime: '5 min',
   difficulty: 'intermediate' as const,
@@ -188,7 +195,45 @@ describe('buildBlogPosting', () => {
     });
     expect(posting['@id']).toBe(`${plUrl}#article`);
     expect(posting.url).toBe(plUrl);
-    expect(posting.mainEntityOfPage).toEqual({ '@id': plUrl });
+    expect(posting.mainEntityOfPage).toEqual({ '@id': `${plUrl}#webpage` });
+  });
+
+  it('points mainEntityOfPage at the WebPage entity, not the bare page URL', () => {
+    const posting = buildBlogPosting(makeArticle(), {
+      pageUrl: PAGE_URL,
+      baseUrl: BASE_URL,
+      inLanguage: 'en',
+    });
+    expect(posting.mainEntityOfPage).toEqual({
+      '@id': buildWebPageId(PAGE_URL),
+    });
+  });
+
+  it('falls back to article.publishDate when Yoast omits the published time', () => {
+    const article = makeArticle({
+      seo: { article_modified_time: '2026-02-01T10:00:00Z' },
+      publishDate: '2026-01-01T08:00:00.000Z',
+    });
+    const posting = buildBlogPosting(article, {
+      pageUrl: PAGE_URL,
+      baseUrl: BASE_URL,
+      inLanguage: 'en',
+    });
+    expect(posting.datePublished).toBe('2026-01-01T08:00:00.000Z');
+    expect(posting.dateModified).toBe('2026-02-01T10:00:00Z');
+  });
+
+  it('prefers the Yoast published time over article.publishDate', () => {
+    const article = makeArticle({
+      seo: { article_published_time: '2025-01-01T10:00:00Z' },
+      publishDate: '2026-01-01T08:00:00.000Z',
+    });
+    const posting = buildBlogPosting(article, {
+      pageUrl: PAGE_URL,
+      baseUrl: BASE_URL,
+      inLanguage: 'en',
+    });
+    expect(posting.datePublished).toBe('2025-01-01T10:00:00Z');
   });
 
   it('references author by @id, not by inline object', () => {
@@ -215,9 +260,54 @@ describe('buildBlogPosting', () => {
     });
   });
 
+  it('takes description from the excerpt, never from Yoast seo.description', () => {
+    const article = makeArticle({
+      excerpt: 'What signals actually change about change detection.',
+      // The site-wide Yoast default, in the wrong language — must not be used.
+      seo: {
+        description:
+          'Angular.love - ciekawostki oraz rozwiązania dla developerów.',
+      },
+    });
+    const posting = buildBlogPosting(article, {
+      pageUrl: PAGE_URL,
+      baseUrl: BASE_URL,
+      inLanguage: 'en',
+    });
+    expect(posting.description).toBe(
+      'What signals actually change about change detection.',
+    );
+  });
+
+  it('flattens a rendered-HTML excerpt into the description', () => {
+    const article = makeArticle({
+      excerpt: '<p>Signals&nbsp;explained &amp; demystified &hellip;</p>\n',
+    });
+    const posting = buildBlogPosting(article, {
+      pageUrl: PAGE_URL,
+      baseUrl: BASE_URL,
+      inLanguage: 'en',
+    });
+    expect(posting.description).toBe('Signals explained & demystified …');
+  });
+
+  it('omits description when the excerpt is empty', () => {
+    const article = makeArticle({
+      excerpt: '',
+      seo: { description: 'the Yoast default that must not leak in' },
+    });
+    const posting = buildBlogPosting(article, {
+      pageUrl: PAGE_URL,
+      baseUrl: BASE_URL,
+      inLanguage: 'en',
+    });
+    expect(posting.description).toBeUndefined();
+  });
+
   it('omits optional fields when seo data is absent', () => {
     const article = makeArticle({
       seo: {},
+      excerpt: '',
     });
     const posting = buildBlogPosting(article, {
       pageUrl: PAGE_URL,
@@ -226,8 +316,19 @@ describe('buildBlogPosting', () => {
     });
     expect(posting.description).toBeUndefined();
     expect(posting.image).toBeUndefined();
-    expect(posting.datePublished).toBeUndefined();
     expect(posting.dateModified).toBeUndefined();
+    // datePublished still resolves — it falls back to article.publishDate.
+    expect(posting.datePublished).toBe('2025-01-01');
+  });
+
+  it('omits datePublished only when both seo and publishDate are empty', () => {
+    const article = makeArticle({ seo: {}, publishDate: '' });
+    const posting = buildBlogPosting(article, {
+      pageUrl: PAGE_URL,
+      baseUrl: BASE_URL,
+      inLanguage: 'en',
+    });
+    expect(posting.datePublished).toBeUndefined();
   });
 });
 
@@ -390,6 +491,50 @@ describe('buildWebPage', () => {
       expect(page.inLanguage).toBe(inLanguage);
     },
   );
+
+  it('omits description, mainEntity and about when no options are passed', () => {
+    const page = buildWebPage(
+      'WebPage',
+      `${BASE_URL}/test#webpage`,
+      `${BASE_URL}/test`,
+      'Test',
+      'en',
+      BASE_URL,
+    );
+    expect(page.description).toBeUndefined();
+    expect(page.mainEntity).toBeUndefined();
+    expect(page.about).toBeUndefined();
+  });
+
+  it('emits description and about when provided', () => {
+    const page = buildWebPage(
+      'WebPage',
+      `${BASE_URL}/test#webpage`,
+      `${BASE_URL}/test`,
+      'Test',
+      'en',
+      BASE_URL,
+      {
+        description: 'A page about things',
+        about: { '@id': buildOrganizationId(BASE_URL) },
+      },
+    );
+    expect(page.description).toBe('A page about things');
+    expect(page.about).toEqual({ '@id': 'https://angular.love/#organization' });
+  });
+
+  it('omits an empty description rather than emitting a blank string', () => {
+    const page = buildWebPage(
+      'WebPage',
+      `${BASE_URL}/test#webpage`,
+      `${BASE_URL}/test`,
+      'Test',
+      'en',
+      BASE_URL,
+      { description: '' },
+    );
+    expect(page.description).toBeUndefined();
+  });
 });
 
 describe('serializeJsonLd', () => {
@@ -424,7 +569,7 @@ describe('buildHomeBreadcrumb', () => {
   const crumb = buildHomeBreadcrumb(
     `${BASE_URL}/news#breadcrumb`,
     { name: 'News', url: `${BASE_URL}/news` },
-    BASE_URL,
+    HOME,
   );
 
   it('prepends a Home item pointing at baseUrl/', () => {
@@ -433,6 +578,22 @@ describe('buildHomeBreadcrumb', () => {
       position: 1,
       name: 'Home',
       item: `${BASE_URL}/`,
+    });
+  });
+
+  it('uses the localized root crumb on a non-default-language page', () => {
+    const plCrumb = buildHomeBreadcrumb(
+      `${BASE_URL}/pl/artykul#breadcrumb`,
+      { name: 'Artykuł', url: `${BASE_URL}/pl/artykul` },
+      HOME_PL,
+    );
+    // Was 'Home' → https://angular.love/ on Polish pages: English label
+    // pointing at the English site root.
+    expect(plCrumb.itemListElement[0]).toEqual({
+      '@type': 'ListItem',
+      position: 1,
+      name: 'Strona główna',
+      item: `${BASE_URL}/pl`,
     });
   });
 
@@ -483,13 +644,13 @@ describe('Author profile graph (ProfilePage + Person + BreadcrumbList)', () => {
       author.name,
       'en',
       BASE_URL,
-      { '@id': `${PAGE_URL}#person` },
+      { mainEntity: { '@id': `${PAGE_URL}#person` } },
     );
     const person = buildPerson(author, { baseUrl: BASE_URL });
     const breadcrumb = buildHomeBreadcrumb(
       `${PAGE_URL}#breadcrumb`,
       { name: author.name, url: PAGE_URL },
-      BASE_URL,
+      HOME,
     );
     const graph = [profilePage, person, breadcrumb];
 
@@ -528,7 +689,7 @@ describe('Author profile graph (ProfilePage + Person + BreadcrumbList)', () => {
     const breadcrumb = buildHomeBreadcrumb(
       `${PAGE_URL}#breadcrumb`,
       { name: 'Jane Dev', url: PAGE_URL },
-      BASE_URL,
+      HOME,
     );
     expect(breadcrumb.itemListElement[0]).toMatchObject({
       '@type': 'ListItem',
@@ -552,6 +713,7 @@ describe('buildPageGraph', () => {
       baseUrl: BASE_URL,
       name: 'About us',
       inLanguage: 'en',
+      home: HOME,
     });
     expect(graph).toHaveLength(1);
     expect(graph[0]).toMatchObject({
@@ -562,6 +724,46 @@ describe('buildPageGraph', () => {
     expect((graph[0] as SchemaWebPage).mainEntity).toBeUndefined();
   });
 
+  it('forwards description onto the page entity', () => {
+    const graph = buildPageGraph({
+      jsonLdType: 'AboutPage',
+      url: `${BASE_URL}/about-us`,
+      baseUrl: BASE_URL,
+      name: 'About us',
+      inLanguage: 'en',
+      home: HOME,
+      description: 'Who we are',
+    });
+    expect((graph[0] as SchemaWebPage).description).toBe('Who we are');
+  });
+
+  it('binds the page to the Organization when aboutOrganization is set', () => {
+    const graph = buildPageGraph({
+      jsonLdType: 'WebPage',
+      url: BASE_URL,
+      baseUrl: BASE_URL,
+      name: 'Blog and community for Angular fans',
+      inLanguage: 'en',
+      home: HOME,
+      aboutOrganization: true,
+    });
+    expect((graph[0] as SchemaWebPage).about).toEqual({
+      '@id': buildOrganizationId(BASE_URL),
+    });
+  });
+
+  it('omits about when aboutOrganization is not set', () => {
+    const graph = buildPageGraph({
+      jsonLdType: 'WebPage',
+      url: `${BASE_URL}/become-author`,
+      baseUrl: BASE_URL,
+      name: 'Become an author',
+      inLanguage: 'en',
+      home: HOME,
+    });
+    expect((graph[0] as SchemaWebPage).about).toBeUndefined();
+  });
+
   it('appends a (Home → collection) breadcrumb for CollectionPage', () => {
     const graph = buildPageGraph({
       jsonLdType: 'CollectionPage',
@@ -569,6 +771,7 @@ describe('buildPageGraph', () => {
       baseUrl: BASE_URL,
       name: 'Angular News',
       inLanguage: 'pl',
+      home: HOME,
     });
     expect(graph).toHaveLength(2);
     expect(graph[0]['@type']).toBe('CollectionPage');
@@ -576,5 +779,31 @@ describe('buildPageGraph', () => {
       '@type': 'BreadcrumbList',
       '@id': `${BASE_URL}/news#breadcrumb`,
     });
+  });
+
+  it('links the CollectionPage to its breadcrumb so it is not orphaned', () => {
+    const graph = buildPageGraph({
+      jsonLdType: 'CollectionPage',
+      url: `${BASE_URL}/news`,
+      baseUrl: BASE_URL,
+      name: 'Angular News',
+      inLanguage: 'pl',
+      home: HOME,
+    });
+    expect((graph[0] as SchemaWebPage).breadcrumb).toEqual({
+      '@id': graph[1]['@id'],
+    });
+  });
+
+  it('omits breadcrumb on page types that emit none', () => {
+    const graph = buildPageGraph({
+      jsonLdType: 'WebPage',
+      url: `${BASE_URL}/writing-rules`,
+      baseUrl: BASE_URL,
+      name: 'Writing rules',
+      inLanguage: 'en',
+      home: HOME,
+    });
+    expect((graph[0] as SchemaWebPage).breadcrumb).toBeUndefined();
   });
 });

@@ -92,9 +92,12 @@ export interface SchemaWebPage {
   '@id': string;
   url: string;
   name: string;
+  description?: string;
   inLanguage: string;
   isPartOf: SchemaRef;
   mainEntity?: SchemaRef;
+  about?: SchemaRef;
+  breadcrumb?: SchemaRef;
 }
 
 export type SchemaGraphEntity =
