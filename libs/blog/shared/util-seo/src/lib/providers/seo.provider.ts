@@ -27,9 +27,9 @@ export const provideSeo = (seoProvider: SeoProvider): EnvironmentProviders => {
     provideAppInitializer(() => {
       const initializerFn = (() => {
         const seoService = inject(SeoService);
-        return () => {
-          seoService.init();
-        };
+        // Returned so Angular awaits it — init() primes the cached base config
+        // that store-managed routes need during their route guard.
+        return () => seoService.init();
       })();
       return initializerFn();
     }),

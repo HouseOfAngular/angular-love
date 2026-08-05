@@ -49,6 +49,21 @@ describe('interpretRouteSeo', () => {
     expect(result.applyJsonLd).toBe(true);
   });
 
+  it('defaults aboutOrganization to false', () => {
+    expect(
+      interpretRouteSeo({ seo: { jsonLd: 'WebPage' } }).aboutOrganization,
+    ).toBe(false);
+    expect(interpretRouteSeo({ seo: false }).aboutOrganization).toBe(false);
+    expect(interpretRouteSeo({}).aboutOrganization).toBe(false);
+  });
+
+  it('surfaces aboutOrganization for the homepage', () => {
+    const result = interpretRouteSeo({
+      seo: { title: 'seo.home', jsonLd: 'WebPage', aboutOrganization: true },
+    });
+    expect(result.aboutOrganization).toBe(true);
+  });
+
   it('surfaces route.data.title as the collection name', () => {
     const result = interpretRouteSeo({
       seo: { title: 'News', jsonLd: 'CollectionPage' },

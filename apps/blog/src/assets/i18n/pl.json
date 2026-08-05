@@ -216,6 +216,7 @@
   },
   "seo": {
     "metaDescription": "Angular.love - ciekawostki oraz rozwiązania dla średnio-zaawansowanych oraz zaawansowanych developerów Angulara.",
+    "breadcrumbHome": "Strona główna",
     "home": "Blog dla sympatyków Angulara",
     "aboutUs": "O nas",
     "becomeAuthor": "Zostań autorem",

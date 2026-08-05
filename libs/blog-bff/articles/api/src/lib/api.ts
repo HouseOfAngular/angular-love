@@ -95,6 +95,7 @@ app.get('/:slug', async (c) => {
       content: articles.content,
       slug: articles.slug,
       title: articles.title,
+      excerpt: articles.excerpt,
       readingTime: articles.readingTime,
       publishDate: articles.publishDate,
       difficulty: articles.difficulty,

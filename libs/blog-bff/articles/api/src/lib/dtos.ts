@@ -1,7 +1,10 @@
 import { AuthorTitle } from '@angular-love/blog/contracts/authors';
 
 export interface WPPostDto {
+  /** Site-local wall clock, no offset — do not treat as UTC. Use `date_gmt`. */
   date: string;
+  /** True UTC instant, no offset suffix (WP omits the trailing `Z`). */
+  date_gmt: string;
   slug: string;
   featured_image_url: string;
   title: {
