@@ -27,6 +27,7 @@ import { AvatarComponent } from '@angular-love/blog/shared/ui-avatar';
 export class ArticleCompactCardComponent {
   readonly article = input.required<ArticleCard>();
   readonly imagePriority = input<number | null>(null);
+  readonly scaleOnHover = input(true);
 
   readonly titleId = computed(() => `article-title-${this.article().slug}`);
 }

@@ -4,7 +4,12 @@
   [routerLink]="['/', article().slug] | alLocalize"
 >
   <article
-    class="relative h-full w-full overflow-hidden rounded-lg text-white transition-transform hover:scale-105 motion-reduce:transition-none motion-reduce:hover:scale-100"
+    class="md:hover:shadow-al-primary group relative h-full w-full overflow-hidden rounded-lg text-white shadow-none transition-transform motion-reduce:transition-none"
+    [class]="
+      scaleOnHover()
+        ? 'lg:hover:scale-105 lg:motion-reduce:hover:scale-100'
+        : ''
+    "
   >
     <img
       alt=""
@@ -18,7 +23,7 @@
       class="bg-al-dim relative flex h-full flex-col justify-between opacity-85"
     >
       <div
-        class="hover:bg-al-bottom-radial-gradient absolute h-full w-full"
+        class="md:group-hover:bg-al-bottom-radial-gradient absolute h-full w-full"
       ></div>
 
       <div class="flex items-center justify-between px-6 pt-6">
