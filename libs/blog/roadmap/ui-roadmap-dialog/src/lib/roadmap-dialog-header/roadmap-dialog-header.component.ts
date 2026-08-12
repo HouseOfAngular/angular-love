@@ -21,9 +21,9 @@ export class RoadmapDialogHeaderComponent {
       case 'angular-love':
         return 'from-al-roadmap-secondary to-al-roadmap-accent bg-linear-to-r';
       case 'primary':
-        return 'bg-al-roadmap-primary light:bg-al-roadmap-primary/55 text-al-primary-foreground';
+        return 'bg-al-roadmap-primary/55 dark:bg-al-roadmap-primary text-al-primary-foreground';
       case 'secondary':
-        return 'bg-al-roadmap-secondary light:bg-al-roadmap-secondary/35 text-al-primary-foreground';
+        return 'bg-al-roadmap-secondary/35 dark:bg-al-roadmap-secondary text-al-primary-foreground';
     }
   });
 }

@@ -24,7 +24,7 @@ import { RoadmapNodeLabelComponent } from '../roadmap-node-label/roadmap-node-la
     }
 
     <button
-      class="node light:bg-al-primary-foreground text-al-primary-foreground relative w-full rounded-lg bg-white text-nowrap"
+      class="node bg-al-primary-foreground text-al-primary-foreground relative w-full rounded-lg text-nowrap dark:bg-white"
       [attr.node-id]="node().id"
       (focus)="_roadmapDialogNotifierService.notifyNodeFocused(node())"
       (keydown)="onKeyDown($event)"
@@ -62,9 +62,9 @@ export class RoadmapBasicNodeComponent {
   protected readonly class = computed(() => {
     switch (this.variant()) {
       case 'primary':
-        return 'm-[2px] bg-al-roadmap-primary light:bg-[#edcafa] text-[24px]';
+        return 'm-[2px] bg-[#edcafa] dark:bg-al-roadmap-primary text-[24px]';
       case 'secondary':
-        return 'm-[2px] bg-al-roadmap-secondary light:bg-al-card light:bg-al-roadmap-gradient text-[20px]';
+        return 'm-[2px] dark:bg-al-roadmap-secondary bg-al-card not-dark:bg-al-roadmap-gradient text-[20px]';
       case 'angular-love':
         return 'm-[4px] bg-linear-to-r from-al-roadmap-secondary to-al-roadmap-accent text-white text-[24px]';
       default:
