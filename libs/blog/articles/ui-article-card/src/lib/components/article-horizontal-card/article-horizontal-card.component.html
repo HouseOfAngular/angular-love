@@ -1,10 +1,10 @@
 <a
-  [attr.aria-label]="article().title"
+  class="block h-full rounded-lg"
+  [attr.aria-labelledby]="titleId()"
   [routerLink]="['/', article().slug] | alLocalize"
 >
   <article
     class="light:border group relative flex h-full w-full flex-row rounded-lg shadow-none"
-    [attr.aria-labelledby]="article().slug"
   >
     <img
       alt=""
@@ -42,7 +42,7 @@
       <div class="flex flex-col gap-3 px-6 py-3 lg:gap-6">
         <h3
           class="*:text-al-pink line-clamp-2 text-2xl font-bold *:not-italic"
-          [id]="article().slug"
+          [id]="titleId()"
           [innerHTML]="sanitizedArticle().title"
         ></h3>
         <p

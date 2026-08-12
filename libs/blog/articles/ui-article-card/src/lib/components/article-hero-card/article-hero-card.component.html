@@ -1,11 +1,14 @@
-<a [routerLink]="['/', article().slug] | alLocalize">
+<a
+  class="block h-full rounded-lg"
+  [attr.aria-labelledby]="titleId()"
+  [routerLink]="['/', article().slug] | alLocalize"
+>
   <article
     class="hover:shadow-al-primary h-full rounded-lg bg-contain bg-center bg-no-repeat"
     [style.background-image]="
       'url(' + article().featuredImageUrl ||
       'assets/article-placeholder.webp' + ')'
     "
-    [attr.aria-labelledby]="article().slug"
   >
     <div
       class="bg-al-background-gradient relative flex h-full flex-col justify-between rounded-lg"
@@ -25,7 +28,7 @@
         <div
           class="flex flex-col items-center justify-end gap-6 gap-y-4 md:flex-row"
         >
-          <span class="w-full whitespace-nowrap text-sm/[14px] font-medium">
+          <span class="w-full text-sm/[14px] font-medium whitespace-nowrap">
             {{ article().publishDate | date: 'dd MMM yyyy' }}
           </span>
           <al-difficulty [difficulty]="article().difficulty" />
@@ -41,8 +44,8 @@
         </div>
       </div>
 
-      <div class="flex flex-col gap-5 px-8 pb-8 pt-44">
-        <h3 class="line-clamp-2 text-4xl font-bold" [id]="article().slug">
+      <div class="flex flex-col gap-5 px-8 pt-44 pb-8">
+        <h3 class="line-clamp-2 text-4xl font-bold" [id]="titleId()">
           {{ article().title }}
         </h3>
         <p class="line-clamp-2 text-base">

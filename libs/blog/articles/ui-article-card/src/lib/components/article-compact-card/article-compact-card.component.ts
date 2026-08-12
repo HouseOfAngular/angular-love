@@ -1,5 +1,10 @@
 import { NgOptimizedImage } from '@angular/common';
-import { ChangeDetectionStrategy, Component, input } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  computed,
+  input,
+} from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { FastSvgComponent } from '@push-based/ngx-fast-svg';
 
@@ -22,4 +27,6 @@ import { AvatarComponent } from '@angular-love/blog/shared/ui-avatar';
 export class ArticleCompactCardComponent {
   readonly article = input.required<ArticleCard>();
   readonly imagePriority = input<number | null>(null);
+
+  readonly titleId = computed(() => `article-title-${this.article().slug}`);
 }

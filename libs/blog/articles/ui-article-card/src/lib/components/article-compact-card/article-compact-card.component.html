@@ -1,19 +1,19 @@
-<article
-  class="relative h-full w-full overflow-hidden rounded-lg text-white transition-transform hover:scale-105 motion-reduce:transition-none motion-reduce:hover:scale-100"
-  [attr.aria-labelledby]="article().slug"
+<a
+  class="block h-full rounded-lg"
+  [attr.aria-labelledby]="titleId()"
+  [routerLink]="['/', article().slug] | alLocalize"
 >
-  <img
-    alt=""
-    class="object-cover"
-    [ngSrc]="article().featuredImageUrl || 'assets/article-placeholder.webp'"
-    [priority]="false"
-    fill
-  />
-
-  <a
-    class="relative block h-full"
-    [routerLink]="['/', article().slug] | alLocalize"
+  <article
+    class="relative h-full w-full overflow-hidden rounded-lg text-white transition-transform hover:scale-105 motion-reduce:transition-none motion-reduce:hover:scale-100"
   >
+    <img
+      alt=""
+      class="object-cover"
+      [ngSrc]="article().featuredImageUrl || 'assets/article-placeholder.webp'"
+      [priority]="false"
+      fill
+    />
+
     <div
       class="bg-al-dim relative flex h-full flex-col justify-between opacity-85"
     >
@@ -33,7 +33,7 @@
           class="flex flex-col items-center justify-end gap-6 gap-y-4 md:flex-row"
         >
           <span class="flex w-full flex-row items-center justify-end gap-2">
-            <fast-svg name="clock" size="16" />
+            <fast-svg name="clock" aria-hidden="true" size="16" />
             <time
               class="text-sm/[14px]"
               [attr.datetime]="'PT' + article().readingTime + 'M'"
@@ -45,7 +45,7 @@
       </div>
 
       <div class="flex flex-col px-6 pt-8 pb-6">
-        <h3 class="line-clamp-2 text-2xl font-bold" [id]="article().slug">
+        <h3 class="line-clamp-2 text-2xl font-bold" [id]="titleId()">
           {{ article().title }}
         </h3>
         <p class="line-clamp-2 text-base">
@@ -53,5 +53,5 @@
         </p>
       </div>
     </div>
-  </a>
-</article>
+  </article>
+</a>

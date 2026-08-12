@@ -1,5 +1,10 @@
 import { DatePipe } from '@angular/common';
-import { ChangeDetectionStrategy, Component, input } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  computed,
+  input,
+} from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { FastSvgComponent } from '@push-based/ngx-fast-svg';
 
@@ -27,4 +32,6 @@ export type Layout = 'compact' | 'hero';
 })
 export class ArticleHeroCardComponent {
   readonly article = input.required<ArticleCard>();
+
+  readonly titleId = computed(() => `article-title-${this.article().slug}`);
 }
