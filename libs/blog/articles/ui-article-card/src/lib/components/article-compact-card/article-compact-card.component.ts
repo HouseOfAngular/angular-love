@@ -23,6 +23,9 @@ import { AvatarComponent } from '@angular-love/blog/shared/ui-avatar';
     NgOptimizedImage,
   ],
   templateUrl: './article-compact-card.component.html',
+  host: {
+    'data-testid': 'article-card',
+  },
 })
 export class ArticleCompactCardComponent {
   readonly article = input.required<ArticleCard>();

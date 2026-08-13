@@ -21,17 +21,16 @@
   </div>
 
   <section
-    class="mb-6 mt-6 grid grid-cols-1 gap-x-4 gap-y-4 md:grid-cols-2 md:gap-x-8 lg:grid-cols-3 lg:gap-y-8"
+    class="mt-6 mb-6 grid grid-cols-1 gap-x-4 gap-y-4 md:grid-cols-2 md:gap-x-8 lg:grid-cols-3 lg:gap-y-8"
     [attr.aria-label]="t('latest')"
   >
     @if (!isFetchArticleListLoading()) {
       @for (article of articles(); track i; let last = $last, i = $index) {
-        <al-article-card
+        <al-article-regular-card
           class="regular-card"
           [ngClass]="{ 'hidden lg:block': last }"
           [article]="article"
           [imagePriority]="i < 2 ? 1 : null"
-          cardType="regular"
         />
         @if (i === 1) {
           <ng-container *ngTemplateOutlet="newsletterCard" />

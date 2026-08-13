@@ -32,6 +32,9 @@ type SanitizedArticleDataModel = {
     FastSvgComponent,
   ],
   templateUrl: './article-horizontal-card.component.html',
+  host: {
+    'data-testid': 'article-card',
+  },
 })
 export class ArticleHorizontalCardComponent {
   readonly article = input.required<ArticleCard>();

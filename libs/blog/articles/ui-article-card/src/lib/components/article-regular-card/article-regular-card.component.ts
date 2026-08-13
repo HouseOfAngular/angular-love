@@ -23,6 +23,9 @@ import { AvatarComponent } from '@angular-love/blog/shared/ui-avatar';
     AlLocalizePipe,
   ],
   templateUrl: './article-regular-card.component.html',
+  host: {
+    'data-testid': 'article-card',
+  },
 })
 export class ArticleRegularCardComponent {
   readonly article = input.required<ArticleCard>();

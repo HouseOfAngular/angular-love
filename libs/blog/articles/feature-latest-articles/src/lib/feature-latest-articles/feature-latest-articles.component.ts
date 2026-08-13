@@ -15,8 +15,8 @@ import { TranslocoDirective } from '@jsverse/transloco';
 
 import { ArticleListStore } from '@angular-love/blog/articles/data-access';
 import {
+  ArticleRegularCardComponent,
   ArticleRegularCardSkeletonComponent,
-  UiArticleCardComponent,
 } from '@angular-love/blog/articles/ui-article-card';
 import { NewsletterComponent } from '@angular-love/blog/newsletter';
 import { ButtonComponent } from '@angular-love/blog/shared/ui-button';
@@ -36,7 +36,7 @@ import { CategoryListItem, injectCategories } from './categories.const';
   templateUrl: './feature-latest-articles.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [
-    UiArticleCardComponent,
+    ArticleRegularCardComponent,
     NewsletterComponent,
     CardComponent,
     GradientCardDirective,
