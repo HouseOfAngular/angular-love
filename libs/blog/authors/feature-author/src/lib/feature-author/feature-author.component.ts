@@ -8,7 +8,7 @@ import {
 } from '@angular/core';
 import { TranslocoDirective } from '@jsverse/transloco';
 
-import { UiArticleCardComponent } from '@angular-love/blog/articles/ui-article-card';
+import { ArticleRegularCardComponent } from '@angular-love/blog/articles/ui-article-card';
 import { AuthorDetailsStore } from '@angular-love/blog/authors/data-access';
 import {
   AuthorCardComponent,
@@ -25,7 +25,7 @@ import {
   imports: [
     AuthorCardComponent,
     AuthorCardSkeletonComponent,
-    UiArticleCardComponent,
+    ArticleRegularCardComponent,
     PaginationComponent,
     QueryPaginationDirective,
     TranslocoDirective,

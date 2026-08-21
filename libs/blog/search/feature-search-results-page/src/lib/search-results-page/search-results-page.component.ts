@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 
-import { UiArticleCardComponent } from '@angular-love/blog/articles/ui-article-card';
+import { ArticleHorizontalCardComponent } from '@angular-love/blog/articles/ui-article-card';
 import { NewsletterComponent } from '@angular-love/blog/newsletter';
 import { SearchListStore } from '@angular-love/blog/search/data-access';
 import {
@@ -21,7 +21,7 @@ import { SearchResultsPagePresenter } from './search-results-page.presenter';
   changeDetection: ChangeDetectionStrategy.OnPush,
   providers: [SearchListStore, SearchResultsPagePresenter],
   imports: [
-    UiArticleCardComponent,
+    ArticleHorizontalCardComponent,
     NewsletterComponent,
     CardComponent,
     GradientCardDirective,

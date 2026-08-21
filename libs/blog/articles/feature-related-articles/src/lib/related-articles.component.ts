@@ -9,7 +9,7 @@ import { TranslocoDirective } from '@jsverse/transloco';
 import { CarouselModule, OwlOptions } from 'ngx-owl-carousel-o';
 
 import { RelatedArticleListStore } from '@angular-love/blog/articles/data-access';
-import { UiArticleCardComponent } from '@angular-love/blog/articles/ui-article-card';
+import { ArticleCompactCardComponent } from '@angular-love/blog/articles/ui-article-card';
 import { ButtonComponent } from '@angular-love/blog/shared/ui-button';
 
 @Component({
@@ -22,9 +22,12 @@ import { ButtonComponent } from '@angular-love/blog/shared/ui-button';
           <owl-carousel-o #carousel role="list" [options]="customOptions">
             @for (article of store.relatedArticles(); track $index) {
               <ng-template carouselSlide>
-                <!-- Prevents focus rings from being cut off -->
-                <li class="list-none py-1">
-                  <al-article-card [article]="article" cardType="compact" />
+                <!-- Prevents focus rings and hover effects from being cut off -->
+                <li class="list-none p-1">
+                  <al-article-compact-card
+                    [article]="article"
+                    [scaleOnHover]="false"
+                  />
                 </li>
               </ng-template>
             }
@@ -60,7 +63,7 @@ import { ButtonComponent } from '@angular-love/blog/shared/ui-button';
   changeDetection: ChangeDetectionStrategy.OnPush,
   providers: [RelatedArticleListStore],
   imports: [
-    UiArticleCardComponent,
+    ArticleCompactCardComponent,
     CarouselModule,
     ButtonComponent,
     TranslocoDirective,

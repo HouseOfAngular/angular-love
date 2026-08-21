@@ -32,12 +32,17 @@ type SanitizedArticleDataModel = {
     FastSvgComponent,
   ],
   templateUrl: './article-horizontal-card.component.html',
+  host: {
+    'data-testid': 'article-card',
+  },
 })
 export class ArticleHorizontalCardComponent {
   readonly article = input.required<ArticleCard>();
   readonly imagePriority = input<number | null>(null);
 
-  sanitizedArticle = computed<SanitizedArticleDataModel>(() => {
+  readonly titleId = computed(() => `article-title-${this.article().slug}`);
+
+  readonly sanitizedArticle = computed<SanitizedArticleDataModel>(() => {
     return {
       excerpt: this._sanitize(this.article().excerpt),
       title: this._sanitize(this.article().title),

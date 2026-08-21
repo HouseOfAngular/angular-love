@@ -11,8 +11,8 @@ import {
 
 import { ArticleListStore } from '@angular-love/blog/articles/data-access';
 import {
+  ArticleRegularCardComponent,
   ArticleRegularCardSkeletonComponent,
-  UiArticleCardComponent,
 } from '@angular-love/blog/articles/ui-article-card';
 import {
   PageChangeEvent,
@@ -27,7 +27,7 @@ import { RepeatDirective } from '@angular-love/utils';
   imports: [
     PaginationComponent,
     QueryPaginationDirective,
-    UiArticleCardComponent,
+    ArticleRegularCardComponent,
     ArticleRegularCardSkeletonComponent,
     RepeatDirective,
   ],

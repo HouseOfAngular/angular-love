@@ -9,10 +9,8 @@ import { TranslocoDirective } from '@jsverse/transloco';
 
 import { ArticleListStore } from '@angular-love/blog/articles/data-access';
 import {
+  ArticleCompactCardComponent,
   ArticleCompactCardSkeletonComponent,
-  ArticleRegularCardSkeletonComponent,
-  CardType,
-  UiArticleCardComponent,
 } from '@angular-love/blog/articles/ui-article-card';
 import { UiSectionTitleComponent } from '@angular-love/blog/shared/ui-section-title';
 import { ArticleCategory } from '@angular-love/contracts/articles';
@@ -34,10 +32,9 @@ const displayNameDict: Record<ArticleCategory, string> = {
   styleUrls: ['./category-section-container.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [
-    UiArticleCardComponent,
+    ArticleCompactCardComponent,
     UiSectionTitleComponent,
     TranslocoDirective,
-    ArticleRegularCardSkeletonComponent,
     ArticleCompactCardSkeletonComponent,
   ],
   host: {
@@ -47,7 +44,6 @@ const displayNameDict: Record<ArticleCategory, string> = {
 })
 export class CategorySectionContainerComponent {
   readonly category = input.required<ArticleCategory>();
-  readonly cardType = input<CardType>('regular');
   readonly take = input(6);
   readonly hasCategoryPage = input(true);
   readonly skeletonLoaders = computed(() => [...Array(this.take()).keys()]);

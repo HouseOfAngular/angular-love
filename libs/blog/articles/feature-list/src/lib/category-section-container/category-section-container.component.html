@@ -19,15 +19,11 @@
 >
   @if (!articleStore.isFetchArticleListLoading()) {
     @for (article of articleStore.articles(); track article.slug) {
-      <al-article-card [article]="article" [cardType]="cardType()" />
+      <al-article-compact-card [article]="article" />
     }
   } @else {
     @for (skeleton of skeletonLoaders(); track $index) {
-      @if (cardType() === 'regular') {
-        <al-article-regular-card-skeleton />
-      } @else {
-        <al-article-compact-card-skeleton />
-      }
+      <al-article-compact-card-skeleton />
     }
   }
 </section>

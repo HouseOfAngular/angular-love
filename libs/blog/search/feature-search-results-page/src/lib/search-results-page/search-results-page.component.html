@@ -1,4 +1,4 @@
-<p class="mb-6 mt-8 text-5xl">
+<p class="mt-8 mb-6 text-5xl">
   Search:
   <span class="text-al-pink">{{ searchStore.resultQuery() || '-' }}</span>
   ({{ searchStore.total() || 0 }})
@@ -7,7 +7,7 @@
 <ul class="grid gap-4 md:grid-cols-2 md:gap-6 lg:grid-cols-1 lg:gap-0">
   @for (item of searchStore.items(); track item.slug) {
     <li class="my-3">
-      <al-article-card [cardType]="'horizontal'" [article]="item" />
+      <al-article-horizontal-card [article]="item" />
     </li>
   }
 </ul>
