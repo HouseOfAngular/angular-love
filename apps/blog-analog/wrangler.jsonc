@@ -18,7 +18,10 @@
           "binding": "CACHE_KV",
           "id": "<kv_prod_namespace_id>"
         }
-      ]
+      ],
+      "ai": {
+        "binding": "AI"
+      }
     },
     "dev": {
       "name": "blog-analog-dev",
@@ -28,9 +31,12 @@
       "kv_namespaces": [
         {
           "binding": "CACHE_KV",
-          "id": "<kv_dev_namespace_id>"
+          "id": "<kv_prod_namespace_id>"
         }
-      ]
+      ],
+      "ai": {
+        "binding": "AI"
+      }
     }
   },
   "observability": {

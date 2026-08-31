@@ -1,0 +1,169 @@
+<al-dialog-shell
+  (closed)="close()"
+  title="Article summary"
+  label="AI · TL;DR"
+  ariaDescribedBy="summary-panel"
+>
+  @if (summaryResource.isLoading()) {
+    <div
+      aria-busy="true"
+      aria-label="Loading summary"
+      class="flex flex-col gap-5"
+    >
+      <div class="grid grid-cols-2 gap-3 md:grid-cols-4">
+        @for (_ of [0, 1, 2, 3]; track $index) {
+          <div
+            class="skeleton-card"
+            [style.animation-delay]="$index * 80 + 'ms'"
+          >
+            <ngx-skeleton-loader
+              [theme]="{
+                width: '64px',
+                height: '64px',
+                'border-radius': '50%',
+                'margin-bottom': '0',
+              }"
+            />
+            <ngx-skeleton-loader
+              [theme]="{ height: '13px', width: '70%', 'margin-bottom': '0' }"
+            />
+            <ngx-skeleton-loader
+              [theme]="{ height: '11px', width: '85%', 'margin-bottom': '0' }"
+            />
+            <ngx-skeleton-loader
+              [theme]="{ height: '11px', width: '55%', 'margin-bottom': '0' }"
+            />
+          </div>
+        }
+      </div>
+      <div
+        class="border-al-border/50 flex flex-col gap-2 rounded-xl border p-4"
+      >
+        <ngx-skeleton-loader
+          [theme]="{ height: '1.05rem', 'margin-bottom': '6px' }"
+          count="3"
+        />
+        <ngx-skeleton-loader
+          [theme]="{ height: '1.05rem', width: '65%', 'margin-bottom': '0' }"
+        />
+      </div>
+    </div>
+  }
+
+  @if (summaryResource.error()) {
+    <div role="alert" class="flex flex-col items-center gap-4 py-8 text-center">
+      <div class="error-icon-ring">
+        <svg
+          aria-hidden="true"
+          class="text-al-primary"
+          width="22"
+          height="22"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        >
+          <circle cx="12" cy="12" r="10" />
+          <line x1="12" y1="8" x2="12" y2="12" />
+          <circle cx="12" cy="16" r="0.5" fill="currentColor" stroke="none" />
+        </svg>
+      </div>
+      <div class="flex flex-col gap-1">
+        <p class="text-al-foreground font-semibold">
+          Couldn't generate the summary
+        </p>
+        <p class="text-al-muted text-sm">
+          Something went wrong. It's worth trying again.
+        </p>
+      </div>
+      <button
+        al-button
+        (click)="summaryResource.reload()"
+        variant="Outline"
+        size="small"
+      >
+        Try again
+      </button>
+    </div>
+  }
+
+  @if (successData(); as data) {
+    <section class="flex flex-col gap-5">
+      @if (data.personas.length > 0) {
+        <div
+          aria-label="Choose summary perspective"
+          role="tablist"
+          class="grid grid-cols-2 gap-3 md:grid-cols-4"
+        >
+          @for (persona of data.personas; track persona.id; let i = $index) {
+            <button
+              #personaBtn
+              [attr.tabindex]="getPersonaTabindex(persona.id, i)"
+              role="tab"
+              class="persona-card"
+              [style.animation-delay]="i * 65 + 'ms'"
+              [attr.aria-selected]="selectedPersonaId() === persona.id"
+              [class.persona-card--selected]="
+                selectedPersonaId() === persona.id
+              "
+              (click)="selectPersona(persona.id)"
+              (keydown)="onPersonaKeydown($event, i)"
+            >
+              <div
+                class="persona-avatar-ring"
+                [class.persona-avatar-ring--selected]="
+                  selectedPersonaId() === persona.id
+                "
+              >
+                <img
+                  class="persona-avatar"
+                  [src]="personaImageMap[persona.id]"
+                  [alt]="persona.name"
+                />
+              </div>
+              <span class="persona-name">{{ persona.name }}</span>
+              <span class="persona-tagline">{{ persona.tagline }}</span>
+            </button>
+          }
+        </div>
+      }
+
+      <div
+        id="summary-panel"
+        role="tabpanel"
+        class="al-scroll flex max-h-[42vh] flex-col gap-3 overflow-y-auto"
+      >
+        @if (selectedPersona()) {
+          <div class="persona-context">
+            <div aria-hidden="true" class="persona-context__dot"></div>
+            <span class="persona-context__name">
+              {{ selectedPersona()!.name }}
+            </span>
+            <span aria-hidden="true" class="persona-context__sep">—</span>
+            <span class="persona-context__tagline">
+              {{ selectedPersona()!.tagline }}
+            </span>
+          </div>
+        }
+
+        @if (selectedPersona()?.bullets?.length) {
+          <ul class="summary-bullets">
+            @for (bullet of selectedPersona()!.bullets!; track $index) {
+              <li [style.animation-delay]="$index * 45 + 'ms'">{{ bullet }}</li>
+            }
+          </ul>
+        } @else if (selectedPersona()) {
+          <blockquote class="summary-prose summary-prose--persona">
+            <p>{{ selectedPersona()!.body }}</p>
+          </blockquote>
+        } @else {
+          <blockquote class="summary-prose summary-prose--general">
+            <p>{{ data.summary }}</p>
+          </blockquote>
+        }
+      </div>
+    </section>
+  }
+</al-dialog-shell>

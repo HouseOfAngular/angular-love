@@ -1,0 +1,60 @@
+<div
+  aria-modal="true"
+  aria-labelledby="al-dialog-title"
+  role="dialog"
+  class="al-dialog border-al-border/50 bg-al-card relative w-full overflow-hidden rounded-2xl border"
+  [attr.aria-describedby]="ariaDescribedBy() || null"
+  cdkTrapFocus
+>
+  <!-- ─── Ambient glow orb — diffuse radial in the brand pink ─── -->
+  <div aria-hidden="true" class="al-dialog__glow"></div>
+
+  <!-- ─── Top luminous accent line ─── -->
+  <div aria-hidden="true" class="al-dialog__accent"></div>
+
+  <!-- ─── Header ─── -->
+  <header
+    class="relative z-10 flex items-start justify-between gap-4 px-6 pt-6 pb-5"
+  >
+    <div class="flex flex-col gap-2.5">
+      <!-- Overline label (editorial capsule) -->
+      @if (label()) {
+        <span
+          class="border-al-primary/25 bg-al-primary/10 text-al-primary inline-flex w-fit items-center gap-1.5 rounded-full border px-3 py-1 text-[10px] font-semibold tracking-[0.14em] uppercase"
+        >
+          <span aria-hidden="true" class="text-[7px] opacity-70">✦</span>
+          {{ label() }}
+        </span>
+      }
+
+      <!-- Title -->
+      <h2
+        id="al-dialog-title"
+        class="text-al-foreground text-2xl leading-tight font-bold tracking-tight"
+      >
+        {{ title() }}
+      </h2>
+    </div>
+
+    <!-- Close button -->
+    <button
+      aria-label="Close dialog"
+      type="button"
+      class="al-dialog__close border-al-border/60 text-al-muted hover:border-al-primary/50 hover:bg-al-primary/10 hover:text-al-primary focus-visible:ring-al-primary mt-0.5 flex h-8 w-8 flex-shrink-0 cursor-pointer items-center justify-center rounded-full border transition-all focus-visible:ring-2 focus-visible:outline-none"
+      (click)="closed.emit()"
+    >
+      <fast-svg name="cross" aria-hidden="true" size="12" />
+    </button>
+  </header>
+
+  <!-- ─── Separator ─── -->
+  <div aria-hidden="true" class="al-dialog__sep mx-6"></div>
+
+  <!-- ─── Content ─── -->
+  <div class="relative z-10 p-6">
+    <ng-content></ng-content>
+  </div>
+
+  <!-- ─── Optional footer slot ─── -->
+  <ng-content select="[alDialogFooter]"></ng-content>
+</div>

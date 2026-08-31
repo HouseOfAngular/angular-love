@@ -1,0 +1,269 @@
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   Persona Cards
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+
+.persona-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  padding: 16px 10px 14px;
+  border-radius: 16px;
+  border: 1.5px solid rgb(var(--border));
+  background: transparent;
+  cursor: pointer;
+  text-align: center;
+  transition:
+    border-color 200ms ease,
+    box-shadow 200ms ease,
+    transform 200ms cubic-bezier(0.16, 1, 0.3, 1),
+    background-image 0ms;
+  animation: personaIn 0.4s cubic-bezier(0.16, 1, 0.3, 1) both;
+
+  &:focus-visible {
+    outline: 2px solid rgb(var(--primary));
+    outline-offset: 2px;
+  }
+
+  &:hover:not(.persona-card--selected) {
+    border-color: rgb(var(--primary) / 0.35);
+    transform: translateY(-3px);
+    box-shadow: 0 6px 20px rgb(var(--primary) / 0.08);
+  }
+
+  /* ── Selected state: gradient border via background-clip trick ── */
+  &--selected {
+    border: 1.5px solid transparent;
+    background-image:
+      linear-gradient(rgb(var(--card)), rgb(var(--card))),
+      linear-gradient(160deg, rgb(var(--primary)) 0%, #7c3aed 100%);
+    background-origin: border-box;
+    background-clip: padding-box, border-box;
+    transform: translateY(-3px);
+    box-shadow:
+      0 8px 28px rgb(var(--primary) / 0.18),
+      0 2px 8px rgb(0 0 0 / 0.1);
+  }
+}
+
+@keyframes personaIn {
+  from {
+    opacity: 0;
+    transform: translateY(14px) scale(0.94);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* Avatar ring */
+.persona-avatar-ring {
+  position: relative;
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  flex-shrink: 0;
+  padding: 2px;
+  background: rgb(var(--border));
+  transition:
+    background 200ms ease,
+    box-shadow 200ms ease;
+
+  .persona-card--selected & {
+    background: linear-gradient(160deg, rgb(var(--primary)) 0%, #7c3aed 100%);
+    box-shadow: 0 0 14px rgb(var(--primary) / 0.35);
+  }
+}
+
+.persona-avatar {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  object-fit: cover;
+  display: block;
+  transition: transform 220ms ease;
+
+  .persona-card:hover & {
+    transform: scale(1.06);
+  }
+}
+
+.persona-name {
+  font-size: 12.5px;
+  font-weight: 700;
+  line-height: 1.2;
+  color: rgb(var(--foreground));
+  transition: color 200ms ease;
+
+  .persona-card--selected & {
+    color: rgb(var(--primary));
+  }
+}
+
+.persona-tagline {
+  font-size: 10.5px;
+  line-height: 1.4;
+  color: rgb(var(--muted));
+}
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   Content Panel
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+
+/* Persona context banner */
+.persona-context {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 12px;
+  border-radius: 8px;
+  background: rgb(var(--primary) / 0.06);
+  border: 1px solid rgb(var(--primary) / 0.15);
+  animation: contentIn 0.22s ease both;
+}
+
+.persona-context__dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: rgb(var(--primary));
+  flex-shrink: 0;
+}
+
+.persona-context__name {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  color: rgb(var(--primary));
+}
+
+.persona-context__sep {
+  font-size: 11px;
+  color: rgb(var(--muted));
+  opacity: 0.5;
+}
+
+.persona-context__tagline {
+  font-size: 11px;
+  color: rgb(var(--muted));
+  font-style: italic;
+}
+
+/* Prose blockquotes */
+.summary-prose {
+  display: block;
+  margin: 0;
+  padding: 16px 18px;
+  border-radius: 10px;
+  animation: contentIn 0.22s ease both;
+
+  p {
+    margin: 0;
+    line-height: 1.75;
+  }
+
+  &--general {
+    border-left: 3px solid rgb(var(--primary));
+    background: rgb(var(--primary) / 0.04);
+
+    p {
+      font-size: 1.0625rem;
+      color: rgb(var(--foreground));
+    }
+  }
+
+  &--persona {
+    border-left: 3px solid rgb(var(--primary) / 0.4);
+
+    p {
+      font-size: 0.9375rem;
+      color: rgb(var(--foreground));
+    }
+  }
+}
+
+/* Bullet list */
+.summary-bullets {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  animation: contentIn 0.22s ease both;
+
+  li {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    font-size: 0.9375rem;
+    line-height: 1.65;
+    color: rgb(var(--foreground));
+    animation: bulletIn 0.28s cubic-bezier(0.16, 1, 0.3, 1) both;
+
+    &::before {
+      content: '';
+      flex-shrink: 0;
+      margin-top: 11px;
+      width: 14px;
+      height: 2px;
+      background: rgb(var(--primary));
+      border-radius: 1px;
+    }
+  }
+}
+
+@keyframes contentIn {
+  from {
+    opacity: 0;
+    transform: translateY(-6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes bulletIn {
+  from {
+    opacity: 0;
+    transform: translateX(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   Loading skeleton cards
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+
+.skeleton-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  padding: 16px 10px 14px;
+  border-radius: 16px;
+  border: 1.5px solid rgb(var(--border));
+}
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   Error state
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+
+.error-icon-ring {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgb(var(--primary) / 0.08);
+  border: 1.5px solid rgb(var(--primary) / 0.2);
+  animation: contentIn 0.22s ease both;
+}
