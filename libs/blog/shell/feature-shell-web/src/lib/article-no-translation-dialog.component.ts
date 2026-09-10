@@ -21,13 +21,13 @@ export type ArticleNoTranslationDialogResult = 'home' | null;
     >
       <h2 class="text-xl font-bold">{{ t('title') }}</h2>
       <p class="text-al-muted-foreground">
-        {{ t('description', { lang: data.targetLangName }) }}
+        {{ t('description') }}
       </p>
       <div class="flex flex-col-reverse gap-3 sm:flex-row sm:justify-end">
         <button al-button (click)="close(null)" variant="Secondary">
           {{ t('stayButton') }}
         </button>
-        <button al-button (click)="close('home')">
+        <button al-button (click)="close('home')" [uppercase]="false">
           {{ t('goHomeButton') }}
         </button>
       </div>

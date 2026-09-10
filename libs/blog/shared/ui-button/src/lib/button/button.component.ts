@@ -22,12 +22,12 @@ const buttonVariants = cva(
   {
     variants: {
       variant: <Record<AlButtonVariant, string>>{
-        Primary: 'bg-al-primary/90 text-white uppercase',
+        Primary: 'bg-al-primary/90 text-white',
         Secondary: 'bg-al-background border',
         Outline: 'border border-al-primary/90 bg-white text-al-primary',
         Ghost: 'bg-transparent',
         link: 'bg-transparent underline!',
-        AI: 'al-btn-ai font-semibold tracking-[0.12em] uppercase',
+        AI: 'al-btn-ai font-semibold tracking-[0.12em]',
       },
       size: <Record<AlButtonSize, string>>{
         small: 'py-2 px-4 text-xs',
@@ -41,6 +41,11 @@ const buttonVariants = cva(
     },
   },
 );
+
+const UPPERCASE_BY_DEFAULT: ReadonlySet<AlButtonVariant> = new Set([
+  'Primary',
+  'AI',
+]);
 
 @Component({
   // eslint-disable-next-line @angular-eslint/component-selector
@@ -56,10 +61,20 @@ export class ButtonComponent {
 
   readonly size = input<AlButtonSize>();
 
+  // Overrides the variant's default text case
+  readonly uppercase = input<boolean>();
+
   protected class = computed(() => {
-    return buttonVariants({
-      variant: this.variant(),
-      size: this.size(),
-    });
+    const variant = this.variant() ?? 'Primary';
+    const isUppercase =
+      this.uppercase() ?? UPPERCASE_BY_DEFAULT.has(variant);
+
+    return cn(
+      buttonVariants({
+        variant,
+        size: this.size(),
+      }),
+      isUppercase && 'uppercase',
+    );
   });
 }
