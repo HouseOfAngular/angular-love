@@ -41,9 +41,9 @@
       "select_lang": "Select language",
       "noTranslationDialog": {
         "title": "Translation not available",
-        "description": "This article hasn't been translated into {{lang}} yet.",
+        "description": "This article is available only in English. Unfortunately, you can’t read it in Polish. On the Polish version of the blog, you will find many other useful resources.",
         "stayButton": "Stay on this page",
-        "goHomeButton": "Go to homepage"
+        "goHomeButton": "Go to Homepage"
       }
     }
   },

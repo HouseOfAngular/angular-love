@@ -41,7 +41,7 @@
       "select_lang": "Wybierz język",
       "noTranslationDialog": {
         "title": "Tłumaczenie niedostępne",
-        "description": "Ten artykuł nie jest jeszcze dostępny w tym języku.",
+        "description": "Ten artykuł jest dostępny wyłącznie w języku polskim. Niestety, nie możesz przeczytać go w języku angielskim. W angielskiej wersji bloga znajdziesz wiele innych przydatnych materiałów.",
         "stayButton": "Zostań na tej stronie",
         "goHomeButton": "Strona główna"
       }
