@@ -79,7 +79,7 @@ pipeline {
                         echo "CHANGE_BRANCH: $CHANGE_BRANCH"
                         echo "BRANCH_NAME: $BRANCH_NAME"
                         env.ENVIRONMENT = 'dev'
-                        env.WORKER_DOMAIN_END = '-blog-bff-dev.contact-ef8.workers.dev'
+                        env.WORKER_DOMAIN_END = '-blog-analog-dev.contact-ef8.workers.dev'
                         env.USE_BRANCH_NAME = env.CHANGE_BRANCH
                     }
 
