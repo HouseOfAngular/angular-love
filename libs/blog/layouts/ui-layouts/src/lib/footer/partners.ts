@@ -24,7 +24,7 @@ export const partnersList: Partner[] = [
   {
     asset_URL: 'assets/angular-community.png',
     alt: 'Angular Community Logo',
-    link_URL: 'https://angularcommunity.net/',
+    link_URL: 'https://angularcommunity.dev/',
     title: 'Angular Community',
   },
   {
