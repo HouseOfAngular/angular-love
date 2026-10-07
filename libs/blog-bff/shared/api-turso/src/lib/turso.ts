@@ -90,6 +90,19 @@ export async function listBlogGroups(turso: TursoApi): Promise<string[]> {
 }
 
 /**
+ * Connects to a database by name with a short-lived full-access token.
+ * The worker's long-lived tokens are read-only, so writers mint their own.
+ */
+export async function connectDatabase(
+  turso: TursoApi,
+  dbName: string,
+): Promise<LibSQLDatabase> {
+  const { hostname } = await turso.client.databases.get(dbName);
+  const authToken = await turso.createDatabaseToken(dbName);
+  return drizzle({ connection: { url: `libsql://${hostname}`, authToken } });
+}
+
+/**
  * Prepares a local SQLite file for upload: Turso requires WAL journal mode,
  * and the WAL must be checkpointed so the main file holds every change.
  */

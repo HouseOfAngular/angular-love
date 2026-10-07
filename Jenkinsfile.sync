@@ -32,8 +32,9 @@ pipeline {
 
     environment {
         AL_BASE_URL = 'https://angular.love'
-        TURSO_EU_DB = credentials('turso-eu-db')
-        DATABASE_AUTH_TOKEN = credentials('turso-eu-auth-token')
+        // The sync mints its own short-lived write token: the worker's tokens are read-only.
+        TURSO_ORG = 'angular-love'
+        TURSO_DB_NAME = credentials('turso-eu-db')
         WP_REST_API_BASE_URL = 'https://wp.angular.love'
         WP_REST_API_TOKEN = credentials('al-wp-token')
         CACHE_PURGE_SECRET = credentials('al_cache_purge_secret')
@@ -44,6 +45,14 @@ pipeline {
         stage('Extract data') {
             steps {
                 script {
+                    // Branch indexing and manual runs carry no webhook payload: nothing to sync.
+                    // NOT_BUILT skips the remaining stages and the Slack notifications.
+                    if (!env.X_Wp_Webhook_Name) {
+                        echo 'Not triggered by the WordPress webhook, nothing to do'
+                        env.RESOURCE = 'none'
+                        currentBuild.result = 'NOT_BUILT'
+                        return
+                    }
                     def isBanner = env.post_type == 'banner'
                     def events = [
                         post_create:  [resource: isBanner ? 'banner' : 'post', action: 'create', id: env.post_id],
@@ -68,7 +77,7 @@ pipeline {
             }
         }
         stage('Install dependencies') {
-            when { expression { env.RESOURCE != 'banner' } }
+            when { expression { env.RESOURCE in ['post', 'author'] } }
             steps {
                 sh '''
                     corepack enable && corepack prepare pnpm@10.6.2 --activate
@@ -77,12 +86,11 @@ pipeline {
             }
         }
         stage('Sync database') {
-            when { expression { env.RESOURCE != 'banner' } }
+            when { expression { env.RESOURCE in ['post', 'author'] } }
             steps {
-                sh '''
-                    export DATABASE_URL="libsql://${TURSO_EU_DB}-angular-love.aws-eu-west-1.turso.io"
-                    npx nx run api-jobs:sync --no-tui --resource="$RESOURCE" --id="$ID" --action="$ACTION"
-                '''
+                withCredentials([string(credentialsId: 'tursor_api_token', variable: 'TURSO_API_TOKEN')]) {
+                    sh 'npx nx run api-jobs:sync --no-tui --resource="$RESOURCE" --id="$ID" --action="$ACTION"'
+                }
             }
         }
         stage('Purge banner cache') {

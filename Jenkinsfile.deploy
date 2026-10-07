@@ -125,6 +125,7 @@ pipeline {
                                 turso db create eu-${DB_BRANCH_NAME} --from-db $SOURCE_DB --group blog-eu
                                 turso db list -g blog-eu | grep -q "eu-${DB_BRANCH_NAME}" || { echo "EU database not found after creation"; exit 1; }
                             """
+                            env.TURSO_EU_DB_NAME = "eu-${DB_BRANCH_NAME}"
                             env.TURSO_EU_CONNECTION_URL = "libsql://eu-${DB_BRANCH_NAME}-angular-love.aws-eu-west-1.turso.io"
                         }
 
@@ -139,6 +140,7 @@ pipeline {
                         def euDb = env.USE_PARAMS_DB == "true" ? params.DB_MAIN_EU : env.TURSO_EU_DB
 
                         echo "Using main database URL without creating a database branch"
+                        env.TURSO_EU_DB_NAME = euDb
                         env.TURSO_EU_CONNECTION_URL = "libsql://${euDb}-angular-love.aws-eu-west-1.turso.io"
                     }
 
@@ -165,10 +167,23 @@ pipeline {
                         return
                     }
                     // Only the EU database is kept in sync; the US ones are deprecated.
-                    sh '''
-                        DATABASE_URL="$TURSO_EU_CONNECTION_URL" DATABASE_AUTH_TOKEN="$TURSO_EU_AUTH_TOKEN" \\
-                            npx nx run blog-bff-shared-schema:db-migrate --no-tui
-                    '''
+                    // TURSO_EU_AUTH_TOKEN is the worker's read-only token, so mint a short-lived
+                    // write token with the same direct API call as api-turso's createDatabaseToken.
+                    withCredentials([string(credentialsId: 'tursor_api_token', variable: 'TURSO_API_TOKEN')]) {
+                        sh '''
+                            set +x
+                            DATABASE_AUTH_TOKEN=$(curl --fail-with-body -sS -X POST \\
+                                -H "Authorization: Bearer $TURSO_API_TOKEN" \\
+                                "https://api.turso.tech/v1/organizations/$TURSO_ORG/databases/$TURSO_EU_DB_NAME/auth/tokens?authorization=full-access&expiration=1h" \\
+                                | jq -r .jwt)
+                            if [ -z "$DATABASE_AUTH_TOKEN" ] || [ "$DATABASE_AUTH_TOKEN" = "null" ]; then
+                                echo "Failed to create a Turso token for $TURSO_EU_DB_NAME"
+                                exit 1
+                            fi
+                            export DATABASE_AUTH_TOKEN
+                            DATABASE_URL="$TURSO_EU_CONNECTION_URL" npx nx run blog-bff-shared-schema:db-migrate --no-tui
+                        '''
+                    }
                 }
             }
         }
