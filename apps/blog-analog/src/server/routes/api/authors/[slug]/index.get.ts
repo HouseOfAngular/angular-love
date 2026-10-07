@@ -13,6 +13,7 @@ export default defineEventHandler(async (event) => {
     .select({
       slug: authors.slug,
       name: authors.name,
+      testName: authors.testName,
       description: {
         pl: authors.descriptionPl,
         en: authors.descriptionEn,
