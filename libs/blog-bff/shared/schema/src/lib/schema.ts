@@ -74,6 +74,9 @@ export const articles = sqliteTable(
       .$type<ArticleTranslation[]>()
       .notNull(),
     seo: text('seo', { mode: 'json' }).$type<SeoData>(),
+    faq: text('faq', { mode: 'json' }).$type<
+      { question: string; answer: string }[]
+    >(),
     isHidden: integer('is_hidden', { mode: 'boolean' }).notNull(),
     categories: text('categories', { mode: 'json' })
       .notNull()
