@@ -1,0 +1,120 @@
+// Triggered by the WordPress webhook (via webhookrelay). Syncs a single
+// post/author to the blog database (EU), or purges the banner cache.
+pipeline {
+    agent {
+        dockerfile {
+            filename 'Dockerfile-deploy'
+            reuseNode true
+        }
+    }
+
+    options {
+        quietPeriod(0)
+        disableConcurrentBuilds()
+        timestamps()
+    }
+
+    triggers {
+        GenericTrigger(
+            genericVariables: [
+                [key: 'post_id', value: '$.post_id'],
+                [key: 'post_type', value: '$.post.post_type'],
+                [key: 'user_id', value: '$.data.ID'],
+            ],
+            genericHeaderVariables: [
+                [key: 'X-Wp-Webhook-Name', regexpFilter: ''],
+            ],
+            tokenCredentialId: 'blog-jobs-sync-webhook-token',
+            printContributedVariables: true,
+            printPostContent: false
+        )
+    }
+
+    environment {
+        AL_BASE_URL = 'https://angular.love'
+        TURSO_EU_DB = credentials('turso-eu-db')
+        DATABASE_AUTH_TOKEN = credentials('turso-eu-auth-token')
+        WP_REST_API_BASE_URL = 'https://wp.angular.love'
+        WP_REST_API_TOKEN = credentials('al-wp-token')
+        CACHE_PURGE_SECRET = credentials('al_cache_purge_secret')
+        SLACK_CHANNEL = '#angular-love-db-sync'
+    }
+
+    stages {
+        stage('Extract data') {
+            steps {
+                script {
+                    def isBanner = env.post_type == 'banner'
+                    def events = [
+                        post_create:  [resource: isBanner ? 'banner' : 'post', action: 'create', id: env.post_id],
+                        post_update:  [resource: isBanner ? 'banner' : 'post', action: 'update', id: env.post_id],
+                        post_delete:  [resource: isBanner ? 'banner' : 'post', action: 'delete', id: env.post_id],
+                        create_user:  [resource: 'author', action: 'create', id: env.user_id],
+                        update_user:  [resource: 'author', action: 'update', id: env.user_id],
+                        deleted_user: [resource: 'author', action: 'delete', id: env.user_id],
+                    ]
+                    def event = events[env.X_Wp_Webhook_Name]
+                    if (!event) {
+                        error("Unknown webhook: ${env.X_Wp_Webhook_Name}")
+                    }
+                    if (!(event.id ==~ /\d+/)) {
+                        error("Invalid id: ${event.id}")
+                    }
+                    env.RESOURCE = event.resource
+                    env.ACTION = event.action
+                    env.ID = event.id
+                    echo "resource: ${env.RESOURCE}, action: ${env.ACTION}, id: ${env.ID}"
+                }
+            }
+        }
+        stage('Install dependencies') {
+            when { expression { env.RESOURCE != 'banner' } }
+            steps {
+                sh '''
+                    corepack enable && corepack prepare pnpm@10.6.2 --activate
+                    pnpm install --frozen-lockfile
+                '''
+            }
+        }
+        stage('Sync database') {
+            when { expression { env.RESOURCE != 'banner' } }
+            steps {
+                sh '''
+                    export DATABASE_URL="libsql://${TURSO_EU_DB}-angular-love.aws-eu-west-1.turso.io"
+                    npx nx run api-jobs:sync --no-tui --resource="$RESOURCE" --id="$ID" --action="$ACTION"
+                '''
+            }
+        }
+        stage('Purge banner cache') {
+            when { expression { env.RESOURCE == 'banner' } }
+            steps {
+                sh '''
+                    curl --fail-with-body -sS -X POST \
+                        -H "x-purge-secret: $CACHE_PURGE_SECRET" \
+                        "$AL_BASE_URL/api/banners/invalidate"
+                '''
+            }
+        }
+    }
+    post {
+        always {
+            cleanWs()
+        }
+        failure {
+            script {
+                def msg = env.RESOURCE == 'banner'
+                    ? "<!here> Banner cache purge failed, post_id: ${env.ID}, build url: ${BUILD_URL}"
+                    : "<!here> DB sync failed, ${env.RESOURCE} ${env.ID} ${env.ACTION}, build url: ${BUILD_URL}"
+                slackSend(channel: env.SLACK_CHANNEL, message: msg)
+            }
+        }
+        success {
+            script {
+                def msg = env.RESOURCE == 'banner'
+                    ? 'Banner cache purged successfully'
+                    : "DB sync succeeded, ${env.RESOURCE} ${env.ID} ${env.ACTION}"
+                slackSend(channel: env.SLACK_CHANNEL, message: msg)
+            }
+        }
+    }
+}

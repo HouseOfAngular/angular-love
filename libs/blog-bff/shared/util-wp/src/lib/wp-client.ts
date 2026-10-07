@@ -1,5 +1,5 @@
 import { HTTPException } from 'hono/http-exception';
-import type { StatusCode } from 'hono/utils/http-status';
+import type { ContentfulStatusCode } from 'hono/utils/http-status';
 
 type FetchConfig = Partial<Pick<RequestInit, 'method' | 'headers' | 'body'>>;
 
@@ -33,7 +33,7 @@ export class WPRestClient {
     { body, headers, method }: FetchConfig = {},
   ): Promise<WPResponse<T>> {
     const request = await fetch(
-      `${this.baseUrl}/wp-json/${this.wpOptions.namespace}/${url}`,
+      `${this.baseUrl}/wp-json/${this.wpOptions?.namespace}/${url}`,
       {
         ...this.fetchConfig,
         method: method ?? 'GET',
@@ -47,13 +47,13 @@ export class WPRestClient {
 
     if (!request.ok) {
       const text = await request.text();
-      throw new HTTPException(request.status as StatusCode, {
+      throw new HTTPException(request.status as ContentfulStatusCode, {
         message: text,
       });
     }
 
     return {
-      data: await request.json(),
+      data: (await request.json()) as T,
       headers: request.headers,
     };
   }

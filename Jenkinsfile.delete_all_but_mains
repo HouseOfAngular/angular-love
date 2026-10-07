@@ -1,0 +1,49 @@
+// Deletes every database in the blog groups except <group>-main.
+pipeline {
+    agent {
+        dockerfile {
+            filename 'Dockerfile-deploy'
+            reuseNode true
+        }
+    }
+
+    options {
+        quietPeriod(0)
+        disableConcurrentBuilds()
+        timestamps()
+    }
+
+    parameters {
+        booleanParam(name: 'dryRun', defaultValue: true, description: 'Only list databases that would be deleted')
+    }
+
+    environment {
+        TURSO_ORG = 'angular-love'
+    }
+
+    stages {
+        stage('Install dependencies') {
+            steps {
+                sh '''
+                    corepack enable && corepack prepare pnpm@10.6.2 --activate
+                    pnpm install --frozen-lockfile
+                '''
+            }
+        }
+        stage('Delete') {
+            steps {
+                script {
+                    env.DRY_RUN_FLAG = params.dryRun ? '--dry-run' : ''
+                }
+                withCredentials([string(credentialsId: 'tursor_api_token', variable: 'TURSO_API_TOKEN')]) {
+                    sh 'npx nx run api-jobs:cleanup --no-tui --all-but-mains $DRY_RUN_FLAG'
+                }
+            }
+        }
+    }
+    post {
+        always {
+            cleanWs()
+        }
+    }
+}

@@ -14,8 +14,6 @@ pipeline {
 
     parameters {
         string(name: 'DB_MAIN_EU', defaultValue: '', description: 'The EU database to use for the main branch')
-        string(name: 'DB_MAIN_US_WEST', defaultValue: '', description: 'The US West database to use for the main branch')
-        string(name: 'DB_MAIN_US_EAST', defaultValue: '', description: 'The US East database to use for the main branch')
     }
 
     environment {
@@ -23,12 +21,10 @@ pipeline {
         KV_PROD = credentials('cf-kv-prod')
         AL_BASE_URL = 'https://angular.love'
         TURSO_ORG="angular-love"
+        // Only the EU database is kept in sync. The US databases are deprecated, so every
+        // region of the worker is pointed at EU (TURSO_US_* get the EU URL and token).
         TURSO_EU_DB=credentials('turso-eu-db')
-        TURSO_US_WEST_DB=credentials('turso-us-west-db')
-        TURSO_US_EAST_DB=credentials('turso-us-east-db')
         TURSO_EU_AUTH_TOKEN=credentials('turso-eu-auth-token')
-        TURSO_US_WEST_AUTH_TOKEN=credentials('turso-us-west-auth-token')
-        TURSO_US_EAST_AUTH_TOKEN=credentials('turso-us-east-auth-token')
         BREVO_API_KEY=credentials('blog-brevo-api-key')
         BREVO_API_URL="https://api.brevo.com/v3/"
         WP_REST_API_BASE_URL="https://wp.angular.love"
@@ -43,6 +39,7 @@ pipeline {
         VITE_AL_GISCUS_REPO=credentials('al_giscus_repo')
         VITE_AL_GISCUS_REPO_ID=credentials('al_giscus_repo_id')
         CACHE_PURGE_SECRET=credentials('al_cache_purge_secret')
+        RUN_DB_MIGRATIONS='false'
     }
 
     stages {
@@ -92,21 +89,8 @@ pipeline {
         stage("Select master db") {
             steps {
                 script {
-                    env.USE_PARAMS_DB="false"
-                    def setCount = 0
-                    if (params.DB_MAIN_EU != "") setCount++
-                    if (params.DB_MAIN_US_WEST != "") setCount++
-                    if (params.DB_MAIN_US_EAST != "") setCount++
-                    if (setCount > 0 && setCount < 3) {
-                        error("Only some main db params are set. Please set all or none.")
-                    }
-
-
-                    if (setCount == 3) {
-                        echo "Using params db"
-                        env.USE_PARAMS_DB = "true"
-                    }
-
+                    env.USE_PARAMS_DB = params.DB_MAIN_EU != "" ? "true" : "false"
+                    echo "Using params db: $USE_PARAMS_DB"
                 }
             }
         }
@@ -135,36 +119,13 @@ pipeline {
                             error("DB branch name is too long")
                         }
                         withCredentials([string(credentialsId: 'tursor_api_token', variable: 'TURSO_API_TOKEN')]) {
-                            echo "prams status $USE_PARAMS_DB"
-                            if (env.USE_PARAMS_DB == "true") {
-                                echo "Using params db"
-                                sh """
-                                    turso org switch angular-love
-                                    turso db create eu-${DB_BRANCH_NAME} --from-db $DB_MAIN_EU --group blog-eu
-                                    turso db create usw-${DB_BRANCH_NAME} --from-db $DB_MAIN_US_WEST --group blog-us-west
-                                    turso db create use-${DB_BRANCH_NAME} --from-db $DB_MAIN_US_EAST --group blog-us-east
-                                """
-                            } else {
-                                echo "Using normal db"
-                                sh """
-                                    turso org switch angular-love
-                                    turso db create eu-${DB_BRANCH_NAME} --from-db $TURSO_EU_DB --group blog-eu
-                                    turso db create usw-${DB_BRANCH_NAME} --from-db $TURSO_US_WEST_DB --group blog-us-west
-                                    turso db create use-${DB_BRANCH_NAME} --from-db $TURSO_US_EAST_DB --group blog-us-east
-                                """
-
-                            }
-
-
+                            env.SOURCE_DB = env.USE_PARAMS_DB == "true" ? params.DB_MAIN_EU : env.TURSO_EU_DB
                             sh """
                                 turso org switch angular-love
+                                turso db create eu-${DB_BRANCH_NAME} --from-db $SOURCE_DB --group blog-eu
                                 turso db list -g blog-eu | grep -q "eu-${DB_BRANCH_NAME}" || { echo "EU database not found after creation"; exit 1; }
-                                turso db list -g blog-us-west | grep -q "usw-${DB_BRANCH_NAME}" || { echo "US West database not found after creation"; exit 1; }
-                                turso db list -g blog-us-east | grep -q "use-${DB_BRANCH_NAME}" || { echo "US East database not found after creation"; exit 1; }
                             """
                             env.TURSO_EU_CONNECTION_URL = "libsql://eu-${DB_BRANCH_NAME}-angular-love.aws-eu-west-1.turso.io"
-                            env.TURSO_US_WEST_CONNECTION_URL = "libsql://usw-${DB_BRANCH_NAME}-angular-love.aws-us-west-2.turso.io"
-                            env.TURSO_US_EAST_CONNECTION_URL = "libsql://use-${DB_BRANCH_NAME}-angular-love.aws-us-east-2.turso.io"
                         }
 
                         // clean old branches
@@ -176,30 +137,39 @@ pipeline {
                             [$class: 'BooleanParameterValue', name: 'dryRun', value: false]], wait: false)
                     } else {
                         def euDb = env.USE_PARAMS_DB == "true" ? params.DB_MAIN_EU : env.TURSO_EU_DB
-                        def usWestDb = env.USE_PARAMS_DB == "true" ? params.DB_MAIN_US_WEST : env.TURSO_US_WEST_DB
-                        def usEastDb = env.USE_PARAMS_DB == "true" ? params.DB_MAIN_US_EAST : env.TURSO_US_EAST_DB
 
-                        echo "Using main database URLs without creating database branches"
+                        echo "Using main database URL without creating a database branch"
                         env.TURSO_EU_CONNECTION_URL = "libsql://${euDb}-angular-love.aws-eu-west-1.turso.io"
-                        env.TURSO_US_WEST_CONNECTION_URL = "libsql://${usWestDb}-angular-love.aws-us-west-2.turso.io"
-                        env.TURSO_US_EAST_CONNECTION_URL = "libsql://${usEastDb}-angular-love.aws-us-east-2.turso.io"
                     }
+
+                    // All regions read the EU database
+                    env.TURSO_US_WEST_CONNECTION_URL = env.TURSO_EU_CONNECTION_URL
+                    env.TURSO_US_EAST_CONNECTION_URL = env.TURSO_EU_CONNECTION_URL
 
                 }
 
             }
         }
         stage("Run Drizzle migrations") {
+            when {
+                // Enable after the cutover rebuild (Jenkinsfile.rebuild), so the main
+                // databases carry this repo's migration history. See libs/blog-bff/jobs/api/README.md
+                expression { env.RUN_DB_MIGRATIONS == 'true' }
+            }
             steps {
-                sh """
-                    if [ -d drizzle ]; then
-                        TURSO_CONNECTION_URL="$TURSO_EU_CONNECTION_URL" TURSO_AUTH_TOKEN="$TURSO_EU_AUTH_TOKEN" npx drizzle-kit migrate --config=drizzle.deploy.config.ts
-                        TURSO_CONNECTION_URL="$TURSO_US_WEST_CONNECTION_URL" TURSO_AUTH_TOKEN="$TURSO_US_WEST_AUTH_TOKEN" npx drizzle-kit migrate --config=drizzle.deploy.config.ts
-                        TURSO_CONNECTION_URL="$TURSO_US_EAST_CONNECTION_URL" TURSO_AUTH_TOKEN="$TURSO_US_EAST_AUTH_TOKEN" npx drizzle-kit migrate --config=drizzle.deploy.config.ts
-                    else
-                        echo "No Drizzle migrations directory found, skipping migrations"
-                    fi
-                """
+                script {
+                    // Non-PR branches other than main deploy against the main databases,
+                    // which only main is allowed to migrate.
+                    if (env.IS_PR != "TRUE" && env.BRANCH_NAME != 'main') {
+                        echo "Skipping migrations: ${env.BRANCH_NAME} uses the main databases"
+                        return
+                    }
+                    // Only the EU database is kept in sync; the US ones are deprecated.
+                    sh '''
+                        DATABASE_URL="$TURSO_EU_CONNECTION_URL" DATABASE_AUTH_TOKEN="$TURSO_EU_AUTH_TOKEN" \\
+                            npx nx run blog-bff-shared-schema:db-migrate --no-tui
+                    '''
+                }
             }
         }
         stage("Build blog analog") {
@@ -229,9 +199,9 @@ pipeline {
 \\"TURSO_EU_CONNECTION_URL\\":\\"$TURSO_EU_CONNECTION_URL\\",
 \\"TURSO_EU_AUTH_TOKEN\\":\\"$TURSO_EU_AUTH_TOKEN\\",
 \\"TURSO_US_EAST_CONNECTION_URL\\":\\"$TURSO_US_EAST_CONNECTION_URL\\",
-\\"TURSO_US_EAST_AUTH_TOKEN\\":\\"$TURSO_US_EAST_AUTH_TOKEN\\",
+\\"TURSO_US_EAST_AUTH_TOKEN\\":\\"$TURSO_EU_AUTH_TOKEN\\",
 \\"TURSO_US_WEST_CONNECTION_URL\\":\\"$TURSO_US_WEST_CONNECTION_URL\\",
-\\"TURSO_US_WEST_AUTH_TOKEN\\":\\"$TURSO_US_WEST_AUTH_TOKEN\\"}" > new-secrets-bff
+\\"TURSO_US_WEST_AUTH_TOKEN\\":\\"$TURSO_EU_AUTH_TOKEN\\"}" > new-secrets-bff
                         """
                     }
                 }

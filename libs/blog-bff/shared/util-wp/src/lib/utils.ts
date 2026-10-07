@@ -4,8 +4,8 @@ export const getPagination = (query: Record<string, string>) => {
     take: '12',
   };
 
-  const take = query.take || defaultPaginationQuery.take;
-  const skip = query.skip || defaultPaginationQuery.skip;
+  const take = query['take'] || defaultPaginationQuery.take;
+  const skip = query['skip'] || defaultPaginationQuery.skip;
   const page = Math.floor(Number(skip) / Number(take)) + 1;
 
   return {
