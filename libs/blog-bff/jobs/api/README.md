@@ -6,10 +6,8 @@ is in `src/lib` (exported for reuse and tests). Mapping, the WordPress client
 and Turso helpers come from `libs/blog-bff/shared/api-turso`; the schema and
 migrations from `libs/blog-bff/shared/schema`.
 
-Only the EU database is kept in sync. The US databases are deprecated and will
-be removed: the jobs no longer update or migrate them, and `Jenkinsfile.deploy`
-points every region of the worker (`TURSO_US_*`) at the EU database. PR builds
-branch only the EU database.
+The blog uses a single database in the EU group (`TURSO_EU_*`). PR builds get
+their own copy of it.
 
 ## Jobs
 
@@ -37,26 +35,7 @@ set -a; source libs/blog-bff/jobs/api/.env.local; set +a
 nx run api-jobs:rebuild --local-only   # writes tmp/blog-jobs/local.db
 ```
 
-To serve the blog from that file, set `TURSO_LOCAL=file:<absolute path>` in
-`apps/blog-analog/.dev.vars`.
-
-`--local-only`, and `sync` against a `file:` URL, never touch Turso.
-
-## Schema changes
-
-1. Edit `libs/blog-bff/shared/schema/src/lib/schema.ts`.
-2. `nx run blog-bff-shared-schema:db-generate` (or `drizzle-kit generate --custom` for hand-written SQL such as triggers).
-3. Commit the generated files in `drizzle/`. `nx run blog-bff-shared-schema:db-check` validates them.
-
-Migrations are applied with drizzle-kit:
-`DATABASE_URL=... DATABASE_AUTH_TOKEN=... nx run blog-bff-shared-schema:db-migrate`.
-The target runs from the schema folder, because drizzle-kit resolves the config's paths relative to the
-current directory. `Jenkinsfile.deploy` runs it against the EU preview database on PR
-builds and the EU main database on `main`, **before** the new worker version is uploaded. The previous
-worker version and the webhook sync keep running against the migrated schema
-for a while, so migrations must be backward compatible (expand → deploy →
-contract): add nullable/defaulted columns first, ship code that uses them, and
-drop old columns in a later release.
-
-Write the mapping for a new column in the same PR. Rows synced before the change are
-filled in by the next rebuild, or by a data migration.
+`--local-only`, and `sync` against a `file:` URL, never touch Turso. For
+the full local setup (creating the database, pointing the blog at it, applying
+migrations, changing the schema), see
+[the schema lib's README](../../shared/schema/README.md).

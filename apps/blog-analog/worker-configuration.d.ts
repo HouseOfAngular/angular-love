@@ -11,14 +11,8 @@ interface __BaseEnv_Env {
   BREVO_API_KEY: string;
   BREVO_API_URL: string;
   TURSO_LOCAL: string;
-  TURSO_CONNECTION_URL: string;
-  TURSO_AUTH_TOKEN: string;
   TURSO_EU_CONNECTION_URL: string;
   TURSO_EU_AUTH_TOKEN: string;
-  TURSO_US_EAST_CONNECTION_URL: string;
-  TURSO_US_EAST_AUTH_TOKEN: string;
-  TURSO_US_WEST_CONNECTION_URL: string;
-  TURSO_US_WEST_AUTH_TOKEN: string;
   VITE_AL_BASE_URL: string;
   VITE_AL_API_URL: string;
   VITE_AL_ALGOLIA_APPLICATION_ID: string;
@@ -46,14 +40,8 @@ declare namespace Cloudflare {
     BREVO_API_KEY: string;
     BREVO_API_URL: string;
     TURSO_LOCAL: string;
-    TURSO_CONNECTION_URL: string;
-    TURSO_AUTH_TOKEN: string;
     TURSO_EU_CONNECTION_URL: string;
     TURSO_EU_AUTH_TOKEN: string;
-    TURSO_US_EAST_CONNECTION_URL: string;
-    TURSO_US_EAST_AUTH_TOKEN: string;
-    TURSO_US_WEST_CONNECTION_URL: string;
-    TURSO_US_WEST_AUTH_TOKEN: string;
     VITE_AL_BASE_URL: string;
     VITE_AL_API_URL: string;
     VITE_AL_ALGOLIA_APPLICATION_ID: string;
@@ -76,14 +64,8 @@ declare namespace Cloudflare {
     BREVO_API_KEY: string;
     BREVO_API_URL: string;
     TURSO_LOCAL: string;
-    TURSO_CONNECTION_URL: string;
-    TURSO_AUTH_TOKEN: string;
     TURSO_EU_CONNECTION_URL: string;
     TURSO_EU_AUTH_TOKEN: string;
-    TURSO_US_EAST_CONNECTION_URL: string;
-    TURSO_US_EAST_AUTH_TOKEN: string;
-    TURSO_US_WEST_CONNECTION_URL: string;
-    TURSO_US_WEST_AUTH_TOKEN: string;
     VITE_AL_BASE_URL: string;
     VITE_AL_API_URL: string;
     VITE_AL_ALGOLIA_APPLICATION_ID: string;
@@ -116,14 +98,8 @@ declare namespace NodeJS {
         | 'BREVO_API_KEY'
         | 'BREVO_API_URL'
         | 'TURSO_LOCAL'
-        | 'TURSO_CONNECTION_URL'
-        | 'TURSO_AUTH_TOKEN'
         | 'TURSO_EU_CONNECTION_URL'
         | 'TURSO_EU_AUTH_TOKEN'
-        | 'TURSO_US_EAST_CONNECTION_URL'
-        | 'TURSO_US_EAST_AUTH_TOKEN'
-        | 'TURSO_US_WEST_CONNECTION_URL'
-        | 'TURSO_US_WEST_AUTH_TOKEN'
         | 'VITE_AL_BASE_URL'
         | 'VITE_AL_API_URL'
         | 'VITE_AL_ALGOLIA_APPLICATION_ID'

@@ -21,8 +21,6 @@ pipeline {
         KV_PROD = credentials('cf-kv-prod')
         AL_BASE_URL = 'https://angular.love'
         TURSO_ORG="angular-love"
-        // Only the EU database is kept in sync. The US databases are deprecated, so every
-        // region of the worker is pointed at EU (TURSO_US_* get the EU URL and token).
         TURSO_EU_DB=credentials('turso-eu-db')
         TURSO_EU_AUTH_TOKEN=credentials('turso-eu-auth-token')
         BREVO_API_KEY=credentials('blog-brevo-api-key')
@@ -143,10 +141,6 @@ pipeline {
                         env.TURSO_EU_CONNECTION_URL = "libsql://${euDb}-angular-love.aws-eu-west-1.turso.io"
                     }
 
-                    // All regions read the EU database
-                    env.TURSO_US_WEST_CONNECTION_URL = env.TURSO_EU_CONNECTION_URL
-                    env.TURSO_US_EAST_CONNECTION_URL = env.TURSO_EU_CONNECTION_URL
-
                 }
 
             }
@@ -206,11 +200,7 @@ pipeline {
 \\"VITE_AL_GISCUS_REPO\\":\\"$VITE_AL_GISCUS_REPO\\",
 \\"VITE_AL_GISCUS_REPO_ID\\":\\"$VITE_AL_GISCUS_REPO_ID\\",
 \\"TURSO_EU_CONNECTION_URL\\":\\"$TURSO_EU_CONNECTION_URL\\",
-\\"TURSO_EU_AUTH_TOKEN\\":\\"$TURSO_EU_AUTH_TOKEN\\",
-\\"TURSO_US_EAST_CONNECTION_URL\\":\\"$TURSO_US_EAST_CONNECTION_URL\\",
-\\"TURSO_US_EAST_AUTH_TOKEN\\":\\"$TURSO_EU_AUTH_TOKEN\\",
-\\"TURSO_US_WEST_CONNECTION_URL\\":\\"$TURSO_US_WEST_CONNECTION_URL\\",
-\\"TURSO_US_WEST_AUTH_TOKEN\\":\\"$TURSO_EU_AUTH_TOKEN\\"}" > new-secrets-bff
+\\"TURSO_EU_AUTH_TOKEN\\":\\"$TURSO_EU_AUTH_TOKEN\\"}" > new-secrets-bff
                         """
                     }
                 }
