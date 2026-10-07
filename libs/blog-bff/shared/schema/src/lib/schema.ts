@@ -22,6 +22,7 @@ export const authors = sqliteTable(
     id: integer('id').primaryKey(),
     slug: text('slug').notNull(),
     name: text('name').notNull(),
+    testName: text('name').default('Test123'),
     avatarUrl: text('avatar_url'),
     position: text('position'),
     github: text('github'),

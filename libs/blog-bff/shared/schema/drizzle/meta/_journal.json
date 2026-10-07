@@ -15,6 +15,13 @@
       "when": 1791320634393,
       "tag": "0001_article_counts_triggers",
       "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "6",
+      "when": 1791399517254,
+      "tag": "0002_outstanding_human_torch",
+      "breakpoints": true
     }
   ]
 }
