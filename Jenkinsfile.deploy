@@ -39,7 +39,6 @@ pipeline {
         VITE_AL_GISCUS_REPO=credentials('al_giscus_repo')
         VITE_AL_GISCUS_REPO_ID=credentials('al_giscus_repo_id')
         CACHE_PURGE_SECRET=credentials('al_cache_purge_secret')
-        RUN_DB_MIGRATIONS='false'
     }
 
     stages {
@@ -153,11 +152,6 @@ pipeline {
             }
         }
         stage("Run Drizzle migrations") {
-            when {
-                // Enable after the cutover rebuild (Jenkinsfile.rebuild), so the main
-                // databases carry this repo's migration history. See libs/blog-bff/jobs/api/README.md
-                expression { env.RUN_DB_MIGRATIONS == 'true' }
-            }
             steps {
                 script {
                     // Non-PR branches other than main deploy against the main databases,

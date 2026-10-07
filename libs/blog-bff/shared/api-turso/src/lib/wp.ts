@@ -27,7 +27,7 @@ export function getWpResource({
       const { data, headers } = await wp.get<{ id: number }[]>(resource, {
         per_page: '100',
         page: String(page),
-        _fields: 'id',
+        _fields: 'id,type',
       });
       ids.push(...data.map((item) => item.id));
       totalPages = Number(headers.get('x-wp-totalpages') ?? 1);

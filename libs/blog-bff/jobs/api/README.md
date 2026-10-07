@@ -60,21 +60,3 @@ drop old columns in a later release.
 
 Write the mapping for a new column in the same PR. Rows synced before the change are
 filled in by the next rebuild, or by a data migration.
-
-## Cutover from angular-love-scripts (one-off)
-
-The existing main databases were created by the old scripts repo, with a
-different migration history. To switch:
-
-1. In Jenkins, create the secret-text credentials `blog-jobs-sync-webhook-token`
-   and `blog-jobs-cleanup-webhook-token`. Point the existing jobs (webhook sync,
-   recreate main, cleanup, delete all but mains) at this repo
-   and the matching Jenkinsfile. Update webhookrelay or the GitHub webhook if
-   the trigger token changes.
-2. Run `Jenkinsfile.rebuild` once. The EU main database is recreated from this
-   repo's migrations.
-3. Set `RUN_DB_MIGRATIONS='true'` in `Jenkinsfile.deploy`. Before the rebuild,
-   preview databases are branched from the old mains and would fail on the
-   first migration with "table already exists".
-4. Archive the Turso and banner scripts in `angular-love-scripts`, and delete the
-   move-banners Jenkins job. The worker fills the banner cache itself.
