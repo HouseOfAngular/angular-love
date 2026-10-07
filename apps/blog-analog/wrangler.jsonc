@@ -33,10 +33,7 @@
           "binding": "CACHE_KV",
           "id": "<kv_prod_namespace_id>"
         }
-      ],
-      "ai": {
-        "binding": "AI"
-      }
+      ]
     }
   },
   "observability": {

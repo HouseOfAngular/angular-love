@@ -1,0 +1,1 @@
+ALTER TABLE `authors` ADD `test_name` text DEFAULT 'Test123';
