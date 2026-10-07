@@ -179,5 +179,6 @@ export const toArticle = (dto: WPPostDetailsDto): NewArticle => {
     authorId: dto.author,
     seo: toSeo(dto.yoast_head_json),
     categories: slugs,
+    faq: dto.acf?.faq,
   };
 };

@@ -16,6 +16,7 @@ import {
   BreadcrumbItem,
   buildBlogPosting,
   buildBreadcrumbId,
+  buildFaqPage,
   buildHomeBreadcrumb,
   buildOrganization,
   buildPageGraph,
@@ -314,7 +315,7 @@ export class SeoService {
 
   /**
    * Build and inject the full article JSON-LD graph (WebPage + BlogPosting +
-   * Person + BreadcrumbList).  pageUrl and baseUrl are passed explicitly so
+   * Person + BreadcrumbList, plus FAQPage when the article has an FAQ).  pageUrl and baseUrl are passed explicitly so
    * callers are not gated behind NavigationEnd timing.
    */
   setArticleJsonLd(
@@ -356,7 +357,15 @@ export class SeoService {
       },
     );
 
-    this.setJsonLd([webPage, blogPosting, person, breadcrumb]);
+    this.setJsonLd([
+      webPage,
+      blogPosting,
+      person,
+      breadcrumb,
+      ...(article.faq?.length
+        ? [buildFaqPage(article.faq, pageUrl, inLanguage)]
+        : []),
+    ]);
   }
 
   /**
