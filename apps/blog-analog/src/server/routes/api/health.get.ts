@@ -1,7 +1,5 @@
 import { timingSafeEqual } from 'node:crypto';
-import { createClient, type Client } from '@libsql/client';
 import { sql } from 'drizzle-orm';
-import { drizzle } from 'drizzle-orm/libsql';
 import {
   createError,
   defineEventHandler,
@@ -9,8 +7,8 @@ import {
   setResponseStatus,
 } from 'h3';
 
-import { getEnv, getOptionalEnv, getRequiredEnv } from '../../utils/env';
-import { type Region } from '../../utils/geo';
+import { createDatabase } from '../../utils/database';
+import { getEnv, getOptionalEnv } from '../../utils/env';
 
 // ---------- Types ----------
 
@@ -24,42 +22,9 @@ interface CheckResult {
   latencyMs?: number;
 }
 
-interface RegionCheckResult extends CheckResult {
-  region: Region;
-}
-
-const DB_REGIONS: Region[] = ['EU', 'US_EAST', 'US_WEST'];
-
-const DB_ENV_KEYS: Record<Region, { urlKey: keyof Env; tokenKey: keyof Env }> =
-  {
-    EU: { urlKey: 'TURSO_EU_CONNECTION_URL', tokenKey: 'TURSO_EU_AUTH_TOKEN' },
-    US_EAST: {
-      urlKey: 'TURSO_US_EAST_CONNECTION_URL',
-      tokenKey: 'TURSO_US_EAST_AUTH_TOKEN',
-    },
-    US_WEST: {
-      urlKey: 'TURSO_US_WEST_CONNECTION_URL',
-      tokenKey: 'TURSO_US_WEST_AUTH_TOKEN',
-    },
-  };
-
 const FETCH_TIMEOUT_MS = 5_000;
 const DB_TIMEOUT_MS = 5_000;
 const KV_TIMEOUT_MS = 5_000;
-
-// ---------- Client reuse ----------
-// Lazily build one libsql client per region and reuse across requests so the
-// health check exercises the same connection path real endpoints would.
-const dbClients = new Map<Region, Client>();
-
-function getDbClient(region: Region, url: string, authToken: string): Client {
-  let client = dbClients.get(region);
-  if (!client) {
-    client = createClient({ url, authToken });
-    dbClients.set(region, client);
-  }
-  return client;
-}
 
 // ---------- Helpers ----------
 
@@ -97,28 +62,18 @@ async function withTimeout<T>(
 
 // ---------- Checks ----------
 
-async function checkDbRegion(
-  event: any,
-  region: Region,
-): Promise<RegionCheckResult> {
+async function checkDb(event: any): Promise<CheckResult> {
   const started = Date.now();
   try {
-    const { urlKey, tokenKey } = DB_ENV_KEYS[region];
-    // Read env *inside* the try so missing config becomes a per-check failure,
-    // not a 500 that masks every other component.
-    const url = getOptionalEnv(event, urlKey);
-    const authToken = getOptionalEnv(event, tokenKey);
-    if (!url || !authToken) {
-      return { region, status: 'fail', code: 'CONFIG_MISSING' };
-    }
-
-    const db = drizzle(getDbClient(region, url, authToken));
-    await withTimeout(db.run(sql`SELECT 1`), DB_TIMEOUT_MS, `db:${region}`);
-    return { region, status: 'pass', latencyMs: Date.now() - started };
+    // Same connection path as the API routes (TURSO_LOCAL or the EU database).
+    // Built inside the try so missing config becomes a failed check, not a 500
+    // that masks every other component.
+    const db = createDatabase(event);
+    await withTimeout(db.run(sql`SELECT 1`), DB_TIMEOUT_MS, 'db');
+    return { status: 'pass', latencyMs: Date.now() - started };
   } catch (err) {
-    logErr(`db:${region}`, err);
+    logErr('db', err);
     return {
-      region,
       status: 'fail',
       code: errCode(err, 'DB_UNREACHABLE'),
       latencyMs: Date.now() - started,
@@ -262,7 +217,7 @@ export default defineEventHandler(async (event) => {
   // Each checker is already designed to return CheckResult rather than throw,
   // but this is defense-in-depth — health endpoints should never 500.
   const settled = await Promise.allSettled([
-    Promise.all(DB_REGIONS.map((region) => checkDbRegion(event, region))),
+    checkDb(event),
     checkWordPress(event),
     checkKv(event),
     checkBrevo(event),
@@ -270,10 +225,10 @@ export default defineEventHandler(async (event) => {
 
   const failed = (code: string): CheckResult => ({ status: 'fail', code });
 
-  const dbResults: RegionCheckResult[] =
+  const db =
     settled[0].status === 'fulfilled'
       ? settled[0].value
-      : DB_REGIONS.map((region) => ({ region, ...failed('CHECK_CRASHED') }));
+      : failed('CHECK_CRASHED');
   const wordpress =
     settled[1].status === 'fulfilled'
       ? settled[1].value
@@ -288,7 +243,7 @@ export default defineEventHandler(async (event) => {
       : failed('CHECK_CRASHED');
 
   const allOk =
-    dbResults.every((r) => r.status === 'pass') &&
+    db.status === 'pass' &&
     wordpress.status === 'pass' &&
     kv.status === 'pass' &&
     brevo.status === 'pass';
@@ -300,7 +255,7 @@ export default defineEventHandler(async (event) => {
   return {
     status: allOk ? 'pass' : 'fail',
     checks: {
-      db: dbResults,
+      db,
       wordpress,
       kv,
       brevo,

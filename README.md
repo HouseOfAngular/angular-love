@@ -1,5 +1,14 @@
 # AngularLove
 
+## Blog database
+
+The blog reads its content from a Turso (SQLite) database that is kept in sync
+with WordPress. To develop against a local copy (create it, point
+`apps/blog-analog` at it, apply migrations, change the schema), see
+[libs/blog-bff/shared/schema/README.md](libs/blog-bff/shared/schema/README.md).
+The sync jobs themselves are documented in
+[libs/blog-bff/jobs/api/README.md](libs/blog-bff/jobs/api/README.md).
+
 ## BFF
 
 ### Development

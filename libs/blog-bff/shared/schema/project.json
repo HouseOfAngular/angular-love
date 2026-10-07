@@ -29,6 +29,13 @@
         "cwd": "libs/blog-bff/shared/schema"
       }
     },
+    "db-studio": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "drizzle-kit studio",
+        "cwd": "libs/blog-bff/shared/schema"
+      }
+    },
     "db-check": {
       "executor": "nx:run-commands",
       "options": {
