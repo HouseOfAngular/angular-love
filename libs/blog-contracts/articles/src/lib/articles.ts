@@ -136,6 +136,13 @@ export interface Article {
   }[];
   language: DbLang;
   seo: SeoData;
+  faq: ArticleFaqItem[] | null;
+}
+
+export interface ArticleFaqItem {
+  question: string;
+  /** Markdown. */
+  answer: string;
 }
 
 export const dbLocaleMap = {

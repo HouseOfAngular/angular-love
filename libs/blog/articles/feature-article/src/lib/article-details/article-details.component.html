@@ -1,3 +1,5 @@
+@let faq = articleDetails().faq;
+
 <div class="grid grid-cols-12 gap-y-10 lg:gap-x-10">
   <section
     aria-labelledby="article-title"
@@ -39,6 +41,10 @@
 
     <div class="flex w-full flex-col gap-10 overflow-hidden">
       <al-article-content [content]="articleDetails().content" />
+
+      @if (faq?.length) {
+        <al-article-faq [items]="faq" />
+      }
 
       <al-card alDarkCard class="lg:hidden">
         <div alCardContent>

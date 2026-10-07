@@ -1,5 +1,9 @@
 import { SeoData } from '@angular-love/contracts/articles';
 
+
+
+
+
 export interface WPPostDetailsDto {
   id: number;
   /**
@@ -45,6 +49,7 @@ export interface WPPostDetailsDto {
     hidden: boolean;
     reading_time: string | number;
     difficulty: 'beginner' | 'intermediate' | 'advanced';
+    faq: { question: string; answer: string }[] | null;
   };
   other_translations: {
     locale: string;

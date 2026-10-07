@@ -203,6 +203,9 @@
   "tableOfContents": {
     "title": "Spis treści"
   },
+  "articleFaq": {
+    "title": "Najczęściej zadawane pytania"
+  },
   "articleShareIcons": {
     "title": "Podziel się artykułem",
     "twitterAriaLabel": "Udostępnij na Twitterze",

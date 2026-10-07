@@ -24,6 +24,7 @@ export default defineEventHandler(async (event) => {
       difficulty: articles.difficulty,
       anchors: articles.anchors,
       seo: articles.seo,
+      faq: articles.faq,
       otherTranslations: articles.otherTranslations,
       language: articles.language,
       author: {
