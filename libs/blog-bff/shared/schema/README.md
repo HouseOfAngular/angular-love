@@ -17,7 +17,20 @@ root.
 
 ### 1. Create the database
 
-**With real content (recommended).** Fetches every author and post from
+**With sample content (default, no access needed).** Builds the database from
+bundled fictional authors and articles (EN and PL, every category, a hidden and a
+draft post). It needs no WordPress access or environment variables, and never
+touches Turso:
+
+```sh
+nx run api-jobs:seed   # writes tmp/blog-jobs/local.db, takes a few seconds
+```
+
+The fixtures are in `libs/blog-bff/jobs/api/src/lib/seed-data.ts`, shaped like
+WordPress responses so they go through the production mappers. Extend them when
+you need more cases.
+
+**With real content (maintainers).** Fetches every author and post from
 WordPress, maps them like production does, and applies the migrations:
 
 ```sh
@@ -26,8 +39,8 @@ export WP_REST_API_TOKEN='Basic …'   # full Authorization header value, ask a 
 nx run api-jobs:rebuild --local-only  # writes tmp/blog-jobs/local.db, takes about a minute
 ```
 
-Every run deletes and recreates the file, so it's also how you reset the database.
-Use `--out=<path>` to write somewhere else. To keep the WordPress variables
+Every `seed` or `rebuild` run deletes and recreates the file, so it's also how you
+reset the database. Use `--out=<path>` to write somewhere else. To keep the WordPress variables
 around, copy `libs/blog-bff/jobs/api/.env.example` to `.env.local` next to it
 and load it with `set -a; source libs/blog-bff/jobs/api/.env.local; set +a`.
 
@@ -60,7 +73,7 @@ database, remove or empty the line.
 > wrangler caches the account in `node_modules/.cache/wrangler/wrangler-account.json`.
 > If you log in as a different user, delete that file.
 
-Restart the dev server after a `rebuild`. The rebuild replaces the file, and
+Restart the dev server after a `seed` or `rebuild`. Both replace the file, and
 a running server keeps reading the old one.
 
 ### 3. Apply migrations
@@ -100,7 +113,8 @@ DATABASE_URL=file:$PWD/tmp/blog-jobs/local.db \
    `nx run blog-bff-shared-schema:db-generate --name=<what_changed>`. Hand-written
    SQL such as triggers goes in a custom migration:
    `nx run blog-bff-shared-schema:db-generate --custom --name=<what_changed>`.
-3. Review the generated SQL in `drizzle/`, then apply it locally (step 3 above).
+3. Review the generated SQL in `drizzle/`, then apply it locally (step 3 above). If the fixtures need the new column,
+   update `seed-data.ts` and re-run `api-jobs:seed`.
 4. If the column comes from WordPress, update the mapper in
    `libs/blog-bff/shared/api-turso/src/lib/mappers` and its spec. Then refresh
    the data with `sync` (one entity) or `rebuild --local-only` (everything).

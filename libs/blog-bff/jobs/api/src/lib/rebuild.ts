@@ -13,11 +13,19 @@ import {
   toArticle,
   toAuthor,
   TursoApi,
-  WpResource,
 } from '@angular-love/blog-bff/shared/api-turso';
 import { articles, authors } from '@angular-love/blog-bff/shared/schema';
+import type { WPAuthorDto, WPPostDetailsDto } from '@angular-love/util-wp';
 
 import { forEachConcurrent, retry } from './pool';
+
+/** What the build needs from WordPress; `getWpResource` satisfies it, so do fixtures. */
+export interface WpSource {
+  authorIds(): Promise<number[]>;
+  postIds(): Promise<number[]>;
+  author(id: number): Promise<{ data: WPAuthorDto }>;
+  post(id: number): Promise<{ data: WPPostDetailsDto }>;
+}
 
 /**
  * Builds a fresh SQLite file from WordPress: applies the migrations, then
@@ -35,7 +43,7 @@ export async function buildLocalDatabase({
   concurrency = 6,
 }: {
   path: string;
-  wp: WpResource;
+  wp: WpSource;
   migrationsFolder: string;
   concurrency?: number;
 }): Promise<{ skipped: string[] }> {
