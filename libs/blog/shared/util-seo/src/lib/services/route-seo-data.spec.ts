@@ -40,6 +40,13 @@ describe('interpretRouteSeo', () => {
     expect(result.titleKey).toBe('seo.aboutUs');
   });
 
+  it('passes the description key through', () => {
+    const result = interpretRouteSeo({
+      seo: { title: 'seo.aiNews', description: 'seo.aiNewsDescription' },
+    });
+    expect(result.descriptionKey).toBe('seo.aiNewsDescription');
+  });
+
   it('ignores an unknown jsonLd type (falls back to base graph)', () => {
     const result = interpretRouteSeo({
       // eslint-disable-next-line @typescript-eslint/no-explicit-any

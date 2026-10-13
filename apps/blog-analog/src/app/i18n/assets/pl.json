@@ -221,7 +221,9 @@
     "aboutUs": "O nas",
     "becomeAuthor": "Zostań autorem",
     "notFound": "Nie znaleziono",
-    "roadmap": "Roadmap"
+    "roadmap": "Roadmap",
+    "aiNews": "AI News",
+    "aiNewsDescription": "Wiadomości ze świata AI dla developerów Angulara: nowe modele, narzędzia, badania i wiadomości z branży, z linkami do źródeł."
   },
   "adBanner": {
     "registerButton": "Pobierz za darmo",
@@ -331,5 +333,52 @@
     "title": "Powiązane artykuły",
     "previousSlide": "Poprzedni slajd",
     "nextSlide": "Następny slajd"
+  },
+  "aiNewsPage": {
+    "title": "AI News",
+    "intro": "Nowe modele, narzędzia, badania i wiadomości z branży AI, z linkiem do oryginalnego źródła. Treści są w języku angielskim.",
+    "filterLabel": "Filtruj według kategorii",
+    "categories": {
+      "all": "Wszystkie",
+      "models": "Modele",
+      "tools": "Narzędzia",
+      "research": "Badania",
+      "industry": "Branża"
+    },
+    "groups": {
+      "today": "Dzisiaj",
+      "yesterday": "Wczoraj",
+      "thisWeek": "W tym tygodniu"
+    },
+    "loadMore": "Pokaż więcej",
+    "loading": "Ładowanie wiadomości",
+    "empty": {
+      "title": "Na razie nic tu nie ma",
+      "description": "W tej kategorii nie ma jeszcze wiadomości.",
+      "showAll": "Pokaż wszystkie wiadomości"
+    },
+    "error": {
+      "title": "Nie udało się załadować wiadomości.",
+      "retry": "Spróbuj ponownie"
+    },
+    "card": {
+      "linkLabel": "{{title}} ({{source}}, otwiera się w nowej karcie)",
+      "byAuthor": "– {{author}}",
+      "label": {
+        "blog": "Artykuł z {{source}}",
+        "social": "Wpis na {{source}}",
+        "video": "Wideo na {{source}}",
+        "repo": "Repozytorium na {{source}}",
+        "paper": "Publikacja na {{source}}",
+        "podcast": "Podcast {{source}}",
+        "newsletter": "Newsletter {{source}}",
+        "other": "Źródło: {{source}}"
+      },
+      "relative": {
+        "now": "przed chwilą",
+        "minutes": "{{count}} min temu",
+        "hours": "{{count}} godz. temu"
+      }
+    }
   }
 }

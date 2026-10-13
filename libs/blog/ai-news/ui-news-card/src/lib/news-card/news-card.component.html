@@ -1,0 +1,97 @@
+@let news = item();
+<a
+  class="group focus-visible:outline-al-primary block h-full rounded-lg focus-visible:outline-2 focus-visible:outline-offset-2"
+  [attr.aria-label]="
+    'aiNewsPage.card.linkLabel'
+      | transloco: { title: news.title, source: news.sourceName }
+  "
+  [href]="news.url"
+  target="_blank"
+  rel="noopener noreferrer"
+>
+  <article
+    class="bg-al-card dark:border-al-border md:group-hover:shadow-al-primary flex h-full w-full flex-col overflow-hidden rounded-lg border transition-shadow"
+  >
+    @if (thumbnailUrl(); as src) {
+      <div
+        data-testid="news-card-image"
+        class="bg-al-grey relative aspect-[1.91/1] overflow-hidden"
+      >
+        <img
+          alt=""
+          #thumbnail
+          class="h-full w-full object-cover"
+          [src]="src"
+          (error)="onImageError()"
+          (load)="onImageLoad(thumbnail)"
+          loading="lazy"
+          decoding="async"
+          width="1200"
+          height="628"
+        />
+        @if (isVideo()) {
+          <span
+            data-testid="news-card-play"
+            class="absolute inset-0 flex items-center justify-center"
+          >
+            <span class="rounded-full bg-black/60 p-2 text-white">
+              <fast-svg name="play" aria-hidden="true" size="24" />
+            </span>
+          </span>
+        }
+      </div>
+    }
+
+    <div class="flex flex-1 flex-col gap-2 p-4">
+      <span
+        data-testid="news-card-category"
+        class="text-al-primary text-sm font-semibold dark:text-[#ff4d94]"
+      >
+        {{ 'aiNewsPage.categories.' + news.category | transloco }}
+      </span>
+      <h3
+        class="text-al-primary-foreground line-clamp-3 text-lg/snug font-bold"
+        style="word-break: break-word"
+      >
+        {{ news.title }}
+      </h3>
+      <p class="line-clamp-3 text-sm/relaxed">{{ news.summary }}</p>
+
+      <div
+        data-testid="news-card-meta"
+        class="mt-auto flex items-start gap-2 pt-3 text-sm text-gray-600 dark:text-gray-400"
+      >
+        <fast-svg
+          aria-hidden="true"
+          class="mt-0.5 shrink-0"
+          [name]="icon()"
+          size="16"
+        />
+        @let label =
+          'aiNewsPage.card.label.' + news.sourceType
+            | transloco: { source: news.sourceName };
+        @let byAuthor =
+          news.author
+            ? ('aiNewsPage.card.byAuthor' | transloco: { author: news.author })
+            : '';
+        <span data-testid="news-card-source" class="line-clamp-2 min-w-0">
+          {{ byAuthor ? label + ' ' + byAuthor : label }}
+        </span>
+        <time
+          class="ml-auto shrink-0 pl-2 whitespace-nowrap"
+          [attr.datetime]="news.publishedAt"
+          [title]="absoluteDate()"
+        >
+          @if (dateText(); as text) {
+            {{ text }}
+          } @else {
+            {{
+              'aiNewsPage.card.relative.' + relative().unit
+                | transloco: relative()
+            }}
+          }
+        </time>
+      </div>
+    </div>
+  </article>
+</a>

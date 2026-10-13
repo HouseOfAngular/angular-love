@@ -1,13 +1,20 @@
-import { sql } from 'drizzle-orm';
+import { SQL, sql } from 'drizzle-orm';
 import {
+  check,
   index,
   integer,
+  SQLiteColumn,
   sqliteTable,
   text,
   unique,
   uniqueIndex,
 } from 'drizzle-orm/sqlite-core';
 
+import {
+  AI_NEWS_CATEGORIES,
+  AI_NEWS_SOURCE_TYPES,
+  AI_NEWS_STATUSES,
+} from '@angular-love/blog/contracts/ai-news';
 import { AuthorTitle } from '@angular-love/blog/contracts/authors';
 import {
   Anchor,
@@ -170,3 +177,58 @@ export const articleCounts = sqliteTable(
     ),
   ],
 );
+
+export const aiNewsItems = sqliteTable(
+  'ai_news_items',
+  {
+    id: integer('id').primaryKey({ autoIncrement: true }),
+    // Canonicalized with canonicalizeUrl before every insert.
+    url: text('url').notNull(),
+    title: text('title').notNull(),
+    // Length is validated at the Zod boundary only.
+    summary: text('summary').notNull(),
+    imageUrl: text('image_url'),
+    sourceName: text('source_name').notNull(),
+    sourceType: text('source_type', { enum: AI_NEWS_SOURCE_TYPES })
+      .notNull()
+      .default('other'),
+    author: text('author'),
+    category: text('category', { enum: AI_NEWS_CATEGORIES }).notNull(),
+    status: text('status', { enum: AI_NEWS_STATUSES })
+      .notNull()
+      .default('published'),
+    // The source's publish date, not ours.
+    publishedAt: integer('published_at', { mode: 'timestamp' }).notNull(),
+    createdAt: integer('created_at', { mode: 'timestamp' })
+      .notNull()
+      .default(sql`(unixepoch())`),
+  },
+  // The CHECKs guard writes that skip the API's validation (raw SQL): a bad
+  // enum value or a date in milliseconds would otherwise break the whole feed.
+  // Adding an enum value needs a migration, which drizzle-kit generates as a
+  // table rebuild.
+  (table) => [
+    uniqueIndex('ai_news_url_idx').on(table.url),
+    index('ai_news_feed_idx').on(table.status, table.publishedAt, table.id),
+    check(
+      'ai_news_source_type_check',
+      inList(table.sourceType, AI_NEWS_SOURCE_TYPES),
+    ),
+    check('ai_news_category_check', inList(table.category, AI_NEWS_CATEGORIES)),
+    check('ai_news_status_check', inList(table.status, AI_NEWS_STATUSES)),
+    // Unix seconds: anything from 2001 on in milliseconds is above this (year 2286).
+    check(
+      'ai_news_published_at_check',
+      sql`${sql.identifier(table.publishedAt.name)} between 0 and 9999999999`,
+    ),
+  ],
+);
+
+/**
+ * `column IN ('a', 'b')` with inlined literals (CHECK can't take parameters)
+ * and an unqualified column, so drizzle-kit's table rebuilds keep working.
+ */
+function inList(column: SQLiteColumn, values: readonly string[]): SQL {
+  const literals = values.map((value) => `'${value.replace(/'/g, "''")}'`);
+  return sql`${sql.identifier(column.name)} in (${sql.raw(literals.join(', '))})`;
+}

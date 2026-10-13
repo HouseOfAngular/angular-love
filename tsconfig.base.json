@@ -15,6 +15,21 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
+      "@angular-love/blog/contracts/ai-news": [
+        "libs/blog-contracts/ai-news/src/index.ts"
+      ],
+      "@angular-love/blog/ai-news/ui-news-card": [
+        "libs/blog/ai-news/ui-news-card/src/index.ts"
+      ],
+      "@angular-love/blog/ai-news/feature-ai-news": [
+        "libs/blog/ai-news/feature-ai-news/src/index.ts"
+      ],
+      "@angular-love/blog/ai-news/data-access": [
+        "libs/blog/ai-news/data-access/src/index.ts"
+      ],
+      "@angular-love/blog-bff/ai-news/api": [
+        "libs/blog-bff/ai-news/api/src/index.ts"
+      ],
       "@angular-love/blog-bff/articles/api": [
         "libs/blog-bff/articles/api/src/index.ts"
       ],

@@ -116,6 +116,20 @@ export const commonRoutes: Route[] = [
         },
       },
       {
+        path: 'ai-news',
+        loadComponent: async () =>
+          (await import('@angular-love/blog/ai-news/feature-ai-news'))
+            .AiNewsPageComponent,
+        data: {
+          seo: {
+            title: 'seo.aiNews',
+            description: 'seo.aiNewsDescription',
+            autoHrefLang: true,
+            jsonLd: false,
+          } satisfies RouteSeoData,
+        },
+      },
+      {
         path: '404',
         loadComponent: async () =>
           (await import('@angular-love/blog/shared/ui-not-found'))

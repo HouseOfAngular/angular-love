@@ -30,6 +30,18 @@ The fixtures are in `libs/blog-bff/jobs/api/src/lib/seed-data.ts`, shaped like
 WordPress responses so they go through the production mappers. Extend them when
 you need more cases.
 
+To add fictional AI news items (the `/ai-news` page) on top, run the migrations
+(step 3) and then:
+
+```sh
+nx run api-jobs:seed-ai-news   # [--db=<path>], default tmp/blog-jobs/local.db
+```
+
+It only accepts a local file, and it's safe to run again: items whose URL is
+already there are skipped. The fixtures are in
+`libs/blog-bff/jobs/api/src/lib/ai-news-seed-data.ts`. `seed` and `rebuild`
+recreate the file, so run `seed-ai-news` again after them.
+
 **With real content (maintainers).** Fetches every author and post from
 WordPress, maps them like production does, and applies the migrations:
 

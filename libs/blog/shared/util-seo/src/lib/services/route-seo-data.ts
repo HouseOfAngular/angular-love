@@ -14,6 +14,8 @@ export type RouteSeoData =
   | {
       /** Transloco key for the page title (appended after the site title). */
       title?: string;
+      /** Transloco key for the meta description; defaults to the site-wide one. */
+      description?: string;
       /** Emit hreflang alternates for all available languages. */
       autoHrefLang?: boolean;
       /** schema.org page type, or `false` to suppress JSON-LD entirely. */
@@ -36,6 +38,8 @@ export interface SeoRouteInterpretation {
   jsonLdType?: WebPageType;
   /** Transloco key for the centrally-managed page title. */
   titleKey?: string;
+  /** Transloco key for the page's meta description. */
+  descriptionKey?: string;
   /** Plain (already-localized) collection name from `route.data.title`. */
   collectionTitle?: string;
   /** Emit hreflang alternates. */
@@ -81,6 +85,7 @@ export function interpretRouteSeo(routeData: Data): SeoRouteInterpretation {
     applyJsonLd: jsonLd !== false,
     jsonLdType,
     titleKey: seo.title,
+    descriptionKey: seo.description,
     collectionTitle: routeData?.['title'] as string | undefined,
     autoHrefLang: !!seo.autoHrefLang,
     aboutOrganization: !!seo.aboutOrganization,

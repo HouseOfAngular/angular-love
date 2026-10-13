@@ -1,0 +1,138 @@
+<ng-container *transloco="let t; read: 'aiNewsPage'">
+  <header class="mb-8 flex max-w-2xl flex-col gap-3">
+    <h1 class="text-4xl font-bold">{{ t('title') }}</h1>
+    <p class="text-lg">{{ t('intro') }}</p>
+  </header>
+
+  <!-- Neutral on purpose: pink is kept for the category on each card. -->
+  <nav class="mb-10" [attr.aria-label]="t('filterLabel')">
+    <ul class="flex flex-wrap gap-2">
+      @for (category of chips; track category) {
+        @let selected = category === selectedCategory();
+        <li>
+          <a
+            data-testid="ai-news-category"
+            class="focus-visible:outline-al-primary inline-flex items-center rounded-full border px-4 py-1.5 text-sm font-medium transition-colors focus-visible:outline-2 focus-visible:outline-offset-2"
+            [attr.aria-current]="selected ? 'page' : null"
+            [class]="
+              selected
+                ? 'border-al-foreground bg-al-foreground text-al-background'
+                : 'border-al-border hover:border-al-foreground/50'
+            "
+            [routerLink]="[]"
+            [queryParams]="{ category }"
+          >
+            {{ t('categories.' + (category ?? 'all')) }}
+          </a>
+        </li>
+      }
+    </ul>
+  </nav>
+
+  <div aria-live="polite" [attr.aria-busy]="store.isFetchFeedLoading()">
+    @if (store.isFetchFeedLoading()) {
+      <span class="sr-only">{{ t('loading') }}</span>
+      <div class="timeline">
+        <div class="timeline-group">
+          <div class="timeline-heading">
+            <span class="bg-al-grey block h-7 w-24 rounded"></span>
+          </div>
+          <div class="news-grid">
+            <al-news-card-skeleton *alRepeat="6" />
+          </div>
+        </div>
+      </div>
+    } @else if (store.isFetchFeedError()) {
+      <div
+        data-testid="ai-news-error"
+        role="alert"
+        class="bg-al-card dark:border-al-border flex flex-col items-center gap-4 rounded-lg border p-8 text-center"
+      >
+        <p class="text-lg font-semibold">{{ t('error.title') }}</p>
+        <button al-button type="button" (click)="store.retry()">
+          {{ t('error.retry') }}
+        </button>
+      </div>
+    } @else if (store.items().length === 0) {
+      <div
+        data-testid="ai-news-empty"
+        class="bg-al-card dark:border-al-border flex flex-col items-center gap-3 rounded-lg border p-8 text-center"
+      >
+        <p class="text-lg font-semibold">{{ t('empty.title') }}</p>
+        <p>{{ t('empty.description') }}</p>
+        @if (selectedCategory()) {
+          <a
+            al-button
+            class="mt-2"
+            [routerLink]="[]"
+            [queryParams]="{ category: null }"
+            variant="Outline"
+          >
+            {{ t('empty.showAll') }}
+          </a>
+        }
+      </div>
+    } @else {
+      <div class="timeline">
+        @for (group of groups(); track group.id) {
+          <section
+            class="timeline-group"
+            [attr.aria-labelledby]="'ai-news-' + group.id"
+          >
+            <h2
+              data-testid="ai-news-group"
+              class="timeline-heading text-2xl font-bold lg:text-xl"
+              [id]="'ai-news-' + group.id"
+            >
+              @if (group.key.kind === 'month') {
+                {{ monthLabel(group.key) }}
+              } @else {
+                {{ t('groups.' + group.key.kind) }}
+              }
+            </h2>
+            <ul class="news-grid">
+              @for (item of group.items; track item.id) {
+                <li>
+                  <al-news-card
+                    class="h-full"
+                    [item]="item"
+                    [clock]="clock()"
+                  />
+                </li>
+              }
+            </ul>
+          </section>
+        }
+      </div>
+
+      @if (store.isFetchMoreError()) {
+        <div
+          role="alert"
+          class="mt-2 flex flex-col items-center gap-3 text-center"
+        >
+          <p>{{ t('error.title') }}</p>
+          <button
+            al-button
+            type="button"
+            (click)="store.retry()"
+            variant="Outline"
+          >
+            {{ t('error.retry') }}
+          </button>
+        </div>
+      } @else if (store.nextCursor()) {
+        <div class="mt-2 flex justify-center">
+          <button
+            al-button
+            data-testid="ai-news-load-more"
+            type="button"
+            [disabled]="store.isFetchMoreLoading()"
+            (click)="store.loadMore()"
+          >
+            {{ t('loadMore') }}
+          </button>
+        </div>
+      }
+    }
+  </div>
+</ng-container>

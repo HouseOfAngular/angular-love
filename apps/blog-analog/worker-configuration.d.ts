@@ -24,6 +24,7 @@ interface __BaseEnv_Env {
   VITE_AL_GISCUS_CATEGORY_ID: string;
   CACHE_PURGE_SECRET: string;
   HEALTH_CHECK_TOKEN: string;
+  AI_NEWS_INGEST_TOKEN: string;
   AI?: Ai;
 }
 declare namespace Cloudflare {
@@ -53,6 +54,7 @@ declare namespace Cloudflare {
     VITE_AL_GISCUS_CATEGORY_ID: string;
     CACHE_PURGE_SECRET: string;
     HEALTH_CHECK_TOKEN: string;
+    AI_NEWS_INGEST_TOKEN: string;
   }
   interface DevEnv {
     CACHE_KV: KVNamespace;
@@ -77,6 +79,7 @@ declare namespace Cloudflare {
     VITE_AL_GISCUS_CATEGORY_ID: string;
     CACHE_PURGE_SECRET: string;
     HEALTH_CHECK_TOKEN: string;
+    AI_NEWS_INGEST_TOKEN: string;
   }
   interface Env extends __BaseEnv_Env {}
 }

@@ -218,7 +218,9 @@
     "aboutUs": "About us",
     "becomeAuthor": "Become an author",
     "notFound": "Not found",
-    "roadmap": "Roadmap"
+    "roadmap": "Roadmap",
+    "aiNews": "AI News",
+    "aiNewsDescription": "AI news for Angular developers: new models, tools, research and industry updates, linked to the original sources."
   },
   "adBanner": {
     "registerButton": "Download for free",
@@ -328,5 +330,52 @@
     "title": "Related Articles",
     "previousSlide": "Previous slide",
     "nextSlide": "Next slide"
+  },
+  "aiNewsPage": {
+    "title": "AI News",
+    "intro": "New models, tools, research and industry news from around the AI world, linked to the original source.",
+    "filterLabel": "Filter by category",
+    "categories": {
+      "all": "All",
+      "models": "Models",
+      "tools": "Tools",
+      "research": "Research",
+      "industry": "Industry"
+    },
+    "groups": {
+      "today": "Today",
+      "yesterday": "Yesterday",
+      "thisWeek": "This week"
+    },
+    "loadMore": "Load more",
+    "loading": "Loading news",
+    "empty": {
+      "title": "Nothing here yet",
+      "description": "There is no news in this category yet.",
+      "showAll": "Show all news"
+    },
+    "error": {
+      "title": "We couldn't load the news.",
+      "retry": "Try again"
+    },
+    "card": {
+      "linkLabel": "{{title}} ({{source}}, opens in a new tab)",
+      "byAuthor": "by {{author}}",
+      "label": {
+        "blog": "Article from {{source}}",
+        "social": "Post on {{source}}",
+        "video": "Video on {{source}}",
+        "repo": "Repository on {{source}}",
+        "paper": "Paper on {{source}}",
+        "podcast": "Podcast from {{source}}",
+        "newsletter": "Newsletter from {{source}}",
+        "other": "From {{source}}"
+      },
+      "relative": {
+        "now": "just now",
+        "minutes": "{{count}}m ago",
+        "hours": "{{count}}h ago"
+      }
+    }
   }
 }
