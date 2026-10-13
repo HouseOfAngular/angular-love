@@ -17,6 +17,12 @@
         "command": "tsx --tsconfig tsconfig.base.json libs/blog-bff/jobs/api/src/scripts/rebuild.ts"
       }
     },
+    "seed": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "tsx --tsconfig tsconfig.base.json libs/blog-bff/jobs/api/src/scripts/seed.ts"
+      }
+    },
     "cleanup": {
       "executor": "nx:run-commands",
       "options": {
