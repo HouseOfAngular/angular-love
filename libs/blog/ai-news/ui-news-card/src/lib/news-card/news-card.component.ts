@@ -6,26 +6,30 @@ import {
   input,
   LOCALE_ID,
 } from '@angular/core';
+import { RouterLink } from '@angular/router';
 import { TranslocoPipe } from '@jsverse/transloco';
-import { FastSvgComponent } from '@push-based/ngx-fast-svg';
 
 import { AiNewsItem } from '@angular-love/blog/contracts/ai-news';
+import { AlLocalizePipe } from '@angular-love/blog/i18n/util';
 
 import { dateGroup, formatNewsDate, NewsClock } from '../news-dates';
-import { sourceIcon } from '../source-icon';
+import { NewsSourceComponent } from '../news-source/news-source.component';
 
 /**
- * One feed item, linking out to the source. Thumbnails are off for now: the
- * API still returns `thumbnailUrl`, the card doesn't render it.
+ * One feed item, linking to its page (`/ai-news/<slug>`), which opens
+ * the item panel with the full summary and the link to the source. Thumbnails
+ * are off for now: the API still returns `thumbnailUrl`, the card doesn't
+ * render it.
  */
 @Component({
   selector: 'al-news-card',
   templateUrl: './news-card.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [FastSvgComponent, TranslocoPipe],
+  imports: [TranslocoPipe, RouterLink, AlLocalizePipe, NewsSourceComponent],
   host: {
     class: 'block',
     'data-testid': 'news-card',
+    '[attr.data-ai-news-slug]': 'item().slug',
   },
 })
 export class NewsCardComponent {
@@ -34,9 +38,7 @@ export class NewsCardComponent {
 
   private readonly _locale = inject(LOCALE_ID);
 
-  protected readonly icon = computed(() =>
-    sourceIcon(this.item().url, this.item().sourceType),
-  );
+  protected readonly link = computed(() => ['/ai-news', this.item().slug]);
 
   private readonly _publishedAt = computed(
     () => new Date(this.item().publishedAt),

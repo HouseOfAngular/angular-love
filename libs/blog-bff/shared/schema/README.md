@@ -18,29 +18,17 @@ root.
 ### 1. Create the database
 
 **With sample content (default, no access needed).** Builds the database from
-bundled fictional authors and articles (EN and PL, every category, a hidden and a
-draft post). It needs no WordPress access or environment variables, and never
-touches Turso:
+bundled fictional authors, articles (EN and PL, every category, a hidden and a
+draft post) and AI news items (the `/ai-news` page). It needs no WordPress
+access or environment variables, and never touches Turso:
 
 ```sh
 nx run api-jobs:seed   # writes tmp/blog-jobs/local.db, takes a few seconds
 ```
 
-The fixtures are in `libs/blog-bff/jobs/api/src/lib/seed-data.ts`, shaped like
-WordPress responses so they go through the production mappers. Extend them when
-you need more cases.
-
-To add fictional AI news items (the `/ai-news` page) on top, run the migrations
-(step 3) and then:
-
-```sh
-nx run api-jobs:seed-ai-news   # [--db=<path>], default tmp/blog-jobs/local.db
-```
-
-It only accepts a local file, and it's safe to run again: items whose URL is
-already there are skipped. The fixtures are in
-`libs/blog-bff/jobs/api/src/lib/ai-news-seed-data.ts`. `seed` and `rebuild`
-recreate the file, so run `seed-ai-news` again after them.
+The fixtures are in `libs/blog-bff/jobs/api/src/lib/seed-data.ts` (shaped like
+WordPress responses so they go through the production mappers) and
+`ai-news-seed-data.ts` next to it. Extend them when you need more cases.
 
 **With real content (maintainers).** Fetches every author and post from
 WordPress, maps them like production does, and applies the migrations:

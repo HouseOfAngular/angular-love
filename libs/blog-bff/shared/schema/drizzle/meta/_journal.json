@@ -29,6 +29,13 @@
       "when": 1791927106214,
       "tag": "0003_ai_news_items",
       "breakpoints": true
+    },
+    {
+      "idx": 4,
+      "version": "6",
+      "when": 1791978622194,
+      "tag": "0004_ai_news_excerpt_slug",
+      "breakpoints": true
     }
   ]
 }

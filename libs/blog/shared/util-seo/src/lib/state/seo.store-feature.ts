@@ -23,6 +23,14 @@ export function withSeo() {
       ): void {
         seoService.setProfileSeo(author, opts);
       },
+      /** Title, description and og:url with `robots: noindex, follow`. */
+      setNoIndexPageSeo(page: {
+        title: string;
+        description: string;
+        pageUrl: string;
+      }): void {
+        seoService.setNoIndexPageSeo(page);
+      },
       /** Clear page-level seo (e.g. on a failed or in-flight fetch). */
       resetPageSeo(): void {
         seoService.resetPageSeo();

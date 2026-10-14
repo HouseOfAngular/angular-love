@@ -5,10 +5,10 @@ import { aiNewsItems } from '@angular-love/blog-bff/shared/schema';
 import {
   AiNewsCategory,
   AiNewsFeedResponse,
-  resolveThumbnail,
 } from '@angular-love/blog/contracts/ai-news';
 
 import { AiNewsCursor, encodeCursor } from './cursor';
+import { aiNewsItemColumns, toAiNewsItem } from './item';
 
 export interface AiNewsFeedPage {
   limit: number;
@@ -26,18 +26,7 @@ export async function getAiNewsFeed(
   { limit, category, cursor }: AiNewsFeedPage,
 ): Promise<AiNewsFeedResponse> {
   const rows = await db
-    .select({
-      id: aiNewsItems.id,
-      url: aiNewsItems.url,
-      title: aiNewsItems.title,
-      summary: aiNewsItems.summary,
-      imageUrl: aiNewsItems.imageUrl,
-      sourceName: aiNewsItems.sourceName,
-      sourceType: aiNewsItems.sourceType,
-      author: aiNewsItems.author,
-      category: aiNewsItems.category,
-      publishedAt: aiNewsItems.publishedAt,
-    })
+    .select(aiNewsItemColumns)
     .from(aiNewsItems)
     .where(
       and(
@@ -58,11 +47,7 @@ export async function getAiNewsFeed(
   const last = page.at(-1);
 
   return {
-    items: page.map(({ imageUrl, publishedAt, ...item }) => ({
-      ...item,
-      thumbnailUrl: resolveThumbnail({ url: item.url, imageUrl }),
-      publishedAt: publishedAt.toISOString(),
-    })),
+    items: page.map(toAiNewsItem),
     nextCursor:
       rows.length > limit && last
         ? encodeCursor({ publishedAt: last.publishedAt, id: last.id })

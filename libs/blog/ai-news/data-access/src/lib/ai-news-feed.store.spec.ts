@@ -13,8 +13,9 @@ import { AiNewsService } from './ai-news.service';
 const item = (id: number): AiNewsItem => ({
   id,
   url: `https://example.com/${id}`,
+  slug: `item-${id}`,
   title: `Item ${id}`,
-  summary: 'Summary',
+  excerpt: 'Excerpt',
   thumbnailUrl: null,
   sourceName: 'Example',
   sourceType: 'blog',

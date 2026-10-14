@@ -23,7 +23,10 @@ export type AiNewsSourceType = (typeof AI_NEWS_SOURCE_TYPES)[number];
 export type AiNewsCategory = (typeof AI_NEWS_CATEGORIES)[number];
 export type AiNewsStatus = (typeof AI_NEWS_STATUSES)[number];
 
-export const AI_NEWS_SUMMARY_MAX_LENGTH = 280;
+/** The card text. */
+export const AI_NEWS_EXCERPT_MAX_LENGTH = 280;
+/** The text in the item's panel: paragraphs and `- ` lists, see `parseAiNewsSummary`. */
+export const AI_NEWS_SUMMARY_MAX_LENGTH = 4000;
 export const AI_NEWS_DEFAULT_LIMIT = 20;
 export const AI_NEWS_MAX_LIMIT = 50;
 
@@ -35,8 +38,11 @@ export function isAiNewsCategory(value: unknown): value is AiNewsCategory {
 export interface AiNewsItem {
   id: number;
   url: string;
+  /** The item's page is `/ai-news/<slug>`. */
+  slug: string;
   title: string;
-  summary: string;
+  /** The stored excerpt, or the start of the summary for items without one. */
+  excerpt: string;
   thumbnailUrl: string | null;
   sourceName: string;
   sourceType: AiNewsSourceType;
@@ -44,6 +50,11 @@ export interface AiNewsItem {
   category: AiNewsCategory;
   /** ISO 8601, the source's publish date. */
   publishedAt: string;
+}
+
+/** An item as `GET /api/ai-news/:id` returns it. */
+export interface AiNewsItemDetail extends AiNewsItem {
+  summary: string;
 }
 
 export interface AiNewsFeedQuery {

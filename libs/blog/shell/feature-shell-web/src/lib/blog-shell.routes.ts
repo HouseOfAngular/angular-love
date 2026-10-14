@@ -128,6 +128,17 @@ export const commonRoutes: Route[] = [
             jsonLd: false,
           } satisfies RouteSeoData,
         },
+        children: [
+          {
+            // The item panel opens over the feed. Its store sets the seo
+            // (noindex) once the item loads.
+            path: ':slug',
+            loadComponent: async () =>
+              (await import('@angular-love/blog/ai-news/feature-ai-news'))
+                .AiNewsItemPanelComponent,
+            data: { seo: false satisfies RouteSeoData },
+          },
+        ],
       },
       {
         path: '404',

@@ -1,0 +1,92 @@
+/*
+ * Like shadcn's Sheet, but quicker: the panel slides in from the right edge
+ * (300 ms, fast start and soft landing) and out in 200 ms while the overlay
+ * fades. Opening only animates when the panel is opened from the feed
+ * (`animate-open`), closing always does.
+ */
+:host(.animate-open) .panel {
+  animation: panel-in 300ms cubic-bezier(0.32, 0.72, 0, 1) both;
+}
+
+:host(.animate-open) .panel-backdrop {
+  animation: fade-in 300ms ease-out both;
+}
+
+/* `:host` matches the specificity of the opening rules, which come first. */
+:host .panel.closing {
+  animation: panel-out 200ms cubic-bezier(0.32, 0, 0.67, 0) both;
+}
+
+:host .panel-backdrop.closing {
+  animation: fade-out 200ms ease-in both;
+}
+
+@keyframes panel-in {
+  from {
+    transform: translateX(100%);
+  }
+}
+
+@keyframes panel-out {
+  to {
+    transform: translateX(100%);
+  }
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+}
+
+@keyframes fade-out {
+  to {
+    opacity: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .panel,
+  .panel-backdrop {
+    animation: none !important;
+  }
+}
+
+.panel-icon-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.25rem;
+  height: 2.25rem;
+  border-radius: 9999px;
+  transition: background-color 150ms;
+}
+
+a.panel-icon-button:hover,
+button.panel-icon-button:hover {
+  background: rgb(var(--foreground) / 0.08);
+}
+
+.panel-icon-button:focus-visible {
+  outline: 2px solid rgb(var(--primary));
+  outline-offset: 2px;
+}
+
+.panel-summary {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  max-width: 65ch;
+}
+
+.panel-summary ul {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  padding-left: 1.25rem;
+  list-style: disc;
+}
+
+.panel-summary li::marker {
+  color: rgb(var(--foreground) / 0.5);
+}

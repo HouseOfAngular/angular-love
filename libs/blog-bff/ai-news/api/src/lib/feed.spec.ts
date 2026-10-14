@@ -9,11 +9,13 @@ import { aiNewsItems } from '@angular-love/blog-bff/shared/schema';
 import { decodeCursor, encodeCursor } from './cursor';
 import { getAiNewsFeed } from './feed';
 import { insertAiNewsItems } from './insert';
+import { excerptFromSummary, getAiNewsItem } from './item';
 import {
   AI_NEWS_MAX_INSERT,
   aiNewsCreateRequestSchema,
   AiNewsItemInput,
 } from './schemas';
+import { slugify } from './slug';
 
 const MIGRATIONS = resolve(__dirname, '../../../../shared/schema/drizzle');
 
@@ -144,8 +146,9 @@ describe('getAiNewsFeed', () => {
       {
         id: 1,
         url: 'https://youtube.com/watch?v=dQw4w9WgXcQ',
+        slug: 'item-1',
         title: 'Item 1',
-        summary: 'Summary 1',
+        excerpt: 'Summary 1',
         thumbnailUrl: 'https://img.youtube.com/vi/dQw4w9WgXcQ/hqdefault.jpg',
         sourceName: 'Example',
         sourceType: 'video',
@@ -189,22 +192,24 @@ describe('insertAiNewsItems', () => {
       {
         id: expect.any(Number),
         url: 'https://example.com/a',
+        slug: 'item-1',
         status: 'created',
       },
       {
         id: expect.any(Number),
         url: 'https://example.com/b',
+        slug: 'item-2',
         status: 'created',
       },
     ]);
     expect(await insertAiNewsItems(db, items)).toEqual(
-      first.map((r) => ({ ...r, status: 'duplicate' })),
+      first.map(({ url, slug }) => ({ status: 'duplicate', url, slug })),
     );
     expect(
       await insertAiNewsItems(db, [
         item(3, at('2026-10-01T00:00:00Z'), { url: 'https://example.com/a#x' }),
       ]),
-    ).toEqual([{ ...first[0], status: 'duplicate' }]);
+    ).toEqual([{ status: 'duplicate', url: first[0].url, slug: 'item-3' }]);
 
     const rows = await db.select({ url: aiNewsItems.url }).from(aiNewsItems);
     expect(rows.map((r) => r.url)).toEqual([
@@ -220,7 +225,6 @@ describe('insertAiNewsItems', () => {
     ]);
 
     expect(results.map((r) => r.status)).toEqual(['created', 'duplicate']);
-    expect(results[1].id).toBe(results[0].id);
   });
 
   it('stores publishedAt as unix seconds', async () => {
@@ -255,19 +259,132 @@ describe('insertAiNewsItems', () => {
       await expect(
         db.run(
           sql.raw(`insert into ai_news_items
-            (url, title, summary, source_name, category, published_at, source_type, status)
-            values ('https://example.com/raw', 't', 's', 'n', ${category}, ${publishedAt}, ${sourceType}, ${status})`),
+            (url, slug, title, summary, source_name, category, published_at, source_type, status)
+            values ('https://example.com/raw', 'raw', 't', 's', 'n', ${category}, ${publishedAt}, ${sourceType}, ${status})`),
         ),
       ).rejects.toThrow(/CHECK constraint failed/);
     },
   );
 
-  it('rejects a summary over 280 characters', async () => {
+  it('rejects a summary over 4000 or an excerpt over 280 characters', async () => {
     await expect(
       insertAiNewsItems(db, [
-        item(1, at('2026-10-01T00:00:00Z'), { summary: 'x'.repeat(281) }),
+        item(1, at('2026-10-01T00:00:00Z'), { summary: 'x'.repeat(4001) }),
       ]),
     ).rejects.toThrow();
+    await expect(
+      insertAiNewsItems(db, [
+        item(1, at('2026-10-01T00:00:00Z'), { excerpt: 'x'.repeat(281) }),
+      ]),
+    ).rejects.toThrow();
+  });
+
+  it('returns the stored excerpt in the feed, never the summary', async () => {
+    await insertAiNewsItems(db, [
+      item(1, at('2026-10-01T00:00:00Z'), {
+        summary: 'A long summary.\n\n- One\n- Two',
+        excerpt: 'Short card text.',
+      }),
+    ]);
+
+    const [feedItem] = (await getAiNewsFeed(db, { limit: 1 })).items;
+    expect(feedItem.excerpt).toBe('Short card text.');
+    expect(feedItem).not.toHaveProperty('summary');
+  });
+});
+
+describe('getAiNewsItem', () => {
+  let db: LibSQLDatabase;
+
+  beforeEach(async () => {
+    db = drizzle({ client: createClient({ url: ':memory:' }) });
+    await migrate(db, { migrationsFolder: MIGRATIONS });
+    await insertAiNewsItems(db, [
+      item(1, at('2026-10-01T08:00:00Z'), {
+        summary: 'Para one.\n\n- Point',
+        excerpt: 'Card text.',
+      }),
+      item(2, at('2026-10-02T08:00:00Z'), { status: 'draft' }),
+    ]);
+  });
+
+  it('returns a published item with its summary', async () => {
+    expect(await getAiNewsItem(db, 'item-1')).toMatchObject({
+      id: 1,
+      slug: 'item-1',
+      excerpt: 'Card text.',
+      summary: 'Para one.\n\n- Point',
+      publishedAt: '2026-10-01T08:00:00.000Z',
+    });
+  });
+
+  it('returns null for drafts and unknown slugs', async () => {
+    expect(await getAiNewsItem(db, 'item-2')).toBeNull();
+    expect(await getAiNewsItem(db, 'item-99')).toBeNull();
+  });
+});
+
+describe('slugs', () => {
+  let db: LibSQLDatabase;
+
+  beforeEach(async () => {
+    db = drizzle({ client: createClient({ url: ':memory:' }) });
+    await migrate(db, { migrationsFolder: MIGRATIONS });
+  });
+
+  it('slugifies titles, dropping diacritics and symbols', () => {
+    expect(slugify('Angular 21: Signal Forms & more!')).toBe(
+      'angular-21-signal-forms-more',
+    );
+    expect(slugify('Żółta łódź')).toBe('zolta-lodz');
+    expect(slugify('🤖 !!')).toBe('news');
+    expect(slugify(`${'a'.repeat(99)} bcd`)).toBe('a'.repeat(99));
+  });
+
+  it('skips an item whose slug is taken, in the batch or already stored', async () => {
+    const same = (n: number) =>
+      item(n, at('2026-10-01T00:00:00Z'), { title: 'Same title' });
+    await insertAiNewsItems(db, [same(1)]);
+    const results = await insertAiNewsItems(db, [
+      same(2),
+      item(3, at('2026-10-01T00:00:00Z'), { slug: 'fresh' }),
+      item(4, at('2026-10-01T00:00:00Z'), { slug: 'fresh' }),
+    ]);
+
+    expect(results).toEqual([
+      {
+        status: 'duplicate',
+        url: 'https://example.com/post-2',
+        slug: 'same-title',
+      },
+      {
+        status: 'created',
+        id: expect.any(Number),
+        url: 'https://example.com/post-3',
+        slug: 'fresh',
+      },
+      { status: 'duplicate', url: 'https://example.com/post-4', slug: 'fresh' },
+    ]);
+  });
+
+  it('rejects a slug that is not lowercase words and dashes', async () => {
+    await expect(
+      insertAiNewsItems(db, [
+        item(1, at('2026-10-01T00:00:00Z'), { slug: 'Not a slug' }),
+      ]),
+    ).rejects.toThrow();
+  });
+});
+
+describe('excerptFromSummary', () => {
+  it('keeps a short summary whole, as one line', () => {
+    expect(excerptFromSummary('First.\n\n- One\n- Two')).toBe('First. One Two');
+  });
+
+  it('cuts a long summary at a word and adds an ellipsis', () => {
+    const excerpt = excerptFromSummary(`${'word '.repeat(100)}end`);
+    expect(excerpt.length).toBeLessThanOrEqual(281);
+    expect(excerpt).toMatch(/word…$/);
   });
 });
 

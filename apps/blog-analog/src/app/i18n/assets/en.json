@@ -333,7 +333,7 @@
   },
   "aiNewsPage": {
     "title": "AI News",
-    "intro": "New models, tools, research and industry news from around the AI world, linked to the original source.",
+    "intro": "What's new in AI for Angular developers: models, tools, research and industry news. Read the summary here and open the source when you want the details.",
     "filterLabel": "Filter by category",
     "categories": {
       "all": "All",
@@ -358,8 +358,21 @@
       "title": "We couldn't load the news.",
       "retry": "Try again"
     },
+    "panel": {
+      "close": "Close",
+      "readOn": "Read on {{source}}",
+      "share": "Share",
+      "copied": "Link copied",
+      "newTab": "(opens in a new tab)",
+      "loading": "Loading the summary",
+      "note": "Summary by angular.love. The original source has the full details.",
+      "notFound": {
+        "title": "This news item isn't available",
+        "description": "It may have been removed. The latest news is in the feed.",
+        "back": "Back to AI News"
+      }
+    },
     "card": {
-      "linkLabel": "{{title}} ({{source}}, opens in a new tab)",
       "byAuthor": "by {{author}}",
       "label": {
         "blog": "Article from {{source}}",

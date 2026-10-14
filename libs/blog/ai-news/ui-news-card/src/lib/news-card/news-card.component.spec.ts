@@ -1,9 +1,11 @@
 import { LOCALE_ID } from '@angular/core';
+import { provideRouter } from '@angular/router';
 import { TranslocoTestingModule } from '@jsverse/transloco';
 import { createComponentFactory, Spectator } from '@ngneat/spectator/jest';
 import { provideFastSVG } from '@push-based/ngx-fast-svg';
 
 import { AiNewsItem } from '@angular-love/blog/contracts/ai-news';
+import { AlLocalizeService } from '@angular-love/blog/i18n/util';
 
 import { NewsClock } from '../news-dates';
 
@@ -25,8 +27,9 @@ const clock: NewsClock = {
 const blogItem: AiNewsItem = {
   id: 1,
   url: 'https://blog.example.dev/post',
+  slug: 'a-fictional-model',
   title: 'A fictional model',
-  summary: 'Summary of a fictional model.',
+  excerpt: 'Excerpt about a fictional model.',
   thumbnailUrl: 'https://cdn.example.dev/og.png',
   sourceName: 'Example Lab',
   sourceType: 'blog',
@@ -39,6 +42,7 @@ const socialItem: AiNewsItem = {
   ...blogItem,
   id: 2,
   url: 'https://x.com/fictional_dev/status/1',
+  slug: 'thread',
   thumbnailUrl: null,
   sourceName: 'X',
   sourceType: 'social',
@@ -61,7 +65,6 @@ describe('NewsCardComponent', () => {
             aiNewsPage: {
               categories: { models: 'Models', tools: 'Tools' },
               card: {
-                linkLabel: '{{title}} ({{source}}, opens in a new tab)',
                 byAuthor: 'by {{author}}',
                 label: {
                   blog: 'Article from {{source}}',
@@ -75,7 +78,11 @@ describe('NewsCardComponent', () => {
         translocoConfig: { defaultLang: 'en', availableLangs: ['en'] },
       }),
     ],
-    providers: [provideFastSVG({ url: (name) => `assets/icons/${name}.svg` })],
+    providers: [
+      provideFastSVG({ url: (name) => `assets/icons/${name}.svg` }),
+      provideRouter([]),
+      AlLocalizeService,
+    ],
     detectChanges: false,
   });
 
@@ -84,17 +91,20 @@ describe('NewsCardComponent', () => {
     spectator.detectChanges();
   }
 
-  it('renders the whole card as one external link with an accessible name', () => {
+  it("renders the whole card as one link to the item's page, named by the title", () => {
     render(blogItem);
 
     const link = spectator.query(selectors.link) as HTMLAnchorElement;
-    expect(link.getAttribute('href')).toBe('https://blog.example.dev/post');
-    expect(link.getAttribute('target')).toBe('_blank');
-    expect(link.getAttribute('rel')).toBe('noopener noreferrer');
-    expect(link.getAttribute('aria-label')).toBe(
-      'A fictional model (Example Lab, opens in a new tab)',
-    );
+    expect(link.getAttribute('href')).toBe('/ai-news/a-fictional-model');
+    expect(link.getAttribute('target')).toBeNull();
+    expect(link.getAttribute('aria-label')).toBe('A fictional model');
     expect(spectator.queryAll('a')).toHaveLength(1);
+  });
+
+  it('shows the excerpt', () => {
+    render(blogItem);
+
+    expect(spectator.element).toContainText('Excerpt about a fictional model.');
   });
 
   it('shows no image, even when the item has a thumbnail', () => {
