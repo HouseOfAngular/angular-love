@@ -1,4 +1,4 @@
-import { formatDate, isPlatformServer } from '@angular/common';
+import { DatePipe, TitleCasePipe } from '@angular/common';
 import {
   afterNextRender,
   ChangeDetectionStrategy,
@@ -6,11 +6,7 @@ import {
   computed,
   inject,
   input,
-  LOCALE_ID,
-  makeStateKey,
-  PLATFORM_ID,
   signal,
-  TransferState,
 } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { TranslocoDirective } from '@jsverse/transloco';
@@ -19,6 +15,7 @@ import { AiNewsFeedStore } from '@angular-love/blog/ai-news/data-access';
 import {
   DateGroupKey,
   groupByDate,
+  NEWS_SITE_TIME_ZONE,
   NewsCardComponent,
   NewsCardSkeletonComponent,
   NewsClock,
@@ -30,8 +27,6 @@ import {
 import { ButtonComponent } from '@angular-love/blog/shared/ui-button';
 import { RepeatDirective } from '@angular-love/utils';
 
-const SERVER_NOW = makeStateKey<number>('ai-news-server-now');
-
 @Component({
   selector: 'al-ai-news-page',
   templateUrl: './ai-news-page.component.html',
@@ -40,6 +35,8 @@ const SERVER_NOW = makeStateKey<number>('ai-news-server-now');
   imports: [
     TranslocoDirective,
     RouterLink,
+    DatePipe,
+    TitleCasePipe,
     NewsCardComponent,
     NewsCardSkeletonComponent,
     ButtonComponent,
@@ -60,8 +57,15 @@ export class AiNewsPageComponent {
     return isAiNewsCategory(category) ? category : null;
   });
 
-  private readonly _locale = inject(LOCALE_ID);
-  protected readonly clock = signal<NewsClock>(this.initialClock());
+  /**
+   * Groups depend on the time zone, so the server renders in the site's zone
+   * and the client hydrates in it too (otherwise a card could land in another
+   * group and the DOM wouldn't match), then switches to the reader's zone.
+   */
+  protected readonly clock = signal<NewsClock>({
+    now: new Date(),
+    timeZone: NEWS_SITE_TIME_ZONE,
+  });
   protected readonly groups = computed(() =>
     groupByDate(
       this.store.items(),
@@ -72,37 +76,11 @@ export class AiNewsPageComponent {
 
   constructor() {
     this.store.loadFeed(this.selectedCategory);
-    // Hydrate with the server's clock, then switch to the reader's time and zone.
-    afterNextRender(() => this.clock.set({ now: new Date(), utc: false }));
+    afterNextRender(() => this.clock.set({ now: new Date() }));
   }
 
-  protected monthLabel(key: DateGroupKey & { kind: 'month' }): string {
-    const label = formatDate(
-      new Date(Date.UTC(key.year, key.month - 1, 15)),
-      'LLLL yyyy',
-      this._locale,
-      'UTC',
-    );
-    // Standalone month names are lowercase in Polish ("wrzesień 2026").
-    return label.charAt(0).toLocaleUpperCase(this._locale) + label.slice(1);
-  }
-
-  /**
-   * Relative dates depend on "now", so the server pins it in TransferState and
-   * the client hydrates with the same value (in UTC) to render identical text.
-   */
-  private initialClock(): NewsClock {
-    const transferState = inject(TransferState);
-    if (isPlatformServer(inject(PLATFORM_ID))) {
-      const now = Date.now();
-      transferState.set(SERVER_NOW, now);
-      return { now: new Date(now), utc: true };
-    }
-
-    const serverNow = transferState.get(SERVER_NOW, null);
-    transferState.remove(SERVER_NOW);
-    return serverNow === null
-      ? { now: new Date(), utc: false }
-      : { now: new Date(serverNow), utc: true };
+  /** Mid-month in UTC, so any zone formats the same month. */
+  protected monthDate(key: DateGroupKey & { kind: 'month' }): Date {
+    return new Date(Date.UTC(key.year, key.month - 1, 15));
   }
 }

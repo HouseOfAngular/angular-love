@@ -33,7 +33,11 @@ import { headerNavItems } from './header-nav-items';
       >
         <al-header-logo />
 
-        <al-navigation class="hidden lg:block" [navItems]="navItems" />
+        <!-- Tighter link padding below xl keeps the items on one row. -->
+        <al-navigation
+          class="hidden lg:block lg:[&_a]:px-3 xl:[&_a]:px-6"
+          [navItems]="navItems"
+        />
 
         <div class="flex flex-row items-center">
           <al-language-picker

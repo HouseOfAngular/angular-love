@@ -1,20 +1,8 @@
-import { dateGroup, groupByDate, relativeTime } from './news-dates';
+import { dateGroup, groupByDate } from './news-dates';
 import { sourceIcon } from './source-icon';
 
-const clock = { now: new Date('2026-10-13T12:00:00Z'), utc: true };
+const clock = { now: new Date('2026-10-13T12:00:00Z'), timeZone: 'UTC' };
 const d = (iso: string) => new Date(iso);
-
-describe('relativeTime', () => {
-  it.each([
-    ['2026-10-13T11:59:30Z', { unit: 'now' }],
-    ['2026-10-13T13:00:00Z', { unit: 'now' }],
-    ['2026-10-13T11:15:00Z', { unit: 'minutes', count: 45 }],
-    ['2026-10-13T09:00:00Z', { unit: 'hours', count: 3 }],
-    ['2026-10-12T13:00:00Z', { unit: 'hours', count: 23 }],
-  ])('%s → %o', (iso, expected) => {
-    expect(relativeTime(d(iso), clock.now)).toEqual(expected);
-  });
-});
 
 describe('dateGroup', () => {
   it.each([
@@ -25,6 +13,18 @@ describe('dateGroup', () => {
     ['2026-09-30T10:00:00Z', { kind: 'month', year: 2026, month: 9 }],
   ])('%s → %o', (iso, expected) => {
     expect(dateGroup(d(iso), clock)).toEqual(expected);
+  });
+
+  it("uses the clock's midnight, not UTC's", () => {
+    // 22:30 UTC on the 12th is 00:30 on the 13th in Warsaw (CEST).
+    const item = d('2026-10-12T22:30:00Z');
+    expect(dateGroup(item, clock)).toEqual({ kind: 'yesterday' });
+    expect(dateGroup(item, { ...clock, timeZone: 'Europe/Warsaw' })).toEqual({
+      kind: 'today',
+    });
+    expect(dateGroup(item, { ...clock, timeZone: 'America/New_York' })).toEqual(
+      { kind: 'yesterday' },
+    );
   });
 });
 

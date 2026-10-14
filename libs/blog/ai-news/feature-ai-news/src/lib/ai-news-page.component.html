@@ -85,7 +85,9 @@
               [id]="'ai-news-' + group.id"
             >
               @if (group.key.kind === 'month') {
-                {{ monthLabel(group.key) }}
+                {{
+                  monthDate(group.key) | date: 'LLLL yyyy' : 'UTC' | titlecase
+                }}
               } @else {
                 {{ t('groups.' + group.key.kind) }}
               }

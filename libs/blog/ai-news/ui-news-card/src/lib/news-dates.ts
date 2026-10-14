@@ -1,34 +1,37 @@
 /**
- * The reference point for relative dates. The server renders with its own
- * time in UTC and the client hydrates with the same values (see the feature's
- * clock), then switches to the browser's time and time zone, so hydration
- * never sees different text.
+ * The reference point for dates: "now" and the time zone that decides the
+ * calendar day and the clock time. The server renders in the site's zone, the
+ * client hydrates in the same zone (so the date groups match), then switches
+ * to the reader's own zone.
  */
 export interface NewsClock {
   now: Date;
-  /** Use UTC (server render and hydration) instead of the runtime's zone. */
-  utc: boolean;
+  /** IANA zone, e.g. `Europe/Warsaw`; `undefined` is the runtime's own zone. */
+  timeZone?: string;
 }
 
-/** Only used within the "Today" group, so it never goes past hours. */
-export type RelativeTime =
-  | { unit: 'now' }
-  | { unit: 'minutes' | 'hours'; count: number };
+/** Most readers are in Poland, so rendering there makes the switch a no-op for them. */
+export const NEWS_SITE_TIME_ZONE = 'Europe/Warsaw';
 
-const MINUTE = 60_000;
-const HOUR = 60 * MINUTE;
-const DAY = 24 * HOUR;
-
-export function relativeTime(date: Date, now: Date): RelativeTime {
-  const diff = Math.max(0, now.getTime() - date.getTime());
-  if (diff < MINUTE) {
-    return { unit: 'now' };
-  }
-  if (diff < HOUR) {
-    return { unit: 'minutes', count: Math.floor(diff / MINUTE) };
-  }
-  return { unit: 'hours', count: Math.floor(diff / HOUR) };
+/**
+ * Formats in the clock's zone. Uses `Intl` because Angular's `formatDate`
+ * only takes fixed offsets, which are wrong across daylight saving changes.
+ */
+export function formatNewsDate(
+  date: Date,
+  clock: NewsClock,
+  locale: string,
+  options: Intl.DateTimeFormatOptions,
+): string {
+  // LOCALE_ID is an object in this app (LocaleIdProvider) whose toLowerCase()
+  // returns the active language; Intl ignores anything but a string.
+  return new Intl.DateTimeFormat(locale.toLowerCase(), {
+    ...options,
+    timeZone: clock.timeZone,
+  }).format(date);
 }
+
+const DAY = 24 * 60 * 60 * 1000;
 
 export type DateGroupKey =
   | { kind: 'today' | 'yesterday' | 'thisWeek' }
@@ -37,9 +40,9 @@ export type DateGroupKey =
 
 /** Today, Yesterday, the rest of the last 7 days, then calendar months. */
 export function dateGroup(date: Date, clock: NewsClock): DateGroupKey {
-  const day = calendarDay(date, clock.utc);
+  const day = calendarDay(date, clock.timeZone);
   const daysAgo = Math.round(
-    (calendarDay(clock.now, clock.utc).utc - day.utc) / DAY,
+    (calendarDay(clock.now, clock.timeZone).utc - day.utc) / DAY,
   );
 
   if (daysAgo <= 0) {
@@ -88,11 +91,11 @@ export function groupByDate<T>(
 
 function calendarDay(
   date: Date,
-  utc: boolean,
+  timeZone: string | undefined,
 ): { year: number; month: number; utc: number } {
   // Numeric parts don't depend on the ICU build, unlike formatted strings.
   const parts = new Intl.DateTimeFormat('en-US', {
-    timeZone: utc ? 'UTC' : undefined,
+    timeZone,
     year: 'numeric',
     month: 'numeric',
     day: 'numeric',

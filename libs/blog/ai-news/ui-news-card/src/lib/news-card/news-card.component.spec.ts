@@ -1,3 +1,4 @@
+import { LOCALE_ID } from '@angular/core';
 import { TranslocoTestingModule } from '@jsverse/transloco';
 import { createComponentFactory, Spectator } from '@ngneat/spectator/jest';
 import { provideFastSVG } from '@push-based/ngx-fast-svg';
@@ -10,15 +11,16 @@ import { NewsCardComponent } from './news-card.component';
 
 const selectors = {
   link: 'a',
-  image: '[data-testid="news-card-image"]',
-  img: '[data-testid="news-card-image"] img',
-  play: '[data-testid="news-card-play"]',
-  source: '[data-testid="news-card-source"]',
   category: '[data-testid="news-card-category"]',
-  time: '[data-testid="news-card-meta"] time',
+  time: 'time',
+  meta: '[data-testid="news-card-meta"]',
+  source: '[data-testid="news-card-source"]',
 };
 
-const clock: NewsClock = { now: new Date('2026-10-13T12:00:00Z'), utc: true };
+const clock: NewsClock = {
+  now: new Date('2026-10-13T12:00:00Z'),
+  timeZone: 'UTC',
+};
 
 const blogItem: AiNewsItem = {
   id: 1,
@@ -44,6 +46,10 @@ const socialItem: AiNewsItem = {
   category: 'tools',
 };
 
+/** ICU puts a narrow no-break space before AM/PM. */
+const text = (el: Element | null) =>
+  (el?.textContent ?? '').replace(/\s+/g, ' ').trim();
+
 describe('NewsCardComponent', () => {
   let spectator: Spectator<NewsCardComponent>;
   const createComponent = createComponentFactory({
@@ -61,7 +67,6 @@ describe('NewsCardComponent', () => {
                   blog: 'Article from {{source}}',
                   social: 'Post on {{source}}',
                 },
-                relative: { hours: '{{count}}h ago' },
               },
             },
           },
@@ -74,8 +79,8 @@ describe('NewsCardComponent', () => {
     detectChanges: false,
   });
 
-  function render(item: AiNewsItem) {
-    spectator = createComponent({ props: { item, clock } });
+  function render(item: AiNewsItem, withClock: NewsClock = clock) {
+    spectator = createComponent({ props: { item, clock: withClock } });
     spectator.detectChanges();
   }
 
@@ -92,125 +97,70 @@ describe('NewsCardComponent', () => {
     expect(spectator.queryAll('a')).toHaveLength(1);
   });
 
-  describe('standard layout (with thumbnail)', () => {
-    beforeEach(() => render(blogItem));
-
-    it('shows a lazy thumbnail with a reserved aspect ratio', () => {
-      const img = spectator.query(selectors.img) as HTMLImageElement;
-      expect(img.getAttribute('src')).toBe('https://cdn.example.dev/og.png');
-      expect(img.getAttribute('loading')).toBe('lazy');
-      expect(spectator.query(selectors.image)).toHaveClass('aspect-[1.91/1]');
-    });
-
-    it('shows the category and the relative date with the absolute one as a tooltip', () => {
-      expect(spectator.query(selectors.category)).toHaveText('Models');
-      const time = spectator.query(selectors.time) as HTMLTimeElement;
-      expect(time).toHaveText('3h ago');
-      expect(time.getAttribute('datetime')).toBe(blogItem.publishedAt);
-      expect(time.getAttribute('title')).toBe('Oct 13, 2026, 9:00:00 AM');
-    });
-
-    it('has no play overlay for a non-YouTube item', () => {
-      expect(spectator.query(selectors.play)).toBeNull();
-    });
-  });
-
-  describe('text-forward layout (no thumbnail)', () => {
-    beforeEach(() => render(socialItem));
-
-    it('has no image slot at all', () => {
-      expect(spectator.query(selectors.image)).toBeNull();
-      expect(spectator.query('img#thumbnail, img[width="1200"]')).toBeNull();
-    });
-
-    it('labels who posted it where', () => {
-      expect(spectator.query(selectors.source)).toHaveText(
-        'Post on X by @fictional_dev',
-      );
-    });
-  });
-
-  it('names the source once, in the footer, on image cards too', () => {
+  it('shows no image, even when the item has a thumbnail', () => {
     render(blogItem);
 
-    expect(spectator.queryAll(selectors.source)).toHaveLength(1);
-    expect(spectator.query(selectors.source)).toHaveText(
-      'Article from Example Lab',
+    expect(spectator.query(`img[src="${blogItem.thumbnailUrl}"]`)).toBeNull();
+  });
+
+  it('puts the category and the time on the first row', () => {
+    render(blogItem);
+
+    const category = spectator.query(selectors.category) as HTMLElement;
+    const time = spectator.query(selectors.time) as HTMLTimeElement;
+    expect(category).toHaveText('Models');
+    expect(time.parentElement).toBe(category.parentElement);
+    expect(time.getAttribute('datetime')).toBe(blogItem.publishedAt);
+    expect(text(time)).toBe('9:00 AM');
+    expect(time.getAttribute('title')?.replace(/\s/g, ' ')).toBe(
+      'Oct 13, 2026, 9:00 AM',
     );
   });
 
+  it('keeps only the source in the footer', () => {
+    render(socialItem);
+
+    expect(spectator.query(`${selectors.meta} time`)).toBeNull();
+    expect(text(spectator.query(selectors.meta))).toBe(
+      'Post on X by @fictional_dev',
+    );
+    expect(spectator.queryAll(selectors.source)).toHaveLength(1);
+  });
+
   describe('time', () => {
-    const timeFor = (publishedAt: string) => {
-      render({ ...blogItem, publishedAt });
-      return spectator.query(selectors.time);
+    const timeFor = (publishedAt: string, withClock: NewsClock = clock) => {
+      render({ ...blogItem, publishedAt }, withClock);
+      return text(spectator.query(selectors.time));
     };
 
-    it('is relative today', () => {
-      expect(timeFor('2026-10-13T09:00:00.000Z')).toHaveExactTrimmedText(
-        '3h ago',
-      );
-    });
-
-    it('is the time of day yesterday, which the heading already names', () => {
-      expect(timeFor('2026-10-12T15:30:00.000Z')).toHaveExactTrimmedText(
-        '3:30 PM',
-      );
+    it('is the time of day today and yesterday, which the heading names', () => {
+      expect(timeFor('2026-10-13T09:00:00.000Z')).toBe('9:00 AM');
+      expect(timeFor('2026-10-12T15:30:00.000Z')).toBe('3:30 PM');
     });
 
     it('is the day and month for older items', () => {
-      expect(timeFor('2026-10-09T15:30:00.000Z')).toHaveExactTrimmedText(
-        'Oct 9',
-      );
-      expect(timeFor('2026-08-04T10:00:00.000Z')).toHaveExactTrimmedText(
-        'Aug 4',
-      );
-    });
-  });
-
-  it('shows a play overlay on YouTube thumbnails', () => {
-    render({
-      ...blogItem,
-      url: 'https://youtube.com/watch?v=dQw4w9WgXcQ',
-      thumbnailUrl: 'https://img.youtube.com/vi/dQw4w9WgXcQ/hqdefault.jpg',
-      sourceType: 'video',
+      expect(timeFor('2026-10-09T15:30:00.000Z')).toBe('Oct 9');
+      expect(timeFor('2026-08-04T10:00:00.000Z')).toBe('Aug 4');
     });
 
-    expect(spectator.query(selectors.play)).toExist();
-  });
-
-  it('removes the image slot for a missing YouTube video placeholder', () => {
-    render({
-      ...blogItem,
-      url: 'https://youtube.com/watch?v=dQw4w9WgXcQ',
-      thumbnailUrl: 'https://img.youtube.com/vi/dQw4w9WgXcQ/hqdefault.jpg',
+    it('formats in the locale, also when LOCALE_ID is an object', () => {
+      const locale = { toLowerCase: () => 'pl' } as unknown as string;
+      spectator = createComponent({
+        props: {
+          item: { ...blogItem, publishedAt: '2026-10-09T15:30:00.000Z' },
+          clock,
+        },
+        providers: [{ provide: LOCALE_ID, useValue: locale }],
+      });
+      spectator.detectChanges();
+      expect(text(spectator.query(selectors.time))).toBe('9 paź');
     });
-    const img = spectator.query(selectors.img) as HTMLImageElement;
-    jest.spyOn(img, 'naturalWidth', 'get').mockReturnValue(120);
 
-    spectator.dispatchFakeEvent(img, 'load');
-    spectator.detectChanges();
-
-    expect(spectator.query(selectors.image)).toBeNull();
-  });
-
-  it('keeps a thumbnail that loaded', () => {
-    render(blogItem);
-    const img = spectator.query(selectors.img) as HTMLImageElement;
-    jest.spyOn(img, 'naturalWidth', 'get').mockReturnValue(1200);
-
-    spectator.dispatchFakeEvent(img, 'load');
-    spectator.detectChanges();
-
-    expect(spectator.query(selectors.image)).toExist();
-  });
-
-  it('removes the image slot when the thumbnail fails to load', () => {
-    render(blogItem);
-
-    spectator.dispatchFakeEvent(selectors.img, 'error');
-    spectator.detectChanges();
-
-    expect(spectator.query(selectors.image)).toBeNull();
-    expect(spectator.query(selectors.source)).toExist();
+    it("uses the clock's time zone for the day and the time", () => {
+      const warsaw: NewsClock = { ...clock, timeZone: 'Europe/Warsaw' };
+      // 23:30 UTC on the 11th is 01:30 on the 12th in Warsaw (CEST): yesterday.
+      expect(timeFor('2026-10-11T23:30:00.000Z', warsaw)).toBe('1:30 AM');
+      expect(timeFor('2026-10-11T23:30:00.000Z')).toBe('Oct 11');
+    });
   });
 });

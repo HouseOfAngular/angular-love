@@ -1,7 +1,7 @@
 # blog-ai-news-ui-news-card
 
-`al-news-card` (image and text-forward layouts), its skeleton, the
-hostname-to-icon lookup and the date helpers (relative time, date groups) for
+`al-news-card` (text only for now; thumbnails are not rendered), its skeleton, the
+hostname-to-icon lookup and the date helpers (date groups, zone-aware formatting) for
 the AI news feed.
 
 ## Running unit tests

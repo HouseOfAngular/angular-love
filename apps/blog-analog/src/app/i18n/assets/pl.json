@@ -22,6 +22,7 @@
     }
   },
   "nav": {
+    "aiNews": "AI News",
     "home": "Strona Główna",
     "about": "O nas",
     "meetups": "Angular Meetups",
@@ -32,7 +33,6 @@
     "become_author": "Zostań autorem",
     "newsletter": "Angular.letter",
     "navLinks": "Menu",
-    "roadmap": "Learn Angular",
     "toggle_theme": "Przełącz motyw",
     "open_search_dialog": "Otwórz okno wyszukiwania",
     "languagePicker": {
@@ -373,11 +373,6 @@
         "podcast": "Podcast {{source}}",
         "newsletter": "Newsletter {{source}}",
         "other": "Źródło: {{source}}"
-      },
-      "relative": {
-        "now": "przed chwilą",
-        "minutes": "{{count}} min temu",
-        "hours": "{{count}} godz. temu"
       }
     }
   }
