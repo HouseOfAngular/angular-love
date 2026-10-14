@@ -48,9 +48,14 @@ curl -X POST https://angular.love/api/ai-news \
 - Without the right token: `401`. If `AI_NEWS_INGEST_TOKEN` isn't configured,
   or is shorter than 32 characters, every request gets `401`.
 
-The token is a worker secret. Generate one with `openssl rand -hex 32`, then
-`npx wrangler secret put AI_NEWS_INGEST_TOKEN --config apps/blog-analog/wrangler.jsonc --env <env>`.
-Locally, add `AI_NEWS_INGEST_TOKEN=...` to `apps/blog-analog/.dev.vars`.
+The token is a worker secret. `Jenkinsfile.deploy` uploads it on every deploy
+(dev, PR previews and prod) from the Jenkins credential `al_ai_news_ingest_token`;
+generate a new value with `openssl rand -hex 32`.
+
+The worker's regular database token is read-only, so this route writes with
+`TURSO_EU_WRITE_AUTH_TOKEN` (Jenkins credential `turso-eu-write-token`, a
+full-access token for the `blog-eu` group, so it also works on PR preview
+databases). No other route uses it. Locally, both routes use `TURSO_LOCAL`. Locally, add `AI_NEWS_INGEST_TOKEN=...` to `apps/blog-analog/.dev.vars`.
 
 ## Running unit tests
 

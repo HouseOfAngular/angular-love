@@ -13,6 +13,7 @@ interface __BaseEnv_Env {
   TURSO_LOCAL: string;
   TURSO_EU_CONNECTION_URL: string;
   TURSO_EU_AUTH_TOKEN: string;
+  TURSO_EU_WRITE_AUTH_TOKEN: string;
   VITE_AL_BASE_URL: string;
   VITE_AL_API_URL: string;
   VITE_AL_ALGOLIA_APPLICATION_ID: string;
@@ -43,6 +44,7 @@ declare namespace Cloudflare {
     TURSO_LOCAL: string;
     TURSO_EU_CONNECTION_URL: string;
     TURSO_EU_AUTH_TOKEN: string;
+    TURSO_EU_WRITE_AUTH_TOKEN: string;
     VITE_AL_BASE_URL: string;
     VITE_AL_API_URL: string;
     VITE_AL_ALGOLIA_APPLICATION_ID: string;
@@ -68,6 +70,7 @@ declare namespace Cloudflare {
     TURSO_LOCAL: string;
     TURSO_EU_CONNECTION_URL: string;
     TURSO_EU_AUTH_TOKEN: string;
+    TURSO_EU_WRITE_AUTH_TOKEN: string;
     VITE_AL_BASE_URL: string;
     VITE_AL_API_URL: string;
     VITE_AL_ALGOLIA_APPLICATION_ID: string;

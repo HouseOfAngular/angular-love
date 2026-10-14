@@ -18,3 +18,22 @@ export function createDatabase(event: H3Event): LibSQLDatabase {
     },
   });
 }
+
+/**
+ * Like `createDatabase`, but with `TURSO_EU_WRITE_AUTH_TOKEN`: the regular
+ * token is read-only. Only for routes that write (`POST /api/ai-news`).
+ */
+export function createWriteDatabase(event: H3Event): LibSQLDatabase {
+  const tursoLocalUrl = getOptionalEnv(event, 'TURSO_LOCAL');
+
+  if (tursoLocalUrl) {
+    return drizzle({ connection: { url: tursoLocalUrl } });
+  }
+
+  return drizzle({
+    connection: {
+      url: getRequiredEnv(event, 'TURSO_EU_CONNECTION_URL'),
+      authToken: getRequiredEnv(event, 'TURSO_EU_WRITE_AUTH_TOKEN'),
+    },
+  });
+}

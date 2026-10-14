@@ -15,7 +15,7 @@ import {
 } from '@angular-love/blog-bff/ai-news/api';
 
 import { hasBearerToken } from '../../../utils/bearer-token';
-import { createDatabase } from '../../../utils/database';
+import { createWriteDatabase } from '../../../utils/database';
 import { getOptionalEnv } from '../../../utils/env';
 
 /**
@@ -40,7 +40,7 @@ export default defineEventHandler(
     }
 
     const results = await insertAiNewsItems(
-      createDatabase(event),
+      createWriteDatabase(event),
       body.data.items,
     );
 
