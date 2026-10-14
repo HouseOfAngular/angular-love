@@ -5,6 +5,7 @@ import { Observable } from 'rxjs';
 import {
   AiNewsFeedQuery,
   AiNewsFeedResponse,
+  AiNewsItemDetail,
 } from '@angular-love/blog/contracts/ai-news';
 import { ConfigService } from '@angular-love/shared/config';
 
@@ -23,5 +24,11 @@ export class AiNewsService {
     return this._http.get<AiNewsFeedResponse>(`${this._apiBaseUrl}/ai-news`, {
       params,
     });
+  }
+
+  getItem(slug: string): Observable<AiNewsItemDetail> {
+    return this._http.get<AiNewsItemDetail>(
+      `${this._apiBaseUrl}/ai-news/${encodeURIComponent(slug)}`,
+    );
   }
 }

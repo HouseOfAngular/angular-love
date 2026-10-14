@@ -336,7 +336,7 @@
   },
   "aiNewsPage": {
     "title": "AI News",
-    "intro": "Nowe modele, narzędzia, badania i wiadomości z branży AI, z linkiem do oryginalnego źródła. Treści są w języku angielskim.",
+    "intro": "Co nowego w AI dla developerów Angulara: modele, narzędzia, badania i wiadomości z branży. Przeczytaj podsumowanie tutaj, a po szczegóły zajrzyj do źródła. Treści są w języku angielskim.",
     "filterLabel": "Filtruj według kategorii",
     "categories": {
       "all": "Wszystkie",
@@ -361,8 +361,21 @@
       "title": "Nie udało się załadować wiadomości.",
       "retry": "Spróbuj ponownie"
     },
+    "panel": {
+      "close": "Zamknij",
+      "readOn": "Przejdź do źródła: {{source}}",
+      "share": "Udostępnij",
+      "copied": "Link skopiowany",
+      "newTab": "(otwiera się w nowej karcie)",
+      "loading": "Ładowanie podsumowania",
+      "note": "Podsumowanie angular.love. Pełne informacje znajdziesz w oryginalnym źródle.",
+      "notFound": {
+        "title": "Ta wiadomość jest niedostępna",
+        "description": "Mogła zostać usunięta. Najnowsze wiadomości znajdziesz na liście.",
+        "back": "Wróć do AI News"
+      }
+    },
     "card": {
-      "linkLabel": "{{title}} ({{source}}, otwiera się w nowej karcie)",
       "byAuthor": "– {{author}}",
       "label": {
         "blog": "Artykuł z {{source}}",

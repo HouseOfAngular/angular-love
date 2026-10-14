@@ -23,12 +23,6 @@
         "command": "tsx --tsconfig tsconfig.base.json libs/blog-bff/jobs/api/src/scripts/seed.ts"
       }
     },
-    "seed-ai-news": {
-      "executor": "nx:run-commands",
-      "options": {
-        "command": "tsx --tsconfig tsconfig.base.json libs/blog-bff/jobs/api/src/scripts/seed-ai-news.ts"
-      }
-    },
     "cleanup": {
       "executor": "nx:run-commands",
       "options": {

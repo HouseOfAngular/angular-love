@@ -1,0 +1,196 @@
+<ng-container *transloco="let t; read: 'aiNewsPage'">
+  <div
+    aria-hidden="true"
+    class="panel-backdrop fixed inset-0 z-50 bg-black/50"
+    [class.closing]="closing()"
+    (click)="close()"
+  ></div>
+
+  <aside
+    data-testid="ai-news-panel"
+    aria-modal="true"
+    aria-labelledby="ai-news-panel-title"
+    role="dialog"
+    class="panel bg-al-background dark:border-al-border fixed inset-y-0 right-0 z-50 flex w-full flex-col shadow-2xl sm:max-w-xl sm:border-l"
+    [class.closing]="closing()"
+    (animationend)="onAnimationEnd($event)"
+    cdkTrapFocus
+  >
+    <button
+      data-testid="ai-news-panel-close"
+      type="button"
+      class="panel-icon-button absolute top-4 right-4 z-10 [&_svg]:size-3"
+      [attr.aria-label]="t('panel.close')"
+      [title]="t('panel.close')"
+      (click)="close()"
+    >
+      <fast-svg name="cross" aria-hidden="true" size="12" />
+    </button>
+
+    <div #body class="grow overflow-y-auto overscroll-contain">
+      @if (item(); as news) {
+        <article class="flex flex-col gap-4 px-4 pt-16 pb-8 sm:px-8">
+          <div class="flex flex-wrap items-baseline gap-x-3 gap-y-1 text-sm">
+            <span class="text-al-primary font-semibold dark:text-[#ff4d94]">
+              {{ t('categories.' + news.category) }}
+            </span>
+            <time
+              class="text-gray-600 dark:text-gray-400"
+              [attr.datetime]="news.publishedAt"
+            >
+              {{ date() }}
+            </time>
+          </div>
+
+          <h2
+            id="ai-news-panel-title"
+            #heading
+            tabindex="-1"
+            class="text-2xl/tight font-bold outline-none sm:text-3xl/tight"
+            style="word-break: break-word"
+          >
+            {{ news.title }}
+          </h2>
+
+          <al-news-source
+            class="text-sm text-gray-600 dark:text-gray-400"
+            [item]="news"
+          />
+
+          <div
+            data-testid="ai-news-panel-summary"
+            aria-live="polite"
+            class="panel-summary mt-2 text-base/relaxed"
+            [attr.aria-busy]="store.isFetchItemLoading()"
+          >
+            @if (summary(); as blocks) {
+              @for (block of blocks; track $index) {
+                @if (block.kind === 'paragraph') {
+                  <p>{{ block.text }}</p>
+                } @else {
+                  <ul>
+                    @for (point of block.items; track $index) {
+                      <li>{{ point }}</li>
+                    }
+                  </ul>
+                }
+              }
+            } @else if (store.isFetchItemLoading()) {
+              <span class="sr-only">{{ t('panel.loading') }}</span>
+              <p>{{ news.excerpt }}</p>
+              <div aria-hidden="true" class="flex flex-col gap-2">
+                <span class="bg-al-grey block h-4 w-full rounded"></span>
+                <span class="bg-al-grey block h-4 w-11/12 rounded"></span>
+                <span class="bg-al-grey block h-4 w-2/3 rounded"></span>
+              </div>
+            } @else {
+              <!-- The summary failed to load: the excerpt still says what it's about. -->
+              <p>{{ news.excerpt }}</p>
+            }
+          </div>
+
+          <!--
+            Icons are sized here: fast-svg only sets the svg's width and height
+            after rendering, and an unsized svg is 300×150 until then.
+          -->
+          <div class="mt-4 flex flex-wrap items-center gap-3">
+            <!-- The referrer stays on, so the source sees the visit came from us. -->
+            <a
+              al-button
+              data-testid="ai-news-panel-source"
+              class="[&_svg]:size-3.5 [&_svg]:shrink-0"
+              [href]="news.url"
+              target="_blank"
+              rel="noopener"
+              referrerpolicy="origin"
+            >
+              {{ t('panel.readOn', { source: news.sourceName }) }}
+              <span class="sr-only">{{ t('panel.newTab') }}</span>
+              <fast-svg name="arrow-right" aria-hidden="true" size="14" />
+            </a>
+            <button
+              al-button
+              data-testid="ai-news-panel-share"
+              type="button"
+              class="[&_svg]:size-3.5 [&_svg]:shrink-0"
+              (click)="share(news)"
+              variant="Outline"
+            >
+              <fast-svg name="link" aria-hidden="true" size="14" />
+              {{ t('panel.share') }}
+            </button>
+            <span
+              role="status"
+              class="text-sm text-gray-600 dark:text-gray-400"
+            >
+              @if (copied()) {
+                {{ t('panel.copied') }}
+              }
+            </span>
+          </div>
+
+          <p class="text-sm text-gray-600 dark:text-gray-400">
+            {{ t('panel.note') }}
+          </p>
+        </article>
+      } @else if (store.isNotFound()) {
+        <div
+          data-testid="ai-news-panel-not-found"
+          class="flex flex-col items-start gap-3 px-4 pt-16 pb-8 sm:px-8"
+        >
+          <h2
+            id="ai-news-panel-title"
+            #heading
+            tabindex="-1"
+            class="text-2xl font-bold outline-none"
+          >
+            {{ t('panel.notFound.title') }}
+          </h2>
+          <p>{{ t('panel.notFound.description') }}</p>
+          <button
+            al-button
+            type="button"
+            class="mt-2"
+            (click)="close()"
+            variant="Outline"
+          >
+            {{ t('panel.notFound.back') }}
+          </button>
+        </div>
+      } @else if (store.isFetchItemError()) {
+        <div
+          role="alert"
+          class="flex flex-col items-start gap-3 px-4 pt-16 pb-8 sm:px-8"
+        >
+          <h2
+            id="ai-news-panel-title"
+            #heading
+            tabindex="-1"
+            class="text-xl font-semibold outline-none"
+          >
+            {{ t('error.title') }}
+          </h2>
+          <button
+            al-button
+            type="button"
+            (click)="store.loadItem(slug())"
+            variant="Outline"
+          >
+            {{ t('error.retry') }}
+          </button>
+        </div>
+      } @else {
+        <div class="flex flex-col gap-4 px-4 pt-16 pb-8 sm:px-8">
+          <span id="ai-news-panel-title" class="sr-only">
+            {{ t('panel.loading') }}
+          </span>
+          <span class="bg-al-grey block h-5 w-24 rounded"></span>
+          <span class="bg-al-grey block h-9 w-full rounded"></span>
+          <span class="bg-al-grey block h-9 w-2/3 rounded"></span>
+          <span class="bg-al-grey mt-4 block h-4 w-full rounded"></span>
+          <span class="bg-al-grey block h-4 w-11/12 rounded"></span>
+        </div>
+      }
+    </div>
+  </aside>
+</ng-container>

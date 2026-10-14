@@ -184,9 +184,14 @@ export const aiNewsItems = sqliteTable(
     id: integer('id').primaryKey({ autoIncrement: true }),
     // Canonicalized with canonicalizeUrl before every insert.
     url: text('url').notNull(),
+    // The item's path segment, `/ai-news/<slug>`. Generated from the title on
+    // insert (see insertAiNewsItems) and never changed, so links keep working.
+    slug: text('slug').notNull(),
     title: text('title').notNull(),
-    // Length is validated at the Zod boundary only.
+    // Lengths are validated at the Zod boundary only.
     summary: text('summary').notNull(),
+    // The card text. Null on older items, which show the start of the summary.
+    excerpt: text('excerpt'),
     imageUrl: text('image_url'),
     sourceName: text('source_name').notNull(),
     sourceType: text('source_type', { enum: AI_NEWS_SOURCE_TYPES })
@@ -209,6 +214,7 @@ export const aiNewsItems = sqliteTable(
   // table rebuild.
   (table) => [
     uniqueIndex('ai_news_url_idx').on(table.url),
+    uniqueIndex('ai_news_slug_idx').on(table.slug),
     index('ai_news_feed_idx').on(table.status, table.publishedAt, table.id),
     check(
       'ai_news_source_type_check',

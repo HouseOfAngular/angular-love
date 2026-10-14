@@ -7,8 +7,9 @@ const DAY = 24 * HOUR;
  * Fictional AI news items for local development: every source type and
  * category, with and without images, a YouTube video, a GitHub repo and a
  * social post, spread over today, yesterday, this week and earlier months so
- * every date group renders. Dates are relative to `now`. Nothing here is a
- * real news claim.
+ * every date group renders. The first three have an excerpt and a long
+ * summary, the rest only a short summary, like items from before excerpts.
+ * Dates are relative to `now`. Nothing here is a real news claim.
  */
 export function aiNewsSeedItems(now = new Date()): AiNewsItemInput[] {
   const ago = (ms: number) => new Date(now.getTime() - ms);
@@ -17,8 +18,20 @@ export function aiNewsSeedItems(now = new Date()): AiNewsItemInput[] {
     {
       url: 'https://blog.example-ai-lab.dev/introducing-placeholder-7?utm_source=newsletter&utm_medium=email',
       title: 'Example AI Lab introduces Placeholder-7, a fictional model',
-      summary:
+      excerpt:
         'A made-up announcement used for local development. Placeholder-7 is said to handle longer contexts and cheaper tool calls than its imaginary predecessor, with a fictional benchmark table to match.',
+      summary: [
+        'Example AI Lab announced Placeholder-7, the fictional successor to Placeholder-6. The announcement is invented for local development, like every item in this seed.',
+        '',
+        'What the imaginary post claims:',
+        '- A context window twice as long as the previous model, with the same price per token.',
+        '- Tool calls that cost about a third less, thanks to a shorter function-calling format.',
+        '- A new draft mode that streams a rough answer first and refines it in place.',
+        '',
+        'Why it matters for Angular developers: cheaper tool calls make agent-style features, such as a form assistant that fills fields from a description, less expensive to run on every keystroke. The longer context also fits a whole mid-sized component library in one prompt.',
+        '',
+        'The post ends with a fictional benchmark table and a note that the old model will be retired in three months.',
+      ].join('\n'),
       imageUrl: 'https://picsum.photos/seed/al-ai-news-1/1200/628',
       sourceName: 'Example AI Lab',
       sourceType: 'blog',
@@ -28,8 +41,17 @@ export function aiNewsSeedItems(now = new Date()): AiNewsItemInput[] {
     {
       url: 'https://x.com/fictional_dev/status/1000000000000000001?s=20&t=abc',
       title: 'Thread: what we learned shipping a fictional agent to production',
-      summary:
+      excerpt:
         'A placeholder social post. The fictional author lists five lessons about retries, evals and prompt versioning from an agent that never actually existed.',
+      summary: [
+        'A fictional developer shares five lessons from running an agent in production. None of it happened.',
+        '',
+        '- Retry tool calls, not whole conversations: replaying everything multiplies costs and repeats side effects.',
+        '- Version prompts like code and log the version with every run.',
+        '- Write evals before the second prompt change, not after the tenth.',
+        '- Cap the number of steps; a loop that never ends is the most expensive bug.',
+        '- Show the user what the agent is doing, even when it is slow.',
+      ].join('\n'),
       sourceName: 'X',
       sourceType: 'social',
       author: '@fictional_dev',
@@ -49,8 +71,16 @@ export function aiNewsSeedItems(now = new Date()): AiNewsItemInput[] {
     {
       url: 'https://github.com/example-org/tiny-agent-kit',
       title: 'tiny-agent-kit: a fictional minimal agent framework',
-      summary:
+      excerpt:
         'Placeholder repository entry. The imaginary project offers a small typed tool registry and a step loop, and exists only to exercise the GitHub social card thumbnail.',
+      summary: [
+        'tiny-agent-kit is an imaginary TypeScript library for building small agents. It registers typed tools and runs a step loop that stops after a fixed number of steps.',
+        '',
+        'The fictional README highlights:',
+        '- Tools are plain functions with a Zod schema for their input.',
+        '- The loop is about 200 lines with no dependencies besides the model SDK.',
+        '- Every step is an event you can log or stream to the UI, for example into an Angular signal.',
+      ].join('\n'),
       sourceName: 'GitHub',
       sourceType: 'repo',
       category: 'tools',

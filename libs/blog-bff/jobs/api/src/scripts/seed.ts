@@ -1,12 +1,17 @@
 /*
-  Builds a local blog database from bundled fixtures. Needs no WordPress access
-  and no environment variables, and never touches Turso.
+  Builds a local blog database from bundled fixtures: authors and articles,
+  plus fictional AI news items. Needs no WordPress access and no environment
+  variables, and never touches Turso.
 
   Usage: nx run api-jobs:seed [--out=<path>]
 */
 import { resolve } from 'node:path';
 import { parseArgs } from 'node:util';
+import { drizzle } from 'drizzle-orm/libsql';
 
+import { insertAiNewsItems } from '@angular-love/blog-bff/ai-news/api';
+
+import { aiNewsSeedItems } from '../lib/ai-news-seed-data';
 import { buildLocalDatabase } from '../lib/rebuild';
 import { seedWp } from '../lib/seed-data';
 
@@ -28,5 +33,10 @@ run(async () => {
   if (skipped.length > 0) {
     throw new Error(`Fixtures failed to map:\n${skipped.join('\n')}`);
   }
+
+  // Not WordPress content, so it goes in after the build has migrated the file.
+  const db = drizzle({ connection: { url: `file:${path}` } });
+  await insertAiNewsItems(db, aiNewsSeedItems());
+
   console.log(`Local database ready: ${path}`);
 });

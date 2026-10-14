@@ -407,6 +407,29 @@ export class SeoService {
     this.setJsonLd([profilePage, person, breadcrumb]);
   }
 
+  /**
+   * A page that can be shared but shouldn't be indexed, such as an AI news
+   * item (a summary of someone else's content): title, description, og:url
+   * and `robots: noindex, follow`, without hreflang or JSON-LD.
+   */
+  setNoIndexPageSeo(page: {
+    title: string;
+    description: string;
+    pageUrl: string;
+  }): void {
+    this.resetPageSeo();
+    this.setTitle(page.title);
+    this.setMeta(
+      {
+        description: page.description,
+        og_type: 'article',
+        og_url: page.pageUrl,
+      },
+      page.pageUrl,
+    );
+    this.updateTag('noindex, follow', 'robots');
+  }
+
   removeJsonLd(): void {
     const el = this._document.head.querySelector('script[data-seo-jsonld]');
     if (el) el.remove();

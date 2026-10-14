@@ -1,13 +1,10 @@
 @let news = item();
+<!-- Named by the title only: the rest would make a long link name. -->
 <a
   class="group focus-visible:outline-al-primary block h-full rounded-lg focus-visible:outline-2 focus-visible:outline-offset-2"
-  [attr.aria-label]="
-    'aiNewsPage.card.linkLabel'
-      | transloco: { title: news.title, source: news.sourceName }
-  "
-  [href]="news.url"
-  target="_blank"
-  rel="noopener noreferrer"
+  [attr.aria-label]="news.title"
+  [routerLink]="link() | alLocalize"
+  queryParamsHandling="preserve"
 >
   <article
     class="bg-al-card dark:border-al-border md:group-hover:shadow-al-primary flex h-full w-full flex-col gap-2 rounded-lg border p-4 transition-shadow"
@@ -28,33 +25,17 @@
       </time>
     </div>
     <h3
-      class="text-al-primary-foreground line-clamp-3 text-lg/snug font-bold"
+      class="text-al-primary-foreground text-lg/snug font-bold"
       style="word-break: break-word"
     >
       {{ news.title }}
     </h3>
-    <p class="line-clamp-3 text-sm/relaxed">{{ news.summary }}</p>
+    <p class="text-sm/relaxed">{{ news.excerpt }}</p>
 
-    <div
+    <al-news-source
       data-testid="news-card-meta"
-      class="mt-auto flex items-start gap-2 pt-3 text-sm text-gray-600 dark:text-gray-400"
-    >
-      <fast-svg
-        aria-hidden="true"
-        class="mt-0.5 shrink-0"
-        [name]="icon()"
-        size="16"
-      />
-      @let label =
-        'aiNewsPage.card.label.' + news.sourceType
-          | transloco: { source: news.sourceName };
-      @let byAuthor =
-        news.author
-          ? ('aiNewsPage.card.byAuthor' | transloco: { author: news.author })
-          : '';
-      <span data-testid="news-card-source" class="line-clamp-2 min-w-0">
-        {{ byAuthor ? label + ' ' + byAuthor : label }}
-      </span>
-    </div>
+      class="mt-auto pt-3 text-sm text-gray-600 dark:text-gray-400"
+      [item]="news"
+    />
   </article>
 </a>
