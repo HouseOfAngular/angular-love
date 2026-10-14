@@ -23,6 +23,8 @@ pipeline {
         TURSO_ORG="angular-love"
         TURSO_EU_DB=credentials('turso-eu-db')
         TURSO_EU_AUTH_TOKEN=credentials('turso-eu-auth-token')
+        // Full-access blog-eu group token; only POST /api/ai-news uses it.
+        TURSO_EU_WRITE_AUTH_TOKEN=credentials('turso-eu-write-token')
         BREVO_API_KEY=credentials('blog-brevo-api-key')
         BREVO_API_URL="https://api.brevo.com/v3/"
         WP_REST_API_BASE_URL="https://wp.angular.love"
@@ -37,6 +39,7 @@ pipeline {
         VITE_AL_GISCUS_REPO=credentials('al_giscus_repo')
         VITE_AL_GISCUS_REPO_ID=credentials('al_giscus_repo_id')
         CACHE_PURGE_SECRET=credentials('al_cache_purge_secret')
+        AI_NEWS_INGEST_TOKEN=credentials('al_ai_news_ingest_token')
     }
 
     stages {
@@ -200,7 +203,9 @@ pipeline {
 \\"VITE_AL_GISCUS_REPO\\":\\"$VITE_AL_GISCUS_REPO\\",
 \\"VITE_AL_GISCUS_REPO_ID\\":\\"$VITE_AL_GISCUS_REPO_ID\\",
 \\"TURSO_EU_CONNECTION_URL\\":\\"$TURSO_EU_CONNECTION_URL\\",
-\\"TURSO_EU_AUTH_TOKEN\\":\\"$TURSO_EU_AUTH_TOKEN\\"}" > new-secrets-bff
+\\"TURSO_EU_AUTH_TOKEN\\":\\"$TURSO_EU_AUTH_TOKEN\\",
+\\"TURSO_EU_WRITE_AUTH_TOKEN\\":\\"$TURSO_EU_WRITE_AUTH_TOKEN\\",
+\\"AI_NEWS_INGEST_TOKEN\\":\\"$AI_NEWS_INGEST_TOKEN\\"}" > new-secrets-bff
                         """
                     }
                 }

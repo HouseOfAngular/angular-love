@@ -13,6 +13,7 @@ interface __BaseEnv_Env {
   TURSO_LOCAL: string;
   TURSO_EU_CONNECTION_URL: string;
   TURSO_EU_AUTH_TOKEN: string;
+  TURSO_EU_WRITE_AUTH_TOKEN: string;
   VITE_AL_BASE_URL: string;
   VITE_AL_API_URL: string;
   VITE_AL_ALGOLIA_APPLICATION_ID: string;
@@ -24,6 +25,7 @@ interface __BaseEnv_Env {
   VITE_AL_GISCUS_CATEGORY_ID: string;
   CACHE_PURGE_SECRET: string;
   HEALTH_CHECK_TOKEN: string;
+  AI_NEWS_INGEST_TOKEN: string;
   AI?: Ai;
 }
 declare namespace Cloudflare {
@@ -42,6 +44,7 @@ declare namespace Cloudflare {
     TURSO_LOCAL: string;
     TURSO_EU_CONNECTION_URL: string;
     TURSO_EU_AUTH_TOKEN: string;
+    TURSO_EU_WRITE_AUTH_TOKEN: string;
     VITE_AL_BASE_URL: string;
     VITE_AL_API_URL: string;
     VITE_AL_ALGOLIA_APPLICATION_ID: string;
@@ -53,6 +56,7 @@ declare namespace Cloudflare {
     VITE_AL_GISCUS_CATEGORY_ID: string;
     CACHE_PURGE_SECRET: string;
     HEALTH_CHECK_TOKEN: string;
+    AI_NEWS_INGEST_TOKEN: string;
   }
   interface DevEnv {
     CACHE_KV: KVNamespace;
@@ -66,6 +70,7 @@ declare namespace Cloudflare {
     TURSO_LOCAL: string;
     TURSO_EU_CONNECTION_URL: string;
     TURSO_EU_AUTH_TOKEN: string;
+    TURSO_EU_WRITE_AUTH_TOKEN: string;
     VITE_AL_BASE_URL: string;
     VITE_AL_API_URL: string;
     VITE_AL_ALGOLIA_APPLICATION_ID: string;
@@ -77,6 +82,7 @@ declare namespace Cloudflare {
     VITE_AL_GISCUS_CATEGORY_ID: string;
     CACHE_PURGE_SECRET: string;
     HEALTH_CHECK_TOKEN: string;
+    AI_NEWS_INGEST_TOKEN: string;
   }
   interface Env extends __BaseEnv_Env {}
 }

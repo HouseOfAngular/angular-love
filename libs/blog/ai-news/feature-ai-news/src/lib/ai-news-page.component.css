@@ -1,0 +1,64 @@
+/*
+ * The feed reads as a timeline on wide screens: date headings sit in a rail
+ * on a vertical line and stay in view while their cards scroll past.
+ */
+.timeline-group {
+  padding-bottom: 2.5rem;
+}
+
+.timeline-heading {
+  margin-bottom: 1rem;
+}
+
+.news-grid {
+  display: grid;
+  gap: 1rem;
+}
+
+@media (min-width: 48rem) {
+  .news-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 64rem) {
+  .timeline {
+    /* Room for the dots, which straddle the line. */
+    margin-left: 0.375rem;
+    border-left: 1px solid rgb(var(--border));
+  }
+
+  .timeline-group {
+    display: grid;
+    grid-template-columns: 9rem minmax(0, 1fr);
+    column-gap: 2rem;
+    padding-left: 1.5rem;
+  }
+
+  .timeline-heading {
+    position: sticky;
+    /* Below the sticky site header. */
+    top: 6rem;
+    align-self: start;
+    margin-bottom: 0;
+  }
+
+  .timeline-heading::before {
+    content: '';
+    position: absolute;
+    /* Centred on the line: the group's padding plus half the dot and line. */
+    left: calc(-1.5rem - 0.3125rem - 0.5px);
+    top: 0.5rem;
+    width: 0.625rem;
+    height: 0.625rem;
+    border-radius: 9999px;
+    background: rgb(var(--foreground));
+    box-shadow: 0 0 0 4px rgb(var(--background));
+  }
+}
+
+@media (min-width: 80rem) {
+  .news-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}

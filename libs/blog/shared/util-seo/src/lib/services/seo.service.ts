@@ -102,7 +102,10 @@ export class SeoService {
 
         // PAGE layer: central, route-data-driven static pages.
         this.resetPageSeo();
-        this.setMetaDescription(seoConfig.description);
+        const description = seo.descriptionKey
+          ? this._translocoService.translate(seo.descriptionKey)
+          : seoConfig.description;
+        this.setMetaDescription(description);
         this.updateTag('website', 'ogType');
 
         if (seo.titleKey) {
@@ -120,10 +123,7 @@ export class SeoService {
         if (seo.applyJsonLd) {
           const inLanguage = seoConfig.locale.split('_')[0];
           this.setJsonLd(
-            this._buildPageEntities(seo, {
-              inLanguage,
-              description: seoConfig.description,
-            }),
+            this._buildPageEntities(seo, { inLanguage, description }),
           );
         }
       });
