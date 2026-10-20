@@ -3,6 +3,7 @@ import { DbLang } from '@angular-love/contracts/articles';
 import {
   buildBlogPosting,
   buildBreadcrumbList,
+  buildFaqPage,
   buildHomeBreadcrumb,
   buildOrganization,
   buildOrganizationId,
@@ -63,6 +64,7 @@ const makeArticle = (
   difficulty: 'intermediate' as const,
   anchors: [],
   otherTranslations: [],
+  faq: null,
   language: DbLang.English,
   author: makeAuthor(),
   seo: {
@@ -534,6 +536,47 @@ describe('buildWebPage', () => {
       { description: '' },
     );
     expect(page.description).toBeUndefined();
+  });
+});
+
+describe('buildFaqPage', () => {
+  const pageUrl = `${BASE_URL}/signals-vs-rxjs`;
+  const faq = [
+    {
+      question: 'Will signals replace RxJs?',
+      answer: 'No. Signals cover **synchronous** state.',
+    },
+    {
+      question: 'How do I convert?',
+      answer: 'Use [`toSignal()`](https://angular.dev).',
+    },
+  ];
+
+  it('builds an FAQPage attached to the article WebPage', () => {
+    const page = buildFaqPage(faq, pageUrl, 'en');
+
+    expect(page['@type']).toBe('FAQPage');
+    expect(page['@id']).toBe(`${pageUrl}#faq`);
+    expect(page.inLanguage).toBe('en');
+    expect(page.isPartOf).toEqual({ '@id': buildWebPageId(pageUrl) });
+  });
+
+  it('maps each item to a Question with a plain-text accepted Answer', () => {
+    expect(buildFaqPage(faq, pageUrl, 'en').mainEntity).toEqual([
+      {
+        '@type': 'Question',
+        name: 'Will signals replace RxJs?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'No. Signals cover synchronous state.',
+        },
+      },
+      {
+        '@type': 'Question',
+        name: 'How do I convert?',
+        acceptedAnswer: { '@type': 'Answer', text: 'Use toSignal().' },
+      },
+    ]);
   });
 });
 

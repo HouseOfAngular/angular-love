@@ -33,6 +33,7 @@ import {
 } from '@angular-love/contracts/articles';
 import { RepeatDirective } from '@angular-love/utils';
 
+import { ArticleFaqComponent } from '../article-faq/article-faq.component';
 import { ArticleShareIconsComponent } from '../article-share-icons/article-share-icons.component';
 import { ArticleSummaryDialogService } from '../article-summary-dialog/article-summary-dialog.service';
 
@@ -58,6 +59,7 @@ import { ArticleSummaryDialogService } from '../article-summary-dialog/article-s
     ArticleCompactCardSkeletonComponent,
     RepeatDirective,
     ButtonComponent,
+    ArticleFaqComponent,
   ],
   templateUrl: './article-details.component.html',
   styleUrls: ['./article-details.component.scss'],

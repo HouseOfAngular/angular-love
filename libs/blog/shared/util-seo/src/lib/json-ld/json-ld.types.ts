@@ -100,10 +100,30 @@ export interface SchemaWebPage {
   breadcrumb?: SchemaRef;
 }
 
+export interface SchemaAnswer {
+  '@type': 'Answer';
+  text: string;
+}
+
+export interface SchemaQuestion {
+  '@type': 'Question';
+  name: string;
+  acceptedAnswer: SchemaAnswer;
+}
+
+export interface SchemaFaqPage {
+  '@type': 'FAQPage';
+  '@id': string;
+  inLanguage: string;
+  isPartOf: SchemaRef;
+  mainEntity: SchemaQuestion[];
+}
+
 export type SchemaGraphEntity =
   | SchemaOrganization
   | SchemaWebSite
   | SchemaBlogPosting
   | SchemaPerson
   | SchemaBreadcrumbList
-  | SchemaWebPage;
+  | SchemaWebPage
+  | SchemaFaqPage;
