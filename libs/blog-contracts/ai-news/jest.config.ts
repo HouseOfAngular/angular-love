@@ -1,5 +1,5 @@
 /* eslint-disable */
-export default {
+module.exports = {
   displayName: 'blog-contracts-ai-news',
   preset: '../../../jest.preset.js',
   testEnvironment: 'node',
