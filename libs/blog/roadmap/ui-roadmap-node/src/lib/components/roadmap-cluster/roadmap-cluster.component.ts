@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, input } from '@angular/core';
+import { Component, input } from '@angular/core';
 
 import { RoadmapClusterNode } from '../../types/roadmap-node';
 import { RoadmapBasicNodeComponent } from '../roadmap-basic-node/roadmap-basic-node.component';
@@ -7,7 +7,7 @@ import { RoadmapBasicNodeComponent } from '../roadmap-basic-node/roadmap-basic-n
   selector: 'al-roadmap-cluster',
   template: `
     <div
-      class="bg-al-card bg-al-radial-gradient dark:bg-al-roadmap-secondary relative z-10 m-[-2px] rounded-lg border-2 border-(--primary-foreground) dark:border-[#FDF5FD] px-6 py-4"
+      class="bg-al-card bg-al-radial-gradient dark:bg-al-roadmap-secondary relative z-10 m-[-2px] rounded-lg border-2 border-(--primary-foreground) px-6 py-4 dark:border-[#FDF5FD]"
       [attr.node-id]="cluster().id"
     >
       <div class="text-al-primary-foreground text-[20px]">
@@ -21,7 +21,6 @@ import { RoadmapBasicNodeComponent } from '../roadmap-basic-node/roadmap-basic-n
       }
     </div>
   `,
-  changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [RoadmapBasicNodeComponent],
   host: {
     class:

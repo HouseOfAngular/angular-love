@@ -1,9 +1,4 @@
-import {
-  ChangeDetectionStrategy,
-  Component,
-  computed,
-  input,
-} from '@angular/core';
+import { Component, computed, input } from '@angular/core';
 import { TranslocoDirective } from '@jsverse/transloco';
 import { FastSvgComponent } from '@push-based/ngx-fast-svg';
 
@@ -46,7 +41,6 @@ export type SocialMediaIconItemUi =
       </a>
     }
   `,
-  changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [FastSvgComponent, TranslocoDirective],
 })
 export class SocialMediaIconItemComponent {

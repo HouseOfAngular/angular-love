@@ -1,4 +1,4 @@
-import { Component, input, ChangeDetectionStrategy } from '@angular/core';
+import { Component, input } from '@angular/core';
 
 @Component({
   selector: 'al-roadmap-dialog-subtitle',
@@ -8,7 +8,6 @@ import { Component, input, ChangeDetectionStrategy } from '@angular/core';
     </h4>
     <div class="bg-al-primary-foreground h-px grow"></div>
   `,
-  changeDetection: ChangeDetectionStrategy.Eager,
   host: {
     class: 'flex items-center gap-4',
   },

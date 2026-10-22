@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
+import { Component, inject } from '@angular/core';
 
 import { ArticleHorizontalCardComponent } from '@angular-love/blog/articles/ui-article-card';
 import { NewsletterComponent } from '@angular-love/blog/newsletter';
@@ -18,7 +18,6 @@ import { SearchResultsPagePresenter } from './search-results-page.presenter';
   selector: 'al-search-results-page',
   templateUrl: './search-results-page.component.html',
   styleUrl: './search-results-page.component.scss',
-  changeDetection: ChangeDetectionStrategy.OnPush,
   providers: [SearchListStore, SearchResultsPagePresenter],
   imports: [
     ArticleHorizontalCardComponent,

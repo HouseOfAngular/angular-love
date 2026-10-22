@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { Component } from '@angular/core';
 import { NgxSkeletonLoaderModule } from 'ngx-skeleton-loader';
 
 import { ArticleContentSkeletonComponent } from '@angular-love/blog/articles/ui-article-content';
@@ -100,7 +100,6 @@ import { AuthorCardSkeletonComponent } from '@angular-love/blog/authors/ui-autho
       </aside>
     </div>
   `,
-  changeDetection: ChangeDetectionStrategy.OnPush,
   host: {
     class: 'block w-full',
   },

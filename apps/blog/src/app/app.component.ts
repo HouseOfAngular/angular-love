@@ -1,5 +1,5 @@
 import { ViewportScroller } from '@angular/common';
-import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 
 import { AppThemeStore } from '@angular-love/data-access-app-theme';
@@ -8,14 +8,14 @@ import { AppThemeStore } from '@angular-love/data-access-app-theme';
   selector: 'al-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [RouterOutlet],
 })
 export class AppComponent {
   private readonly _appThemeStore = inject(AppThemeStore);
+  private readonly _viewport = inject(ViewportScroller);
 
-  constructor(viewport: ViewportScroller) {
-    viewport.setOffset([0, 80]);
+  constructor() {
+    this._viewport.setOffset([0, 80]);
     this._appThemeStore.syncWithSystemTheme();
 
     // Our fonts are self-hosted.

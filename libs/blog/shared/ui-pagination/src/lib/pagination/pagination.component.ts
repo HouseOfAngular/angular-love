@@ -1,11 +1,5 @@
 import { NgClass } from '@angular/common';
-import {
-  ChangeDetectionStrategy,
-  Component,
-  inject,
-  input,
-  output,
-} from '@angular/core';
+import { Component, inject, input, output } from '@angular/core';
 import { TranslocoDirective } from '@jsverse/transloco';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { heroChevronLeft, heroChevronRight } from '@ng-icons/heroicons/outline';
@@ -24,7 +18,6 @@ export type PageChangeEvent = {
   imports: [ButtonComponent, NgIcon, NgClass, TranslocoDirective],
   templateUrl: './pagination.component.html',
   styleUrl: './pagination.component.scss',
-  changeDetection: ChangeDetectionStrategy.OnPush,
   providers: [
     paginationStore,
     provideIcons({ heroChevronLeft, heroChevronRight }),

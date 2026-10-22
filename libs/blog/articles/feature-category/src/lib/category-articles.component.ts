@@ -1,6 +1,5 @@
 import { isPlatformBrowser } from '@angular/common';
 import {
-  ChangeDetectionStrategy,
   Component,
   computed,
   inject,
@@ -34,7 +33,6 @@ import { RepeatDirective } from '@angular-love/utils';
   providers: [ArticleListStore],
   templateUrl: './category-articles.component.html',
   styleUrl: './category-articles.component.scss',
-  changeDetection: ChangeDetectionStrategy.OnPush,
   host: {
     class: 'flex flex-col  h-full w-full',
   },

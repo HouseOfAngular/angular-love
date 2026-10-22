@@ -1,11 +1,4 @@
-import {
-  ChangeDetectionStrategy,
-  Component,
-  ElementRef,
-  input,
-  output,
-  viewChild,
-} from '@angular/core';
+import { Component, ElementRef, input, output, viewChild } from '@angular/core';
 import { TranslocoPipe } from '@jsverse/transloco';
 import { FastSvgComponent } from '@push-based/ngx-fast-svg';
 
@@ -52,7 +45,6 @@ import { Lang } from '@angular-love/contracts/articles';
       </label>
     </div>
   `,
-  changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [FastSvgComponent, TranslocoPipe],
 })
 export class LanguagePickerComponent {

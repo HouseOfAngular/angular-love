@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, output } from '@angular/core';
+import { Component, output } from '@angular/core';
 import { TranslocoDirective } from '@jsverse/transloco';
 import { FastSvgComponent } from '@push-based/ngx-fast-svg';
 
@@ -25,7 +25,6 @@ interface Control {
       }
     </ng-container>
   `,
-  changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [FastSvgComponent, TranslocoDirective],
   host: {
     class: 'hidden lg:flex h-fit w-fit flex-col items-center gap-8',

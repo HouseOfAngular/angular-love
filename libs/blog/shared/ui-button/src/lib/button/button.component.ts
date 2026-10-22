@@ -1,4 +1,4 @@
-import { Component, computed, input, ChangeDetectionStrategy } from '@angular/core';
+import { Component, computed, input } from '@angular/core';
 import { cva } from 'class-variance-authority';
 import { ClassValue, clsx } from 'clsx';
 import { twMerge } from 'tailwind-merge';
@@ -52,7 +52,6 @@ const UPPERCASE_BY_DEFAULT: ReadonlySet<AlButtonVariant> = new Set([
   selector: 'button[al-button],a[al-button]',
   templateUrl: './button.component.html',
   styleUrls: ['./button.component.scss'],
-  changeDetection: ChangeDetectionStrategy.Eager,
   host: {
     '[class]': 'class()',
   },
@@ -67,8 +66,7 @@ export class ButtonComponent {
 
   protected class = computed(() => {
     const variant = this.variant() ?? 'Primary';
-    const isUppercase =
-      this.uppercase() ?? UPPERCASE_BY_DEFAULT.has(variant);
+    const isUppercase = this.uppercase() ?? UPPERCASE_BY_DEFAULT.has(variant);
 
     return cn(
       buttonVariants({

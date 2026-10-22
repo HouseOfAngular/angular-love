@@ -1,9 +1,4 @@
-import {
-  ChangeDetectionStrategy,
-  Component,
-  HostListener,
-  inject,
-} from '@angular/core';
+import { Component, HostListener, inject } from '@angular/core';
 import { TranslocoDirective } from '@jsverse/transloco';
 import { FastSvgComponent } from '@push-based/ngx-fast-svg';
 
@@ -35,7 +30,6 @@ import { SearchDialogComponent } from './search-dialog';
       }
     }
   `,
-  changeDetection: ChangeDetectionStrategy.OnPush,
   providers: [GlobalSearchService],
 })
 export class SearchComponent {

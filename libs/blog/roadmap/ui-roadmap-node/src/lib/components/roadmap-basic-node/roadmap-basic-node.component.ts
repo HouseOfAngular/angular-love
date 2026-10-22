@@ -1,11 +1,4 @@
-import {
-  ChangeDetectionStrategy,
-  Component,
-  computed,
-  inject,
-  input,
-  signal,
-} from '@angular/core';
+import { Component, computed, inject, input, signal } from '@angular/core';
 
 import { RoadmapDialogNotifierService } from '../../services/roadmap-dialog-notifier.service';
 import { RoadmapStandardNode } from '../../types/roadmap-node';
@@ -36,7 +29,6 @@ import { RoadmapNodeLabelComponent } from '../roadmap-node-label/roadmap-node-la
     </button>
   `,
   styleUrl: 'roadmap-basic-node.component.scss',
-  changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [RoadmapNodeLabelComponent],
   host: {
     class: 'relative',

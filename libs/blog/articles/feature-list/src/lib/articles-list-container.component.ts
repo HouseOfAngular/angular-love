@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { Component } from '@angular/core';
 
 import { CategorySectionContainerComponent } from './category-section-container/category-section-container.component';
 
@@ -6,6 +6,5 @@ import { CategorySectionContainerComponent } from './category-section-container/
   selector: 'al-articles-list',
   templateUrl: './articles-list-container.component.html',
   imports: [CategorySectionContainerComponent],
-  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ArticlesListContainerComponent {}

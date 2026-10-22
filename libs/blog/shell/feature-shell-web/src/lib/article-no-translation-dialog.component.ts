@@ -1,5 +1,5 @@
 import { DIALOG_DATA, DialogRef } from '@angular/cdk/dialog';
-import { Component, inject, ChangeDetectionStrategy } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { TranslocoDirective } from '@jsverse/transloco';
 
 import { ButtonComponent } from '@angular-love/blog/shared/ui-button';
@@ -14,7 +14,6 @@ export type ArticleNoTranslationDialogResult = 'home' | null;
 @Component({
   selector: 'al-article-no-translation-dialog',
   imports: [TranslocoDirective, ButtonComponent],
-  changeDetection: ChangeDetectionStrategy.Eager,
   template: `
     <div
       *transloco="let t; read: 'nav.languagePicker.noTranslationDialog'"
@@ -28,7 +27,7 @@ export type ArticleNoTranslationDialogResult = 'home' | null;
         <button al-button (click)="close(null)" variant="Secondary">
           {{ t('stayButton') }}
         </button>
-        <button al-button (click)="close('home')" [uppercase]="false">
+        <button al-button [uppercase]="false" (click)="close('home')">
           {{ t('goHomeButton') }}
         </button>
       </div>

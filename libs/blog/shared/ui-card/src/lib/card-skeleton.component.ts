@@ -1,9 +1,4 @@
-import {
-  ChangeDetectionStrategy,
-  Component,
-  HostBinding,
-  Input,
-} from '@angular/core';
+import { Component, HostBinding, Input } from '@angular/core';
 import { NgxSkeletonLoaderModule } from 'ngx-skeleton-loader';
 
 @Component({
@@ -29,7 +24,6 @@ import { NgxSkeletonLoaderModule } from 'ngx-skeleton-loader';
     </div>
   `,
   styleUrls: ['./card.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [NgxSkeletonLoaderModule],
 })
 export class CardSkeletonComponent {

@@ -1,17 +1,11 @@
 import { CdkTrapFocus } from '@angular/cdk/a11y';
-import {
-  ChangeDetectionStrategy,
-  Component,
-  input,
-  output,
-} from '@angular/core';
+import { Component, input, output } from '@angular/core';
 import { FastSvgComponent } from '@push-based/ngx-fast-svg';
 
 @Component({
   selector: 'al-dialog-shell',
   templateUrl: './dialog-shell.component.html',
   styleUrl: './dialog-shell.component.scss',
-  changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [CdkTrapFocus, FastSvgComponent],
 })
 export class DialogShellComponent {

@@ -1,6 +1,6 @@
 import { Dialog } from '@angular/cdk/dialog';
 import { ViewportScroller } from '@angular/common';
-import { Component, computed, effect, inject, ChangeDetectionStrategy } from '@angular/core';
+import { Component, computed, effect, inject } from '@angular/core';
 import { toSignal } from '@angular/core/rxjs-interop';
 import {
   ActivatedRoute,
@@ -77,7 +77,6 @@ const FOOTERLESS_ROUTES = ['roadmap'];
     SearchComponent,
     AlBannerCarouselComponent,
   ],
-  changeDetection: ChangeDetectionStrategy.Eager,
   host: {
     class: 'flex flex-col min-h-screen',
   },

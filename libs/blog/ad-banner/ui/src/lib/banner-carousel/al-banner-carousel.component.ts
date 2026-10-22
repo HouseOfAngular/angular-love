@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, input } from '@angular/core';
+import { Component, input } from '@angular/core';
 
 import { AdImageBanner } from '../ad-image-banner/ad-image-banner-data.interface';
 import { AdImageBannerComponent } from '../ad-image-banner/ad-image-banner.component';
@@ -7,7 +7,6 @@ import { AlInfiniteSliderDirective } from '../infinite-slider-directive/al-infin
 @Component({
   selector: 'al-banner-carousel',
   imports: [AdImageBannerComponent, AlInfiniteSliderDirective],
-  changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
     <div class="overflow-hidden">
       <div class="flex">

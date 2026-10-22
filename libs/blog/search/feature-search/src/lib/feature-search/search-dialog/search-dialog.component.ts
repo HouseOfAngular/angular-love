@@ -1,6 +1,5 @@
 import { CdkTrapFocus, LiveAnnouncer } from '@angular/cdk/a11y';
 import {
-  ChangeDetectionStrategy,
   Component,
   DestroyRef,
   effect,
@@ -49,7 +48,6 @@ import { GlobalSearchService } from '../global-search.service';
   ],
   templateUrl: './search-dialog.component.html',
   styleUrl: './search-dialog.component.scss',
-  changeDetection: ChangeDetectionStrategy.OnPush,
   providers: [provideSearch(), GlobalSearchStore],
 })
 export class SearchDialogComponent implements OnInit, OnDestroy {

@@ -1,10 +1,5 @@
 import { A11yModule } from '@angular/cdk/a11y';
-import {
-  ChangeDetectionStrategy,
-  Component,
-  computed,
-  inject,
-} from '@angular/core';
+import { Component, computed, inject } from '@angular/core';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 import { ActivatedRoute } from '@angular/router';
@@ -28,10 +23,10 @@ import { NewsletterSuccesComponent } from './newsletter-succes/newsletter-succes
     NewsletterSuccesComponent,
   ],
   templateUrl: './newsletter-page.component.html',
-  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class NewsletterPageComponent {
   private route = inject(ActivatedRoute);
+  private sanitizer = inject(DomSanitizer);
   private params = toSignal(this.route.queryParams);
 
   protected readonly isConfirmationPage = computed(
@@ -41,7 +36,7 @@ export class NewsletterPageComponent {
   newsletter1: SafeHtml;
   newsletter2: SafeHtml;
 
-  constructor(private sanitizer: DomSanitizer) {
+  constructor() {
     this.newsletter1 = this.sanitizer.bypassSecurityTrustHtml(newsletter1);
     this.newsletter2 = this.sanitizer.bypassSecurityTrustHtml(newsletter2);
   }

@@ -1,10 +1,5 @@
 import { NgClass } from '@angular/common';
-import {
-  ChangeDetectionStrategy,
-  Component,
-  input,
-  signal,
-} from '@angular/core';
+import { Component, input, signal } from '@angular/core';
 import { TranslocoDirective } from '@jsverse/transloco';
 
 import { ButtonComponent } from '@angular-love/blog/shared/ui-button';
@@ -21,7 +16,6 @@ import { ClampedChangedDirective } from './clamped-changed.directive';
   ],
   templateUrl: './dynamic-text-clamp.component.html',
   styleUrl: './dynamic-text-clamp.component.scss',
-  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class DynamicTextClampComponent {
   readonly text = input.required<string>();

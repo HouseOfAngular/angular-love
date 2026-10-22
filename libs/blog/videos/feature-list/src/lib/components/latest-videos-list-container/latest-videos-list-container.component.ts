@@ -1,5 +1,5 @@
 import { Dialog } from '@angular/cdk/dialog';
-import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { TranslocoDirective } from '@jsverse/transloco';
 
 import { VideoPreview } from '@angular-love/blog/contracts/videos';
@@ -16,7 +16,6 @@ const LATEST_VIDEOS_LIMIT = 3;
 @Component({
   selector: 'al-latest-videos-list',
   templateUrl: './latest-videos-list-container.component.html',
-  changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [
     UiSectionTitleComponent,
     TranslocoDirective,

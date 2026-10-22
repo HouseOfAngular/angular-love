@@ -1,4 +1,4 @@
-import { Component, ChangeDetectionStrategy } from '@angular/core';
+import { Component } from '@angular/core';
 import { NgxSkeletonLoaderModule } from 'ngx-skeleton-loader';
 
 import { CardComponent } from '@angular-love/blog/shared/ui-card';
@@ -6,7 +6,6 @@ import { CardComponent } from '@angular-love/blog/shared/ui-card';
 @Component({
   selector: 'al-article-compact-card-skeleton',
   imports: [NgxSkeletonLoaderModule, CardComponent],
-  changeDetection: ChangeDetectionStrategy.Eager,
   template: `
     <al-card class="h-full">
       <div alCardContent class="flex flex-col">

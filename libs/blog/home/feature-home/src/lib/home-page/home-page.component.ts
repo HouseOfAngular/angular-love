@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { Component } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 
 import { ArticlesListContainerComponent } from '@angular-love/blog/articles/feature-list';
@@ -18,6 +18,5 @@ import { WelcomeMessageComponent } from './welcome-message/welcome-message.compo
   ],
   templateUrl: './home-page.component.html',
   styleUrls: ['./home-page.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class HomePageComponent {}

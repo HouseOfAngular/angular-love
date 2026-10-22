@@ -1,9 +1,4 @@
-import {
-  ChangeDetectionStrategy,
-  Component,
-  computed,
-  input,
-} from '@angular/core';
+import { Component, computed, input } from '@angular/core';
 
 export interface LayoutConfig {
   roadmap: boolean;
@@ -14,7 +9,6 @@ export interface LayoutConfig {
   standalone: true,
   templateUrl: './layout.component.html',
   styleUrls: ['./layout.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush,
   host: {
     class: 'grid grid-rows-[auto_1fr_auto]',
     '[class]': 'class()',

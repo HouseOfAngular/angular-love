@@ -1,10 +1,4 @@
-import {
-  ChangeDetectionStrategy,
-  Component,
-  computed,
-  inject,
-  input,
-} from '@angular/core';
+import { Component, computed, inject, input } from '@angular/core';
 import { TranslocoDirective } from '@jsverse/transloco';
 
 import { ArticleListStore } from '@angular-love/blog/articles/data-access';
@@ -30,7 +24,6 @@ const displayNameDict: Record<ArticleCategory, string> = {
   selector: 'al-category-section-container',
   templateUrl: './category-section-container.component.html',
   styleUrls: ['./category-section-container.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [
     ArticleCompactCardComponent,
     UiSectionTitleComponent,

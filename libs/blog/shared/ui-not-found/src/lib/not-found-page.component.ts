@@ -1,5 +1,5 @@
 import { NgOptimizedImage } from '@angular/common';
-import { Component, ChangeDetectionStrategy } from '@angular/core';
+import { Component } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { TranslocoDirective } from '@jsverse/transloco';
 
@@ -8,7 +8,6 @@ import { ButtonComponent } from '@angular-love/blog/shared/ui-button';
 @Component({
   selector: 'al-not-found',
   imports: [NgOptimizedImage, ButtonComponent, RouterLink, TranslocoDirective],
-  changeDetection: ChangeDetectionStrategy.Eager,
   template: `
     <section
       aria-labelledby="not-found-title"

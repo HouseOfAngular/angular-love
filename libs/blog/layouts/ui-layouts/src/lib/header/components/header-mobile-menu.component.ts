@@ -1,9 +1,4 @@
-import {
-  ChangeDetectionStrategy,
-  Component,
-  input,
-  output,
-} from '@angular/core';
+import { Component, input, output } from '@angular/core';
 
 import {
   LanguagePickerComponent,
@@ -36,7 +31,6 @@ import { headerNavItems } from '../header-nav-items';
     </div>
   `,
   styleUrl: './header-mobile-menu.component.scss',
-  changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [NavigationComponent, LanguagePickerComponent],
 })
 export class HeaderMobileMenuComponent {

@@ -1,5 +1,5 @@
 import { NgOptimizedImage } from '@angular/common';
-import { Component, inject, input, ChangeDetectionStrategy } from '@angular/core';
+import { Component, inject, input } from '@angular/core';
 import { Router } from '@angular/router';
 
 import { AlLocalizeService } from '@angular-love/blog/i18n/util';
@@ -9,7 +9,6 @@ import { AdImageBanner } from './ad-image-banner-data.interface';
 @Component({
   selector: 'al-ad-image-banner',
   imports: [NgOptimizedImage],
-  changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: './ad-image-banner.component.html',
 })
 export class AdImageBannerComponent {

@@ -1,5 +1,4 @@
 import {
-  ChangeDetectionStrategy,
   Component,
   computed,
   inject,
@@ -13,7 +12,6 @@ import { DomSanitizer } from '@angular/platform-browser';
   templateUrl: './article-content.component.html',
   styleUrl: './article-content.component.scss',
   encapsulation: ViewEncapsulation.None,
-  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ArticleContentComponent {
   readonly content = input.required<string>();

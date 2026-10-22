@@ -1,9 +1,4 @@
-import {
-  ChangeDetectionStrategy,
-  Component,
-  input,
-  output,
-} from '@angular/core';
+import { Component, input, output } from '@angular/core';
 import { TranslocoDirective } from '@jsverse/transloco';
 import { FastSvgComponent } from '@push-based/ngx-fast-svg';
 
@@ -14,7 +9,6 @@ import { RuleNodeComponent } from '../rule-node/rule-node.component';
   selector: 'al-rules-row',
   imports: [FastSvgComponent, RuleNodeComponent, TranslocoDirective],
   templateUrl: './rules-row.component.html',
-  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class RulesRowComponent {
   index = input.required<number>();

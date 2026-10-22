@@ -1,10 +1,4 @@
-import {
-  ChangeDetectionStrategy,
-  Component,
-  computed,
-  inject,
-  OnInit,
-} from '@angular/core';
+import { Component, computed, inject, OnInit } from '@angular/core';
 import { TranslocoDirective } from '@jsverse/transloco';
 
 import { AuthorListStore } from '@angular-love/blog/authors/data-access';
@@ -31,7 +25,6 @@ import { AppThemeStore } from '@angular-love/data-access-app-theme';
   ],
   templateUrl: './feature-about-us.component.html',
   styleUrl: './feature-about-us.component.scss',
-  changeDetection: ChangeDetectionStrategy.OnPush,
   providers: [AuthorListStore],
 })
 export class FeatureAboutUsComponent implements OnInit {

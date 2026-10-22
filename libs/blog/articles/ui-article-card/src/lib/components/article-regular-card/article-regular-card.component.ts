@@ -1,10 +1,5 @@
 import { NgOptimizedImage } from '@angular/common';
-import {
-  ChangeDetectionStrategy,
-  Component,
-  computed,
-  input,
-} from '@angular/core';
+import { Component, computed, input } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { FastSvgComponent } from '@push-based/ngx-fast-svg';
 
@@ -14,7 +9,6 @@ import { AvatarComponent } from '@angular-love/blog/shared/ui-avatar';
 
 @Component({
   selector: 'al-article-regular-card',
-  changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [
     AvatarComponent,
     RouterLink,

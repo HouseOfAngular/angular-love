@@ -1,9 +1,4 @@
-import {
-  ChangeDetectionStrategy,
-  Component,
-  computed,
-  input,
-} from '@angular/core';
+import { Component, computed, input } from '@angular/core';
 import { TranslocoDirective } from '@jsverse/transloco';
 
 import { Label } from '../../types/roadmap-node';
@@ -19,7 +14,6 @@ import { Label } from '../../types/roadmap-node';
       {{ t(label()) }}
     </div>
   `,
-  changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [TranslocoDirective],
 })
 export class RoadmapNodeLabelComponent {

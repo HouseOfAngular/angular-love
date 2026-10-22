@@ -1,9 +1,4 @@
-import {
-  ChangeDetectionStrategy,
-  Component,
-  computed,
-  input,
-} from '@angular/core';
+import { Component, computed, input } from '@angular/core';
 import { TranslocoPipe } from '@jsverse/transloco';
 import { FastSvgComponent } from '@push-based/ngx-fast-svg';
 
@@ -33,7 +28,6 @@ import { sourceIcon } from '../source-icon';
       {{ byAuthor ? label + ' ' + byAuthor : label }}
     </span>
   `,
-  changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [FastSvgComponent, TranslocoPipe],
   // The svg is sized here: fast-svg only sets its width and height after
   // rendering, and an unsized svg is 300×150 until then.

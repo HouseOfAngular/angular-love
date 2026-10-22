@@ -1,10 +1,9 @@
-import { Component, ChangeDetectionStrategy } from '@angular/core';
+import { Component } from '@angular/core';
 import { NgxSkeletonLoaderModule } from 'ngx-skeleton-loader';
 
 @Component({
   selector: 'al-video-card-skeleton',
   imports: [NgxSkeletonLoaderModule],
-  changeDetection: ChangeDetectionStrategy.Eager,
   template: `
     <div
       class="bg-al-card h-full w-full rounded-lg border shadow-none dark:border-transparent"

@@ -1,4 +1,4 @@
-import { Component, ChangeDetectionStrategy } from '@angular/core';
+import { Component } from '@angular/core';
 import { NgxSkeletonLoaderModule } from 'ngx-skeleton-loader';
 
 import { RepeatDirective } from '@angular-love/utils';
@@ -25,7 +25,6 @@ import { RepeatDirective } from '@angular-love/utils';
       </div>
     </article>
   `,
-  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [NgxSkeletonLoaderModule, RepeatDirective],
 })
 export class ArticleContentSkeletonComponent {}

@@ -1,6 +1,5 @@
 import { DatePipe, NgOptimizedImage } from '@angular/common';
 import {
-  ChangeDetectionStrategy,
   Component,
   computed,
   inject,
@@ -22,7 +21,6 @@ type SanitizedArticleDataModel = {
 
 @Component({
   selector: 'al-article-horizontal-card',
-  changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [
     AvatarComponent,
     DatePipe,
