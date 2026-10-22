@@ -24,7 +24,10 @@ const STATIC_PATHS = [
 
 type SitemapEntry = {
   loc: string;
-  lastmod: string;
+  // Only set where the page's own change date is known (articles). Aggregate
+  // pages (listings, authors) omit it: deriving it from published articles would
+  // move backward when one is unpublished or deleted.
+  lastmod?: string;
   priority: string;
   changefreq: string;
 };
@@ -55,7 +58,12 @@ export default defineEventHandler(async (event) => {
 
   const db = createDatabase(event);
 
-  let articleRows: { slug: string; publishDate: Date; language: DbLang }[];
+  let articleRows: {
+    slug: string;
+    publishDate: Date;
+    modifyDate: Date;
+    language: DbLang;
+  }[];
   let authorRows: { slug: string }[];
 
   try {
@@ -64,6 +72,7 @@ export default defineEventHandler(async (event) => {
         .select({
           slug: articles.slug,
           publishDate: articles.publishDate,
+          modifyDate: articles.modifyDate,
           language: articles.language,
         })
         .from(articles)
@@ -83,7 +92,6 @@ export default defineEventHandler(async (event) => {
   }
 
   const entries: SitemapEntry[] = [];
-  const now = new Date().toISOString();
 
   for (const lang of ['en', 'pl'] as const) {
     for (const path of STATIC_PATHS) {
@@ -93,7 +101,9 @@ export default defineEventHandler(async (event) => {
 
       entries.push({
         loc,
-        lastmod: now,
+        lastmod: source
+          ? lastmods.byList.get(`${dbLang}:${source}`)
+          : undefined,
         priority: path === '' ? '1.0' : '0.9',
         changefreq: 'weekly',
       });
@@ -106,7 +116,7 @@ export default defineEventHandler(async (event) => {
         article.language === DbLang.Polish ? `${BASE_URL}/pl/` : `${BASE_URL}/`;
       entries.push({
         loc: `${prefix}${article.slug}`,
-        lastmod: article.publishDate.toISOString(),
+        lastmod: articleLastmod(article),
         priority: determinePriority(article.publishDate),
         changefreq: 'monthly',
       });
@@ -123,13 +133,11 @@ export default defineEventHandler(async (event) => {
       entries.push(
         {
           loc: `${BASE_URL}/author/${author.slug}`,
-          lastmod: now,
           priority: '0.7',
           changefreq: 'weekly',
         },
         {
           loc: `${BASE_URL}/pl/author/${author.slug}`,
-          lastmod: now,
           priority: '0.7',
           changefreq: 'weekly',
         },
@@ -167,6 +175,17 @@ export default defineEventHandler(async (event) => {
   return xml;
 });
 
+function articleLastmod(article: {
+  publishDate: Date;
+  modifyDate: Date;
+}): string {
+  const latest =
+    article.modifyDate > article.publishDate
+      ? article.modifyDate
+      : article.publishDate;
+  return latest.toISOString();
+}
+
 function determinePriority(publishDate: Date): string {
   const twoYearsAgo = new Date();
   twoYearsAgo.setFullYear(twoYearsAgo.getFullYear() - 2);
@@ -179,20 +198,13 @@ function buildXml(entries: SitemapEntry[]): string {
   });
 
   for (const entry of entries) {
-    root
-      .ele('url')
-      .ele('loc')
-      .txt(entry.loc)
-      .up()
-      .ele('lastmod')
-      .txt(entry.lastmod)
-      .up()
-      .ele('priority')
-      .txt(entry.priority)
-      .up()
-      .ele('changefreq')
-      .txt(entry.changefreq)
-      .up();
+    const url = root.ele('url');
+    url.ele('loc').txt(entry.loc);
+    if (entry.lastmod) {
+      url.ele('lastmod').txt(entry.lastmod);
+    }
+    url.ele('priority').txt(entry.priority);
+    url.ele('changefreq').txt(entry.changefreq);
   }
 
   return root.end({ prettyPrint: true });

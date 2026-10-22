@@ -18,6 +18,16 @@ export const articleExistsGuard: CanActivateFn = (route) => {
 
   const slug = route.params['articleSlug'] as string;
 
+  // Router redirects during SSR render the target with a 200. Crawlers need a
+  // real 301, so set it on the response in addition to returning the UrlTree.
+  const permanentRedirect = (target: UrlTree): UrlTree => {
+    if (response) {
+      response.statusCode = 301;
+      response.setHeader('Location', router.serializeUrl(target));
+    }
+    return target;
+  };
+
   store.fetchArticleDetails(slug);
 
   const validate = (): boolean | UrlTree => {
@@ -36,14 +46,19 @@ export const articleExistsGuard: CanActivateFn = (route) => {
     if (articleLang !== activeLang) {
       const alternativeSlug = store.alternativeLanguageSlug();
       if (alternativeSlug) {
-        return router.createUrlTree(
-          localizeService.localizePath(['/', alternativeSlug]),
+        return permanentRedirect(
+          router.createUrlTree(
+            localizeService.localizePath(['/', alternativeSlug]),
+          ),
         );
       }
-      if (response) {
-        response.statusCode = 404;
-      }
-      return true;
+      // No translation: the article only exists in its own language, so send
+      // e.g. /pl/<english-slug> to /<english-slug> instead of a 404.
+      return permanentRedirect(
+        router.parseUrl(
+          localizeService.localizeExplicitPath(`/${slug}`, articleLang),
+        ),
+      );
     }
 
     return true;
