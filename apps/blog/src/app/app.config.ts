@@ -8,7 +8,7 @@ import {
   inject,
   provideZonelessChangeDetection,
 } from '@angular/core';
-import { provideClientHydration, withNoIncrementalHydration } from '@angular/platform-browser';
+import { provideClientHydration } from '@angular/platform-browser';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import {
   IsActiveMatchOptions,
@@ -64,7 +64,7 @@ export const appConfig: ApplicationConfig = {
     provideI18n(),
     provideHttpClient(withFetch(), withInterceptorsFromDi()),
     provideZonelessChangeDetection(),
-    provideClientHydration(withNoIncrementalHydration()),
+    provideClientHydration(),
     provideAppSeo(),
     provideSkeletonConfig(),
     provideFastSVG({

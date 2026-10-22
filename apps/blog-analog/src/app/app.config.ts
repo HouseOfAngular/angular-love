@@ -14,7 +14,7 @@ import {
   provideBrowserGlobalErrorListeners,
   provideZonelessChangeDetection,
 } from '@angular/core';
-import { provideClientHydration, withNoIncrementalHydration } from '@angular/platform-browser';
+import { provideClientHydration } from '@angular/platform-browser';
 import {
   IsActiveMatchOptions,
   provideRouter,
@@ -122,7 +122,7 @@ export const appConfig: ApplicationConfig = {
       }),
     ),
     provideAnalogI18n(),
-    provideClientHydration(withNoIncrementalHydration()),
+    provideClientHydration(),
 
     // we do not use file router, so we have to provide prefix manually
     {
