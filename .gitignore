@@ -56,3 +56,5 @@ vitest.config.*.timestamp*
 *.db-journal
 *.db-wal
 *.db-shm
+
+.claude/worktrees
