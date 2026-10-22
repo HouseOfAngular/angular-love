@@ -1,5 +1,5 @@
 import { TitleCasePipe } from '@angular/common';
-import { Component, computed, input } from '@angular/core';
+import { Component, computed, input, ChangeDetectionStrategy } from '@angular/core';
 
 import { RoadmapStandardNode } from '@angular-love/blog/roadmap/ui-roadmap-node';
 
@@ -10,6 +10,7 @@ import { RoadmapStandardNode } from '@angular-love/blog/roadmap/ui-roadmap-node'
       <h3 class="text-2xl font-bold">{{ headerTitle() | titlecase }}</h3>
     </section>
   `,
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [TitleCasePipe],
 })
 export class RoadmapDialogHeaderComponent {

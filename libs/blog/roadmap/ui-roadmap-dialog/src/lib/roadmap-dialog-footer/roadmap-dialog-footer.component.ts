@@ -1,4 +1,4 @@
-import { Component, computed, input } from '@angular/core';
+import { Component, computed, input, ChangeDetectionStrategy } from '@angular/core';
 import { FastSvgComponent } from '@push-based/ngx-fast-svg';
 
 import { IconType } from '@angular-love/blog/shared/ui-icon';
@@ -36,6 +36,7 @@ type ShareItem = {
       </ul>
     </section>
   `,
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [RoadmapDialogSubtitleComponent, FastSvgComponent],
 })
 export class RoadmapDialogFooterComponent {

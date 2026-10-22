@@ -1,5 +1,5 @@
 import { CdkCopyToClipboard } from '@angular/cdk/clipboard';
-import { Component, computed, input, signal } from '@angular/core';
+import { Component, computed, input, signal, ChangeDetectionStrategy } from '@angular/core';
 import { TranslocoDirective } from '@jsverse/transloco';
 import { FastSvgComponent } from '@push-based/ngx-fast-svg';
 
@@ -16,6 +16,7 @@ type ShareItem = {
   selector: 'al-article-share-icons',
   imports: [TranslocoDirective, FastSvgComponent, CdkCopyToClipboard],
   styleUrls: ['./article-share-icons.component.scss'],
+  changeDetection: ChangeDetectionStrategy.Eager,
   template: `
     <div *transloco="let t" class="flex items-center gap-4">
       <span class="text-lg font-bold">

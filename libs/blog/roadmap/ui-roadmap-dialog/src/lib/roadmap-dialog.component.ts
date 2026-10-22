@@ -1,5 +1,5 @@
 import { DIALOG_DATA, DialogRef } from '@angular/cdk/dialog';
-import { Component, inject, signal } from '@angular/core';
+import { Component, inject, signal, ChangeDetectionStrategy } from '@angular/core';
 import { Router } from '@angular/router';
 import { TranslocoDirective } from '@jsverse/transloco';
 
@@ -29,6 +29,7 @@ function isRegularNode(node: RoadmapStandardNode): node is RoadmapRegularNode {
   selector: 'al-roadmap-dialog',
   templateUrl: './roadmap-dialog.component.html',
   styleUrl: './roadmap-dialog.component.scss',
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     RoadmapDialogHeaderComponent,
     RoadmapDialogDescriptionComponent,
