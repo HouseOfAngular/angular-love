@@ -1,4 +1,5 @@
-import { Route } from '@angular/router';
+import { injectResponse } from '@analogjs/router/tokens';
+import { CanActivateFn, Route } from '@angular/router';
 
 import { articleRoutes } from '@angular-love/blog/articles/feature/shell';
 import { authorExistsGuard } from '@angular-love/blog/authors/data-access';
@@ -6,6 +7,16 @@ import { activeLanguageGuard } from '@angular-love/blog/i18n/data-access';
 import { RouteSeoData } from '@angular-love/seo';
 
 import { RootShellComponent } from './root-shell.component';
+
+// Unknown URLs are redirected to this route, which would otherwise be served
+// with a 200 (soft 404).
+const notFoundStatusGuard: CanActivateFn = () => {
+  const response = injectResponse();
+  if (response) {
+    response.statusCode = 404;
+  }
+  return true;
+};
 
 export const blogShellRoutes: Route[] = [
   {
@@ -142,6 +153,7 @@ export const commonRoutes: Route[] = [
       },
       {
         path: '404',
+        canActivate: [notFoundStatusGuard],
         loadComponent: async () =>
           (await import('@angular-love/blog/shared/ui-not-found'))
             .NotFoundPageComponent,
