@@ -28,7 +28,7 @@ const initialState: AiNewsFeedState = {
 
 /** The feed's first page (`fetch feed`) and the pages appended by "Load more" (`fetch more`). */
 export const AiNewsFeedStore = signalStore(
-  withState(initialState),
+  { protectedState: false }, withState(initialState),
   withCallState('fetch feed'),
   withCallState('fetch more'),
   withMethods((store, aiNewsService = inject(AiNewsService)) => {

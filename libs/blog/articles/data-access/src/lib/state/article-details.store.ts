@@ -42,7 +42,7 @@ export const IsArticlePreview = new InjectionToken<boolean>(
 );
 
 export const ArticleDetailsStore = signalStore(
-  { providedIn: 'root' },
+  { providedIn: 'root', protectedState: false },
   withSeo(),
   withState(initialState),
   withCallState('fetch article details'),

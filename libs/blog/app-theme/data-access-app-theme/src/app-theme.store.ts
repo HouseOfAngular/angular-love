@@ -27,7 +27,7 @@ function getSafeStoredTheme(): Theme | null {
 }
 
 export const AppThemeStore = signalStore(
-  { providedIn: 'root' },
+  { providedIn: 'root', protectedState: false },
   withState<AppThemeStore>({ theme: 'dark' }),
   withMethods(
     (

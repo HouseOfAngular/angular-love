@@ -6,7 +6,7 @@ import { distinctUntilChanged, EMPTY, pipe, switchMap } from 'rxjs';
 import { withSearchFeature } from './search.store-feature';
 
 export const SearchListStore = signalStore(
-  withSearchFeature(),
+  { protectedState: false }, withSearchFeature(),
   withMethods(({ search, pageSize }) => ({
     search$: rxMethod<{ query: string | null; page: number | null }>(
       pipe(

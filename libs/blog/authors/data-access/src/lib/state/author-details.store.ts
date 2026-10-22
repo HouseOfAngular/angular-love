@@ -45,7 +45,7 @@ const initialState: AuthorDetailsState = {
 };
 
 export const AuthorDetailsStore = signalStore(
-  { providedIn: 'root' },
+  { providedIn: 'root', protectedState: false },
   withSeo(),
   withState(initialState),
   withCallState('fetch author details'),

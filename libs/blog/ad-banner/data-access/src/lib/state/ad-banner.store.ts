@@ -17,7 +17,7 @@ const initialState: AdBannerState = {
 };
 
 export const AdBannerStore = signalStore(
-  { providedIn: 'root' },
+  { providedIn: 'root', protectedState: false },
   withState(initialState),
   withMethods((store, adBannerService = inject(AdBannerService)) => ({
     getData: rxMethod<void>(

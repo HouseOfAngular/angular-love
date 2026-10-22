@@ -15,7 +15,7 @@ const initialState: NewsletterState = {
 };
 
 export const NewsletterStore = signalStore(
-  withState(initialState),
+  { protectedState: false }, withState(initialState),
   withMethods((store, newsletterService = inject(NewsletterService)) => ({
     resetToInit: () => {
       patchState(store, { loading: 'init' });

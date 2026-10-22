@@ -30,7 +30,7 @@ const initialState: AiNewsItemState = { item: null };
 
 /** One item with its full summary, for the item panel. */
 export const AiNewsItemStore = signalStore(
-  withSeo(),
+  { protectedState: false }, withSeo(),
   withState(initialState),
   withCallState('fetch item'),
   withComputed((store) => ({
