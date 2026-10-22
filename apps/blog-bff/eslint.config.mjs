@@ -18,6 +18,6 @@ export default [
     rules: {},
   },
   {
-    ignores: ['.wrangler/*'],
+    ignores: ['**/.wrangler/**'],
   },
 ];

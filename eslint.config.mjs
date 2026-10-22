@@ -1,9 +1,8 @@
 import { dirname } from 'path';
 import { fileURLToPath } from 'url';
-import nx from '@nx/eslint-plugin';
-
 import { FlatCompat } from '@eslint/eslintrc';
 import js from '@eslint/js';
+import nx from '@nx/eslint-plugin';
 
 const compat = new FlatCompat({
   baseDirectory: dirname(fileURLToPath(import.meta.url)),
@@ -110,9 +109,19 @@ export default [
     files: ['**/*.ts', '**/*.tsx'],
     rules: {
       'no-extra-semi': 'off',
+      // Enabled by the typescript-eslint v8 recommended preset; not enforced
+      // before the upgrade.
+      '@typescript-eslint/no-unused-expressions': 'off',
     },
   },
   ...nx.configs['flat/javascript'],
+  {
+    // Vendored third-party snippets (Google Tag Manager).
+    files: ['**/assets/scripts/*.js'],
+    rules: {
+      'no-var': 'off',
+    },
+  },
   {
     files: ['**/*.js', '**/*.jsx'],
     rules: {

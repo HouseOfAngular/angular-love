@@ -29,4 +29,13 @@ export default [
     },
   },
   ...nx.configs['flat/angular-template'],
+  {
+    files: ['**/*.html'],
+    rules: {
+      // Enabled by the angular-eslint v22 template accessibility preset;
+      // not enforced before the upgrade.
+      '@angular-eslint/template/click-events-have-key-events': 'off',
+      '@angular-eslint/template/interactive-supports-focus': 'off',
+    },
+  },
 ];

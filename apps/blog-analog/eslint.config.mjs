@@ -32,4 +32,13 @@ export default [
   {
     ignores: ['**/vite.config.*.timestamp*', '**/vitest.config.*.timestamp*'],
   },
+  {
+    files: ['**/*.ts'],
+    rules: {
+      // Enabled by the angular-eslint v22 recommended preset. The Angular 22
+      // `change-detection-eager` migration pinned this project's non-OnPush
+      // components to `ChangeDetectionStrategy.Eager` to keep their behavior.
+      '@angular-eslint/prefer-on-push-component-change-detection': 'off',
+    },
+  },
 ];
