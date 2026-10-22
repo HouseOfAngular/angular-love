@@ -4,10 +4,7 @@ import type { StorybookConfig } from '@storybook/angular';
 
 const config: StorybookConfig = {
   stories: ['../../../**/*.@(mdx|stories.@(js|jsx|ts|tsx))'],
-  addons: [
-    getAbsolutePath('@storybook/addon-docs'),
-    getAbsolutePath("@storybook/addon-mcp")
-  ],
+  addons: [getAbsolutePath('@storybook/addon-docs')],
   framework: {
     name: getAbsolutePath('@storybook/angular'),
     options: {},

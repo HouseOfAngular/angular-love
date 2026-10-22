@@ -8,21 +8,3 @@ allowBuilds:
   sharp: false
   unrs-resolver: false
   workerd: false
-minimumReleaseAgeExclude:
-  - '@nx/cypress@24.0.0'
-  - '@nx/devkit@24.0.0'
-  - '@nx/eslint@24.0.0'
-  - '@nx/js@24.0.0'
-  - '@nx/nx-darwin-arm64@24.0.0'
-  - '@nx/nx-darwin-x64@24.0.0'
-  - '@nx/nx-freebsd-x64@24.0.0'
-  - '@nx/nx-linux-arm-gnueabihf@24.0.0'
-  - '@nx/nx-linux-arm64-gnu@24.0.0'
-  - '@nx/nx-linux-arm64-musl@24.0.0'
-  - '@nx/nx-linux-x64-gnu@24.0.0'
-  - '@nx/nx-linux-x64-musl@24.0.0'
-  - '@nx/nx-win32-arm64-msvc@24.0.0'
-  - '@nx/nx-win32-x64-msvc@24.0.0'
-  - '@nx/storybook@24.0.0'
-  - '@nx/workspace@24.0.0'
-  - nx@24.0.0
