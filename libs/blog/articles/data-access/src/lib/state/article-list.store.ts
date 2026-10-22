@@ -26,7 +26,8 @@ const initialState: ArticleListState = {
 };
 
 export const ArticleListStore = signalStore(
-  { protectedState: false }, withState(initialState),
+  { protectedState: false },
+  withState(initialState),
   withLangState(),
   withCallState('fetch article list'),
   withMethods((store) => {

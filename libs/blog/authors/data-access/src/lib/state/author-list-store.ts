@@ -37,7 +37,8 @@ const initialState: AuthorListState = {
 };
 
 export const AuthorListStore = signalStore(
-  { protectedState: false }, withState(initialState),
+  { protectedState: false },
+  withState(initialState),
   withCallState('fetch author list'),
   withLangState(),
   withMethods(({ ...store }, authorsService = inject(AuthorService)) => {

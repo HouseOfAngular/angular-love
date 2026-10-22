@@ -27,7 +27,8 @@ const initialState: RoadmapState = {
 };
 
 export const RoadmapStore = signalStore(
-  { protectedState: false }, withState(initialState),
+  { protectedState: false },
+  withState(initialState),
   withComputed((store) => ({
     roadmapLayers: computed(() => {
       return buildRoadmapLayersFromDto(

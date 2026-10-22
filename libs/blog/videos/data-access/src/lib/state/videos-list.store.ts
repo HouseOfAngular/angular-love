@@ -25,7 +25,8 @@ const initialState: VideosListState = {
 };
 
 export const VideosListStore = signalStore(
-  { protectedState: false }, withState(initialState),
+  { protectedState: false },
+  withState(initialState),
   withCallState('fetch videos list'),
   withMethods((store) => {
     const videosService = inject(VideosService);
