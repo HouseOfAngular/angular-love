@@ -5,7 +5,8 @@
     "module": "preserve",
     "target": "es2016",
     "types": ["jest", "node"],
-    "moduleResolution": "bundler"
+    "moduleResolution": "bundler",
+    "isolatedModules": true
   },
   "files": ["src/test-setup.ts"],
   "include": [
