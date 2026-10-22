@@ -120,11 +120,13 @@
     "@nx/playwright": "22.7.12",
     "@nx/storybook": "^24.0.0",
     "@nx/vite": "22.7.12",
+    "@nx/vitest": "22.7.12",
     "@nx/web": "22.7.12",
     "@nx/workspace": "22.7.12",
     "@playwright/test": "^1.36.0",
     "@schematics/angular": "21.2.27",
     "@storybook/addon-docs": "10.6.3",
+    "@storybook/addon-mcp": "10.6.3",
     "@storybook/angular": "10.6.3",
     "@swc-node/register": "1.12.1",
     "@swc/core": "1.16.18",
@@ -176,7 +178,6 @@
     "vite": "^8.0.3",
     "vite-tsconfig-paths": "^4.2.0",
     "vitest": "4.1.12",
-    "wrangler": "^4.99.0",
-    "@storybook/addon-mcp": "10.6.3"
+    "wrangler": "^4.99.0"
   }
 }

@@ -294,6 +294,9 @@ importers:
       '@nx/vite':
         specifier: 22.7.12
         version: 22.7.12(f3680cb9cccad6c091d74da2245ff127)
+      '@nx/vitest':
+        specifier: 22.7.12
+        version: 22.7.12(f3680cb9cccad6c091d74da2245ff127)
       '@nx/web':
         specifier: 22.7.12
         version: 22.7.12(ab33477cc3abafeab44e103683a6d260)
