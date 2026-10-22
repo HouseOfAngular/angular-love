@@ -42,7 +42,7 @@ export class SearchComponent {
   readonly service = inject(GlobalSearchService);
 
   @HostListener('document:keydown.control.k', ['$event']) searchKeyHandler(
-    event: KeyboardEvent,
+    event: Event,
   ) {
     event.preventDefault();
     this.service.showSearchDialog();
