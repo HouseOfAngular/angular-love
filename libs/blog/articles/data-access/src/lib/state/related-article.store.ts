@@ -23,6 +23,7 @@ const initialState: ArticleListState = {
 };
 
 export const RelatedArticleListStore = signalStore(
+  { protectedState: false },
   withState(initialState),
   withLangState(),
   withCallState('fetch related article list'),

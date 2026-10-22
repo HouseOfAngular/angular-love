@@ -5,7 +5,7 @@ import { withCallState, withError } from './with-callstate.function';
 describe('withCallState', () => {
   describe('with default error type', () => {
     const FruitListSignalStore = signalStore(
-      { providedIn: 'root' },
+      { providedIn: 'root', protectedState: false },
       withState({ fruitList: [] }),
       withCallState('fetch fruit list'),
       withMethods(() => {
@@ -46,7 +46,7 @@ describe('withCallState', () => {
 
   describe('with specific error type', () => {
     const FruitListSignalStore = signalStore(
-      { providedIn: 'root' },
+      { providedIn: 'root', protectedState: false },
       withState({ fruitList: [] }),
       withCallState('fetch fruit list', withError<string>()),
       withMethods(() => {

@@ -8,13 +8,14 @@
   "targets": {
     "build": {
       "executor": "@analogjs/platform:vite",
+      "defaultConfiguration": "production",
+      "outputs": ["{workspaceRoot}/dist/apps/blog-analog"],
       "options": {
         "configFile": "apps/blog-analog/vite.config.ts",
         "main": "apps/blog-analog/src/main.ts",
         "outputPath": "dist/apps/blog-analog/client",
         "tsConfig": "apps/blog-analog/tsconfig.app.json"
       },
-      "defaultConfiguration": "production",
       "configurations": {
         "development": {
           "mode": "development"
@@ -23,8 +24,7 @@
           "sourcemap": false,
           "mode": "production"
         }
-      },
-      "outputs": ["{workspaceRoot}/dist/apps/blog-analog"]
+      }
     },
     "serve": {
       "executor": "@analogjs/platform:vite-dev-server",

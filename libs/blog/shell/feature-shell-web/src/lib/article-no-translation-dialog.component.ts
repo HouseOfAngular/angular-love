@@ -1,5 +1,5 @@
 import { DIALOG_DATA, DialogRef } from '@angular/cdk/dialog';
-import { Component, inject } from '@angular/core';
+import { Component, inject, ChangeDetectionStrategy } from '@angular/core';
 import { TranslocoDirective } from '@jsverse/transloco';
 
 import { ButtonComponent } from '@angular-love/blog/shared/ui-button';
@@ -14,6 +14,7 @@ export type ArticleNoTranslationDialogResult = 'home' | null;
 @Component({
   selector: 'al-article-no-translation-dialog',
   imports: [TranslocoDirective, ButtonComponent],
+  changeDetection: ChangeDetectionStrategy.Eager,
   template: `
     <div
       *transloco="let t; read: 'nav.languagePicker.noTranslationDialog'"

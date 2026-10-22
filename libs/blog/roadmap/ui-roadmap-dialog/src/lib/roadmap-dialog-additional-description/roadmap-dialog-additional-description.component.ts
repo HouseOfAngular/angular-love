@@ -1,4 +1,4 @@
-import { Component, input } from '@angular/core';
+import { Component, input, ChangeDetectionStrategy } from '@angular/core';
 
 import { AdditionalDescription } from '@angular-love/blog/roadmap/ui-roadmap-node';
 
@@ -27,6 +27,7 @@ import { RoadmapDialogSubtitleComponent } from '../roadmap-dialog-subtitle/roadm
       </div>
     </section>
   `,
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [RoadmapDialogSubtitleComponent],
 })
 export class RoadmapDialogAdditionalDescriptionComponent {

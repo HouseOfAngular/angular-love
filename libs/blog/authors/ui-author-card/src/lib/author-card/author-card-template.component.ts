@@ -1,4 +1,4 @@
-import { Component, computed, input } from '@angular/core';
+import { Component, computed, input, ChangeDetectionStrategy } from '@angular/core';
 
 import {
   CardComponent,
@@ -12,6 +12,7 @@ import {
   host: {
     class: 'block @container',
   },
+  changeDetection: ChangeDetectionStrategy.Eager,
   template: `
     <al-card alGradientCard [hideGradient]="hideGradient()">
       <div alCardContent>

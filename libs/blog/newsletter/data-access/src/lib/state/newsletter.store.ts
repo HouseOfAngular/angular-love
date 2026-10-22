@@ -15,6 +15,7 @@ const initialState: NewsletterState = {
 };
 
 export const NewsletterStore = signalStore(
+  { protectedState: false },
   withState(initialState),
   withMethods((store, newsletterService = inject(NewsletterService)) => ({
     resetToInit: () => {

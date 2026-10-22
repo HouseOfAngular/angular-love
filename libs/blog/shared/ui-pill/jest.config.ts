@@ -1,4 +1,4 @@
-export default {
+module.exports = {
   displayName: 'blog-shared-ui-pill',
   preset: '../../../../jest.preset.js',
   setupFilesAfterEnv: ['<rootDir>/src/test-setup.ts'],

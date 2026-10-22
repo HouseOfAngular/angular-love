@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { NgxSkeletonLoaderModule } from 'ngx-skeleton-loader';
 
 import { AuthorCardTemplateComponent } from './author-card-template.component';
@@ -6,6 +6,7 @@ import { AuthorCardTemplateComponent } from './author-card-template.component';
 @Component({
   selector: 'al-author-card-skeleton',
   imports: [AuthorCardTemplateComponent, NgxSkeletonLoaderModule],
+  changeDetection: ChangeDetectionStrategy.Eager,
   template: `
     <al-author-card-template>
       <ng-container author-info-card>

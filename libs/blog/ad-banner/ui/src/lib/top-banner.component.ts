@@ -1,7 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 
 @Component({
   selector: 'al-top-banner',
+  changeDetection: ChangeDetectionStrategy.Eager,
   template: `
     <a
       class="flex w-full flex-wrap justify-center gap-[5px] px-[10px] py-3 text-[18px] font-medium text-white"

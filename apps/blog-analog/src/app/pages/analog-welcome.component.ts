@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 
 @Component({
   selector: 'al-analog-analog-welcome',
@@ -7,6 +7,7 @@ import { Component } from '@angular/core';
     class:
       'flex min-h-screen flex-col text-zinc-900 bg-zinc-50 px-4 pt-8 pb-32',
   },
+  changeDetection: ChangeDetectionStrategy.Eager,
   template: `
     <main class="mx-auto flex-1">
       <section class="space-y-6 pt-6 pb-8 md:pt-10 md:pb-12 lg:py-32">

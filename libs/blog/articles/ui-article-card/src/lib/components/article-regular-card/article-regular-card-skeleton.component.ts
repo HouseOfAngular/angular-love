@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { NgxSkeletonLoaderModule } from 'ngx-skeleton-loader';
 
 import { CardComponent } from '@angular-love/blog/shared/ui-card';
@@ -6,6 +6,7 @@ import { CardComponent } from '@angular-love/blog/shared/ui-card';
 @Component({
   selector: 'al-article-regular-card-skeleton',
   imports: [NgxSkeletonLoaderModule, CardComponent],
+  changeDetection: ChangeDetectionStrategy.Eager,
   template: `
     <al-card class="*:p-0!">
       <div alCardContent class="grid grid-rows-[220px_240px]">

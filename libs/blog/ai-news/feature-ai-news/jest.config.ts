@@ -1,4 +1,4 @@
-export default {
+module.exports = {
   displayName: 'blog-ai-news-feature-ai-news',
   preset: '../../../../jest.preset.js',
   setupFilesAfterEnv: ['<rootDir>/src/test-setup.ts'],
