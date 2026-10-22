@@ -58,3 +58,4 @@ vitest.config.*.timestamp*
 *.db-shm
 
 .claude/worktrees
+.nx/polygraph
