@@ -108,13 +108,11 @@
       "linter": "eslint",
       "unitTestRunner": "jest",
       "prefix": "al",
-      "style": "scss",
-      "changeDetection": "OnPush"
+      "style": "scss"
     },
     "@nx/angular:component": {
       "style": "scss",
       "prefix": "al",
-      "changeDetection": "OnPush",
       "type": "component"
     },
     "@schematics/angular:component": {
