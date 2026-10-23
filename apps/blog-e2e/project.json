@@ -26,17 +26,13 @@
       }
     },
     "e2e": {
-      "executor": "@nx/playwright:playwright",
-      "outputs": ["{workspaceRoot}/dist/.playwright/apps/blog-e2e"],
-      "options": {
-        "config": "apps/blog-e2e/playwright.config.ts"
-      }
+      "outputs": ["{workspaceRoot}/dist/.playwright/apps/blog-e2e"]
     },
     "e2e-ui": {
-      "executor": "@nx/playwright:playwright",
+      "executor": "nx:run-commands",
       "options": {
-        "config": "apps/blog-e2e/playwright.config.ts",
-        "ui": true
+        "command": "playwright test --config playwright.config.ts --ui",
+        "cwd": "apps/blog-e2e"
       }
     },
     "e2e-codegen": {
