@@ -1,9 +1,8 @@
 import { dirname } from 'path';
 import { fileURLToPath } from 'url';
-import nx from '@nx/eslint-plugin';
-
 import { FlatCompat } from '@eslint/eslintrc';
 import js from '@eslint/js';
+import nx from '@nx/eslint-plugin';
 
 import baseConfig from '../../../eslint.config.mjs';
 
@@ -36,6 +35,21 @@ export default [
         },
       ],
       '@angular-eslint/prefer-standalone': 'off',
+    },
+  },
+  {
+    files: ['.storybook/main.ts'],
+    rules: {
+      // Addons are installed in the workspace root package.json, while the
+      // inferred lint target runs ESLint from this project's directory.
+      'storybook/no-uninstalled-addons': [
+        'error',
+        {
+          packageJsonLocation: fileURLToPath(
+            new URL('../../../package.json', import.meta.url),
+          ),
+        },
+      ],
     },
   },
   ...nx.configs['flat/angular-template'],

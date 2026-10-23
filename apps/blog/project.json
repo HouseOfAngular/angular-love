@@ -93,10 +93,6 @@
         "buildTarget": "blog:build"
       }
     },
-    "lint": {
-      "executor": "@nx/eslint:lint",
-      "outputs": ["{options.outputFile}"]
-    },
     "build-routes": {
       "executor": "nx:run-commands",
       "options": {

@@ -6,10 +6,8 @@
   "tags": ["scope:bff", "type:util"],
   "targets": {
     "lint": {
-      "executor": "@nx/eslint:lint",
-      "outputs": ["{options.outputFile}"],
       "options": {
-        "lintFilePatterns": ["libs/blog-bff/shared/util-wp/**/*.ts"]
+        "args": ["**/*.ts"]
       }
     }
   }

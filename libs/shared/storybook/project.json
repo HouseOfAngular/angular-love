@@ -6,10 +6,6 @@
   "projectType": "library",
   "tags": [],
   "targets": {
-    "lint": {
-      "executor": "@nx/eslint:lint",
-      "outputs": ["{options.outputFile}"]
-    },
     "storybook": {
       "executor": "@storybook/angular:start-storybook",
       "options": {

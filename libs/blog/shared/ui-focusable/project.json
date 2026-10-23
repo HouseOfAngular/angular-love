@@ -5,9 +5,6 @@
   "prefix": "al",
   "projectType": "library",
   "tags": ["scope:client", "type:ui"],
-  "targets": {
-    "lint": {
-      "executor": "@nx/eslint:lint"
-    }
-  }
+  "// targets": "to see all targets run: nx show project ui-focusable --web",
+  "targets": {}
 }

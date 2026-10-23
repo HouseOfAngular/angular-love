@@ -6,10 +6,8 @@
   "tags": ["scope:bff", "type:api"],
   "targets": {
     "lint": {
-      "executor": "@nx/eslint:lint",
-      "outputs": ["{options.outputFile}"],
       "options": {
-        "lintFilePatterns": ["libs/blog-bff/articles/api/**/*.ts"]
+        "args": ["**/*.ts"]
       }
     }
   }

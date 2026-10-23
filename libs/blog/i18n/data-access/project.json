@@ -17,9 +17,6 @@
     }
   ],
   "tags": ["scope:client", "type:data-access"],
-  "targets": {
-    "lint": {
-      "executor": "@nx/eslint:lint"
-    }
-  }
+  "// targets": "to see all targets run: nx show project blog-i18n-data-access --web",
+  "targets": {}
 }

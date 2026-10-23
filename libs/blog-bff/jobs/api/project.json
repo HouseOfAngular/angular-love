@@ -35,9 +35,6 @@
         "command": "tsc -p libs/blog-bff/jobs/api/tsconfig.lib.json --noEmit --declaration false"
       }
     },
-    "lint": {
-      "executor": "@nx/eslint:lint"
-    },
     "test": {
       "executor": "nx:run-commands",
       "options": {

@@ -11,9 +11,6 @@
         "{workspaceRoot}/coverage/{projectRoot}",
         "{workspaceRoot}/coverage/libs/blog/writing-rules/writing-rules"
       ]
-    },
-    "lint": {
-      "executor": "@nx/eslint:lint"
     }
   }
 }

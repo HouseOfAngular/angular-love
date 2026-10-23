@@ -5,9 +5,6 @@
   "projectType": "library",
   "tags": ["scope:bff", "type:api"],
   "targets": {
-    "lint": {
-      "executor": "@nx/eslint:lint"
-    },
     "test": {
       "executor": "nx:run-commands",
       "options": {

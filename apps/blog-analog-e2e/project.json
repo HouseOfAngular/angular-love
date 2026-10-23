@@ -7,9 +7,6 @@
   "targets": {
     "e2e": {
       "outputs": ["{workspaceRoot}/dist/.playwright/apps/blog-analog-e2e"]
-    },
-    "lint": {
-      "executor": "@nx/eslint:lint"
     }
   }
 }

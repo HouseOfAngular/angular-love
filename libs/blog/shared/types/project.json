@@ -21,9 +21,6 @@
           "tsConfig": "libs/blog/shared/types/tsconfig.lib.json"
         }
       }
-    },
-    "lint": {
-      "executor": "@nx/eslint:lint"
     }
   }
 }
