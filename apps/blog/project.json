@@ -85,6 +85,9 @@
         "development": {
           "buildTarget": "blog:build:development"
         }
+      },
+      "readyWhen": {
+        "signal": true
       }
     },
     "extract-i18n": {
