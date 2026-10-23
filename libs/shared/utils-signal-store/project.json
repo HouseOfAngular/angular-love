@@ -6,14 +6,6 @@
   "projectType": "library",
   "tags": ["scope:client", "type:util"],
   "targets": {
-    "test": {
-      "executor": "@nx/jest:jest",
-      "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
-      "options": {
-        "jestConfig": "libs/shared/utils-signal-store/jest.config.ts",
-        "tsConfig": "libs/shared/utils-signal-store/tsconfig.spec.json"
-      }
-    },
     "lint": {
       "executor": "@nx/eslint:lint",
       "outputs": ["{options.outputFile}"]
