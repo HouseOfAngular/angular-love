@@ -177,5 +177,8 @@
       }
     }
   },
-  "useInferencePlugins": false
+  "useInferencePlugins": false,
+  "affected": {
+    "legacy": true
+  }
 }
