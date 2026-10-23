@@ -64,7 +64,11 @@
         "port": 4200,
         "staticFilePath": "dist/apps/blog-analog/browser",
         "spa": true
-      }
+      },
+      "readyWhen": {
+        "signal": true
+      },
+      "dependsOn": ["build"]
     }
   }
 }
