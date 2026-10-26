@@ -101,9 +101,6 @@ export default defineEventHandler(async (event) => {
 
       entries.push({
         loc,
-        lastmod: source
-          ? lastmods.byList.get(`${dbLang}:${source}`)
-          : undefined,
         priority: path === '' ? '1.0' : '0.9',
         changefreq: 'weekly',
       });
