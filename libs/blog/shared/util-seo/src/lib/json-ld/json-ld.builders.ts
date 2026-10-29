@@ -1,9 +1,10 @@
-import { Article } from '@angular-love/contracts/articles';
+import { Article, ArticleFaqItem } from '@angular-love/contracts/articles';
 
 import { normalizeSeoDescription } from './description';
 import {
   SchemaBlogPosting,
   SchemaBreadcrumbList,
+  SchemaFaqPage,
   SchemaGraphEntity,
   SchemaListItem,
   SchemaOrganization,
@@ -13,6 +14,7 @@ import {
   SchemaWebSite,
   WebPageType,
 } from './json-ld.types';
+import { markdownToPlainText } from './markdown-text';
 import { rewriteImageUrl } from './url-rewrite';
 
 export interface BreadcrumbItem {
@@ -217,6 +219,33 @@ export function buildWebPage(
 /** `@id` of the WebPage entity for a page, and the `mainEntityOfPage` target. */
 export function buildWebPageId(pageUrl: string): string {
   return `${pageUrl}#webpage`;
+}
+
+/**
+ * FAQPage for an article's FAQ section, attached to the article's WebPage via
+ * `isPartOf` so the WebPage keeps the BlogPosting as its `mainEntity`.
+ * Answers are markdown; plain text is a valid `Answer.text` and keeps `marked`
+ * out of this shared chunk.
+ */
+export function buildFaqPage(
+  faq: ArticleFaqItem[],
+  pageUrl: string,
+  inLanguage: string,
+): SchemaFaqPage {
+  return {
+    '@type': 'FAQPage',
+    '@id': `${pageUrl}#faq`,
+    inLanguage,
+    isPartOf: { '@id': buildWebPageId(pageUrl) },
+    mainEntity: faq.map(({ question, answer }) => ({
+      '@type': 'Question',
+      name: question,
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: markdownToPlainText(answer),
+      },
+    })),
+  };
 }
 
 /** `@id` of a page's BreadcrumbList entity. */

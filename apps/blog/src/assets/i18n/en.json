@@ -200,6 +200,9 @@
   "tableOfContents": {
     "title": "Table of Contents"
   },
+  "articleFaq": {
+    "title": "Frequently asked questions"
+  },
   "articleShareIcons": {
     "title": "Share this post",
     "twitterAriaLabel": "Share on Twitter",
