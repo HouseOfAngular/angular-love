@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'al-vertical-connector-arrow',
@@ -12,7 +12,6 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
       class="h-0 w-0 border-t-30 border-r-16 border-l-16 border-t-(--primary) border-r-transparent border-l-transparent"
     ></div>
   `,
-  changeDetection: ChangeDetectionStrategy.OnPush,
   host: {
     class: 'flex flex-col items-center h-full',
   },

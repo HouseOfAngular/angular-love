@@ -66,8 +66,7 @@ export class ButtonComponent {
 
   protected class = computed(() => {
     const variant = this.variant() ?? 'Primary';
-    const isUppercase =
-      this.uppercase() ?? UPPERCASE_BY_DEFAULT.has(variant);
+    const isUppercase = this.uppercase() ?? UPPERCASE_BY_DEFAULT.has(variant);
 
     return cn(
       buttonVariants({

@@ -1,7 +1,6 @@
 import { isPlatformBrowser } from '@angular/common';
 import {
   afterRenderEffect,
-  ChangeDetectionStrategy,
   Component,
   ElementRef,
   inject,
@@ -35,7 +34,6 @@ import { RoadmapDialogManagerService } from './roadmap-dialog-manager.service';
   templateUrl: './feature-roadmap.component.html',
   styleUrl: './feature-roadmap.component.scss',
   providers: [RoadmapStore],
-  changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [RoadmapLayerComponent, RoadmapPanControlsComponent],
   host: {
     class: 'block max-h-full overflow-hidden w-full relative',

@@ -1,12 +1,5 @@
 import { DatePipe, NgClass } from '@angular/common';
-import {
-  ChangeDetectionStrategy,
-  Component,
-  computed,
-  inject,
-  input,
-  signal,
-} from '@angular/core';
+import { Component, computed, inject, input, signal } from '@angular/core';
 import { FastSvgComponent } from '@push-based/ngx-fast-svg';
 
 import { GiscusCommentsComponent } from '@angular-love/blog/articles/feature-comments';
@@ -61,7 +54,6 @@ import { ArticleSummaryDialogService } from '../article-summary-dialog/article-s
   ],
   templateUrl: './article-details.component.html',
   styleUrls: ['./article-details.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ArticleDetailsComponent {
   readonly articleDetails = input.required<Article>();

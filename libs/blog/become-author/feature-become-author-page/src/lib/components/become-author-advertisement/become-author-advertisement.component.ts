@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, input } from '@angular/core';
+import { Component, input } from '@angular/core';
 
 import {
   CardComponent,
@@ -8,7 +8,6 @@ import {
 @Component({
   selector: 'al-become-author-advertisement',
   templateUrl: './become-author-advertisement.component.html',
-  changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [GradientCardDirective, CardComponent],
   host: {
     'data-testid': 'become-author-advertisement',

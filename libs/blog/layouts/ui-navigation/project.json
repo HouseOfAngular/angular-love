@@ -5,17 +5,6 @@
   "prefix": "al",
   "projectType": "library",
   "tags": ["scope:client", "type:ui"],
-  "targets": {
-    "test": {
-      "executor": "@nx/jest:jest",
-      "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
-      "options": {
-        "jestConfig": "libs/blog/layouts/ui-navigation/jest.config.ts",
-        "tsConfig": "libs/blog/layouts/ui-navigation/tsconfig.spec.json"
-      }
-    },
-    "lint": {
-      "executor": "@nx/eslint:lint"
-    }
-  }
+  "// targets": "to see all targets run: nx show project blog-layouts-ui-navigation --web",
+  "targets": {}
 }

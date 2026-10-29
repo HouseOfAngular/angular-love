@@ -1,10 +1,5 @@
 import { SelectionModel } from '@angular/cdk/collections';
-import {
-  ChangeDetectionStrategy,
-  Component,
-  ElementRef,
-  viewChildren,
-} from '@angular/core';
+import { Component, ElementRef, viewChildren } from '@angular/core';
 import { TranslocoDirective } from '@jsverse/transloco';
 
 import { BecomeAuthorAdvertisementComponent } from '@angular-love/blog/become-author-page-feature';
@@ -29,7 +24,6 @@ import { rulesContentData } from './rules-content';
     GradientCardDirective,
   ],
   templateUrl: './writing-rules.component.html',
-  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class WritingRulesComponent {
   readonly rulesContentData = rulesContentData;

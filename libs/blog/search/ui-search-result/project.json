@@ -5,17 +5,6 @@
   "prefix": "al",
   "projectType": "library",
   "tags": ["scope:client", "type:ui"],
-  "targets": {
-    "test": {
-      "executor": "@nx/jest:jest",
-      "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
-      "options": {
-        "jestConfig": "libs/blog/search/ui-search-result/jest.config.ts",
-        "tsConfig": "libs/blog/search/ui-search-result/tsconfig.spec.json"
-      }
-    },
-    "lint": {
-      "executor": "@nx/eslint:lint"
-    }
-  }
+  "// targets": "to see all targets run: nx show project search-result --web",
+  "targets": {}
 }

@@ -1,11 +1,4 @@
-import {
-  ChangeDetectionStrategy,
-  Component,
-  computed,
-  inject,
-  input,
-  signal,
-} from '@angular/core';
+import { Component, computed, inject, input, signal } from '@angular/core';
 import { TranslocoDirective } from '@jsverse/transloco';
 
 import { ArticleRegularCardComponent } from '@angular-love/blog/articles/ui-article-card';
@@ -33,7 +26,6 @@ import {
   ],
   templateUrl: './feature-author.component.html',
   styleUrl: './feature-author.component.scss',
-  changeDetection: ChangeDetectionStrategy.OnPush,
   host: {
     class: 'flex flex-col h-full w-full',
   },

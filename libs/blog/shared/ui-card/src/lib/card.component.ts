@@ -1,6 +1,5 @@
 import { NgOptimizedImage } from '@angular/common';
 import {
-  ChangeDetectionStrategy,
   Component,
   Directive,
   ElementRef,
@@ -91,7 +90,6 @@ export class DarkCardDirective {
   selector: 'al-card',
   templateUrl: './card.component.html',
   styleUrls: ['./card.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [NgOptimizedImage],
 })
 export class CardComponent {

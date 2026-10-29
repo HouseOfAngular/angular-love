@@ -1,9 +1,4 @@
-import {
-  ChangeDetectionStrategy,
-  Component,
-  computed,
-  input,
-} from '@angular/core';
+import { Component, computed, input } from '@angular/core';
 
 export type IconType =
   | 'calendar'
@@ -26,7 +21,6 @@ export type IconType =
   selector: 'al-icon',
   standalone: true,
   template: '',
-  changeDetection: ChangeDetectionStrategy.OnPush,
   styleUrls: ['icon.component.scss'],
   host: { '[style.-webkit-mask-image]': 'path()' },
 })

@@ -1,5 +1,5 @@
 import { NgClass } from '@angular/common';
-import { ChangeDetectionStrategy, Component, signal } from '@angular/core';
+import { Component, signal } from '@angular/core';
 
 @Component({
   selector: 'al-ui-tooltip',
@@ -11,7 +11,6 @@ import { ChangeDetectionStrategy, Component, signal } from '@angular/core';
       {{ tooltipText() }}
     </div>
   `,
-  changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [NgClass],
 })
 export class UiTooltipComponent {

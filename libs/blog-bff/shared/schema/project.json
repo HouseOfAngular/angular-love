@@ -5,16 +5,6 @@
   "projectType": "library",
   "tags": ["scope:bff", "type:schema"],
   "targets": {
-    "lint": {
-      "executor": "@nx/eslint:lint"
-    },
-    "test": {
-      "executor": "@nx/jest:jest",
-      "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
-      "options": {
-        "jestConfig": "libs/blog-bff/shared/schema/jest.config.ts"
-      }
-    },
     "db-generate": {
       "executor": "nx:run-commands",
       "options": {

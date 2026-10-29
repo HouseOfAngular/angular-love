@@ -2,7 +2,7 @@
 
 import { resolve } from 'path';
 import analog from '@analogjs/platform';
-import { nxViteTsPaths } from '@nx/vite/plugins/nx-tsconfig-paths.plugin';
+import { nxReadySignal } from '@nx/vite/plugins/nx-ready-signal.plugin';
 import tailwindcss from '@tailwindcss/vite';
 import { typescriptPaths } from 'rollup-plugin-typescript-paths';
 import { defineConfig } from 'vite';
@@ -23,6 +23,7 @@ export default defineConfig(({ mode }) => {
       },
     },
     resolve: {
+      tsconfigPaths: true,
       alias: {
         '@shared-styles': resolve(
           __dirname,
@@ -56,8 +57,8 @@ export default defineConfig(({ mode }) => {
           },
         },
       }),
-      nxViteTsPaths(),
       tailwindcss(),
+      nxReadySignal(),
     ],
     test: {
       globals: true,

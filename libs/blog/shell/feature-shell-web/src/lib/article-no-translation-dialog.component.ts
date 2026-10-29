@@ -27,7 +27,7 @@ export type ArticleNoTranslationDialogResult = 'home' | null;
         <button al-button (click)="close(null)" variant="Secondary">
           {{ t('stayButton') }}
         </button>
-        <button al-button (click)="close('home')" [uppercase]="false">
+        <button al-button [uppercase]="false" (click)="close('home')">
           {{ t('goHomeButton') }}
         </button>
       </div>

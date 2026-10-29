@@ -30,6 +30,7 @@ const initialState: PaginationState = {
 };
 
 export const paginationStore = signalStore(
+  { protectedState: false },
   withState(initialState),
   withMethods((store) => ({
     setSkip: rxMethod<number>(tap((skip) => patchState(store, { skip }))),

@@ -1,11 +1,5 @@
 import { NgTemplateOutlet } from '@angular/common';
-import {
-  ChangeDetectionStrategy,
-  Component,
-  computed,
-  inject,
-  input,
-} from '@angular/core';
+import { Component, computed, inject, input } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { TranslocoService } from '@jsverse/transloco';
 
@@ -33,7 +27,6 @@ import { AuthorCardTemplateComponent } from './author-card-template.component';
     AlLocalizePipe,
   ],
   templateUrl: './author-card.component.html',
-  changeDetection: ChangeDetectionStrategy.OnPush,
   host: {
     'data-testid': 'author-card',
     '[attr.id]': 'author().slug',

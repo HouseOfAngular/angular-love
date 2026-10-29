@@ -1,5 +1,5 @@
 import { A11yModule } from '@angular/cdk/a11y';
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { Component } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { TranslocoDirective } from '@jsverse/transloco';
 import { FastSvgComponent } from '@push-based/ngx-fast-svg';
@@ -18,6 +18,5 @@ import { ButtonComponent } from '@angular-love/blog/shared/ui-button';
     ButtonComponent,
   ],
   templateUrl: './newsletter-succes.component.html',
-  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class NewsletterSuccesComponent {}

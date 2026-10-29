@@ -5,6 +5,7 @@ import { EMPTY, pipe, switchMap } from 'rxjs';
 import { withSearchFeature } from './search.store-feature';
 
 export const GlobalSearchStore = signalStore(
+  { protectedState: false },
   withSearchFeature(),
   withMethods(({ search, updateResult, pageSize }) => ({
     search$: rxMethod<string | null>(

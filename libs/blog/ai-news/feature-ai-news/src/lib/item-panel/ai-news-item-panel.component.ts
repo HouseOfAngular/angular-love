@@ -3,7 +3,6 @@ import { isPlatformBrowser } from '@angular/common';
 import {
   afterNextRender,
   afterRenderEffect,
-  ChangeDetectionStrategy,
   Component,
   computed,
   DestroyRef,
@@ -48,7 +47,6 @@ import { ButtonComponent } from '@angular-love/blog/shared/ui-button';
   selector: 'al-ai-news-item-panel',
   templateUrl: './ai-news-item-panel.component.html',
   styleUrl: './ai-news-item-panel.component.css',
-  changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [
     TranslocoDirective,
     CdkTrapFocus,

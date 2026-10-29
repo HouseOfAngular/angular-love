@@ -1,10 +1,4 @@
-import {
-  ChangeDetectionStrategy,
-  Component,
-  inject,
-  input,
-  OnInit,
-} from '@angular/core';
+import { Component, inject, input, OnInit } from '@angular/core';
 import { TranslocoDirective } from '@jsverse/transloco';
 import { CarouselModule, OwlOptions } from 'ngx-owl-carousel-o';
 
@@ -60,7 +54,6 @@ import { ButtonComponent } from '@angular-love/blog/shared/ui-button';
       </ng-container>
     }
   `,
-  changeDetection: ChangeDetectionStrategy.OnPush,
   providers: [RelatedArticleListStore],
   imports: [
     ArticleCompactCardComponent,

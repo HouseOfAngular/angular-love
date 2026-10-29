@@ -1,10 +1,5 @@
 import { AsyncPipe, NgClass } from '@angular/common';
-import {
-  ChangeDetectionStrategy,
-  Component,
-  computed,
-  input,
-} from '@angular/core';
+import { Component, computed, input } from '@angular/core';
 import { TranslocoDirective } from '@jsverse/transloco';
 
 import { TooltipDirective } from '@angular-love/ui-tooltip';
@@ -53,7 +48,7 @@ export type UiDifficulty = 'beginner' | 'intermediate' | 'advanced';
           @if (difficultyLevel() >= level) {
             <!-- Dot -->
             <div
-              class="absolute left-1/2 top-1/2 h-2.5 w-2.5 -translate-x-1/2 -translate-y-1/2 transform rounded-full"
+              class="absolute top-1/2 left-1/2 h-2.5 w-2.5 -translate-x-1/2 -translate-y-1/2 transform rounded-full"
               [ngClass]="{
                 'bg-green-500': difficultyLevel() === 0,
                 'bg-yellow-500': difficultyLevel() === 1,
@@ -63,7 +58,7 @@ export type UiDifficulty = 'beginner' | 'intermediate' | 'advanced';
           } @else {
             <!-- Empty Dot -->
             <div
-              class="absolute left-1/2 top-1/2 h-3 w-3 -translate-x-1/2 -translate-y-1/2 transform rounded-full"
+              class="absolute top-1/2 left-1/2 h-3 w-3 -translate-x-1/2 -translate-y-1/2 transform rounded-full"
               [ngClass]="{
                 'bg-al-background': isColorBackground(),
                 'bg-al-border': !isColorBackground(),
@@ -83,7 +78,6 @@ export type UiDifficulty = 'beginner' | 'intermediate' | 'advanced';
       ></div>
     </div>
   `,
-  changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [
     NgClass,
     TranslocoDirective,

@@ -1,11 +1,4 @@
-import {
-  ChangeDetectionStrategy,
-  Component,
-  computed,
-  input,
-  output,
-  signal,
-} from '@angular/core';
+import { Component, computed, input, output, signal } from '@angular/core';
 import { TranslocoDirective } from '@jsverse/transloco';
 import { FastSvgComponent } from '@push-based/ngx-fast-svg';
 
@@ -76,7 +69,6 @@ import { headerNavItems } from './header-nav-items';
       (languageChange)="languageChange.emit($event)"
     />
   `,
-  changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [
     NavigationComponent,
     HeaderLogoComponent,

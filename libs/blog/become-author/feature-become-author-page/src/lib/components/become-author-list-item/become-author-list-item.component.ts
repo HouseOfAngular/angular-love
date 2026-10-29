@@ -1,5 +1,5 @@
 import { NgClass } from '@angular/common';
-import { ChangeDetectionStrategy, Component, input } from '@angular/core';
+import { Component, input } from '@angular/core';
 import { FastSvgComponent } from '@push-based/ngx-fast-svg';
 
 export type Layout = 'curved' | 'normal';
@@ -8,7 +8,6 @@ export type Layout = 'curved' | 'normal';
   selector: 'al-become-author-list-item',
   imports: [NgClass, FastSvgComponent],
   templateUrl: './become-author-list-item.component.html',
-  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class BecomeAuthorListItemComponent {
   index = input<number>();

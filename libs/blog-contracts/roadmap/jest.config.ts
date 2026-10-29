@@ -1,4 +1,4 @@
-export default {
+module.exports = {
   displayName: 'blog-contracts-roadmap',
   preset: '../../../jest.preset.js',
   setupFilesAfterEnv: ['<rootDir>/src/test-setup.ts'],

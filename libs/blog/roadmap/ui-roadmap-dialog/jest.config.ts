@@ -1,4 +1,4 @@
-export default {
+module.exports = {
   displayName: 'ui-roadmap-dialog',
   preset: '../../../../jest.preset.js',
   setupFilesAfterEnv: ['<rootDir>/src/test-setup.ts'],

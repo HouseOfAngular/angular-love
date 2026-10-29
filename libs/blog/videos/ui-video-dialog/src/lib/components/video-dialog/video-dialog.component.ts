@@ -1,5 +1,5 @@
 import { DIALOG_DATA, DialogRef } from '@angular/cdk/dialog';
-import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { TranslocoDirective } from '@jsverse/transloco';
 import { FastSvgComponent } from '@push-based/ngx-fast-svg';
 
@@ -11,7 +11,6 @@ import { VideoDialogData } from '../../types/video-dialog-data';
   selector: 'al-video-dialog',
   templateUrl: './video-dialog.component.html',
   styleUrl: './video-dialog.component.scss',
-  changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [YoutubeVideoPlayerComponent, TranslocoDirective, FastSvgComponent],
 })
 export class VideoDialogComponent {

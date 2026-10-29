@@ -1,9 +1,4 @@
-import {
-  ChangeDetectionStrategy,
-  Component,
-  effect,
-  inject,
-} from '@angular/core';
+import { Component, effect, inject } from '@angular/core';
 import {
   FormControl,
   FormGroup,
@@ -33,7 +28,6 @@ import { NewsletterStore } from '@angular-love/data-access';
     FastSvgComponent,
   ],
   templateUrl: './newsletter.component.html',
-  changeDetection: ChangeDetectionStrategy.OnPush,
   providers: [NewsletterStore],
 })
 export class NewsletterComponent {

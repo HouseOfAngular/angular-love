@@ -1,10 +1,5 @@
 import { DatePipe, NgOptimizedImage } from '@angular/common';
-import {
-  ChangeDetectionStrategy,
-  Component,
-  HostBinding,
-  input,
-} from '@angular/core';
+import { Component, HostBinding, input } from '@angular/core';
 import { FastSvgComponent } from '@push-based/ngx-fast-svg';
 
 interface UiSearchResultItem {
@@ -21,7 +16,6 @@ interface UiSearchResultItem {
   selector: 'al-search-result-item',
   templateUrl: './search-result-item.component.html',
   styleUrl: './search-result-item.component.scss',
-  changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [NgOptimizedImage, DatePipe, FastSvgComponent],
 })
 export class SearchResultItemComponent {

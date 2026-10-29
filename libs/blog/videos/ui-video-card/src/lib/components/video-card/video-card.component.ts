@@ -1,12 +1,5 @@
 import { NgOptimizedImage } from '@angular/common';
-import {
-  ChangeDetectionStrategy,
-  Component,
-  computed,
-  input,
-  output,
-  signal,
-} from '@angular/core';
+import { Component, computed, input, output, signal } from '@angular/core';
 import { FastSvgComponent } from '@push-based/ngx-fast-svg';
 
 import { VideoCard } from '../../types/video-card';
@@ -14,7 +7,6 @@ import { VideoCard } from '../../types/video-card';
 @Component({
   selector: 'al-video-card',
   templateUrl: './video-card.component.html',
-  changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [NgOptimizedImage, FastSvgComponent],
 })
 export class VideoCardComponent {

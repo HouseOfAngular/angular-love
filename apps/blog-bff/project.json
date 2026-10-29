@@ -15,17 +15,6 @@
     },
     "serve": {
       "executor": "@k11r/nx-cloudflare-wrangler:serve-worker"
-    },
-    "lint": {
-      "executor": "@nx/eslint:lint",
-      "outputs": ["{options.outputFile}"]
-    },
-    "test": {
-      "executor": "@nx/jest:jest",
-      "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
-      "options": {
-        "jestConfig": "apps/blog-bff/jest.config.ts"
-      }
     }
   }
 }

@@ -2,7 +2,6 @@ import { FocusKeyManager } from '@angular/cdk/a11y';
 import { NgClass, NgTemplateOutlet } from '@angular/common';
 import {
   AfterViewInit,
-  ChangeDetectionStrategy,
   Component,
   computed,
   inject,
@@ -34,7 +33,6 @@ import { CategoryListItem, injectCategories } from './categories.const';
 @Component({
   selector: 'al-latest-articles',
   templateUrl: './feature-latest-articles.component.html',
-  changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [
     ArticleRegularCardComponent,
     NewsletterComponent,

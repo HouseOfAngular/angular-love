@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, input } from '@angular/core';
+import { Component, input } from '@angular/core';
 
 import {
   RoadmapBasicNodeComponent,
@@ -20,7 +20,6 @@ export interface RoadmapLayer {
 @Component({
   selector: 'al-roadmap-layer',
   templateUrl: 'roadmap-layer.component.html',
-  changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [
     LeftSlicePipe,
     RightSlicePipe,

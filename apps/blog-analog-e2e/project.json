@@ -6,14 +6,7 @@
   "implicitDependencies": ["blog-analog"],
   "targets": {
     "e2e": {
-      "executor": "@nx/playwright:playwright",
-      "outputs": ["{workspaceRoot}/dist/.playwright/apps/blog-analog-e2e"],
-      "options": {
-        "config": "apps/blog-analog-e2e/playwright.config.ts"
-      }
-    },
-    "lint": {
-      "executor": "@nx/eslint:lint"
+      "outputs": ["{workspaceRoot}/dist/.playwright/apps/blog-analog-e2e"]
     }
   }
 }

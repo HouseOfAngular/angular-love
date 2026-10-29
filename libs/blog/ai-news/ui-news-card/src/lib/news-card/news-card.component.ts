@@ -1,11 +1,4 @@
-import {
-  ChangeDetectionStrategy,
-  Component,
-  computed,
-  inject,
-  input,
-  LOCALE_ID,
-} from '@angular/core';
+import { Component, computed, inject, input, LOCALE_ID } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { TranslocoPipe } from '@jsverse/transloco';
 
@@ -24,7 +17,6 @@ import { NewsSourceComponent } from '../news-source/news-source.component';
 @Component({
   selector: 'al-news-card',
   templateUrl: './news-card.component.html',
-  changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [TranslocoPipe, RouterLink, AlLocalizePipe, NewsSourceComponent],
   host: {
     class: 'block',

@@ -6,17 +6,8 @@
   "tags": ["scope:bff", "type:util"],
   "targets": {
     "lint": {
-      "executor": "@nx/eslint:lint",
-      "outputs": ["{options.outputFile}"],
       "options": {
-        "lintFilePatterns": ["libs/blog-bff/shared/util-wp/**/*.ts"]
-      }
-    },
-    "test": {
-      "executor": "@nx/jest:jest",
-      "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
-      "options": {
-        "jestConfig": "libs/blog-bff/shared/util-wp/jest.config.ts"
+        "args": ["**/*.ts"]
       }
     }
   }

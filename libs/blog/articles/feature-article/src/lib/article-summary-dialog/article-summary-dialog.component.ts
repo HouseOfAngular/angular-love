@@ -1,6 +1,5 @@
 import { DIALOG_DATA, DialogRef } from '@angular/cdk/dialog';
 import {
-  ChangeDetectionStrategy,
   Component,
   computed,
   ElementRef,
@@ -33,7 +32,6 @@ const PERSONA_IMAGE_MAP: Record<PersonaId, string> = {
   templateUrl: './article-summary-dialog.component.html',
   styleUrl: './article-summary-dialog.component.scss',
   imports: [NgxSkeletonLoaderModule, ButtonComponent, DialogShellComponent],
-  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ArticleSummaryDialogComponent {
   private readonly _dialogRef = inject(DialogRef<void>);

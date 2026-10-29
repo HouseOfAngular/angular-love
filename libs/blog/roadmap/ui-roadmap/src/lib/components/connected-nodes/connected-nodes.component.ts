@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, input } from '@angular/core';
+import { Component, input } from '@angular/core';
 
 import {
   RoadmapBasicNodeComponent,
@@ -13,7 +13,6 @@ import { NodeConnectionsGroupDirective } from './node-connections-group.directiv
   selector: 'al-connected-nodes',
   templateUrl: 'connected-nodes.component.html',
   styleUrl: 'connected-nodes.component.scss',
-  changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [
     NodeConnectionPointDirective,
     NodeConnectionsGroupDirective,

@@ -56,3 +56,8 @@ vitest.config.*.timestamp*
 *.db-journal
 *.db-wal
 *.db-shm
+
+.claude/worktrees
+.nx/polygraph
+.nx/self-healing
+.nx/migrate-runs

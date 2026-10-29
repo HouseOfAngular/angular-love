@@ -1,12 +1,5 @@
 import { isPlatformBrowser } from '@angular/common';
-import {
-  ChangeDetectionStrategy,
-  Component,
-  computed,
-  inject,
-  input,
-  PLATFORM_ID,
-} from '@angular/core';
+import { Component, computed, inject, input, PLATFORM_ID } from '@angular/core';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { DomSanitizer } from '@angular/platform-browser';
 import { TranslocoService } from '@jsverse/transloco';
@@ -14,7 +7,6 @@ import { TranslocoService } from '@jsverse/transloco';
 @Component({
   selector: 'al-youtube-video-player',
   templateUrl: './youtube-video-player.component.html',
-  changeDetection: ChangeDetectionStrategy.OnPush,
   host: {
     class: 'block w-full aspect-video',
   },

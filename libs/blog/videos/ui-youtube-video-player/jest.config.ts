@@ -1,4 +1,4 @@
-export default {
+module.exports = {
   displayName: 'blog-videos-ui-youtube-video-player',
   preset: '../../../../jest.preset.js',
   setupFilesAfterEnv: ['<rootDir>/src/test-setup.ts'],

@@ -1,6 +1,5 @@
 import { CdkTrapFocus, LiveAnnouncer } from '@angular/cdk/a11y';
 import {
-  ChangeDetectionStrategy,
   Component,
   DestroyRef,
   effect,
@@ -49,7 +48,6 @@ import { GlobalSearchService } from '../global-search.service';
   ],
   templateUrl: './search-dialog.component.html',
   styleUrl: './search-dialog.component.scss',
-  changeDetection: ChangeDetectionStrategy.OnPush,
   providers: [provideSearch(), GlobalSearchStore],
 })
 export class SearchDialogComponent implements OnInit, OnDestroy {
@@ -65,31 +63,31 @@ export class SearchDialogComponent implements OnInit, OnDestroy {
   private readonly _destroyRef = inject(DestroyRef);
   private readonly _localizeService = inject(AlLocalizeService);
   private readonly _activatedRoute = inject(ActivatedRoute);
+  private readonly _liveAnnouncer = inject(LiveAnnouncer);
+  private readonly _translocoService = inject(TranslocoService);
 
-  @HostListener('click', ['$event.target']) onClick(target: HTMLElement): void {
-    if (target.classList.contains('al-overlay')) {
+  @HostListener('click', ['$event.target']) onClick(
+    target: EventTarget | null,
+  ): void {
+    if (
+      target instanceof HTMLElement &&
+      target.classList.contains('al-overlay')
+    ) {
       this.closeSearch();
     }
   }
 
-  @HostListener('keydown.enter', ['$event']) onEnterKeyDown(
-    e: KeyboardEvent,
-  ): void {
+  @HostListener('keydown.enter', ['$event']) onEnterKeyDown(e: Event): void {
     e.preventDefault();
     this.goToAllResults();
   }
 
-  @HostListener('keydown.escape', ['$event']) onEscapeKeyDown(
-    e: KeyboardEvent,
-  ): void {
+  @HostListener('keydown.escape', ['$event']) onEscapeKeyDown(e: Event): void {
     e.preventDefault();
     this.closeSearch();
   }
 
-  constructor(
-    private _liveAnnouncer: LiveAnnouncer,
-    private _translocoService: TranslocoService,
-  ) {
+  constructor() {
     effect(() => {
       if (this.searchStore.total()) {
         this._liveAnnouncer.announce(

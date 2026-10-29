@@ -1,9 +1,4 @@
-import {
-  ChangeDetectionStrategy,
-  Component,
-  CUSTOM_ELEMENTS_SCHEMA,
-  inject,
-} from '@angular/core';
+import { Component, CUSTOM_ELEMENTS_SCHEMA, inject } from '@angular/core';
 
 import 'giscus';
 
@@ -20,7 +15,6 @@ import { AppThemeStore } from '@angular-love/data-access-app-theme';
   selector: 'al-giscus-comments',
   templateUrl: './giscus-comments.component.html',
   styleUrl: './giscus-comments.component.scss',
-  changeDetection: ChangeDetectionStrategy.OnPush,
   host: {
     class: 'block h-full w-full min-h-[326px] flex items-center',
   },

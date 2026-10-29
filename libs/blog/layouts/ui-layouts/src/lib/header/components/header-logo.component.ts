@@ -1,5 +1,5 @@
 import { NgOptimizedImage } from '@angular/common';
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { Component } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { TranslocoDirective } from '@jsverse/transloco';
 
@@ -26,7 +26,6 @@ import { AlLocalizePipe } from '@angular-love/blog/i18n/util';
       <div class="text-al-primary px-4 text-lg font-bold">angular.love</div>
     </a>
   `,
-  changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [AlLocalizePipe, NgOptimizedImage, RouterLink, TranslocoDirective],
 })
 export class HeaderLogoComponent {}

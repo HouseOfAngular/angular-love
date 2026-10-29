@@ -5,17 +5,6 @@
   "prefix": "al",
   "projectType": "library",
   "tags": ["scope:client", "type:data-access"],
-  "targets": {
-    "test": {
-      "executor": "@nx/jest:jest",
-      "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
-      "options": {
-        "jestConfig": "libs/blog/ai-news/data-access/jest.config.ts",
-        "tsConfig": "libs/blog/ai-news/data-access/tsconfig.spec.json"
-      }
-    },
-    "lint": {
-      "executor": "@nx/eslint:lint"
-    }
-  }
+  "// targets": "to see all targets run: nx show project blog-ai-news-data-access --web",
+  "targets": {}
 }

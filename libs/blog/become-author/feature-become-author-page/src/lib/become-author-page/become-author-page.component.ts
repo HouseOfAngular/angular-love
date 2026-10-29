@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { Component } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { TranslocoDirective } from '@jsverse/transloco';
 
@@ -27,7 +27,6 @@ import { BecomeAuthorImprovementsComponent } from '../components/become-author-i
     ButtonComponent,
   ],
   templateUrl: './become-author-page.component.html',
-  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class BecomeAuthorPageFeatureComponent {
   protected readonly improvements = [

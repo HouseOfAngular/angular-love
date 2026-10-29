@@ -1,9 +1,4 @@
-import {
-  ChangeDetectionStrategy,
-  Component,
-  inject,
-  input,
-} from '@angular/core';
+import { Component, inject, input } from '@angular/core';
 
 import {
   ArticleDetailsStore,
@@ -22,7 +17,6 @@ import { ArticleDetailsComponent } from '../article-details/article-details.comp
     NotFoundPageComponent,
   ],
   templateUrl: './article-details-container.component.html',
-  changeDetection: ChangeDetectionStrategy.OnPush,
   host: {
     class: 'block w-full',
     'aria-live': 'polite',

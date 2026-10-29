@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { Component } from '@angular/core';
 import { TranslocoDirective } from '@jsverse/transloco';
 
 @Component({
@@ -27,7 +27,6 @@ import { TranslocoDirective } from '@jsverse/transloco';
       </ng-container>
     </section>
   `,
-  changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [TranslocoDirective],
 })
 export class WelcomeMessageComponent {}

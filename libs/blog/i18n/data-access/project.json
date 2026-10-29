@@ -17,17 +17,6 @@
     }
   ],
   "tags": ["scope:client", "type:data-access"],
-  "targets": {
-    "test": {
-      "executor": "@nx/jest:jest",
-      "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
-      "options": {
-        "jestConfig": "libs/blog/i18n/data-access/jest.config.ts",
-        "tsConfig": "libs/blog/i18n/data-access/tsconfig.spec.json"
-      }
-    },
-    "lint": {
-      "executor": "@nx/eslint:lint"
-    }
-  }
+  "// targets": "to see all targets run: nx show project blog-i18n-data-access --web",
+  "targets": {}
 }

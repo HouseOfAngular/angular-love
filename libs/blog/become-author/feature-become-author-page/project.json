@@ -5,17 +5,6 @@
   "prefix": "al",
   "projectType": "library",
   "tags": ["scope:client", "type:feature"],
-  "targets": {
-    "test": {
-      "executor": "@nx/jest:jest",
-      "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
-      "options": {
-        "jestConfig": "libs/blog/become-author/feature-become-author-page/jest.config.ts",
-        "tsConfig": "libs/blog/become-author/feature-become-author-page/tsconfig.spec.json"
-      }
-    },
-    "lint": {
-      "executor": "@nx/eslint:lint"
-    }
-  }
+  "// targets": "to see all targets run: nx show project become-author-page-feature --web",
+  "targets": {}
 }

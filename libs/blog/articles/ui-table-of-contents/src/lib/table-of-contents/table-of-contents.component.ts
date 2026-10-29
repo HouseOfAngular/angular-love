@@ -1,11 +1,5 @@
 import { NgClass } from '@angular/common';
-import {
-  ChangeDetectionStrategy,
-  Component,
-  input,
-  model,
-  output,
-} from '@angular/core';
+import { Component, input, model, output } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { TranslocoDirective } from '@jsverse/transloco';
 
@@ -16,7 +10,6 @@ import { Anchor } from '@angular-love/contracts/articles';
   imports: [NgClass, RouterLink, TranslocoDirective],
   templateUrl: './table-of-contents.component.html',
   styleUrls: ['./table-of-contents.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class TableOfContentsComponent {
   readonly anchors = input.required<Anchor[]>();

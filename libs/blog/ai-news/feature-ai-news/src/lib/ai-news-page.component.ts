@@ -1,7 +1,6 @@
 import { DatePipe, TitleCasePipe, ViewportScroller } from '@angular/common';
 import {
   afterNextRender,
-  ChangeDetectionStrategy,
   Component,
   computed,
   inject,
@@ -38,7 +37,6 @@ import { RepeatDirective } from '@angular-love/utils';
   selector: 'al-ai-news-page',
   templateUrl: './ai-news-page.component.html',
   styleUrl: './ai-news-page.component.css',
-  changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [
     TranslocoDirective,
     RouterLink,
